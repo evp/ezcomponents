@@ -151,7 +151,7 @@ abstract class ezcWorkflowNodeConditionalBranch extends ezcWorkflowNodeBranch
             $maxActivatedConditionalOutNodes = $numKeys;
         }
 
-        for ( $i = 0; $i < $numKeys && $numActivatedConditionalOutNodes <= $maxActivatedConditionalOutNodes; $i++ )
+        for ( $i = 0; $i < $numKeys && $numActivatedConditionalOutNodes < $maxActivatedConditionalOutNodes; $i++ )
         {
             if ( isset( $this->configuration['condition'][$keys[$i]] ) )
             {
