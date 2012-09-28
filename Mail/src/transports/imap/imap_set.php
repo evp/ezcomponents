@@ -64,7 +64,7 @@ class ezcMailImapSet implements ezcMailParserSet
 
     /**
      * Used to generate a tag for sending commands to the IMAP server.
-     * 
+     *
      * @var string
      */
     private $currentTag = 'A0000';
@@ -135,7 +135,7 @@ class ezcMailImapSet implements ezcMailParserSet
         $this->messages = $messages;
         $this->deleteFromServer = $deleteFromServer;
         $this->nextData = null;
-        
+
         $this->uid = ( $this->options->uidReferencing ) ? ezcMailImapTransport::UID : ezcMailImapTransport::NO_UID;
     }
 
@@ -168,6 +168,7 @@ class ezcMailImapSet implements ezcMailParserSet
         }
         if ( $this->hasMoreMailData )
         {
+        	$data = null;
             if ( $this->bytesToRead !== false && $this->bytesToRead >= 0 )
             {
                 $data = $this->connection->getLine();
@@ -182,17 +183,8 @@ class ezcMailImapSet implements ezcMailParserSet
                         $data = substr( $data, 0, strlen( $data ) + $this->bytesToRead ); //trim( $data, ")\r\n" );
                     }
 
-                    if ( $this->bytesToRead === 0 )
-                    {
-                        // hack for Microsoft Exchange, which sometimes puts
-                        // FLAGS (\Seen)) at the end of a message instead of before (!)
-                        if ( strlen( trim( $data, ")\r\n" ) !== strlen( $data ) - 3 ) )
-                        {
-                            // if the last line in a mail does not end with ")\r\n"
-                            // then read an extra line and discard it
-                            $extraData = $this->connection->getLine();
-                        }
-                    }
+                    // skip OK response ("{$tag} OK FETCH completed.")
+                    $this->getResponse( $this->currentTag );
 
                     $this->hasMoreMailData = false;
                     // remove the mail if required by the user.
