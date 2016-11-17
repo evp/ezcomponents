@@ -1,5 +1,8 @@
 {
     "name": "evp/fork-gewthen-ezcomponents",
     "type": "library",
+    "autoload": {
+        "classmap": ["autoload/"]
+    }
     "require": {}
 }
