@@ -405,16 +405,6 @@ class ezcBaseTest extends ezcTestCase
         self::assertEquals( getcwd() . '/Base/tests/test_repository/autoload_files', $resultArray['tr']->autoloadPath );
     }
 
-    public function testNoPrefixAutoload()
-    {
-        ezcBase::addClassRepository( './Base/tests/test_repository', './Base/tests/test_repository/autoload_files' );
-        __autoload( 'Object' );
-        if ( !class_exists( 'Object' ) )
-        {
-            $this->fail( "Autoload does not handle classes with no prefix" );
-        }
-    }
-
     public function testNoPrefixAutoload2()
     {
         ezcBase::addClassRepository( './Base/tests/issue15896' );
