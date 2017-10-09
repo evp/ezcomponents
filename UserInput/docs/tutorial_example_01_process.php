@@ -9,13 +9,13 @@ if ( ezcInputForm::hasGetData() )
         $propertyWarningName = "warning_$name";
         if ( $form->hasValidData( $name ) )
         {
-            $$propertyName = $form->$name;
+            ${$propertyName} = $form->$name;
         }
         else
         {
-            $$propertyName =
+            ${$propertyName} =
                 htmlspecialchars( $form->getUnsafeRawData( $name ) );
-            $$propertyWarningName = '[invalid]';
+            ${$propertyWarningName} = '[invalid]';
         }
     }
 }

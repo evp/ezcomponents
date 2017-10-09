@@ -177,7 +177,7 @@ class ezcAuthenticationBignumTest extends ezcAuthenticationTest
 
         foreach ( self::$tables as $table )
         {
-            foreach ( self::$$table as $i => $line )
+            foreach ( self::${$table} as $i => $line )
             {
                 $result = $lib->toString( $lib->$table( $lib->init( $line[0] ), ( $table === 'pow' ) ? $line[1] : $lib->init( $line[1] ) ) );
                 $expected = $lib->toString( $lib->init( $line[2] ) );
@@ -274,7 +274,7 @@ class ezcAuthenticationBignumTest extends ezcAuthenticationTest
 
         foreach ( self::$tables as $table )
         {
-            foreach ( self::$$table as $i => $line )
+            foreach ( self::${$table} as $i => $line )
             {
                 $result = $lib->toString( $lib->$table( $lib->init( $line[0] ), $lib->init( $line[1] ) ) );
                 $expected = $lib->toString( $lib->init( $line[2] ) );

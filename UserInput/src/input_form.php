@@ -72,7 +72,7 @@
  *         $name = "property_{$property}";
  *         if ( $form->hasValidData( $property ) )
  *         {
- *             $$name = $form->$property;
+ *             ${$name} = $form->$property;
  *         }
  *     }
  * }

@@ -105,7 +105,7 @@ class ezcDbSchemaPersistentClassWriter implements ezcDbSchemaFileWriter
             fwrite( $file, "     *\n" );
             fwrite( $file, "     * @var {$this->translateType($field->type)}\n" );
             fwrite( $file, "     */\n" );
-            fwrite( $file, "    private \$$fieldName;\n" );
+            fwrite( $file, "    private \${$fieldName};\n" );
         }
     }
 
