@@ -123,7 +123,7 @@ class ezcMailCharsetConverter
         {
             $originalCharset = "latin1";
         }
-        return iconv( $originalCharset, 'utf-8', $text );
+        return iconv( $originalCharset, 'utf-8//IGNORE', $text );
     }
 }
 ?>
