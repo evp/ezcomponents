@@ -81,7 +81,7 @@ class ezcGraphRadarChart extends ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->options = new ezcGraphRadarChartOptions( $options );
         $this->options->highlightFont = $this->options->font;
@@ -366,8 +366,8 @@ class ezcGraphRadarChart extends ezcGraphChart
         // Calculate axis scaling and labeling
         foreach ( $this->data as $dataset )
         {
-            $labels = array();
-            $values = array();
+            $labels = [];
+            $values = [];
             foreach ( $dataset as $label => $value )
             {
                 $labels[] = $label;

@@ -18,11 +18,11 @@ try
 
     $conf->setSettings(
         'db',
-        array( "host", "user", "password" ),
-        array( 'localhost', 'dr', '42' )
+        ["host", "user", "password"],
+        ['localhost', 'dr', '42']
     );
 
-    $ini = new ezcConfigurationIniWriter( dirname( __FILE__ ) . '/defaults.ini', $conf );
+    $ini = new ezcConfigurationIniWriter( __DIR__ . '/defaults.ini', $conf );
     $conf = $ini->save();
     print "INI file defaults.ini was successfully created\n";
 }

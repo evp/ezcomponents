@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/../helper/pdf_mocked_driver.php';
+require_once __DIR__ . '/../helper/pdf_mocked_driver.php';
 
 /**
  * Test suite for class.
@@ -21,28 +21,12 @@ class ezcDocumentPcssMeasureTests extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getUnitConversions()
     {
-        return array(
-            array( '10', 'mm', 10 ),
-            array( '10mm', 'mm', 10 ),
-            array( 10, 'mm', 10 ),
-            array( .1, 'mm', .1 ),
-            array( '.1in', 'mm', 2.54 ),
-            array( '10pt', 'mm', 3.53 ),
-            array( '10px', 'mm', 3.53 ),
-            array( '10px', 'px', 10 ),
-            array( '10px', 'pt', 10 ),
-            array( '10pt', 'px', 10 ),
-            array( '10', 'pt', 28.35 ),
-            array( '10', 'px', 28.35 ),
-            array( '10', 'in', .39 ),
-            array( '-2.3pt', 'mm', -.81 ),
-            array( '+2.3pt', 'mm', .81 ),
-        );
+        return [['10', 'mm', 10], ['10mm', 'mm', 10], [10, 'mm', 10], [.1, 'mm', .1], ['.1in', 'mm', 2.54], ['10pt', 'mm', 3.53], ['10px', 'mm', 3.53], ['10px', 'px', 10], ['10px', 'pt', 10], ['10pt', 'px', 10], ['10', 'pt', 28.35], ['10', 'px', 28.35], ['10', 'in', .39], ['-2.3pt', 'mm', -.81], ['+2.3pt', 'mm', .81]];
     }
 
     /**

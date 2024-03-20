@@ -9,7 +9,7 @@
  * @subpackage Test
  */
 
-require_once dirname( __FILE__ ) . '/property_test.php';
+require_once __DIR__ . '/property_test.php';
 
 /**
  * Test case for the ezcWebdavRequestPropertyBehaviourContent class.
@@ -22,44 +22,15 @@ class ezcWebdavRequestPropertyBehaviourContentTest extends ezcWebdavPropertyTest
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavRequestPropertyBehaviourContent';
-        $this->defaultValues = array(
-            'keepAlive' => null,
-            'omit'      => false,
-        );
-        $this->workingValues = array(
-            'keepAlive' => array(
-                array( 'http://example.com', 'http://example.com/test' ),
-                ezcWebdavRequestPropertyBehaviourContent::ALL,
-                null,
-            ),
-            'omit' => array(
-                true,
-                false,
-            ),
-        );
-        $this->failingValues = array(
-            'keepAlive' => array(
-                23,
-                23.34,
-                'foo',
-                true,
-                false,
-                new stdClass(),
-            ),
-            'omit' => array(
-                23,
-                23.34,
-                'foo',
-                new stdClass(),
-                array( 23, 42 ),
-            ),
-        );
+        $this->defaultValues = ['keepAlive' => null, 'omit'      => false];
+        $this->workingValues = ['keepAlive' => [['http://example.com', 'http://example.com/test'], ezcWebdavRequestPropertyBehaviourContent::ALL, null], 'omit' => [true, false]];
+        $this->failingValues = ['keepAlive' => [23, 23.34, 'foo', true, false, new stdClass()], 'omit' => [23, 23.34, 'foo', new stdClass(), [23, 42]]];
     }
 
     public function testCtorSuccess()

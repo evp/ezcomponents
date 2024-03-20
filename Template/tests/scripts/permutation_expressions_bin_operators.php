@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/expressions/correct/binary_operators_*.in
 
@@ -89,7 +89,7 @@ $list = perm( "%num%:",
 // $a == $b == $c (should produce proper PHP code ) => ($a == $b) == $c
 // $a = $b = $c (should produce proper PHP code) $a = ($b = $c)
 
-$dir = dirname( __FILE__ ) . "/../regression_tests/";
+$dir = __DIR__ . "/../regression_tests/";
 
 $a = app( "expressions/correct/binary_operators_0001.in", $argv );
 
@@ -111,8 +111,8 @@ $i = 1;
 $topObj = "{use \$obj}\n";
 $top = "{var \$foo = 42, \$bar = 101, \$bar2 = 201, \$arr = array( 'foo' => 401 )}\n";
 $topPHP = "\$foo = 42; \$bar = 101; \$bar2 = 201; \$arr = array( 'foo' => 401 );\n";
-$phpCode = array( 1 => '' );
-$sendMap = array( 1 => false );
+$phpCode = [1 => ''];
+$sendMap = [1 => false];
 
 $block = 1;
 $a->output( $top );

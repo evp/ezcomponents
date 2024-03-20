@@ -34,12 +34,7 @@ class ezcConsoleQuestionDialogOptionsTest extends ezcTestCase
     public function testGetAccessCustomSuccess()
     {
         $opts = new ezcConsoleQuestionDialogOptions(
-            array(
-                "text"              => "Do you have a question?",
-                "validator"         => new ezcConsoleQuestionDialogCollectionValidator( array( "a", "b" ) ),
-                "showResults"    => true,
-                "format"            => "test",
-            )
+            ["text"              => "Do you have a question?", "validator"         => new ezcConsoleQuestionDialogCollectionValidator( ["a", "b"] ), "showResults"    => true, "format"            => "test"]
         );
         $this->assertEquals( "Do you have a question?", $opts->text );
         $this->assertType( "ezcConsoleQuestionDialogCollectionValidator", $opts->validator );
@@ -66,7 +61,7 @@ class ezcConsoleQuestionDialogOptionsTest extends ezcTestCase
     {
         $opts = new ezcConsoleQuestionDialogOptions();
         $opts->text        = "Do you have a question?";
-        $opts->validator   = new ezcConsoleQuestionDialogCollectionValidator( array( "a", "b" ) );
+        $opts->validator   = new ezcConsoleQuestionDialogCollectionValidator( ["a", "b"] );
         $opts->showResults = true;
         $opts->format      = "test";
         

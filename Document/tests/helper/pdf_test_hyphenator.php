@@ -41,13 +41,10 @@ class ezcTestDocumentPdfHyphenator extends ezcDocumentPdfHyphenator
      */
     public function splitWord( $word )
     {
-        $splits = array();
+        $splits = [];
         for ( $i = 1; $i < iconv_strlen( $word, 'UTF-8' ); ++$i )
         {
-            $splits[] = array(
-                iconv_substr( $word, 0, $i ) . '-',
-                iconv_substr( $word, $i )
-            );
+            $splits[] = [iconv_substr( $word, 0, $i ) . '-', iconv_substr( $word, $i )];
         }
         return $splits;
     }

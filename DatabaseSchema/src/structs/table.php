@@ -39,7 +39,7 @@ class ezcDbSchemaTable extends ezcBaseStruct
      * @param array(string=>ezcDbSchemaField) $fields
      * @param array(string=>ezcDbSchemaIndex) $indexes
      */
-    function __construct( $fields, $indexes = array() )
+    function __construct( $fields, $indexes = [] )
     {
         $this->fields = $fields;
         $this->indexes = $indexes;

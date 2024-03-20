@@ -28,9 +28,7 @@ abstract class ezcDocumentConverter implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $properties = array(
-        'errors' => array(),
-    );
+    protected $properties = ['errors' => []];
 
     /**
      * Construct new document
@@ -39,9 +37,7 @@ abstract class ezcDocumentConverter implements ezcDocumentErrorReporting
      */
     public function __construct( ezcDocumentConverterOptions $options = null )
     {
-        $this->options = ( $options === null ?
-            new ezcDocumentConverterOptions() :
-            $options );
+        $this->options = ( $options ?? new ezcDocumentConverterOptions() );
     }
 
     /**

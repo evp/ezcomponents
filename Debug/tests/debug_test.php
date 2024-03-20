@@ -61,7 +61,7 @@ class ezcDebugTest extends ezcTestCase
         $this->assertSetProperty(
             $this->dbg,
             'options',
-            array( new ezcDebugOptions(), )
+            [new ezcDebugOptions()]
         );
     }
 
@@ -70,7 +70,7 @@ class ezcDebugTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $this->dbg,
             'options',
-            array( null, true, 23, 23.42, 'foobar', array(), new stdClass )
+            [null, true, 23, 23.42, 'foobar', [], new stdClass]
         );
 
         try
@@ -102,7 +102,7 @@ class ezcDebugTest extends ezcTestCase
     public function testSimpleMessage()
     {
         $dbg = $this->dbg;
-        $dbg->log("Running testSimpleMessage", 0, array("source" => "src", "category" => "cat") );
+        $dbg->log("Running testSimpleMessage", 0, ["source" => "src", "category" => "cat"] );
         
         $struct = $dbg->generateOutput();
         $this->assertEquals(1, count( $struct[0] ) );
@@ -113,9 +113,9 @@ class ezcDebugTest extends ezcTestCase
     {
         $dbg = $this->dbg;
 
-        $dbg->log("msg1", 0, array("source" => "src", "category" => "cat") );
-        $dbg->log("msg2", 0, array("source" => "src", "category" => "cat") );
-        $dbg->log("msg3", 1, array("source" => "src", "category" => "cat") );
+        $dbg->log("msg1", 0, ["source" => "src", "category" => "cat"] );
+        $dbg->log("msg2", 0, ["source" => "src", "category" => "cat"] );
+        $dbg->log("msg3", 1, ["source" => "src", "category" => "cat"] );
 
         $struct = $dbg->generateOutput();
         $this->assertEquals(3, count( $struct[0] ) );
@@ -201,7 +201,7 @@ class ezcDebugTest extends ezcTestCase
     public function testLogStackTrace()
     {
         $dbg = $this->dbg;
-        $dbg->log( "bla", 1, array(), true );
+        $dbg->log( "bla", 1, [], true );
         
         ezcLog::getInstance()->setMapper( new MyFakeMapper() );
 
@@ -238,12 +238,7 @@ class ezcDebugTest extends ezcTestCase
         // Unify results
         $struct[0][0]->datetime = null;
 
-        $fakeStruct = array( 
-            array(
-                new ezcDebugStructure(),
-            ),
-            array()
-        );
+        $fakeStruct = [[new ezcDebugStructure()], []];
         $fakeStruct[0][0]->message   = 'Cannot load template';
         $fakeStruct[0][0]->severity  = 1;
         $fakeStruct[0][0]->source    = 'Paynet';

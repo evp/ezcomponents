@@ -24,7 +24,7 @@ class ezcWorkflowSignalSlotPlugin extends ezcWorkflowExecutionPlugin
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * @var ezcSignalCollection

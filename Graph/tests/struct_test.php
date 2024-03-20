@@ -104,10 +104,7 @@ class ezcGraphStructTest extends ezcTestCase
         $context = new ezcGraphContext();
 
         $context->__set_state(
-        array(
-            'dataset' => 'set',
-            'datapoint' => 'point',
-        ) );
+        ['dataset' => 'set', 'datapoint' => 'point'] );
 
         $this->assertSame(
             'set',
@@ -127,11 +124,7 @@ class ezcGraphStructTest extends ezcTestCase
         $context = new ezcGraphContext();
 
         $context->__set_state(
-        array(
-            'dataset' => 'set',
-            'datapoint' => 'point',
-            'url' => 'url://',
-        ) );
+        ['dataset' => 'set', 'datapoint' => 'point', 'url' => 'url://'] );
 
         $this->assertSame(
             'set',
@@ -221,10 +214,7 @@ class ezcGraphStructTest extends ezcTestCase
         $context = new ezcGraphCoordinate( 0, 0 );
 
         $context->__set_state(
-        array(
-            'x' => 23,
-            'y' => 42,
-        ) );
+        ['x' => 23, 'y' => 42] );
 
         $this->assertSame(
             23,
@@ -255,14 +245,7 @@ class ezcGraphStructTest extends ezcTestCase
         $step = new ezcGraphAxisStep();
 
         $step->__set_state(
-        array(
-            'position' => .4,
-            'width' => .2,
-            'label' => 'Label',
-            'childs' => array(),
-            'isZero' => true,
-            'isLast' => false,
-        ) );
+        ['position' => .4, 'width' => .2, 'label' => 'Label', 'childs' => [], 'isZero' => true, 'isLast' => false] );
 
         $this->assertSame(
             .4,
@@ -283,7 +266,7 @@ class ezcGraphStructTest extends ezcTestCase
         );
 
         $this->assertSame(
-            array(),
+            [],
             $step->childs,
             'Wrong value when reading public property childs in ezcGraphContext.'
         );

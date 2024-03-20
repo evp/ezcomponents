@@ -44,32 +44,11 @@ class ezcDocumentEzXmlToDocbookConverter extends ezcDocumentElementVisitorConver
     public function __construct( ezcDocumentEzXmlToDocbookConverterOptions $options = null )
     {
         parent::__construct(
-            $options === null ?
-                new ezcDocumentEzXmlToDocbookConverterOptions() :
-                $options
+            $options ?? new ezcDocumentEzXmlToDocbookConverterOptions()
         );
 
         // Initlize common element handlers
-        $this->visitorElementHandler = array(
-            'ezxml' => array(
-                'section'          => $mapper = new ezcDocumentEzXmlToDocbookMappingHandler(),
-                'header'           => new ezcDocumentEzXmlToDocbookHeaderHandler(),
-                'paragraph'        => $mapper,
-                'strong'           => $emphasis = new ezcDocumentEzXmlToDocbookEmphasisHandler(),
-                'emphasize'        => $emphasis,
-                'link'             => new ezcDocumentEzXmlToDocbookLinkHandler(),
-                'anchor'           => new ezcDocumentEzXmlToDocbookAnchorHandler(),
-                'ol'               => $list = new ezcDocumentEzXmlToDocbookListHandler(),
-                'ul'               => $list,
-                'li'               => $mapper,
-                'literal'          => new ezcDocumentEzXmlToDocbookLiteralHandler(),
-                'line'             => new ezcDocumentEzXmlToDocbookLineHandler(),
-                'table'            => new ezcDocumentEzXmlToDocbookTableHandler(),
-                'tr'               => new ezcDocumentEzXmlToDocbookTableRowHandler(),
-                'td'               => new ezcDocumentEzXmlToDocbookTableCellHandler(),
-                'th'               => new ezcDocumentEzXmlToDocbookTableCellHandler(),
-            )
-        );
+        $this->visitorElementHandler = ['ezxml' => ['section'          => $mapper = new ezcDocumentEzXmlToDocbookMappingHandler(), 'header'           => new ezcDocumentEzXmlToDocbookHeaderHandler(), 'paragraph'        => $mapper, 'strong'           => $emphasis = new ezcDocumentEzXmlToDocbookEmphasisHandler(), 'emphasize'        => $emphasis, 'link'             => new ezcDocumentEzXmlToDocbookLinkHandler(), 'anchor'           => new ezcDocumentEzXmlToDocbookAnchorHandler(), 'ol'               => $list = new ezcDocumentEzXmlToDocbookListHandler(), 'ul'               => $list, 'li'               => $mapper, 'literal'          => new ezcDocumentEzXmlToDocbookLiteralHandler(), 'line'             => new ezcDocumentEzXmlToDocbookLineHandler(), 'table'            => new ezcDocumentEzXmlToDocbookTableHandler(), 'tr'               => new ezcDocumentEzXmlToDocbookTableRowHandler(), 'td'               => new ezcDocumentEzXmlToDocbookTableCellHandler(), 'th'               => new ezcDocumentEzXmlToDocbookTableCellHandler()]];
     }
 
     /**

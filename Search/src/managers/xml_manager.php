@@ -43,21 +43,14 @@ class ezcSearchXmlManager implements ezcSearchDefinitionManager
      *
      * @var array(string=>ezcSearchDocumentDefinition)
      */
-    private $cache = array();
+    private $cache = [];
 
     /**
      * Map that maps XML attribute strings for the field type to constants.
      *
      * @var array(string=>int)
      */
-    private $typeMap = array(
-        'id' => ezcSearchDocumentDefinition::STRING,
-        'string' => ezcSearchDocumentDefinition::STRING,
-        'text' => ezcSearchDocumentDefinition::TEXT,
-        'html' => ezcSearchDocumentDefinition::HTML,
-        'date' => ezcSearchDocumentDefinition::DATE,
-        'int' => ezcSearchDocumentDefinition::INT,
-    );
+    private $typeMap = ['id' => ezcSearchDocumentDefinition::STRING, 'string' => ezcSearchDocumentDefinition::STRING, 'text' => ezcSearchDocumentDefinition::TEXT, 'html' => ezcSearchDocumentDefinition::HTML, 'date' => ezcSearchDocumentDefinition::DATE, 'int' => ezcSearchDocumentDefinition::INT];
 
     /**
      * Constructs a new XML manager that will look for search document definitions in the directory $dir.

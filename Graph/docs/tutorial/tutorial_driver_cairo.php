@@ -10,13 +10,7 @@ $graph->legend = false;
 // Set the cairo driver
 $graph->driver = new ezcGraphCairoDriver();
 
-$graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
-    'Mozilla' => 19113,
-    'Explorer' => 10917,
-    'Opera' => 1464,
-    'Safari' => 652,
-    'Konqueror' => 474,
-) );
+$graph->data['Access statistics'] = new ezcGraphArrayDataSet( ['Mozilla' => 19113, 'Explorer' => 10917, 'Opera' => 1464, 'Safari' => 652, 'Konqueror' => 474] );
 
 $graph->renderer = new ezcGraphRenderer3d();
 

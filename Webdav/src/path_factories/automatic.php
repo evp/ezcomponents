@@ -40,7 +40,7 @@ class ezcWebdavAutomaticPathFactory implements ezcWebdavPathFactory
      * @apichange This property will be renamed to $collectionPaths in the next
      *            major release.
      */
-    protected $collectionPathes = array();
+    protected $collectionPathes = [];
 
     /**
      * Base path on the server.

@@ -54,9 +54,7 @@ class ezcDocumentXhtmlImageElementFilter extends ezcDocumentXhtmlElementBaseFilt
         $imageData = new ezcDocumentPropertyContainerDomElement( 'span' );
         $imageObject->appendChild( $imageData );
         $imageData->setProperty( 'type', 'imagedata' );
-        $attributes = array(
-            'fileref' => $element->getAttribute( 'src' ),
-        );
+        $attributes = ['fileref' => $element->getAttribute( 'src' )];
 
         // Keep optionally specified image dimensions
         if ( $element->hasAttribute( 'width' ) )

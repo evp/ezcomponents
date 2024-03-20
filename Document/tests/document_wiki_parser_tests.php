@@ -21,7 +21,7 @@ class ezcDocumentWikiParserTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -29,15 +29,12 @@ class ezcDocumentWikiParserTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/wiki/*/*.txt' );
+            $testFiles = glob( __DIR__ . '/files/wiki/*/*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'ast'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'ast'];
             }
         }
 

@@ -27,7 +27,7 @@ class ezcDocumentOdtPcssConverterManager extends ArrayObject
      */
     public function __construct()
     {
-        parent::__construct( array(), ArrayObject::STD_PROP_LIST );
+        parent::__construct( [], ArrayObject::STD_PROP_LIST );
         $this->init();
     }
 

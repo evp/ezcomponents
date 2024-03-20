@@ -51,11 +51,11 @@ class ezcTranslationLeetFilter implements ezcTranslationFilter
      */
     static private function leetify( $text )
     {
-        $searchMap = array( '/to/i', '/for/i', '/ate/i', '/your/i', '/you/i', '/l/i', '/e/i', '/o/i', '/a/i', '/t/i' );
-        $replaceMap = array( '2', '4', '8', 'ur', 'u', '1', '3', '0', '4', '7' );
+        $searchMap = ['/to/i', '/for/i', '/ate/i', '/your/i', '/you/i', '/l/i', '/e/i', '/o/i', '/a/i', '/t/i'];
+        $replaceMap = ['2', '4', '8', 'ur', 'u', '1', '3', '0', '4', '7'];
 
         $textBlocks = preg_split( '/(%[^ ]+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
-        $newTextBlocks = array();
+        $newTextBlocks = [];
         foreach ( $textBlocks as $text )
         {
             if ( strlen( $text ) && $text[0] == '%' )

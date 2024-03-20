@@ -21,14 +21,13 @@ $req->referrer = '';
 
 $req->variables =& $_REQUEST;
 $req->body = '';
-$req->files = array();
+$req->files = [];
 
 $req->accept = new ezcMvcRequestAccept;
-$req->accept->types = array(
-	'text/html', 'application/xhtml+xml', 'application/xml', '*/*' );
-$req->accept->charsets = array( 'UTF-8', '*' );
-$req->accept->languages = array( 'en', 'en-us', 'nb', 'nl' );
-$req->accept->encodings = array( 'gzip', 'deflate' );
+$req->accept->types = ['text/html', 'application/xhtml+xml', 'application/xml', '*/*'];
+$req->accept->charsets = ['UTF-8', '*'];
+$req->accept->languages = ['en', 'en-us', 'nb', 'nl'];
+$req->accept->encodings = ['gzip', 'deflate'];
 
 $req->agent = new ezcMvcRequestUserAgent;
 $req->agent->agent = 'Mozilla/5.0 (X11; U; Linux x86_64; en-US; rv:1.9) Gecko/2008062908 Iceweasel/3.0 (Debian-3.0~rc2-2)';

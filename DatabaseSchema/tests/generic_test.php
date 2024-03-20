@@ -25,65 +25,25 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
 
     private static function getSchema()
     {
-        $tables = array(
-            'bugdb' => new ezcDbSchemaTable(
-                array (
-                    'id' => new ezcDbSchemaField( 'integer', false, true, null, true ),
-                    'bug_type' => new ezcDbSchemaField( 'text', 32, true ),
-                    'severity' => new ezcDbSchemaField( 'integer', false, true, 0 ),
-                    'sdesc'    => new ezcDbSchemaField( 'text', 80, true ),
-                    'ldesc'    => new ezcDbSchemaField( 'clob', false, true ),
-                    'php_version' => new ezcDbSchemaField( 'text', 100, true ),
-                ),
-                array (
-                    'bug_type' => new ezcDbSchemaIndex( array ( 'bug_type' => new ezcDbSchemaIndexField() ), false, false ),
-                    'php_version' => new ezcDbSchemaIndex( array ( 'php_version' => new ezcDbSchemaIndexField() ) ),
-                    'primary'  => new ezcDbSchemaIndex( array ( 'id' => new ezcDbSchemaIndexField() ), true ),
-                )
-            ),
-            'bugdb_comments' => new ezcDbSchemaTable(
-                array (
-                    'bug_id' => new ezcDbSchemaField( 'integer', false, true, 0 ),
-                    'comment' => new ezcDbSchemaField( 'clob', false, true ),
-                    'email' => new ezcDbSchemaField( 'text', 32 ),
-                ),
-                array (
-                    'email' => new ezcDbSchemaIndex( array ( 'email' => new ezcDbSchemaIndexField() ) ),
-                )
-            ),
-        );
+        $tables = ['bugdb' => new ezcDbSchemaTable(
+            ['id' => new ezcDbSchemaField( 'integer', false, true, null, true ), 'bug_type' => new ezcDbSchemaField( 'text', 32, true ), 'severity' => new ezcDbSchemaField( 'integer', false, true, 0 ), 'sdesc'    => new ezcDbSchemaField( 'text', 80, true ), 'ldesc'    => new ezcDbSchemaField( 'clob', false, true ), 'php_version' => new ezcDbSchemaField( 'text', 100, true )],
+            ['bug_type' => new ezcDbSchemaIndex( ['bug_type' => new ezcDbSchemaIndexField()], false, false ), 'php_version' => new ezcDbSchemaIndex( ['php_version' => new ezcDbSchemaIndexField()] ), 'primary'  => new ezcDbSchemaIndex( ['id' => new ezcDbSchemaIndexField()], true )]
+        ), 'bugdb_comments' => new ezcDbSchemaTable(
+            ['bug_id' => new ezcDbSchemaField( 'integer', false, true, 0 ), 'comment' => new ezcDbSchemaField( 'clob', false, true ), 'email' => new ezcDbSchemaField( 'text', 32 )],
+            ['email' => new ezcDbSchemaIndex( ['email' => new ezcDbSchemaIndexField()] )]
+        )];
         return $tables;
     }
 
     private static function getSchemaWithPrefixedTableNames()
     {
-        $tables = array(
-            'prefix_bugdb' => new ezcDbSchemaTable(
-                array (
-                    'id' => new ezcDbSchemaField( 'integer', false, true, null, true ),
-                    'bug_type' => new ezcDbSchemaField( 'text', 32, true ),
-                    'severity' => new ezcDbSchemaField( 'integer', false, true, 0 ),
-                    'sdesc'    => new ezcDbSchemaField( 'text', 80, true ),
-                    'ldesc'    => new ezcDbSchemaField( 'clob', false, true ),
-                    'php_version' => new ezcDbSchemaField( 'text', 100, true ),
-                ),
-                array (
-                    'bug_type' => new ezcDbSchemaIndex( array ( 'bug_type' => new ezcDbSchemaIndexField() ), false, false ),
-                    'php_version' => new ezcDbSchemaIndex( array ( 'php_version' => new ezcDbSchemaIndexField() ) ),
-                    'primary'  => new ezcDbSchemaIndex( array ( 'id' => new ezcDbSchemaIndexField() ), true ),
-                )
-            ),
-            'prefix_bugdb_comments' => new ezcDbSchemaTable(
-                array (
-                    'bug_id' => new ezcDbSchemaField( 'integer', false, true, 0 ),
-                    'comment' => new ezcDbSchemaField( 'clob', false, true ),
-                    'email' => new ezcDbSchemaField( 'text', 32 ),
-                ),
-                array (
-                    'email' => new ezcDbSchemaIndex( array ( 'email' => new ezcDbSchemaIndexField() ) ),
-                )
-            ),
-        );
+        $tables = ['prefix_bugdb' => new ezcDbSchemaTable(
+            ['id' => new ezcDbSchemaField( 'integer', false, true, null, true ), 'bug_type' => new ezcDbSchemaField( 'text', 32, true ), 'severity' => new ezcDbSchemaField( 'integer', false, true, 0 ), 'sdesc'    => new ezcDbSchemaField( 'text', 80, true ), 'ldesc'    => new ezcDbSchemaField( 'clob', false, true ), 'php_version' => new ezcDbSchemaField( 'text', 100, true )],
+            ['bug_type' => new ezcDbSchemaIndex( ['bug_type' => new ezcDbSchemaIndexField()], false, false ), 'php_version' => new ezcDbSchemaIndex( ['php_version' => new ezcDbSchemaIndexField()] ), 'primary'  => new ezcDbSchemaIndex( ['id' => new ezcDbSchemaIndexField()], true )]
+        ), 'prefix_bugdb_comments' => new ezcDbSchemaTable(
+            ['bug_id' => new ezcDbSchemaField( 'integer', false, true, 0 ), 'comment' => new ezcDbSchemaField( 'clob', false, true ), 'email' => new ezcDbSchemaField( 'text', 32 )],
+            ['email' => new ezcDbSchemaIndex( ['email' => new ezcDbSchemaIndexField()] )]
+        )];
         return $tables;
     }
 
@@ -105,7 +65,7 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $newDDL1 = $newSchema->convertToDDL( $this->db );
 
         // setup an empty schema to wipe out the db
-        $emptySchema = new ezcDbSchema( array() );
+        $emptySchema = new ezcDbSchema( [] );
         $diffToEmptySchema = ezcDbSchemaComparator::compareSchemas( $newSchema, $emptySchema );
         $diffToEmptySchema->applyToDb( $this->db );
 
@@ -126,7 +86,7 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         $newDDL1 = $newSchema->convertToDDL( $this->db->getName() );
 
         // setup an empty schema to wipe out the db
-        $emptySchema = new ezcDbSchema( array() );
+        $emptySchema = new ezcDbSchema( [] );
         $diffToEmptySchema = ezcDbSchemaComparator::compareSchemas( $newSchema, $emptySchema );
         $diffToEmptySchema->applyToDb( $this->db );
 
@@ -184,16 +144,10 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
 
         $tableCeBadWord = $tables['ce_bad_word'];
         $expected = new ezcDbSchemaTable(
-            array(
-                'badword_id' => new ezcDbSchemaField( 'integer', null, true, null, true ),
-                'word' => new ezcDbSchemaField( 'text', 255, true, 'Hello' ),
-				'substitution' => new ezcDbSchemaField( 'text', 255, true, 'world' ),
-            ),
-            array(
-                'primary' => new ezcDbSchemaIndex(
-                    array( 'badword_id' => new ezcDbSchemaIndexField() ), true
-                )
-            )
+            ['badword_id' => new ezcDbSchemaField( 'integer', null, true, null, true ), 'word' => new ezcDbSchemaField( 'text', 255, true, 'Hello' ), 'substitution' => new ezcDbSchemaField( 'text', 255, true, 'world' )],
+            ['primary' => new ezcDbSchemaIndex(
+                ['badword_id' => new ezcDbSchemaIndexField()], true
+            )]
         );
         self::assertEquals( $expected, $tableCeBadWord );
     }
@@ -209,20 +163,11 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
 
         $tableCeMessageCategoryRel = $tables['ce_message_category_rel'];
         $expected = new ezcDbSchemaTable(
-            array(
-                'category_id' => new ezcDbSchemaField( 'integer', null, true, 0 ),
-                'is_shadow' => new ezcDbSchemaField( 'boolean', null, true, 'false' ),
-                'message_id' => new ezcDbSchemaField( 'integer', null, true, 0 )
-            ),
-            array(
-                'message_category_rel' => new ezcDbSchemaIndex(
-                    array(
-                        'category_id' => new ezcDbSchemaIndexField(),
-                        'message_id' => new ezcDbSchemaIndexField()
-                    ),
-                    false, true
-                )
-            )
+            ['category_id' => new ezcDbSchemaField( 'integer', null, true, 0 ), 'is_shadow' => new ezcDbSchemaField( 'boolean', null, true, 'false' ), 'message_id' => new ezcDbSchemaField( 'integer', null, true, 0 )],
+            ['message_category_rel' => new ezcDbSchemaIndex(
+                ['category_id' => new ezcDbSchemaIndexField(), 'message_id' => new ezcDbSchemaIndexField()],
+                false, true
+            )]
         );
         self::assertEquals( $expected, $tableCeMessageCategoryRel );
     }
@@ -238,17 +183,11 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
         
         $tableDebugger = $tables['debugger'];
         $expected = new ezcDbSchemaTable(
-            array(
-                'session_id' => new ezcDbSchemaField( 'text', 32, true, 'test' ),
-            ),
-            array(
-                'session_id' => new ezcDbSchemaIndex(
-                    array(
-                        'session_id' => new ezcDbSchemaIndexField()
-                    ),
-                    false, true
-                )
-            )
+            ['session_id' => new ezcDbSchemaField( 'text', 32, true, 'test' )],
+            ['session_id' => new ezcDbSchemaIndex(
+                ['session_id' => new ezcDbSchemaIndexField()],
+                false, true
+            )]
         );
         self::assertEquals( $expected, $tableDebugger );
     }
@@ -264,30 +203,14 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
 
         $tableLiveuserTranslations = $tables['liveuser_translations'];
         $expected = new ezcDbSchemaTable(
-            array(
-                'translation_id' => new ezcDbSchemaField( 'integer', null, true, null, true ),
-                'section_id' => new ezcDbSchemaField( 'integer', null, true, 0 ),
-                'section_type' => new ezcDbSchemaField( 'integer', null, false, 0 ),
-                'language_id' => new ezcDbSchemaField( 'text', 2, false ),
-                'name' => new ezcDbSchemaField( 'text', 50, false ),
-                'description' => new ezcDbSchemaField( 'text', 255, false ),
-            ),
-            array(
-                'primary' => new ezcDbSchemaIndex(
-                    array(
-                        'translation_id' => new ezcDbSchemaIndexField()
-                    ),
-                    true
-                ),
-                'section_id' => new ezcDbSchemaIndex(
-                    array(
-                        'section_id' => new ezcDbSchemaIndexField(),
-                        'section_type' => new ezcDbSchemaIndexField(),
-                        'language_id' => new ezcDbSchemaIndexField(),
-                    ),
-                    false, true
-                )
-            )
+            ['translation_id' => new ezcDbSchemaField( 'integer', null, true, null, true ), 'section_id' => new ezcDbSchemaField( 'integer', null, true, 0 ), 'section_type' => new ezcDbSchemaField( 'integer', null, false, 0 ), 'language_id' => new ezcDbSchemaField( 'text', 2, false ), 'name' => new ezcDbSchemaField( 'text', 50, false ), 'description' => new ezcDbSchemaField( 'text', 255, false )],
+            ['primary' => new ezcDbSchemaIndex(
+                ['translation_id' => new ezcDbSchemaIndexField()],
+                true
+            ), 'section_id' => new ezcDbSchemaIndex(
+                ['section_id' => new ezcDbSchemaIndexField(), 'section_type' => new ezcDbSchemaIndexField(), 'language_id' => new ezcDbSchemaIndexField()],
+                false, true
+            )]
         );
         self::assertEquals( $expected, $tableLiveuserTranslations );
     }
@@ -391,14 +314,10 @@ class ezcDatabaseSchemaGenericTest extends ezcTestCase
     // bug #12538: Bad DDL Output from schema comparator
     public function testWriteWithUnsupportedType()
     {
-        $tables = array(
-            'prefix_bugdb_comments' => new ezcDbSchemaTable(
-                array (
-                    'email' => new ezcDbSchemaField( 'slartibartfast', 32 ),
-                ),
-                array ()
-            ),
-        );
+        $tables = ['prefix_bugdb_comments' => new ezcDbSchemaTable(
+            ['email' => new ezcDbSchemaField( 'slartibartfast', 32 )],
+            []
+        )];
         $schema = new ezcDbSchema( $tables );
 
         try

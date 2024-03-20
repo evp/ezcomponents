@@ -22,41 +22,16 @@ class ezcTemplateCodeElementsTest extends ezcTestCase
     protected function setUp()
     {
         // assignment operators
-        $this->assignmentOperators = array( 'AdditionAssignment',
-                                            'ConcatAssignment',
-                                            'DivisionAssignment',
-                                            'ModulusAssignment',
-                                            'MultiplicationAssignment',
-                                            'SubtractionAssignment',
-                                            'Assignment' );
+        $this->assignmentOperators = ['AdditionAssignment', 'ConcatAssignment', 'DivisionAssignment', 'ModulusAssignment', 'MultiplicationAssignment', 'SubtractionAssignment', 'Assignment'];
         // Unary operators before operand
-        $this->unaryOperators = array( 'ArithmeticNegation',
-                                       'LogicalNegation' );
+        $this->unaryOperators = ['ArithmeticNegation', 'LogicalNegation'];
         // Unary operators before/after operand
-        $this->unaryPrePostOperators = array( 'Decrement',
-                                              'Increment' );
+        $this->unaryPrePostOperators = ['Decrement', 'Increment'];
         // Operators which are binary and logical
-        $this->logicalOperators = array( 'Equal',
-                                         'GreaterThan',
-                                         'GreaterEqual',
-                                         'Identical',
-                                         'LessThan',
-                                         'LessEqual',
-                                         'NotEqual',
-                                         'NotIdentical',
-                                         'LogicalAnd',
-                                         'LogicalOr' );
+        $this->logicalOperators = ['Equal', 'GreaterThan', 'GreaterEqual', 'Identical', 'LessThan', 'LessEqual', 'NotEqual', 'NotIdentical', 'LogicalAnd', 'LogicalOr'];
         // The binary operators, except array fetch which needs
         // special attention
-        $this->binaryOperators = array( 'Addition',
-                                        'Concat',
-                                        'Division',
-                                        'Modulus',
-                                        'Multiplication',
-                                        'Subtraction',
-                                        'Concat',
-                                        'Instanceof',
-                                        'ObjectAccess' );
+        $this->binaryOperators = ['Addition', 'Concat', 'Division', 'Modulus', 'Multiplication', 'Subtraction', 'Concat', 'Instanceof', 'ObjectAccess'];
         $this->binaryOperators = array_merge( $this->binaryOperators, $this->assignmentOperators, $this->logicalOperators );
     }
 
@@ -264,7 +239,7 @@ class ezcTemplateCodeElementsTest extends ezcTestCase
     public function testEchoConstruct()
     {
         $type = new ezcTemplateLiteralAstNode( "text" );
-        $outputList = array( $type );
+        $outputList = [$type];
 
         $construct = new ezcTemplateEchoAstNode( $outputList );
         self::assertSame( $outputList, $construct->getOutputList() );
@@ -308,7 +283,7 @@ class ezcTemplateCodeElementsTest extends ezcTestCase
     public function testIssetConstruct()
     {
         $type = new ezcTemplateLiteralAstNode( "text" );
-        $expressionList = array( $type );
+        $expressionList = [$type];
 
         $construct = new ezcTemplateIssetAstNode( $expressionList );
         self::assertSame( $expressionList, $construct->getExpressions() );
@@ -352,7 +327,7 @@ class ezcTemplateCodeElementsTest extends ezcTestCase
     public function testUnsetConstruct()
     {
         $type = new ezcTemplateLiteralAstNode( "text" );
-        $expressionList = array( $type );
+        $expressionList = [$type];
 
         $construct = new ezcTemplateUnsetAstNode( $expressionList );
         self::assertSame( $expressionList, $construct->getExpressions() );

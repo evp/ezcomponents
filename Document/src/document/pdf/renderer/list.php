@@ -54,7 +54,7 @@ class ezcDocumentPdfListRenderer extends ezcDocumentPdfBlockRenderer
             }
 
             // Default to docbook namespace, if no namespace is defined
-            $namespace = $child->namespaceURI === null ? 'http://docbook.org/ns/docbook' : $child->namespaceURI;
+            $namespace = $child->namespaceURI ?? 'http://docbook.org/ns/docbook';
             if ( ( $namespace !== 'http://docbook.org/ns/docbook' ) ||
                  ( $child->tagName !== 'listitem' ) )
             {

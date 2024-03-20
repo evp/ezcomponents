@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/../../../../Base/src/base.php";
+require_once __DIR__ . "/../../../../Base/src/base.php";
 
 function __autoload( $className )
 {
@@ -13,7 +13,7 @@ $opts = new ezcConsoleQuestionDialogOptions();
 $opts->text = "Do you want to proceed?";
 $opts->showResults = true;
 $opts->validator = new ezcConsoleQuestionDialogCollectionValidator(
-    array( "y", "n" ),
+    ["y", "n"],
     "n",
     ezcConsoleQuestionDialogCollectionValidator::CONVERT_LOWER
 );

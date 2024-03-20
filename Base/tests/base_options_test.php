@@ -7,7 +7,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_options.php';
+require_once __DIR__ . '/test_options.php';
 
 /**
  * @package Base
@@ -64,7 +64,7 @@ class ezcBaseOptionsTest extends ezcTestCase
 
     public function testConstructorWithParameters()
     {
-        $options = new ezcBaseTestOptions( array( 'foo' => 'xxx' ) );
+        $options = new ezcBaseTestOptions( ['foo' => 'xxx'] );
         $this->assertEquals( 'xxx', $options->foo );
     }
 
@@ -72,7 +72,7 @@ class ezcBaseOptionsTest extends ezcTestCase
     {
         $options = new ezcBaseTestOptions();
         $this->assertEquals( 'bar', $options->foo );
-        $options->merge( array( 'foo' => 'xxx' ) );
+        $options->merge( ['foo' => 'xxx'] );
         $this->assertEquals( 'xxx', $options->foo );
     }
 

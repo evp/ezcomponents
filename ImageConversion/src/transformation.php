@@ -119,13 +119,13 @@ class ezcImageTransformation
      * @throws ezcImageMimeTypeUnsupportedException 
      *         If the output type is unsupported.
      */
-    public function __construct( ezcImageConverter $converter, $name, array $filters = array(), array $mimeOut = array(), ezcImageSaveOptions $saveOptions = null )
+    public function __construct( ezcImageConverter $converter, $name, array $filters = [], array $mimeOut = [], ezcImageSaveOptions $saveOptions = null )
     {
         $this->converter = $converter;
         $this->name = $name;
         $this->setFilters( $filters );
         $this->setMimeOut( $mimeOut );
-        $this->setSaveOptions( $saveOptions !== null ? $saveOptions : new ezcImageSaveOptions() );
+        $this->setSaveOptions( $saveOptions ?? new ezcImageSaveOptions() );
     }
 
     /**
@@ -148,7 +148,7 @@ class ezcImageTransformation
         }
         if ( isset( $before ) && isset( $this->filters[$before] ) )
         {
-            array_splice( $this->filters, $before, 0, array( $filter ) );
+            array_splice( $this->filters, $before, 0, [$filter] );
             return;
         }
         $this->filters[] = $filter;

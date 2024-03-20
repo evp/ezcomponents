@@ -21,8 +21,8 @@ function showSettings()
 
     print "Title is $title\n";
 
-    list( $dbHost, $dbUser, $dbPassword ) =
-        ezcConfigurationManager::getInstance()->getSettingsAsList( 'settings', 'db', array( 'host', 'user', 'password' ) );
+    [$dbHost, $dbUser, $dbPassword] =
+        ezcConfigurationManager::getInstance()->getSettingsAsList( 'settings', 'db', ['host', 'user', 'password'] );
     print "Connecting to database at '{$dbHost}' with user '{$dbUser}' and password '{$dbPassword}'.\n";
 
     if ( ezcConfigurationManager::getInstance()->hasSetting( 'settings', 'db', 'socket' ) )
@@ -35,7 +35,7 @@ try
 {
     // Start of program
     $man = ezcConfigurationManager::getInstance();
-    $man->init( 'ezcConfigurationIniReader', dirname( __FILE__ ), array( 'useComments' => false ) );
+    $man->init( 'ezcConfigurationIniReader', __DIR__, ['useComments' => false] );
 
     showSettings();
 }

@@ -36,12 +36,7 @@ class ezcMvcMailBugzillaRequestFilter implements ezcMvcRequestFilter
             // check if we have a tag
             if ( $inHeader && preg_match( '/^@([a-z_]+)\s*=\s*(.*)$/', $line, $matches ) )
             {
-                if ( in_array( $matches[1], array( 'product', 'component',
-                    'version', 'short_desc', 'rep_platform',
-                    'bug_severity', 'priority', 'op_sys',
-                    'assigned_to', 'bug_file_loc',
-                    'status_whiteboard', 'target_milestone',
-                    'group_set', 'qa_contact' ) ) )
+                if ( in_array( $matches[1], ['product', 'component', 'version', 'short_desc', 'rep_platform', 'bug_severity', 'priority', 'op_sys', 'assigned_to', 'bug_file_loc', 'status_whiteboard', 'target_milestone', 'group_set', 'qa_contact'] ) )
                 {
                     $lastTag = $matches[1];
                     $request->variables[$lastTag] = $matches[2];
@@ -77,7 +72,7 @@ class ezcMvcMailBugzillaRequestFilter implements ezcMvcRequestFilter
     {
         if ( count( $options ) )
         {
-            throw new ezcMvcFilterHasNoOptionsException( __CLASS__ );
+            throw new ezcMvcFilterHasNoOptionsException( self::class );
         }
     }
 }

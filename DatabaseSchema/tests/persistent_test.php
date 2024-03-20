@@ -16,7 +16,7 @@ class ezcDatabaseSchemaPersistentTest extends ezcTestCase
 {
     protected function setUp()
     {
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles';
+        $this->testFilesDir = __DIR__ . '/testfiles';
         $this->tempDir = $this->createTempDir( 'ezcDatabasePersistentTest' );
     }
 

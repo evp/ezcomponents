@@ -24,7 +24,7 @@ class ezcDebugHtmlFormatter implements ezcDebugOutputFormatter
      *
      * @var array(int=>string)
      */
-    private $verbosityColors = array();
+    private $verbosityColors = [];
 
     /**
      * Constructs a new HTML reporter.
@@ -78,7 +78,7 @@ class ezcDebugHtmlFormatter implements ezcDebugOutputFormatter
         $str = "<table class='log'>\n";
         foreach ( $writerData as $w )
         {
-            $color = isset( $this->verbosityColors[$w->verbosity]) ? $this->verbosityColors[$w->verbosity] : "";
+            $color = $this->verbosityColors[$w->verbosity] ?? "";
             $date = date( 'Y-m-d H:i:s O', $w->datetime );
             $str .= <<<ENDT
 <tr class='debugheader'>
@@ -254,13 +254,13 @@ ENDT;
      */
     private function getGroups( array $timers )
     {
-        $groups = array();
+        $groups = [];
         foreach ( $timers as $time )
         {
             if ( !isset( $groups[$time->group] ) )
             {
                 $groups[$time->group] = new ezcDebugStructure();
-                $groups[$time->group]->elements = array();
+                $groups[$time->group]->elements = [];
                 $groups[$time->group]->count = 0;
                 $groups[$time->group]->elapsedTime = 0;
                 $groups[$time->group]->startTime = INF;  // Infinite high number.

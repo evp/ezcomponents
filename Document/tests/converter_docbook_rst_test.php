@@ -23,20 +23,20 @@ class ezcDocumentConverterDocbookToRstTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCreateDocumentFromDocbook()
     {
         $doc = new ezcDocumentDocbook();
-        $doc->loadFile( dirname( __FILE__ ) . '/files/docbook/rst/s_001_empty.xml' );
+        $doc->loadFile( __DIR__ . '/files/docbook/rst/s_001_empty.xml' );
 
         $rst = new ezcDocumentRst();
         $rst->createFromDocbook( $doc );
 
         $this->assertSame(
             $rst->save(),
-            file_get_contents( dirname( __FILE__ ) . '/files/docbook/rst/s_001_empty.txt' )
+            file_get_contents( __DIR__ . '/files/docbook/rst/s_001_empty.txt' )
         );
     }
 
@@ -44,7 +44,7 @@ class ezcDocumentConverterDocbookToRstTests extends ezcTestCase
     {
         $doc = new ezcDocumentDocbook();
         $doc->options->failOnError = false;
-        $doc->loadFile( dirname( __FILE__ ) . '/files/docbook/errorneous.xml' );
+        $doc->loadFile( __DIR__ . '/files/docbook/errorneous.xml' );
 
         $rst = new ezcDocumentRst();
         try 
@@ -58,7 +58,7 @@ class ezcDocumentConverterDocbookToRstTests extends ezcTestCase
     public function testCustomeElementHandler()
     {
         $doc = new ezcDocumentDocbook();
-        $doc->loadFile( dirname( __FILE__ ) . '/files/docbook/rst/h_001_address.xml' );
+        $doc->loadFile( __DIR__ . '/files/docbook/rst/h_001_address.xml' );
 
         $converter = new ezcDocumentDocbookToRstConverter();
         $converter->setElementHandler( 'docbook', 'address', new myAddressElementHandler() );
@@ -67,7 +67,7 @@ class ezcDocumentConverterDocbookToRstTests extends ezcTestCase
 
         $this->assertSame(
             $rst->save(),
-            file_get_contents( dirname( __FILE__ ) . '/files/docbook/rst/h_001_address.txt' )
+            file_get_contents( __DIR__ . '/files/docbook/rst/h_001_address.txt' )
         );
     }
 
@@ -76,15 +76,12 @@ class ezcDocumentConverterDocbookToRstTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/docbook/rst/s_*.xml' );
+            $testFiles = glob( __DIR__ . '/files/docbook/rst/s_*.xml' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'txt'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'txt'];
             }
         }
 

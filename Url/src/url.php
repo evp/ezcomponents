@@ -105,7 +105,7 @@ class ezcUrl
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Constructs a new ezcUrl object from the string $url.
@@ -256,18 +256,18 @@ class ezcUrl
     {
         $urlArray = parse_url( $url );
 
-        $this->properties['host'] = isset( $urlArray['host'] ) ? $urlArray['host'] : null;
-        $this->properties['user'] = isset( $urlArray['user'] ) ? $urlArray['user'] : null;
-        $this->properties['pass'] = isset( $urlArray['pass'] ) ? $urlArray['pass'] : null;
-        $this->properties['port'] = isset( $urlArray['port'] ) ? $urlArray['port'] : null;
-        $this->properties['scheme'] = isset( $urlArray['scheme'] ) ? $urlArray['scheme'] : null;
-        $this->properties['fragment'] = isset( $urlArray['fragment'] ) ? $urlArray['fragment'] : null;
-        $this->properties['path'] = isset( $urlArray['path'] ) ? explode( '/', trim( $urlArray['path'], '/' ) ) : array();
+        $this->properties['host'] = $urlArray['host'] ?? null;
+        $this->properties['user'] = $urlArray['user'] ?? null;
+        $this->properties['pass'] = $urlArray['pass'] ?? null;
+        $this->properties['port'] = $urlArray['port'] ?? null;
+        $this->properties['scheme'] = $urlArray['scheme'] ?? null;
+        $this->properties['fragment'] = $urlArray['fragment'] ?? null;
+        $this->properties['path'] = isset( $urlArray['path'] ) ? explode( '/', trim( $urlArray['path'], '/' ) ) : [];
 
-        $this->properties['basedir'] = array();
-        $this->properties['script'] = array();
-        $this->properties['params'] = array();
-        $this->properties['uparams'] = array();
+        $this->properties['basedir'] = [];
+        $this->properties['script'] = [];
+        $this->properties['params'] = [];
+        $this->properties['uparams'] = [];
 
         if ( isset( $urlArray['query'] ) )
         {
@@ -275,7 +275,7 @@ class ezcUrl
         }
         else
         {
-            $this->properties['query'] = array();
+            $this->properties['query'] = [];
         }
     }
 
@@ -312,7 +312,7 @@ class ezcUrl
     {
         $config = trim( $config, '/' );
         $paramParts = explode( '/', $config );
-        $pathElement = array();
+        $pathElement = [];
         foreach ( $paramParts as $part )
         {
             if ( isset( $this->path[$index] ) && $part == $this->path[$index] )
@@ -333,7 +333,7 @@ class ezcUrl
      */
     public function parseOrderedParameters( $config, $index )
     {
-        $result = array();
+        $result = [];
         $pathCount = count( $this->path );
         for ( $i = 0; $i < count( $config ); $i++ )
         {
@@ -401,12 +401,12 @@ class ezcUrl
      */
     public function parseUnorderedParameters( $config, $index )
     {
-        $result = array();
+        $result = [];
 
         // holds how many times a parameter name is encountered in the URL.
         // for example, for '/(param1)/a/(param2)/x/(param2)/y',
         // $encounters = array( 'param1' => 1, 'param2' => 2 );
-        $encounters = array();
+        $encounters = [];
 
         $urlCfg = $this->configuration;
         $pathCount = count( $this->path );
@@ -420,7 +420,7 @@ class ezcUrl
         {
             $param = $this->path[$i];
             if ( strlen( $param ) > 1 &&
-                 $param{0} == $urlCfg->unorderedDelimiters[0] )
+                 $param[0] == $urlCfg->unorderedDelimiters[0] )
             {
                 $param = trim( trim( $param, $urlCfg->unorderedDelimiters[0] ), $urlCfg->unorderedDelimiters[1] );
                 if ( isset( $encounters[$param] ) )
@@ -431,9 +431,9 @@ class ezcUrl
                 {
                     $encounters[$param] = 0;
                 }
-                $result[$param][$encounters[$param]] = array();
+                $result[$param][$encounters[$param]] = [];
                 $j = 1;
-                while ( ( $i + $j ) < $pathCount && $this->path[$i + $j]{0} != $urlCfg->unorderedDelimiters[0] )
+                while ( ( $i + $j ) < $pathCount && $this->path[$i + $j][0] != $urlCfg->unorderedDelimiters[0] )
                 {
                     $result[$param][$encounters[$param]][] = trim( trim( $this->path[$i + $j], $urlCfg->unorderedDelimiters[0] ), $urlCfg->unorderedDelimiters[1] );
                     $j++;
@@ -723,7 +723,7 @@ class ezcUrl
             {
                 if ( !isset( $this->properties['uparams'][$name] ) )
                 {
-                    $this->properties['uparams'][$name] = array();
+                    $this->properties['uparams'][$name] = [];
                 }
                     
                 if ( is_array( $value ) )
@@ -745,7 +745,7 @@ class ezcUrl
                 }
                 else
                 {
-                    $this->properties['uparams'][$name][count( $this->properties['uparams'][$name] ) - 1] = array( $value );
+                    $this->properties['uparams'][$name][count( $this->properties['uparams'][$name] ) - 1] = [$value];
                 }
             }
             return;

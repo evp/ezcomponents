@@ -44,7 +44,7 @@ class ezcTemplateBlockCommentTstNode extends ezcTemplateExpressionTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'commentText' => $this->commentText );
+        return ['commentText' => $this->commentText];
     }
 }
 ?>

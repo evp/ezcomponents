@@ -28,7 +28,7 @@ class ezcBaseMetaDataTarballReader
      */
     public function __construct()
     {
-        $filename = dirname( __FILE__ ) . '/../../../release-info.xml';
+        $filename = __DIR__ . '/../../../release-info.xml';
         $this->xml = simplexml_load_file( $filename );
     }
 
@@ -136,7 +136,7 @@ class ezcBaseMetaDataTarballReader
         }
 
         // We always add the Base dependency even though it's not in the dependency file.
-        $deps = array();
+        $deps = [];
         $deps['Base'] = (string) $baseVersion;
 
         if ( !isset( $root->package ) )

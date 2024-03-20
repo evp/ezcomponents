@@ -102,7 +102,7 @@ class ezcWorkflowConditionVariables implements ezcWorkflowCondition
      */
     public function getVariableNames()
     {
-        return array( $this->variableNameA, $this->variableNameB );
+        return [$this->variableNameA, $this->variableNameB];
     }
 
     /**

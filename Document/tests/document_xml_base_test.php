@@ -19,14 +19,14 @@ class ezcDocumentXmlBaseTests extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testLoadXmlDocumentFromFile()
     {
         $doc = new ezcDocumentDocbook();
         $doc->loadFile( 
-            dirname( __FILE__ ) . '/files/xhtml_sample_basic.xml'
+            __DIR__ . '/files/xhtml_sample_basic.xml'
         );
 
         $this->assertTrue(
@@ -38,7 +38,7 @@ class ezcDocumentXmlBaseTests extends ezcTestCase
     public function testLoadXmlDocumentFromString()
     {
         $string = file_get_contents(
-            dirname( __FILE__ ) . '/files/xhtml_sample_basic.xml'
+            __DIR__ . '/files/xhtml_sample_basic.xml'
         );
 
         $doc = new ezcDocumentDocbook();
@@ -57,7 +57,7 @@ class ezcDocumentXmlBaseTests extends ezcTestCase
         try
         {
             $doc->loadFile( 
-                dirname( __FILE__ ) . '/files/xhtml_sample_errnous.xml'
+                __DIR__ . '/files/xhtml_sample_errnous.xml'
             );
         }
         catch ( ezcDocumentErroneousXmlException $e )
@@ -82,7 +82,7 @@ class ezcDocumentXmlBaseTests extends ezcTestCase
         $doc = new ezcDocumentDocbook();
         $doc->options->failOnError = false;
         $doc->loadFile( 
-            dirname( __FILE__ ) . '/files/xhtml_sample_errnous.xml'
+            __DIR__ . '/files/xhtml_sample_errnous.xml'
         );
 
         $this->assertTrue(
@@ -95,11 +95,11 @@ class ezcDocumentXmlBaseTests extends ezcTestCase
     {
         $doc = new ezcDocumentDocbook();
         $doc->loadFile( 
-            dirname( __FILE__ ) . '/files/xhtml_sample_basic.xml'
+            __DIR__ . '/files/xhtml_sample_basic.xml'
         );
 
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/files/xhtml_sample_basic.xml' ),
+            file_get_contents( __DIR__ . '/files/xhtml_sample_basic.xml' ),
             $doc->save()
         );
     }
@@ -109,11 +109,11 @@ class ezcDocumentXmlBaseTests extends ezcTestCase
         $doc = new ezcDocumentDocbook();
         $doc->options->indentXml = true;
         $doc->loadFile( 
-            dirname( __FILE__ ) . '/files/xhtml_sample_basic.xml'
+            __DIR__ . '/files/xhtml_sample_basic.xml'
         );
 
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/files/xhtml_sample_basic_indented.xml' ),
+            file_get_contents( __DIR__ . '/files/xhtml_sample_basic_indented.xml' ),
             $doc->save()
         );
     }

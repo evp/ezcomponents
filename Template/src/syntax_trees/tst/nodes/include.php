@@ -30,14 +30,14 @@ class ezcTemplateIncludeTstNode extends ezcTemplateBlockTstNode
     {
         parent::__construct( $source, $start, $end );
         $this->file = null;
-        $this->send = array();
-        $this->receive = array();
+        $this->send = [];
+        $this->receive = [];
         $this->isNestingBlock = false;
     }
 
     public function getTreeProperties()
     {
-        return array( 'include file'      => $this->file );
+        return ['include file'      => $this->file];
     }
 }
 ?>

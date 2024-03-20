@@ -38,7 +38,7 @@ class ezcDocumentOdtPcssListStylePreprocessor
      * 
      * @var array(string=>string)
      */
-    protected $cssNumberMap = array(
+    protected $cssNumberMap = [
         'decimal'     => '1',
         'lower-roman' => 'i',
         'upper-roman' => 'I',
@@ -49,20 +49,14 @@ class ezcDocumentOdtPcssListStylePreprocessor
         'lower-greek'          => 'a',
         'armenian'             => 'A',
         'georgian'             => 'A',
-    );
+    ];
 
     /**
      * Mapping of DocBook numeration values to representative numbers.
      * 
      * @var array(string=>string)
      */
-    protected $docBookNumberMap = array(
-        'arabic'     => '1',
-        'loweralpha' => 'a',
-        'lowerroman' => 'i',
-        'upperalpha' => 'A',
-        'upperroman' => 'I'
-    );
+    protected $docBookNumberMap = ['arabic'     => '1', 'loweralpha' => 'a', 'lowerroman' => 'i', 'upperalpha' => 'A', 'upperroman' => 'I'];
 
     /**
      * Creates a new list style processor.

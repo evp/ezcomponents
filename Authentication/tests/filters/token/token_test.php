@@ -77,7 +77,7 @@ class ezcAuthenticationTokenTest extends ezcAuthenticationTest
     {
         $credentials = new ezcAuthenticationIdCredentials( 'foobar' );
         $authentication = new ezcAuthentication( $credentials );
-        $authentication->addFilter( new ezcAuthenticationTokenFilter( 'xxIh4TUllUASg', array( 'EncryptionTest', 'uncrackable' ) ) );
+        $authentication->addFilter( new ezcAuthenticationTokenFilter( 'xxIh4TUllUASg', ['EncryptionTest', 'uncrackable'] ) );
         $this->assertEquals( true, $authentication->run() );
     }
 
@@ -85,7 +85,7 @@ class ezcAuthenticationTokenTest extends ezcAuthenticationTest
     {
         $credentials = new ezcAuthenticationIdCredentials( 'foobar' );
         $authentication = new ezcAuthentication( $credentials );
-        $authentication->addFilter( new ezcAuthenticationTokenFilter( 'wrong value', array( 'EncryptionTest', 'uncrackable' ) ) );
+        $authentication->addFilter( new ezcAuthenticationTokenFilter( 'wrong value', ['EncryptionTest', 'uncrackable'] ) );
         $this->assertEquals( false, $authentication->run() );
     }
 
@@ -110,9 +110,9 @@ class ezcAuthenticationTokenTest extends ezcAuthenticationTest
         $token = '';
         $filter = new ezcAuthenticationTokenFilter( $token, 'md5' );
 
-        $this->invalidPropertyTest( $filter, 'token', array(), 'string || int' );
+        $this->invalidPropertyTest( $filter, 'token', [], 'string || int' );
         $this->invalidPropertyTest( $filter, 'function', 'no_such_function', 'callback' );
-        $this->invalidPropertyTest( $filter, 'function', array( 'EncryptionTest', 'no_such_function' ), 'callback' );
+        $this->invalidPropertyTest( $filter, 'function', ['EncryptionTest', 'no_such_function'], 'callback' );
         $this->missingPropertyTest( $filter, 'no_such_property' );
     }
 

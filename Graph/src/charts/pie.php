@@ -64,7 +64,7 @@ class ezcGraphPieChart extends ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->options = new ezcGraphPieChartOptions( $options );
 
@@ -180,7 +180,7 @@ class ezcGraphPieChart extends ezcGraphChart
                 $sum = max( $sum, $this->options->sum );
             }
 
-            $unset = array();
+            $unset = [];
             foreach ( $dataset as $label => $value )
             {
                 if ( $label === $this->options->summarizeCaption )

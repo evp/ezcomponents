@@ -26,13 +26,13 @@ class ezcTemplateReturnTstNode extends ezcTemplateBlockTstNode
     public function __construct( ezcTemplateSourceCode $source, /*ezcTemplateCursor*/ $start, /*ezcTemplateCursor*/ $end )
     {
         parent::__construct( $source, $start, $end );
-        $this->variables = array();
+        $this->variables = [];
         $this->isNestingBlock = false;
     }
 
     public function getTreeProperties()
     {
-        return array( 'variables'  => $this->variables );
+        return ['variables'  => $this->variables];
     }
 }
 ?>

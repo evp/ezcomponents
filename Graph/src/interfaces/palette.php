@@ -237,7 +237,7 @@ abstract class ezcGraphPalette
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'array( ezcGraphColor )' );
                 }
 
-                $this->dataSetColor = array();
+                $this->dataSetColor = [];
                 foreach ( $propertyValue as $value )
                 {
                     $this->dataSetColor[] = ezcGraphColor::create( $value );
@@ -250,7 +250,7 @@ abstract class ezcGraphPalette
                     throw new ezcBaseValueException( $propertyName, $propertyValue, 'array( (int) ezcGraph::SYMBOL_TYPE )' );
                 }
 
-                $this->dataSetSymbol = array();
+                $this->dataSetSymbol = [];
                 foreach ( $propertyValue as $value )
                 {
                     $this->dataSetSymbol[] = (int) $value;

@@ -23,12 +23,10 @@ $def->relations["Rel1"] = new ezcPersistentOneToManyRelation(
      "main_table",
      "rel"
 );
-$def->relations["Rel1"]->columnMap = array(
-     new ezcPersistentSingleTableMap(
-         "id",
-         "fk"
-     ),
- );
+$def->relations["Rel1"]->columnMap = [new ezcPersistentSingleTableMap(
+    "id",
+    "fk"
+)];
 
 $def->relations["Rel2"] = new ezcPersistentManyToManyRelation(
      "main_table",
@@ -36,9 +34,7 @@ $def->relations["Rel2"] = new ezcPersistentManyToManyRelation(
      "link"
 );
 
-$def->relations["Rel2"]->columnMap = array(
-    new ezcPersistentDoubleTableMap( "id", "main_id", "rel_id", "id" ),
-);
+$def->relations["Rel2"]->columnMap = [new ezcPersistentDoubleTableMap( "id", "main_id", "rel_id", "id" )];
 
 return $def;
 

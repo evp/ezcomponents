@@ -78,7 +78,7 @@ class ezcArchiveZip extends ezcArchive implements Iterator
      */
     public function __construct( ezcArchiveCharacterFile $file )
     {
-        $this->localHeaderPositions = array();
+        $this->localHeaderPositions = [];
         $this->file = $file;
 
         $this->fileNumber = 0;
@@ -132,8 +132,8 @@ class ezcArchiveZip extends ezcArchive implements Iterator
      */
     protected function readCentralHeaders()
     {
-        $this->localHeaders = array();
-        $this->centralHeaders = array();
+        $this->localHeaders = [];
+        $this->centralHeaders = [];
 
         // read the central end headers
 
@@ -422,7 +422,7 @@ class ezcArchiveZip extends ezcArchive implements Iterator
 
         if ( !is_array( $files ) )
         {
-            $files = array( $files );
+            $files = [$files];
         }
 
         // Check whether the files are correct.
@@ -577,10 +577,10 @@ class ezcArchiveZip extends ezcArchive implements Iterator
             $this->file->truncate();
             $this->entriesRead = 0;
 
-            $this->localHeaders = array();
-            $this->localHeaderPositions = array();
-            $this->centralHeaders = array();
-            $this->centralHeaderPositions = array();
+            $this->localHeaders = [];
+            $this->localHeaderPositions = [];
+            $this->centralHeaders = [];
+            $this->centralHeaderPositions = [];
             $this->endRecord = null;
         }
         else

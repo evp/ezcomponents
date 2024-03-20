@@ -78,7 +78,7 @@ class ezcMvcRailsRoute implements ezcMvcRoute, ezcMvcReversibleRoute
      * @param string $action
      * @param array(string) $defaultValues
      */
-    public function __construct( $pattern, $controllerClassName, $action = null, array $defaultValues = array() )
+    public function __construct( $pattern, $controllerClassName, $action = null, array $defaultValues = [] )
     {
         $this->pattern = $pattern;
         $this->controllerClassName = $controllerClassName;
@@ -129,7 +129,7 @@ class ezcMvcRailsRoute implements ezcMvcRoute, ezcMvcReversibleRoute
      */
     protected function match( $request, &$matches )
     {
-        $matches = array();
+        $matches = [];
 
         // first we split the pattern and request ID per /
         $patternParts = preg_split( '@(/)@', $this->pattern, null, PREG_SPLIT_DELIM_CAPTURE );

@@ -97,7 +97,7 @@ class ezcDbUtilitiesOracle extends ezcDbUtilities
             $maxTries = 10;
             do
             {
-                $num = rand( 10000000, 99999999 );
+                $num = random_int( 10000000, 99999999 );
                 $tableName = strtoupper( str_replace( '%', $num, $tableNamePattern ) );
                 $query = "SELECT count(*) AS cnt FROM user_tables WHERE table_name='$tableName'";
                 $cnt = (int) $this->db->query( $query )->fetchColumn( 0 );

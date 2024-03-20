@@ -31,11 +31,7 @@ class ezcWebdavTestCadaverClient
     {
         $this->proc = proc_open(
             'cadaver ' . escapeshellarg( $url ),
-            array(
-                array( 'pipe', 'r' ),
-                array( 'pipe', 'w' ),
-                array( 'pipe', 'w' ),
-            ),
+            [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']],
             $this->pipes,
             $cwd
         );

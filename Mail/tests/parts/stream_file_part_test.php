@@ -20,17 +20,17 @@ class ezcMailStreamFileTest extends ezcTestCase
      */
     public function testGenerateBase64()
     {
-        $filePart = new ezcMailStreamFile( "fly.jpg", fopen( dirname( __FILE__) . "/data/fly.jpg", "r" ) );
+        $filePart = new ezcMailStreamFile( "fly.jpg", fopen( __DIR__ . "/data/fly.jpg", "r" ) );
         $filePart->contentType = ezcMailFile::CONTENT_TYPE_IMAGE;
         $filePart->mimeType = "jpeg";
         // file_put_contents( dirname( __FILE__ ) . "/data/ezcMailFileTest_testGenerateBase64.data" );
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . "/data/ezcMailFilePartTest_testGenerateBase64.data" ),
+        $this->assertEquals( file_get_contents( __DIR__ . "/data/ezcMailFilePartTest_testGenerateBase64.data" ),
                              $filePart->generate() );
     }
 
     public function testIsSet()
     {
-        $filePart = new ezcMailStreamFile( "fly.jpg", fopen( dirname( __FILE__) . "/data/fly.jpg", "r" ) );
+        $filePart = new ezcMailStreamFile( "fly.jpg", fopen( __DIR__ . "/data/fly.jpg", "r" ) );
         $this->assertEquals( true, isset( $filePart->stream ) );
         $this->assertEquals( false, isset( $filePart->no_such_property ) );
     } 

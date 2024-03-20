@@ -5,14 +5,14 @@ require_once 'tutorial_autoload.php';
 $output = new ezcConsoleOutput();
 
 $output->formats->blue->color  = 'blue';
-$output->formats->blue->style = array(  'bold' );
+$output->formats->blue->style = ['bold'];
 $output->formats->red->color   = 'red';
-$output->formats->red->style = array(  'bold' );
+$output->formats->red->style = ['bold'];
 $output->formats->green->color = 'green';
-$output->formats->green->style = array(  'bold' );
+$output->formats->green->style = ['bold'];
 
-$colors = array( 'red', 'blue', 'green' );
-$aligns = array( ezcConsoleTable::ALIGN_LEFT, ezcConsoleTable::ALIGN_CENTER, ezcConsoleTable::ALIGN_RIGHT );
+$colors = ['red', 'blue', 'green'];
+$aligns = [ezcConsoleTable::ALIGN_LEFT, ezcConsoleTable::ALIGN_CENTER, ezcConsoleTable::ALIGN_RIGHT];
 
 $table = new ezcConsoleTable( $output, 78 );
 

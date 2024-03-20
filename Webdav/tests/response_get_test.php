@@ -75,7 +75,7 @@ class ezcWebdavGetResponseTest extends ezcTestCase
             new ezcWebdavCollection(
                 '/path',
                 new ezcWebdavBasicPropertyStorage(),
-                array()
+                []
             )
         );
 
@@ -98,7 +98,7 @@ class ezcWebdavGetResponseTest extends ezcTestCase
             new ezcWebdavCollection(
                 '/path',
                 new ezcWebdavBasicPropertyStorage(),
-                array()
+                []
             )
         );
 

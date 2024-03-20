@@ -76,14 +76,14 @@ class ezcAuthenticationTokenFilter extends ezcAuthenticationFilter
     /**
      * Token is not the same as the provided one.
      */
-    const STATUS_TOKEN_INCORRECT = 1;
+    public const STATUS_TOKEN_INCORRECT = 1;
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -96,7 +96,7 @@ class ezcAuthenticationTokenFilter extends ezcAuthenticationFilter
     {
         $this->token = $token;
         $this->function = $function;
-        $this->options = ( $options === null ) ? new ezcAuthenticationTokenOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationTokenOptions();
     }
 
     /**

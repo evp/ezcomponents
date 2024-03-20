@@ -9,11 +9,5 @@
  * @package GraphDatabaseTiein
  */
 
-return array(
-    'ezcGraphDatabaseException'                     => 'GraphDatabaseTiein/exceptions/exception.php',
-    'ezcGraphDatabaseMissingColumnException'        => 'GraphDatabaseTiein/exceptions/missing_column.php',
-    'ezcGraphDatabaseStatementNotExecutedException' => 'GraphDatabaseTiein/exceptions/statement_not_executed.php',
-    'ezcGraphDatabaseTooManyColumnsException'       => 'GraphDatabaseTiein/exceptions/too_many_columns.php',
-    'ezcGraphDatabaseDataSet'                       => 'GraphDatabaseTiein/dataset.php',
-);
+return ['ezcGraphDatabaseException'                     => 'GraphDatabaseTiein/exceptions/exception.php', 'ezcGraphDatabaseMissingColumnException'        => 'GraphDatabaseTiein/exceptions/missing_column.php', 'ezcGraphDatabaseStatementNotExecutedException' => 'GraphDatabaseTiein/exceptions/statement_not_executed.php', 'ezcGraphDatabaseTooManyColumnsException'       => 'GraphDatabaseTiein/exceptions/too_many_columns.php', 'ezcGraphDatabaseDataSet'                       => 'GraphDatabaseTiein/dataset.php'];
 ?>

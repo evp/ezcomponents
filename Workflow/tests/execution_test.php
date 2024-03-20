@@ -114,7 +114,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
         {
             try
             {
-                $e->errors = array();
+                $e->errors = [];
             }
             catch ( ezcBasePropertyPermissionException $e )
             {
@@ -224,7 +224,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
 
     public function testExecuteStartSetUnsetEnd2()
     {
-        $plugin = $this->getMock( 'ezcWorkflowExecutionPlugin', array( 'beforeVariableUnset' ) );
+        $plugin = $this->getMock( 'ezcWorkflowExecutionPlugin', ['beforeVariableUnset'] );
         $plugin->expects( $this->any() )
                ->method( 'beforeVariableUnset' )
                ->will( $this->returnValue( false ) );
@@ -356,7 +356,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpParallelSplitSynchronization2();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'foo' => 'bar', 'bar' => 'foo' ) );
+        $this->execution->setVariables( ['foo' => 'bar', 'bar' => 'foo'] );
         $this->execution->start();
 
         $this->assertFalse( $this->execution->isCancelled() );
@@ -391,7 +391,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
 
         $this->assertFalse( $this->execution->isCancelled() );
@@ -404,7 +404,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
 
         $this->assertFalse( $this->execution->isCancelled() );
@@ -417,7 +417,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceSimpleMerge( 'ezcWorkflowConditionIsTrue', 'ezcWorkflowConditionIsTrue' );
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
 
         try
         {
@@ -440,7 +440,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceWithElseSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
 
         $this->assertFalse( $this->execution->isCancelled() );
@@ -454,7 +454,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceWithElseSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
 
         $this->assertFalse( $this->execution->isCancelled() );
@@ -468,7 +468,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceWithUnconditionalOutNodeSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
 
         $this->assertFalse( $this->execution->isCancelled() );
@@ -484,7 +484,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceWithUnconditionalOutNodeSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
 
         $this->assertFalse( $this->execution->isCancelled() );
@@ -805,7 +805,7 @@ class ezcWorkflowExecutionTest extends ezcWorkflowTestCase
     {
         $this->setupEmptyWorkflow();
 
-        $input = new ezcWorkflowNodeInput( array( 'choice' => new ezcWorkflowConditionIsBool ) );
+        $input = new ezcWorkflowNodeInput( ['choice' => new ezcWorkflowConditionIsBool] );
 
         $this->workflow->startNode->addOutNode( $input );
         $this->workflow->endNode->addInNode( $input );

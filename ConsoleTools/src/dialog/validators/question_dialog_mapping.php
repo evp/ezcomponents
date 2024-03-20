@@ -76,7 +76,7 @@ class ezcConsoleQuestionDialogMappingValidator extends ezcConsoleQuestionDialogC
      * @param array(string=>string) $map
      * @return void
      */
-    public function __construct( array $collection, $default = null, $conversion = self::CONVERT_NONE, array $map = array() )
+    public function __construct( array $collection, $default = null, $conversion = self::CONVERT_NONE, array $map = [] )
     {
         // Initialize additional property
         $this->properties['map'] = $map;
@@ -107,7 +107,7 @@ class ezcConsoleQuestionDialogMappingValidator extends ezcConsoleQuestionDialogC
                 $result = strtolower( $result );
                 break;
         }
-        return ( isset( $this->map[$result] ) ? $this->map[$result] : $result );
+        return ( $this->map[$result] ?? $result );
     }
     
     /**

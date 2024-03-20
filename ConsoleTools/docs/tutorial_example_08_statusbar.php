@@ -7,10 +7,7 @@ $output = new ezcConsoleOutput();
 $output->formats->success->color = 'green';
 $output->formats->failure->color = 'red';
 
-$options = array( 
-    'successChar' => $output->formatText( '+', 'success' ),
-    'failureChar' => $output->formatText( '-', 'failure' ),
-);
+$options = ['successChar' => $output->formatText( '+', 'success' ), 'failureChar' => $output->formatText( '-', 'failure' )];
 
 $status = new ezcConsoleStatusbar( $output, $options );
 

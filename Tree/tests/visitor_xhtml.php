@@ -24,7 +24,7 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
 
         $visitor = new ezcTreeVisitorXHTML();
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-default.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-default.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -37,7 +37,7 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $visitor->options->displayRootNode = true;
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-display-root-node.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-display-root-node.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -50,7 +50,7 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $visitor->options->selectedNodeLink = true;
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-selected-node-link.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-selected-node-link.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -64,7 +64,7 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $visitor->options->selectedNodeLink = true;
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-selected-node-link2.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-selected-node-link2.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -79,7 +79,7 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $visitor->options->basePath = 'testing';
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-selected-node-link3.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-selected-node-link3.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -92,7 +92,7 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $visitor->options->xmlId = 'tree_id';
 
         $tree->fetchNodeById( 'Hylobatidae' )->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-xml-id.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-xml-id.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -106,7 +106,7 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $visitor = new ezcTreeVisitorXHTML( $options );
 
         $tree->fetchNodeById( 'Hylobatidae' )->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-no-links.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-no-links.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -116,12 +116,12 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $this->addTestData( $tree );
 
         $options = new ezcTreeVisitorXHTMLOptions;
-        $options->subtreeHighlightNodeIds = array( 'Nomascus', 'Eastern Black Crested Gibbon' );
+        $options->subtreeHighlightNodeIds = ['Nomascus', 'Eastern Black Crested Gibbon'];
         $options->addLinks = false;
         $visitor = new ezcTreeVisitorXHTML( $options );
 
         $tree->fetchNodeById( 'Hylobatidae' )->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-subtree-highlight-nodes.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-subtree-highlight-nodes.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -131,12 +131,12 @@ class ezcTreeVisitorXHTMLTest extends ezcTreeVisitorTest
         $this->addTestData( $tree );
 
         $options = new ezcTreeVisitorXHTMLOptions;
-        $options->highlightNodeIds = array( 'Nomascus', 'Eastern Black Crested Gibbon' );
+        $options->highlightNodeIds = ['Nomascus', 'Eastern Black Crested Gibbon'];
         $options->addLinks = false;
         $visitor = new ezcTreeVisitorXHTML( $options );
 
         $tree->fetchNodeById( 'Hylobatidae' )->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-xhtml-highlight-nodes.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-xhtml-highlight-nodes.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 

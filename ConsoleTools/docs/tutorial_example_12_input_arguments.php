@@ -39,9 +39,7 @@ else
 {
     echo "Source:      {$input->argumentDefinition["source"]->value}\n";
     echo "Destination: {$input->argumentDefinition["destination"]->value}\n";
-    echo "Iterations:  " . ( $input->argumentDefinition["iterations"]->value === null
-                             ? "not set"
-                             : $input->argumentDefinition["iterations"]->value
+    echo "Iterations:  " . ( $input->argumentDefinition["iterations"]->value ?? "not set"
                            );
 }
 

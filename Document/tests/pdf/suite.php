@@ -42,7 +42,7 @@ class ezcDocumentPdfSuite extends PHPUnit_Framework_TestSuite
 {
     public static function suite()
     {
-        return new ezcDocumentPdfSuite( __CLASS__ );
+        return new ezcDocumentPdfSuite( self::class );
     }
 
     public function __construct()

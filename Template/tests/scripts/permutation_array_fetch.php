@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/array_fetch/correct/indexes.in
 
@@ -44,10 +44,7 @@ $top = "{var \$a = array( 0 => array( 1 => array( 2 => 'foo' ) ) )}\n";
 $a->output( $top );
 $i = 1;
 $out = '';
-$map = array( 0 => "Array\n",
-              1 => "Array\n",
-              2 => "foo\n",
-              3 => '' );
+$map = [0 => "Array\n", 1 => "Array\n", 2 => "foo\n", 3 => ''];
 do
 {
     $num = sprintf( "%04d", $i );

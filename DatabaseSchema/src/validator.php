@@ -36,12 +36,7 @@ class ezcDbSchemaValidator
      * validation classes all should implement a method called "validate()"
      * which accepts an ezcDbSchema object.
      */
-    static private $validators = array(
-        'ezcDbSchemaTypesValidator',
-        'ezcDbSchemaIndexFieldsValidator',
-        'ezcDbSchemaAutoIncrementIndexValidator',
-        'ezcDbSchemaUniqueIndexNameValidator',
-    );
+    static private $validators = ['ezcDbSchemaTypesValidator', 'ezcDbSchemaIndexFieldsValidator', 'ezcDbSchemaAutoIncrementIndexValidator', 'ezcDbSchemaUniqueIndexNameValidator'];
 
     /**
      * Validates the ezcDbSchema object $schema with the recorded validator classes.
@@ -57,11 +52,11 @@ class ezcDbSchemaValidator
      */
     static public function validate( ezcDbSchema $schema )
     {
-        $validationErrors = array();
+        $validationErrors = [];
         
         foreach ( self::$validators as $validatorClass )
         {
-            $errors = call_user_func( array( $validatorClass, 'validate' ), $schema );
+            $errors = call_user_func( [$validatorClass, 'validate'], $schema );
             foreach ( $errors as $error )
             {
                 $validationErrors[] = $error;

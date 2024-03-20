@@ -7,6 +7,6 @@ $execution = new ezcWorkflowDatabaseExecution( $db, $id );
 
 // Resume workflow execution.
 $execution->resume(
-  array( 'choice' => true )
+  ['choice' => true]
 );
 ?>

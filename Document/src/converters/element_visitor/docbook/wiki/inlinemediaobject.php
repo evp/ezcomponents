@@ -38,7 +38,7 @@ class ezcDocumentDocbookToWikiInlineMediaObjectHandler extends ezcDocumentDocboo
         {
             $root .= sprintf( '{{%s|%s}}',
                 $image['resource'],
-                isset( $image['text'] ) ? $image['text'] : $image['alt']
+                $image['text'] ?? $image['alt']
             );
         }
         else

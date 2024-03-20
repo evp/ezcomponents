@@ -29,22 +29,22 @@ if ( ezcInputForm::hasPostData() )
             <pre>
 <?php
     echo "Valid properties:\n";
-    var_dump( array() );
+    var_dump( [] );
 
     echo "Invalid properties:\n";
-    var_dump( array( 'test' ) );
+    var_dump( ['test'] );
 
     echo "Required properties:\n";
-    var_dump( array() );
+    var_dump( [] );
 
     echo "Optional properties:\n";
-    var_dump( array( 'test' ) );
+    var_dump( ['test'] );
 ?>
         </td>
         <td>
             <pre>
 <?php
-    $def = array( 'test' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'float' ) );
+    $def = ['test' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'float' )];
     $form = new ezcInputForm( INPUT_POST, $def );
 
     echo "Valid properties:\n";

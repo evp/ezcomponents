@@ -26,7 +26,7 @@ class ezcDebugMemoryWriter implements ezcLogWriter
      *
      * @var array(ezcDebugStructure)
      */
-    private $logData = array();
+    private $logData = [];
 
     /**
      * Resets the writer to its initial state.
@@ -35,7 +35,7 @@ class ezcDebugMemoryWriter implements ezcLogWriter
      */
     public function reset()
     {
-        $this->logData = array();
+        $this->logData = [];
     }
 
     /**
@@ -66,7 +66,7 @@ class ezcDebugMemoryWriter implements ezcLogWriter
      * @param string $category
      * @param array(string=>string) $extraInfo
      */
-    public function writeLogMessage( $message, $severity, $source, $category, $extraInfo = array() )
+    public function writeLogMessage( $message, $severity, $source, $category, $extraInfo = [] )
     {
         $log = new ezcDebugStructure();
         $log->message = $message;

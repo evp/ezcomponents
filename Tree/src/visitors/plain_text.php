@@ -50,19 +50,19 @@ class ezcTreeVisitorPlainText implements ezcTreeVisitor
     /**
      * Represents the ASCII symbol set.
      */
-    const SYMBOL_ASCII = 1;
+    public const SYMBOL_ASCII = 1;
 
     /**
      * Represents the UTF-8 symbol set.
      */
-    const SYMBOL_UTF8 = 2;
+    public const SYMBOL_UTF8 = 2;
 
     /**
      * Holds all the edges of the graph.
      *
      * @var array(string=>array(string))
      */
-    protected $edges = array();
+    protected $edges = [];
 
     /**
      * Holds the root ID
@@ -88,11 +88,11 @@ class ezcTreeVisitorPlainText implements ezcTreeVisitor
         switch ( $symbolCharset )
         {
             case self::SYMBOL_ASCII:
-                $symbols = array( '|', '+', '-', '+' );
+                $symbols = ['|', '+', '-', '+'];
                 break;
             case self::SYMBOL_UTF8:
             default:
-                $symbols = array( '│', '├', '─', '└' );
+                $symbols = ['│', '├', '─', '└'];
         }
         $this->symbolPipe   = $symbols[0];
         $this->symbolTee    = $symbols[1];
@@ -139,7 +139,7 @@ class ezcTreeVisitorPlainText implements ezcTreeVisitor
      *
      * @return string
      */
-    private function doChildren( $id, $level = 0, $levelLast = array() )
+    private function doChildren( $id, $level = 0, $levelLast = [] )
     {
         $text = '';
 

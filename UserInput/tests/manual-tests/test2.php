@@ -41,7 +41,7 @@ if ( count( $_POST ) )
         <td>
             <pre>
 <?php
-    $def = array( 'test' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::REQUIRED, 'float' ) );
+    $def = ['test' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::REQUIRED, 'float' )];
     try
     {
         $form = new ezcInputForm( INPUT_POST, $def );

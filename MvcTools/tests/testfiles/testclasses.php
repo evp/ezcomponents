@@ -70,11 +70,11 @@ class testSimpleRouter extends ezcMvcRouter
 {
     function createRoutes()
     {
-        $routes = array();
-        $routes[] = new testRegexpRoute( '@^entry/add$@', 'testController', 'sample', array( 'method' => 'add' ) );
-        $routes[] = new testRegexpRoute( '@^entry/list$@', 'testController', 'sample', array( 'method' => 'list' ) );
-        $routes[] = new testRegexpRoute( '@^entry/get/(?P<id>[0-9]+)$@', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes[] = new testRegexpRoute( '@^entry/(?P<id>[0-9]+)$@', 'testController', 'sample', array( 'method' => 'show' ) );
+        $routes = [];
+        $routes[] = new testRegexpRoute( '@^entry/add$@', 'testController', 'sample', ['method' => 'add'] );
+        $routes[] = new testRegexpRoute( '@^entry/list$@', 'testController', 'sample', ['method' => 'list'] );
+        $routes[] = new testRegexpRoute( '@^entry/get/(?P<id>[0-9]+)$@', 'testController', 'sample', ['method' => 'show'] );
+        $routes[] = new testRegexpRoute( '@^entry/(?P<id>[0-9]+)$@', 'testController', 'sample', ['method' => 'show'] );
         $routes[] = new testRegexpRoute( '@^test/no-action$@', 'testActionController', 'nonExistingMethod' );
 
         return $routes;
@@ -85,16 +85,16 @@ class testNamedRouter extends ezcMvcRouter
 {
     function createRoutes()
     {
-        $routes = array();
-        $routes['get'] = new testRailsRoute( 'entry/get/:id', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes[] = new testRailsRoute( 'entry/list', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes[] = new testRailsRoute( 'entry/:id', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes['info'] = new testRailsRoute( 'entry/:id/info', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes['multiple1'] = new testRailsRoute( 'e/:person/:relation', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes['multiple2'] = new testRailsRoute( ':person/e/:relation', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes['multiple3'] = new testRailsRoute( ':person/:relation/e', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes['no-reverse'] = new testRegexpRoute( '@^entry/(?P<id>[0-9]+)$@', 'testController', 'sample', array( 'method' => 'show' ) );
-        $routes['catchall'] = new ezcMvcCatchAllRoute( 'testController', 'sample', array( 'method' => 'show' ) );
+        $routes = [];
+        $routes['get'] = new testRailsRoute( 'entry/get/:id', 'testController', 'sample', ['method' => 'show'] );
+        $routes[] = new testRailsRoute( 'entry/list', 'testController', 'sample', ['method' => 'show'] );
+        $routes[] = new testRailsRoute( 'entry/:id', 'testController', 'sample', ['method' => 'show'] );
+        $routes['info'] = new testRailsRoute( 'entry/:id/info', 'testController', 'sample', ['method' => 'show'] );
+        $routes['multiple1'] = new testRailsRoute( 'e/:person/:relation', 'testController', 'sample', ['method' => 'show'] );
+        $routes['multiple2'] = new testRailsRoute( ':person/e/:relation', 'testController', 'sample', ['method' => 'show'] );
+        $routes['multiple3'] = new testRailsRoute( ':person/:relation/e', 'testController', 'sample', ['method' => 'show'] );
+        $routes['no-reverse'] = new testRegexpRoute( '@^entry/(?P<id>[0-9]+)$@', 'testController', 'sample', ['method' => 'show'] );
+        $routes['catchall'] = new ezcMvcCatchAllRoute( 'testController', 'sample', ['method' => 'show'] );
 
         return $routes;
     }
@@ -115,7 +115,7 @@ class testNoRoutesRouter extends ezcMvcRouter
 {
     function createRoutes()
     {
-        $routes = array();
+        $routes = [];
         return $routes;
     }
 }
@@ -124,7 +124,7 @@ class testFaultyRouteRouter extends ezcMvcRouter
 {
     function createRoutes()
     {
-        return array( new StdClass() );
+        return [new StdClass()];
     }
 }
 
@@ -132,7 +132,7 @@ class testNoZonesView extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         return $zones;
     }
 }
@@ -141,7 +141,7 @@ class testFaultyView extends ezcMvcView
 {
     function createZones( $layout )
     {
-        return array( new StdClass() );
+        return [new StdClass()];
     }
 }
 
@@ -149,7 +149,7 @@ class testOneView extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         $zones[] = new testViewHandler( 'name', 'templateName' ); 
         return $zones;
     }
@@ -159,8 +159,8 @@ class testOnePhpView extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
-        $zones[] = new ezcMvcPhpViewHandler( 'page_layout', dirname( __FILE__ ) . '/views/php/simple.php' ); 
+        $zones = [];
+        $zones[] = new ezcMvcPhpViewHandler( 'page_layout', __DIR__ . '/views/php/simple.php' ); 
         return $zones;
     }
 }
@@ -169,9 +169,9 @@ class testTwoPhpViews extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
-        $zones[] = new ezcMvcPhpViewHandler( 'nav', dirname( __FILE__ ) . '/views/php/nav.php' ); 
-        $zones[] = new ezcMvcPhpViewHandler( 'page_layout', dirname( __FILE__ ) . '/views/php/simple_with_nav.php' ); 
+        $zones = [];
+        $zones[] = new ezcMvcPhpViewHandler( 'nav', __DIR__ . '/views/php/nav.php' ); 
+        $zones[] = new ezcMvcPhpViewHandler( 'page_layout', __DIR__ . '/views/php/simple_with_nav.php' ); 
         return $zones;
     }
 }
@@ -180,8 +180,8 @@ class testNonExistingPhpView extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
-        $zones[] = new ezcMvcPhpViewHandler( 'page_layout', dirname( __FILE__ ) . '/views/php/not_here.php' ); 
+        $zones = [];
+        $zones[] = new ezcMvcPhpViewHandler( 'page_layout', __DIR__ . '/views/php/not_here.php' ); 
         return $zones;
     }
 }
@@ -190,7 +190,7 @@ class testOneJsonView extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         $zones[] = new ezcMvcJsonViewHandler( 'page_layout' ); 
         return $zones;
     }
@@ -200,7 +200,7 @@ class testTwoJsonViews extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         $zones[] = new ezcMvcJsonViewHandler( 'nav' ); 
         $zones[] = new ezcMvcJsonViewHandler( 'page_layout' ); 
         return $zones;
@@ -211,7 +211,7 @@ class testTwoViews extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         $zones[] = new testViewHandler( 'name1', 'templateName' ); 
         $zones[] = new testViewHandler( 'name2', 'templateName' ); 
         return $zones;
@@ -220,7 +220,7 @@ class testTwoViews extends ezcMvcView
 
 class testViewHandler implements ezcMvcViewHandler
 {
-    public $vars = array();
+    public $vars = [];
     function __construct( $name, $templateName = null )
     {
         $this->name = $name;

@@ -45,7 +45,7 @@ class ezcMvcAuthenticationFilter
      */
     function __construct( ezcMvcAuthenticationFilterOptions $options = null )
     {
-        $this->options = $options === null ? new ezcMvcAuthenticationFilterOptions() : $options;
+        $this->options = $options ?? new ezcMvcAuthenticationFilterOptions();
     }
 
     /**
@@ -155,7 +155,7 @@ class ezcMvcAuthenticationFilter
         $database = new ezcAuthenticationDatabaseInfo(
             $this->options->database,
             $this->options->tableName,
-            array( $this->options->userIdField, $this->options->passwordField )
+            [$this->options->userIdField, $this->options->passwordField]
         );
         $databaseFilter = new ezcAuthenticationDatabaseFilter( $database );
 
@@ -407,25 +407,18 @@ class ezcMvcAuthenticationFilter
      */
     function processLoginRequired( ezcMvcResult $res, $reasons, $errorMap = null )
     {
-        $reasonText = array();
+        $reasonText = [];
 
         if ( $errorMap === null )
         {
-            $errorMap = array(
-                'ezcAuthenticationDatabaseFilter' => array(
-                    ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect or no credentials provided.',
-                    ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect or no credentials provided.'
-                ),
-                'ezcAuthenticationSession' => array(
-                    ezcAuthenticationSession::STATUS_EMPTY => 'No session',
-                    ezcAuthenticationSession::STATUS_EXPIRED => 'Session expired'
-                ),
-            );
+            $errorMap = ['ezcAuthenticationDatabaseFilter' => [ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect or no credentials provided.', ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect or no credentials provided.'], 'ezcAuthenticationSession' => [ezcAuthenticationSession::STATUS_EMPTY => 'No session', ezcAuthenticationSession::STATUS_EXPIRED => 'Session expired']];
         }
 
         foreach ( $reasons as $line )
         {
-            list( $key, $value ) = each( $line );
+            $key = key($line);
+            $value = current($line);
+            next($line);
             $reasonText[] = $errorMap[$key][$value];
         }
         $res->variables['ezcAuth_reasons']  = $reasonText;

@@ -46,11 +46,7 @@ class ezcConsoleOutputOptionsTest extends ezcTestCase
     public function testConstructorNew()
     {
         $fake = new ezcConsoleOutputOptions(
-            array( 
-                "verbosityLevel" => 1,
-                "autobreak" => 0,
-                "useFormats" => true,
-            )
+            ["verbosityLevel" => 1, "autobreak" => 0, "useFormats" => true]
         );
         $this->assertEquals( 
             $fake,
@@ -63,10 +59,7 @@ class ezcConsoleOutputOptionsTest extends ezcTestCase
     {
         $old = new ezcConsoleOutputOptions( 5, 80 );
         $new = new ezcConsoleOutputOptions(
-            array( 
-                "verbosityLevel"    => 5,
-                "autobreak"         => 80,
-            )
+            ["verbosityLevel"    => 5, "autobreak"         => 80]
         );
         $this->assertEquals( $old, $new, "Old construction method did not produce same result as old one." );
     }
@@ -113,17 +106,17 @@ class ezcConsoleOutputOptionsTest extends ezcTestCase
         $this->assertSetProperty(
             $opt,
             'verbosityLevel',
-            array( 0, 1, 10, 42 )
+            [0, 1, 10, 42]
         );
         $this->assertSetProperty(
             $opt,
             'autobreak',
-            array( 0, 1, 10, 42 )
+            [0, 1, 10, 42]
         );
         $this->assertSetProperty(
             $opt,
             'useFormats',
-            array( false, true )
+            [false, true]
         );
     }
 
@@ -134,29 +127,29 @@ class ezcConsoleOutputOptionsTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $opt,
             'verbosityLevel',
-            array( -1, 23.42, 'foo', '', true, false, array(), new stdClass() )
+            [-1, 23.42, 'foo', '', true, false, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opt,
             'autobreak',
-            array( -1, 23.42, 'foo', '', true, false, array(), new stdClass() )
+            [-1, 23.42, 'foo', '', true, false, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opt,
             'useFormats',
-            array( 'foo', '', 23, -42, 23.42, array(), new stdClass() )
+            ['foo', '', 23, -42, 23.42, [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'foo',
-            array( '', 'bar', 23, -42, 23.42, true, false, array(), new stdClass() )
+            ['', 'bar', 23, -42, 23.42, true, false, [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'characterEncoding',
-            array( '', 'bar', 23, -42, 23.42, true, false, array(), new stdClass() )
+            ['', 'bar', 23, -42, 23.42, true, false, [], new stdClass()]
         );
     }
 

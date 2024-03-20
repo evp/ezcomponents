@@ -28,30 +28,27 @@ class ezcConsoleQuestionDialogTypeValidator implements ezcConsoleQuestionDialogV
     /**
      * Data type string. 
      */
-    const TYPE_STRING = 0;
+    public const TYPE_STRING = 0;
     /**
      * Data type int. 
      */
-    const TYPE_INT    = 1;
+    public const TYPE_INT    = 1;
     /**
      * Data type float. 
      */
-    const TYPE_FLOAT  = 2;
+    public const TYPE_FLOAT  = 2;
     /**
      * Data type bool. 
      * The results 1 and "true" will be cased to true, 0 and "false" to false.
      */
-    const TYPE_BOOL   = 3;
+    public const TYPE_BOOL   = 3;
 
     /**
      * Properties.
      * 
      * @var array
      */
-    protected $properties = array(
-        "type"      => self::TYPE_STRING,
-        "default"   => null,
-    );
+    protected $properties = ["type"      => self::TYPE_STRING, "default"   => null];
 
     /**
      * Creates a new question dialog type validator.

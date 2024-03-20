@@ -1,57 +1,13 @@
 <?php
 
-return array (
-  2 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/',
-        'REDIRECT_URI' => '/index.php/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'OPTIONS',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE, Keep-Alive',
-        'HTTP_TE' => 'trailers',
-        'PHP_SELF' => '/index.php/',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'DAV' => '1',
-        'Allow' => 'GET, HEAD, PROPFIND, PROPPATCH, OPTIONS, DELETE, COPY, MOVE, MKCOL, PUT',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  3 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+return [2 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/', 'REDIRECT_URI' => '/index.php/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'OPTIONS', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE, Keep-Alive', 'HTTP_TE' => 'trailers', 'PHP_SELF' => '/index.php/', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['DAV' => '1', 'Allow' => 'GET, HEAD, PROPFIND, PROPPATCH, OPTIONS, DELETE, COPY, MOVE, MKCOL, PUT', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 200 OK']], 3 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -60,42 +16,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/',
-        'REDIRECT_URI' => '/index.php/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'PHP_SELF' => '/index.php/',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/', 'REDIRECT_URI' => '/index.php/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'PHP_SELF' => '/index.php/', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/</D:href>
@@ -119,20 +42,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  4 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 4 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -141,42 +54,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/',
-        'REDIRECT_URI' => '/index.php/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'PHP_SELF' => '/index.php/',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/', 'REDIRECT_URI' => '/index.php/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'PHP_SELF' => '/index.php/', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/</D:href>
@@ -273,20 +153,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  5 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 5 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -295,61 +165,13 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'PHP_SELF' => '/index.php/secure_collection/',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => 'Authorization failed.',
-      'headers' => 
-      array (
-        'WWW-Authenticate' => 
-        array (
-          'basic' => 'Basic realm="eZ Components WebDAV"',
-          'digest' => 'Digest realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", algorithm="MD5"',
-        ),
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'text/plain; charset="utf-8"',
-        'Content-Length' => '21',
-      ),
-      'status' => 'HTTP/1.1 401 Unauthorized',
-    ),
-  ),
-  6 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'PHP_SELF' => '/index.php/secure_collection/', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => 'Authorization failed.', 'headers' => 
+['WWW-Authenticate' => 
+['basic' => 'Basic realm="eZ Components WebDAV"', 'digest' => 'Digest realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", algorithm="MD5"'], 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'text/plain; charset="utf-8"', 'Content-Length' => '21'], 'status' => 'HTTP/1.1 401 Unauthorized']], 6 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -358,44 +180,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/</D:href>
@@ -419,20 +206,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  7 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 7 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -441,44 +218,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/", response="907db86655d7d2698c791cdf8161edd6", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/</D:href>
@@ -542,67 +284,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  8 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/file.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/file.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/file.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/file.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/file.txt", response="c4dc20a736c638a3f41db715d28bf00a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/file.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/file.txt", response="c4dc20a736c638a3f41db715d28bf00a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => 'Some text content.',
-      'headers' => 
-      array (
-        'ETag' => '915f244ec53702ea179db0509d787bde',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'text/plain; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  9 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 8 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/file.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/file.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/file.txt', 'REDIRECT_URI' => '/index.php/secure_collection/file.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/file.txt", response="c4dc20a736c638a3f41db715d28bf00a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/file.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/file.txt", response="c4dc20a736c638a3f41db715d28bf00a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => 'Some text content.', 'headers' => 
+['ETag' => '915f244ec53702ea179db0509d787bde', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'text/plain; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 9 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -611,44 +301,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -672,20 +327,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  10 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 10 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -694,44 +339,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -793,66 +403,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  11 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'MKCOL',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="5ddf5507f3b2fb8598b095fa3f433ff9", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="5ddf5507f3b2fb8598b095fa3f433ff9", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  12 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 11 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'MKCOL', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="5ddf5507f3b2fb8598b095fa3f433ff9", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="5ddf5507f3b2fb8598b095fa3f433ff9", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 12 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -861,44 +420,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -981,20 +505,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  13 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 13 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1003,44 +517,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/</D:href>
@@ -1064,20 +543,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  14 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 14 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1086,44 +555,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/</D:href>
@@ -1147,69 +581,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  15 => 
-  array (
-    'request' => 
-    array (
-      'body' => 'Some text content.',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '18',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/file.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/file.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/file.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/file.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '18',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/file.txt", response="98976695631f5349080625564695e50a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/file.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/file.txt", response="98976695631f5349080625564695e50a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => 'c0405933cd57c9b53258fe1be86b3e4f',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  16 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 15 => 
+['request' => 
+['body' => 'Some text content.', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '18', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/file.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/file.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/file.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/file.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '18', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/file.txt", response="98976695631f5349080625564695e50a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/file.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/file.txt", response="98976695631f5349080625564695e50a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => 'c0405933cd57c9b53258fe1be86b3e4f', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 16 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1218,44 +598,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/</D:href>
@@ -1298,66 +643,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  17 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'MKCOL',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="c71208fe7df8411b3518254d34735454", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="c71208fe7df8411b3518254d34735454", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  18 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 17 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'MKCOL', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="c71208fe7df8411b3518254d34735454", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="c71208fe7df8411b3518254d34735454", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 18 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1366,44 +660,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/</D:href>
@@ -1467,20 +726,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  19 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 19 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1489,44 +738,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/newsubdir/</D:href>
@@ -1550,20 +764,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  20 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 20 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1572,44 +776,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/newsubdir/</D:href>
@@ -1633,69 +802,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  21 => 
-  array (
-    'request' => 
-    array (
-      'body' => 'Some text content.',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '18',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '18',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => 'bde09112b72b6fed63ff4e3917ebd56a',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  22 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 21 => 
+['request' => 
+['body' => 'Some text content.', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '18', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/file.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/file.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/file.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '18', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => 'bde09112b72b6fed63ff4e3917ebd56a', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 22 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1704,44 +819,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/newsubdir/</D:href>
@@ -1784,69 +864,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  23 => 
-  array (
-    'request' => 
-    array (
-      'body' => 'Some text content.',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '18',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '18',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => 'bde09112b72b6fed63ff4e3917ebd56a',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  24 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 23 => 
+['request' => 
+['body' => 'Some text content.', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '18', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/file.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/file.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/file.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '18', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/file.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/file.txt", response="8d2fc72d1cd2ed7ae4d2ef8918554ae8", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => 'bde09112b72b6fed63ff4e3917ebd56a', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 24 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1855,44 +881,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/newsubdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/newsubdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/newsubdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/newsubdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/newsubdir/", response="95b05ad4075ae74d2db98d18e3d0afb2", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/newsubdir/</D:href>
@@ -1935,20 +926,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  25 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 25 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -1957,44 +938,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -2018,20 +964,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  26 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 26 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -2040,44 +976,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -2160,20 +1061,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  27 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 27 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -2182,44 +1073,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="3f69196a84c5aa6b5eb643cb2bbaaaea", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/newdir/</D:href>
@@ -2243,66 +1099,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  28 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/newdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/newdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'DELETE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="23a13084a490b2ae344e174f88eb75c5", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="23a13084a490b2ae344e174f88eb75c5", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 204 No Content',
-    ),
-  ),
-  29 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 28 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/newdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/newdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/newdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/newdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'DELETE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="23a13084a490b2ae344e174f88eb75c5", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/newdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/newdir/", response="23a13084a490b2ae344e174f88eb75c5", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 204 No Content']], 29 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -2311,44 +1116,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -2410,115 +1180,21 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  30 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/file.html',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.html',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/file.html',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.html',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="8e8b805e765772770eec69c0d8d21e2a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/file.html',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="8e8b805e765772770eec69c0d8d21e2a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<html><body><h1>Test</h1></body></html>',
-      'headers' => 
-      array (
-        'ETag' => '63e609ad6597ac5f4a6c399729a4abe0',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'text/html; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  31 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/file.xml',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.xml',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/file.xml',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.xml',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="f40e940393cf24cef449592947bac02d", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/file.xml',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="f40e940393cf24cef449592947bac02d", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml?>
-<content/>',
-      'headers' => 
-      array (
-        'ETag' => 'b23a873ef8c0f8e3b33339bed653b763',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'text/xml; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  32 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 30 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/file.html', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.html', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/file.html', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.html', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="8e8b805e765772770eec69c0d8d21e2a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/file.html', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="8e8b805e765772770eec69c0d8d21e2a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<html><body><h1>Test</h1></body></html>', 'headers' => 
+['ETag' => '63e609ad6597ac5f4a6c399729a4abe0', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'text/html; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 31 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/file.xml', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.xml', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/file.xml', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.xml', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="f40e940393cf24cef449592947bac02d", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/file.xml', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="f40e940393cf24cef449592947bac02d", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml?>
+<content/>', 'headers' => 
+['ETag' => 'b23a873ef8c0f8e3b33339bed653b763', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'text/xml; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 32 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -2527,44 +1203,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/file.html',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.html',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/file.html',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.html',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="cd5bd9567b8fc8d3869c9e2ab8483c93", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/file.html',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="cd5bd9567b8fc8d3869c9e2ab8483c93", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/file.html', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.html', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/file.html', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.html', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="cd5bd9567b8fc8d3869c9e2ab8483c93", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/file.html', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="cd5bd9567b8fc8d3869c9e2ab8483c93", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/file.html</D:href>
@@ -2586,66 +1227,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  33 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/file.html',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.html',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/file.html',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.html',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'DELETE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="858275bb0af9540d8c48a160a3730fc7", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/file.html',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="858275bb0af9540d8c48a160a3730fc7", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 204 No Content',
-    ),
-  ),
-  34 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 33 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/file.html', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.html', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/file.html', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.html', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'DELETE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="858275bb0af9540d8c48a160a3730fc7", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/file.html', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.html", response="858275bb0af9540d8c48a160a3730fc7", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 204 No Content']], 34 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -2654,44 +1244,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/file.xml',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.xml',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/file.xml',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.xml',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="8a1f679dc51ef6d92db9270813daccba", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/file.xml',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="8a1f679dc51ef6d92db9270813daccba", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/file.xml', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.xml', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/file.xml', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.xml', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="8a1f679dc51ef6d92db9270813daccba", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/file.xml', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="8a1f679dc51ef6d92db9270813daccba", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/file.xml</D:href>
@@ -2713,66 +1268,15 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  35 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/file.xml',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.xml',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/file.xml',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.xml',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'DELETE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="a4185e35ccb1c1024dfadbc0658b3462", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/file.xml',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="a4185e35ccb1c1024dfadbc0658b3462", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 204 No Content',
-    ),
-  ),
-  36 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 35 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/file.xml', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/file.xml', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/file.xml', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/file.xml', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'DELETE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="a4185e35ccb1c1024dfadbc0658b3462", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/file.xml', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/file.xml", response="a4185e35ccb1c1024dfadbc0658b3462", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 204 No Content']], 36 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -2781,44 +1285,9 @@ return array (
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -2842,20 +1311,10 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  37 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 37 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -3385,56 +1844,12 @@ vim: et syn=rst tw=79 -->
 </div>
 </body>
 </html>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '18803',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test.html',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test.html',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test.html',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test.html',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '18803',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="468f628f86fc8dbf42f1bab2b935e486", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test.html',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="468f628f86fc8dbf42f1bab2b935e486", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => '866d436fdb9577521a1d1acd440e1026',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  38 => 
-  array (
-    'request' => 
-    array (
-      'body' => 'This is an UTF-8 test file
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '18803', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test.html', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test.html', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test.html', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test.html', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '18803', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="468f628f86fc8dbf42f1bab2b935e486", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test.html', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="468f628f86fc8dbf42f1bab2b935e486", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => '866d436fdb9577521a1d1acd440e1026', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 38 => 
+['request' => 
+['body' => 'This is an UTF-8 test file
 ==========================
 
 This file contains a variaty of Unicode characters to test with the eZ Webdav
@@ -3453,106 +1868,18 @@ Mathematical characters
 â„‚ â„• â„š â„ â„¤ âˆ€ âˆ âˆ‚ âˆƒ âˆ„ âˆ… âˆˆ âˆ‰ âˆ‹ âˆŒ âˆŽ âˆŽ âˆ âˆ âˆ‘ + âˆ’ âˆ“ âˆ• âˆ– âˆ— âˆ˜ âˆš âˆ› âˆœ âˆ âˆž âˆ£ âˆ¤ âˆ§ âˆ¨ âˆ© âˆª âˆ«
 âˆ¬ âˆ­ = â‰” â‰• â‰™ â‰ â‰  â‰¡ â‰¢ < > â‰¤ â‰¥ â‰ª â‰« â‰® â‰¯ â‰° â‰± â‰º â‰» â‰¼ â‰½ âŠ€ âŠ âŠ‚ âŠƒ âŠ„ âŠ… âŠ† âŠ‡ âŠˆ âŠ‰ âŠ• âŠ– âŠ— âŠ™ âŠš
 âŠ› âŠœ âŠ âŠ¢ âŠ£ âŠ¤ âŠ¥ âŠ§ âŠ¬ âŠ¶ âŠ· âŠ» âŠ¼ âŠ½ â€° â€± 
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '739',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_content.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_content.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_content.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '739',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="a3a8dfa1e7bc835ec8ea9ba663a876a9", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="a3a8dfa1e7bc835ec8ea9ba663a876a9", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => '94ad488564aca44123a62c6f22c090dd',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  39 => 
-  array (
-    'request' => 
-    array (
-      'body' => 'Some test content...
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '21',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '21',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="b1e4dfdf75801dfb2515bf6fa22531ae", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="b1e4dfdf75801dfb2515bf6fa22531ae", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => '655a81988486514fa14b109f0f4e5073',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  40 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '739', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_content.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_content.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_content.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '739', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="a3a8dfa1e7bc835ec8ea9ba663a876a9", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="a3a8dfa1e7bc835ec8ea9ba663a876a9", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => '94ad488564aca44123a62c6f22c090dd', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 39 => 
+['request' => 
+['body' => 'Some test content...
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '21', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '21', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="b1e4dfdf75801dfb2515bf6fa22531ae", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="b1e4dfdf75801dfb2515bf6fa22531ae", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => '655a81988486514fa14b109f0f4e5073', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 40 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -3561,44 +1888,9 @@ Mathematical characters
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -3679,66 +1971,15 @@ Mathematical characters
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  41 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'MKCOL',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="5041375a5d441d62def061c483b89f90", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="5041375a5d441d62def061c483b89f90", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  42 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 41 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'MKCOL', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="5041375a5d441d62def061c483b89f90", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="5041375a5d441d62def061c483b89f90", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 42 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -3747,44 +1988,9 @@ Mathematical characters
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -3808,20 +2014,10 @@ Mathematical characters
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  43 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 43 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -3830,44 +2026,9 @@ Mathematical characters
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -3891,20 +2052,10 @@ Mathematical characters
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  44 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 44 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE document PUBLIC "+//IDN docutils.sourceforge.net//DTD Docutils Generic//EN//XML" "http://docutils.sourceforge.net/docs/ref/docutils.dtd">
 <!-- Generated by Docutils 0.4 -->
 <document ids="ez-component-webdav-design-1-0" names="ez\\ component:\\ webdav,\\ design,\\ 1.0" source="Webdav/design/design.txt" title="eZ component: Webdav, Design, 1.0"><title>eZ component: Webdav, Design, 1.0</title><docinfo><author>Kore Nordmann, Tobias Schlitt</author><revision>$Rev$</revision><date>$Date$</date><status>Draft</status></docinfo><topic classes="contents" ids="contents" names="contents"><title>Contents</title><bullet_list><list_item><paragraph><reference ids="id1" refid="scope">Scope</reference></paragraph></list_item><list_item><paragraph><reference ids="id2" refid="design-overview">Design overview</reference></paragraph></list_item><list_item><paragraph><reference ids="id3" refid="tiers">Tiers</reference></paragraph></list_item><list_item><paragraph><reference ids="id4" refid="classes">Classes</reference></paragraph><bullet_list><list_item><paragraph><reference ids="id5" refid="ezcwebdavserver">ezcWebdavServer</reference></paragraph></list_item><list_item><paragraph><reference ids="id6" refid="ezcwebdavbackend">ezcWebdavBackend</reference></paragraph></list_item><list_item><paragraph><reference ids="id7" refid="ezcwebdavtransport">ezcWebdavTransport</reference></paragraph></list_item><list_item><paragraph><reference ids="id8" refid="ezcwebdavpathfactory">ezcWebdavPathFactory</reference></paragraph></list_item></bullet_list></list_item><list_item><paragraph><reference ids="id9" refid="example-code">Example code</reference></paragraph></list_item></bullet_list></topic><section ids="scope" names="scope"><title refid="id1">Scope</title><paragraph>The scope of this document is to describe the initial design of a component
@@ -4023,146 +2174,106 @@ and running.</paragraph><literal_block xml:space="preserve">    &lt;?php
 mode: rst
 fill-column: 79
 End:
-vim: et syn=rst tw=79</comment></section></document>',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '14013',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/put_test.xml',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.xml',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.xml',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.xml',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '14013',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="54314e4a015cfee884f0971c0e16b907", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.xml',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="54314e4a015cfee884f0971c0e16b907", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => '5ad59a93c1eb407447585fc830b848a7',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  45 => 
-  array (
-    'request' => 
-    array (
-      'body' => 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'î‰M7%““þÞ' . "\0" . '' . "\0" . '½6' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT	' . "\0" . 'áGáGUx' . "\0" . 'èd' . "\0" . '½[isÛ6þÎ_Õtš¤«£IÛmëÚê$qÒf¶‡\'u÷šÌt ”P“—' . "\0" . '­¨¿~ß ARrãnvû!–(' . "\0" . 'ïý¼Øó¯ß–…¸UÕ¦º˜=^~<ªJM¦«íÅ¬uùâ‹Ù×ëäüO—?>¿þçÕ‘™´-UåÄÕÏÏ¾{õ\\Ìþ¼Z½ºüž;]Ø¥5m“ªÜ4[µ¬”[­.¯/Å¥ÿU|£*ÕètµzñÃjõï¿›‰ÙÎ¹úlµ:y' . "\0" . 'ü`WÊû™ËfÈÓbÁçI§2±9ôT>^~*XÒq«3{1S¿-RSÖ¦‚\'‹½Údòv‘)«·Õâñ¯d©hÙÑ­;{#xåüàµðÔÄ|^ÌþN?¯øGÿgéÞº™pÚ°@ý+:Nðò¹¸äÃè¬õ9-]ÿîÊó/DÁt•›õ¹lÝÎ4ë¿šF‰L“•²‚¥×f£¥?¥»B;w¾ò«Îu«ÑÒë^«ÛÎWÝ÷ó”¸þàþ…ÇôåÜ:éZ»¾ldGøoç«Ž´3µNEZHkQm©©ðmg¬ìþ«Wk÷ HûÜ?è„Ú´E¡Ü/…¶n}Žÿþ¢*×çµlä¶‘õÈUª˜ˆÎÏ<ÓÙÅÌ¦¦V³õOø%óãhÿ*:ö)<é(x_1.·Zígk¶ŒÞ\'ÕO:ªNCtÎÖ×øç}Rø´£àM8[?ç\'©ü}Ö‘Q¿¥JÔ¥šÙ°ÿDÞ§p™RÝÈôFUYDö?yŸt?ŸÒu¬lmQ¾ÏÞ\'í/¦´kév¹Liõ+xú’Ÿ¾ýÕÀî€³/{ÎÞÊ².àp±ú‚¿	üöG8! R©cjt<(0â&5Nxèéé]ï” ]ÂäÂí´íS|v³@Úè‚AÀJ;-Ÿp‹ì!<q;éDÝ˜[¿Ã/ þË§ìÿs±ßét\'ö¦¹±b¯ÝNÈ¢¥üÕ4ÂÀáÐ¨$-Q>›GJD
-F1)Á¹¤ä¶Ñ!¥ªj¹×7ºV™–KÈ§+ü¶ò‹×ü7V;²êLjŠåÀ' . "\0" . 'NB*ö)”ÝªSoøzÂ«XÛ¯H«iÛ' . "\0" . '®8ˆÊ€Â
-ÈaÑA×²°”
-öÚKÆè´<dvåaäcèðó7¢Çô±«<9ó§y¦RÙZï2JÜÊFKwÀ¯›v»=Yeà*È2x¯Û×±psò¸¤“Ü\\Â{œ"äÆž°` ÛB\\ÉLçdF\'*¥2»Ï€éL‘ÎãÀ‡S€‚Âp«F¦~íÉeCÅ#¤”ºâÔß…É)¦E1{˜:íë—ÏÅ“Ï1ñgyZ¹œ|gçÊbÕä)­]‡]¿%Åj	7Ô,Çãÿ,\\8Ž—â)8YõRè´Aºi”k´ºÅà¯’x;ð‰üš,pòÖ¦Š9(€E†2M	µ8ªQÿn•…b7xj‚ï€i;>Ä]ciK®e°§|t:¨A¹¶„
-xðæþ¶öÓ,ÓÈ @ÚaN À£øŠ#ˆ­+@;íˆãÈ³¼C&CŠVT¬ìØÝÐ@7¥ïAò' . "\0" . 'J¦h©}x&èCCGbqj' . "\0" . 'ŽR„#Bepjj-±Äþðß­q_QPóG¸	£ÄÝSá®' . "\0" . '. Òª©I˜lŸ@¥nJX˜¢âØP_‚gÞ<{Þýz×CÛKïŠ\\Y£û:sŒŸt¥çÑTÙG=Xd#­g<S$‚Ÿ:ûLà´~ƒ@¢¤Qu£,À=\\ç^:2ò]!¦1Ê –ª¬Þ€w µÕƒF%ü’*}\'ûÐ¡œÒ)°«ÌB0vþˆ1XK<ˆÀv‚wAãäTQ' . "\0" . 'T=`m¡ ÊHKánEÂ§lžD"!ÏÈá?%d&„™E½edÇò¡Q@M¢9*„r9TÊÖ7Ê¤:›F;¶‘Z8Äl~Ý,ÑV°dðÐ‹P%5rê„$âÍåwŸPÏ3‰Û0{UIÌãÃÒJoXkdŒh­(ãhg!µé&ó¾„kÚÀ"¡×ýR¼â”lá%é‹²¢H*ðkes’9®µ9©' . "\0" . 'Š”ò°	„’ØoaQ@\\¨²-º¬„uŽ¼•º@\'’E‹‚¡z¨’>«ç' . "\0" . '' . "\0" . 'm£l(1¼œ@ÐÔŠ+€±Êˆ½<Ì©øHX±ê‡Êî!WW„1ÒùÊ´ªiLSÝ@ž}#/Ìí×˜v»#b
-øg¹…@gT™-	Š·±¿é‚ôˆÆØá×\'¼¾¤ÜŠk°~º=¨4ù
-*òDÑ' . "\0" . 'O™E»#¥ÄSºÐ†»…„†{¶ŸF=¸‡ÛÁAãºYZëñÁŸé¶âùhU²îHÕI"·
-ÜµH1	›¡#ÇBéƒhœ²P¹QT*·3ž‹£©­9,Úªð£tày˜\\gcfÕT®ÂƒJw:+à8k‹øÑéIg~Zš.çV¹Þ¶MÀQätÒp–-€ÚFA%0öê¡‡B€p‹y<Î;ŸO[¾åññÊÕ…vX	$CŽÊÝ4ŽpÃ°òš8½en„ªˆÎ8ãtðÄµk„1}¹g§MÛ$\'Tô°Ð7J&½ÁS)¶\\›çî‚“‘LÁò¤gH}ø‹n•wƒñ„ç[¯¤GÛz„› F°Î' . "\0" . '“uŸ1(3Ayƒ³LMÅ#=0£Gnéc˜2Uµ½¾‚ÕŽü;TñÖ½ÎzöÈ\\JÓ Àç*¡’øtÈ“ªÈ…÷ŽiauBí?µ@¢OXy[¥\\ÌcIš¶€°5Ë“qÁˆïÙ\'fÔïë`“\'ãzÛØZ™/ûBtW‹L• ËÉ-zODòSïf{‡Üm|œLrß+Á' . "\0" . '´òÒ—	ŒS\'µG#$ð÷L‚"¤A­"˜v8Ã:‘ ,“z&”}µS`g‡µ²¥¾ù³;2FIõnŸ•(/0SDƒGÁ©IîÉÉ2âÐöíó‘”ƒÔIo©UŠC°Q£#³È¸°¿?~¶d¤Œ¹ÏAPxìôv‡bÝhÝááRídÜ;I‘Ýxœ#ÿrl4<I’èq#D²üòæ¨)Š@Êr¢êæ0ˆW<ê\\b¶_å](€¸ÇŠ\'‰”“¢¡' . "\0" . '»mF»”ß6Qö-IÍ*4g§fý‚?_Ì³#ß’ÙÃG÷`CŠ¿ï€Èú%`÷Ú§ DîØ8-íÍÓX¯óHÍÔ×ŒŒ^£Ùõå¤@[ã¾`"CÀ&ƒb˜øŠ·ú¨J&~ˆ‡ÜFGwì`ºíp¯wXÛÖîID*ôeÞóæ‚RvÝB|¦@h¨ò$ ÷…–ÅŸ' . "\0" . 'Åus eªXnìª¨<H6Ú•ÒÞ Jø=èÔ¡òª×<w ra¶8 [èHj*b‡­×8ÈH$÷‹Ñï; Ör}Õ:€ü­3' . "\0" . 'jìI:Áíœ{­~,Ø KzŠ*Áy^ÒÖ˜8­¸ÕR|{}}µ¸úùÚ›k„‘1#«ã¼ß!Ñs2÷ï	œÚvÓ·Ó0	I4S8ý725ÄK¨Ëã…Î$YzGJ–ÿRÂï¡_ˆ
-äß·â|¯öÑ^Ë—Üeb¿Û¹…ÓHblÄbpíÆ{í;¨ï–\'šŒ`	Ú°PœPtPSQR2ûj~¢RK(ÑaëH¥DrcZG~ý^ûæ_¯®Ï!Ãb)t·„ß\\À ¥a/Ý
-éL&P¥…‡“¡6¿éú	åèŒ®c|ÝuIÆGƒF€4ÐQvDÇ¬ô½Î‘RYs†¯ßø‡£‚]pdP˜ÔúÉög??—¼ê½ÒÏ¹ý^šÝ¯ë/À\'µXt7>®Æ>?~]>­ÇÂˆbbâþ¢k¦až+E#÷ !ç%ÃQ(×m¸´ãäu4võ3ª0Rð…YUëBmö?òùKñcul
-Ü¶¶e|huCëxxÞXž¤á6§s§XE=…ÅŠ<§·s°]‹l\\žáfp#ä` ÍÍ”ÄŠPUÊ‘6\\À8ùUv¾içÙ¾IÚÒ@»ëº¨rÁs™ÏŸkBÚ—·Õª-ÚöÔ÷0°8èîWte@ÃÓcÉ$(‰Çˆ~.IJ Ý Ï!¥MõæŒ~$á/”ÂzÕxBºë®8P£Ä
-F±ƒxô¦7g@ª»~éb€çÏ^@â9‹áòÃß-û.O¤æ»rýbi°ä-
-Bâª6º£`CúÙ«\'¬A-*·WªÏ$ÇU÷ŽE Vó#%t @çyŠì´I®¬Q4‰æOƒÆ®;ý(rLá$»ý(:;…Nœõ\'}£ÜQ
-ôœ‰œŽ' . "\0" . 'à÷Éð:u2–üæÅu4Œ€ *ÐÞ¢®û~ýjŽnÁÓ^ì1#/w@>‡y¯%_Å¥ðL/Û /¥ÂfDÛ’¼¸õƒú=:‘*,A>€x‰¬Ü29åÜlðÍZ½xL{~n—–÷Òú£²þÂx.øv€Ýi/0w†óºa°Ÿ†ss	%þï¿{1¬’47•Ù{]E—K|3ÍúÁU;	ö”Ét¨Äã‚îŠ]•4‘	¸—h Úç!eñNŠÆPýUé<cp>]øX7T…«p¾U	!‰÷”ûÕño“jcð6Ü¸ÞøâÔrG®IâËçRÑàÌà…`Ês_¾qAý{KB‘7¦$1ƒGnâkÑ­¾°£íûýÑß7Ñd' . "\0" . 'ÚX¸0L 2æF¦hûÁvcŒ]"à«Q¸Ó^KØÏ=\'R†›tbw³»ã´àcûßPjÚÂJY×Èk¦q£iüEküŽ…—w\\³ø ¶ác¢@”)†EI¯ql˜Å*êÓNÉìÑóL±ÂCWÎ¬˜“e½«»GÔ€¿&õãR1øáÄÑÿ4-È}' . "\0" . 'È`O	“þ²¦èñë`¨§þæ×kÌ†j§S*ÏáR÷Îâ€µWŠ–ã—€ÞEn]Ê­²cY‘d¹³^VPÊ/¼ö¿Ö5¼03õ8|I„ß¬1eC~èÐ¢Ë=“áúq¸Ex±)`™âl„Áë¶:uáÁ@ªåv£¼ŠAè‰Zû¢³›j£i£:€b!ˆ¥{®q”ÍõWÝ6{ccô v
-Þâ·f;Xã‡o¿K;Æ³/Ç¯×½îÍ!.ÌÒVº®¡{°;¾³WâéÕ+zËa„' . "\0" . 'x5;z•U´ußÏ¤ƒÆ/Ùà`A¼-‹3[Kü\'¨ì‚í³5:Ë‡…ûêkð¦$Áoøƒ/hÊ2º”~øè+^µZ	MMu*·²ñý;`úœ…;YrJþ“Z|¸u_…m#²þ6à%œüP< ·~ 	`àÇ~š|,»
-wz¹ãüóüÌ©º»C§p¤÷ÂPùêDbÚÀÜ)œq?¬¿“	ï¥MDÌŽo¾ÒÊðœþzZ\'8ãC,Jâƒm~¯ÓÆX“»åG¬Ã7öÏÿ¸z¤ÌÇçÓ\\»›kÃÇL‰wË:&ºõhå£©åÿÇêX~ôlš›·Ëþß:0¿$Ê©ÔÕöÅ0rx[Eòú@÷hHgpÎþ7|ŠP{–”' . "\0" . 'Bg¢œ†' . "\0" . '-' . "\0" . 'ÊŠ¶„œòù—É‹*;Knu	ÝÀÏ¡ºh°DÜ_|þåùÊÓ`dxýPK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
-¶’' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.htmlUT	' . "\0" . 'ìàG¼àGUx' . "\0" . 'èd' . "\0" . '¼\\é“Û6–ÿÎ¿Ñx;££»ívlµÝÇv×æpÙ¹j«¶ ’0&	†' . "\0" . '[VRùß÷' . "\0" . '	RT»É®?Ø	<<¼ã÷@~òåû"×ª¶Ú”O\'§ó“‰Pej2]nžN·ž=šˆ//“\'Ÿ¼øñùÕ?_¿[^ÿôÕw¯ž‹Él±øûýç‹Å‹«âß^}ÿ' . "\0" . '
-âª–¥Õ(Ê|±xùÃDL¶ÎUËÅb·ÛÍw÷ç¦Þ,®Þ,Þ#­Sœì?Î\\4sž¹l+Ó‚ÀeiŸŽ9}üø1Ïžà e.‘qUNDû	i(™Á?…rR ™ú¹Ñ×O\'ÏMéTéfWûJMDÊßžNœzïHóB¤[Y[åžzQ,•Rêéd£JUKgêhò“6NçVœÌ,…ç8óçÖ4uªÖÀºš—Ê-˜¤Ó.W—ê_@¥¨L	t–âïj•Éë©x¡¬Þ”S”ì“ìñ ·í1ð_¦VâSg…,aÞ•YiiÅÛt›kç¶IoýÎø~‡GY·Ï•p /’ÔZf²ø<Y>£U—â…¼Ö™øÆ˜l£êd‰•)p¿á\'m,ØÖp×ÉWYŠ;üÏÙÉÉùìôlvúHœœ.Ï.Oˆ¿œœžœˆ»oÜù#BJÃî‰;ÉòºÖh¯@ ûøàìì¾|nª}­7[àáj«­ MØ­RNlA+¥JQå2U™Ð¥p[%ªf•ëTd¦ºœ\'Éµ–MîD*m*Ñ˜†`"°	šEÖnW5N˜µZ‡ùo•:Tûš´ßíbkvÎyÍ:æìœì©Ã{áL’6Ö™Bÿh÷Á<Ì“Ï¨ÂÍ`¨¨Ua®•XÎAÚb]›B8¹ÒB–°ÏBnà#Lšóxa§<"z"\\6öp+~M„§½\'â·$ù¨™Àç' . "\0" . '0µÎ@Ô2#â6\'<!ˆhLÄNÃ¤É\'Àqej\'K7™øs\'­¶$¬ª$¸ž²¤¢%R•ƒ¬q£"ŒCŽOæçªÀED÷1_ëÚº.t [©T¯Á.
-YoÀRXUcòz<læLµY(—ÖMÅgÏl³"7¦uý´•q ì±™[e`²86Ó,w¿%@¾”sgÒÙJ¦ïjµ¦!è¦³L¥DCnAC/àMjrô×˜þ;œ»ÊMúîçÆ85W•ÞÔ²ÚFS‚ÈPl88Ë;=eÙ(ã$ãßÈ,‚' . "\0" . 'R' . "\0" . '\'â.šŸ·N²bäï“{h³ð¥•É³Ùš|1Sk]ò‹\\ƒNœªÛ_—µ„™í{8€EÑ2}=—+$u£ùm0¦áU:uº8$}D*sÀà%ÀdÝ’Ê
-Ã<O}wˆ¡í×¹ý’A4R533õ”Hluéøa«uþZ‚bø“ÓØÉºDËnî"rÏBeº)— hÑ›ÖN#´Œƒº/,
-^{™ôx=:Ù?:v4òîÐÓµ,tÆo!E˜ATÑëv;AîGÙñª8ÊkçètRØÑÉA/G¶ä¯VÑ^>f‡ãP°HƒÞHæt*s@1ð.tˆ¢”[40“¢I\'¼h?Í½ìß€IGðk¹ÚÈLÆÁ[“e4õ4ƒ—g`ã)ÁÛ8`ûl+eò¥ÐNbÔÿí€æmq!&Všº' . "\0" . 'i{bk½iêÞ>rµv³ú‡>K9ë¶6à6$0e¶É‚r%ºÛvCb' . "\0" . '–«æ åºT3ö~¼àG¹žöÙ	*Œp"¢7B¾ñF(õ²Ncû°lW²>ÔéÇ¡…°¶©ÉŒ¼Ãýi¿ÎÜrÄ“?³êr#aN(.:	óƒwÕ¼nV5˜Ê¯7øé@/žá@io*f$E”ˆÅV‹c0l{:ÄÑ½ôìvø? P|xyŠä2î/·§s«R‚Ä÷LÅölìáýÃ‡ÉöÁØÈó±‡Ž Éƒ–«nÄx€Gc:GFÕ]‚òkgh_œÿßêb3§)d×±/Ó÷Þ¶½_GŒÑä`‹E…›lÂÇ1ìõ
-†á€ï+¯L¦JA^¨=LÁ Üì vÍ«­<H¯füŽ7Uul0½ê¦éPƒÈòe~QÌ”ÛÁúZ¯šúctÎÜƒ’ó“?óÜTVí¼ñ8' . "\0" . 'cÀÎµ³ÇÆß
-ü•ÊÙ¶Ú©^;´<d#G"
-ÑÎa>hy„]`ÿxFZÄF®›àê<ôH÷\\âã¨‡VV+H¥²‹ÈÑiÉNFr¨1X>=ñÖ' . "\0" . 'ä %°hŽgSÀ“¡žt‡!îCáûH' . "\0" . 'Rôk(ç)$?JJÕ?JØøÌ*×?7cd ÐËuûø}ê rívïTv#•0ÞtntÄÒiXå Þ|Ø€©r®t$ÌÑQ<‡t¸Õ(ŒÎ' . "\0" . 'æÂ³ZÊÛçÛ‡Bqø~«óÈ±p÷!×n÷ÃAÔkÛš\\gâ´z/ UÞ&2ð¢¥†£Ëµ9ˆ>ÚãùíXþ’%&€Ù!ÕU7ðJåý™—Ð´ém§ƒ-õñîø¼Â¯Ðí!<÷îÑ½5I@.ØûS[HŸUžÍ°;y¸tøH¯oY´S¬½8b¯‡[áA8×r…ËàûýÞwÈSïÏßÆß£' . "\0" . 'ÓÃ¥á1r¨jØÐ0ÒÏ°eÛu‰ž,èé%|ð}ð•Éöð$n‚Ðäé—Ew™=¨_fm#d‹}hÀlCÏNg\'ÔP?3É3\'·é]oO±ÓÍºvUTæD¬kêE_MDÝä
-^"û¸ì|0ž”Ï-ê‘—¾•íë¸UqM–' . "\0" . '¼š
-)ºúò	XñÑKß×~²p[™]ÞØM‡aÙ%üU€jÛ¦îèbëúÎmçSŸ<šKMúÛN~×Øhú‹Z®{¬/œ·ˆ©§o^žVPìFùU­î£hNƒÉåI&Mü)CûýÒ¹Ø\'	ËW@®iUÈ¹-.‘k¤ä×j­' . "\0" . 'ÛSÐù>?üÉ¦lp%†Eðãå[|ÅÄÈ)y³6€N×ZíÍ³ŽæˆŸ‰0èöÔDihÞïhÞŸ\\^á«ÛS¢ª¥õ £õ' . "\0" . 'dÊ/‰Z“˜˜ú%e¯†Ð{
-DÏ;¢çàÑ¿¤ìÆoiÐíYm©#|©2äväFä¿âQ¿ƒ>b\'2¬ðE·ÂÑ
-WaÜïX£’n»–©3õ>¬ò¨[åQ´Êkù5ŒÖY>n·æ{‰æ' . "\0" . '–µ¶ý¸[ëñäò%8âpðÙ¾çúü‰ñ:Z::4h\'7Â5½kñªü%ö)ñêÏcè%ž}Q#2DMIµ¦M¡VSt:C}(<3ïGk!»h‘¸­tšk¨1,¼q¾xö7Á¶9Å¨nÅÎÔïüéT]ÞüÛÔÂ' . "\0" . 'ñZhàÒ”ÉÙ„8RâQûÓ9UÎwú® è“t˜Œß¼üä’ÿÅ]#s 3(V°ªËW´Í´©1åÌ÷j*–%ŸÇÉÜØ%¬Úm\'Í5J§Ý¶§õŸjíŒµv' . "\0" . 'cþpwðxÉ¼N¿R©l¬×¨‚ YkéöøuÕl6{>JÄN4ˆ²ÐØqouJ‘´;­Æ¼‚ŠG0˜wƒ´li-™é5iÊ‰R©ÌÎÅW
-O²i<SPÕ‚\'GH' . "\0" . '§z¬áµÀìürY«2´X<àeq¶f{ŒK±nrPì‡È“Û¹VnM&„§¸‹zžŸ8¼ùú¹ÀOdE$9-Áâû¢cøÍ•=g.ž• \'ë$êöK»‡r¯ÖêšÎ‡“xŒ[P3v5h`ð>\'ßÁØ*,:º­@ö¦.ðÐe_+¨O-‰Á.‘7ÐV«•»8ËãMYkÈñ¨éx¯ÕÐ3ÈÂùêG¾ŸBä9ûræ`àH—àúÚ±H­^ýI«~ñRÂèÞî•ê5l¯4ät{‘Ë=ìŸl³òÎ "ûZëSj' . "\0" . '
-R„‚(Ì¼aÇtü)²^ñGï&	#Xù3á#T"ìº,u`Ô=µ$XP‚c%¡¼jÏ¼†<{Þ2:«@µHM Ýg@ò™Ã‰Sž(Œt
-ZIë÷‘)Ú*zºPmáÜ%Ý@µà×)ˆ6˜Ôªª•Å>X&VûÎ"üf‰Û›œA£?@~PZÉo‚ÁKC‘è@ÀÞ¤J_«,9Á{+Ï6	nÓš\'zK…É4†£JÖvà,=\\: 5ëµÊ)”b U>g´ç¹ð¹_^ÁØO\'Ñ|;ÄÚdãêaˆãPŽb,­¬†‡¹X3Ô™\\BŠt¹I‘ˆ6Œv¬)' . "\0" . 'Œ bVÿaÌQ90¤÷Ðo¡L*ä:#@íõãgy|%qœ)caõiNãÙéV¥ïXL$pta­ßµ³9tykÁ1M`QÉ{.^qÄÂ÷¬w)Iž\'%Øµ²Þ÷—Ó”d„&' . "\0" . 'FAaÎ„…’Ø2aP' . "\0" . 'U¨¢ÉÛ˜€I…¼–:ç’9^–OÁK@S]Ð\\ƒÇ7µ²!‚û}Â²%^f"äp' . "\0" . 'ÆJ#vr?íENà#a	Ä¢ï»ÃX]Ò)Ž•Îçe¥ ƒò`‰ªgã°k›*¬6ÍfKÔ½wók¹‘Ø>»Š8ózI‚¤ml‘Á&Z¿±´üø„ÇØpæ#×c®H×!ƒLü¢(@œÌ¢¢q¥Ä¯ô‡Bé†Ò¶ôó¥´ÿÚ«úP¬töÁ•ÎCßgPòŠÃÇã¥!,t=xßá¬IÂðVXúNnØ)ßÑYBg´†ºÁ±Q@C/1TFT>ÊmMnDDîÖTì7M‰×5("xOïÇ×Ú³jJWC*BI3Ñ
-PÎB!~tÚYû³Â´a·¤»' . "\0" . '­KG¾Ô²ÏNY4' . "\0" . 's+µ„d`hö}¹@¸ûGä¼uúPå+ïÁœ`h‡É@Òç(Üe<' . "\0" . 'ÄgƒäëÀ+,s“ xEÌpÐFààrÝ|(Fù„Ÿ­6MÑÝ\\¿SOe*9ŸkÖë{=€l"è–á_ñ^­ï?Šaâ[/p\\€¦u w€#A=XÖ]Ð h8ô†®*Q†Ã`·kG†‘‚ÒI™LÊLŸµjG’ê€ì^H{¤¥©Röa†ò¤$¦¡RåkáÍá0{
-r~Û' . "\0" . 'Í.H­›2åŒóæÔ49x¢±˜ƒìiYÎ2|Q,8£@7˜ìšu2Lê±l€©¹‘Ùx2¶œeª' . "\0" . 'æ;§Ë;ãÂõ–5kß—ðUdrØ+ú¶ŸÐÑýD].ÀXc{vˆ6›IØh(H¼r Žã^â0)A^B1µV6ÖN˜ãZª¬˜!»%q”§v¡‡ ›”¼Œ¨&k°8Žˆ‡¶+IGâ^4à­XðãA"³H_xå»oú¥í~ê1žpò‡­Þl1Ï«jm ªÛß*€~8¬=„µ¶!9ˆkáù‘¦¤lhb±-„ò´¨˜‰pÇrti›Alúþzv°I¼{ÐŽò¶E+€í¹6Š»cÅf¢²›í4£YÊOëã"Û:¤šj‡åx<4º{¯ëaBX¿ U_R<S`™íCîQ²¹mç7ñN•kÅ€âÙleÃæ%‚#
-ç…}{ìI	MÑ÷¼(Cr \\$b' . "\0" . '‘nÙÁ8Ô¢Gg¶©Ð‡’h©PÂxuNÅ²ªH·xít*@P#M6÷S ­÷|øî—i¬Çc­`]H•ÉJ»BÚwèz~šF(¼¬†Ñ?³Ülè)žBV”°õëÖv²øŽN0Ñz2wùºqàÇ¿dD0ÑÙ·¼ã°”è:P]ëÒSúí€†¢º©0FXq­¥øöêêõìõOW^ÄÀ–ñÚÏIÀñòøCŠfÕ¥Ÿ‡F€>SØå%™Š[Ÿtç6èL²R‘X–gàå{È*£¬ª/nÖø²Oí¢q–›É\\§`Ë®)5—óX»ÏáÐ9NÄÄwt+Ge/&!…y˜vë%a“Ù•Ó#!9!¼ÃÅÑFÑuäÊ4Ž´±ðÍ¿^½ž=˜ÄxÖñòmð¹ž‹nz>ö”Ìd
-¬‘B#¢Í¯~ÑÕjFMg(Ãš‹Œ‘çUÜÝÄtŠ¸®$Û4¬]NúŒq$ÿÐœ‹Eæé“"„…~ÍL>Ê…c¡‘üÒ÷ÏONÅÆ%¯:]ù¡ŸKåô¿ÄÂèðl»7GÐBD•ÝÎºþ|ß‹C\'
-x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃÁ·´á‡Cœšý]®øldù^[È^+V_YÅ’Èå@|àÈ õže8Ä{!ÈbÜ	ôyé†ZmfKqvºÖøÛ ?Ö€fè—µª,5)V&7Õe´;ì	v=µSÉC¸jkí$A*ÜñÚ5	™|(ØÐ°ñ•œï½‡ñþÀ$pMGm¿eFkƒèëÜcav8U _âù^tkÖÜªó;"&C²:Áþ”Ë§æH‘J˜vWÓè¥ŠÛëvµ³š¨ËªòM–ÇÐÅ¦ÜéËØd\\VÇrLß»n·LÎÊ…¦lÅGÖô¹cæ½ô¸¥>êý^Ýñ×UÄ¡©ÓŠœ{ÙMýF¹Q’ôœ©FVõOZ0ß¼¼Š‘N	P"˜ë”4ãÌî§7¯¦¨ineñ?,¼Œ;à>ðxC$õ÷Hq¬¤ ƒvä¥P˜_j[a6¾k¹C»P¹%`nÇ5OŽz*§“|ÐŸŒ‰Ë·,’ÀòNZO*ëÎÇ¦‚œzßR{‰/Ðk_¾è®%d€#»Ã®±ÿ®4;/œ¨—Î\'o,µ• @™VÛ\\GµGˆª Ê5 kTwSó§ÊbGà…êóîìg¦Ð£Oínë*øpÔç¤œxÓøƒ2‚GƒŒ wÕeÄïn¸òÒö€ãÃµBQƒÁàqHÊ-/îúº Õî¤¨
-ÿfØu°ÈU|(´Ñ×ønœîñÛwZ|ó,¬l“$áÀ@€r3ª¯MÞt=½Ú780AH3Vã¶"+‹·Ôu€¶Ž‰¿†¹¶c>hÁÆv5Þw [Žd^…¬*d.Ó8ÑÔþ\\)>Cö¦Þk©–%ÖpZ™¯ËÆ©C\'b, Ä"ª1ÚMz@\\
-!HeáÌ‚—žWÛª}DØ0½Ö?M;Û
-°òCß’Ö~x}%Ñey™Øu´bã&c' . "\0" . 'ßNÿ^Ä˜¥¨¾a0º3þ9üp7HbÑ²ÛlûxìÇïõ­O®ù®Mp@½ûo	BÀ ¬„R]¯Ï"DØðHqÁ‡`9·0,Õp]¶R^ˆ°ËÁué]ÛÁCåEá™ì9l	²âµÆ¶çAUSƒÃ¨0ý§Ç_=>õ®Åy\\ŠŸ\\‹‹®¬ÁÌÍŽþÇ€RWäèvËJ<{ýŠÎhçFƒkhPz\'ñá‘×sÝ^eîýœ6ˆ–ñiî.¾ÓIèÛOé)Uøƒ#²»÷.xÔb!ü¡åŠ\\0’Çv7œ@ô…ëE²@þ/5ûtã.Â´Á²¾Áù5P¾+>#þL ÀÀ]\'"–¶øÙf™‡]kÏxàßÿ·ªjûùh' . "\0" . 'nto…' . "\0" . '‘[Ä’o·Ð' . "\0" . '¦hŒ¡ƒõ½çpoæ`«Ùaÿ.ÿþPsçñîáÞ´Ïî~¯ÓÚX³vóÏY†ÿmÿò×÷ôgÓ!}:™å8>ÖæŸŽU·C¦û‹·ÃZ&ÚñŸÑÈ{‡šÿ?Çüó¯A§kó~þùÿ·Ì/' . "\0" . '‡òP=j“ñÁ0èràÆ5^wÿd6ßltþo=âÿœ²L
-€“¥¨‚ÁÿrüFS@|øâñÿŽË5/ÅŠ«,3Ø' . "\0" . '\'•y¶ SDJÊmÍ-tu1
-@}ØâzÐÚ@;.' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'î‰M7%““þÞ' . "\0" . '' . "\0" . '½6' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '¤' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT' . "\0" . 'áGUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
-¶’' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '¤' . "\0" . '' . "\0" . 'put_test.htmlUT' . "\0" . 'ìàGUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï(' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '10644',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/put_test.zip',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.zip',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.zip',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.zip',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PUT',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_CONTENT_LENGTH' => '10644',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="f4238d90bf38670dc692670026f9e12f", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.zip',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="f4238d90bf38670dc692670026f9e12f", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => 'ef383241769f0df9a982a37b53504cf2',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  46 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+vim: et syn=rst tw=79</comment></section></document>', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '14013', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/put_test.xml', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.xml', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.xml', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.xml', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '14013', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="54314e4a015cfee884f0971c0e16b907", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.xml', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="54314e4a015cfee884f0971c0e16b907", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => '5ad59a93c1eb407447585fc830b848a7', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 45 => 
+['request' => 
+['body' => 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½M7%ï¿½ï¿½ï¿½ï¿½' . "\0" . '' . "\0" . 'ï¿½6' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT	' . "\0" . 'ï¿½Gï¿½GUx' . "\0" . 'ï¿½d' . "\0" . 'ï¿½[isï¿½6ï¿½ï¿½_ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½Iï¿½mï¿½ï¿½ï¿½$qï¿½fï¿½ï¿½\'uï¿½ï¿½ï¿½t ï¿½Pï¿½ï¿½' . "\0" . 'ï¿½ï¿½ï¿½~ï¿½ ARrï¿½nvï¿½!ï¿½(' . "\0" . 'ï¿½ï¿½ï¿½ï¿½ï¿½ß–ï¿½ï¿½Uï¿½Õ¦ï¿½ï¿½=^~<ï¿½JMï¿½ï¿½ï¿½Å¬uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½?>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-Uï¿½ï¿½ï¿½ï¿½Ï¾{ï¿½\\ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½;]Ø¥5mï¿½ï¿½ï¿½4[ï¿½ï¿½ï¿½[ï¿½.ï¿½/Å¥ï¿½U|ï¿½*ï¿½ï¿½tï¿½zï¿½ï¿½jï¿½ï¿½ï¿›ï¿½ï¿½Î¹ï¿½lï¿½:y' . "\0" . 'ï¿½`Wï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½bï¿½ï¿½Iï¿½2ï¿½9ï¿½T>^~*Xï¿½qï¿½3{1Sï¿½-RSÖ¦ï¿½\'ï¿½ï¿½ï¿½dï¿½vï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dï¿½hï¿½Ñ­;{#xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½|^ï¿½ï¿½N?ï¿½ï¿½Gï¿½gï¿½Þºï¿½pï¿½ï¿½@ï¿½+:Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½9-]ï¿½ï¿½ï¿½ï¿½/Dï¿½tï¿½ï¿½ï¿½ï¿½lï¿½ï¿½4ë¿šFï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½?ï¿½ï¿½B;wï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½Zï¿½ï¿½ldGï¿½oç«Žï¿½3ï¿½NEZHkQmï¿½ï¿½ï¿½mgï¿½ï¿½ï¿½ï¿½Wkï¿½ Hï¿½ï¿½?ï¿½Ú´Eï¿½ï¿½/ï¿½ï¿½n}ï¿½ï¿½ï¿½ï¿½ï¿½*ï¿½ï¿½lä¶‘ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½<ï¿½ï¿½ï¿½Ì¦ï¿½Vï¿½ï¿½Oï¿½%ï¿½ï¿½ï¿½hï¿½*:ï¿½)<ï¿½(x_1.ï¿½Zï¿½gkï¿½ï¿½ï¿½\'ï¿½O:ï¿½NCtï¿½ï¿½ï¿½ï¿½ï¿½}Rï¿½ï¿½ï¿½ï¿½M8[?ï¿½\'ï¿½ï¿½}Ö‘Qï¿½ï¿½JÔ¥ï¿½ï¿½ï¿½ï¿½ï¿½DÞ§pï¿½Rï¿½ï¿½ï¿½FUYDï¿½?yï¿½t?ï¿½ï¿½uï¿½ï¿½lmQï¿½ï¿½ï¿½\'ï¿½/ï¿½ï¿½kï¿½vï¿½Lï¿½iï¿½+xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/{ï¿½ï¿½Ê².ï¿½pï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½G8!ï¿½Rï¿½cjt<(0ï¿½&5Nxï¿½ï¿½ï¿½]ï” ]ï¿½ï¿½ï¿½ï¿½ï¿½S|vï¿½@ï¿½è‚Aï¿½J;-ï¿½pï¿½ï¿½!<q;ï¿½DÝ˜[
+ï¿½ï¿½/ï¿½ï¿½Ë§ï¿½ï¿½sï¿½ï¿½ï¿½t\'ï¿½ï¿½ï¿½ï¿½bï¿½ï¿½NÈ¢ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½Ð¨$-Q>ï¿½GJD
+F1)ï¿½ï¿½ï¿½ï¿½ï¿½!ï¿½ï¿½jï¿½ï¿½7ï¿½Vï¿½ï¿½KÈ§+ï¿½ï¿½ï¿½ï¿½ï¿½7V;ï¿½ï¿½Ljï¿½ï¿½ï¿½' . "\0" . 'NB*ï¿½)ï¿½ÝªSoï¿½zÂ«XÛ¯Hï¿½iï¿½' . "\0" . 'ï¿½8ï¿½Ê€ï¿½
+ï¿½aï¿½ï¿½A×²ï¿½ï¿½
+ï¿½ï¿½Kï¿½ï¿½ï¿½<dvï¿½aï¿½cï¿½ï¿½ï¿½7ï¿½ï¿½ï¿½ï¿½ï¿½<9ï¿½ï¿½yï¿½Rï¿½Zï¿½2Jï¿½ï¿½FKwï¿½ï¿½ï¿½vï¿½=Yeï¿½*ï¿½2xï¿½ï¿½×±psò¸¤“
+ï¿½\\ï¿½{ï¿½"ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½B\\ï¿½Lï¿½dF\'*ï¿½2ï¿½Ï€ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½S
+ï¿½ï¿½ï¿½pï¿½Fï¿½~ï¿½ï¿½eCï¿½#ï¿½ï¿½ï¿½ï¿½ï¿½ß…ï¿½)ï¿½E1{ï¿½:ï¿½ï¿½ï¿½Å“ï¿½1ï¿½gyZï¿½ï¿½|gï¿½ï¿½bï¿½ï¿½)ï¿½]ï¿½]ï¿½%ï¿½j	7ï¿½,ï¿½ï¿½ï¿½,\\8ï¿½ï¿½ï¿½)8Yï¿½Rï¿½Aï¿½iï¿½kï¿½ï¿½ï¿½à¯’xï¿½;ï¿½ï¿½ï¿½ï¿½,pï¿½Ö¦ï¿½9(ï¿½E
+ï¿½2M	ï¿½8ï¿½Qï¿½nï¿½ï¿½b7xjï¿½ï¿½i;>ï¿½]ciKï¿½eï¿½ï¿½|t:ï¿½Aï¿½ï¿½ï¿½ï¿½
+xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ @ï¿½aNï¿½ï¿½ï¿½ï¿½ï¿½ï¿½#ï¿½ï¿½+@;ï¿½ï¿½È³ï¿½C&ï¿½Cï¿½VTï¿½ï¿½ï¿½ï¿½ï¿½@7
+ï¿½ï¿½Aï¿½' . "\0" . 'Jï¿½hï¿½}x&ï¿½CCGbqj' . "\0" . 'ï¿½Rï¿½#Bepjj-ï¿½ï¿½ï¿½ï¿½ß­q_QPï¿½Gï¿½	ï¿½ï¿½ï¿½Sï¿½ï¿½' . "\0" . '. Òªï¿½Iï¿½
+lï¿½@ï¿½nJXï¿½ï¿½ï¿½ï¿½P_ï¿½ï¿½gï¿½
+<{ï¿½ï¿½zï¿½Cï¿½Kï¿½ï¿½ï¿½\\Yï¿½ï¿½:sï¿½ï¿½tï¿½ï¿½ï¿½Tï¿½G=Xd#ï¿½g<S$ï¿½ï¿½ï¿½:ï¿½Lï¿½ï¿½~ï¿½ï¿½@ï¿½ï¿½Quï¿½,ï¿½=\\ï¿½^:2ï¿½]!ï¿½1Ê ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½ÕƒF%ï¿½ï¿½*}\'ï¿½Ð¡ï¿½ï¿½)ï¿½ï¿½ï¿½B0vï¿½ï¿½1XK<ï¿½ï¿½ï¿½vï¿½wAï¿½ï¿½TQ' . "\0" . 'T=`mï¿½ï¿½ï¿½HKï¿½nï¿½ï¿½EÂ§lï¿½D"!ï¿½ï¿½ï¿½?%d&ï¿½ï¿½Eï¿½edï¿½ï¿½Q@Mï¿½9*ï¿½r9Tï¿½ï¿½7Ê¤:ï¿½F;ï¿½ï¿½ï¿½Z8ï¿½l~ï¿½,ï¿½Vï¿½dï¿½Ð‹P%5rï¿½ï¿½$ï¿½ï¿½ï¿½wï¿½Pï¿½3ï¿½ï¿½0{UIï¿½ï¿½ï¿½ÒJoXkdï¿½hï¿½(ï¿½hg!ï¿½ï¿½&ï¿½kï¿½ï¿½"ï¿½ï¿½ï¿½Rï¿½ï¿½lï¿½%é‹²ï¿½H*ï¿½kesï¿½9ï¿½ï¿½9ï¿½' . "\0" . 'ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½oaQ@\\ï¿½ï¿½-ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½@\'ï¿½Eï¿½ï¿½ï¿½zï¿½ï¿½>ï¿½ï¿½' . "\0" . '' . "\0" . 'mï¿½l(1ï¿½ï¿½@ï¿½ÔŠ+ï¿½ï¿½Êˆï¿½<ï¿½ï¿½ï¿½HXï¿½ï¿½ï¿½ï¿½!WWï¿½1ï¿½ï¿½Ê´ï¿½iLSï¿½@ï¿½}#/ï¿½ï¿½×˜vï¿½#b
+ï¿½gï¿½ï¿½@gTï¿½-	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\'ï¿½ï¿½ï¿½ÜŠkï¿½~ï¿½=ï¿½4ï¿½
+*ï¿½Dï¿½' . "\0" . 'Oï¿½Eï¿½#ï¿½ï¿½Sï¿½Ð†ï¿½ï¿½ï¿½ï¿½{ï¿½ï¿½F=ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½Yï¿½Zï¿½ï¿½ï¿½ï¿½é¶ï¿½ï¿½hUï¿½ï¿½Hï¿½I"ï¿½
+ï¿½ï¿½H1	ï¿½ï¿½#ï¿½Bï¿½ï¿½hï¿½ï¿½Pï¿½QT*ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½9,Úªï¿½tï¿½yï¿½\\gcfï¿½Tï¿½ï¿½ÂƒJw:+ï¿½8kï¿½ï¿½ï¿½ï¿½Ig~Zï¿½.ï¿½Vï¿½Þ¶Mï¿½Qï¿½tï¿½pï¿½-ï¿½ï¿½Fï¿½A%0ï¿½ï¿½ï¿½Bï¿½pï¿½y<ï¿½;ï¿½O[ï¿½ï¿½ï¿½ï¿½ï¿½Õ…vX	$Cï¿½ï¿½ï¿½4ï¿½pÃ°ï¿½8ï¿½enï¿½ï¿½ï¿½ï¿½8ï¿½tï¿½Äµkï¿½1}ï¿½gï¿½Mï¿½$\'Tï¿½ï¿½ï¿½7J&ï¿½ï¿½S)ï¿½\\ï¿½ï¿½î‚“ï¿½Lï¿½ï¿½gH}ï¿½ï¿½nï¿½wï¿½ï¿½ï¿½[ï¿½ï¿½Gï¿½zï¿½ï¿½ï¿½Fï¿½ï¿½' . "\0" . 'ï¿½uï¿½1(3Ayï¿½ï¿½LMï¿½#=0ï¿½Gnï¿½cï¿½ï¿½2Uï¿½ï¿½ï¿½ï¿½ÕŽï¿½;Tï¿½Ö½ï¿½zï¿½ï¿½\\JÓ ï¿½ï¿½*ï¿½ï¿½ï¿½tÈ“ï¿½È…ï¿½ï¿½iauBï¿½?ï¿½@ï¿½OXy[ï¿½\\ï¿½cIï¿½ï¿½ï¿½ï¿½ï¿½5Ë“qï¿½ï¿½ï¿½ï¿½\'fï¿½ï¿½ï¿½`ï¿½\'ï¿½zï¿½ï¿½Zï¿½/ï¿½BtWï¿½Lï¿½ ï¿½ï¿½-zODï¿½Sï¿½f{ï¿½ï¿½m|ï¿½Lrï¿½+ï¿½' . "\0" . 'ï¿½ï¿½Ò—	ï¿½S\'ï¿½G#$ï¿½ï¿½Lï¿½"ï¿½Aï¿½"ï¿½ï¿½v8ï¿½:ï¿½ï¿½,ï¿½z&ï¿½}ï¿½S`gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;2FIï¿½nï¿½ï¿½(/0SDï¿½Gï¿½ï¿½Iï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ioï¿½Uï¿½Cï¿½Qï¿½#ï¿½È¸ï¿½ï¿½?~ï¿½dï¿½ï¿½ï¿½ï¿½APxï¿½ï¿½vï¿½bï¿½hï¿½ï¿½ï¿½Rï¿½dï¿½;Iï¿½ï¿½xï¿½#ï¿½rl4<Iï¿½ï¿½q#Dï¿½ï¿½ï¿½ï¿½)ï¿½@ï¿½rï¿½ï¿½ï¿½0ï¿½W<ï¿½\\bï¿½_ï¿½]ï¿½(ï¿½ï¿½ÇŠ\'ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'ï¿½mFï¿½ï¿½ï¿½6Qï¿½
+-Iï¿½*4gï¿½fï¿½ï¿½?_ï¿½ï¿½#ßï¿½ï¿½ï¿½Gï¿½`Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½%`ï¿½Ú§ Dï¿½ï¿½8-ï¿½ï¿½ï¿½Xï¿½ï¿½Hï¿½Ô×Œï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½@[ï¿½`"Cï¿½&ï¿½bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½J&~ï¿½ï¿½ï¿½FGwï¿½`ï¿½ï¿½pï¿½wXï¿½ï¿½ï¿½ID*ï¿½eï¿½ï¿½ï¿½Rvï¿½B|ï¿½@hï¿½ï¿½$ ï¿½ï¿½ï¿½ÅŸ' . "\0" . 'ï¿½us eï¿½Xnìª¨<H6Ú•ï¿½ï¿½ Jï¿½=ï¿½Ô¡ï¿½ï¿½<wï¿½raï¿½8ï¿½[ï¿½Hj*bï¿½ï¿½ï¿½8ï¿½H$ï¿½ï¿½ï¿½ï¿½ï¿½;ï¿½ï¿½r}ï¿½:ï¿½ï¿½ï¿½3' . "\0" . 'jï¿½I:ï¿½ï¿½{ï¿½~,Ø ï¿½Kzï¿½*ï¿½y^ï¿½Ö˜8ï¿½ï¿½ï¿½R|{}}ï¿½ï¿½ï¿½ï¿½Ú›kï¿½ï¿½1#ï¿½ï¿½ï¿½!ï¿½s2ï¿½ï¿½	ï¿½ï¿½vÓ·ï¿½0	I4S8ï¿½725ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½$YzGJï¿½ï¿½Rï¿½ï¿½_ï¿½
+ï¿½ß·ï¿½|ï¿½ï¿½ï¿½^Ë—ï¿½ebï¿½Û¹ï¿½ï¿½Hblï¿½bpï¿½ï¿½{ï¿½;ï¿½ï¿½\'ï¿½ï¿½`	Ú°Pï¿½PtPSQR2ï¿½j~ï¿½RK(ï¿½aï¿½Hï¿½DrcZG~ï¿½^ï¿½ï¿½_ï¿½ï¿½ï¿½!ï¿½b)tï¿½ï¿½ï¿½\\ï¿½ ï¿½a/Ý
+ï¿½L&Pï¿½ï¿½ï¿½ï¿½ï¿½6ï¿½ï¿½ï¿½	ï¿½èŒ®c|ï¿½uIÆGï¿½ï¿½Fï¿½4ï¿½Qv
+DÇ¬ï¿½ï¿½Î‘RYsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]pdPï¿½ï¿½ï¿½ï¿½ï¿½g??ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½^ï¿½Ý¯ï¿½/ï¿½\'ï¿½Xt7>ï¿½ï¿½>?~]>ï¿½ï¿½Âˆbbï¿½ï¿½ï¿½kï¿½aï¿½+E#ï¿½ï¿½!ï¿½%ï¿½Q(ï¿½mï¿½ï¿½ï¿½ï¿½u4vï¿½3ï¿½0Rï¿½ï¿½YUï¿½Bmï¿½?ï¿½ï¿½Kï¿½cul
+Ü¶ï¿½e|huï¿½Cï¿½xxï¿½Xï¿½ï¿½ï¿½6ï¿½sï¿½ï¿½XE=ï¿½ÅŠ<ï¿½ï¿½sï¿½]ï¿½ï¿½l\\ï¿½ï¿½fp#ï¿½` ï¿½Í”ÄŠPUÊ‘6\\ï¿½8ï¿½ï¿½Uvï¿½iï¿½ï¿½Ù¾Iï¿½ï¿½@ï¿½ëº¨rï¿½s
+ï¿½ÏŸkBï¿½ï¿½ï¿½Õï¿½-ï¿½ï¿½
+ï¿½ï¿½ï¿½0ï¿½ï¿½8ï¿½ï¿½Wte@ï¿½Ócï¿½$(ï¿½Çˆ~.IJ ï¿½ ï¿½!ï¿½Mï¿½ï¿½~$ï¿½/ï¿½ï¿½zï¿½xBï¿½ï¿½8Pï¿½ï¿½
+Fï¿½ï¿½xï¿½ï¿½7g@ï¿½ï¿½~ï¿½bï¿½ï¿½ï¿½^@ï¿½9ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½.Oï¿½ï¿½rï¿½biï¿½ï¿½-
+Bï¿½6ï¿½ï¿½`Cï¿½ï¿½ï¿½\'ï¿½A-*ï¿½Wï¿½ï¿½$ï¿½Uï¿½ï¿½E Vï¿½#%tï¿½@ï¿½yï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½Q4ï¿½ï¿½Oï¿½Æ®;ï¿½(rLï¿½$ï¿½ï¿½(:;ï¿½Nï¿½ï¿½\'}ï¿½ï¿½Q
+ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'ï¿½ï¿½ï¿½ï¿½:u2ï¿½ï¿½ï¿½ï¿½u4ï¿½ï¿½ï¿½*ï¿½Þ¢ï¿½ï¿½~ï¿½jï¿½nï¿½ï¿½^ï¿½1#/w@>ï¿½yï¿½%_Å¥ï¿½L/ï¿½ /ï¿½ï¿½fDÛ’ï¿½ï¿½ï¿½ï¿½ï¿½=:ï¿½*,A>ï¿½xï¿½ï¿½ï¿½29ï¿½ï¿½lï¿½ï¿½Zï¿½xL{~nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x.ï¿½vï¿½ï¿½i/0wï¿½ï¿½aï¿½ï¿½ï¿½ss	%ï¿½ï¿½{1ï¿½ï¿½47ï¿½ï¿½{]Eï¿½K|3ï¿½ï¿½ï¿½U;	ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½]ï¿½4ï¿½	ï¿½ï¿½ï¿½h ï¿½ï¿½!eï¿½Nï¿½ï¿½ï¿½Pï¿½Uï¿½<cp>]ï¿½X7Tï¿½ï¿½pï¿½U	!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½jcï¿½6Ü¸ï¿½ï¿½ï¿½ï¿½rGï¿½Iï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½s_ï¿½qAï¿½ï¿½{KBï¿½7ï¿½$1ï¿½Gnï¿½kÑ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½7ï¿½d' . "\0" . 'ï¿½Xï¿½0Lï¿½2ï¿½ï¿½Fï¿½hï¿½ï¿½vcï¿½]"ï¿½ï¿½Qï¿½ï¿½^Kï¿½ï¿½=\'Rï¿½ï¿½tbwï¿½ï¿½ï¿½ãï¿½ï¿½cï¿½ï¿½Pjï¿½ï¿½JYï¿½ï¿½kï¿½qï¿½iï¿½Ekï¿½ï¿½ï¿½ï¿½w\\ï¿½ï¿½ ï¿½ï¿½cï¿½@ï¿½)ï¿½EIï¿½qlï¿½ï¿½*ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½CWÎ¬ï¿½ï¿½eï¿½ï¿½ï¿½GÔ€ï¿½&ï¿½ï¿½R1ï¿½ï¿½ï¿½ï¿½ï¿½4-ï¿½}' . "\0" . 'ï¿½`O	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½kÌ†jï¿½S*ï¿½ï¿½Rï¿½ï¿½ï¿½
+ï¿½ï¿½Wï¿½ï¿½ã—€ï¿½En]Ê­ï¿½cYï¿½dï¿½ï¿½^VPï¿½/ï¿½ï¿½ï¿½ï¿½
+5ï¿½03ï¿½8|Iï¿½ß¬1eC~ï¿½Ð¢ï¿½=ï¿½ï¿½ï¿½qï¿½Exï¿½)`ï¿½ï¿½lï¿½ï¿½ï¿½:uï¿½ï¿½@ï¿½ï¿½vï¿½ï¿½ï¿½Aï¿½Zï¿½ï¿½ï¿½ï¿½jï¿½iï¿½:ï¿½b!ï¿½ï¿½{ï¿½qï¿½ï¿½ï¿½Wï¿½6{ccï¿½ï¿½v
+ï¿½ï¿½f;Xï¿½oï¿½K;Æ³/Ç¯ï¿½ï¿½ï¿½ï¿½!.ï¿½ï¿½Vï¿½ï¿½ï¿½{ï¿½;ï¿½ï¿½Wï¿½ï¿½ï¿½+zï¿½aï¿½' . "\0" . 'x5;zï¿½Uï¿½uï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½`Aï¿½-ï¿½3[Kï¿½\'ï¿½ï¿½ï¿½5:Ë‡ï¿½ï¿½ï¿½kï¿½$ï¿½oï¿½ï¿½/hï¿½2ï¿½ï¿½~ï¿½ï¿½+^ï¿½Z	MMu*ï¿½ï¿½ï¿½ï¿½;ï¿½`ï¿½ï¿½ï¿½;YrJï¿½ï¿½Z|ï¿½u_ï¿½m#ï¿½ï¿½6ï¿½%ï¿½ï¿½P< ï¿½~ ï¿½	`ï¿½ï¿½~ï¿½|,ï¿½
+wzï¿½ï¿½ï¿½ï¿½ï¿½Ì©ï¿½ï¿½Cï¿½pï¿½ï¿½ï¿½Pï¿½ï¿½DbÚï¿½ï¿½)ï¿½q?ï¿½ï¿½ï¿½	ï¿½MD
+ÌŽoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½zZ\'8ï¿½C,Jï¿½m~ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Gï¿½ï¿½7ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½\\ï¿½
+ï¿½kï¿½ï¿½Lï¿½wï¿½:&ï¿½ï¿½hå£©ï¿½ï¿½ï¿½ï¿½X~ï¿½lï¿½ï¿½ï¿½Ëï¿½ï¿½:0ï¿½$Ê©ï¿½ï¿½ï¿½ï¿½0rx[Eï¿½ï¿½@ï¿½hHgpï¿½ï¿½7|ï¿½P{ï¿½ï¿½' . "\0" . 'Bgï¿½ï¿½ï¿½' . "\0" . '-' . "\0" . 'ÊŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‹*;Knu	ï¿½ï¿½Ï¡ï¿½hï¿½Dï¿½_|ï¿½ï¿½ï¿½ï¿½ï¿½`dxï¿½PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
+ï¿½ï¿½' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '
+' . "\0" . '' . "\0" . 'put_test.htmlUT	' . "\0" . 'ï¿½ï¿½Gï¿½ï¿½GUx' . "\0" . 'ï¿½d' . "\0" . 'ï¿½\\ï¿½ï¿½6ï¿½ï¿½Î¿ï¿½x;ï¿½ï¿½ï¿½ï¿½vlï¿½ï¿½ï¿½vï¿½ï¿½pÙï¿½jï¿½ï¿½ ï¿½0&	ï¿½' . "\0" . '[VRï¿½ï¿½ï¿½' . "\0" . '	RTï¿½ï¿½É®?ï¿½	<<ï¿½ï¿½ï¿½@~ï¿½ï¿½ï¿½"×ªï¿½Ú”O\'ï¿½ï¿½Pej2]nï¿½Nï¿½ï¿½=ï¿½ï¿½//ï¿½\'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?_ï¿½[^ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Å‹ï¿½ï¿½ï¿½^}ï¿½ï¿½' . "\0" . '
+âª–ï¿½ï¿½(ï¿½|ï¿½xï¿½ï¿½DLï¿½ï¿½Uï¿½ï¿½bï¿½ï¿½ï¿½wï¿½ï¿½ï¿½,ï¿½ï¿½,ï¿½#ï¿½Sï¿½ï¿½?ï¿½\\4sï¿½ï¿½l+Ó‚ï¿½eiï¿½ï¿½ï¿½9}ï¿½ï¿½1Ïžï¿½e.ï¿½qUNDï¿½	i(ï¿½ï¿½?ï¿½rR ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O\'ï¿½Mï¿½Tï¿½fWï¿½JMDï¿½ßžNï¿½zï¿½Hï¿½Bï¿½[Y[ï¿½zQ,ï¿½Rï¿½ï¿½dï¿½JUKgï¿½hï¿½ï¿½6Nï¿½Vï¿½ï¿½,ï¿½ï¿½8ï¿½ï¿½ï¿½4uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½.Wï¿½ï¿½_@ï¿½ï¿½L	tï¿½ï¿½ï¿½jï¿½ï¿½ï¿½xï¿½ï¿½Þ”Sï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½1ï¿½_ï¿½Vï¿½Sgï¿½,aÞ•Yiiï¿½ï¿½tï¿½kï¿½ï¿½ï¿½Ioï¿½ï¿½ï¿½~ï¿½GYï¿½Ï•p /ï¿½ï¿½Zï¿½fï¿½ï¿½<Y>ï¿½Uï¿½â…¼Ö™ï¿½Æ˜lï¿½ï¿½dï¿½ï¿½)pï¿½ï¿½\'m,ï¿½ï¿½pï¿½ï¿½WYï¿½;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lvï¿½Hï¿½ï¿½.ï¿½.Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½#BJï¿½ï¿½;ï¿½ï¿½ï¿½hï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½|nï¿½}ï¿½7[ï¿½ï¿½jï¿½ï¿½ï¿½MØ­RNlA+ï¿½JQï¿½2Uï¿½Ð¥p[%ï¿½fï¿½ï¿½Tdï¿½ï¿½ï¿½ï¿½\'ï¿½ï¿½ï¿½Mï¿½D*m*ï¿½ï¿½ï¿½`"ï¿½	ï¿½Eï¿½nW5Nï¿½ï¿½Zï¿½ï¿½oï¿½:Tï¿½ï¿½ï¿½
+ï¿½ï¿½bkvÎyï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½{ï¿½Lï¿½6Ö™Bï¿½hï¿½ï¿½<Ì“ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½Uaï¿½ï¿½Xï¿½ï¿½Aï¿½b]ï¿½B8ï¿½ï¿½Bï¿½ï¿½ï¿½Bnï¿½#Lï¿½ï¿½xaï¿½<"z"\\6ï¿½p+~Mï¿½ï¿½ï¿½\'ï¿½$ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . '0ï¿½ï¿½@ï¿½2#ï¿½ï¿½6\'<!ï¿½hLï¿½NÃ¤ï¿½\'ï¿½qej\'K7ï¿½ï¿½s\'ï¿½ï¿½$ï¿½ï¿½$ï¿½ï¿½ï¿½ï¿½
+ï¿½%Rï¿½ï¿½ï¿½qï¿½"ï¿½Cï¿½Oï¿½ï¿½ï¿½EDï¿½1_ï¿½Úº.t [ï¿½Tï¿½ï¿½.
+Yoï¿½RXUcï¿½z<lï¿½Lï¿½Y(ï¿½ï¿½Mï¿½gï¿½lï¿½"7ï¿½uï¿½ï¿½ï¿½qï¿½ì±™[ï¿½e`ï¿½86ï¿½,wï¿½%@ï¿½ï¿½sgï¿½ï¿½Jï¿½ï¿½jï¿½ï¿½!è¦³Lï¿½DCnAC/ï¿½Mjrï¿½ï¿½ï¿½ï¿½;ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½85Wï¿½ï¿½Ô²ï¿½Fï¿½Sï¿½ï¿½Pl88ï¿½;=eï¿½(ï¿½$ï¿½ï¿½ï¿½,ï¿½' . "\0" . 'R' . "\0" . '\'ï¿½.ï¿½ï¿½ï¿½Nï¿½bï¿½ï¿½{hï¿½ï¿½É³Ùš|1Sk]ï¿½\\ï¿½Nï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½{8ï¿½Eï¿½2}=ï¿½+$uï¿½ï¿½m0ï¿½ï¿½U:ï¿½uï¿½8$}D*sï¿½ï¿½%ï¿½dÝ’ï¿½
+ï¿½<O}wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½A4R533ï¿½ï¿½Hluï¿½ï¿½aï¿½uï¿½Zï¿½bï¿½ï¿½ï¿½ï¿½ÉºDï¿½nï¿½"rï¿½Beï¿½)ï¿½ hÑ›ï¿½N#ï¿½ï¿½ï¿½ï¿½/,
+^{ï¿½ï¿½x=:ï¿½?:v4ï¿½ï¿½ï¿½Óµ,tï¿½o!Eï¿½ATï¿½ï¿½v;Aï¿½Gï¿½ï¿½8ï¿½kï¿½ï¿½tRï¿½ï¿½ï¿½A/Gï¿½ï¿½ï¿½Vï¿½^>fï¿½ï¿½Pï¿½Hï¿½ï¿½Hï¿½t*s@1ï¿½.tï¿½ï¿½ï¿½[40ï¿½ï¿½ï¿½I\'ï¿½h?ï¿½ï¿½ï¿½ï¿½ï¿½IGï¿½kï¿½ï¿½ï¿½Lï¿½ï¿½[ï¿½e4ï¿½4ï¿½ï¿½g`ï¿½)ï¿½ï¿½8`ï¿½ï¿½l+eï¿½ï¿½Nbï¿½ï¿½ï¿½ï¿½mq!&Vï¿½ï¿½' . "\0" . 'i{bkï¿½iï¿½ï¿½>rï¿½vï¿½ï¿½ï¿½ï¿½>K9ï¿½ï¿½6ï¿½6$0eï¿½É‚r%ï¿½ï¿½ï¿½vCb' . "\0" . 'ï¿½ï¿½ï¿½ ï¿½T3ï¿½~ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½	*ï¿½p"ï¿½7Bï¿½ï¿½F(ï¿½ï¿½Ncï¿½ï¿½lWï¿½>ï¿½ï¿½Ç¡
+ï¿½ï¿½ï¿½ï¿½ÉŒï¿½ï¿½ï¿½i
+ï¿½ï¿½ï¿½ï¿½rÄ“?ï¿½ï¿½r#aN(.:	ï¿½wÕ¼nV5ï¿½Ê¯7ï¿½ï¿½@/ï¿½ï¿½@ioï¿½*f$Eï¿½ï¿½ï¿½Vï¿½c0l{:ÄÑï¿½ï¿½ï¿½vï¿½? P
+|xyï¿½ï¿½2ï¿½/ï¿½ï¿½sï¿½Rï¿½Äï¿½Lï¿½ï¿½lï¿½ï¿½ï¿½Ã‡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Éƒï¿½ï¿½nï¿½xï¿½Gc:GFï¿½]ï¿½ï¿½kgh_ï¿½ï¿½ï¿½ï¿½b3ï¿½)d×±/ï¿½ï¿½ï¿½ï¿½ï¿½_Gï¿½ï¿½ï¿½`ï¿½Eï¿½ï¿½lï¿½ï¿½1ï¿½ï¿½
+ï¿½ï¿½ï¿½+ï¿½Lï¿½JA^ï¿½=Lï¿½ï¿½ï¿½ï¿½vÍ«ï¿½<Hï¿½fï¿½ï¿½7Uul0ï¿½ï¿½
+ï¿½ï¿½Pï¿½ï¿½ï¿½e~QÌ”ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½cï¿½tï¿½Üƒï¿½ï¿½?ï¿½ï¿½TVï¿½ï¿½8' . "\0" . 'cï¿½Îµï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½Ú©^;ï¿½<d#G"
+ï¿½ï¿½a>hyï¿½]`ï¿½xFZï¿½Fï¿½ï¿½ï¿½ï¿½<ï¿½Hï¿½\\ï¿½ï¿½ï¿½ï¿½VV+Hï¿½ï¿½ï¿½ï¿½ï¿½iï¿½NFrï¿½1X>=ï¿½ï¿½' . "\0" . 'ï¿½%ï¿½hï¿½gSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½!ï¿½Cï¿½ï¿½H' . "\0" . 'Rï¿½k(ï¿½)$?JJï¿½?Jï¿½ï¿½ï¿½*ï¿½?7cdï¿½ï¿½ï¿½uï¿½ï¿½ï¿½}ï¿½ rï¿½vï¿½Tv#ï¿½0ï¿½tntï¿½ï¿½iXï¿½ï¿½ï¿½|ï¿½
+ï¿½ï¿½ï¿½rï¿½t$ï¿½ÑQ<ï¿½tï¿½ï¿½(ï¿½Î' . "\0" . 'ï¿½ï¿½ï¿½ZÊï¿½ï¿½Û‡Bqï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½
+pï¿½!ï¿½nï¿½ï¿½Aï¿½kÛš\\gï¿½z/ Uï¿½&2ï¿½ï¿½ï¿½Ëµ9ï¿½>ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½%&ï¿½ï¿½!ï¿½U7ï¿½Jï¿½ï¿½ï¿½
+
+ï¿½Ð´ï¿½mï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½Â¯ï¿½ï¿½!<ï¿½ï¿½Ñ½5I@.ï¿½ï¿½S[Hï¿½Uï¿½Í°;yï¿½tï¿½Hï¿½oYï¿½Sï¿½ï¿½8bï¿½ï¿½[ï¿½A8ï¿½rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½Sï¿½ï¿½ï¿½ï¿½ß£' . "\0" . 'ï¿½Ã¥ï¿½1rï¿½j
+ï¿½ï¿½0ï¿½Ï°eï¿½uï¿½ï¿½,ï¿½ï¿½%|ï¿½}ï¿½ï¿½ï¿½ï¿½$nï¿½ï¿½ï¿½ï¿½ï¿½Ewï¿½ï¿½=ï¿½ï¿½_fm#dï¿½}hï¿½lCï¿½Ng\'ï¿½P?
+3ï¿½3\'ï¿½ï¿½]oOï¿½ï¿½Íï¿½vUTï¿½Dï¿½kï¿½E_ï¿½MDï¿½ï¿½
+^"ï¿½ï¿½ï¿½|0ï¿½ï¿½ï¿½-ê‘—ï¿½ï¿½ï¿½ï¿½UqMï¿½' . "\0" . 'ï¿½ï¿½
+)ï¿½ï¿½ï¿½	Xï¿½ï¿½Kï¿½ï¿½~ï¿½p[ï¿½]ï¿½ï¿½Mï¿½aï¿½%ï¿½Uï¿½jÛ¦ï¿½ï¿½bï¿½ï¿½ï¿½mï¿½Sï¿½<ï¿½KMï¿½ï¿½N~ï¿½ï¿½hï¿½ï¿½Zï¿½{ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½o^ï¿½VPï¿½Fï¿½Uï¿½ï¿½hNï¿½ï¿½ï¿½I&Mï¿½)Cï¿½ï¿½ï¿½ï¿½ï¿½\'	ï¿½W@ï¿½iUÈ¹-.ï¿½kï¿½ï¿½ï¿½jï¿½' . "\0" . 'ï¿½Sï¿½ï¿½>?ï¿½ï¿½É¦lp%ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½[|ï¿½Äï¿½)yï¿½6ï¿½Nï¿½Zï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½Dihï¿½ï¿½hÞŸ\\^ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'dï¿½/ï¿½Zï¿½ï¿½ï¿½ï¿½%eï¿½ï¿½ï¿½{
+Dï¿½;ï¿½ï¿½ï¿½Ñ¿ï¿½ï¿½ï¿½oiï¿½ï¿½Ymï¿½#|ï¿½2ï¿½vï¿½Fï¿½ï¿½Qï¿½ï¿½>ï¿½b\'2ï¿½ï¿½Eï¿½ï¿½ï¿½
+Waï¿½ï¿½Xï¿½ï¿½nï¿½ï¿½ï¿½3ï¿½>ï¿½ï¿½[ï¿½Qï¿½ï¿½kï¿½5ï¿½ï¿½ï¿½Yï¿½>nï¿½ï¿½{ï¿½ï¿½' . "\0" . 'ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½%ï¿½8ï¿½p
+ï¿½Ù¾ï¿½ï¿½ï¿½ï¿½ï¿½:Z::4h\'7ï¿½5ï¿½kï¿½ï¿½%ï¿½)ï¿½ï¿½ï¿½cï¿½%ï¿½}Q#2Dï¿½MIï¿½ï¿½Mï¿½VSt:Cï¿½}(<3ï¿½Gk!ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½kï¿½1,ï¿½qï¿½xï¿½7ï¿½ï¿½9Å¨ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'ï¿½Zhï¿½Ò”ï¿½Ù„8Rï¿½Qï¿½ï¿½9Uï¿½wï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#s 3(Vï¿½ï¿½ï¿½Wï¿½Í´ï¿½1ï¿½ï¿½ï¿½j*ï¿½%ï¿½ï¿½ï¿½ï¿½ï¿½%ï¿½ï¿½m\'ï¿½5Jï¿½Ý¶ï¿½ï¿½ï¿½jíŒµv' . "\0" . 'cï¿½pwï¿½xÉ¼Nï¿½Rï¿½lï¿½×¨ï¿½ï¿½Ykï¿½ï¿½ï¿½uï¿½l6{>Jï¿½N4ï¿½ï¿½Ðï¿½qouJï¿½ï¿½;ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½G0ï¿½wï¿½ï¿½li-ï¿½ï¿½5iÊ‰Rï¿½ï¿½ï¿½ï¿½W
+Oï¿½ï¿½i<SPÕ‚\'GH' . "\0" . 'ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½rYï¿½2ï¿½X<ï¿½eqï¿½f{ï¿½Kï¿½nrPì‡ï¿½ï¿½Û¹VnM&ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½ï¿½8ï¿½ï¿½ï¿½ï¿½ï¿½OdE$9-ï¿½ï¿½ï¿½ï¿½cï¿½Í•=g.ï¿½ï¿½ \'ï¿½$ï¿½ï¿½ï¿½Kï¿½ï¿½rï¿½ï¿½ï¿½Î‡ï¿½xï¿½[P3v5h`ï¿½>\'ï¿½ï¿½ï¿½*,:ï¿½ï¿½@ï¿½ï¿½.ï¿½ï¿½e_+ï¿½O-ï¿½ï¿½ï¿½.ï¿½7ï¿½Vï¿½ï¿½ï¿½8ï¿½ï¿½MYkï¿½ï¿½ï¿½xï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½Bï¿½9ï¿½rï¿½`ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Hï¿½^ï¿½Iï¿½~ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½5lï¿½4ï¿½t{ï¿½ï¿½=ï¿½lï¿½ï¿½Îï¿½"ï¿½Zï¿½Sj' . "\0" . '
+Rï¿½ï¿½(Ì¼aï¿½tï¿½ï¿½)ï¿½^ï¿½ï¿½Gï¿½&	#Xï¿½3ï¿½#T"ï¿½,u`ï¿½=ï¿½$XPï¿½ï¿½c%ï¿½ï¿½jÏ¼ï¿½<{ï¿½2:ï¿½@ï¿½HM ï¿½g@ï¿½ï¿½ï¿½Sï¿½(ï¿½t
+ZIï¿½ï¿½ï¿½)ï¿½*zï¿½Pmï¿½ï¿½%ï¿½@ï¿½ï¿½ï¿½)ï¿½6ï¿½Ôªï¿½ï¿½ï¿½>X&Vï¿½ï¿½"ï¿½fï¿½Û›ï¿½Aï¿½?@~PZ
+ï¿½oï¿½ï¿½KCï¿½ï¿½@ï¿½Þ¤J_ï¿½,9ï¿½{+ï¿½6	nÓš\'zKï¿½ï¿½4ï¿½ï¿½Jï¿½vï¿½,=\\: 5ï¿½ï¿½)ï¿½bï¿½Uï¿½>gï¿½ï¿½ï¿½_^ï¿½ï¿½Oï¿½\'ï¿½|;ï¿½ï¿½dï¿½ï¿½aï¿½ï¿½Pï¿½b,ï¿½ï¿½ï¿½ï¿½ï¿½X3ï¿½ï¿½\\Bï¿½tï¿½Iï¿½ï¿½6ï¿½vï¿½)' . "\0" . 'ï¿½ bVï¿½aï¿½Q90ï¿½ï¿½ï¿½oï¿½L*ï¿½:#@ï¿½ï¿½ï¿½ï¿½gy|%qï¿½)caï¿½iNï¿½ï¿½ï¿½Vï¿½ï¿½XL$ptaï¿½ßµï¿½9tï¿½ykï¿½1M`Qï¿½{.^qï¿½ï¿½ï¿½ï¿½w)Iï¿½\'%Øï¿½ï¿½ï¿½ï¿½ï¿½Ó”dï¿½&' . "\0" . 'FAaÎ„ï¿½ï¿½ï¿½2aP' . "\0" . 'Uï¿½ï¿½ï¿½Û˜ï¿½Iï¿½ï¿½ï¿½:ï¿½9^ï¿½Oï¿½ï¿½K@S]ï¿½\\ï¿½ï¿½7ï¿½ï¿½!ï¿½ï¿½}Â²%^f"ï¿½p' . "\0" . 'ï¿½J#vr?ï¿½ENï¿½#a	Ä¢ï¿½ï¿½ï¿½X]Ò)ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½gï¿½kï¿½ï¿½*ï¿½6ï¿½fKÔ½wï¿½kï¿½ï¿½ï¿½>ï¿½ï¿½8ï¿½zIï¿½ï¿½mlï¿½ï¿½&Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½#ï¿½cï¿½Hï¿½!ï¿½Lï¿½ï¿½(@ï¿½Ì¢ï¿½qï¿½Ä¯ï¿½Bï¿½ï¿½Ò¶ï¿½ï¿½ï¿½Ú«ï¿½Pï¿½ï¿½tï¿½ï¿½ï¿½ï¿½Cï¿½gPï¿½ï¿½ï¿½ï¿½!,t=xï¿½ï¿½Iï¿½ï¿½VXï¿½Nnï¿½)ï¿½ï¿½YBgï¿½ï¿½ï¿½ï¿½ï¿½Q@C/1TFT>ï¿½mMnDDï¿½ï¿½Tï¿½7Mï¿½ï¿½5("xOï¿½ï¿½ï¿½ï¿½ï¿½jJWC*BI3ï¿½
+Pï¿½B!~tï¿½Yï¿½ï¿½Â´aï¿½ï¿½ï¿½' . "\0" . 'ï¿½KGï¿½Ô²ï¿½NY4' . "\0" . 's+ï¿½ï¿½d`hï¿½}ï¿½@ï¿½ï¿½Gï¿½uï¿½Pï¿½+ï¿½ï¿½ï¿½`hï¿½ï¿½@ï¿½ï¿½(ï¿½e<' . "\0" . 'ï¿½gï¿½ï¿½ï¿½ï¿½+,sï¿½ xEï¿½pï¿½Fï¿½ï¿½rï¿½|(Fï¿½ï¿½ï¿½ï¿½6Mï¿½ï¿½ï¿½\\ï¿½SOeï¿½*9ï¿½kï¿½ï¿½{=ï¿½l"ï¿½ï¿½_ï¿½^ï¿½ï¿½?ï¿½aï¿½[/p\\ï¿½ï¿½u wï¿½#A=Xï¿½]Ð h8ï¿½*Qï¿½ï¿½`ï¿½ï¿½kGï¿½ï¿½ï¿½ÒIï¿½ï¿½Lï¿½ï¿½Lï¿½ï¿½jGï¿½ï¿½ï¿½^H{ï¿½ï¿½ï¿½Rï¿½aï¿½ï¿½$ï¿½ï¿½Rï¿½kï¿½ï¿½ï¿½0{
+r~ï¿½' . "\0" . 'ï¿½.Hï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½49xï¿½ï¿½ï¿½ï¿½ï¿½iYï¿½2|Q,8ï¿½@7ï¿½ï¿½u2Lï¿½lï¿½ï¿½ï¿½ï¿½ï¿½x2ï¿½ï¿½eï¿½' . "\0" . 'ï¿½;ï¿½ï¿½;ï¿½ï¿½ï¿½
+ï¿½5kß—ï¿½Udrï¿½+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½D].ï¿½Xc{vï¿½6ï¿½Iï¿½h(Hï¿½
+
+rï¿½ï¿½ï¿½^ï¿½0)A^B1ï¿½V6ï¿½Nï¿½ï¿½Zï¿½ï¿½ï¿½!ï¿½%qï¿½ï¿½vï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½&kï¿½8ï¿½ï¿½ï¿½ï¿½+IGï¿½^4ï¿½ï¿½Xï¿½ï¿½Aï¿½"ï¿½H_xå»
+oï¿½ï¿½ï¿½~ï¿½1ï¿½pï¿½ï¿½l1Ï«jmï¿½ï¿½ï¿½ï¿½*ï¿½~8ï¿½=ï¿½ï¿½ï¿½!9ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lhbï¿½ï¿½-ï¿½ò´¨˜ï¿½pï¿½rtiï¿½Alï¿½ï¿½zvï¿½Iï¿½{ÐŽï¿½E+ï¿½ï¿½6ï¿½ï¿½cï¿½fï¿½ï¿½ï¿½ï¿½4ï¿½Yï¿½Oï¿½ï¿½"ï¿½:ï¿½ï¿½ï¿½jï¿½åx<4ï¿½{ï¿½ï¿½aBXï¿½ï¿½ U_R<S`ï¿½ï¿½Cï¿½Qï¿½ï¿½mï¿½7ï¿½Nï¿½kÅ€ï¿½ï¿½leï¿½ï¿½%ï¿½#
+ï¿½}{ï¿½I	Mï¿½ï¿½ï¿½(Crï¿½\\$b' . "\0" . 'ï¿½nï¿½ï¿½8Ô¢Ggï¿½ï¿½Ð‡ï¿½hï¿½Pï¿½xuNÅ²ï¿½Hï¿½xï¿½t*@P#Mï¿½6ï¿½ï¿½S ï¿½ï¿½|ï¿½ï¿½iï¿½ï¿½ï¿½cï¿½`]Hï¿½ï¿½Jï¿½Bï¿½wï¿½z~ï¿½F(ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½lï¿½)ï¿½BVï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½N0ï¿½z2wï¿½ï¿½qï¿½ï¿½ï¿½dD0ï¿½Ù·ï¿½ï¿½ï¿½ï¿½ï¿½:P]
+ï¿½ï¿½ï¿½Sï¿½í€†ï¿½ï¿½ï¿½0FXqï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OW^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½Cï¿½fÕ¥ï¿½ï¿½Fï¿½>Sï¿½ï¿½%ï¿½ï¿½[ï¿½tï¿½6ï¿½Lï¿½Rï¿½Xï¿½gï¿½ï¿½{ï¿½*ï¿½ï¿½ï¿½/nï¿½ï¿½ï¿½Oï¿½qï¿½ï¿½ï¿½\\ï¿½`Ë®)5ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½9Nï¿½ï¿½wï¿½t+Ge/&!ï¿½yï¿½vï¿½%aï¿½Ù•ï¿½#!9!ï¿½ï¿½ï¿½ï¿½Fï¿½uï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½Í¿^ï¿½ï¿½=ï¿½ï¿½xï¿½ï¿½ï¿½mð¹ž‹nz>ï¿½ï¿½ï¿½d
+ï¿½ï¿½B#ï¿½Í¯~ï¿½ï¿½ï¿½jFMg(Ãšï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½tï¿½ï¿½
+ï¿½$ï¿½4ï¿½]Nï¿½ï¿½q$ï¿½Ðœï¿½Eï¿½ï¿½"ï¿½ï¿½~ï¿½L>Ê…cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ONï¿½ï¿½%ï¿½:]ï¿½ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½l
+ï¿½7Gï¿½ï¿½BDï¿½ÝÎºï¿½|ß‹C\'
+xï¿½#ï¿½
+' . "\0" . 'ï¿½ï¿½{J9qhï¿½Ã›ï¿½ï¿½[ï¿½ï¿½BKï¿½qï¿½ï¿½ï¿½&ï¿½ï¿½L.~,ÇŠ}à¶±
+;Qï¿½slï¿½ï¿½Mï¿½ï¿½Nï¿½ï¿½ï¿½,v=Zï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½
+ï¿½ï¿½]ï¿½ï¿½ldï¿½^[ï¿½^+ï¿½V_YÅ’ï¿½ï¿½@|ï¿½È ï¿½ï¿½ï¿½e8ï¿½{!ï¿½bï¿½	ï¿½yï¿½Zï¿½mfKqvï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½fè—µï¿½,5)
+V&7ï¿½eï¿½;ï¿½	v=ï¿½Sï¿½Cï¿½jkï¿½$A*Üï¿½
+ï¿½5	ï¿½|(ï¿½Ð°ï¿½ï½‡ï¿½ï¿½ï¿½$pMGmï¿½eFkï¿½ï¿½ï¿½ï¿½cav8Uï¿½_ï¿½ï¿½^tkï¿½Üªï¿½;"&Cï¿½:ï¿½ï¿½ï¿½Ë§ï¿½Hï¿½Jï¿½vWï¿½è¥ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ëªï¿½Mï¿½ï¿½ï¿½Å¦ï¿½ï¿½ï¿½ï¿½d\\Vï¿½rLï¿½ï¿½nï¿½Lï¿½Ê…ï¿½lï¿½Gï¿½ï¿½ï¿½cï¿½ï¿½ï¿½ï¿½>ï¿½ï¿½^ï¿½ï¿½ï¿½UÄ¡ï¿½ÓŠï¿½{ï¿½Mï¿½Fï¿½Qï¿½ï¿½ï¿½ï¿½FVï¿½ï¿½Oï¿½Z0ß¼ï¿½ï¿½ï¿½N	P"ï¿½ï¿½4ï¿½ï¿½ï¿½7ï¿½ï¿½ï¿½ineï¿½?,ï¿½ï¿½;ï¿½>ï¿½xC$ï¿½ï¿½Hqï¿½ï¿½ï¿½ï¿½vï¿½Pï¿½_j[ï¿½a6ï¿½kï¿½Cï¿½Pï¿½%`nï¿½5Oï¿½z*ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½Ë·,ï¿½ï¿½ï¿½NZO*ï¿½ï¿½Ç¦ï¿½ï¿½ï¿½zï¿½R{ï¿½/ï¿½k_ï¿½ï¿½%dï¿½#ï¿½Ã®ï¿½ï¿½ï¿½4;/ï¿½ï¿½ï¿½ï¿½\'o,ï¿½ï¿½ï¿½@ï¿½Vï¿½\\Gï¿½Gï¿½ï¿½ï¿½ï¿½5ï¿½kTwSï¿½ï¿½bGï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Ð£Oï¿½nï¿½*ï¿½pï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½2ï¿½Gï¿½ï¿½ï¿½wï¿½eï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÃµBQï¿½ï¿½ï¿½qHï¿½-/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ï¿½fï¿½uï¿½ï¿½U|(ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½wZ|ï¿½,ï¿½lï¿½$ï¿½ï¿½@ï¿½r3ï¿½ï¿½Mï¿½t=ï¿½ï¿½780AH3Vï¿½"+ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½c
+>hï¿½ï¿½v5ï¿½wï¿½[ï¿½d^ï¿½ï¿½*d.ï¿½8ï¿½ï¿½ï¿½\\)>Cï¿½ï¿½ï¿½kï¿½ï¿½%ï¿½pZï¿½ï¿½ï¿½Æ©C\'b,ï¿½ï¿½"ï¿½1ï¿½Mz@\\
+!Heï¿½Ì‚ï¿½ï¿½WÛª}Dï¿½0ï¿½ï¿½ï¿½?M;ï¿½
+ï¿½ï¿½Cß’ï¿½~x}%ï¿½eyï¿½Øuï¿½bï¿½&c' . "\0" . 'ï¿½Nï¿½^Ä˜ï¿½ï¿½ï¿½a0ï¿½3ï¿½9ï¿½p7HbÑ²ï¿½
+lï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Mp@ï¿½ï¿½o	Bï¿½ï¿½ï¿½ï¿½R]ï¿½ï¿½"Dï¿½ï¿½Hqï¿½ï¿½`9ï¿½ï¿½0,ï¿½p]ï¿½R^ï¿½ï¿½ï¿½ï¿½uï¿½]ï¿½ï¿½Cï¿½Eï¿½ï¿½9l	ï¿½ï¿½Æ¶ï¿½AUSï¿½Ã¨0ï¿½ï¿½ï¿½_ï¿½=>ï¿½ï¿½ï¿½y\\ï¿½ï¿½ï¿½\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÍŽï¿½Ç€RWï¿½ï¿½vï¿½ï¿½J<{ï¿½ï¿½ï¿½hï¿½ï¿½Fï¿½khPz\'ï¿½ï¿½ï¿½sï¿½^eï¿½ï¿½ï¿½6ï¿½ï¿½ï¿½iï¿½.ï¿½ï¿½Iï¿½ï¿½Oï¿½)Uï¿½ï¿½#ï¿½ï¿½ï¿½.xï¿½b!ï¿½ï¿½ï¿½\\0ï¿½ï¿½v7ï¿½@ï¿½ï¿½ï¿½Eï¿½@ï¿½/5ï¿½tï¿½.Â´ï¿½ï¿½ï¿½ï¿½ï¿½5Pï¿½+>#ï¿½L ï¿½ï¿½ï¿½]\'"ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½]kï¿½xï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½hï¿½' . "\0" . 'ntoï¿½' . "\0" . 'ï¿½[Ä’oï¿½ï¿½' . "\0" . 'ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½poï¿½`ï¿½ï¿½ï¿½aï¿½.ï¿½ï¿½Psï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½~ï¿½ï¿½ï¿½Xï¿½vï¿½ï¿½Yï¿½ï¿½mï¿½ï¿½ï¿½ï¿½ï¿½gï¿½!}:ï¿½ï¿½8>ï¿½æŸŽUï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Z&ï¿½ï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½Aï¿½kï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½/' . "\0" . 'ï¿½ï¿½P=jï¿½ï¿½ï¿½0ï¿½rï¿½ï¿½5^wï¿½d6ï¿½ltï¿½
+o=ï¿½ï¿½ï¿½ï¿½L
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½FS@|ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½5/ÅŠï¿½,3Ø' . "\0" . '\'ï¿½yï¿½ï¿½SDJï¿½mï¿½-tu1
+@}ï¿½ï¿½zï¿½ï¿½@;.' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½M7%ï¿½ï¿½ï¿½ï¿½' . "\0" . '' . "\0" . 'ï¿½6' . "\0" . '' . "\0" . '' . "\0" . '
+' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½ï¿½' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT' . "\0" . 'ï¿½GUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
+ï¿½ï¿½' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '
+' . "\0" . '
+' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½ï¿½' . "\0" . '' . "\0" . 'put_test.htmlUT' . "\0" . 'ï¿½ï¿½GUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½(' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '10644', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/put_test.zip', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.zip', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.zip', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.zip', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PUT', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_CONTENT_LENGTH' => '10644', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="f4238d90bf38670dc692670026f9e12f", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.zip', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="f4238d90bf38670dc692670026f9e12f", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => 'ef383241769f0df9a982a37b53504cf2', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 46 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -4171,44 +2282,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -4270,20 +2346,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  47 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 47 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -4292,44 +2358,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -4353,53 +2384,12 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  48 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test.html',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test.html',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test.html',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test.html',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="86bcd51f1cf482bbbc983a30793f335c", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test.html',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="86bcd51f1cf482bbbc983a30793f335c", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 48 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test.html', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test.html', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test.html', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test.html', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="86bcd51f1cf482bbbc983a30793f335c", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test.html', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="86bcd51f1cf482bbbc983a30793f335c", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -4929,54 +2919,12 @@ vim: et syn=rst tw=79 -->
 </div>
 </body>
 </html>
-',
-      'headers' => 
-      array (
-        'ETag' => '866d436fdb9577521a1d1acd440e1026',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'application/octet-stream; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  49 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_content.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_content.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_content.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="da23d4245e8b0eb8b473c6197ca39868", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="da23d4245e8b0eb8b473c6197ca39868", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => 'This is an UTF-8 test file
+', 'headers' => 
+['ETag' => '866d436fdb9577521a1d1acd440e1026', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'application/octet-stream; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 49 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_content.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_content.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_content.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="da23d4245e8b0eb8b473c6197ca39868", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="da23d4245e8b0eb8b473c6197ca39868", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => 'This is an UTF-8 test file
 ==========================
 
 This file contains a variaty of Unicode characters to test with the eZ Webdav
@@ -4995,102 +2943,18 @@ Mathematical characters
 â„‚ â„• â„š â„ â„¤ âˆ€ âˆ âˆ‚ âˆƒ âˆ„ âˆ… âˆˆ âˆ‰ âˆ‹ âˆŒ âˆŽ âˆŽ âˆ âˆ âˆ‘ + âˆ’ âˆ“ âˆ• âˆ– âˆ— âˆ˜ âˆš âˆ› âˆœ âˆ âˆž âˆ£ âˆ¤ âˆ§ âˆ¨ âˆ© âˆª âˆ«
 âˆ¬ âˆ­ = â‰” â‰• â‰™ â‰ â‰  â‰¡ â‰¢ < > â‰¤ â‰¥ â‰ª â‰« â‰® â‰¯ â‰° â‰± â‰º â‰» â‰¼ â‰½ âŠ€ âŠ âŠ‚ âŠƒ âŠ„ âŠ… âŠ† âŠ‡ âŠˆ âŠ‰ âŠ• âŠ– âŠ— âŠ™ âŠš
 âŠ› âŠœ âŠ âŠ¢ âŠ£ âŠ¤ âŠ¥ âŠ§ âŠ¬ âŠ¶ âŠ· âŠ» âŠ¼ âŠ½ â€° â€± 
-',
-      'headers' => 
-      array (
-        'ETag' => '94ad488564aca44123a62c6f22c090dd',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'application/octet-stream; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  50 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="af991bf39339f914c3a5e7ec9a341a23", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="af991bf39339f914c3a5e7ec9a341a23", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => 'Some test content...
-',
-      'headers' => 
-      array (
-        'ETag' => '655a81988486514fa14b109f0f4e5073',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'application/octet-stream; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  51 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/put_test.xml',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.xml',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.xml',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.xml',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="bee153feb29a7242d655c25f26dc114e", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.xml',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="bee153feb29a7242d655c25f26dc114e", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['ETag' => '94ad488564aca44123a62c6f22c090dd', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'application/octet-stream; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 50 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="af991bf39339f914c3a5e7ec9a341a23", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="af991bf39339f914c3a5e7ec9a341a23", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => 'Some test content...
+', 'headers' => 
+['ETag' => '655a81988486514fa14b109f0f4e5073', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'application/octet-stream; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 51 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/put_test.xml', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.xml', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.xml', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.xml', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="bee153feb29a7242d655c25f26dc114e", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.xml', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.xml", response="bee153feb29a7242d655c25f26dc114e", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE document PUBLIC "+//IDN docutils.sourceforge.net//DTD Docutils Generic//EN//XML" "http://docutils.sourceforge.net/docs/ref/docutils.dtd">
 <!-- Generated by Docutils 0.4 -->
 <document ids="ez-component-webdav-design-1-0" names="ez\\ component:\\ webdav,\\ design,\\ 1.0" source="Webdav/design/design.txt" title="eZ component: Webdav, Design, 1.0"><title>eZ component: Webdav, Design, 1.0</title><docinfo><author>Kore Nordmann, Tobias Schlitt</author><revision>$Rev$</revision><date>$Date$</date><status>Draft</status></docinfo><topic classes="contents" ids="contents" names="contents"><title>Contents</title><bullet_list><list_item><paragraph><reference ids="id1" refid="scope">Scope</reference></paragraph></list_item><list_item><paragraph><reference ids="id2" refid="design-overview">Design overview</reference></paragraph></list_item><list_item><paragraph><reference ids="id3" refid="tiers">Tiers</reference></paragraph></list_item><list_item><paragraph><reference ids="id4" refid="classes">Classes</reference></paragraph><bullet_list><list_item><paragraph><reference ids="id5" refid="ezcwebdavserver">ezcWebdavServer</reference></paragraph></list_item><list_item><paragraph><reference ids="id6" refid="ezcwebdavbackend">ezcWebdavBackend</reference></paragraph></list_item><list_item><paragraph><reference ids="id7" refid="ezcwebdavtransport">ezcWebdavTransport</reference></paragraph></list_item><list_item><paragraph><reference ids="id8" refid="ezcwebdavpathfactory">ezcWebdavPathFactory</reference></paragraph></list_item></bullet_list></list_item><list_item><paragraph><reference ids="id9" refid="example-code">Example code</reference></paragraph></list_item></bullet_list></topic><section ids="scope" names="scope"><title refid="id1">Scope</title><paragraph>The scope of this document is to describe the initial design of a component
@@ -5209,109 +3073,104 @@ and running.</paragraph><literal_block xml:space="preserve">    &lt;?php
 mode: rst
 fill-column: 79
 End:
-vim: et syn=rst tw=79</comment></section></document>',
-      'headers' => 
-      array (
-        'ETag' => '5ad59a93c1eb407447585fc830b848a7',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'application/octet-stream; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  52 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/put_test.zip',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.zip',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.zip',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.zip',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'GET',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="5485f72b3e3878c0bfa25d0cfa5a234f", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.zip',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="5485f72b3e3878c0bfa25d0cfa5a234f", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'î‰M7%““þÞ' . "\0" . '' . "\0" . '½6' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT	' . "\0" . 'áGáGUx' . "\0" . 'èd' . "\0" . '½[isÛ6þÎ_Õtš¤«£IÛmëÚê$qÒf¶‡\'u÷šÌt ”P“—' . "\0" . '­¨¿~ß ARrãnvû!–(' . "\0" . 'ïý¼Øó¯ß–…¸UÕ¦º˜=^~<ªJM¦«íÅ¬uùâ‹Ù×ëäüO—?>¿þçÕ‘™´-UåÄÕÏÏ¾{õ\\Ìþ¼Z½ºüž;]Ø¥5m“ªÜ4[µ¬”[­.¯/Å¥ÿU|£*ÕètµzñÃjõï¿›‰ÙÎ¹úlµ:y' . "\0" . 'ü`WÊû™ËfÈÓbÁçI§2±9ôT>^~*XÒq«3{1S¿-RSÖ¦‚\'‹½Údòv‘)«·Õâñ¯d©hÙÑ­;{#xåüàµðÔÄ|^ÌþN?¯øGÿgéÞº™pÚ°@ý+:Nðò¹¸äÃè¬õ9-]ÿîÊó/DÁt•›õ¹lÝÎ4ë¿šF‰L“•²‚¥×f£¥?¥»B;w¾ò«Îu«ÑÒë^«ÛÎWÝ÷ó”¸þàþ…ÇôåÜ:éZ»¾ldGøoç«Ž´3µNEZHkQm©©ðmg¬ìþ«Wk÷ HûÜ?è„Ú´E¡Ü/…¶n}Žÿþ¢*×çµlä¶‘õÈUª˜ˆÎÏ<ÓÙÅÌ¦¦V³õOø%óãhÿ*:ö)<é(x_1.·Zígk¶ŒÞ\'ÕO:ªNCtÎÖ×øç}Rø´£àM8[?ç\'©ü}Ö‘Q¿¥JÔ¥šÙ°ÿDÞ§p™RÝÈôFUYDö?yŸt?ŸÒu¬lmQ¾ÏÞ\'í/¦´kév¹Liõ+xú’Ÿ¾ýÕÀî€³/{ÎÞÊ².àp±ú‚¿	üöG8! R©cjt<(0â&5Nxèéé]ï” ]ÂäÂí´íS|v³@Úè‚AÀJ;-Ÿp‹ì!<q;éDÝ˜[¿Ã/ þË§ìÿs±ßét\'ö¦¹±b¯ÝNÈ¢¥üÕ4ÂÀáÐ¨$-Q>›GJD
-F1)Á¹¤ä¶Ñ!¥ªj¹×7ºV™–KÈ§+ü¶ò‹×ü7V;²êLjŠåÀ' . "\0" . 'NB*ö)”ÝªSoøzÂ«XÛ¯H«iÛ' . "\0" . '®8ˆÊ€Â
-ÈaÑA×²°”
-öÚKÆè´<dvåaäcèðó7¢Çô±«<9ó§y¦RÙZï2JÜÊFKwÀ¯›v»=Yeà*È2x¯Û×±psò¸¤“Ü\\Â{œ"äÆž°` ÛB\\ÉLçdF\'*¥2»Ï€éL‘ÎãÀ‡S€‚Âp«F¦~íÉeCÅ#¤”ºâÔß…É)¦E1{˜:íë—ÏÅ“Ï1ñgyZ¹œ|gçÊbÕä)­]‡]¿%Åj	7Ô,Çãÿ,\\8Ž—â)8YõRè´Aºi”k´ºÅà¯’x;ð‰üš,pòÖ¦Š9(€E†2M	µ8ªQÿn•…b7xj‚ï€i;>Ä]ciK®e°§|t:¨A¹¶„
-xðæþ¶öÓ,ÓÈ @ÚaN À£øŠ#ˆ­+@;íˆãÈ³¼C&CŠVT¬ìØÝÐ@7¥ïAò' . "\0" . 'J¦h©}x&èCCGbqj' . "\0" . 'ŽR„#Bepjj-±Äþðß­q_QPóG¸	£ÄÝSá®' . "\0" . '. Òª©I˜lŸ@¥nJX˜¢âØP_‚gÞ<{Þýz×CÛKïŠ\\Y£û:sŒŸt¥çÑTÙG=Xd#­g<S$‚Ÿ:ûLà´~ƒ@¢¤Qu£,À=\\ç^:2ò]!¦1Ê –ª¬Þ€w µÕƒF%ü’*}\'ûÐ¡œÒ)°«ÌB0vþˆ1XK<ˆÀv‚wAãäTQ' . "\0" . 'T=`m¡ ÊHKánEÂ§lžD"!ÏÈá?%d&„™E½edÇò¡Q@M¢9*„r9TÊÖ7Ê¤:›F;¶‘Z8Äl~Ý,ÑV°dðÐ‹P%5rê„$âÍåwŸPÏ3‰Û0{UIÌãÃÒJoXkdŒh­(ãhg!µé&ó¾„kÚÀ"¡×ýR¼â”lá%é‹²¢H*ðkes’9®µ9©' . "\0" . 'Š”ò°	„’ØoaQ@\\¨²-º¬„uŽ¼•º@\'’E‹‚¡z¨’>«ç' . "\0" . '' . "\0" . 'm£l(1¼œ@ÐÔŠ+€±Êˆ½<Ì©øHX±ê‡Êî!WW„1ÒùÊ´ªiLSÝ@ž}#/Ìí×˜v»#b
-øg¹…@gT™-	Š·±¿é‚ôˆÆØá×\'¼¾¤ÜŠk°~º=¨4ù
-*òDÑ' . "\0" . 'O™E»#¥ÄSºÐ†»…„†{¶ŸF=¸‡ÛÁAãºYZëñÁŸé¶âùhU²îHÕI"·
-ÜµH1	›¡#ÇBéƒhœ²P¹QT*·3ž‹£©­9,Úªð£tày˜\\gcfÕT®ÂƒJw:+à8k‹øÑéIg~Zš.çV¹Þ¶MÀQätÒp–-€ÚFA%0öê¡‡B€p‹y<Î;ŸO[¾åññÊÕ…vX	$CŽÊÝ4ŽpÃ°òš8½en„ªˆÎ8ãtðÄµk„1}¹g§MÛ$\'Tô°Ð7J&½ÁS)¶\\›çî‚“‘LÁò¤gH}ø‹n•wƒñ„ç[¯¤GÛz„› F°Î' . "\0" . '“uŸ1(3Ayƒ³LMÅ#=0£Gnéc˜2Uµ½¾‚ÕŽü;TñÖ½ÎzöÈ\\JÓ Àç*¡’øtÈ“ªÈ…÷ŽiauBí?µ@¢OXy[¥\\ÌcIš¶€°5Ë“qÁˆïÙ\'fÔïë`“\'ãzÛØZ™/ûBtW‹L• ËÉ-zODòSïf{‡Üm|œLrß+Á' . "\0" . '´òÒ—	ŒS\'µG#$ð÷L‚"¤A­"˜v8Ã:‘ ,“z&”}µS`g‡µ²¥¾ù³;2FIõnŸ•(/0SDƒGÁ©IîÉÉ2âÐöíó‘”ƒÔIo©UŠC°Q£#³È¸°¿?~¶d¤Œ¹ÏAPxìôv‡bÝhÝááRídÜ;I‘Ýxœ#ÿrl4<I’èq#D²üòæ¨)Š@Êr¢êæ0ˆW<ê\\b¶_å](€¸ÇŠ\'‰”“¢¡' . "\0" . '»mF»”ß6Qö-IÍ*4g§fý‚?_Ì³#ß’ÙÃG÷`CŠ¿ï€Èú%`÷Ú§ DîØ8-íÍÓX¯óHÍÔ×ŒŒ^£Ùõå¤@[ã¾`"CÀ&ƒb˜øŠ·ú¨J&~ˆ‡ÜFGwì`ºíp¯wXÛÖîID*ôeÞóæ‚RvÝB|¦@h¨ò$ ÷…–ÅŸ' . "\0" . 'Åus eªXnìª¨<H6Ú•ÒÞ Jø=èÔ¡òª×<w ra¶8 [èHj*b‡­×8ÈH$÷‹Ñï; Ör}Õ:€ü­3' . "\0" . 'jìI:Áíœ{­~,Ø KzŠ*Áy^ÒÖ˜8­¸ÕR|{}}µ¸úùÚ›k„‘1#«ã¼ß!Ñs2÷ï	œÚvÓ·Ó0	I4S8ý725ÄK¨Ëã…Î$YzGJ–ÿRÂï¡_ˆ
-äß·â|¯öÑ^Ë—Üeb¿Û¹…ÓHblÄbpíÆ{í;¨ï–\'šŒ`	Ú°PœPtPSQR2ûj~¢RK(ÑaëH¥DrcZG~ý^ûæ_¯®Ï!Ãb)t·„ß\\À ¥a/Ý
-éL&P¥…‡“¡6¿éú	åèŒ®c|ÝuIÆGƒF€4ÐQvDÇ¬ô½Î‘RYs†¯ßø‡£‚]pdP˜ÔúÉög??—¼ê½ÒÏ¹ý^šÝ¯ë/À\'µXt7>®Æ>?~]>­ÇÂˆbbâþ¢k¦až+E#÷ !ç%ÃQ(×m¸´ãäu4võ3ª0Rð…YUëBmö?òùKñcul
-Ü¶¶e|huCëxxÞXž¤á6§s§XE=…ÅŠ<§·s°]‹l\\žáfp#ä` ÍÍ”ÄŠPUÊ‘6\\À8ùUv¾içÙ¾IÚÒ@»ëº¨rÁs™ÏŸkBÚ—·Õª-ÚöÔ÷0°8èîWte@ÃÓcÉ$(‰Çˆ~.IJ Ý Ï!¥MõæŒ~$á/”ÂzÕxBºë®8P£Ä
-F±ƒxô¦7g@ª»~éb€çÏ^@â9‹áòÃß-û.O¤æ»rýbi°ä-
-Bâª6º£`CúÙ«\'¬A-*·WªÏ$ÇU÷ŽE Vó#%t @çyŠì´I®¬Q4‰æOƒÆ®;ý(rLá$»ý(:;…Nœõ\'}£ÜQ
-ôœ‰œŽ' . "\0" . 'à÷Éð:u2–üæÅu4Œ€ *ÐÞ¢®û~ýjŽnÁÓ^ì1#/w@>‡y¯%_Å¥ðL/Û /¥ÂfDÛ’¼¸õƒú=:‘*,A>€x‰¬Ü29åÜlðÍZ½xL{~n—–÷Òú£²þÂx.øv€Ýi/0w†óºa°Ÿ†ss	%þï¿{1¬’47•Ù{]E—K|3ÍúÁU;	ö”Ét¨Äã‚îŠ]•4‘	¸—h Úç!eñNŠÆPýUé<cp>]øX7T…«p¾U	!‰÷”ûÕño“jcð6Ü¸ÞøâÔrG®IâËçRÑàÌà…`Ês_¾qAý{KB‘7¦$1ƒGnâkÑ­¾°£íûýÑß7Ñd' . "\0" . 'ÚX¸0L 2æF¦hûÁvcŒ]"à«Q¸Ó^KØÏ=\'R†›tbw³»ã´àcûßPjÚÂJY×Èk¦q£iüEküŽ…—w\\³ø ¶ác¢@”)†EI¯ql˜Å*êÓNÉìÑóL±ÂCWÎ¬˜“e½«»GÔ€¿&õãR1øáÄÑÿ4-È}' . "\0" . 'È`O	“þ²¦èñë`¨§þæ×kÌ†j§S*ÏáR÷Îâ€µWŠ–ã—€ÞEn]Ê­²cY‘d¹³^VPÊ/¼ö¿Ö5¼03õ8|I„ß¬1eC~èÐ¢Ë=“áúq¸Ex±)`™âl„Áë¶:uáÁ@ªåv£¼ŠAè‰Zû¢³›j£i£:€b!ˆ¥{®q”ÍõWÝ6{ccô v
-Þâ·f;Xã‡o¿K;Æ³/Ç¯×½îÍ!.ÌÒVº®¡{°;¾³WâéÕ+zËa„' . "\0" . 'x5;z•U´ußÏ¤ƒÆ/Ùà`A¼-‹3[Kü\'¨ì‚í³5:Ë‡…ûêkð¦$Áoøƒ/hÊ2º”~øè+^µZ	MMu*·²ñý;`úœ…;YrJþ“Z|¸u_…m#²þ6à%œüP< ·~ 	`àÇ~š|,»
-wz¹ãüóüÌ©º»C§p¤÷ÂPùêDbÚÀÜ)œq?¬¿“	ï¥MDÌŽo¾ÒÊðœþzZ\'8ãC,Jâƒm~¯ÓÆX“»åG¬Ã7öÏÿ¸z¤ÌÇçÓ\\»›kÃÇL‰wË:&ºõhå£©åÿÇêX~ôlš›·Ëþß:0¿$Ê©ÔÕöÅ0rx[Eòú@÷hHgpÎþ7|ŠP{–”' . "\0" . 'Bg¢œ†' . "\0" . '-' . "\0" . 'ÊŠ¶„œòù—É‹*;Knu	ÝÀÏ¡ºh°DÜ_|þåùÊÓ`dxýPK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
-¶’' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.htmlUT	' . "\0" . 'ìàG¼àGUx' . "\0" . 'èd' . "\0" . '¼\\é“Û6–ÿÎ¿Ñx;££»ívlµÝÇv×æpÙ¹j«¶ ’0&	†' . "\0" . '[VRùß÷' . "\0" . '	RT»É®?Ø	<<¼ã÷@~òåû"×ª¶Ú”O\'§ó“‰Pej2]nžN·ž=šˆ//“\'Ÿ¼øñùÕ?_¿[^ÿôÕw¯ž‹Él±øûýç‹Å‹«âß^}ÿ' . "\0" . '
-âª–¥Õ(Ê|±xùÃDL¶ÎUËÅb·ÛÍw÷ç¦Þ,®Þ,Þ#­Sœì?Î\\4sž¹l+Ó‚ÀeiŸŽ9}üø1Ïžà e.‘qUNDû	i(™Á?…rR ™ú¹Ñ×O\'ÏMéTéfWûJMDÊßžNœzïHóB¤[Y[åžzQ,•Rêéd£JUKgêhò“6NçVœÌ,…ç8óçÖ4uªÖÀºš—Ê-˜¤Ó.W—ê_@¥¨L	t–âïj•Éë©x¡¬Þ”S”ì“ìñ ·í1ð_¦VâSg…,aÞ•YiiÅÛt›kç¶IoýÎø~‡GY·Ï•p /’ÔZf²ø<Y>£U—â…¼Ö™øÆ˜l£êd‰•)p¿á\'m,ØÖp×ÉWYŠ;üÏÙÉÉùìôlvúHœœ.Ï.Oˆ¿œœžœˆ»oÜù#BJÃî‰;ÉòºÖh¯@ ûøàìì¾|nª}­7[àáj«­ MØ­RNlA+¥JQå2U™Ð¥p[%ªf•ëTd¦ºœ\'Éµ–MîD*m*Ñ˜†`"°	šEÖnW5N˜µZ‡ùo•:Tûš´ßíbkvÎyÍ:æìœì©Ã{áL’6Ö™Bÿh÷Á<Ì“Ï¨ÂÍ`¨¨Ua®•XÎAÚb]›B8¹ÒB–°ÏBnà#Lšóxa§<"z"\\6öp+~M„§½\'â·$ù¨™Àç' . "\0" . '0µÎ@Ô2#â6\'<!ˆhLÄNÃ¤É\'Àqej\'K7™øs\'­¶$¬ª$¸ž²¤¢%R•ƒ¬q£"ŒCŽOæçªÀED÷1_ëÚº.t [©T¯Á.
-YoÀRXUcòz<læLµY(—ÖMÅgÏl³"7¦uý´•q ì±™[e`²86Ó,w¿%@¾”sgÒÙJ¦ïjµ¦!è¦³L¥DCnAC/àMjrô×˜þ;œ»ÊMúîçÆ85W•ÞÔ²ÚFS‚ÈPl88Ë;=eÙ(ã$ãßÈ,‚' . "\0" . 'R' . "\0" . '\'â.šŸ·N²bäï“{h³ð¥•É³Ùš|1Sk]ò‹\\ƒNœªÛ_—µ„™í{8€EÑ2}=—+$u£ùm0¦áU:uº8$}D*sÀà%ÀdÝ’Ê
-Ã<O}wˆ¡í×¹ý’A4R533õ”Hluéøa«uþZ‚bø“ÓØÉºDËnî"rÏBeº)— hÑ›ÖN#´Œƒº/,
-^{™ôx=:Ù?:v4òîÐÓµ,tÆo!E˜ATÑëv;AîGÙñª8ÊkçètRØÑÉA/G¶ä¯VÑ^>f‡ãP°HƒÞHæt*s@1ð.tˆ¢”[40“¢I\'¼h?Í½ìß€IGðk¹ÚÈLÆÁ[“e4õ4ƒ—g`ã)ÁÛ8`ûl+eò¥ÐNbÔÿí€æmq!&Všº' . "\0" . 'i{bk½iêÞ>rµv³ú‡>K9ë¶6à6$0e¶É‚r%ºÛvCb' . "\0" . '–«æ åºT3ö~¼àG¹žöÙ	*Œp"¢7B¾ñF(õ²Ncû°lW²>ÔéÇ¡…°¶©ÉŒ¼Ãýi¿ÎÜrÄ“?³êr#aN(.:	óƒwÕ¼nV5˜Ê¯7øé@/žá@io*f$E”ˆÅV‹c0l{:ÄÑ½ôìvø? P|xyŠä2î/·§s«R‚Ä÷LÅölìáýÃ‡ÉöÁØÈó±‡Ž Éƒ–«nÄx€Gc:GFÕ]‚òkgh_œÿßêb3§)d×±/Ó÷Þ¶½_GŒÑä`‹E…›lÂÇ1ìõ
-†á€ï+¯L¦JA^¨=LÁ Üì vÍ«­<H¯füŽ7Uul0½ê¦éPƒÈòe~QÌ”ÛÁúZ¯šúctÎÜƒ’ó“?óÜTVí¼ñ8' . "\0" . 'cÀÎµ³ÇÆß
-ü•ÊÙ¶Ú©^;´<d#G"
-ÑÎa>hy„]`ÿxFZÄF®›àê<ôH÷\\âã¨‡VV+H¥²‹ÈÑiÉNFr¨1X>=ñÖ' . "\0" . 'ä %°hŽgSÀ“¡žt‡!îCáûH' . "\0" . 'Rôk(ç)$?JJÕ?JØøÌ*×?7cd ÐËuûø}ê rívïTv#•0ÞtntÄÒiXå Þ|Ø€©r®t$ÌÑQ<‡t¸Õ(ŒÎ' . "\0" . 'æÂ³ZÊÛçÛ‡Bqø~«óÈ±p÷!×n÷ÃAÔkÛš\\gâ´z/ UÞ&2ð¢¥†£Ëµ9ˆ>ÚãùíXþ’%&€Ù!ÕU7ðJåý™—Ð´ém§ƒ-õñîø¼Â¯Ðí!<÷îÑ½5I@.ØûS[HŸUžÍ°;y¸tøH¯oY´S¬½8b¯‡[áA8×r…ËàûýÞwÈSïÏßÆß£' . "\0" . 'ÓÃ¥á1r¨jØÐ0ÒÏ°eÛu‰ž,èé%|ð}ð•Éöð$n‚Ðäé—Ew™=¨_fm#d‹}hÀlCÏNg\'ÔP?3É3\'·é]oO±ÓÍºvUTæD¬kêE_MDÝä
-^"û¸ì|0ž”Ï-ê‘—¾•íë¸UqM–' . "\0" . '¼š
-)ºúò	XñÑKß×~²p[™]ÞØM‡aÙ%üU€jÛ¦îèbëúÎmçSŸ<šKMúÛN~×Øhú‹Z®{¬/œ·ˆ©§o^žVPìFùU­î£hNƒÉåI&Mü)CûýÒ¹Ø\'	ËW@®iUÈ¹-.‘k¤ä×j­' . "\0" . 'ÛSÐù>?üÉ¦lp%†Eðãå[|ÅÄÈ)y³6€N×ZíÍ³ŽæˆŸ‰0èöÔDihÞïhÞŸ\\^á«ÛS¢ª¥õ £õ' . "\0" . 'dÊ/‰Z“˜˜ú%e¯†Ð{
-DÏ;¢çàÑ¿¤ìÆoiÐíYm©#|©2äväFä¿âQ¿ƒ>b\'2¬ðE·ÂÑ
-WaÜïX£’n»–©3õ>¬ò¨[åQ´Êkù5ŒÖY>n·æ{‰æ' . "\0" . '–µ¶ý¸[ëñäò%8âpðÙ¾çúü‰ñ:Z::4h\'7Â5½kñªü%ö)ñêÏcè%ž}Q#2DMIµ¦M¡VSt:C}(<3ïGk!»h‘¸­tšk¨1,¼q¾xö7Á¶9Å¨nÅÎÔïüéT]ÞüÛÔÂ' . "\0" . 'ñZhàÒ”ÉÙ„8RâQûÓ9UÎwú® è“t˜Œß¼üä’ÿÅ]#s 3(V°ªËW´Í´©1åÌ÷j*–%ŸÇÉÜØ%¬Úm\'Í5J§Ý¶§õŸjíŒµv' . "\0" . 'cþpwðxÉ¼N¿R©l¬×¨‚ YkéöøuÕl6{>JÄN4ˆ²ÐØqouJ‘´;­Æ¼‚ŠG0˜wƒ´li-™é5iÊ‰R©ÌÎÅW
-O²i<SPÕ‚\'GH' . "\0" . '§z¬áµÀìürY«2´X<àeq¶f{ŒK±nrPì‡È“Û¹VnM&„§¸‹zžŸ8¼ùú¹ÀOdE$9-Áâû¢cøÍ•=g.ž• \'ë$êöK»‡r¯ÖêšÎ‡“xŒ[P3v5h`ð>\'ßÁØ*,:º­@ö¦.ðÐe_+¨O-‰Á.‘7ÐV«•»8ËãMYkÈñ¨éx¯ÕÐ3ÈÂùêG¾ŸBä9ûræ`àH—àúÚ±H­^ýI«~ñRÂèÞî•ê5l¯4ät{‘Ë=ìŸl³òÎ "ûZëSj' . "\0" . '
-R„‚(Ì¼aÇtü)²^ñGï&	#Xù3á#T"ìº,u`Ô=µ$XP‚c%¡¼jÏ¼†<{Þ2:«@µHM Ýg@ò™Ã‰Sž(Œt
-ZIë÷‘)Ú*zºPmáÜ%Ý@µà×)ˆ6˜Ôªª•Å>X&VûÎ"üf‰Û›œA£?@~PZÉo‚ÁKC‘è@ÀÞ¤J_«,9Á{+Ï6	nÓš\'zK…É4†£JÖvà,=\\: 5ëµÊ)”b U>g´ç¹ð¹_^ÁØO\'Ñ|;ÄÚdãêaˆãPŽb,­¬†‡¹X3Ô™\\BŠt¹I‘ˆ6Œv¬)' . "\0" . 'Œ bVÿaÌQ90¤÷Ðo¡L*ä:#@íõãgy|%qœ)caõiNãÙéV¥ïXL$pta­ßµ³9tykÁ1M`QÉ{.^qÄÂ÷¬w)Iž\'%Øµ²Þ÷—Ó”d„&' . "\0" . 'FAaÎ„…’Ø2aP' . "\0" . 'U¨¢ÉÛ˜€I…¼–:ç’9^–OÁK@S]Ð\\ƒÇ7µ²!‚û}Â²%^f"äp' . "\0" . 'ÆJ#vr?íENà#a	Ä¢ï»ÃX]Ò)Ž•Îçe¥ ƒò`‰ªgã°k›*¬6ÍfKÔ½wók¹‘Ø>»Š8ózI‚¤ml‘Á&Z¿±´üø„ÇØpæ#×c®H×!ƒLü¢(@œÌ¢¢q¥Ä¯ô‡Bé†Ò¶ôó¥´ÿÚ«úP¬töÁ•ÎCßgPòŠÃÇã¥!,t=xßá¬IÂðVXúNnØ)ßÑYBg´†ºÁ±Q@C/1TFT>ÊmMnDDîÖTì7M‰×5("xOïÇ×Ú³jJWC*BI3Ñ
-PÎB!~tÚYû³Â´a·¤»' . "\0" . '­KG¾Ô²ÏNY4' . "\0" . 's+µ„d`hö}¹@¸ûGä¼uúPå+ïÁœ`h‡É@Òç(Üe<' . "\0" . 'ÄgƒäëÀ+,s“ xEÌpÐFààrÝ|(Fù„Ÿ­6MÑÝ\\¿SOe*9ŸkÖë{=€l"è–á_ñ^­ï?Šaâ[/p\\€¦u w€#A=XÖ]Ð h8ô†®*Q†Ã`·kG†‘‚ÒI™LÊLŸµjG’ê€ì^H{¤¥©Röa†ò¤$¦¡RåkáÍá0{
-r~Û' . "\0" . 'Í.H­›2åŒóæÔ49x¢±˜ƒìiYÎ2|Q,8£@7˜ìšu2Lê±l€©¹‘Ùx2¶œeª' . "\0" . 'æ;§Ë;ãÂõ–5kß—ðUdrØ+ú¶ŸÐÑýD].ÀXc{vˆ6›IØh(H¼r Žã^â0)A^B1µV6ÖN˜ãZª¬˜!»%q”§v¡‡ ›”¼Œ¨&k°8Žˆ‡¶+IGâ^4à­XðãA"³H_xå»oú¥í~ê1žpò‡­Þl1Ï«jm ªÛß*€~8¬=„µ¶!9ˆkáù‘¦¤lhb±-„ò´¨˜‰pÇrti›Alúþzv°I¼{ÐŽò¶E+€í¹6Š»cÅf¢²›í4£YÊOëã"Û:¤šj‡åx<4º{¯ëaBX¿ U_R<S`™íCîQ²¹mç7ñN•kÅ€âÙleÃæ%‚#
-ç…}{ìI	MÑ÷¼(Cr \\$b' . "\0" . '‘nÙÁ8Ô¢Gg¶©Ð‡’h©PÂxuNÅ²ªH·xít*@P#M6÷S ­÷|øî—i¬Çc­`]H•ÉJ»BÚwèz~šF(¼¬†Ñ?³Ülè)žBV”°õëÖv²øŽN0Ñz2wùºqàÇ¿dD0ÑÙ·¼ã°”è:P]ëÒSúí€†¢º©0FXq­¥øöêêõìõOW^ÄÀ–ñÚÏIÀñòøCŠfÕ¥Ÿ‡F€>SØå%™Š[Ÿtç6èL²R‘X–gàå{È*£¬ª/nÖø²Oí¢q–›É\\§`Ë®)5—óX»ÏáÐ9NÄÄwt+Ge/&!…y˜vë%a“Ù•Ó#!9!¼ÃÅÑFÑuäÊ4Ž´±ðÍ¿^½ž=˜ÄxÖñòmð¹ž‹nz>ö”Ìd
-¬‘B#¢Í¯~ÑÕjFMg(Ãš‹Œ‘çUÜÝÄtŠ¸®$Û4¬]NúŒq$ÿÐœ‹Eæé“"„…~ÍL>Ê…c¡‘üÒ÷ÏONÅÆ%¯:]ù¡ŸKåô¿ÄÂèðl»7GÐBD•ÝÎºþ|ß‹C\'
-x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃÁ·´á‡Cœšý]®øldù^[È^+V_YÅ’Èå@|àÈ õže8Ä{!ÈbÜ	ôyé†ZmfKqvºÖøÛ ?Ö€fè—µª,5)V&7Õe´;ì	v=µSÉC¸jkí$A*ÜñÚ5	™|(ØÐ°ñ•œï½‡ñþÀ$pMGm¿eFkƒèëÜcav8U _âù^tkÖÜªó;"&C²:Áþ”Ë§æH‘J˜vWÓè¥ŠÛëvµ³š¨ËªòM–ÇÐÅ¦ÜéËØd\\VÇrLß»n·LÎÊ…¦lÅGÖô¹cæ½ô¸¥>êý^Ýñ×UÄ¡©ÓŠœ{ÙMýF¹Q’ôœ©FVõOZ0ß¼¼Š‘N	P"˜ë”4ãÌî§7¯¦¨ineñ?,¼Œ;à>ðxC$õ÷Hq¬¤ ƒvä¥P˜_j[a6¾k¹C»P¹%`nÇ5OŽz*§“|ÐŸŒ‰Ë·,’ÀòNZO*ëÎÇ¦‚œzßR{‰/Ðk_¾è®%d€#»Ã®±ÿ®4;/œ¨—Î\'o,µ• @™VÛ\\GµGˆª Ê5 kTwSó§ÊbGà…êóîìg¦Ð£Oínë*øpÔç¤œxÓøƒ2‚GƒŒ wÕeÄïn¸òÒö€ãÃµBQƒÁàqHÊ-/îúº Õî¤¨
-ÿfØu°ÈU|(´Ñ×ønœîñÛwZ|ó,¬l“$áÀ@€r3ª¯MÞt=½Ú780AH3Vã¶"+‹·Ôu€¶Ž‰¿†¹¶c>hÁÆv5Þw [Žd^…¬*d.Ó8ÑÔþ\\)>Cö¦Þk©–%ÖpZ™¯ËÆ©C\'b, Ä"ª1ÚMz@\\
-!HeáÌ‚—žWÛª}DØ0½Ö?M;Û
-°òCß’Ö~x}%Ñey™Øu´bã&c' . "\0" . 'ßNÿ^Ä˜¥¨¾a0º3þ9üp7HbÑ²ÛlûxìÇïõ­O®ù®Mp@½ûo	BÀ ¬„R]¯Ï"DØðHqÁ‡`9·0,Õp]¶R^ˆ°ËÁué]ÛÁCåEá™ì9l	²âµÆ¶çAUSƒÃ¨0ý§Ç_=>õ®Åy\\ŠŸ\\‹‹®¬ÁÌÍŽþÇ€RWäèvËJ<{ýŠÎhçFƒkhPz\'ñá‘×sÝ^eîýœ6ˆ–ñiî.¾ÓIèÛOé)Uøƒ#²»÷.xÔb!ü¡åŠ\\0’Çv7œ@ô…ëE²@þ/5ûtã.Â´Á²¾Áù5P¾+>#þL ÀÀ]\'"–¶øÙf™‡]kÏxàßÿ·ªjûùh' . "\0" . 'nto…' . "\0" . '‘[Ä’o·Ð' . "\0" . '¦hŒ¡ƒõ½çpoæ`«Ùaÿ.ÿþPsçñîáÞ´Ïî~¯ÓÚX³vóÏY†ÿmÿò×÷ôgÓ!}:™å8>ÖæŸŽU·C¦û‹·ÃZ&ÚñŸÑÈ{‡šÿ?Çüó¯A§kó~þùÿ·Ì/' . "\0" . '‡òP=j“ñÁ0èràÆ5^wÿd6ßltþo=âÿœ²L
-€“¥¨‚ÁÿrüFS@|øâñÿŽË5/ÅŠ«,3Ø' . "\0" . '\'•y¶ SDJÊmÍ-tu1
-@}ØâzÐÚ@;.' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'î‰M7%““þÞ' . "\0" . '' . "\0" . '½6' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '¤' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT' . "\0" . 'áGUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
-¶’' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '¤' . "\0" . '' . "\0" . 'put_test.htmlUT' . "\0" . 'ìàGUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï(' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '',
-      'headers' => 
-      array (
-        'ETag' => 'ef383241769f0df9a982a37b53504cf2',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'application/octet-stream; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  53 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+vim: et syn=rst tw=79</comment></section></document>', 'headers' => 
+['ETag' => '5ad59a93c1eb407447585fc830b848a7', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'application/octet-stream; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 52 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/put_test.zip', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/put_test.zip', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/put_test.zip', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/put_test.zip', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'GET', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="5485f72b3e3878c0bfa25d0cfa5a234f", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/put_test.zip', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/put_test.zip", response="5485f72b3e3878c0bfa25d0cfa5a234f", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½M7%ï¿½ï¿½ï¿½ï¿½' . "\0" . '' . "\0" . 'ï¿½6' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT	' . "\0" . 'ï¿½Gï¿½GUx' . "\0" . 'ï¿½d' . "\0" . 'ï¿½[isï¿½6ï¿½ï¿½_ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½Iï¿½mï¿½ï¿½ï¿½$qï¿½fï¿½ï¿½\'uï¿½ï¿½ï¿½t ï¿½Pï¿½ï¿½' . "\0" . 'ï¿½ï¿½ï¿½~ï¿½ ARrï¿½nvï¿½!ï¿½(' . "\0" . 'ï¿½ï¿½ï¿½ï¿½ï¿½ß–ï¿½ï¿½Uï¿½Õ¦ï¿½ï¿½=^~<ï¿½JMï¿½ï¿½ï¿½Å¬uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½?>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-Uï¿½ï¿½ï¿½ï¿½Ï¾{ï¿½\\ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½;]Ø¥5mï¿½ï¿½ï¿½4[ï¿½ï¿½ï¿½[ï¿½.ï¿½/Å¥ï¿½U|ï¿½*ï¿½ï¿½tï¿½zï¿½ï¿½jï¿½ï¿½ï¿›ï¿½ï¿½Î¹ï¿½lï¿½:y' . "\0" . 'ï¿½`Wï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½bï¿½ï¿½Iï¿½2ï¿½9ï¿½T>^~*Xï¿½qï¿½3{1Sï¿½-RSÖ¦ï¿½\'ï¿½ï¿½ï¿½dï¿½vï¿½)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dï¿½hï¿½Ñ­;{#xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½|^ï¿½ï¿½N?ï¿½ï¿½Gï¿½gï¿½Þºï¿½pï¿½ï¿½@ï¿½+:Nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½9-]ï¿½ï¿½ï¿½ï¿½/Dï¿½tï¿½ï¿½ï¿½ï¿½lï¿½ï¿½4ë¿šFï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½?ï¿½ï¿½B;wï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½^ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½Zï¿½ï¿½ldGï¿½oç«Žï¿½3ï¿½NEZHkQmï¿½ï¿½ï¿½mgï¿½ï¿½ï¿½ï¿½Wkï¿½ Hï¿½ï¿½?ï¿½Ú´Eï¿½ï¿½/ï¿½ï¿½n}ï¿½ï¿½ï¿½ï¿½ï¿½*ï¿½ï¿½lä¶‘ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½<ï¿½ï¿½ï¿½Ì¦ï¿½Vï¿½ï¿½Oï¿½%ï¿½ï¿½ï¿½hï¿½*:ï¿½)<ï¿½(x_1.ï¿½Zï¿½gkï¿½ï¿½ï¿½\'ï¿½O:ï¿½NCtï¿½ï¿½ï¿½ï¿½ï¿½}Rï¿½ï¿½ï¿½ï¿½M8[?ï¿½\'ï¿½ï¿½}Ö‘Qï¿½ï¿½JÔ¥ï¿½ï¿½ï¿½ï¿½ï¿½DÞ§pï¿½Rï¿½ï¿½ï¿½FUYDï¿½?yï¿½t?ï¿½ï¿½uï¿½ï¿½lmQï¿½ï¿½ï¿½\'ï¿½/ï¿½ï¿½kï¿½vï¿½Lï¿½iï¿½+xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/{ï¿½ï¿½Ê².ï¿½pï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½G8!ï¿½Rï¿½cjt<(0ï¿½&5Nxï¿½ï¿½ï¿½]ï” ]ï¿½ï¿½ï¿½ï¿½ï¿½S|vï¿½@ï¿½è‚Aï¿½J;-ï¿½pï¿½ï¿½!<q;ï¿½DÝ˜[
+ï¿½ï¿½/ï¿½ï¿½Ë§ï¿½ï¿½sï¿½ï¿½ï¿½t\'ï¿½ï¿½ï¿½ï¿½bï¿½ï¿½NÈ¢ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½Ð¨$-Q>ï¿½GJD
+F1)ï¿½ï¿½ï¿½ï¿½ï¿½!ï¿½ï¿½jï¿½ï¿½7ï¿½Vï¿½ï¿½KÈ§+ï¿½ï¿½ï¿½ï¿½ï¿½7V;ï¿½ï¿½Ljï¿½ï¿½ï¿½' . "\0" . 'NB*ï¿½)ï¿½ÝªSoï¿½zÂ«XÛ¯Hï¿½iï¿½' . "\0" . 'ï¿½8ï¿½Ê€ï¿½
+ï¿½aï¿½ï¿½A×²ï¿½ï¿½
+ï¿½ï¿½Kï¿½ï¿½ï¿½<dvï¿½aï¿½cï¿½ï¿½ï¿½7ï¿½ï¿½ï¿½ï¿½ï¿½<9ï¿½ï¿½yï¿½Rï¿½Zï¿½2Jï¿½ï¿½FKwï¿½ï¿½ï¿½vï¿½=Yeï¿½*ï¿½2xï¿½ï¿½×±psò¸¤“
+ï¿½\\ï¿½{ï¿½"ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½B\\ï¿½Lï¿½dF\'*ï¿½2ï¿½Ï€ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½S
+ï¿½ï¿½ï¿½pï¿½Fï¿½~ï¿½ï¿½eCï¿½#ï¿½ï¿½ï¿½ï¿½ï¿½ß…ï¿½)ï¿½E1{ï¿½:ï¿½ï¿½ï¿½Å“ï¿½1ï¿½gyZï¿½ï¿½|gï¿½ï¿½bï¿½ï¿½)ï¿½]ï¿½]ï¿½%ï¿½j	7ï¿½,ï¿½ï¿½ï¿½,\\8ï¿½ï¿½ï¿½)8Yï¿½Rï¿½Aï¿½iï¿½kï¿½ï¿½ï¿½à¯’xï¿½;ï¿½ï¿½ï¿½ï¿½,pï¿½Ö¦ï¿½9(ï¿½E
+ï¿½2M	ï¿½8ï¿½Qï¿½nï¿½ï¿½b7xjï¿½ï¿½i;>ï¿½]ciKï¿½eï¿½ï¿½|t:ï¿½Aï¿½ï¿½ï¿½ï¿½
+xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ @ï¿½aNï¿½ï¿½ï¿½ï¿½ï¿½ï¿½#ï¿½ï¿½+@;ï¿½ï¿½È³ï¿½C&ï¿½Cï¿½VTï¿½ï¿½ï¿½ï¿½ï¿½@7
+ï¿½ï¿½Aï¿½' . "\0" . 'Jï¿½hï¿½}x&ï¿½CCGbqj' . "\0" . 'ï¿½Rï¿½#Bepjj-ï¿½ï¿½ï¿½ï¿½ß­q_QPï¿½Gï¿½	ï¿½ï¿½ï¿½Sï¿½ï¿½' . "\0" . '. Òªï¿½Iï¿½
+lï¿½@ï¿½nJXï¿½ï¿½ï¿½ï¿½P_ï¿½ï¿½gï¿½
+<{ï¿½ï¿½zï¿½Cï¿½Kï¿½ï¿½ï¿½\\Yï¿½ï¿½:sï¿½ï¿½tï¿½ï¿½ï¿½Tï¿½G=Xd#ï¿½g<S$ï¿½ï¿½ï¿½:ï¿½Lï¿½ï¿½~ï¿½ï¿½@ï¿½ï¿½Quï¿½,ï¿½=\\ï¿½^:2ï¿½]!ï¿½1Ê ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½ÕƒF%ï¿½ï¿½*}\'ï¿½Ð¡ï¿½ï¿½)ï¿½ï¿½ï¿½B0vï¿½ï¿½1XK<ï¿½ï¿½ï¿½vï¿½wAï¿½ï¿½TQ' . "\0" . 'T=`mï¿½ï¿½ï¿½HKï¿½nï¿½ï¿½EÂ§lï¿½D"!ï¿½ï¿½ï¿½?%d&ï¿½ï¿½Eï¿½edï¿½ï¿½Q@Mï¿½9*ï¿½r9Tï¿½ï¿½7Ê¤:ï¿½F;ï¿½ï¿½ï¿½Z8ï¿½l~ï¿½,ï¿½Vï¿½dï¿½Ð‹P%5rï¿½ï¿½$ï¿½ï¿½ï¿½wï¿½Pï¿½3ï¿½ï¿½0{UIï¿½ï¿½ï¿½ÒJoXkdï¿½hï¿½(ï¿½hg!ï¿½ï¿½&ï¿½kï¿½ï¿½"ï¿½ï¿½ï¿½Rï¿½ï¿½lï¿½%é‹²ï¿½H*ï¿½kesï¿½9ï¿½ï¿½9ï¿½' . "\0" . 'ï¿½ï¿½ï¿½ï¿½	ï¿½ï¿½ï¿½oaQ@\\ï¿½ï¿½-ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½@\'ï¿½Eï¿½ï¿½ï¿½zï¿½ï¿½>ï¿½ï¿½' . "\0" . '' . "\0" . 'mï¿½l(1ï¿½ï¿½@ï¿½ÔŠ+ï¿½ï¿½Êˆï¿½<ï¿½ï¿½ï¿½HXï¿½ï¿½ï¿½ï¿½!WWï¿½1ï¿½ï¿½Ê´ï¿½iLSï¿½@ï¿½}#/ï¿½ï¿½×˜vï¿½#b
+ï¿½gï¿½ï¿½@gTï¿½-	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\'ï¿½ï¿½ï¿½ÜŠkï¿½~ï¿½=ï¿½4ï¿½
+*ï¿½Dï¿½' . "\0" . 'Oï¿½Eï¿½#ï¿½ï¿½Sï¿½Ð†ï¿½ï¿½ï¿½ï¿½{ï¿½ï¿½F=ï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½Yï¿½Zï¿½ï¿½ï¿½ï¿½é¶ï¿½ï¿½hUï¿½ï¿½Hï¿½I"ï¿½
+ï¿½ï¿½H1	ï¿½ï¿½#ï¿½Bï¿½ï¿½hï¿½ï¿½Pï¿½QT*ï¿½3ï¿½ï¿½ï¿½ï¿½ï¿½9,Úªï¿½tï¿½yï¿½\\gcfï¿½Tï¿½ï¿½ÂƒJw:+ï¿½8kï¿½ï¿½ï¿½ï¿½Ig~Zï¿½.ï¿½Vï¿½Þ¶Mï¿½Qï¿½tï¿½pï¿½-ï¿½ï¿½Fï¿½A%0ï¿½ï¿½ï¿½Bï¿½pï¿½y<ï¿½;ï¿½O[ï¿½ï¿½ï¿½ï¿½ï¿½Õ…vX	$Cï¿½ï¿½ï¿½4ï¿½pÃ°ï¿½8ï¿½enï¿½ï¿½ï¿½ï¿½8ï¿½tï¿½Äµkï¿½1}ï¿½gï¿½Mï¿½$\'Tï¿½ï¿½ï¿½7J&ï¿½ï¿½S)ï¿½\\ï¿½ï¿½î‚“ï¿½Lï¿½ï¿½gH}ï¿½ï¿½nï¿½wï¿½ï¿½ï¿½[ï¿½ï¿½Gï¿½zï¿½ï¿½ï¿½Fï¿½ï¿½' . "\0" . 'ï¿½uï¿½1(3Ayï¿½ï¿½LMï¿½#=0ï¿½Gnï¿½cï¿½ï¿½2Uï¿½ï¿½ï¿½ï¿½ÕŽï¿½;Tï¿½Ö½ï¿½zï¿½ï¿½\\JÓ ï¿½ï¿½*ï¿½ï¿½ï¿½tÈ“ï¿½È…ï¿½ï¿½iauBï¿½?ï¿½@ï¿½OXy[ï¿½\\ï¿½cIï¿½ï¿½ï¿½ï¿½ï¿½5Ë“qï¿½ï¿½ï¿½ï¿½\'fï¿½ï¿½ï¿½`ï¿½\'ï¿½zï¿½ï¿½Zï¿½/ï¿½BtWï¿½Lï¿½ ï¿½ï¿½-zODï¿½Sï¿½f{ï¿½ï¿½m|ï¿½Lrï¿½+ï¿½' . "\0" . 'ï¿½ï¿½Ò—	ï¿½S\'ï¿½G#$ï¿½ï¿½Lï¿½"ï¿½Aï¿½"ï¿½ï¿½v8ï¿½:ï¿½ï¿½,ï¿½z&ï¿½}ï¿½S`gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½;2FIï¿½nï¿½ï¿½(/0SDï¿½Gï¿½ï¿½Iï¿½ï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ioï¿½Uï¿½Cï¿½Qï¿½#ï¿½È¸ï¿½ï¿½?~ï¿½dï¿½ï¿½ï¿½ï¿½APxï¿½ï¿½vï¿½bï¿½hï¿½ï¿½ï¿½Rï¿½dï¿½;Iï¿½ï¿½xï¿½#ï¿½rl4<Iï¿½ï¿½q#Dï¿½ï¿½ï¿½ï¿½)ï¿½@ï¿½rï¿½ï¿½ï¿½0ï¿½W<ï¿½\\bï¿½_ï¿½]ï¿½(ï¿½ï¿½ÇŠ\'ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'ï¿½mFï¿½ï¿½ï¿½6Qï¿½
+-Iï¿½*4gï¿½fï¿½ï¿½?_ï¿½ï¿½#ßï¿½ï¿½ï¿½Gï¿½`Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½%`ï¿½Ú§ Dï¿½ï¿½8-ï¿½ï¿½ï¿½Xï¿½ï¿½Hï¿½Ô×Œï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½@[ï¿½`"Cï¿½&ï¿½bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½J&~ï¿½ï¿½ï¿½FGwï¿½`ï¿½ï¿½pï¿½wXï¿½ï¿½ï¿½ID*ï¿½eï¿½ï¿½ï¿½Rvï¿½B|ï¿½@hï¿½ï¿½$ ï¿½ï¿½ï¿½ÅŸ' . "\0" . 'ï¿½us eï¿½Xnìª¨<H6Ú•ï¿½ï¿½ Jï¿½=ï¿½Ô¡ï¿½ï¿½<wï¿½raï¿½8ï¿½[ï¿½Hj*bï¿½ï¿½ï¿½8ï¿½H$ï¿½ï¿½ï¿½ï¿½ï¿½;ï¿½ï¿½r}ï¿½:ï¿½ï¿½ï¿½3' . "\0" . 'jï¿½I:ï¿½ï¿½{ï¿½~,Ø ï¿½Kzï¿½*ï¿½y^ï¿½Ö˜8ï¿½ï¿½ï¿½R|{}}ï¿½ï¿½ï¿½ï¿½Ú›kï¿½ï¿½1#ï¿½ï¿½ï¿½!ï¿½s2ï¿½ï¿½	ï¿½ï¿½vÓ·ï¿½0	I4S8ï¿½725ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½$YzGJï¿½ï¿½Rï¿½ï¿½_ï¿½
+ï¿½ß·ï¿½|ï¿½ï¿½ï¿½^Ë—ï¿½ebï¿½Û¹ï¿½ï¿½Hblï¿½bpï¿½ï¿½{ï¿½;ï¿½ï¿½\'ï¿½ï¿½`	Ú°Pï¿½PtPSQR2ï¿½j~ï¿½RK(ï¿½aï¿½Hï¿½DrcZG~ï¿½^ï¿½ï¿½_ï¿½ï¿½ï¿½!ï¿½b)tï¿½ï¿½ï¿½\\ï¿½ ï¿½a/Ý
+ï¿½L&Pï¿½ï¿½ï¿½ï¿½ï¿½6ï¿½ï¿½ï¿½	ï¿½èŒ®c|ï¿½uIÆGï¿½ï¿½Fï¿½4ï¿½Qv
+DÇ¬ï¿½ï¿½Î‘RYsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]pdPï¿½ï¿½ï¿½ï¿½ï¿½g??ï¿½ï¿½ï¿½ï¿½Ï¹ï¿½^ï¿½Ý¯ï¿½/ï¿½\'ï¿½Xt7>ï¿½ï¿½>?~]>ï¿½ï¿½Âˆbbï¿½ï¿½ï¿½kï¿½aï¿½+E#ï¿½ï¿½!ï¿½%ï¿½Q(ï¿½mï¿½ï¿½ï¿½ï¿½u4vï¿½3ï¿½0Rï¿½ï¿½YUï¿½Bmï¿½?ï¿½ï¿½Kï¿½cul
+Ü¶ï¿½e|huï¿½Cï¿½xxï¿½Xï¿½ï¿½ï¿½6ï¿½sï¿½ï¿½XE=ï¿½ÅŠ<ï¿½ï¿½sï¿½]ï¿½ï¿½l\\ï¿½ï¿½fp#ï¿½` ï¿½Í”ÄŠPUÊ‘6\\ï¿½8ï¿½ï¿½Uvï¿½iï¿½ï¿½Ù¾Iï¿½ï¿½@ï¿½ëº¨rï¿½s
+ï¿½ÏŸkBï¿½ï¿½ï¿½Õï¿½-ï¿½ï¿½
+ï¿½ï¿½ï¿½0ï¿½ï¿½8ï¿½ï¿½Wte@ï¿½Ócï¿½$(ï¿½Çˆ~.IJ ï¿½ ï¿½!ï¿½Mï¿½ï¿½~$ï¿½/ï¿½ï¿½zï¿½xBï¿½ï¿½8Pï¿½ï¿½
+Fï¿½ï¿½xï¿½ï¿½7g@ï¿½ï¿½~ï¿½bï¿½ï¿½ï¿½^@ï¿½9ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½.Oï¿½ï¿½rï¿½biï¿½ï¿½-
+Bï¿½6ï¿½ï¿½`Cï¿½ï¿½ï¿½\'ï¿½A-*ï¿½Wï¿½ï¿½$ï¿½Uï¿½ï¿½E Vï¿½#%tï¿½@ï¿½yï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½Q4ï¿½ï¿½Oï¿½Æ®;ï¿½(rLï¿½$ï¿½ï¿½(:;ï¿½Nï¿½ï¿½\'}ï¿½ï¿½Q
+ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'ï¿½ï¿½ï¿½ï¿½:u2ï¿½ï¿½ï¿½ï¿½u4ï¿½ï¿½ï¿½*ï¿½Þ¢ï¿½ï¿½~ï¿½jï¿½nï¿½ï¿½^ï¿½1#/w@>ï¿½yï¿½%_Å¥ï¿½L/ï¿½ /ï¿½ï¿½fDÛ’ï¿½ï¿½ï¿½ï¿½ï¿½=:ï¿½*,A>ï¿½xï¿½ï¿½ï¿½29ï¿½ï¿½lï¿½ï¿½Zï¿½xL{~nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x.ï¿½vï¿½ï¿½i/0wï¿½ï¿½aï¿½ï¿½ï¿½ss	%ï¿½ï¿½{1ï¿½ï¿½47ï¿½ï¿½{]Eï¿½K|3ï¿½ï¿½ï¿½U;	ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½]ï¿½4ï¿½	ï¿½ï¿½ï¿½h ï¿½ï¿½!eï¿½Nï¿½ï¿½ï¿½Pï¿½Uï¿½<cp>]ï¿½X7Tï¿½ï¿½pï¿½U	!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½jcï¿½6Ü¸ï¿½ï¿½ï¿½ï¿½rGï¿½Iï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½s_ï¿½qAï¿½ï¿½{KBï¿½7ï¿½$1ï¿½Gnï¿½kÑ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½7ï¿½d' . "\0" . 'ï¿½Xï¿½0Lï¿½2ï¿½ï¿½Fï¿½hï¿½ï¿½vcï¿½]"ï¿½ï¿½Qï¿½ï¿½^Kï¿½ï¿½=\'Rï¿½ï¿½tbwï¿½ï¿½ï¿½ãï¿½ï¿½cï¿½ï¿½Pjï¿½ï¿½JYï¿½ï¿½kï¿½qï¿½iï¿½Ekï¿½ï¿½ï¿½ï¿½w\\ï¿½ï¿½ ï¿½ï¿½cï¿½@ï¿½)ï¿½EIï¿½qlï¿½ï¿½*ï¿½ï¿½Nï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½CWÎ¬ï¿½ï¿½eï¿½ï¿½ï¿½GÔ€ï¿½&ï¿½ï¿½R1ï¿½ï¿½ï¿½ï¿½ï¿½4-ï¿½}' . "\0" . 'ï¿½`O	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½kÌ†jï¿½S*ï¿½ï¿½Rï¿½ï¿½ï¿½
+ï¿½ï¿½Wï¿½ï¿½ã—€ï¿½En]Ê­ï¿½cYï¿½dï¿½ï¿½^VPï¿½/ï¿½ï¿½ï¿½ï¿½
+5ï¿½03ï¿½8|Iï¿½ß¬1eC~ï¿½Ð¢ï¿½=ï¿½ï¿½ï¿½qï¿½Exï¿½)`ï¿½ï¿½lï¿½ï¿½ï¿½:uï¿½ï¿½@ï¿½ï¿½vï¿½ï¿½ï¿½Aï¿½Zï¿½ï¿½ï¿½ï¿½jï¿½iï¿½:ï¿½b!ï¿½ï¿½{ï¿½qï¿½ï¿½ï¿½Wï¿½6{ccï¿½ï¿½v
+ï¿½ï¿½f;Xï¿½oï¿½K;Æ³/Ç¯ï¿½ï¿½ï¿½ï¿½!.ï¿½ï¿½Vï¿½ï¿½ï¿½{ï¿½;ï¿½ï¿½Wï¿½ï¿½ï¿½+zï¿½aï¿½' . "\0" . 'x5;zï¿½Uï¿½uï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½`Aï¿½-ï¿½3[Kï¿½\'ï¿½ï¿½ï¿½5:Ë‡ï¿½ï¿½ï¿½kï¿½$ï¿½oï¿½ï¿½/hï¿½2ï¿½ï¿½~ï¿½ï¿½+^ï¿½Z	MMu*ï¿½ï¿½ï¿½ï¿½;ï¿½`ï¿½ï¿½ï¿½;YrJï¿½ï¿½Z|ï¿½u_ï¿½m#ï¿½ï¿½6ï¿½%ï¿½ï¿½P< ï¿½~ ï¿½	`ï¿½ï¿½~ï¿½|,ï¿½
+wzï¿½ï¿½ï¿½ï¿½ï¿½Ì©ï¿½ï¿½Cï¿½pï¿½ï¿½ï¿½Pï¿½ï¿½DbÚï¿½ï¿½)ï¿½q?ï¿½ï¿½ï¿½	ï¿½MD
+ÌŽoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½zZ\'8ï¿½C,Jï¿½m~ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Gï¿½ï¿½7ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½\\ï¿½
+ï¿½kï¿½ï¿½Lï¿½wï¿½:&ï¿½ï¿½hå£©ï¿½ï¿½ï¿½ï¿½X~ï¿½lï¿½ï¿½ï¿½Ëï¿½ï¿½:0ï¿½$Ê©ï¿½ï¿½ï¿½ï¿½0rx[Eï¿½ï¿½@ï¿½hHgpï¿½ï¿½7|ï¿½P{ï¿½ï¿½' . "\0" . 'Bgï¿½ï¿½ï¿½' . "\0" . '-' . "\0" . 'ÊŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‹*;Knu	ï¿½ï¿½Ï¡ï¿½hï¿½Dï¿½_|ï¿½ï¿½ï¿½ï¿½ï¿½`dxï¿½PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
+ï¿½ï¿½' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '
+' . "\0" . '' . "\0" . 'put_test.htmlUT	' . "\0" . 'ï¿½ï¿½Gï¿½ï¿½GUx' . "\0" . 'ï¿½d' . "\0" . 'ï¿½\\ï¿½ï¿½6ï¿½ï¿½Î¿ï¿½x;ï¿½ï¿½ï¿½ï¿½vlï¿½ï¿½ï¿½vï¿½ï¿½pÙï¿½jï¿½ï¿½ ï¿½0&	ï¿½' . "\0" . '[VRï¿½ï¿½ï¿½' . "\0" . '	RTï¿½ï¿½É®?ï¿½	<<ï¿½ï¿½ï¿½@~ï¿½ï¿½ï¿½"×ªï¿½Ú”O\'ï¿½ï¿½Pej2]nï¿½Nï¿½ï¿½=ï¿½ï¿½//ï¿½\'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?_ï¿½[^ï¿½ï¿½ï¿½wï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Å‹ï¿½ï¿½ï¿½^}ï¿½ï¿½' . "\0" . '
+âª–ï¿½ï¿½(ï¿½|ï¿½xï¿½ï¿½DLï¿½ï¿½Uï¿½ï¿½bï¿½ï¿½ï¿½wï¿½ï¿½ï¿½,ï¿½ï¿½,ï¿½#ï¿½Sï¿½ï¿½?ï¿½\\4sï¿½ï¿½l+Ó‚ï¿½eiï¿½ï¿½ï¿½9}ï¿½ï¿½1Ïžï¿½e.ï¿½qUNDï¿½	i(ï¿½ï¿½?ï¿½rR ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½O\'ï¿½Mï¿½Tï¿½fWï¿½JMDï¿½ßžNï¿½zï¿½Hï¿½Bï¿½[Y[ï¿½zQ,ï¿½Rï¿½ï¿½dï¿½JUKgï¿½hï¿½ï¿½6Nï¿½Vï¿½ï¿½,ï¿½ï¿½8ï¿½ï¿½ï¿½4uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½.Wï¿½ï¿½_@ï¿½ï¿½L	tï¿½ï¿½ï¿½jï¿½ï¿½ï¿½xï¿½ï¿½Þ”Sï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½1ï¿½_ï¿½Vï¿½Sgï¿½,aÞ•Yiiï¿½ï¿½tï¿½kï¿½ï¿½ï¿½Ioï¿½ï¿½ï¿½~ï¿½GYï¿½Ï•p /ï¿½ï¿½Zï¿½fï¿½ï¿½<Y>ï¿½Uï¿½â…¼Ö™ï¿½Æ˜lï¿½ï¿½dï¿½ï¿½)pï¿½ï¿½\'m,ï¿½ï¿½pï¿½ï¿½WYï¿½;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lvï¿½Hï¿½ï¿½.ï¿½.Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½#BJï¿½ï¿½;ï¿½ï¿½ï¿½hï¿½@ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½|nï¿½}ï¿½7[ï¿½ï¿½jï¿½ï¿½ï¿½MØ­RNlA+ï¿½JQï¿½2Uï¿½Ð¥p[%ï¿½fï¿½ï¿½Tdï¿½ï¿½ï¿½ï¿½\'ï¿½ï¿½ï¿½Mï¿½D*m*ï¿½ï¿½ï¿½`"ï¿½	ï¿½Eï¿½nW5Nï¿½ï¿½Zï¿½ï¿½oï¿½:Tï¿½ï¿½ï¿½
+ï¿½ï¿½bkvÎyï¿½:ï¿½ï¿½ï¿½ï¿½ï¿½{ï¿½Lï¿½6Ö™Bï¿½hï¿½ï¿½<Ì“ï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½Uaï¿½ï¿½Xï¿½ï¿½Aï¿½b]ï¿½B8ï¿½ï¿½Bï¿½ï¿½ï¿½Bnï¿½#Lï¿½ï¿½xaï¿½<"z"\\6ï¿½p+~Mï¿½ï¿½ï¿½\'ï¿½$ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . '0ï¿½ï¿½@ï¿½2#ï¿½ï¿½6\'<!ï¿½hLï¿½NÃ¤ï¿½\'ï¿½qej\'K7ï¿½ï¿½s\'ï¿½ï¿½$ï¿½ï¿½$ï¿½ï¿½ï¿½ï¿½
+ï¿½%Rï¿½ï¿½ï¿½qï¿½"ï¿½Cï¿½Oï¿½ï¿½ï¿½EDï¿½1_ï¿½Úº.t [ï¿½Tï¿½ï¿½.
+Yoï¿½RXUcï¿½z<lï¿½Lï¿½Y(ï¿½ï¿½Mï¿½gï¿½lï¿½"7ï¿½uï¿½ï¿½ï¿½qï¿½ì±™[ï¿½e`ï¿½86ï¿½,wï¿½%@ï¿½ï¿½sgï¿½ï¿½Jï¿½ï¿½jï¿½ï¿½!è¦³Lï¿½DCnAC/ï¿½Mjrï¿½ï¿½ï¿½ï¿½;ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½ï¿½85Wï¿½ï¿½Ô²ï¿½Fï¿½Sï¿½ï¿½Pl88ï¿½;=eï¿½(ï¿½$ï¿½ï¿½ï¿½,ï¿½' . "\0" . 'R' . "\0" . '\'ï¿½.ï¿½ï¿½ï¿½Nï¿½bï¿½ï¿½{hï¿½ï¿½É³Ùš|1Sk]ï¿½\\ï¿½Nï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½{8ï¿½Eï¿½2}=ï¿½+$uï¿½ï¿½m0ï¿½ï¿½U:ï¿½uï¿½8$}D*sï¿½ï¿½%ï¿½dÝ’ï¿½
+ï¿½<O}wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½A4R533ï¿½ï¿½Hluï¿½ï¿½aï¿½uï¿½Zï¿½bï¿½ï¿½ï¿½ï¿½ÉºDï¿½nï¿½"rï¿½Beï¿½)ï¿½ hÑ›ï¿½N#ï¿½ï¿½ï¿½ï¿½/,
+^{ï¿½ï¿½x=:ï¿½?:v4ï¿½ï¿½ï¿½Óµ,tï¿½o!Eï¿½ATï¿½ï¿½v;Aï¿½Gï¿½ï¿½8ï¿½kï¿½ï¿½tRï¿½ï¿½ï¿½A/Gï¿½ï¿½ï¿½Vï¿½^>fï¿½ï¿½Pï¿½Hï¿½ï¿½Hï¿½t*s@1ï¿½.tï¿½ï¿½ï¿½[40ï¿½ï¿½ï¿½I\'ï¿½h?ï¿½ï¿½ï¿½ï¿½ï¿½IGï¿½kï¿½ï¿½ï¿½Lï¿½ï¿½[ï¿½e4ï¿½4ï¿½ï¿½g`ï¿½)ï¿½ï¿½8`ï¿½ï¿½l+eï¿½ï¿½Nbï¿½ï¿½ï¿½ï¿½mq!&Vï¿½ï¿½' . "\0" . 'i{bkï¿½iï¿½ï¿½>rï¿½vï¿½ï¿½ï¿½ï¿½>K9ï¿½ï¿½6ï¿½6$0eï¿½É‚r%ï¿½ï¿½ï¿½vCb' . "\0" . 'ï¿½ï¿½ï¿½ ï¿½T3ï¿½~ï¿½ï¿½Gï¿½ï¿½ï¿½ï¿½	*ï¿½p"ï¿½7Bï¿½ï¿½F(ï¿½ï¿½Ncï¿½ï¿½lWï¿½>ï¿½ï¿½Ç¡
+ï¿½ï¿½ï¿½ï¿½ÉŒï¿½ï¿½ï¿½i
+ï¿½ï¿½ï¿½ï¿½rÄ“?ï¿½ï¿½r#aN(.:	ï¿½wÕ¼nV5ï¿½Ê¯7ï¿½ï¿½@/ï¿½ï¿½@ioï¿½*f$Eï¿½ï¿½ï¿½Vï¿½c0l{:ÄÑï¿½ï¿½ï¿½vï¿½? P
+|xyï¿½ï¿½2ï¿½/ï¿½ï¿½sï¿½Rï¿½Äï¿½Lï¿½ï¿½lï¿½ï¿½ï¿½Ã‡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Éƒï¿½ï¿½nï¿½xï¿½Gc:GFï¿½]ï¿½ï¿½kgh_ï¿½ï¿½ï¿½ï¿½b3ï¿½)d×±/ï¿½ï¿½ï¿½ï¿½ï¿½_Gï¿½ï¿½ï¿½`ï¿½Eï¿½ï¿½lï¿½ï¿½1ï¿½ï¿½
+ï¿½ï¿½ï¿½+ï¿½Lï¿½JA^ï¿½=Lï¿½ï¿½ï¿½ï¿½vÍ«ï¿½<Hï¿½fï¿½ï¿½7Uul0ï¿½ï¿½
+ï¿½ï¿½Pï¿½ï¿½ï¿½e~QÌ”ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½cï¿½tï¿½Üƒï¿½ï¿½?ï¿½ï¿½TVï¿½ï¿½8' . "\0" . 'cï¿½Îµï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½ï¿½Ú©^;ï¿½<d#G"
+ï¿½ï¿½a>hyï¿½]`ï¿½xFZï¿½Fï¿½ï¿½ï¿½ï¿½<ï¿½Hï¿½\\ï¿½ï¿½ï¿½ï¿½VV+Hï¿½ï¿½ï¿½ï¿½ï¿½iï¿½NFrï¿½1X>=ï¿½ï¿½' . "\0" . 'ï¿½%ï¿½hï¿½gSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tï¿½!ï¿½Cï¿½ï¿½H' . "\0" . 'Rï¿½k(ï¿½)$?JJï¿½?Jï¿½ï¿½ï¿½*ï¿½?7cdï¿½ï¿½ï¿½uï¿½ï¿½ï¿½}ï¿½ rï¿½vï¿½Tv#ï¿½0ï¿½tntï¿½ï¿½iXï¿½ï¿½ï¿½|ï¿½
+ï¿½ï¿½ï¿½rï¿½t$ï¿½ÑQ<ï¿½tï¿½ï¿½(ï¿½Î' . "\0" . 'ï¿½ï¿½ï¿½ZÊï¿½ï¿½Û‡Bqï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½
+pï¿½!ï¿½nï¿½ï¿½Aï¿½kÛš\\gï¿½z/ Uï¿½&2ï¿½ï¿½ï¿½Ëµ9ï¿½>ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½%&ï¿½ï¿½!ï¿½U7ï¿½Jï¿½ï¿½ï¿½
+
+ï¿½Ð´ï¿½mï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½Â¯ï¿½ï¿½!<ï¿½ï¿½Ñ½5I@.ï¿½ï¿½S[Hï¿½Uï¿½Í°;yï¿½tï¿½Hï¿½oYï¿½Sï¿½ï¿½8bï¿½ï¿½[ï¿½A8ï¿½rï¿½ï¿½ï¿½ï¿½ï¿½ï¿½wï¿½Sï¿½ï¿½ï¿½ï¿½ß£' . "\0" . 'ï¿½Ã¥ï¿½1rï¿½j
+ï¿½ï¿½0ï¿½Ï°eï¿½uï¿½ï¿½,ï¿½ï¿½%|ï¿½}ï¿½ï¿½ï¿½ï¿½$nï¿½ï¿½ï¿½ï¿½ï¿½Ewï¿½ï¿½=ï¿½ï¿½_fm#dï¿½}hï¿½lCï¿½Ng\'ï¿½P?
+3ï¿½3\'ï¿½ï¿½]oOï¿½ï¿½Íï¿½vUTï¿½Dï¿½kï¿½E_ï¿½MDï¿½ï¿½
+^"ï¿½ï¿½ï¿½|0ï¿½ï¿½ï¿½-ê‘—ï¿½ï¿½ï¿½ï¿½UqMï¿½' . "\0" . 'ï¿½ï¿½
+)ï¿½ï¿½ï¿½	Xï¿½ï¿½Kï¿½ï¿½~ï¿½p[ï¿½]ï¿½ï¿½Mï¿½aï¿½%ï¿½Uï¿½jÛ¦ï¿½ï¿½bï¿½ï¿½ï¿½mï¿½Sï¿½<ï¿½KMï¿½ï¿½N~ï¿½ï¿½hï¿½ï¿½Zï¿½{ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½o^ï¿½VPï¿½Fï¿½Uï¿½ï¿½hNï¿½ï¿½ï¿½I&Mï¿½)Cï¿½ï¿½ï¿½ï¿½ï¿½\'	ï¿½W@ï¿½iUÈ¹-.ï¿½kï¿½ï¿½ï¿½jï¿½' . "\0" . 'ï¿½Sï¿½ï¿½>?ï¿½ï¿½É¦lp%ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½[|ï¿½Äï¿½)yï¿½6ï¿½Nï¿½Zï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½Dihï¿½ï¿½hÞŸ\\^ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'dï¿½/ï¿½Zï¿½ï¿½ï¿½ï¿½%eï¿½ï¿½ï¿½{
+Dï¿½;ï¿½ï¿½ï¿½Ñ¿ï¿½ï¿½ï¿½oiï¿½ï¿½Ymï¿½#|ï¿½2ï¿½vï¿½Fï¿½ï¿½Qï¿½ï¿½>ï¿½b\'2ï¿½ï¿½Eï¿½ï¿½ï¿½
+Waï¿½ï¿½Xï¿½ï¿½nï¿½ï¿½ï¿½3ï¿½>ï¿½ï¿½[ï¿½Qï¿½ï¿½kï¿½5ï¿½ï¿½ï¿½Yï¿½>nï¿½ï¿½{ï¿½ï¿½' . "\0" . 'ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½%ï¿½8ï¿½p
+ï¿½Ù¾ï¿½ï¿½ï¿½ï¿½ï¿½:Z::4h\'7ï¿½5ï¿½kï¿½ï¿½%ï¿½)ï¿½ï¿½ï¿½cï¿½%ï¿½}Q#2Dï¿½MIï¿½ï¿½Mï¿½VSt:Cï¿½}(<3ï¿½Gk!ï¿½hï¿½ï¿½ï¿½tï¿½ï¿½kï¿½1,ï¿½qï¿½xï¿½7ï¿½ï¿½9Å¨ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½T]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' . "\0" . 'ï¿½Zhï¿½Ò”ï¿½Ù„8Rï¿½Qï¿½ï¿½9Uï¿½wï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]#s 3(Vï¿½ï¿½ï¿½Wï¿½Í´ï¿½1ï¿½ï¿½ï¿½j*ï¿½%ï¿½ï¿½ï¿½ï¿½ï¿½%ï¿½ï¿½m\'ï¿½5Jï¿½Ý¶ï¿½ï¿½ï¿½jíŒµv' . "\0" . 'cï¿½pwï¿½xÉ¼Nï¿½Rï¿½lï¿½×¨ï¿½ï¿½Ykï¿½ï¿½ï¿½uï¿½l6{>Jï¿½N4ï¿½ï¿½Ðï¿½qouJï¿½ï¿½;ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½G0ï¿½wï¿½ï¿½li-ï¿½ï¿½5iÊ‰Rï¿½ï¿½ï¿½ï¿½W
+Oï¿½ï¿½i<SPÕ‚\'GH' . "\0" . 'ï¿½zï¿½ï¿½ï¿½ï¿½ï¿½rYï¿½2ï¿½X<ï¿½eqï¿½f{ï¿½Kï¿½nrPì‡ï¿½ï¿½Û¹VnM&ï¿½ï¿½ï¿½ï¿½zï¿½ï¿½ï¿½ï¿½8ï¿½ï¿½ï¿½ï¿½ï¿½OdE$9-ï¿½ï¿½ï¿½ï¿½cï¿½Í•=g.ï¿½ï¿½ \'ï¿½$ï¿½ï¿½ï¿½Kï¿½ï¿½rï¿½ï¿½ï¿½Î‡ï¿½xï¿½[P3v5h`ï¿½>\'ï¿½ï¿½ï¿½*,:ï¿½ï¿½@ï¿½ï¿½.ï¿½ï¿½e_+ï¿½O-ï¿½ï¿½ï¿½.ï¿½7ï¿½Vï¿½ï¿½ï¿½8ï¿½ï¿½MYkï¿½ï¿½ï¿½xï¿½ï¿½ï¿½3ï¿½ï¿½ï¿½ï¿½Gï¿½ï¿½Bï¿½9ï¿½rï¿½`ï¿½Hï¿½ï¿½ï¿½ï¿½ï¿½Hï¿½^ï¿½Iï¿½~ï¿½Rï¿½ï¿½ï¿½ï¿½ï¿½5lï¿½4ï¿½t{ï¿½ï¿½=ï¿½lï¿½ï¿½Îï¿½"ï¿½Zï¿½Sj' . "\0" . '
+Rï¿½ï¿½(Ì¼aï¿½tï¿½ï¿½)ï¿½^ï¿½ï¿½Gï¿½&	#Xï¿½3ï¿½#T"ï¿½,u`ï¿½=ï¿½$XPï¿½ï¿½c%ï¿½ï¿½jÏ¼ï¿½<{ï¿½2:ï¿½@ï¿½HM ï¿½g@ï¿½ï¿½ï¿½Sï¿½(ï¿½t
+ZIï¿½ï¿½ï¿½)ï¿½*zï¿½Pmï¿½ï¿½%ï¿½@ï¿½ï¿½ï¿½)ï¿½6ï¿½Ôªï¿½ï¿½ï¿½>X&Vï¿½ï¿½"ï¿½fï¿½Û›ï¿½Aï¿½?@~PZ
+ï¿½oï¿½ï¿½KCï¿½ï¿½@ï¿½Þ¤J_ï¿½,9ï¿½{+ï¿½6	nÓš\'zKï¿½ï¿½4ï¿½ï¿½Jï¿½vï¿½,=\\: 5ï¿½ï¿½)ï¿½bï¿½Uï¿½>gï¿½ï¿½ï¿½_^ï¿½ï¿½Oï¿½\'ï¿½|;ï¿½ï¿½dï¿½ï¿½aï¿½ï¿½Pï¿½b,ï¿½ï¿½ï¿½ï¿½ï¿½X3ï¿½ï¿½\\Bï¿½tï¿½Iï¿½ï¿½6ï¿½vï¿½)' . "\0" . 'ï¿½ bVï¿½aï¿½Q90ï¿½ï¿½ï¿½oï¿½L*ï¿½:#@ï¿½ï¿½ï¿½ï¿½gy|%qï¿½)caï¿½iNï¿½ï¿½ï¿½Vï¿½ï¿½XL$ptaï¿½ßµï¿½9tï¿½ykï¿½1M`Qï¿½{.^qï¿½ï¿½ï¿½ï¿½w)Iï¿½\'%Øï¿½ï¿½ï¿½ï¿½ï¿½Ó”dï¿½&' . "\0" . 'FAaÎ„ï¿½ï¿½ï¿½2aP' . "\0" . 'Uï¿½ï¿½ï¿½Û˜ï¿½Iï¿½ï¿½ï¿½:ï¿½9^ï¿½Oï¿½ï¿½K@S]ï¿½\\ï¿½ï¿½7ï¿½ï¿½!ï¿½ï¿½}Â²%^f"ï¿½p' . "\0" . 'ï¿½J#vr?ï¿½ENï¿½#a	Ä¢ï¿½ï¿½ï¿½X]Ò)ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½gï¿½kï¿½ï¿½*ï¿½6ï¿½fKÔ½wï¿½kï¿½ï¿½ï¿½>ï¿½ï¿½8ï¿½zIï¿½ï¿½mlï¿½ï¿½&Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½#ï¿½cï¿½Hï¿½!ï¿½Lï¿½ï¿½(@ï¿½Ì¢ï¿½qï¿½Ä¯ï¿½Bï¿½ï¿½Ò¶ï¿½ï¿½ï¿½Ú«ï¿½Pï¿½ï¿½tï¿½ï¿½ï¿½ï¿½Cï¿½gPï¿½ï¿½ï¿½ï¿½!,t=xï¿½ï¿½Iï¿½ï¿½VXï¿½Nnï¿½)ï¿½ï¿½YBgï¿½ï¿½ï¿½ï¿½ï¿½Q@C/1TFT>ï¿½mMnDDï¿½ï¿½Tï¿½7Mï¿½ï¿½5("xOï¿½ï¿½ï¿½ï¿½ï¿½jJWC*BI3ï¿½
+Pï¿½B!~tï¿½Yï¿½ï¿½Â´aï¿½ï¿½ï¿½' . "\0" . 'ï¿½KGï¿½Ô²ï¿½NY4' . "\0" . 's+ï¿½ï¿½d`hï¿½}ï¿½@ï¿½ï¿½Gï¿½uï¿½Pï¿½+ï¿½ï¿½ï¿½`hï¿½ï¿½@ï¿½ï¿½(ï¿½e<' . "\0" . 'ï¿½gï¿½ï¿½ï¿½ï¿½+,sï¿½ xEï¿½pï¿½Fï¿½ï¿½rï¿½|(Fï¿½ï¿½ï¿½ï¿½6Mï¿½ï¿½ï¿½\\ï¿½SOeï¿½*9ï¿½kï¿½ï¿½{=ï¿½l"ï¿½ï¿½_ï¿½^ï¿½ï¿½?ï¿½aï¿½[/p\\ï¿½ï¿½u wï¿½#A=Xï¿½]Ð h8ï¿½*Qï¿½ï¿½`ï¿½ï¿½kGï¿½ï¿½ï¿½ÒIï¿½ï¿½Lï¿½ï¿½Lï¿½ï¿½jGï¿½ï¿½ï¿½^H{ï¿½ï¿½ï¿½Rï¿½aï¿½ï¿½$ï¿½ï¿½Rï¿½kï¿½ï¿½ï¿½0{
+r~ï¿½' . "\0" . 'ï¿½.Hï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½49xï¿½ï¿½ï¿½ï¿½ï¿½iYï¿½2|Q,8ï¿½@7ï¿½ï¿½u2Lï¿½lï¿½ï¿½ï¿½ï¿½ï¿½x2ï¿½ï¿½eï¿½' . "\0" . 'ï¿½;ï¿½ï¿½;ï¿½ï¿½ï¿½
+ï¿½5kß—ï¿½Udrï¿½+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½D].ï¿½Xc{vï¿½6ï¿½Iï¿½h(Hï¿½
+
+rï¿½ï¿½ï¿½^ï¿½0)A^B1ï¿½V6ï¿½Nï¿½ï¿½Zï¿½ï¿½ï¿½!ï¿½%qï¿½ï¿½vï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½&kï¿½8ï¿½ï¿½ï¿½ï¿½+IGï¿½^4ï¿½ï¿½Xï¿½ï¿½Aï¿½"ï¿½H_xå»
+oï¿½ï¿½ï¿½~ï¿½1ï¿½pï¿½ï¿½l1Ï«jmï¿½ï¿½ï¿½ï¿½*ï¿½~8ï¿½=ï¿½ï¿½ï¿½!9ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lhbï¿½ï¿½-ï¿½ò´¨˜ï¿½pï¿½rtiï¿½Alï¿½ï¿½zvï¿½Iï¿½{ÐŽï¿½E+ï¿½ï¿½6ï¿½ï¿½cï¿½fï¿½ï¿½ï¿½ï¿½4ï¿½Yï¿½Oï¿½ï¿½"ï¿½:ï¿½ï¿½ï¿½jï¿½åx<4ï¿½{ï¿½ï¿½aBXï¿½ï¿½ U_R<S`ï¿½ï¿½Cï¿½Qï¿½ï¿½mï¿½7ï¿½Nï¿½kÅ€ï¿½ï¿½leï¿½ï¿½%ï¿½#
+ï¿½}{ï¿½I	Mï¿½ï¿½ï¿½(Crï¿½\\$b' . "\0" . 'ï¿½nï¿½ï¿½8Ô¢Ggï¿½ï¿½Ð‡ï¿½hï¿½Pï¿½xuNÅ²ï¿½Hï¿½xï¿½t*@P#Mï¿½6ï¿½ï¿½S ï¿½ï¿½|ï¿½ï¿½iï¿½ï¿½ï¿½cï¿½`]Hï¿½ï¿½Jï¿½Bï¿½wï¿½z~ï¿½F(ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½lï¿½)ï¿½BVï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½N0ï¿½z2wï¿½ï¿½qï¿½ï¿½ï¿½dD0ï¿½Ù·ï¿½ï¿½ï¿½ï¿½ï¿½:P]
+ï¿½ï¿½ï¿½Sï¿½í€†ï¿½ï¿½ï¿½0FXqï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OW^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½Cï¿½fÕ¥ï¿½ï¿½Fï¿½>Sï¿½ï¿½%ï¿½ï¿½[ï¿½tï¿½6ï¿½Lï¿½Rï¿½Xï¿½gï¿½ï¿½{ï¿½*ï¿½ï¿½ï¿½/nï¿½ï¿½ï¿½Oï¿½qï¿½ï¿½ï¿½\\ï¿½`Ë®)5ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½9Nï¿½ï¿½wï¿½t+Ge/&!ï¿½yï¿½vï¿½%aï¿½Ù•ï¿½#!9!ï¿½ï¿½ï¿½ï¿½Fï¿½uï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½Í¿^ï¿½ï¿½=ï¿½ï¿½xï¿½ï¿½ï¿½mð¹ž‹nz>ï¿½ï¿½ï¿½d
+ï¿½ï¿½B#ï¿½Í¯~ï¿½ï¿½ï¿½jFMg(Ãšï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½tï¿½ï¿½
+ï¿½$ï¿½4ï¿½]Nï¿½ï¿½q$ï¿½Ðœï¿½Eï¿½ï¿½"ï¿½ï¿½~ï¿½L>Ê…cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ONï¿½ï¿½%ï¿½:]ï¿½ï¿½ï¿½Kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½l
+ï¿½7Gï¿½ï¿½BDï¿½ÝÎºï¿½|ß‹C\'
+xï¿½#ï¿½
+' . "\0" . 'ï¿½ï¿½{J9qhï¿½Ã›ï¿½ï¿½[ï¿½ï¿½BKï¿½qï¿½ï¿½ï¿½&ï¿½ï¿½L.~,ÇŠ}à¶±
+;Qï¿½slï¿½ï¿½Mï¿½ï¿½Nï¿½ï¿½ï¿½,v=Zï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½
+ï¿½ï¿½]ï¿½ï¿½ldï¿½^[ï¿½^+ï¿½V_YÅ’ï¿½ï¿½@|ï¿½È ï¿½ï¿½ï¿½e8ï¿½{!ï¿½bï¿½	ï¿½yï¿½Zï¿½mfKqvï¿½ï¿½ï¿½ï¿½ï¿½?ï¿½ï¿½fè—µï¿½,5)
+V&7ï¿½eï¿½;ï¿½	v=ï¿½Sï¿½Cï¿½jkï¿½$A*Üï¿½
+ï¿½5	ï¿½|(ï¿½Ð°ï¿½ï½‡ï¿½ï¿½ï¿½$pMGmï¿½eFkï¿½ï¿½ï¿½ï¿½cav8Uï¿½_ï¿½ï¿½^tkï¿½Üªï¿½;"&Cï¿½:ï¿½ï¿½ï¿½Ë§ï¿½Hï¿½Jï¿½vWï¿½è¥ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½Ëªï¿½Mï¿½ï¿½ï¿½Å¦ï¿½ï¿½ï¿½ï¿½d\\Vï¿½rLï¿½ï¿½nï¿½Lï¿½Ê…ï¿½lï¿½Gï¿½ï¿½ï¿½cï¿½ï¿½ï¿½ï¿½>ï¿½ï¿½^ï¿½ï¿½ï¿½UÄ¡ï¿½ÓŠï¿½{ï¿½Mï¿½Fï¿½Qï¿½ï¿½ï¿½ï¿½FVï¿½ï¿½Oï¿½Z0ß¼ï¿½ï¿½ï¿½N	P"ï¿½ï¿½4ï¿½ï¿½ï¿½7ï¿½ï¿½ï¿½ineï¿½?,ï¿½ï¿½;ï¿½>ï¿½xC$ï¿½ï¿½Hqï¿½ï¿½ï¿½ï¿½vï¿½Pï¿½_j[ï¿½a6ï¿½kï¿½Cï¿½Pï¿½%`nï¿½5Oï¿½z*ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½Ë·,ï¿½ï¿½ï¿½NZO*ï¿½ï¿½Ç¦ï¿½ï¿½ï¿½zï¿½R{ï¿½/ï¿½k_ï¿½ï¿½%dï¿½#ï¿½Ã®ï¿½ï¿½ï¿½4;/ï¿½ï¿½ï¿½ï¿½\'o,ï¿½ï¿½ï¿½@ï¿½Vï¿½\\Gï¿½Gï¿½ï¿½ï¿½ï¿½5ï¿½kTwSï¿½ï¿½bGï¿½ï¿½ï¿½ï¿½ï¿½ï¿½gï¿½Ð£Oï¿½nï¿½*ï¿½pï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½2ï¿½Gï¿½ï¿½ï¿½wï¿½eï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÃµBQï¿½ï¿½ï¿½qHï¿½-/ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ï¿½fï¿½uï¿½ï¿½U|(ï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½wZ|ï¿½,ï¿½lï¿½$ï¿½ï¿½@ï¿½r3ï¿½ï¿½Mï¿½t=ï¿½ï¿½780AH3Vï¿½"+ï¿½ï¿½ï¿½uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½c
+>hï¿½ï¿½v5ï¿½wï¿½[ï¿½d^ï¿½ï¿½*d.ï¿½8ï¿½ï¿½ï¿½\\)>Cï¿½ï¿½ï¿½kï¿½ï¿½%ï¿½pZï¿½ï¿½ï¿½Æ©C\'b,ï¿½ï¿½"ï¿½1ï¿½Mz@\\
+!Heï¿½Ì‚ï¿½ï¿½WÛª}Dï¿½0ï¿½ï¿½ï¿½?M;ï¿½
+ï¿½ï¿½Cß’ï¿½~x}%ï¿½eyï¿½Øuï¿½bï¿½&c' . "\0" . 'ï¿½Nï¿½^Ä˜ï¿½ï¿½ï¿½a0ï¿½3ï¿½9ï¿½p7HbÑ²ï¿½
+lï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Mp@ï¿½ï¿½o	Bï¿½ï¿½ï¿½ï¿½R]ï¿½ï¿½"Dï¿½ï¿½Hqï¿½ï¿½`9ï¿½ï¿½0,ï¿½p]ï¿½R^ï¿½ï¿½ï¿½ï¿½uï¿½]ï¿½ï¿½Cï¿½Eï¿½ï¿½9l	ï¿½ï¿½Æ¶ï¿½AUSï¿½Ã¨0ï¿½ï¿½ï¿½_ï¿½=>ï¿½ï¿½ï¿½y\\ï¿½ï¿½ï¿½\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÍŽï¿½Ç€RWï¿½ï¿½vï¿½ï¿½J<{ï¿½ï¿½ï¿½hï¿½ï¿½Fï¿½khPz\'ï¿½ï¿½ï¿½sï¿½^eï¿½ï¿½ï¿½6ï¿½ï¿½ï¿½iï¿½.ï¿½ï¿½Iï¿½ï¿½Oï¿½)Uï¿½ï¿½#ï¿½ï¿½ï¿½.xï¿½b!ï¿½ï¿½ï¿½\\0ï¿½ï¿½v7ï¿½@ï¿½ï¿½ï¿½Eï¿½@ï¿½/5ï¿½tï¿½.Â´ï¿½ï¿½ï¿½ï¿½ï¿½5Pï¿½+>#ï¿½L ï¿½ï¿½ï¿½]\'"ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½]kï¿½xï¿½ï¿½ï¿½ï¿½ï¿½jï¿½ï¿½hï¿½' . "\0" . 'ntoï¿½' . "\0" . 'ï¿½[Ä’oï¿½ï¿½' . "\0" . 'ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½poï¿½`ï¿½ï¿½ï¿½aï¿½.ï¿½ï¿½Psï¿½ï¿½ï¿½ï¿½Þ´ï¿½ï¿½~ï¿½ï¿½ï¿½Xï¿½vï¿½ï¿½Yï¿½ï¿½mï¿½ï¿½ï¿½ï¿½ï¿½gï¿½!}:ï¿½ï¿½8>ï¿½æŸŽUï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Z&ï¿½ï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½Aï¿½kï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½/' . "\0" . 'ï¿½ï¿½P=jï¿½ï¿½ï¿½0ï¿½rï¿½ï¿½5^wï¿½d6ï¿½ltï¿½
+o=ï¿½ï¿½ï¿½ï¿½L
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½rï¿½FS@|ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½5/ÅŠï¿½,3Ø' . "\0" . '\'ï¿½yï¿½ï¿½SDJï¿½mï¿½-tu1
+@}ï¿½ï¿½zï¿½ï¿½@;.' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½M7%ï¿½ï¿½ï¿½ï¿½' . "\0" . '' . "\0" . 'ï¿½6' . "\0" . '' . "\0" . '' . "\0" . '
+' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½ï¿½' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'put_test.xmlUT' . "\0" . 'ï¿½GUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'Ú‰M7mh
+ï¿½ï¿½' . "\0" . '' . "\0" . 'sI' . "\0" . '' . "\0" . '
+' . "\0" . '
+' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½ï¿½' . "\0" . '' . "\0" . 'put_test.htmlUT' . "\0" . 'ï¿½ï¿½GUx' . "\0" . '' . "\0" . 'PK' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½' . "\0" . '' . "\0" . '' . "\0" . 'ï¿½(' . "\0" . '' . "\0" . '' . "\0" . '' . "\0" . '', 'headers' => 
+['ETag' => 'ef383241769f0df9a982a37b53504cf2', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'application/octet-stream; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 53 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -5320,105 +3179,17 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_renamed.xml/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_renamed.xml/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_renamed.xml/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_renamed.xml/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml/", response="869d101292152afe329fdf0fc81469a1", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_renamed.xml/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml/", response="869d101292152afe329fdf0fc81469a1", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 404 Not Found',
-    ),
-  ),
-  54 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test.html',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test.html',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test.html',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test.html',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'MOVE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/put_test_renamed.xml',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="600ec1c595ab133287ebef17c75f9cb1", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test.html',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="600ec1c595ab133287ebef17c75f9cb1", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  55 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_renamed.xml/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_renamed.xml/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_renamed.xml/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_renamed.xml/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml/", response="869d101292152afe329fdf0fc81469a1", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_renamed.xml/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml/", response="869d101292152afe329fdf0fc81469a1", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 404 Not Found']], 54 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test.html', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test.html', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test.html', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test.html', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'MOVE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/put_test_renamed.xml', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="600ec1c595ab133287ebef17c75f9cb1", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test.html', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test.html", response="600ec1c595ab133287ebef17c75f9cb1", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 55 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -5427,105 +3198,17 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/", response="397f7bb3f49f6f2beaedbc597babfca5", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/", response="397f7bb3f49f6f2beaedbc597babfca5", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 404 Not Found',
-    ),
-  ),
-  56 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_content.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_content.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_content.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'MOVE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="6c4fdb145783fe536ddfc8b24eebf4dd", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="6c4fdb145783fe536ddfc8b24eebf4dd", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  57 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/", response="397f7bb3f49f6f2beaedbc597babfca5", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt/", response="397f7bb3f49f6f2beaedbc597babfca5", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 404 Not Found']], 56 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_content.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_content.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_content.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'MOVE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="6c4fdb145783fe536ddfc8b24eebf4dd", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_content.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_content.txt", response="6c4fdb145783fe536ddfc8b24eebf4dd", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 57 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -5534,105 +3217,17 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_non_utf8_test.txt/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_non_utf8_test.txt/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_non_utf8_test.txt/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt/", response="a8b778ec14ae2e03ab875723b3969ea0", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt/", response="a8b778ec14ae2e03ab875723b3969ea0", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 404 Not Found',
-    ),
-  ),
-  58 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'MOVE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/put_non_utf8_test.txt',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="ffb84ad314b66449321f9245697a6411", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="ffb84ad314b66449321f9245697a6411", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  59 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_non_utf8_test.txt/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_non_utf8_test.txt/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_non_utf8_test.txt/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt/", response="a8b778ec14ae2e03ab875723b3969ea0", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt/", response="a8b778ec14ae2e03ab875723b3969ea0", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 404 Not Found']], 58 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'MOVE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/put_non_utf8_test.txt', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="ffb84ad314b66449321f9245697a6411", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_utf8_filename_Ï‚Ò£Î±âŠâˆ­â‹‰â‚¬â‚±â€±âŒ.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_utf8_filename_%cf%82%d2%a3%ce%b1%e2%8a%81%e2%88%ad%e2%8b%89%e2%82%ac%e2%82%b1%e2%80%b1%e2%81%8c.txt", response="ffb84ad314b66449321f9245697a6411", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 59 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -5641,44 +3236,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -5780,20 +3340,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  60 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 60 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -5802,44 +3352,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -5863,69 +3378,15 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  61 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_renamed.xml',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_renamed.xml',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_renamed.xml',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_renamed.xml',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'COPY',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => 'infinity',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection/put_test_renamed.xml',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml", response="e7ad32d15d6eb99000f18cf87d7e1383", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_renamed.xml',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml", response="e7ad32d15d6eb99000f18cf87d7e1383", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  62 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 61 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_renamed.xml', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_renamed.xml', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_renamed.xml', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_renamed.xml', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'COPY', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => 'infinity', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection/put_test_renamed.xml', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml", response="e7ad32d15d6eb99000f18cf87d7e1383", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_renamed.xml', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_renamed.xml", response="e7ad32d15d6eb99000f18cf87d7e1383", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 62 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -5934,44 +3395,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -5995,69 +3421,15 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  63 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'COPY',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => 'infinity',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt", response="71b7f954eda948bfbde4b755dfdd74ee", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt", response="71b7f954eda948bfbde4b755dfdd74ee", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  64 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 63 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'COPY', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => 'infinity', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt", response="71b7f954eda948bfbde4b755dfdd74ee", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_test_Ã¶Ã¤Ã¼ÃŸ.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_test_%c3%b6%c3%a4%c3%bc%c3%9f.txt", response="71b7f954eda948bfbde4b755dfdd74ee", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 64 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -6066,44 +3438,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -6127,69 +3464,15 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  65 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/put_non_utf8_test.txt',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_non_utf8_test.txt',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/put_non_utf8_test.txt',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'COPY',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => 'infinity',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection/put_non_utf8_test.txt',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt", response="f1f11a347537f3f153b705e681cb8d97", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt", response="f1f11a347537f3f153b705e681cb8d97", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  66 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 65 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/put_non_utf8_test.txt', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/put_non_utf8_test.txt', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/put_non_utf8_test.txt', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'COPY', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => 'infinity', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection/put_non_utf8_test.txt', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt", response="f1f11a347537f3f153b705e681cb8d97", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/put_non_utf8_test.txt', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/put_non_utf8_test.txt", response="f1f11a347537f3f153b705e681cb8d97", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 66 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -6198,44 +3481,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -6354,20 +3602,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  67 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 67 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -6376,105 +3614,17 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/renamed_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 404 Not Found',
-    ),
-  ),
-  68 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'MOVE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/renamed_collection',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection", response="9256da0b649b25ef39a4fe61ae09a517", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection", response="9256da0b649b25ef39a4fe61ae09a517", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  69 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/renamed_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 404 Not Found']], 68 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'MOVE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/renamed_collection', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection", response="9256da0b649b25ef39a4fe61ae09a517", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection", response="9256da0b649b25ef39a4fe61ae09a517", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 69 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -6483,44 +3633,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -6622,20 +3737,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  70 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 70 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -6644,44 +3749,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/renamed_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/renamed_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/renamed_collection/</D:href>
@@ -6800,20 +3870,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  71 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 71 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -6822,106 +3882,17 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 404 Not Found',
-    ),
-  ),
-  72 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/renamed_collection',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/renamed_collection',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'COPY',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => 'infinity',
-        'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection',
-        'HTTP_OVERWRITE' => 'T',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection", response="7efbd0a8b4de108f60a233d6bc515a64", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection", response="7efbd0a8b4de108f60a233d6bc515a64", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  73 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 404 Not Found']], 72 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/renamed_collection', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/renamed_collection', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'COPY', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => 'infinity', 'HTTP_DESTINATION' => 'http://webdav/secure_collection/subdir/collection', 'HTTP_OVERWRITE' => 'T', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection", response="7efbd0a8b4de108f60a233d6bc515a64", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection", response="7efbd0a8b4de108f60a233d6bc515a64", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 201 Created']], 73 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -6930,44 +3901,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -7090,20 +4026,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  74 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 74 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -7112,44 +4038,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/collection/", response="0928eb343b97ba103422278d6edd2d5a", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/collection/</D:href>
@@ -7268,20 +4159,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  75 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 75 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -7290,44 +4171,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/renamed_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/renamed_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/renamed_collection/</D:href>
@@ -7446,20 +4292,10 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  76 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 76 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -7468,44 +4304,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/renamed_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '0',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/renamed_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '0', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="696bda59824424e08d7dc1d513d6e541", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/renamed_collection/</D:href>
@@ -7529,66 +4330,15 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  77 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/renamed_collection/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'DELETE',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="3c8c3f077932650c8159ab1d3407fe84", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="3c8c3f077932650c8159ab1d3407fe84", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 204 No Content',
-    ),
-  ),
-  78 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8"?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 77 => 
+['request' => 
+['body' => '', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/renamed_collection/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/renamed_collection/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/renamed_collection/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/renamed_collection/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'DELETE', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="3c8c3f077932650c8159ab1d3407fe84", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/renamed_collection/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/renamed_collection/", response="3c8c3f077932650c8159ab1d3407fe84", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 204 No Content']], 78 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8"?>
 <propfind xmlns="DAV:"><prop>
 <getcontentlength xmlns="DAV:"/>
 <getlastmodified xmlns="DAV:"/>
@@ -7597,44 +4347,9 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
 <checked-in xmlns="DAV:"/>
 <checked-out xmlns="DAV:"/>
 </prop></propfind>
-',
-      'server' => 
-      array (
-        'SERVER_SOFTWARE' => 'lighttpd/1.4.22',
-        'SERVER_NAME' => 'webdav',
-        'GATEWAY_INTERFACE' => 'CGI/1.1',
-        'SERVER_PORT' => '80',
-        'SERVER_ADDR' => '::ffff:127.0.1.1',
-        'REMOTE_PORT' => '33458',
-        'REMOTE_ADDR' => '::ffff:127.0.1.1',
-        'CONTENT_LENGTH' => '288',
-        'SCRIPT_NAME' => '/index.php',
-        'PATH_INFO' => '/secure_collection/subdir/',
-        'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/',
-        'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php',
-        'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/',
-        'REQUEST_URI' => '/secure_collection/subdir/',
-        'REDIRECT_URI' => '/index.php/secure_collection/subdir/',
-        'QUERY_STRING' => '',
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REDIRECT_STATUS' => '200',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'webdav',
-        'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6',
-        'HTTP_CONNECTION' => 'TE',
-        'HTTP_TE' => 'trailers',
-        'HTTP_DEPTH' => '1',
-        'HTTP_CONTENT_LENGTH' => '288',
-        'CONTENT_TYPE' => 'application/xml',
-        'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'PHP_SELF' => '/index.php/secure_collection/subdir/',
-        'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"',
-        'REQUEST_TIME' => 1220431173,
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['SERVER_SOFTWARE' => 'lighttpd/1.4.22', 'SERVER_NAME' => 'webdav', 'GATEWAY_INTERFACE' => 'CGI/1.1', 'SERVER_PORT' => '80', 'SERVER_ADDR' => '::ffff:127.0.1.1', 'REMOTE_PORT' => '33458', 'REMOTE_ADDR' => '::ffff:127.0.1.1', 'CONTENT_LENGTH' => '288', 'SCRIPT_NAME' => '/index.php', 'PATH_INFO' => '/secure_collection/subdir/', 'PATH_TRANSLATED' => '/home/dotxp/web/webdav/htdocs/secure_collection/subdir/', 'SCRIPT_FILENAME' => '/home/dotxp/web/webdav/htdocs/index.php', 'DOCUMENT_ROOT' => '/home/dotxp/web/webdav/htdocs/', 'REQUEST_URI' => '/secure_collection/subdir/', 'REDIRECT_URI' => '/index.php/secure_collection/subdir/', 'QUERY_STRING' => '', 'REQUEST_METHOD' => 'PROPFIND', 'REDIRECT_STATUS' => '200', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'webdav', 'HTTP_USER_AGENT' => 'cadaver/0.23.2 neon/0.28.6', 'HTTP_CONNECTION' => 'TE', 'HTTP_TE' => 'trailers', 'HTTP_DEPTH' => '1', 'HTTP_CONTENT_LENGTH' => '288', 'CONTENT_TYPE' => 'application/xml', 'HTTP_AUTHORIZATION' => 'Digest username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'PHP_SELF' => '/index.php/secure_collection/subdir/', 'PHP_AUTH_DIGEST' => 'username="some", realm="eZ Components WebDAV", nonce="32ff013db9c2c66f0b83633165e73947", uri="/secure_collection/subdir/", response="34fb71372a82e6bf0042a91e6b1e1eb4", algorithm="MD5"', 'REQUEST_TIME' => 1220431173]], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:default="http://apache.org/dav/props/">
     <D:href>http://webdav/secure_collection/subdir/</D:href>
@@ -7736,15 +4451,7 @@ x¹#Ï' . "\0" . '™ô{J9qhËÃ›¨å[¡ó„BK q¡’ˆ&û—L.~,ÇŠ}à¶±;Q£sl÷ÅM¼†N—†¶,v=ZÃ
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-);
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'lighttpd/1.4.22/eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']]];
 
 ?>

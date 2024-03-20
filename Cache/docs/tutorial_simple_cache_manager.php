@@ -2,9 +2,7 @@
 
 require_once 'tutorial_autoload.php';
 
-$options = array(
-    'ttl'   => 30,
-);
+$options = ['ttl'   => 30];
 
 ezcCacheManager::createCache( 'simple', '/tmp/cache/plain', 'ezcCacheStorageFilePlain', $options );
 

@@ -28,7 +28,7 @@ class ezcPersistentFindQuery
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new persistent find query.
@@ -46,10 +46,7 @@ class ezcPersistentFindQuery
             throw new ezcBaseValueException( 'className', $className, 'string, length > 0' );
         }
 
-        $this->properties = array(
-            'className' => $className,
-            'query'     => $query,
-        );
+        $this->properties = ['className' => $className, 'query'     => $query];
     }
 
     /**
@@ -64,10 +61,7 @@ class ezcPersistentFindQuery
     public function __call( $methodName, $arguments )
     {
         $res = call_user_func_array(
-            array(
-                $this->properties['query'],
-                $methodName
-            ),
+            [$this->properties['query'], $methodName],
             $arguments
         );
 

@@ -19,7 +19,7 @@ require_once 'odt/test_classes/styler.php';
  */
 class ezcDocumentConverterDocbookToOdtTests extends ezcTestCase
 {
-    const WRITE_RESULTS = true;
+    public const WRITE_RESULTS = true;
 
     protected static $testDocuments = null;
 
@@ -27,7 +27,7 @@ class ezcDocumentConverterDocbookToOdtTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -35,15 +35,12 @@ class ezcDocumentConverterDocbookToOdtTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/docbook/odt/s_*.xml' );
+            $testFiles = glob( __DIR__ . '/files/docbook/odt/s_*.xml' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'fodt'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'fodt'];
             }
         }
 
@@ -64,7 +61,7 @@ class ezcDocumentConverterDocbookToOdtTests extends ezcTestCase
         $doc->loadFile( $from );
 
         $converter = new ezcDocumentDocbookToOdtConverter();
-        $converter->options->styler->addStylesheetFile( dirname( __FILE__ ) . '/odt/test_data/test_styles.pcss' );
+        $converter->options->styler->addStylesheetFile( __DIR__ . '/odt/test_data/test_styles.pcss' );
 
         $created = $converter->convert( $doc );
 
@@ -133,7 +130,7 @@ class ezcDocumentConverterDocbookToOdtTests extends ezcTestCase
         $stylerMock = new ezcDocumentOdtTestStyler();
         $converter = new ezcDocumentDocbookToOdtConverter(
             new ezcDocumentDocbookToOdtConverterOptions(
-                array( 'styler' => $stylerMock )
+                ['styler' => $stylerMock]
             )
         );
         $created = $converter->convert( $doc );

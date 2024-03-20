@@ -22,120 +22,72 @@
  */
 abstract class ezcWebdavResponse extends ezcWebdavInfrastructureBase
 {
-    const STATUS_100            = 100;
-    const STATUS_101            = 101;
+    public const STATUS_100            = 100;
+    public const STATUS_101            = 101;
 
-    const STATUS_200            = 200;
-    const STATUS_201            = 201;
-    const STATUS_202            = 202;
-    const STATUS_203            = 203;
-    const STATUS_204            = 204;
-    const STATUS_205            = 205;
-    const STATUS_206            = 206;
-    const STATUS_207            = 207;
+    public const STATUS_200            = 200;
+    public const STATUS_201            = 201;
+    public const STATUS_202            = 202;
+    public const STATUS_203            = 203;
+    public const STATUS_204            = 204;
+    public const STATUS_205            = 205;
+    public const STATUS_206            = 206;
+    public const STATUS_207            = 207;
 
-    const STATUS_300            = 300;
-    const STATUS_301            = 301;
-    const STATUS_302            = 302;
-    const STATUS_303            = 303;
-    const STATUS_304            = 304;
-    const STATUS_305            = 305;
+    public const STATUS_300            = 300;
+    public const STATUS_301            = 301;
+    public const STATUS_302            = 302;
+    public const STATUS_303            = 303;
+    public const STATUS_304            = 304;
+    public const STATUS_305            = 305;
 
-    const STATUS_400            = 400;
-    const STATUS_401            = 401;
-    const STATUS_402            = 402;
-    const STATUS_403            = 403;
-    const STATUS_404            = 404;
-    const STATUS_405            = 405;
-    const STATUS_406            = 406;
-    const STATUS_407            = 407;
-    const STATUS_408            = 408;
-    const STATUS_409            = 409;
-    const STATUS_410            = 410;
-    const STATUS_411            = 411;
-    const STATUS_412            = 412;
-    const STATUS_413            = 413;
-    const STATUS_414            = 414;
-    const STATUS_415            = 415;
-    const STATUS_423            = 423;
-    const STATUS_424            = 424;
+    public const STATUS_400            = 400;
+    public const STATUS_401            = 401;
+    public const STATUS_402            = 402;
+    public const STATUS_403            = 403;
+    public const STATUS_404            = 404;
+    public const STATUS_405            = 405;
+    public const STATUS_406            = 406;
+    public const STATUS_407            = 407;
+    public const STATUS_408            = 408;
+    public const STATUS_409            = 409;
+    public const STATUS_410            = 410;
+    public const STATUS_411            = 411;
+    public const STATUS_412            = 412;
+    public const STATUS_413            = 413;
+    public const STATUS_414            = 414;
+    public const STATUS_415            = 415;
+    public const STATUS_423            = 423;
+    public const STATUS_424            = 424;
 
-    const STATUS_500            = 500;
-    const STATUS_501            = 501;
-    const STATUS_502            = 502;
-    const STATUS_503            = 503;
-    const STATUS_504            = 504;
-    const STATUS_505            = 505;
-    const STATUS_507            = 507;
+    public const STATUS_500            = 500;
+    public const STATUS_501            = 501;
+    public const STATUS_502            = 502;
+    public const STATUS_503            = 503;
+    public const STATUS_504            = 504;
+    public const STATUS_505            = 505;
+    public const STATUS_507            = 507;
 
     /**
      * User readable names for error status codes
      * 
      * @var array
      */
-    static public $errorNames = array(
-        self::STATUS_100        => 'Continue',
-        self::STATUS_101        => 'Switching Protocols',
-
-        self::STATUS_200        => 'OK',
-        self::STATUS_201        => 'Created',
-        self::STATUS_202        => 'Accepted',
-        self::STATUS_203        => 'Non-Authoritative Information',
-        self::STATUS_204        => 'No Content',
-        self::STATUS_205        => 'Reset Content',
-        self::STATUS_206        => 'Partial Content',
-        self::STATUS_207        => 'Multi-Status',
-
-        self::STATUS_300        => 'Multiple Choices',
-        self::STATUS_301        => 'Moved Permanently',
-        self::STATUS_302        => 'Moved Temporarily',
-        self::STATUS_303        => 'See Other',
-        self::STATUS_304        => 'Not Modified',
-        self::STATUS_305        => 'Use Proxy',
-
-        self::STATUS_400        => 'Bad Request',
-        self::STATUS_401        => 'Unauthorized',
-        self::STATUS_402        => 'Payment Required',
-        self::STATUS_403        => 'Forbidden',
-        self::STATUS_404        => 'Not Found',
-        self::STATUS_405        => 'Method Not Allowed',
-        self::STATUS_406        => 'Not Acceptable',
-        self::STATUS_407        => 'Proxy Authentication Required',
-        self::STATUS_408        => 'Request Time-out',
-        self::STATUS_409        => 'Conflict',
-        self::STATUS_410        => 'Gone',
-        self::STATUS_411        => 'Length Required',
-        self::STATUS_412        => 'Precondition Failed',
-        self::STATUS_413        => 'Request Entity Too Large',
-        self::STATUS_414        => 'Request-URI Too Large',
-        self::STATUS_415        => 'Unsupported Media Type',
-        self::STATUS_423        => 'Locked',
-        self::STATUS_424        => 'Failed Dependency',
-
-        self::STATUS_500        => 'Internal Server Error',
-        self::STATUS_501        => 'Not Implemented',
-        self::STATUS_502        => 'Bad Gateway',
-        self::STATUS_503        => 'Service Unavailable',
-        self::STATUS_504        => 'Gateway Time-out',
-        self::STATUS_505        => 'HTTP Version not supported',
-        self::STATUS_507        => 'Insufficient Storage',
-    );
+    static public $errorNames = [self::STATUS_100        => 'Continue', self::STATUS_101        => 'Switching Protocols', self::STATUS_200        => 'OK', self::STATUS_201        => 'Created', self::STATUS_202        => 'Accepted', self::STATUS_203        => 'Non-Authoritative Information', self::STATUS_204        => 'No Content', self::STATUS_205        => 'Reset Content', self::STATUS_206        => 'Partial Content', self::STATUS_207        => 'Multi-Status', self::STATUS_300        => 'Multiple Choices', self::STATUS_301        => 'Moved Permanently', self::STATUS_302        => 'Moved Temporarily', self::STATUS_303        => 'See Other', self::STATUS_304        => 'Not Modified', self::STATUS_305        => 'Use Proxy', self::STATUS_400        => 'Bad Request', self::STATUS_401        => 'Unauthorized', self::STATUS_402        => 'Payment Required', self::STATUS_403        => 'Forbidden', self::STATUS_404        => 'Not Found', self::STATUS_405        => 'Method Not Allowed', self::STATUS_406        => 'Not Acceptable', self::STATUS_407        => 'Proxy Authentication Required', self::STATUS_408        => 'Request Time-out', self::STATUS_409        => 'Conflict', self::STATUS_410        => 'Gone', self::STATUS_411        => 'Length Required', self::STATUS_412        => 'Precondition Failed', self::STATUS_413        => 'Request Entity Too Large', self::STATUS_414        => 'Request-URI Too Large', self::STATUS_415        => 'Unsupported Media Type', self::STATUS_423        => 'Locked', self::STATUS_424        => 'Failed Dependency', self::STATUS_500        => 'Internal Server Error', self::STATUS_501        => 'Not Implemented', self::STATUS_502        => 'Bad Gateway', self::STATUS_503        => 'Service Unavailable', self::STATUS_504        => 'Gateway Time-out', self::STATUS_505        => 'HTTP Version not supported', self::STATUS_507        => 'Insufficient Storage'];
 
     /**
      * Properties.
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'responseDescription' => null,
-    );
+    protected $properties = ['responseDescription' => null];
 
     /**
      * Container for header information. 
      * 
      * @var array(string=>mixed)
      */
-    protected $headers = array();
+    protected $headers = [];
     
     /**
      * Construct error response from status.
@@ -204,7 +156,7 @@ abstract class ezcWebdavResponse extends ezcWebdavInfrastructureBase
      */
     public final function getHeader( $headerName )
     {
-        return isset( $this->headers[$headerName] ) ? $this->headers[$headerName] : null;
+        return $this->headers[$headerName] ?? null;
     }
 
     /**

@@ -9,11 +9,5 @@
  * @package PhpGenerator
  */
 
-return array(
-    'ezcPhpGeneratorException'     => 'PhpGenerator/exceptions/php_generator_exception.php',
-    'ezcPhpGeneratorFlowException' => 'PhpGenerator/exceptions/flow_exception.php',
-    'ezcPhpGenerator'              => 'PhpGenerator/php_generator.php',
-    'ezcPhpGeneratorParameter'     => 'PhpGenerator/structs/php_generator_parameter.php',
-    'ezcPhpGeneratorReturnData'    => 'PhpGenerator/structs/php_generator_return_data.php',
-);
+return ['ezcPhpGeneratorException'     => 'PhpGenerator/exceptions/php_generator_exception.php', 'ezcPhpGeneratorFlowException' => 'PhpGenerator/exceptions/flow_exception.php', 'ezcPhpGenerator'              => 'PhpGenerator/php_generator.php', 'ezcPhpGeneratorParameter'     => 'PhpGenerator/structs/php_generator_parameter.php', 'ezcPhpGeneratorReturnData'    => 'PhpGenerator/structs/php_generator_return_data.php'];
 ?>

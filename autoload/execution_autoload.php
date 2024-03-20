@@ -9,14 +9,5 @@
  * @package Execution
  */
 
-return array(
-    'ezcExecutionException'                   => 'Execution/exceptions/exception.php',
-    'ezcExecutionAlreadyInitializedException' => 'Execution/exceptions/already_initialized.php',
-    'ezcExecutionInvalidCallbackException'    => 'Execution/exceptions/invalid_callback.php',
-    'ezcExecutionNotInitializedException'     => 'Execution/exceptions/not_initialized.php',
-    'ezcExecutionWrongClassException'         => 'Execution/exceptions/wrong_class.php',
-    'ezcExecutionErrorHandler'                => 'Execution/interfaces/execution_handler.php',
-    'ezcExecution'                            => 'Execution/execution.php',
-    'ezcExecutionBasicErrorHandler'           => 'Execution/handlers/basic_handler.php',
-);
+return ['ezcExecutionException'                   => 'Execution/exceptions/exception.php', 'ezcExecutionAlreadyInitializedException' => 'Execution/exceptions/already_initialized.php', 'ezcExecutionInvalidCallbackException'    => 'Execution/exceptions/invalid_callback.php', 'ezcExecutionNotInitializedException'     => 'Execution/exceptions/not_initialized.php', 'ezcExecutionWrongClassException'         => 'Execution/exceptions/wrong_class.php', 'ezcExecutionErrorHandler'                => 'Execution/interfaces/execution_handler.php', 'ezcExecution'                            => 'Execution/execution.php', 'ezcExecutionBasicErrorHandler'           => 'Execution/handlers/basic_handler.php'];
 ?>

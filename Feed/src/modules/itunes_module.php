@@ -218,16 +218,11 @@ class ezcFeedITunesModule extends ezcFeedModule
         switch ( $this->level )
         {
             case 'feed':
-                $elements = array( 'author', 'block', 'category',
-                                   'explicit', 'image', 'keywords',
-                                   'newfeedurl', 'owner', 'subtitle',
-                                   'summary' );
+                $elements = ['author', 'block', 'category', 'explicit', 'image', 'keywords', 'newfeedurl', 'owner', 'subtitle', 'summary'];
                 break;
 
             case 'item':
-                $elements = array( 'author', 'block', 'duration',
-                                   'explicit', 'image', 'keywords',
-                                   'subtitle', 'summary' );
+                $elements = ['author', 'block', 'duration', 'explicit', 'image', 'keywords', 'subtitle', 'summary'];
                 break;
         }
 
@@ -242,14 +237,14 @@ class ezcFeedITunesModule extends ezcFeedModule
                     case 'category':
                         foreach ( $this->category as $values )
                         {
-                            $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . $element );
+                            $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . $element );
                             $root->appendChild( $elementTag );
 
                             // generate sub-categories
                             if ( isset( $values->category ) )
                             {
                                 $subCategory = $values->category;
-                                $subTag = $xml->createElement( $this->getNamespacePrefix() . ':' . 'category' );
+                                $subTag = $xml->createElement( static::getNamespacePrefix() . ':' . 'category' );
                                 $this->addAttribute( $xml, $subTag, 'text', $subCategory->term );
                                 $elementTag->appendChild( $subTag );
                             }
@@ -262,7 +257,7 @@ class ezcFeedITunesModule extends ezcFeedModule
                         break;
 
                     case 'image':
-                        $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . $element );
+                        $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . $element );
                         $root->appendChild( $elementTag );
 
                         if ( isset( $values->link ) )
@@ -272,14 +267,14 @@ class ezcFeedITunesModule extends ezcFeedModule
                         break;
 
                     case 'owner':
-                        $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . $element );
+                        $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . $element );
                         $root->appendChild( $elementTag );
 
-                        foreach ( array( 'email', 'name' ) as $subElement )
+                        foreach ( ['email', 'name'] as $subElement )
                         {
                             if ( isset( $values->$subElement ) )
                             {
-                                $tag = $xml->createElement( $this->getNamespacePrefix() . ':' . $subElement );
+                                $tag = $xml->createElement( static::getNamespacePrefix() . ':' . $subElement );
                                 $val = $xml->createTextNode( $values->$subElement );
                                 $tag->appendChild( $val );
                                 $elementTag->appendChild( $tag );
@@ -289,14 +284,14 @@ class ezcFeedITunesModule extends ezcFeedModule
                         break;
 
                     case 'newfeedurl':
-                        $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . 'new-feed-url' );
+                        $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . 'new-feed-url' );
                         $root->appendChild( $elementTag );
 
                         $elementTag->nodeValue = $values->href;
                         break;
 
                     default:
-                        $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . $element );
+                        $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . $element );
                         $root->appendChild( $elementTag );
 
                         $elementTag->nodeValue = $values->__toString();
@@ -397,19 +392,14 @@ class ezcFeedITunesModule extends ezcFeedModule
         switch ( $this->level )
         {
             case 'feed':
-                if ( in_array( $name, array( 'author', 'block', 'category',
-                                             'explicit', 'image', 'keywords',
-                                             'newfeedurl', 'owner', 'subtitle',
-                                             'summary' ) ) )
+                if ( in_array( $name, ['author', 'block', 'category', 'explicit', 'image', 'keywords', 'newfeedurl', 'owner', 'subtitle', 'summary'] ) )
                 {
                     return true;
                 }
                 break;
 
             case 'item':
-                if ( in_array( $name, array( 'author', 'block', 'duration',
-                                             'explicit', 'image', 'keywords',
-                                             'subtitle', 'summary' ) ) )
+                if ( in_array( $name, ['author', 'block', 'duration', 'explicit', 'image', 'keywords', 'subtitle', 'summary'] ) )
                 {
                     return true;
                 }

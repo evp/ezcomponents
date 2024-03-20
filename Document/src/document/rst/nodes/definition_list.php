@@ -55,7 +55,7 @@ class ezcDocumentRstDefinitionListNode extends ezcDocumentRstBlockNode
         );
 
         $node->nodes       = $properties['nodes'];
-        $node->indentation = isset( $properties['indentation'] ) ? $properties['indentation'] : 0;
+        $node->indentation = $properties['indentation'] ?? 0;
         return $node;
     }
 }

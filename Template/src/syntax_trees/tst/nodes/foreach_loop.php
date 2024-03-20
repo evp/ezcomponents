@@ -87,8 +87,8 @@ class ezcTemplateForeachLoopTstNode extends ezcTemplateBlockTstNode
         $this->value = $this->keyVariableName = $this->itemVariableName = null;
         $this->name = 'foreach';
 
-        $this->increment = array();
-        $this->decrement = array();
+        $this->increment = [];
+        $this->decrement = [];
 
         $this->offset = $this->limit = null;
     }
@@ -100,16 +100,7 @@ class ezcTemplateForeachLoopTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'name'             => $this->name,
-                      'isClosingBlock'   => $this->isClosingBlock,
-                      'isNestingBlock'   => $this->isNestingBlock,
-                      'array'            => $this->array,
-                      'keyVariableName'  => $this->keyVariableName,
-                      'itemVariableName' => $this->itemVariableName,
-                      'increment'        => $this->increment,
-                      'decrement'        => $this->decrement,
-                      'value'            => $this->value,
-                      'children'         => $this->children );
+        return ['name'             => $this->name, 'isClosingBlock'   => $this->isClosingBlock, 'isNestingBlock'   => $this->isNestingBlock, 'array'            => $this->array, 'keyVariableName'  => $this->keyVariableName, 'itemVariableName' => $this->itemVariableName, 'increment'        => $this->increment, 'decrement'        => $this->decrement, 'value'            => $this->value, 'children'         => $this->children];
     }
 
     /**

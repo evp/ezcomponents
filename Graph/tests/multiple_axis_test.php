@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -32,8 +32,8 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
     {
         static $i = 0;
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -77,7 +77,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
     {
         $options = new ezcGraphLineChart();
 
-        $axis = array();
+        $axis = [];
 
         $options->additionalAxis[] = $axis[] = new ezcGraphChartElementNumericAxis();
         $options->additionalAxis[] = $axis[] = new ezcGraphChartElementNumericAxis();
@@ -148,7 +148,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $chart->additionalAxis['marker'] = new ezcGraphChartElementNumericAxis();
         $chart->additionalAxis['new base'] = new ezcGraphChartElementLabeledAxis();
 
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['sampleData']->yAxis = $chart->additionalAxis['marker'];
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['new base'];
         
@@ -178,7 +178,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphLineChart();
 
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['sampleData']->yAxis = new ezcGraphChartElementNumericAxis();
         $chart->data['sampleData']->xAxis = new ezcGraphChartElementLabeledAxis();
         
@@ -213,7 +213,7 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $chart->additionalAxis['marker'] = new ezcGraphChartElementNumericAxis();
         $chart->additionalAxis['new base'] = new ezcGraphChartElementLabeledAxis();
 
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['sampleData']->yAxis = $chart->additionalAxis['marker'];
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['new base'];
         
@@ -245,17 +245,17 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $empty->chartPosition = .5;
         $empty->label = 'Marker';
 
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 620, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 620, 'sample 5' => 1] );
         $chart->data['sampleData']->yAxis = $chart->additionalAxis['marker'];
         
-        $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329) );
-        $chart->data['Even more data'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
+        $chart->data['moreData'] = new ezcGraphArrayDataSet( ['sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329] );
+        $chart->data['Even more data'] = new ezcGraphArrayDataSet( ['sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450] );
 
         $chart->render( 500, 200, $filename );
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -275,17 +275,17 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $empty->chartPosition = .0;
         $empty->label = 'Marker';
 
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1, 'sample 6' => 74) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1, 'sample 6' => 74] );
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['marker'];
         
-        $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329) );
-        $chart->data['Even more data'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
+        $chart->data['moreData'] = new ezcGraphArrayDataSet( ['sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329] );
+        $chart->data['Even more data'] = new ezcGraphArrayDataSet( ['sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450] );
 
         $chart->render( 500, 200, $filename );
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -309,17 +309,17 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $empty->chartPosition = .5;
         $empty->label = 'Marker';
 
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1, 'sample 6' => 74) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1, 'sample 6' => 74] );
         $chart->data['sampleData']->xAxis = $chart->additionalAxis['marker'];
         
-        $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329) );
-        $chart->data['Even more data'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
+        $chart->data['moreData'] = new ezcGraphArrayDataSet( ['sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329] );
+        $chart->data['Even more data'] = new ezcGraphArrayDataSet( ['sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450] );
 
         $chart->render( 500, 200, $filename );
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -347,14 +347,14 @@ class ezcGraphMultipleAxisTest extends ezcGraphTestCase
         $empty->axisSpace = 0;
         $empty->label = 'Marker';
 
-        $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329) );
-        $chart->data['Even more data'] = new ezcGraphArrayDataSet( array( 'sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450) );
+        $chart->data['moreData'] = new ezcGraphArrayDataSet( ['sample 1' => 112, 'sample 2' => 54, 'sample 3' => 12, 'sample 4' => -167, 'sample 5' => 329] );
+        $chart->data['Even more data'] = new ezcGraphArrayDataSet( ['sample 1' => 300, 'sample 2' => -30, 'sample 3' => 220, 'sample 4' => 67, 'sample 5' => 450] );
 
         $chart->render( 500, 200, $filename );
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

@@ -23,7 +23,7 @@ class ezcDocumentWikiMediawikiTokenizerTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -31,15 +31,12 @@ class ezcDocumentWikiMediawikiTokenizerTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/wiki/mediawiki/s_*.txt' );
+            $testFiles = glob( __DIR__ . '/files/wiki/mediawiki/s_*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'tokens'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'tokens'];
             }
         }
 
@@ -81,7 +78,7 @@ class ezcDocumentWikiMediawikiTokenizerTests extends ezcTestCase
         {
             $tokenizer = new ezcDocumentWikiMediawikiTokenizer();
             $tokens = $tokenizer->tokenizeFile(
-                dirname( __FILE__ ) . '/files/wiki/mediawiki/not_existant_file.txt'
+                __DIR__ . '/files/wiki/mediawiki/not_existant_file.txt'
             );
             $this->fail( 'Expected ezcBaseFileNotFoundException.' );
         }

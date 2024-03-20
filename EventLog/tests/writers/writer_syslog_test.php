@@ -30,14 +30,16 @@ class ezcLogSyslogWriterTest extends ezcTestCase
     // External test. Runs through the tests below and returns the syslog output.
     public function testExternalTest()
     {
-        $dataDir = dirname( __FILE__ ) . "/data";
-        $phpPath = isset( $_SERVER["_"] ) ? $_SERVER["_"] : "/bin/env php";
+        $dataDir = __DIR__ . "/data";
+        $phpPath = $_SERVER["_"] ?? "/bin/env php";
         $scriptFile = "{$dataDir}/syslog_tests.php";
-        $desc = array(
-            0 => array( "pipe", "r" ),  // stdin
-            1 => array( "pipe", "w" ),  // stdout
-            2 => array( "pipe", "w" )   // stderr
-        );
+        $desc = [
+            0 => ["pipe", "r"],
+            // stdin
+            1 => ["pipe", "w"],
+            // stdout
+            2 => ["pipe", "w"],
+        ];
         $proc = proc_open("'{$phpPath}' '{$scriptFile}'", $desc, $pipes );
 
         fclose( $pipes[0] );
@@ -87,7 +89,7 @@ class ezcLogSyslogWriterTest extends ezcTestCase
     public function testExtras()
     {
         $this->writer->writeLogMessage( "I was bowling.", ezcLog::DEBUG, "Donny", "quotes",
-                                        array( "movie" => "The Big Lebowski" ) );
+                                        ["movie" => "The Big Lebowski"] );
     }
 
     public function testDebug()

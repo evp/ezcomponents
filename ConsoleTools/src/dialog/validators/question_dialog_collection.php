@@ -34,11 +34,7 @@ class ezcConsoleQuestionDialogCollectionValidator implements ezcConsoleQuestionD
      * 
      * @var array
      */
-    protected $properties  = array(
-        "collection"    => array(),
-        "default"       => null,
-        "conversion"    => self::CONVERT_NONE,
-    );
+    protected $properties  = ["collection"    => [], "default"       => null, "conversion"    => self::CONVERT_NONE];
 
     /**
      * Creates a new question dialog collection validator. 

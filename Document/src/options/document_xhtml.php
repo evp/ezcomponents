@@ -28,7 +28,7 @@ class ezcDocumentXhtmlOptions extends ezcDocumentXmlOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->xmlHeader = false;
 

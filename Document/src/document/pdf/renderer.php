@@ -68,44 +68,27 @@ abstract class ezcDocumentPdfRenderer
              ( $styles['background-color']->value['alpha'] < 1 ) )
         {
             $this->driver->drawPolygon(
-                array(
-                    array(
-                        $space->x -
-                            $styles['padding']->value['left'] -
-                            $styles['border']->value['left']['width'],
-                        $space->y -
-                            $styles['padding']->value['top'] -
-                            $styles['border']->value['top']['width'],
-                    ),
-                    array(
-                        $space->x +
-                            $styles['padding']->value['right'] +
-                            $styles['border']->value['right']['width'] +
-                            $space->width,
-                        $space->y -
-                            $styles['padding']->value['top'] -
-                            $styles['border']->value['top']['width'],
-                    ),
-                    array(
-                        $space->x +
-                            $styles['padding']->value['right'] +
-                            $styles['border']->value['right']['width'] +
-                            $space->width,
-                        $space->y +
-                            $styles['padding']->value['bottom'] +
-                            $styles['border']->value['bottom']['width'] +
-                            $space->height,
-                    ),
-                    array(
-                        $space->x -
-                            $styles['padding']->value['left'] -
-                            $styles['border']->value['left']['width'],
-                        $space->y +
-                            $styles['padding']->value['bottom'] +
-                            $styles['border']->value['bottom']['width'] +
-                            $space->height,
-                    ),
-                ),
+                [[$space->x -
+                    $styles['padding']->value['left'] -
+                    $styles['border']->value['left']['width'], $space->y -
+                    $styles['padding']->value['top'] -
+                    $styles['border']->value['top']['width']], [$space->x +
+                    $styles['padding']->value['right'] +
+                    $styles['border']->value['right']['width'] +
+                    $space->width, $space->y -
+                    $styles['padding']->value['top'] -
+                    $styles['border']->value['top']['width']], [$space->x +
+                    $styles['padding']->value['right'] +
+                    $styles['border']->value['right']['width'] +
+                    $space->width, $space->y +
+                    $styles['padding']->value['bottom'] +
+                    $styles['border']->value['bottom']['width'] +
+                    $space->height], [$space->x -
+                    $styles['padding']->value['left'] -
+                    $styles['border']->value['left']['width'], $space->y +
+                    $styles['padding']->value['bottom'] +
+                    $styles['border']->value['bottom']['width'] +
+                    $space->height]],
                 $styles['background-color']->value
             );
         }
@@ -125,47 +108,35 @@ abstract class ezcDocumentPdfRenderer
      */
     protected function renderBoxBorder( ezcDocumentPdfBoundingBox $space, array $styles, $renderTop = true, $renderBottom = true )
     {
-        $topLeft = array(
-            $space->x -
-                $styles['padding']->value['left'] -
-                $styles['border']->value['left']['width'] / 2,
-            $space->y -
-                $styles['padding']->value['top'] -
-                $styles['border']->value['top']['width'] / 2,
-        );
-        $topRight = array(
-            $space->x +
-                $styles['padding']->value['right'] +
-                $styles['border']->value['right']['width'] / 2 +
-                $space->width,
-            $space->y -
-                $styles['padding']->value['top'] -
-                $styles['border']->value['top']['width'] / 2,
-        );
-        $bottomRight = array(
-            $space->x +
-                $styles['padding']->value['right'] +
-                $styles['border']->value['right']['width'] / 2 +
-                $space->width,
-            $space->y +
-                $styles['padding']->value['bottom'] +
-                $styles['border']->value['bottom']['width'] / 2 +
-                $space->height,
-        );
-        $bottomLeft = array(
-            $space->x -
-                $styles['padding']->value['left'] -
-                $styles['border']->value['left']['width'] / 2,
-            $space->y +
-                $styles['padding']->value['bottom'] +
-                $styles['border']->value['bottom']['width'] / 2 +
-                $space->height,
-        );
+        $topLeft = [$space->x -
+            $styles['padding']->value['left'] -
+            $styles['border']->value['left']['width'] / 2, $space->y -
+            $styles['padding']->value['top'] -
+            $styles['border']->value['top']['width'] / 2];
+        $topRight = [$space->x +
+            $styles['padding']->value['right'] +
+            $styles['border']->value['right']['width'] / 2 +
+            $space->width, $space->y -
+            $styles['padding']->value['top'] -
+            $styles['border']->value['top']['width'] / 2];
+        $bottomRight = [$space->x +
+            $styles['padding']->value['right'] +
+            $styles['border']->value['right']['width'] / 2 +
+            $space->width, $space->y +
+            $styles['padding']->value['bottom'] +
+            $styles['border']->value['bottom']['width'] / 2 +
+            $space->height];
+        $bottomLeft = [$space->x -
+            $styles['padding']->value['left'] -
+            $styles['border']->value['left']['width'] / 2, $space->y +
+            $styles['padding']->value['bottom'] +
+            $styles['border']->value['bottom']['width'] / 2 +
+            $space->height];
 
         if ( $styles['border']->value['left']['width'] > 0 )
         {
             $this->driver->drawPolyline(
-                array( $topLeft, $bottomLeft ),
+                [$topLeft, $bottomLeft],
                 $styles['border']->value['left']['color'],
                 $styles['border']->value['left']['width']
             );
@@ -174,7 +145,7 @@ abstract class ezcDocumentPdfRenderer
         if ( $renderTop && $styles['border']->value['top']['width'] > 0 )
         {
             $this->driver->drawPolyline(
-                array( $topLeft, $topRight ),
+                [$topLeft, $topRight],
                 $styles['border']->value['top']['color'],
                 $styles['border']->value['top']['width']
             );
@@ -183,7 +154,7 @@ abstract class ezcDocumentPdfRenderer
         if ( $styles['border']->value['right']['width'] > 0 )
         {
             $this->driver->drawPolyline(
-                array( $topRight, $bottomRight ),
+                [$topRight, $bottomRight],
                 $styles['border']->value['right']['color'],
                 $styles['border']->value['right']['width']
             );
@@ -192,7 +163,7 @@ abstract class ezcDocumentPdfRenderer
         if ( $renderBottom && $styles['border']->value['bottom']['width'] > 0 )
         {
             $this->driver->drawPolyline(
-                array( $bottomRight, $bottomLeft ),
+                [$bottomRight, $bottomLeft],
                 $styles['border']->value['bottom']['color'],
                 $styles['border']->value['bottom']['width']
             );

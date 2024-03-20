@@ -43,7 +43,7 @@ class ezcWebdavPluginRegistry
      *
      * @var array(string=>array(string=>bool))
      */
-    private $hooks = array();
+    private $hooks = [];
 
     /**
      * Registered plugins. 
@@ -57,7 +57,7 @@ class ezcWebdavPluginRegistry
      * 
      * @var array(string=>ezcWebdavPluginConfiguration)
      */
-    private $plugins = array();
+    private $plugins = [];
     
 
     /**
@@ -81,7 +81,7 @@ class ezcWebdavPluginRegistry
      * 
      * @var array
      */
-    private $assignedHooks = array();
+    private $assignedHooks = [];
 
     /**
      * Creates a new plugin registry.

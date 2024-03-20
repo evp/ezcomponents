@@ -23,7 +23,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -31,15 +31,12 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/odt/tests/s_*.fodt' );
+            $testFiles = glob( __DIR__ . '/files/odt/tests/s_*.fodt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -4 ) . 'xml'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -4 ) . 'xml'];
             }
         }
 
@@ -54,7 +51,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
         {
             $document->loadString(
                 file_get_contents(
-                    dirname( __FILE__ ) . '/files/odt/bad_markup/broken_xml.fodt'
+                    __DIR__ . '/files/odt/bad_markup/broken_xml.fodt'
                 )
             );
             $this->fail( 'Exception not thrown on load of invalid markup.' );
@@ -73,7 +70,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
 
         $docbook = new ezcDocumentDocbook();
         $docbook->options->validate = false;
-        $docbook->loadFile( dirname( __FILE__ ) . '/files/docbook/invalid.xml' );
+        $docbook->loadFile( __DIR__ . '/files/docbook/invalid.xml' );
 
         $document = new ezcDocumentOdt();
         $document->options->validate = true;
@@ -91,7 +88,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
         $document = new ezcDocumentOdt();
 
         $actRes = $document->validateFile(
-            dirname( __FILE__ ) . '/files/odt/tests/s_000_simple.fodt'
+            __DIR__ . '/files/odt/tests/s_000_simple.fodt'
         );
 
         $this->assertTrue( $actRes );
@@ -102,7 +99,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
         $document = new ezcDocumentOdt();
 
         $actRes = $document->validateFile(
-            dirname( __FILE__ ) . '/files/odt/invalid/s_000_simple.fodt'
+            __DIR__ . '/files/odt/invalid/s_000_simple.fodt'
         );
 
         $this->assertType(
@@ -149,11 +146,7 @@ class ezcDocumentOdtDocbookTests extends ezcTestCase
 
         $document = new ezcDocumentOdt();
         $document->setFilters(
-            array(
-                new ezcDocumentOdtImageFilter( $options ),
-                new ezcDocumentOdtElementFilter(),
-                new ezcDocumentOdtStyleFilter(),
-            )
+            [new ezcDocumentOdtImageFilter( $options ), new ezcDocumentOdtElementFilter(), new ezcDocumentOdtStyleFilter()]
         );
         $document->loadFile( $from );
 

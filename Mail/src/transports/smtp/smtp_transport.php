@@ -108,52 +108,52 @@ class ezcMailSmtpTransport implements ezcMailTransport
     /**
      * Plain connection.
      */
-    const CONNECTION_PLAIN = 'tcp';
+    public const CONNECTION_PLAIN = 'tcp';
 
     /**
      * SSL connection.
      */
-    const CONNECTION_SSL = 'ssl';
+    public const CONNECTION_SSL = 'ssl';
 
     /**
      * SSLv2 connection.
      */
-    const CONNECTION_SSLV2 = 'sslv2';
+    public const CONNECTION_SSLV2 = 'sslv2';
 
     /**
      * SSLv3 connection.
      */
-    const CONNECTION_SSLV3 = 'sslv3';
+    public const CONNECTION_SSLV3 = 'sslv3';
 
     /**
      * TLS connection.
      */
-    const CONNECTION_TLS = 'tls';
+    public const CONNECTION_TLS = 'tls';
 
     /**
      * Authenticate with 'AUTH PLAIN'.
      */
-    const AUTH_PLAIN = 'PLAIN';
+    public const AUTH_PLAIN = 'PLAIN';
 
     /**
      * Authenticate with 'AUTH LOGIN'.
      */
-    const AUTH_LOGIN = 'LOGIN';
+    public const AUTH_LOGIN = 'LOGIN';
 
     /**
      * Authenticate with 'AUTH CRAM-MD5'.
      */
-    const AUTH_CRAM_MD5 = 'CRAM-MD5';
+    public const AUTH_CRAM_MD5 = 'CRAM-MD5';
 
     /**
      * Authenticate with 'AUTH DIGEST-MD5'.
      */
-    const AUTH_DIGEST_MD5 = 'DIGEST-MD5';
+    public const AUTH_DIGEST_MD5 = 'DIGEST-MD5';
 
     /**
      * Authenticate with 'AUTH NTLM'.
      */
-    const AUTH_NTLM = 'NTLM';
+    public const AUTH_NTLM = 'NTLM';
 
     /**
      * No authentication method. Specifies that the transport should try to
@@ -161,35 +161,35 @@ class ezcMailSmtpTransport implements ezcMailTransport
      * decreasing strength order. If one method fails an exception will be
      * thrown.
      */
-    const AUTH_AUTO = null;
+    public const AUTH_AUTO = null;
 
     /**
      * The line-break characters to use.
      *
      * @access private
      */
-    const CRLF = "\r\n";
+    public const CRLF = "\r\n";
 
     /**
      * We are not connected to a server.
      *
      * @access private
      */
-    const STATUS_NOT_CONNECTED = 1;
+    public const STATUS_NOT_CONNECTED = 1;
 
     /**
      * We are connected to the server, but not authenticated.
      *
      * @access private
      */
-    const STATUS_CONNECTED = 2;
+    public const STATUS_CONNECTED = 2;
 
     /**
      * We are connected to the server and authenticated.
      *
      * @access private
      */
-    const STATUS_AUTHENTICATED = 3;
+    public const STATUS_AUTHENTICATED = 3;
 
     /**
      * The connection to the SMTP server.
@@ -228,7 +228,7 @@ class ezcMailSmtpTransport implements ezcMailTransport
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Holds the options of this class.
@@ -268,7 +268,7 @@ class ezcMailSmtpTransport implements ezcMailTransport
      * @param int $port
      * @param ezcMailSmtpTransportOptions|array(string=>mixed) $options
      */
-    public function __construct( $host, $user = '', $password = '', $port = null, $options = array() )
+    public function __construct( $host, $user = '', $password = '', $port = null, $options = [] )
     {
         if ( $options instanceof ezcMailSmtpTransportOptions )
         {
@@ -642,13 +642,7 @@ class ezcMailSmtpTransport implements ezcMailTransport
      */
     public static function getSupportedAuthMethods()
     {
-        return array(
-            ezcMailSmtpTransport::AUTH_DIGEST_MD5,
-            ezcMailSmtpTransport::AUTH_CRAM_MD5,
-            ezcMailSmtpTransport::AUTH_NTLM,
-            ezcMailSmtpTransport::AUTH_LOGIN,
-            ezcMailSmtpTransport::AUTH_PLAIN,
-            );
+        return [ezcMailSmtpTransport::AUTH_DIGEST_MD5, ezcMailSmtpTransport::AUTH_CRAM_MD5, ezcMailSmtpTransport::AUTH_NTLM, ezcMailSmtpTransport::AUTH_LOGIN, ezcMailSmtpTransport::AUTH_PLAIN];
     }
 
     /**
@@ -670,8 +664,8 @@ class ezcMailSmtpTransport implements ezcMailTransport
      */
     protected function sortAuthMethods( array $methods )
     {
-        $result = array();
-        $unsupported = array();
+        $result = [];
+        $unsupported = [];
         $supportedAuthMethods = self::getSupportedAuthMethods();
         foreach ( $supportedAuthMethods as $method )
         {
@@ -770,20 +764,9 @@ class ezcMailSmtpTransport implements ezcMailTransport
         $A1 = pack( 'H32', md5( "{$this->user}:{$realm}:{$this->password}" ) ) . ":{$nonce}:{$cnonce}";
         $response = md5( md5( $A1 ) . ":{$nonce}:{$nc}:{$cnonce}:{$qop}:" . md5( $A2 ) );
 
-        $loginParams = array(
-            'username' => "\"{$this->user}\"",
-            'cnonce' => "\"{$cnonce}\"",
-            'nonce' => "\"{$nonce}\"",
-            'nc' => $nc,
-            'qop' => $qop,
-            'digest-uri' => "\"{$digestUri}\"",
-            'charset' => $charset,
-            'realm' => "\"{$realm}\"",
-            'response' => $response,
-            'maxbuf' => $maxbuf
-            );
+        $loginParams = ['username' => "\"{$this->user}\"", 'cnonce' => "\"{$cnonce}\"", 'nonce' => "\"{$nonce}\"", 'nc' => $nc, 'qop' => $qop, 'digest-uri' => "\"{$digestUri}\"", 'charset' => $charset, 'realm' => "\"{$realm}\"", 'response' => $response, 'maxbuf' => $maxbuf];
 
-        $parts = array();
+        $parts = [];
         foreach ( $loginParams as $key => $value )
         {
             $parts[] = "{$key}={$value}";
@@ -872,14 +855,19 @@ class ezcMailSmtpTransport implements ezcMailTransport
 
         // Parse NTLM type 2 message
         $msg2 = base64_decode( trim( substr( $serverResponse, 4 ) ) );
-        $parts = array(
-                        substr( $msg2, 0, 8 ),  // Signature ("NTLMSSP\0")
-                        substr( $msg2, 8, 4 ),  // Message type
-                        substr( $msg2, 12, 8 ), // Target name (security buffer)
-                        substr( $msg2, 20, 4 ), // Flags
-                        substr( $msg2, 24, 8 ), // Challenge
-                        substr( $msg2, 32 )     // The rest of information
-                      );
+        $parts = [
+            substr( $msg2, 0, 8 ),
+            // Signature ("NTLMSSP\0")
+            substr( $msg2, 8, 4 ),
+            // Message type
+            substr( $msg2, 12, 8 ),
+            // Target name (security buffer)
+            substr( $msg2, 20, 4 ),
+            // Flags
+            substr( $msg2, 24, 8 ),
+            // Challenge
+            substr( $msg2, 32 ),
+        ];
 
         $challenge = $parts[4];
 
@@ -1144,15 +1132,7 @@ class ezcMailSmtpTransport implements ezcMailTransport
      */
     protected function authNtlmMessageType1( $workstation, $domain )
     {
-        $parts = array(
-                        "NTLMSSP\x00",
-                        "\x01\x00\x00\x00",
-                        "\x07\x32\x00\x00",
-                        $this->authNtlmSecurityBuffer( $domain, 32 + strlen( $workstation ) ),
-                        $this->authNtlmSecurityBuffer( $workstation, 32 ),
-                        $workstation,
-                        $domain
-                      );
+        $parts = ["NTLMSSP\x00", "\x01\x00\x00\x00", "\x07\x32\x00\x00", $this->authNtlmSecurityBuffer( $domain, 32 + strlen( $workstation ) ), $this->authNtlmSecurityBuffer( $workstation, 32 ), $workstation, $domain];
 
         return implode( "", $parts );
     }
@@ -1184,22 +1164,7 @@ class ezcMailSmtpTransport implements ezcMailTransport
         $ntlmOffset = $lmOffset + strlen( $lm );
         $sessionOffset = $ntlmOffset + strlen( $ntlm );
 
-        $parts = array(
-                        "NTLMSSP\x00",
-                        "\x03\x00\x00\x00",
-                        $this->authNtlmSecurityBuffer( $lm, $lmOffset ),
-                        $this->authNtlmSecurityBuffer( $ntlm, $ntlmOffset ),
-                        $this->authNtlmSecurityBuffer( $domain, $domainOffset ),
-                        $this->authNtlmSecurityBuffer( $user, $userOffset ),
-                        $this->authNtlmSecurityBuffer( $workstation, $workstationOffset ),
-                        $this->authNtlmSecurityBuffer( $session, $sessionOffset ),
-                        "\x01\x02\x00\x00",
-                        $domain,
-                        $user,
-                        $workstation,
-                        $lm,
-                        $ntlm
-                      );
+        $parts = ["NTLMSSP\x00", "\x03\x00\x00\x00", $this->authNtlmSecurityBuffer( $lm, $lmOffset ), $this->authNtlmSecurityBuffer( $ntlm, $ntlmOffset ), $this->authNtlmSecurityBuffer( $domain, $domainOffset ), $this->authNtlmSecurityBuffer( $user, $userOffset ), $this->authNtlmSecurityBuffer( $workstation, $workstationOffset ), $this->authNtlmSecurityBuffer( $session, $sessionOffset ), "\x01\x02\x00\x00", $domain, $user, $workstation, $lm, $ntlm];
 
         return implode( '', $parts );
     }

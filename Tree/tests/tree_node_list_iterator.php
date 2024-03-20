@@ -113,7 +113,7 @@ class ezcTreeNodeListIteratorTest extends ezcTestCase
         foreach ( new ezcTreeNodeListIterator( $tree, $list ) as $key => $data )
         {
             self::assertSame( 'vuur', $key );
-            self::assertSame( array( 'en' => 'fire', 'de' => 'feuer', 'no' => 'fyr' ), $data );
+            self::assertSame( ['en' => 'fire', 'de' => 'feuer', 'no' => 'fyr'], $data );
         }
     }
 

@@ -24,17 +24,17 @@ $out = new ezcConsoleOutput();
 
 // Define format schemes for even and odd rows
 $out->formats->evenRow->color = 'red';
-$out->formats->evenRow->style = array( 'bold' );
+$out->formats->evenRow->style = ['bold'];
 
 $out->formats->oddRow->color = 'blue';
-$out->formats->oddRow->style = array( 'bold' );
+$out->formats->oddRow->style = ['bold'];
 
 // Define format schemes for even and odd cells
 $out->formats->evenCell->color = 'red';
-$out->formats->evenCell->style = array( 'negative' );
+$out->formats->evenCell->style = ['negative'];
 
 $out->formats->oddCell->color = 'blue';
-$out->formats->oddCell->style = array( 'negative' );
+$out->formats->oddCell->style = ['negative'];
 
 // Create a new table with a width of 60 chars
 $table = new ezcConsoleTable( $out, 60 );

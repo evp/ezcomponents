@@ -54,7 +54,7 @@ class ezcDocumentOdtPcssStyler implements ezcDocumentOdtStyler
      * 
      * @var array(ezcDocumentOdtPcssPreprocessor)
      */
-    private $stylePreProcessors = array();
+    private $stylePreProcessors = [];
 
     /**
      * PCSS parser. 

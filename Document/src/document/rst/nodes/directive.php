@@ -78,7 +78,7 @@ class ezcDocumentRstDirectiveNode extends ezcDocumentRstBlockNode
         $node->nodes       = $properties['nodes'];
         $node->parameters  = $properties['parameters'];
         $node->options     = $properties['options'];
-        $node->indentation = isset( $properties['indentation'] ) ? $properties['indentation'] : 0;
+        $node->indentation = $properties['indentation'] ?? 0;
 
         if ( isset( $properties['tokens'] ) )
         {

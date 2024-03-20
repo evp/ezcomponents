@@ -25,9 +25,7 @@ class ezcDocumentEzXml extends ezcDocumentXmlBase implements ezcDocumentValidati
      */
     public function __construct( ezcDocumentEzXmlOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentEzXmlOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentEzXmlOptions() );
     }
 
     /**
@@ -108,7 +106,7 @@ class ezcDocumentEzXml extends ezcDocumentXmlBase implements ezcDocumentValidati
 
         // Get all errors
         $xmlErrors = libxml_get_errors();
-        $errors = array();
+        $errors = [];
         foreach ( $xmlErrors as $error )
         {
             $errors[] = ezcDocumentValidationError::createFromLibXmlError( $error );
@@ -141,7 +139,7 @@ class ezcDocumentEzXml extends ezcDocumentXmlBase implements ezcDocumentValidati
 
         // Get all errors
         $xmlErrors = libxml_get_errors();
-        $errors = array();
+        $errors = [];
         foreach ( $xmlErrors as $error )
         {
             $errors[] = ezcDocumentValidationError::createFromLibXmlError( $error );

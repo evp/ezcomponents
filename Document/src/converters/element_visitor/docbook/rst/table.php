@@ -97,8 +97,8 @@ class ezcDocumentDocbookToRstTableHandler extends ezcDocumentDocbookToRstBaseHan
     {
         $columns  = $this->estimateColumnWidths( $converter, $node );
         $rows     = $node->getElementsByTagName( 'row' );
-        $table    = array();
-        $rowLines = array();
+        $table    = [];
+        $rowLines = [];
         $rowNr    = 0;
         $oldWidth = $converter->options->wordWrap;
 
@@ -148,7 +148,7 @@ class ezcDocumentDocbookToRstTableHandler extends ezcDocumentDocbookToRstBaseHan
                 {
                     $last         = ( $cellNr >= ( $cellCount - 1 ) );
                     $width        = $columns[$cellNr] + ( $last ? 0 : 2 );
-                    $lineContent  = isset( $table[$rowNr][$cellNr][$line] ) ? $table[$rowNr][$cellNr][$line] : '';
+                    $lineContent  = $table[$rowNr][$cellNr][$line] ?? '';
                     $root        .= $last ? $lineContent . "\n" : str_pad( rtrim( $lineContent ), $width, ' ' );
                 }
             }

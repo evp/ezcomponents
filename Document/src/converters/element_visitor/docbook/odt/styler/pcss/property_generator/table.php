@@ -29,10 +29,7 @@ class ezcDocumentOdtStyleTablePropertyGenerator extends ezcDocumentOdtStylePrope
     {
         parent::__construct(
             $styleConverters,
-            array(
-                'margin',
-                'background-color',
-            )
+            ['margin', 'background-color']
         );
     }
 

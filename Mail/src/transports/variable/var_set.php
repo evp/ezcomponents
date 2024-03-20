@@ -35,7 +35,7 @@ class ezcMailVariableSet implements ezcMailParserSet
      *
      * @var array(string)
      */
-    private $mail = array();
+    private $mail = [];
 
     /**
      * Constructs a new set that contains one mail from $mail.

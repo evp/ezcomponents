@@ -20,21 +20,21 @@ class ezcDocumentRstTokenizer
      * Common whitespace characters. The vertical tab is excluded, because it
      * causes strange problems with PCRE.
      */
-    const WHITESPACE_CHARS  = ' \\t';
+    public const WHITESPACE_CHARS  = ' \\t';
 
     /**
      * Allowed character sets for headlines.
      *
      * @see http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#sections
      */
-    const SPECIAL_CHARS     = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~-';
+    public const SPECIAL_CHARS     = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~-';
 
     /**
      * Characters ending a pure text section.
      *
      * @see http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html#enumerated-lists
      */
-    const TEXT_END_CHARS    = '`*_\\\\[\\]|()"\':.\\r\\n\\t ';
+    public const TEXT_END_CHARS    = '`*_\\\\[\\]|()"\':.\\r\\n\\t ';
 
     /**
      * List with tokens and a regular expression matching the given token.
@@ -43,7 +43,7 @@ class ezcDocumentRstTokenizer
      *
      * @var array
      */
-    protected $tokens = array();
+    protected $tokens = [];
 
     /**
      * Construct tokenizer
@@ -55,13 +55,12 @@ class ezcDocumentRstTokenizer
      */
     public function __construct()
     {
-        $this->tokens = array(
+        $this->tokens = [
             // Whitespaces
             ezcDocumentRstToken::NEWLINE =>
                 '(\\A[' . self::WHITESPACE_CHARS . ']*(?P<value>\\r\\n|\\r|\\n))S',
             ezcDocumentRstToken::WHITESPACE =>
                 '(\\A(?P<value>[' . self::WHITESPACE_CHARS . ']+))S',
-
             // Sequences of special characters
             ezcDocumentRstToken::SPECIAL_CHARS =>
                 '(\\A(?P<value>([' . self::SPECIAL_CHARS . ']|\\xe2\\x80\\xa2|\\xe2\\x80\\xa3|\\xe2\\x81\\x83)\\2*))S',
@@ -69,11 +68,10 @@ class ezcDocumentRstTokenizer
                 '(\\A(?P<value>\\\\))S',
             ezcDocumentRstToken::EOF =>
                 '(\\A(?P<value>))S',
-
             // This should be last match
             ezcDocumentRstToken::TEXT_LINE =>
                 '(\\A(?P<value>(?: [^' . self::TEXT_END_CHARS . ']|[^' . self::TEXT_END_CHARS . '])+))S',
-        );
+        ];
     }
 
     /**
@@ -132,7 +130,7 @@ class ezcDocumentRstTokenizer
     {
         $line = 1;
         $position = 1;
-        $tokens = array();
+        $tokens = [];
 
         while ( strlen( $string ) > 0 )
         {
@@ -144,7 +142,7 @@ class ezcDocumentRstTokenizer
                     // list and update all variables.
                     $newToken = new ezcDocumentRstToken(
                         $token,
-                        ( isset( $matches['value'] ) ? $matches['value'] : null ),
+                        ( $matches['value'] ?? null ),
                         $line,
                         $position
                     );

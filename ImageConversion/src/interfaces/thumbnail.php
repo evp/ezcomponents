@@ -64,7 +64,7 @@ interface ezcImageThumbnailFilters
      * @param array $color Fill color.
      * @return void
      */
-    public function filledThumbnail( $width, $height, $color = array() );
+    public function filledThumbnail( $width, $height, $color = [] );
 }
 
 ?>

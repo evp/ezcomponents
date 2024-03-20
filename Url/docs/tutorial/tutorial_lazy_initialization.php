@@ -10,7 +10,7 @@ class customLazyUrlConfiguration implements ezcBaseConfigurationInitializer
         $urlCfg->script = 'index.php';
 
         // define delimiters for unordered parameter names
-        $urlCfg->unorderedDelimiters = array( '(', ')' );
+        $urlCfg->unorderedDelimiters = ['(', ')'];
 
         // define ordered parameters
         $urlCfg->addOrderedParameter( 'section' );

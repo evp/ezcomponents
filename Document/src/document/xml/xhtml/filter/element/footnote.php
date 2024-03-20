@@ -72,9 +72,7 @@ class ezcDocumentXhtmlFootnoteElementFilter extends ezcDocumentXhtmlElementBaseF
 
         // Finally create footnote from element
         $element->setProperty( 'type', 'footnote' );
-        $element->setProperty( 'attributes', array(
-            'label' => $label,
-        ) );
+        $element->setProperty( 'attributes', ['label' => $label] );
 
         $paragraph = new ezcDocumentPropertyContainerDomElement( 'span', $this->footnotes[$footnoteName] );
         $element->appendChild( $paragraph );

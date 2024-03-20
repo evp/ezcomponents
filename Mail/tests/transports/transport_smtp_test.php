@@ -17,33 +17,33 @@ include_once( 'wrappers/smtp_wrapper.php' );
 class ezcMailTransportSmtpTest extends ezcTestCase
 {
     // This server is not accessible for the outside world
-    const HOST_NO_AUTH = '10.0.2.35';
-    const PORT_NO_AUTH = 2525;
-    const USER_NO_AUTH = 'user';
-    const PASS_NO_AUTH = 'password';
+    public const HOST_NO_AUTH = '10.0.2.35';
+    public const PORT_NO_AUTH = 2525;
+    public const USER_NO_AUTH = 'user';
+    public const PASS_NO_AUTH = 'password';
 
     // This server is not accessible for the outside world
-    const HOST_SSL = 'ezctest.ez.no';
-    const PORT_SSL = 465;
-    const USER_SSL = '';
-    const PASS_SSL = '';
+    public const HOST_SSL = 'ezctest.ez.no';
+    public const PORT_SSL = 465;
+    public const USER_SSL = '';
+    public const PASS_SSL = '';
 
-    const HOST_PLAIN = 'mta1.ez.no';
-    const PORT_PLAIN = 25;
-    const USER_PLAIN = 'ezcomponents@mail.ez.no';
-    const PASS_PLAIN = 'ezcomponents';
+    public const HOST_PLAIN = 'mta1.ez.no';
+    public const PORT_PLAIN = 25;
+    public const USER_PLAIN = 'ezcomponents@mail.ez.no';
+    public const PASS_PLAIN = 'ezcomponents';
 
-    const HOST_CRYPT = 'smtp.ez.no';
-    const PORT_CRYPT = 25;
-    const USER_CRYPT = 'ezcomponents';
-    const PASS_CRYPT = 'ezcomponents';
+    public const HOST_CRYPT = 'smtp.ez.no';
+    public const PORT_CRYPT = 25;
+    public const USER_CRYPT = 'ezcomponents';
+    public const PASS_CRYPT = 'ezcomponents';
 
     private $transport;
     private $mail;
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function skipIfNotInNetwork( $server, $port )
@@ -65,7 +65,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testWrapperMockAuthLoginFail250()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
@@ -91,7 +91,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testWrapperMockAuthLoginFailAuthNotSupported()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
@@ -117,11 +117,11 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testWrapperMockAuthLoginFailAuthMethodNotSupported()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'sortAuthMethods' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['sortAuthMethods'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         $smtp->expects( $this->any() )
              ->method( 'sortAuthMethods' )
-             ->will( $this->returnValue( array( 'no such authentication method' ) ) );
+             ->will( $this->returnValue( ['no such authentication method'] ) );
 
         try
         {
@@ -137,7 +137,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testWrapperMockAuthLoginFailAllMethods()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'auth' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['auth'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         $smtp->expects( $this->any() )
              ->method( 'auth' )
@@ -164,7 +164,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
      */
     public function testWrapperMockAuthLoginFailSortMethods()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'auth', 'getData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['auth', 'getData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         // mock that the SMTP server will return the supported authentication methods
         // in this order: PLAIN LOGIN DIGEST-MD5 NTLM CRAM-MD5
@@ -195,7 +195,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testWrapperMockCmdMailFail()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
@@ -223,7 +223,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testWrapperMockCmdRpctFail()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
@@ -251,7 +251,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testWrapperMockCmdDataFail()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN] );
 
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
@@ -283,7 +283,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $transport = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN );
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -299,7 +299,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $this->mail->addCc( new ezcMailAddress( 'nospam@ez.no', 'Foster Cc' ) );
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -315,7 +315,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $this->mail->addBcc( new ezcMailAddress( 'nospam@ez.no', 'Foster Bcc' ) );
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -332,7 +332,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $this->mail->addBcc( new ezcMailAddress( 'nospam@ez.no', 'Foster Bcc' ) );
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -347,7 +347,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $transport = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN );
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
             $transport->send( $this->mail );
         }
@@ -364,7 +364,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         try
         {
             $transport->keepConnection();
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
             $transport->send( $this->mail );
         }
@@ -380,7 +380,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $transport = new ezcMailSmtpTransport( "invalidhost.online.no" );
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -397,7 +397,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -412,10 +412,10 @@ class ezcMailTransportSmtpTest extends ezcTestCase
     public function testInvalidMailToEmptyArray()
     {
         $transport = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN );
-        $this->mail->to = array();
+        $this->mail->to = [];
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -432,7 +432,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         try
         {
             $this->mail->to = null;
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcBaseValueException $e )
@@ -449,7 +449,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $this->mail->returnPath = new ezcMailAddress( 'returnpath@ez.no' );
         try
         {
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $transport->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -469,8 +469,8 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_SSL ) );
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_SSL] );
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $smtp->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -491,9 +491,8 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         try
         {
             $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, self::PORT_SSL,
-                        array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_SSL,
-                               'connectionOptions' => array( 'wrapper_name' => array( 'option_name' => 'value' ) ) ) );
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+                        ['connectionType' => ezcMailSmtpTransport::CONNECTION_SSL, 'connectionOptions' => ['wrapper_name' => ['option_name' => 'value']]] );
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $smtp->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -513,8 +512,8 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV2 ) );
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV2] );
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $smtp->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -534,8 +533,8 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, self::PORT_SSL, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV3 ) );
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, self::PORT_SSL, ['connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV3] );
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $smtp->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -555,8 +554,8 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_TLS ) );
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_TLS] );
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $smtp->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -576,8 +575,8 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, self::PORT_NO_AUTH, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_TLS ) );
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, self::PORT_NO_AUTH, ['connectionType' => ezcMailSmtpTransport::CONNECTION_TLS] );
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( "Expected exception was not thrown" );
         }
@@ -592,8 +591,8 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN ) );
-            $this->mail->subject = __CLASS__ . ':' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_SSL, self::USER_SSL, self::PASS_SSL, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN] );
+            $this->mail->subject = self::class . ':' . __FUNCTION__;
             $smtp->send( $this->mail );
         }
         catch ( ezcMailTransportException $e )
@@ -614,7 +613,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
         $smtp->timeout = 10;
         $this->assertEquals( 10, $smtp->options->timeout );
         $this->assertEquals( ezcMailSmtpTransport::CONNECTION_PLAIN, $smtp->options->connectionType );
-        $this->assertEquals( array(), $smtp->options->connectionOptions );
+        $this->assertEquals( [], $smtp->options->connectionOptions );
 
         try
         {
@@ -649,7 +648,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testIsSet()
     {
-        $transport = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN ) );
+        $transport = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN] );
         $this->assertEquals( true, isset( $transport->user ) );
         $this->assertEquals( true, isset( $transport->password ) );
         $this->assertEquals( true, isset( $transport->senderHost ) );
@@ -662,22 +661,22 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
     public function testConstructorPort()
     {
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN ) );
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN] );
         $this->assertEquals( 25, $smtp->serverPort );
 
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_SSL ) );
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_SSL] );
         $this->assertEquals( self::PORT_SSL, $smtp->serverPort );
 
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV2 ) );
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV2] );
         $this->assertEquals( self::PORT_SSL, $smtp->serverPort );
 
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV3 ) );
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_SSLV3] );
         $this->assertEquals( self::PORT_SSL, $smtp->serverPort );
 
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_TLS ) );
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, null, ['connectionType' => ezcMailSmtpTransport::CONNECTION_TLS] );
         $this->assertEquals( self::PORT_SSL, $smtp->serverPort );
 
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, array( 'connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN ) );
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, ['connectionType' => ezcMailSmtpTransport::CONNECTION_PLAIN] );
         $this->assertEquals( self::PORT_PLAIN, $smtp->serverPort );
     }
 
@@ -685,7 +684,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, array( 'wrong_option' => ezcMailSmtpTransport::CONNECTION_TLS ) );
+            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, ['wrong_option' => ezcMailSmtpTransport::CONNECTION_TLS] );
             $this->fail( "Expected exception was not thrown" );
         }
         catch ( ezcBasePropertyNotFoundException $e )
@@ -694,7 +693,7 @@ class ezcMailTransportSmtpTest extends ezcTestCase
 
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, array( 'connectionOptions' => 'wrong value' ) );
+            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, ['connectionOptions' => 'wrong value'] );
             $this->fail( "Expected exception was not thrown" );
         }
         catch ( ezcBaseValueException $e )
@@ -722,16 +721,16 @@ class ezcMailTransportSmtpTest extends ezcTestCase
     {
         $options = new ezcMailSmtpTransportOptions();
         $this->assertEquals( ezcMailSmtpTransport::CONNECTION_PLAIN, $options->connectionType );
-        $this->assertEquals( array(), $options->connectionOptions );
+        $this->assertEquals( [], $options->connectionOptions );
     }
 
     public function testTransportOptionsSet()
     {
         $options = new ezcMailSmtpTransportOptions();
         $options->connectionType = ezcMailSmtpTransport::CONNECTION_TLS;
-        $options->connectionOptions = array( 'wrapper' => array( 'option' => 'value' ) );
+        $options->connectionOptions = ['wrapper' => ['option' => 'value']];
         $this->assertEquals( ezcMailSmtpTransport::CONNECTION_TLS, $options->connectionType );
-        $this->assertEquals( array( 'wrapper' => array( 'option' => 'value' ) ), $options->connectionOptions );
+        $this->assertEquals( ['wrapper' => ['option' => 'value']], $options->connectionOptions );
         $options->ssl = true;
         $this->assertEquals( ezcMailSmtpTransport::CONNECTION_SSL, $options->connectionType );
         $options->ssl = false;

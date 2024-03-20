@@ -21,7 +21,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -29,30 +29,18 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
         parent::setUp();
 
         $this->styles = new ezcDocumentPcssStyleInferencer();
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-size' => '8mm',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'page' ),
-                array(
-                    'page-size' => 'TEST',
-                    'margin'    => '0',
-                    'padding'   => '10',
-                )
-            ),
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-size' => '8mm']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['page'],
+            ['page-size' => 'TEST', 'margin'    => '0', 'padding'   => '10']
+        )] );
     }
 
     public function testRenderItemizedList()
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -78,7 +66,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/bullet_list.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/bullet_list.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(
@@ -89,10 +77,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
 
     public function testRenderOrderedList()
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -118,7 +103,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/ordered_list.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/ordered_list.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(
@@ -129,10 +114,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
 
     public function testRenderStackedLists()
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -164,7 +146,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/stacked_list.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/stacked_list.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(
@@ -175,32 +157,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
 
     public static function getOrderedListTypes()
     {
-        return array(
-            array(
-                'arabic',
-                array( '1', '2' ),
-            ),
-            array(
-                'loweralpha',
-                array( 'a', 'b' ),
-            ),
-            array(
-                'lowerroman',
-                array( 'i', 'ii' ),
-            ),
-            array(
-                'upperalpha',
-                array( 'A', 'B' ),
-            ),
-            array(
-                'upperroman',
-                array( 'I', 'II' ),
-            ),
-            array(
-                'unknown',
-                array( '1', '2' ),
-            ),
-        );
+        return [['arabic', ['1', '2']], ['loweralpha', ['a', 'b']], ['lowerroman', ['i', 'ii']], ['upperalpha', ['A', 'B']], ['upperroman', ['I', 'II']], ['unknown', ['1', '2']]];
     }
 
     /**
@@ -208,10 +165,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
      */
     public function testRenderOrderedListTypes( $type, array $items )
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 1 ) )->method( 'drawWord' )->with(
@@ -222,7 +176,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/ordered_list.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/ordered_list.xml' );
 
         // Set numeration type in document
         $dom   = $docbook->getDomDocument();
@@ -241,16 +195,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
 
     public static function getItemizedListTypes()
     {
-        return array(
-            array(
-                '*',
-                array( '*', '*' ),
-            ),
-            array(
-                '✦',
-                array( '✦', '✦' ),
-            ),
-        );
+        return [['*', ['*', '*']], ['✦', ['✦', '✦']]];
     }
 
     /**
@@ -258,10 +203,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
      */
     public function testRenderItemizedListTypes( $type, array $items )
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 1 ) )->method( 'drawWord' )->with(
@@ -272,7 +214,7 @@ class ezcDocumentPdfListRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/bullet_list.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/bullet_list.xml' );
 
         // Set numeration type in document
         $dom   = $docbook->getDomDocument();

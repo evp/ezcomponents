@@ -30,7 +30,7 @@ require_once 'meta_generator_test.php';
  * This file is not in use, yet, therefore not tested.
  */
 PHPUnit_Util_Filter::addFileToFilter(
-    dirname( __FILE__ ) . '/../../src/document/xml/odt/filter/element/html_table.php'
+    __DIR__ . '/../../src/document/xml/odt/filter/element/html_table.php'
 );
 
 class ezcDocumentOdtSuite extends PHPUnit_Framework_TestSuite

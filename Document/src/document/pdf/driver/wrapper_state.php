@@ -27,14 +27,14 @@ class ezcDocumentPdfTransactionalDriverWrapperState extends ezcBaseStruct
      * 
      * @var array
      */
-    public $calls = array();
+    public $calls = [];
 
     /**
      * Page creations, performed in the current transaction
      * 
      * @var array
      */
-    public $pageCreations = array();
+    public $pageCreations = [];
 
     /**
      * Current page, in this transaction

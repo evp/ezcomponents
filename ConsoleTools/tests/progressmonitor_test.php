@@ -17,18 +17,7 @@
  */
 class ezcConsoleProgressMonitorTest extends ezcTestCase
 {
-    private $stati = array(
-        array( 'UPLOAD', '/var/upload/test.php' ),
-        array( 'UPLOAD', '/var/upload/testing.php' ),
-        array( 'UPLOAD', '/var/upload/foo.php' ),
-        array( 'UPLOAD', '/var/upload/bar.php' ),
-        array( 'UPLOAD', '/var/upload/baz.png' ),
-        array( 'UPLOAD', '/var/upload/image.jpg' ),
-        array( 'UPLOAD', '/var/upload/bar.gif' ),
-        array( 'UPLOAD', '/var/upload/ez-logo.jpg' ),
-        array( 'UPLOAD', '/var/upload/ez-logo.png' ),
-        array( 'UPLOAD', '/var/upload/ez-components.png' ),
-    );
+    private $stati = [['UPLOAD', '/var/upload/test.php'], ['UPLOAD', '/var/upload/testing.php'], ['UPLOAD', '/var/upload/foo.php'], ['UPLOAD', '/var/upload/bar.php'], ['UPLOAD', '/var/upload/baz.png'], ['UPLOAD', '/var/upload/image.jpg'], ['UPLOAD', '/var/upload/bar.gif'], ['UPLOAD', '/var/upload/ez-logo.jpg'], ['UPLOAD', '/var/upload/ez-logo.png'], ['UPLOAD', '/var/upload/ez-components.png']];
 
 	public static function suite()
 	{
@@ -49,7 +38,7 @@ class ezcConsoleProgressMonitorTest extends ezcTestCase
         // To prepare test files use this:
         // file_put_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor1.dat', $res );
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor1.dat' ),
+            file_get_contents( __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor1.dat' ),
             $res,
             "Formated statusbar not generated correctly."
         );
@@ -69,7 +58,7 @@ class ezcConsoleProgressMonitorTest extends ezcTestCase
         // To prepare test files use this:
         // file_put_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor2.dat', $res );
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor2.dat' ),
+            file_get_contents( __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor2.dat' ),
             $res,
             "Formated statusbar not generated correctly."
         );
@@ -78,7 +67,7 @@ class ezcConsoleProgressMonitorTest extends ezcTestCase
     public function testProgressMonitor3()
     {
         $out = new ezcConsoleOutput();
-        $status = new ezcConsoleProgressMonitor( $out, 7, array( 'formatString' => '%2$10s %1$6.2f%% %3$s' ) );
+        $status = new ezcConsoleProgressMonitor( $out, 7, ['formatString' => '%2$10s %1$6.2f%% %3$s'] );
         ob_start();
         for ( $i = 0; $i < 7; $i++ )
         {
@@ -89,7 +78,7 @@ class ezcConsoleProgressMonitorTest extends ezcTestCase
         // To prepare test files use this:
         // file_put_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor3.dat', $res );
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor3.dat' ),
+            file_get_contents( __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor3.dat' ),
             $res,
             "Formated statusbar not generated correctly."
         );
@@ -100,12 +89,12 @@ class ezcConsoleProgressMonitorTest extends ezcTestCase
         $out = new ezcConsoleOutput();
         $out->formats->tag->color = 'red';
         $out->formats->percent->color = 'blue';
-        $out->formats->percent->style = array( 'bold' );
+        $out->formats->percent->style = ['bold'];
         $out->formats->data->color = 'green';
 
         $status = new ezcConsoleProgressMonitor( $out, 7, 
-            array( 'formatString' => 
-                $out->formatText( '%2$10s', 'tag' ) . ' ' . $out->formatText( '%1$6.2f%%', 'percent' ) . ' ' . $out->formatText( '%3$s', 'data' ) ) );
+            ['formatString' => 
+                $out->formatText( '%2$10s', 'tag' ) . ' ' . $out->formatText( '%1$6.2f%%', 'percent' ) . ' ' . $out->formatText( '%3$s', 'data' )] );
         ob_start();
         for ( $i = 0; $i < 7; $i++ )
         {
@@ -116,7 +105,7 @@ class ezcConsoleProgressMonitorTest extends ezcTestCase
         // To prepare test files use this:
         // file_put_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor4.dat', $res );
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor4.dat' ),
+            file_get_contents( __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testProgressMonitor4.dat' ),
             $res,
             "Formated statusbar not generated correctly."
         );
@@ -197,7 +186,7 @@ class ezcConsoleProgressMonitorTest extends ezcTestCase
     {
         $out = new ezcConsoleOutput();
         
-        $optArr = array();
+        $optArr = [];
         $optArr["formatString"] = "Foo bar";
         $optObj = new ezcConsoleProgressMonitorOptions();
         $optObj->formatString = "Foo bar";

@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -29,7 +29,7 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     protected function setUp()
@@ -41,8 +41,8 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
             $this->markTestSkipped( "This test requires PHP 5.1.3 or later." );
         }
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -57,11 +57,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteBlack();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120 ) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawGridLine',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawGridLine'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -91,11 +89,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->axis->axisSpace = 0;
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawGridLine',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawGridLine'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -124,11 +120,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->axis->axisLabelRenderer->outerGrid = true;
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawGridLine',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawGridLine'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -156,11 +150,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteBlack();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawStepRadar',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawStepRadar'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -189,11 +181,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->axis->axisLabelRenderer->outerStep = false;
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawStepRadar',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawStepRadar'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -223,11 +213,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->axis->axisLabelRenderer->innerStep = false;
         $chart->axis->axisLabelRenderer->outerStep = true;
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawStepRadar',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawStepRadar'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -257,11 +245,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->axis->axisLabelRenderer->innerStep = false;
         $chart->axis->axisLabelRenderer->outerStep = false;
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawStepRadar',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawStepRadar'] );
 
         $mockedRenderer
             ->expects( $this->exactly( 0 ) )
@@ -276,11 +262,9 @@ class ezcGraphAxisRadarRendererTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteBlack();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawText',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawText'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )

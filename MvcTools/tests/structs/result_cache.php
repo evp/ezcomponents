@@ -39,13 +39,7 @@ class ezcMvcResultCacheTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'vary' => 'php',
-        'expire' => 'ezc',
-        'controls' => 'ezp',
-        'pragma' => 'buddymiles',
-        'lastModified' => 'buddyguy',
-        );
+        $state = ['vary' => 'php', 'expire' => 'ezc', 'controls' => 'ezp', 'pragma' => 'buddymiles', 'lastModified' => 'buddyguy'];
         $struct = ezcMvcResultCache::__set_state( $state );
         $this->assertEquals( 'php', $struct->vary, 'Property vary does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->expire, 'Property expire does not have the expected value' );

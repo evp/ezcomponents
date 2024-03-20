@@ -25,32 +25,26 @@ class ezcDocumentPdfImageHandlerTests extends ezcDocumentPdfTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testImageHandler()
     {
-        $image = ezcDocumentPdfImage::createFromFile( dirname(  __FILE__ ) . '/../files/pdf/images/logo-white.png' );
+        $image = ezcDocumentPdfImage::createFromFile( __DIR__ . '/../files/pdf/images/logo-white.png' );
 
         $this->assertSame(
             'image/png',
             $image->getMimeType()
         );
         $this->assertEquals(
-            array( new ezcDocumentPcssMeasure( '113px' ), new ezcDocumentPcssMeasure( '57px' ) ),
+            [new ezcDocumentPcssMeasure( '113px' ), new ezcDocumentPcssMeasure( '57px' )],
             $image->getDimensions()
         );
     }
 
     public static function provideCanHandleData()
     {
-        return array(
-            array( 'files/pdf/images/logo-white.eps', false ),
-            array( 'files/pdf/images/logo-white.pdf', false ),
-            array( 'files/pdf/images/logo-white.png', true ),
-            array( 'files/pdf/images/logo-white.svg', false ),
-            array( 'files/pdf/images/logo-white.jpeg', true ),
-        );
+        return [['files/pdf/images/logo-white.eps', false], ['files/pdf/images/logo-white.pdf', false], ['files/pdf/images/logo-white.png', true], ['files/pdf/images/logo-white.svg', false], ['files/pdf/images/logo-white.jpeg', true]];
     }
 
     /**
@@ -59,18 +53,12 @@ class ezcDocumentPdfImageHandlerTests extends ezcDocumentPdfTestCase
     public function testCanHandleImageType( $image, $return )
     {
         $handler = new ezcDocumentPdfPhpImageHandler();
-        $this->assertSame( $return, $handler->canHandle( dirname( __FILE__ ) . '/../' . $image ) );
+        $this->assertSame( $return, $handler->canHandle( __DIR__ . '/../' . $image ) );
     }
 
     public static function provideDimensionData()
     {
-        return array(
-            array( 'files/pdf/images/logo-white.eps', false ),
-            array( 'files/pdf/images/logo-white.pdf', false ),
-            array( 'files/pdf/images/logo-white.png', array( new ezcDocumentPcssMeasure( '113px' ), new ezcDocumentPcssMeasure( '57px' ) ) ),
-            array( 'files/pdf/images/logo-white.svg', false ),
-            array( 'files/pdf/images/logo-white.png', array( new ezcDocumentPcssMeasure( '113px' ), new ezcDocumentPcssMeasure( '57px' ) ) ),
-        );
+        return [['files/pdf/images/logo-white.eps', false], ['files/pdf/images/logo-white.pdf', false], ['files/pdf/images/logo-white.png', [new ezcDocumentPcssMeasure( '113px' ), new ezcDocumentPcssMeasure( '57px' )]], ['files/pdf/images/logo-white.svg', false], ['files/pdf/images/logo-white.png', [new ezcDocumentPcssMeasure( '113px' ), new ezcDocumentPcssMeasure( '57px' )]]];
     }
 
     /**
@@ -79,18 +67,12 @@ class ezcDocumentPdfImageHandlerTests extends ezcDocumentPdfTestCase
     public function testImageDimensions( $image, $return )
     {
         $handler = new ezcDocumentPdfPhpImageHandler();
-        $this->assertEquals( $return, $handler->getDimensions( dirname( __FILE__ ) . '/../' . $image ) );
+        $this->assertEquals( $return, $handler->getDimensions( __DIR__ . '/../' . $image ) );
     }
 
     public static function provideMimeTypeData()
     {
-        return array(
-            array( 'files/pdf/images/logo-white.eps', false ),
-            array( 'files/pdf/images/logo-white.pdf', false ),
-            array( 'files/pdf/images/logo-white.png', 'image/png' ),
-            array( 'files/pdf/images/logo-white.svg', false ),
-            array( 'files/pdf/images/logo-white.jpeg', 'image/jpeg' ),
-        );
+        return [['files/pdf/images/logo-white.eps', false], ['files/pdf/images/logo-white.pdf', false], ['files/pdf/images/logo-white.png', 'image/png'], ['files/pdf/images/logo-white.svg', false], ['files/pdf/images/logo-white.jpeg', 'image/jpeg']];
     }
 
     /**
@@ -99,7 +81,7 @@ class ezcDocumentPdfImageHandlerTests extends ezcDocumentPdfTestCase
     public function testImageMimeType( $image, $return )
     {
         $handler = new ezcDocumentPdfPhpImageHandler();
-        $this->assertSame( $return, $handler->getMimeType( dirname( __FILE__ ) . '/../' . $image ) );
+        $this->assertSame( $return, $handler->getMimeType( __DIR__ . '/../' . $image ) );
     }
 }
 

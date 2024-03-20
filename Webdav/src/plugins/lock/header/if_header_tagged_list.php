@@ -36,7 +36,7 @@ class ezcWebdavLockIfHeaderTaggedList extends ezcWebdavLockIfHeaderList
      *
      * @param array $items
      */
-    public function __construct( array $items = array() )
+    public function __construct( array $items = [] )
     {
         $this->items = $items;
     }
@@ -83,7 +83,7 @@ class ezcWebdavLockIfHeaderTaggedList extends ezcWebdavLockIfHeaderList
         {
             return $this->items[$offset];
         }
-        return array();
+        return [];
     }
 
     /**
@@ -159,7 +159,7 @@ class ezcWebdavLockIfHeaderTaggedList extends ezcWebdavLockIfHeaderList
      */
     public function getLockTokens()
     {
-        $tokens = array();
+        $tokens = [];
         foreach ( $this->items as $itemList )
         {
             foreach( $itemList as $item )

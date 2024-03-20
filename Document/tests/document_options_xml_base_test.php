@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/options_test_case.php';
+require_once __DIR__ . '/options_test_case.php';
 
 /**
  * Test suite for class.
@@ -21,7 +21,7 @@ class ezcDocumentOptionsXmlBaseTests extends ezcDocumentOptionsTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function getOptionsClassName()
@@ -31,42 +31,17 @@ class ezcDocumentOptionsXmlBaseTests extends ezcDocumentOptionsTestCase
 
     public static function provideDefaultValues()
     {
-        return array(
-            array(
-                'indentXml', false,
-            ),
-            array(
-                'failOnError', true,
-            ),
-        );
+        return [['indentXml', false], ['failOnError', true]];
     }
 
     public static function provideValidData()
     {
-        return array(
-            array(
-                'indentXml',
-                array( true, false ),
-            ),
-            array(
-                'failOnError',
-                array( true, false ),
-            ),
-        );
+        return [['indentXml', [true, false]], ['failOnError', [true, false]]];
     }
 
     public static function provideInvalidData()
     {
-        return array(
-            array(
-                'indentXml',
-                array( 1, 'foo', .5, new StdClass(), array() ),
-            ),
-            array(
-                'failOnError',
-                array( 1, 'foo', .5, new StdClass(), array() ),
-            ),
-        );
+        return [['indentXml', [1, 'foo', .5, new StdClass(), []]], ['failOnError', [1, 'foo', .5, new StdClass(), []]]];
     }
 }
 

@@ -17,12 +17,12 @@ $log->log( "Could not find cache file: </var/cache/payment1234.cache>.", ezcLog:
 // ...
 
 // Write a SQL error. The category is set to SQL for this message only. 
-$log->log( "Cannot execute query: <SELECT * FROM Orders WHERE ID = '123'>.", ezcLog::ERROR, array( "category" => "SQL" ) );
+$log->log( "Cannot execute query: <SELECT * FROM Orders WHERE ID = '123'>.", ezcLog::ERROR, ["category" => "SQL"] );
 
 // ...
 
 // Write a debug message that includes the current filename and line number.
 // The category is left out.
-$log->log( "Starting shutdown process.", ezcLog::DEBUG, array( "category" => "", "file" => __FILE__, "line" => __LINE__ ) );
+$log->log( "Starting shutdown process.", ezcLog::DEBUG, ["category" => "", "file" => __FILE__, "line" => __LINE__] );
 
 ?>

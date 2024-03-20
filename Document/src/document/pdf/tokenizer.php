@@ -22,19 +22,19 @@ abstract class ezcDocumentPdfTokenizer
     /**
      * Constant indicating a breaking point, including a rendered space.
      */
-    const SPACE = 0;
+    public const SPACE = 0;
 
     /**
      * Constant indicating a possible breaking point without rendering a space
      * character.
      */
-    const WRAP = 1;
+    public const WRAP = 1;
 
     /**
      * Constant indicating a forced breaking point without rendering a space
      * character.
      */
-    const FORCED = 2;
+    public const FORCED = 2;
 
     /**
      * Split string into words

@@ -525,7 +525,7 @@ class ezcTemplatePermutationApp
         $this->outputToFile = false;
         if ( $dir === false )
         {
-            $dir = dirname( __FILE__ ) . "/../regression_tests";
+            $dir = __DIR__ . "/../regression_tests";
         }
         $this->fd = false;
         $this->dir = $dir;

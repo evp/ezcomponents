@@ -10,7 +10,7 @@ class ezcWebdavClientTest extends ezcTestCase
      * Helpfull if new client tests should be appended to existing ones or for
      * debugging purposes.
      */
-    const STORE_BACKEND = false;
+    public const STORE_BACKEND = false;
     
     /**
      * The server used.

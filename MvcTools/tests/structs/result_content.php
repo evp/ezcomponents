@@ -37,13 +37,7 @@ class ezcMvcResultContentTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'language' => 'php',
-        'type' => 'ezc',
-        'charset' => 'ezp',
-        'encoding' => 'buddymiles',
-        'disposition' => new ezcMvcResultContentDisposition(),
-        );
+        $state = ['language' => 'php', 'type' => 'ezc', 'charset' => 'ezp', 'encoding' => 'buddymiles', 'disposition' => new ezcMvcResultContentDisposition()];
         $struct = ezcMvcResultContent::__set_state( $state );
         $this->assertEquals( 'php', $struct->language, 'Property language does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->type, 'Property type does not have the expected value' );

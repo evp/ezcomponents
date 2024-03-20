@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -28,8 +28,8 @@ class ezcGraphLegendTest extends ezcGraphTestCase
     {
         static $i = 0;
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -42,12 +42,12 @@ class ezcGraphLegendTest extends ezcGraphTestCase
 
     protected function addSampleData( ezcGraphChart $chart )
     {
-        $chart->data['sampleData'] = array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1);
+        $chart->data['sampleData'] = ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1];
         $chart->data['sampleData']->color = '#0000FF';
         $chart->data['sampleData']->symbol = ezcGraph::DIAMOND;
-        $chart->data['moreData'] = array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1);
+        $chart->data['moreData'] = ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1];
         $chart->data['moreData']->color = '#FF0000';
-        $chart->data['evenMoreData'] = array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1);
+        $chart->data['evenMoreData'] = ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1];
         $chart->data['evenMoreData']->color = '#FF0000';
         $chart->data['evenMoreData']->label = 'Even more data';
     }
@@ -110,13 +110,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->legend->position = ezcGraph::LEFT;
         $chart->legend->padding = 2;
@@ -125,7 +119,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -134,13 +128,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->legend->position = ezcGraph::RIGHT;
         $chart->legend->padding = 2;
@@ -149,7 +137,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -158,13 +146,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->legend->position = ezcGraph::TOP;
         $chart->legend->padding = 2;
@@ -173,7 +155,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -182,13 +164,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->legend->position = ezcGraph::BOTTOM;
         $chart->legend->padding = 2;
@@ -197,7 +173,7 @@ class ezcGraphLegendTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

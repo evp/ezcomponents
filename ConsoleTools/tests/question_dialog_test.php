@@ -12,7 +12,7 @@
 /**
  * Require generic test case for ezcConsoleDialog implementations.
  */
-require_once dirname( __FILE__ ) . "/dialog_test.php";
+require_once __DIR__ . "/dialog_test.php";
 
 /**
  * Test suite for ezcConsoleQuestionDialog class.
@@ -162,7 +162,7 @@ class ezcConsoleQuestionDialogTest extends ezcConsoleDialogTest
         $this->assertEquals( "Is Jean-Luc a borg?", $dialog->options->text );
         $this->assertTrue( $dialog->options->showResults );
         $this->assertType( "ezcConsoleQuestionDialogCollectionValidator", $dialog->options->validator );
-        $this->assertEquals( array( "y", "n" ), $dialog->options->validator->collection );
+        $this->assertEquals( ["y", "n"], $dialog->options->validator->collection );
         $this->assertEquals( "y", $dialog->options->validator->default );
         $this->assertEquals( ezcConsoleQuestionDialogCollectionValidator::CONVERT_LOWER, $dialog->options->validator->conversion );
     }

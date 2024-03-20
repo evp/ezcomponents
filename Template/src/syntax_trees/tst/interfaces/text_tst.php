@@ -68,7 +68,7 @@ abstract class ezcTemplateTextTstNode extends ezcTemplateCodeTstNode
         $this->minimumWhitespace = null;
         $this->startColumn       = $start->column;
         $this->text              = false;
-        $this->lines             = array();
+        $this->lines             = [];
     }
 
     /**
@@ -78,7 +78,7 @@ abstract class ezcTemplateTextTstNode extends ezcTemplateCodeTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'text' => $this->text );
+        return ['text' => $this->text];
     }
 
     /**

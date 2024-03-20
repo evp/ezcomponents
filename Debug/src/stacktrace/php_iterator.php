@@ -69,7 +69,7 @@ class ezcDebugPhpStacktraceIterator extends ezcDebugStacktraceIterator
      */
     private function convertArgsToParams( $args )
     {
-        $params = array();
+        $params = [];
         foreach ( $args as $arg )
         {
             $params[] = ezcDebugVariableDumpTool::dumpVariable(

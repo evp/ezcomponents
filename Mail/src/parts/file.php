@@ -37,35 +37,35 @@ abstract class ezcMailFilePart extends ezcMailPart
     /**
      * Image content type. Use this if the contents of the file is an image.
      */
-    const CONTENT_TYPE_IMAGE = "image";
+    public const CONTENT_TYPE_IMAGE = "image";
 
     /**
      * Video content type. Use this if the contents of the file is a video.
      */
-    const CONTENT_TYPE_VIDEO = "video";
+    public const CONTENT_TYPE_VIDEO = "video";
 
     /**
      * Audio content type. Use this if the contents of the file is an audio.
      */
-    const CONTENT_TYPE_AUDIO = "audio";
+    public const CONTENT_TYPE_AUDIO = "audio";
 
     /**
      * Application content type. Use this if the file non of the other
      * content types match.
      */
-    const CONTENT_TYPE_APPLICATION = "application";
+    public const CONTENT_TYPE_APPLICATION = "application";
 
     /**
      * Use DISPLAY_ATTACHMENT if you want the file to be displayed as an
      * attachment to the recipients of the mail.
      */
-    const DISPLAY_ATTACHMENT = "attachment";
+    public const DISPLAY_ATTACHMENT = "attachment";
 
     /**
      * Use DISPLAY_INLINE if you want the file to be displayed inline in the
      * mail to the recipients.
      */
-    const DISPLAY_INLINE = "inline";
+    public const DISPLAY_INLINE = "inline";
 
     /**
      * Constructs a new attachment with $fileName.

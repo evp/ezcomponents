@@ -89,17 +89,7 @@ class ezcDocumentRst extends ezcDocument implements ezcDocumentXhtmlConversion, 
      *
      * @var array
      */
-    protected $directives = array(
-        'include'   => 'ezcDocumentRstIncludeDirective',
-        'contents'  => 'ezcDocumentRstContentsDirective',
-        'image'     => 'ezcDocumentRstImageDirective',
-        'figure'    => 'ezcDocumentRstFigureDirective',
-        'attention' => 'ezcDocumentRstAttentionDirective',
-        'warning'   => 'ezcDocumentRstWarningDirective',
-        'danger'    => 'ezcDocumentRstDangerDirective',
-        'notice'    => 'ezcDocumentRstNoticeDirective',
-        'note'      => 'ezcDocumentRstNoteDirective',
-    );
+    protected $directives = ['include'   => 'ezcDocumentRstIncludeDirective', 'contents'  => 'ezcDocumentRstContentsDirective', 'image'     => 'ezcDocumentRstImageDirective', 'figure'    => 'ezcDocumentRstFigureDirective', 'attention' => 'ezcDocumentRstAttentionDirective', 'warning'   => 'ezcDocumentRstWarningDirective', 'danger'    => 'ezcDocumentRstDangerDirective', 'notice'    => 'ezcDocumentRstNoticeDirective', 'note'      => 'ezcDocumentRstNoteDirective'];
 
     /**
      * Registered interpreted text role handlers
@@ -113,19 +103,7 @@ class ezcDocumentRst extends ezcDocument implements ezcDocumentXhtmlConversion, 
      *
      * @var array
      */
-    protected $roles = array(
-        'emphasis'        => 'ezcDocumentRstEmphasisTextRole',
-        'literal'         => 'ezcDocumentRstLiteralTextRole',
-        'strong'          => 'ezcDocumentRstStrongTextRole',
-        'subscript'       => 'ezcDocumentRstSubscriptTextRole',
-        'sub'             => 'ezcDocumentRstSubscriptTextRole',
-        'superscript'     => 'ezcDocumentRstSuperscriptTextRole',
-        'super'           => 'ezcDocumentRstSuperscriptTextRole',
-        'sup'             => 'ezcDocumentRstSuperscriptTextRole',
-        'title_reference' => 'ezcDocumentRstTitleReferenceTextRole',
-        'title'           => 'ezcDocumentRstTitleReferenceTextRole',
-        't'               => 'ezcDocumentRstTitleReferenceTextRole',
-    );
+    protected $roles = ['emphasis'        => 'ezcDocumentRstEmphasisTextRole', 'literal'         => 'ezcDocumentRstLiteralTextRole', 'strong'          => 'ezcDocumentRstStrongTextRole', 'subscript'       => 'ezcDocumentRstSubscriptTextRole', 'sub'             => 'ezcDocumentRstSubscriptTextRole', 'superscript'     => 'ezcDocumentRstSuperscriptTextRole', 'super'           => 'ezcDocumentRstSuperscriptTextRole', 'sup'             => 'ezcDocumentRstSuperscriptTextRole', 'title_reference' => 'ezcDocumentRstTitleReferenceTextRole', 'title'           => 'ezcDocumentRstTitleReferenceTextRole', 't'               => 'ezcDocumentRstTitleReferenceTextRole'];
 
     /**
      * Asbtract syntax tree.
@@ -152,9 +130,7 @@ class ezcDocumentRst extends ezcDocument implements ezcDocumentXhtmlConversion, 
      */
     public function __construct( ezcDocumentRstOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentRstOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentRstOptions() );
     }
 
     /**
@@ -382,7 +358,7 @@ class ezcDocumentRst extends ezcDocument implements ezcDocumentXhtmlConversion, 
         // Only halt on parse errors, and collect all other errors.
         $parser->options->errorReporting = E_PARSE;
 
-        $errors = array();
+        $errors = [];
         $ast    = null;
         try
         {
@@ -407,7 +383,7 @@ class ezcDocumentRst extends ezcDocument implements ezcDocumentXhtmlConversion, 
             try
             {
                 $visitor = new ezcDocumentRstDocbookVisitor( $this, $this->path );
-                $visitor->visit( $ast, $this->path );
+                $visitor->visit( $ast );
 
                 // Get errors and notices from parsed document
                 $errors = array_merge( $errors, $visitor->getErrors() );

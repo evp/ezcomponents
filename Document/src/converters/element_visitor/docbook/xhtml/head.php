@@ -26,14 +26,7 @@ class ezcDocumentDocbookToHtmlHeadHandler extends ezcDocumentDocbookToHtmlBaseHa
      *
      * @var array
      */
-    protected $headerMapping = array(
-        'abstract'    => 'description',
-        'releaseinfo' => 'version',
-        'pubdate'     => 'date',
-        'date'        => 'date',
-        'author'      => 'author',
-        'publisher'   => 'author',
-    );
+    protected $headerMapping = ['abstract'    => 'description', 'releaseinfo' => 'version', 'pubdate'     => 'date', 'date'        => 'date', 'author'      => 'author', 'publisher'   => 'author'];
 
     /**
      * Element name mapping for meta information in the docbook document to
@@ -42,15 +35,7 @@ class ezcDocumentDocbookToHtmlHeadHandler extends ezcDocumentDocbookToHtmlBaseHa
      *
      * @var array
      */
-    protected $dcHeaderMapping = array(
-        'abstract'  => 'dc.description',
-        'pubdate'   => 'dc.date',
-        'date'      => 'dc.date',
-        'author'    => 'dc.creator',
-        'publisher' => 'dc.publisher',
-        'contrib'   => 'dc.contributor',
-        'copyright' => 'dc.rights',
-    );
+    protected $dcHeaderMapping = ['abstract'  => 'dc.description', 'pubdate'   => 'dc.date', 'date'      => 'dc.date', 'author'    => 'dc.creator', 'publisher' => 'dc.publisher', 'contrib'   => 'dc.contributor', 'copyright' => 'dc.rights'];
 
     /**
      * Handle a node

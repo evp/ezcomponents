@@ -23,7 +23,7 @@ class ezcDocumentRstXhtmlBodyVisitorTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -31,15 +31,12 @@ class ezcDocumentRstXhtmlBodyVisitorTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/rst/xhtml_body/s_*.txt' );
+            $testFiles = glob( __DIR__ . '/files/rst/xhtml_body/s_*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'html'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'html'];
             }
         }
 
@@ -88,8 +85,8 @@ class ezcDocumentRstXhtmlBodyVisitorTests extends ezcTestCase
 
     public function testDocumentHeaderLevel()
     {
-        $from = dirname( __FILE__ ) . '/files/rst/xhtml_body/s_002_titles.txt';
-        $to   = dirname( __FILE__ ) . '/files/rst/xhtml_body/s_002_titles_header_level.html';
+        $from = __DIR__ . '/files/rst/xhtml_body/s_002_titles.txt';
+        $to   = __DIR__ . '/files/rst/xhtml_body/s_002_titles_header_level.html';
 
         $document = new ezcDocumentRst();
         $document->options->errorReporting = E_PARSE | E_ERROR | E_WARNING;

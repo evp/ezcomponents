@@ -62,7 +62,7 @@ class ezcWorkflowDefinitionStorageXmlTest extends ezcWorkflowTestCase
 
         if ( $schema === null )
         {
-            $schema = dirname( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR .
+            $schema = dirname(__FILE__, 2) . DIRECTORY_SEPARATOR .
                       'design' . DIRECTORY_SEPARATOR . 'schema.rng';
         }
 
@@ -101,7 +101,7 @@ class ezcWorkflowDefinitionStorageXmlTest extends ezcWorkflowTestCase
         $this->xmlStorage->save( $this->workflow );
 
         $this->assertFileEquals(
-          dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'Edit_1.xml', $tmpDirectory . 'Edit_1.xml'
+          __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'Edit_1.xml', $tmpDirectory . 'Edit_1.xml'
         );
 
         $this->workflow = $this->xmlStorage->loadByName( 'Edit' );
@@ -110,7 +110,7 @@ class ezcWorkflowDefinitionStorageXmlTest extends ezcWorkflowTestCase
         $this->workflow->endNode->removeInNode( $this->workflow->startNode );
         $this->assertEquals( 1, count( $this->workflow ) );
 
-        $inputNode = new ezcWorkflowNodeInput( array( 'variable' => new ezcWorkflowConditionIsString ) );
+        $inputNode = new ezcWorkflowNodeInput( ['variable' => new ezcWorkflowConditionIsString] );
         $this->workflow->startNode->addOutNode( $inputNode );
         $this->workflow->endNode->addInNode( $inputNode );
         $this->assertEquals( 3, count( $this->workflow ) );
@@ -118,7 +118,7 @@ class ezcWorkflowDefinitionStorageXmlTest extends ezcWorkflowTestCase
         $this->xmlStorage->save( $this->workflow );
 
         $this->assertFileEquals(
-          dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'Edit_2.xml', $tmpDirectory . 'Edit_2.xml'
+          __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'Edit_2.xml', $tmpDirectory . 'Edit_2.xml'
         );
     }
 
@@ -185,7 +185,7 @@ class ezcWorkflowDefinitionStorageXmlTest extends ezcWorkflowTestCase
     public function testIssue14754()
     {
         $workflow = new ezcWorkflow( 'Issue14754' );
-        $set      = new ezcWorkflowNodeVariableSet( array( 'x' => 1 ) );
+        $set      = new ezcWorkflowNodeVariableSet( ['x' => 1] );
         $workflow->startNode->addOutNode( $set );
         $workflow->endNode->addInNode( $set );
 
@@ -203,11 +203,11 @@ class ezcWorkflowDefinitionStorageXmlTest extends ezcWorkflowTestCase
           'version="2"',
           'version="1"',
           file_get_contents(
-            dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $name . '_2.xml'
+            __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $name . '_2.xml'
           )
         );
 
-        @unlink( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $name . '_2.xml' );
+        @unlink( __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $name . '_2.xml' );
 
         return $actual;
     }
@@ -215,7 +215,7 @@ class ezcWorkflowDefinitionStorageXmlTest extends ezcWorkflowTestCase
     protected function readExpected( $name )
     {
         return file_get_contents(
-          dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $name . '_1.xml'
+          __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $name . '_1.xml'
         );
     }
 }

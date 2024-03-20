@@ -4,7 +4,7 @@ class User
     private $signals = null;
     public $useSignals = true;
 
-    private $properties = array( "id" => null, "name"  => null, "nickname" => null );
+    private $properties = ["id" => null, "name"  => null, "nickname" => null];
 
     public function __construct( $id, $name, $nickname )
     {
@@ -80,16 +80,16 @@ class Fetch implements ezcTemplateCustomFunction
         {
             case "fetch_user_list":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "user_list";
-                $def->parameters = array("offset", "limit");
+                $def->parameters = ["offset", "limit"];
                 return $def;
 
             case "fetch_user":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "user";
-                $def->parameters = array("id");
+                $def->parameters = ["id"];
                 return $def;
         }
 
@@ -113,7 +113,7 @@ class Fetch implements ezcTemplateCustomFunction
         $res = $statement->fetchAll();
       
         
-        $users = array();
+        $users = [];
 
         // Execute only when we are creating the template.
         foreach ( $res as $a )

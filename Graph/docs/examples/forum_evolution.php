@@ -13,23 +13,9 @@ $graph->xAxis->majorGrid = '#888888';
 $graph->yAxis->majorGrid = '#888888';
 
 // Add the data and hilight norwegian data set
-$graph->data['Posts'] = new ezcGraphArrayDataSet( array(
-    'May 2006' => 1164,
-    'Jun 2006' => 965,
-    'Jul 2006' => 1014,
-    'Aug 2006' => 1269,
-    'Sep 2006' => 1269,
-    'Oct 2006' => 771,
-) );
+$graph->data['Posts'] = new ezcGraphArrayDataSet( ['May 2006' => 1164, 'Jun 2006' => 965, 'Jul 2006' => 1014, 'Aug 2006' => 1269, 'Sep 2006' => 1269, 'Oct 2006' => 771] );
 
-$graph->data['per day'] = new ezcGraphArrayDataSet( array(
-    'May 2006' => 38,
-    'Jun 2006' => 32,
-    'Jul 2006' => 33,
-    'Aug 2006' => 41,
-    'Sep 2006' => 34,
-    'Oct 2006' => 25,
-) );
+$graph->data['per day'] = new ezcGraphArrayDataSet( ['May 2006' => 38, 'Jun 2006' => 32, 'Jul 2006' => 33, 'Aug 2006' => 41, 'Sep 2006' => 34, 'Oct 2006' => 25] );
 
 // Set graph title
 $graph->title = 'Forum posts in last months';

@@ -103,7 +103,7 @@ class ezcMailFileParser extends ezcMailPartParser
 
         // figure out the base filename
         // search Content-Disposition first as specified by RFC 2183
-        $matches = array();
+        $matches = [];
         if ( preg_match( '/\s*filename="?([^;"]*);?/i',
                         $this->headers['Content-Disposition'], $matches ) )
         {
@@ -204,7 +204,7 @@ class ezcMailFileParser extends ezcMailPartParser
                 preg_match( "/(\r\n|\r|\n)$/", $line, $matches );
                 $lb = count( $matches ) > 0 ? $matches[0] : ezcMailTools::lineBreak();
 
-                $param = array( 'line-break-chars' => $lb );
+                $param = ['line-break-chars' => $lb];
                 stream_filter_append( $this->fp, 'convert.quoted-printable-decode',
                                       STREAM_FILTER_WRITE, $param );
                 break;
@@ -295,7 +295,7 @@ class ezcMailFileParser extends ezcMailPartParser
         $filePart->mimeType = $this->subType;
 
         // set inline disposition mode if set.
-        $matches = array();
+        $matches = [];
         if ( preg_match( '/^\s*inline;?/i',
                         $this->headers['Content-Disposition'], $matches ) )
         {

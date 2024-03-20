@@ -53,13 +53,13 @@ class ezcMvcToolsViewTest extends ezcTestCase
     {
         $request = new ezcMvcRequest;
         $result  = new ezcMvcResult;
-        $result->variables = array( 'var1' => 42 );
+        $result->variables = ['var1' => 42];
 
         $view    = new testTwoViews( $request, $result );
         $response = $view->createResponse();
 
         $obj1 = new StdClass;
-        $obj1->vars = array( 'var1' => 42 );
+        $obj1->vars = ['var1' => 42];
         $obj2 = clone $obj1;
         $obj2->vars['name1'] = $obj1;
         $obj1->name = 'name1';
@@ -72,14 +72,14 @@ class ezcMvcToolsViewTest extends ezcTestCase
     {
         $request = new ezcMvcRequest;
         $result  = new ezcMvcResult;
-        $result->variables = array( 'var1' => 42 );
+        $result->variables = ['var1' => 42];
 
         $view    = new testOneView( $request, $result );
         $response = $view->createResponse();
 
         $expected = new StdClass;
         $expected->name = "name";
-        $expected->vars = array( 'var1' => 42 );
+        $expected->vars = ['var1' => 42];
         self::assertEquals( $expected, $response->body );
     }
 

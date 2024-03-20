@@ -67,7 +67,7 @@ class ezcGraphChartElementBackground extends ezcGraphChartElement
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['image'] = false;
         $this->properties['repeat'] = ezcGraph::NO_REPEAT;

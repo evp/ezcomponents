@@ -26,49 +26,14 @@ class ezcWebdavHeaderHandler
      *
      * @var array(string=>string)
      */
-    protected $headerMap = array(
-        'Authorization' => array(
-            'HTTP_AUTHORIZATION',
-            'PHP_AUTH_DIGEST',
-            'PHP_AUTH_USER',
-        ),
-        'Content-Length' => array( 
-            'HTTP_CONTENT_LENGTH',
-            'CONTENT_LENGTH',
-        ),
-        'Content-Type'   => array( 
-            'CONTENT_TYPE',
-        ),
-        'Depth'          => array( 
-            'HTTP_DEPTH',
-        ),
-        'Destination'    => array( 
-            'HTTP_DESTINATION',
-        ),
-        'If-Match'        => array(
-            'HTTP_IF_MATCH'
-        ),
-        'If-None-Match'        => array(
-            'HTTP_IF_NONE_MATCH'
-        ),
-        'Overwrite'      => array(
-            'HTTP_OVERWRITE',
-        ),
-        'Server'         => array(
-            'SERVER_SOFTWARE',
-        ),
-    );
+    protected $headerMap = ['Authorization' => ['HTTP_AUTHORIZATION', 'PHP_AUTH_DIGEST', 'PHP_AUTH_USER'], 'Content-Length' => ['HTTP_CONTENT_LENGTH', 'CONTENT_LENGTH'], 'Content-Type'   => ['CONTENT_TYPE'], 'Depth'          => ['HTTP_DEPTH'], 'Destination'    => ['HTTP_DESTINATION'], 'If-Match'        => ['HTTP_IF_MATCH'], 'If-None-Match'        => ['HTTP_IF_NONE_MATCH'], 'Overwrite'      => ['HTTP_OVERWRITE'], 'Server'         => ['SERVER_SOFTWARE']];
 
     /**
      * List of headers that should be attempted to parse for every request.
      * 
      * @var array(string)
      */
-    protected $defaultHeaders = array(
-        'Authorization',
-        'If-Match',
-        'If-None-Match',
-    );
+    protected $defaultHeaders = ['Authorization', 'If-Match', 'If-None-Match'];
 
     /**
      * Returns an array with the given headers.
@@ -90,7 +55,7 @@ class ezcWebdavHeaderHandler
      *         if a header requested in $headerNames is not known in {@link
      *         $headerNames}.
      */
-    public function parseHeaders( array $headerNames = array(), $defaultHeaders = true )
+    public function parseHeaders( array $headerNames = [], $defaultHeaders = true )
     {
         if ( $defaultHeaders )
         {
@@ -99,7 +64,7 @@ class ezcWebdavHeaderHandler
             );
         }
 
-        $resultHeaders = array();
+        $resultHeaders = [];
         foreach ( $headerNames as $headerName )
         {
             if ( ( $value = $this->parseHeader( $headerName ) ) !== null )
@@ -378,7 +343,7 @@ class ezcWebdavHeaderHandler
             return true;
         }
 
-        $etags  = array();
+        $etags  = [];
 
         $index      = 0;
         $length     = strlen( $value );

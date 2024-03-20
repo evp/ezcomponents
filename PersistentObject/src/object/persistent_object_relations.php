@@ -33,7 +33,7 @@ class ezcPersistentObjectRelations extends ArrayObject
      */
     public function __construct()
     {
-        $this->relations = array();
+        $this->relations = [];
         parent::__construct( $this->relations );
     }
 

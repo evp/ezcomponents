@@ -21,7 +21,7 @@ class ezcWebdavLockPluginOptionsTest extends ezcTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testConstructorSuccess()
@@ -29,29 +29,17 @@ class ezcWebdavLockPluginOptionsTest extends ezcTestCase
         $opt = new ezcWebdavLockPluginOptions();
 
         $this->assertAttributeEquals(
-            array(
-                'lockTimeout'         => 900,
-                'backendLockTimeout'  => 10000000,
-                'backendLockWaitTime' => 10000,
-            ),
+            ['lockTimeout'         => 900, 'backendLockTimeout'  => 10000000, 'backendLockWaitTime' => 10000],
             'properties',
             $opt
         );
 
         $opt = new ezcWebdavLockPluginOptions(
-            array(
-                'lockTimeout'         => 123,
-                'backendLockTimeout'  => 123456,
-                'backendLockWaitTime' => 1234,
-            )
+            ['lockTimeout'         => 123, 'backendLockTimeout'  => 123456, 'backendLockWaitTime' => 1234]
         );
 
         $this->assertAttributeEquals(
-            array(
-                'lockTimeout'         => 123,
-                'backendLockTimeout'  => 123456,
-                'backendLockWaitTime' => 1234,
-            ),
+            ['lockTimeout'         => 123, 'backendLockTimeout'  => 123456, 'backendLockWaitTime' => 1234],
             'properties',
             $opt
         );
@@ -64,17 +52,17 @@ class ezcWebdavLockPluginOptionsTest extends ezcTestCase
         $this->assertSetProperty(
             $opt,
             'lockTimeout',
-            array( 1, 23, 42, 100000, 2147483647 )
+            [1, 23, 42, 100000, 2147483647]
         );
         $this->assertSetProperty(
             $opt,
             'backendLockTimeout',
-            array( 1, 23, 42, 100000, 2147483647 )
+            [1, 23, 42, 100000, 2147483647]
         );
         $this->assertSetProperty(
             $opt,
             'backendLockWaitTime',
-            array( 1, 23, 42, 100000, 2147483647 )
+            [1, 23, 42, 100000, 2147483647]
         );
     }
 
@@ -85,17 +73,17 @@ class ezcWebdavLockPluginOptionsTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $opt,
             'lockTimeout',
-            array( 0, -42, true, false, 'foo', 23.42, array(), new stdClass() )
+            [0, -42, true, false, 'foo', 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opt,
             'backendLockTimeout',
-            array( 0, -42, true, false, 'foo', 23.42, array(), new stdClass() )
+            [0, -42, true, false, 'foo', 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opt,
             'backendLockWaitTime',
-            array( 0, -42, true, false, 'foo', 23.42, array(), new stdClass() )
+            [0, -42, true, false, 'foo', 23.42, [], new stdClass()]
         );
     }
 

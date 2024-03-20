@@ -40,7 +40,7 @@ class ezcWebdavNautilusPropertyHandler extends ezcWebdavPropertyHandler
         {
             case 'ezcWebdavGetContentTypeProperty':
                 $elementName  = 'getcontenttype';
-                $elementValue = ( $property->mime !== null ? $property->mime : null );
+                $elementValue = ( $property->mime ?? null );
                 break;
             default:
                 return parent::serializeLiveProperty( $property, $parentElement );

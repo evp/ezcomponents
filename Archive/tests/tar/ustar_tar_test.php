@@ -147,7 +147,7 @@ class ezcArchiveUstarTarTest extends ezcArchiveV7TarTest // Extend the V7 tests 
 
         unlink( "$dir/can_create_character_device" );
 
-        $org = dirname(__FILE__) . "/../data/tar_ustar_character_device.tar";
+        $org = __DIR__ . "/../data/tar_ustar_character_device.tar";
         copy( $org, $dir . "/tar_ustar_character_device.tar" );
 
         $bf = new ezcArchiveBlockFile( $dir . "/tar_ustar_character_device.tar" );
@@ -165,7 +165,7 @@ class ezcArchiveUstarTarTest extends ezcArchiveV7TarTest // Extend the V7 tests 
     {
         $dir = $this->getTempDir();
 
-        $org = dirname(__FILE__) . "/../data/tar_ustar_fifo.tar";
+        $org = __DIR__ . "/../data/tar_ustar_fifo.tar";
         copy( $org, $dir . "/tar_ustar_fifo.tar" );
 
         $bf = new ezcArchiveBlockFile( $dir . "/tar_ustar_fifo.tar" );
@@ -277,7 +277,7 @@ class ezcArchiveUstarTarTest extends ezcArchiveV7TarTest // Extend the V7 tests 
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

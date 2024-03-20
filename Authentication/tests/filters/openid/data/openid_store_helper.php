@@ -31,7 +31,7 @@ class ezcAuthenticationOpenidFileStoreHelper extends ezcAuthenticationOpenidFile
      */
     public static function getFiles( $path )
     {
-        $result = array();
+        $result = [];
         if ( $fh = opendir( $path ) )
         {
             while ( ( $file = readdir( $fh ) ) !== false )

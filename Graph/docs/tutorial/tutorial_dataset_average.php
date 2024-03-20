@@ -8,7 +8,7 @@ $graph->legend->position = ezcGraph::BOTTOM;
 
 $graph->xAxis = new ezcGraphChartElementNumericAxis();
 
-$data = array();
+$data = [];
 for ( $i = 0; $i <= 10; $i++ )
 {
     $data[$i] = mt_rand( -5, 5 );

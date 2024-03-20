@@ -19,7 +19,7 @@ class ezcDocumentRstValidationTests extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testSuccessfulDocumentStringValidation()
@@ -28,7 +28,7 @@ class ezcDocumentRstValidationTests extends ezcTestCase
 
         $this->assertSame(
             true,
-            $xhtml->validateString( file_get_contents( dirname( __FILE__ ) . '/files/rst/validation/valid.txt' ) ),
+            $xhtml->validateString( file_get_contents( __DIR__ . '/files/rst/validation/valid.txt' ) ),
             'Expected true as result of document validation'
         );
     }
@@ -39,7 +39,7 @@ class ezcDocumentRstValidationTests extends ezcTestCase
 
         $this->assertSame(
             true,
-            $xhtml->validateFile( dirname( __FILE__ ) . '/files/rst/validation/valid.txt' ),
+            $xhtml->validateFile( __DIR__ . '/files/rst/validation/valid.txt' ),
             'Expected true as result of document validation'
         );
     }
@@ -48,7 +48,7 @@ class ezcDocumentRstValidationTests extends ezcTestCase
     {
         $xhtml = new ezcDocumentRst();
 
-        $errors = $xhtml->validateFile( dirname( __FILE__ ) . '/files/rst/validation/parser_fatal.txt' );
+        $errors = $xhtml->validateFile( __DIR__ . '/files/rst/validation/parser_fatal.txt' );
 
         $this->assertTrue( 
             is_array( $errors ),
@@ -81,7 +81,7 @@ class ezcDocumentRstValidationTests extends ezcTestCase
     {
         $xhtml = new ezcDocumentRst();
 
-        $errors = $xhtml->validateFile( dirname( __FILE__ ) . '/files/rst/validation/parser_notice.txt' );
+        $errors = $xhtml->validateFile( __DIR__ . '/files/rst/validation/parser_notice.txt' );
 
         $this->assertTrue( 
             is_array( $errors ),
@@ -99,7 +99,7 @@ class ezcDocumentRstValidationTests extends ezcTestCase
     {
         $xhtml = new ezcDocumentRst();
 
-        $errors = $xhtml->validateFile( dirname( __FILE__ ) . '/files/rst/validation/visitor_warning.txt' );
+        $errors = $xhtml->validateFile( __DIR__ . '/files/rst/validation/visitor_warning.txt' );
 
         $this->assertTrue( 
             $errors[0] instanceof ezcDocumentValidationError,

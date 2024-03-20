@@ -41,13 +41,7 @@ abstract class ezcMailPartParser
      *
      * @var array(string)
      */
-    protected static $uniqueHeaders = array( 'bcc', 'cc', 'content-type',
-                                             'content-disposition', 'from',
-                                             'content-transfer-encoding',
-                                             'return-path',
-                                             'in-reply-to', 'references',
-                                             'message-id', 'date', 'reply-to',
-                                             'sender', 'subject', 'sender', 'to' );
+    protected static $uniqueHeaders = ['bcc', 'cc', 'content-type', 'content-disposition', 'from', 'content-transfer-encoding', 'return-path', 'in-reply-to', 'references', 'message-id', 'date', 'reply-to', 'sender', 'subject', 'sender', 'to'];
 
     /**
      * The default is to parse text attachments into ezcMailTextPart objects.
@@ -111,7 +105,7 @@ abstract class ezcMailPartParser
         // parse the Content-Type header
         if ( isset( $headers['Content-Type'] ) )
         {
-            $matches = array();
+            $matches = [];
             // matches "type/subtype; blahblahblah"
             preg_match_all( '/^(\S+)\/([^;]+)/',
                             $headers['Content-Type'], $matches, PREG_SET_ORDER );
@@ -208,7 +202,7 @@ abstract class ezcMailPartParser
      */
     protected function parseHeader( $line, ezcMailHeadersHolder $headers )
     {
-        $matches = array();
+        $matches = [];
         preg_match_all( "/^([\w\-_]*):\s?(.*)/", $line, $matches, PREG_SET_ORDER );
         if ( count( $matches ) > 0 )
         {

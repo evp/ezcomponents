@@ -34,7 +34,7 @@ class ezcSignalStaticConnections implements ezcSignalStaticConnectionsBase
      *
      * @var array(string=>string)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * ezcSignalStaticConnections singleton instance.
@@ -63,7 +63,7 @@ class ezcSignalStaticConnections implements ezcSignalStaticConnectionsBase
      */
     private function __construct()
     {
-        $this->properties['connections'] = array();
+        $this->properties['connections'] = [];
     }
 
     /**
@@ -124,7 +124,7 @@ class ezcSignalStaticConnections implements ezcSignalStaticConnectionsBase
         {
             return $this->connections[$identifier][$signal];
         }
-        return array();
+        return [];
     }
 
     /**

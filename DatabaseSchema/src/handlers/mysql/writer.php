@@ -21,17 +21,7 @@ class ezcDbSchemaMysqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
      *
      * @var array
      */
-    private $typeMap = array(
-        'integer' => 'bigint',
-        'boolean' => 'boolean',
-        'float' => 'double',
-        'decimal' => 'numeric',
-        'date' => 'date',
-        'timestamp' => 'timestamp',
-        'text' => 'varchar',
-        'blob' => 'longblob',
-        'clob' => 'longtext'
-    );
+    private $typeMap = ['integer' => 'bigint', 'boolean' => 'boolean', 'float' => 'double', 'decimal' => 'numeric', 'date' => 'date', 'timestamp' => 'timestamp', 'text' => 'varchar', 'blob' => 'longblob', 'clob' => 'longtext'];
 
     /**
      * Returns what type of schema writer this class implements.
@@ -91,8 +81,8 @@ class ezcDbSchemaMysqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
         $this->diffSchema = $dbSchemaDiff;
 
         // reset queries
-        $this->queries = array();
-        $this->context = array();
+        $this->queries = [];
+        $this->context = [];
 
         $this->generateDiffSchemaAsSql();
         return $this->queries;
@@ -117,7 +107,7 @@ class ezcDbSchemaMysqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
     protected function convertFromGenericType( ezcDbSchemaField $fieldDefinition )
     {
         $typeAddition = '';
-        if ( in_array( $fieldDefinition->type, array( 'decimal', 'text' ) ) )
+        if ( in_array( $fieldDefinition->type, ['decimal', 'text'] ) )
         {
             if ( $fieldDefinition->length !== false && $fieldDefinition->length !== 0 )
             {
@@ -225,7 +215,7 @@ class ezcDbSchemaMysqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
     {
         $sqlDefinition = "`$fieldName` ";
 
-        $defList = array();
+        $defList = [];
 
         $type = $this->convertFromGenericType( $fieldDefinition );
         $defList[] = $type;
@@ -282,13 +272,13 @@ class ezcDbSchemaMysqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
 
         $sql .= " ( ";
 
-        $indexFieldSql = array();
+        $indexFieldSql = [];
         foreach ( $indexDefinition->indexFields as $indexFieldName => $dummy )
         {
             if ( isset( $this->schema[$tableName] ) &&
                 isset( $this->schema[$tableName]->fields[$indexFieldName] ) &&
                 isset( $this->schema[$tableName]->fields[$indexFieldName]->type ) &&
-                in_array( $this->schema[$tableName]->fields[$indexFieldName]->type, array( 'blob', 'clob' ) ) )
+                in_array( $this->schema[$tableName]->fields[$indexFieldName]->type, ['blob', 'clob'] ) )
             {
                 $indexFieldSql[] = "`{$indexFieldName}`(250)";
             }

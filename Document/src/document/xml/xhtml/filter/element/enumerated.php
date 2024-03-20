@@ -31,18 +31,11 @@ class ezcDocumentXhtmlEnumeratedElementFilter extends ezcDocumentXhtmlElementBas
     {
         $element->setProperty( 'type', 'orderedlist' );
 
-        $types = array(
-            'a' => 'loweralpha',
-            'A' => 'upperalpha',
-            'i' => 'lowerroman',
-            'I' => 'upperroman',
-        );
+        $types = ['a' => 'loweralpha', 'A' => 'upperalpha', 'i' => 'lowerroman', 'I' => 'upperroman'];
         if ( $element->hasAttribute( 'type' ) &&
              isset( $types[$type = $element->getAttribute( 'type' )] ) )
         {
-            $element->setProperty( 'attributes', array(
-                'numeration' => $types[$type],
-            ) );
+            $element->setProperty( 'attributes', ['numeration' => $types[$type]] );
         }
     }
 

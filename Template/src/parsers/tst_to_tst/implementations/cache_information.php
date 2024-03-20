@@ -20,7 +20,7 @@ class ezcTemplateFetchCacheInformation extends ezcTemplateTstWalker
     public $cacheTst = null;
 
     public $cacheTemplate = false;
-    public $cacheKeys = array();
+    public $cacheKeys = [];
     public $hasTTL = false;
 
     public function __construct()

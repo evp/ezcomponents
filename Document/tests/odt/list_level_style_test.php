@@ -19,7 +19,7 @@ class ezcDocumentOdtListLevelStyleTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCtor()
@@ -37,35 +37,22 @@ class ezcDocumentOdtListLevelStyleTest extends ezcTestCase
         $this->assertSetProperty(
             $style,
             'textStyle',
-            array(
-                new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_TEXT, 'foo' )
-            )
+            [new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_TEXT, 'foo' )]
         );
         $this->assertSetProperty(
             $style,
             'bulletChar',
-            array(
-                '*',
-                '⊕',
-            )
+            ['*', '⊕']
         );
         $this->assertSetProperty(
             $style,
             'numPrefix',
-            array(
-                '.',
-                'abc',
-                '',
-            )
+            ['.', 'abc', '']
         );
         $this->assertSetProperty(
             $style,
             'numSuffix',
-            array(
-                '.',
-                'abc',
-                '',
-            )
+            ['.', 'abc', '']
         );
     }
 
@@ -76,55 +63,33 @@ class ezcDocumentOdtListLevelStyleTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $style,
             'level',
-            array(
-                23,
-                true,
-                'foo',
-            )
+            [23, true, 'foo']
         );
         $this->assertSetPropertyFails(
             $style,
             'textStyle',
-            array(
-                new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_PARAGRAPH, 'foo' ),
-                new stdClass(),
-                array(),
-                23,
-                'foo',
-            )
+            [new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_PARAGRAPH, 'foo' ), new stdClass(), [], 23, 'foo']
         );
         $this->assertSetPropertyFails(
             $style,
             'bulletChar',
-            array(
-                '**',
-                '',
-                23,
-            )
+            ['**', '', 23]
         );
         $this->assertSetPropertyFails(
             $style,
             'numPrefix',
-            array(
-                23,
-                array(),
-            )
+            [23, []]
         );
         $this->assertSetPropertyFails(
             $style,
             'numSuffix',
-            array(
-                23,
-                array(),
-            )
+            [23, []]
         );
 
         $this->assertSetPropertyFails(
             $style,
             'fooBar',
-            array(
-                23
-            )
+            [23]
         );
 
         try
@@ -171,36 +136,22 @@ class ezcDocumentOdtListLevelStyleTest extends ezcTestCase
         $this->assertSetProperty(
             $style,
             'textStyle',
-            array(
-                new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_TEXT, 'foo' )
-            )
+            [new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_TEXT, 'foo' )]
         );
         $this->assertSetProperty(
             $style,
             'numFormat',
-            array(
-                '.f',
-                '',
-                null,
-            )
+            ['.f', '', null]
         );
         $this->assertSetProperty(
             $style,
             'displayLevels',
-            array(
-                23,
-                1,
-                0,
-            )
+            [23, 1, 0]
         );
         $this->assertSetProperty(
             $style,
             'startValue',
-            array(
-                23,
-                1,
-                0,
-            )
+            [23, 1, 0]
         );
     }
 
@@ -211,60 +162,33 @@ class ezcDocumentOdtListLevelStyleTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $style,
             'level',
-            array(
-                23,
-                true,
-                'foo',
-            )
+            [23, true, 'foo']
         );
         $this->assertSetPropertyFails(
             $style,
             'textStyle',
-            array(
-                new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_PARAGRAPH, 'foo' ),
-                new stdClass(),
-                array(),
-                23,
-                'foo',
-            )
+            [new ezcDocumentOdtStyle( ezcDocumentOdtStyle::FAMILY_PARAGRAPH, 'foo' ), new stdClass(), [], 23, 'foo']
         );
         $this->assertSetPropertyFails(
             $style,
             'numFormat',
-            array(
-                23,
-                true,
-                array(),
-                new stdClass(),
-            )
+            [23, true, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $style,
             'displayLevels',
-            array(
-                'foo',
-                true,
-                array(),
-                new stdClass(),
-            )
+            ['foo', true, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $style,
             'startValue',
-            array(
-                'foo',
-                true,
-                array(),
-                new stdClass(),
-            )
+            ['foo', true, [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $style,
             'fooBar',
-            array(
-                23
-            )
+            [23]
         );
 
         try

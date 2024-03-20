@@ -19,37 +19,37 @@ class ezcSearchDocumentDefinition
     /**
      * Type for string fields.
      */
-    const STRING = 1;
+    public const STRING = 1;
 
     /**
      * Type for text fields.
      */
-    const TEXT = 2;
+    public const TEXT = 2;
 
     /**
      * Type for HTML fields.
      */
-    const HTML = 3;
+    public const HTML = 3;
 
     /**
      * Type for date fields.
      */
-    const DATE = 4;
+    public const DATE = 4;
 
     /**
      * Type for integer fields.
      */
-    const INT = 5;
+    public const INT = 5;
 
     /**
      * Type for floating point fields.
      */
-    const FLOAT = 6;
+    public const FLOAT = 6;
 
     /**
      * Type for boolean fields.
      */
-    const BOOLEAN = 7;
+    public const BOOLEAN = 7;
 
     /**
      * Contains the document type - which is the same as the class name.
@@ -79,7 +79,7 @@ class ezcSearchDocumentDefinition
      *
      * @var array(string=>ezcSearchDefinitionDocumentField)
      */
-    public $fields = array();
+    public $fields = [];
 
     /**
      * Creates a new ezcSearchDocumentDefinition for document type $documentType.
@@ -108,7 +108,7 @@ class ezcSearchDocumentDefinition
      */
     public function getSelectFieldNames()
     {
-        $fields = array();
+        $fields = [];
         foreach ( $this->fields as $name => $def )
         {
             if ( $def->inResult )
@@ -126,7 +126,7 @@ class ezcSearchDocumentDefinition
      */
     public function getHighlightFieldNames()
     {
-        $fields = array();
+        $fields = [];
         foreach ( $this->fields as $name => $def )
         {
             if ( $def->highlight )

@@ -29,7 +29,7 @@ class ezcDocumentDocbookToWikiConverterOptions extends ezcDocumentConverterOptio
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->wordWrap          = 78;
 

@@ -25,19 +25,19 @@ class ezcDocumentOdtMetaGenerator
      *
      * Automatically replaced during release.
      */
-    const VERSION = '1.3.1';
+    public const VERSION = '1.3.1';
 
     /**
      * Development version string.
      *
      * Used when {@link self::VERSION} is not replaced with a version number.
      */
-    const DEV_VERSION = 'dev';
+    public const DEV_VERSION = 'dev';
 
     /**
      * Generator string template. 
      */
-    const GENERATOR = 'eZComponents/Document-%s';
+    public const GENERATOR = 'eZComponents/Document-%s';
 
     /**
      * Generates basic meta data in $odtDocument.

@@ -22,7 +22,7 @@ class ezcDocumentPcssLocationIdTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -30,7 +30,7 @@ class ezcDocumentPcssLocationIdTests extends ezcTestCase
         $this->document = new DOMDocument();
         $this->document->registerNodeClass( 'DOMElement', 'ezcDocumentLocateableDomElement' );
 
-        $this->document->load( dirname( __FILE__ ) . '/../files/docbook/pdf/location_ids.xml' );
+        $this->document->load( __DIR__ . '/../files/docbook/pdf/location_ids.xml' );
 
         $this->xpath = new DOMXPath( $this->document );
         $this->xpath->registerNamespace( 'doc', 'http://docbook.org/ns/docbook' );

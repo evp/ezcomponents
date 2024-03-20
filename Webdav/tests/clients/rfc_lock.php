@@ -1,10 +1,7 @@
 <?php
-return array (
-  1 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+return [1 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:lockinfo xmlns:D=\'DAV:\'>
   <D:lockscope><D:exclusive/></D:lockscope>
   <D:locktype><D:write/></D:locktype>
@@ -12,22 +9,9 @@ return array (
        <D:href>http://example.com/~ejw/contact.html</D:href>
   </D:owner>
 </D:lockinfo>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'LOCK',
-        'REQUEST_URI' => '/workspace/webdav/proposal.doc',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'example.com',
-        'HTTP_TIMEOUT' => 'Infinite, Second-4100000000',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-        'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'LOCK', 'REQUEST_URI' => '/workspace/webdav/proposal.doc', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'example.com', 'HTTP_TIMEOUT' => 'Infinite, Second-4100000000', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234', 'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:prop xmlns:D="DAV:">
   <D:lockdiscovery>
     <D:activelock xmlns:ezclock="http://ezcomponents.org/s/Webdav#lock">
@@ -49,35 +33,12 @@ return array (
     </D:activelock>
   </D:lockdiscovery>
 </D:prop>
-',
-      'headers' => 
-      array (
-        'Lock-Token' => 'opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'text/xml; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  2 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'LOCK',
-        'REQUEST_URI' => '/workspace/webdav/proposal.doc',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'example.com',
-        'HTTP_TIMEOUT' => 'Infinite, Second-40',
-        'HTTP_IF' => '(<opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4>)',
-        'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'headers' => 
+['Lock-Token' => 'opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'text/xml; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 2 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'LOCK', 'REQUEST_URI' => '/workspace/webdav/proposal.doc', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'example.com', 'HTTP_TIMEOUT' => 'Infinite, Second-40', 'HTTP_IF' => '(<opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4>)', 'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:prop xmlns:D="DAV:">
   <D:lockdiscovery>
     <D:activelock xmlns:ezclock="http://ezcomponents.org/s/Webdav#lock">
@@ -99,20 +60,10 @@ return array (
     </D:activelock>
   </D:lockdiscovery>
 </D:prop>
-',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'text/xml; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  3 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'text/xml; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 3 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:lockinfo xmlns:D="DAV:">
   <D:locktype><D:write/></D:locktype>
   <D:lockscope><D:exclusive/></D:lockscope>
@@ -120,23 +71,9 @@ return array (
        <D:href>http://example.com/~ejw/contact.html</D:href>
   </D:owner>
 </D:lockinfo>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'LOCK',
-        'REQUEST_URI' => '/webdav/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'example.com',
-        'HTTP_TIMEOUT' => 'Infinite, Second-4100000000',
-        'HTTP_DEPTH' => 'infinity',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-        'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'LOCK', 'REQUEST_URI' => '/webdav/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'example.com', 'HTTP_TIMEOUT' => 'Infinite, Second-4100000000', 'HTTP_DEPTH' => 'infinity', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234', 'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response>
     <D:href>http://example.com/webdav/secret</D:href>
@@ -147,37 +84,16 @@ return array (
     <D:status>HTTP/1.1 424 Failed Dependency</D:status>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  4 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 4 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:propfind xmlns:D=\'DAV:\'>
   <D:prop><D:lockdiscovery/></D:prop>
 </D:propfind>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'HTTP_CONTENT_LENGTH' => '1234',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPFIND', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'HTTP_CONTENT_LENGTH' => '1234', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response>
     <D:href>http://example.com/container/</D:href>
@@ -204,71 +120,25 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  5 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 5 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <d:propertybehavior xmlns:d=\'DAV:\'>
   <d:keepalive>*</d:keepalive>
 </d:propertybehavior>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'MOVE',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'HTTP_DESTINATION' => 'http://example.com/othercontainer/',
-        'HTTP_OVERWRITE' => 'F',
-        'HTTP_IF' => '(<opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4>)  (<opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77>)',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => 0,
-      ),
-      'status' => 'HTTP/1.1 412 Precondition Failed',
-    ),
-  ),
-  6 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'server' => 
+['REQUEST_METHOD' => 'MOVE', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'HTTP_DESTINATION' => 'http://example.com/othercontainer/', 'HTTP_OVERWRITE' => 'F', 'HTTP_IF' => '(<opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4>)  (<opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77>)', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => 0], 'status' => 'HTTP/1.1 412 Precondition Failed']], 6 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:propfind xmlns:D="DAV:">
   <D:allprop/>
 </D:propfind>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'HTTP_DEPTH' => '1',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPFIND', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'HTTP_DEPTH' => '1', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:R="http://ns.example.com/boxschema/">
     <D:href>http://example.com/container/</D:href>
@@ -422,37 +292,16 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  7 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 7 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <propfind xmlns="DAV:">
   <propname/>
 </propfind>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPFIND', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:ezc00000="http://ns.example.com/boxschema/">
     <D:href>http://example.com/container/</D:href>
@@ -530,37 +379,16 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  8 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 8 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:propfind xmlns:D="DAV:">
   <D:prop><D:supportedlock/></D:prop>
 </D:propfind>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'HTTP_CONTENT_LENGTH' => '1234',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPFIND', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'HTTP_CONTENT_LENGTH' => '1234', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response>
     <D:href>http://example.com/container/</D:href>
@@ -589,40 +417,11 @@ return array (
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  9 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'UNLOCK',
-        'REQUEST_URI' => '/workspace/webdav/info.doc',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'example.com',
-        'HTTP_LOCK_TOKEN' => '<opaquelocktoken:a515cfa4-5da4-22e1-f5b5-00a0451e6bf7>',
-        'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 204 No Content',
-    ),
-  ),
-);
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 9 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'UNLOCK', 'REQUEST_URI' => '/workspace/webdav/info.doc', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'example.com', 'HTTP_LOCK_TOKEN' => '<opaquelocktoken:a515cfa4-5da4-22e1-f5b5-00a0451e6bf7>', 'HTTP_AUTH' => 'Digest username="ejw", realm="ejw@example.com", nonce="...", uri="/workspace/webdav/proposal.doc", response="...", opaque="..."']], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 204 No Content']]];
 ?>

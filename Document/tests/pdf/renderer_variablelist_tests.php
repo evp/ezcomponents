@@ -21,7 +21,7 @@ class ezcDocumentPdfVariableListRendererTests extends ezcDocumentPdfTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -29,30 +29,18 @@ class ezcDocumentPdfVariableListRendererTests extends ezcDocumentPdfTestCase
         parent::setUp();
 
         $this->styles = new ezcDocumentPcssStyleInferencer();
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-size' => '8mm',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'page' ),
-                array(
-                    'page-size' => 'TEST',
-                    'margin'    => '0',
-                    'padding'   => '10',
-                )
-            ),
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-size' => '8mm']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['page'],
+            ['page-size' => 'TEST', 'margin'    => '0', 'padding'   => '10']
+        )] );
     }
 
     public function testRenderDefinitionList()
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -78,7 +66,7 @@ class ezcDocumentPdfVariableListRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/variablelist_short.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/variablelist_short.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(
@@ -89,10 +77,7 @@ class ezcDocumentPdfVariableListRendererTests extends ezcDocumentPdfTestCase
 
     public function testRenderDefinitionListWrapped()
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -115,7 +100,7 @@ class ezcDocumentPdfVariableListRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/variablelist_long.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/variablelist_long.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(

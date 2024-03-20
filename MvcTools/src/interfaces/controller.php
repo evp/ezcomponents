@@ -42,7 +42,7 @@ abstract class ezcMvcController
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Holds the router associated with the action
@@ -155,7 +155,7 @@ abstract class ezcMvcController
      */
     public static function createActionMethodName( $action )
     {
-        $actionMethod = 'do' . preg_replace( '@[^A-Za-z]@', '', preg_replace_callback( '@[A-Za-z]+@', function($m) { return ucfirst($m[0]); }, $action ) );
+        $actionMethod = 'do' . preg_replace( '@[^A-Za-z]@', '', preg_replace_callback( '@[A-Za-z]+@', fn($m) => ucfirst($m[0]), $action ) );
         return $actionMethod;
     }
 

@@ -72,7 +72,7 @@ class ezcCacheStorageFilePlain extends ezcCacheStorageFile
     {
         if ( is_scalar( $data ) === false ) 
         {
-            throw new ezcCacheInvalidDataException( gettype( $data ), array( 'simple' ) );
+            throw new ezcCacheInvalidDataException( gettype( $data ), ['simple'] );
         }
         return ( string ) $data;
     }
@@ -118,10 +118,7 @@ class ezcCacheStorageFilePlain extends ezcCacheStorageFile
      */
     public function storeMetaData( ezcCacheStackMetaData $metaData )
     {
-        $dataArr = array(
-            'class' => get_class( $metaData ),
-            'data'  => $metaData->getState(),
-        );
+        $dataArr = ['class' => get_class( $metaData ), 'data'  => $metaData->getState()];
         // This storage only handles scalar values, so we serialize here.
         $dataStr = serialize( $dataArr );
         $this->storeRawData(

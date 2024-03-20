@@ -21,7 +21,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      * 
      * @var array
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Number of elements on the stack
@@ -40,7 +40,7 @@ class ezcDocumentRstStack implements ArrayAccess, Countable
      * @param array $array 
      * @return void
      */
-    public function __construct( array $array = array() )
+    public function __construct( array $array = [] )
     {
         $this->data  = array_reverse( $array );
         $this->count = count( $this->data );

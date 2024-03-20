@@ -29,7 +29,7 @@ class ezcBaseMetaData
      */
     public function __construct( $installMethod = NULL )
     {
-        $installMethod = $installMethod !== NULL ? $installMethod : ezcBase::getInstallMethod();
+        $installMethod ??= ezcBase::getInstallMethod();
 
         // figure out which reader to use
         switch ( $installMethod )

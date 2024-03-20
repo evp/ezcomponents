@@ -21,7 +21,7 @@ class ezcDocumentPdfBlockquoteRendererTests extends ezcDocumentPdfTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -29,32 +29,20 @@ class ezcDocumentPdfBlockquoteRendererTests extends ezcDocumentPdfTestCase
         parent::setUp();
 
         $this->styles = new ezcDocumentPcssStyleInferencer();
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'page' ),
-                array(
-                    'page-size' => 'TEST',
-                    'margin'    => '0',
-                    'padding'   => '10',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'blockquote' ),
-                array(
-                    'font-size' => '6mm',
-                )
-            ),
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['page'],
+            ['page-size' => 'TEST', 'margin'    => '0', 'padding'   => '10']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['blockquote'],
+            ['font-size' => '6mm']
+        )] );
     }
 
     public function testRenderBlockquote()
     {
         // Additional formatting
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -74,7 +62,7 @@ class ezcDocumentPdfBlockquoteRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/blockquote.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/blockquote.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(

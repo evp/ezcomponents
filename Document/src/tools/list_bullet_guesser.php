@@ -23,15 +23,7 @@ class ezcDocumentListBulletGuesser
      * 
      * @var array(string=>string)
      */
-    protected $docBookCharMap = array(
-        'circle' => '⚪',
-        'circ'   => '⚪',
-        'square' => '◼',
-        'dics'   => '⚫',
-        'skull'  => '☠',
-        'smiley' => '☺',
-        'arrow'  => '→',
-    );
+    protected $docBookCharMap = ['circle' => '⚪', 'circ'   => '⚪', 'square' => '◼', 'dics'   => '⚫', 'skull'  => '☠', 'smiley' => '☺', 'arrow'  => '→'];
 
     /**
      * Returns a UTF-8 bullet character for the given $mark.
@@ -52,11 +44,7 @@ class ezcDocumentListBulletGuesser
             return $mark;
         }
         $mark = strtolower( $mark );
-        if ( isset( $this->docBookCharMap[$mark] ) )
-        {
-            return $this->docBookCharMap[$mark];
-        }
-        return $default;
+        return $this->docBookCharMap[$mark] ?? $default;
     }
 }
 

@@ -374,14 +374,7 @@ class ezcImageImagemagickHandler extends ezcImageImagemagickBaseHandler
     public function noise( $value )
     {
         $value = ucfirst( strtolower( $value ) );
-        $possibleValues = array(
-           'Uniform',
-           'Gaussian',
-           'Multiplicative',
-           'Impulse',
-           'Laplacian',
-           'Poisson',
-        );
+        $possibleValues = ['Uniform', 'Gaussian', 'Multiplicative', 'Impulse', 'Laplacian', 'Poisson'];
         if ( !in_array( $value, $possibleValues ) )
         {
             throw new ezcBaseValueException( 'value', $value, 'Uniform, Gaussian, Multiplicative, Impulse, Laplacian, Poisson' );
@@ -671,7 +664,7 @@ class ezcImageImagemagickHandler extends ezcImageImagemagickBaseHandler
      * @param array $color Fill color.
      * @return void
      */
-    public function filledThumbnail( $width, $height, $color = array() )
+    public function filledThumbnail( $width, $height, $color = [] )
     {
         if ( !is_int( $width )  || $width < 1 )
         {

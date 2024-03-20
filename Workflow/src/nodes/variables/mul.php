@@ -52,10 +52,7 @@ class ezcWorkflowNodeVariableMul extends ezcWorkflowNodeArithmeticBase
      */
     public static function configurationFromXML( DOMElement $element )
     {
-        return array(
-          'name'    => $element->getAttribute( 'variable' ),
-          'operand' => $element->getAttribute( 'operand' )
-        );
+        return ['name'    => $element->getAttribute( 'variable' ), 'operand' => $element->getAttribute( 'operand' )];
     }
 
     /**

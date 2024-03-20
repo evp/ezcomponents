@@ -29,9 +29,9 @@ class ezcDocumentEzXmlOptions extends ezcDocumentXmlOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
-        $this->relaxNgSchema = dirname( __FILE__ ) . '/../document/xml/ezxml/schema/ezxml_schema.rng';
+        $this->relaxNgSchema = __DIR__ . '/../document/xml/ezxml/schema/ezxml_schema.rng';
 
         parent::__construct( $options );
     }

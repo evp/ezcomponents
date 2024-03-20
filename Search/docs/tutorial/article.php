@@ -20,14 +20,7 @@ class Article implements ezcBasePersistable, ezcSearchDefinitionProvider
 
     function getState()
     {
-        $state = array(
-            'id' => $this->id,
-            'title' => $this->title,
-            'body' => $this->body,
-            'published' => $this->published,
-            'url' => $this->url,
-            'type' => $this->type,
-        );
+        $state = ['id' => $this->id, 'title' => $this->title, 'body' => $this->body, 'published' => $this->published, 'url' => $this->url, 'type' => $this->type];
         return $state;
     }
 
@@ -41,7 +34,7 @@ class Article implements ezcBasePersistable, ezcSearchDefinitionProvider
 
     static public function getDefinition()
     {
-        $n = new ezcSearchDocumentDefinition( __CLASS__ );
+        $n = new ezcSearchDocumentDefinition( self::class );
         $n->idProperty = 'id';
         $n->fields['id']        = new ezcSearchDefinitionDocumentField( 'id', ezcSearchDocumentDefinition::TEXT );
         $n->fields['title']     = new ezcSearchDefinitionDocumentField( 'title', ezcSearchDocumentDefinition::TEXT, 2, true, false, true );

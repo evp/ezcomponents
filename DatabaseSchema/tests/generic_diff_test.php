@@ -21,150 +21,78 @@ class ezcDatabaseSchemaGenericDiffTest extends ezcTestCase
 
     private static function getSchema1()
     {
-        return new ezcDbSchema( array(
-            'bugdb' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_deleted' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_change' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                    'integerfield3' => new ezcDbSchemaField( 'integer' ),
-                ),
-                array (
-                    'primary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield1' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    ),
-                    'tertiary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield3' => new ezcDbSchemaIndexField()
-                        ),
-                        false,
-                        true
-                    )
-                )
-            ),
-        ) );
+        return new ezcDbSchema( ['bugdb' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_deleted' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_change' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' ), 'integerfield3' => new ezcDbSchemaField( 'integer' )],
+            ['primary' => new ezcDbSchemaIndex(
+                ['integerfield1' => new ezcDbSchemaIndexField()],
+                true
+            ), 'tertiary' => new ezcDbSchemaIndex(
+                ['integerfield3' => new ezcDbSchemaIndexField()],
+                false,
+                true
+            )]
+        )] );
     }
 
     private static function getSchema2()
     {
-        return new ezcDbSchema( array(
-            'bugdb' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_added' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_change' => new ezcDbSchemaTable(
-                array (
-                    'integerfield2' => new ezcDbSchemaField( 'integer', 0, true ),
-                    'integerfield3' => new ezcDbSchemaField( 'text', 64 ),
-                ),
-                array (
-                    'secondary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield3' => new ezcDbSchemaIndexField()
-                        ),
-                        false,
-                        true
-                    ),
-                    'primary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield2' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    )
-                )
-            ),
-        ) );
+        return new ezcDbSchema( ['bugdb' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_added' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_change' => new ezcDbSchemaTable(
+            ['integerfield2' => new ezcDbSchemaField( 'integer', 0, true ), 'integerfield3' => new ezcDbSchemaField( 'text', 64 )],
+            ['secondary' => new ezcDbSchemaIndex(
+                ['integerfield3' => new ezcDbSchemaIndexField()],
+                false,
+                true
+            ), 'primary' => new ezcDbSchemaIndex(
+                ['integerfield2' => new ezcDbSchemaIndexField()],
+                true
+            )]
+        )] );
     }
 
     private static function getSchema3()
     {
-        return new ezcDbSchema( array(
-            'table' => new ezcDbSchemaTable(
-                array (
-                    'from' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'select' => new ezcDbSchemaTable(
-                array (
-                    'group' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_change' => new ezcDbSchemaTable(
-                array (
-                    'from' => new ezcDbSchemaField( 'integer' ),
-                    'table' => new ezcDbSchemaField( 'integer' ),
-                ),
-                array (
-                    'primary' => new ezcDbSchemaIndex(
-                        array(
-                            'from' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    ),
-                    'join' => new ezcDbSchemaIndex(
-                        array(
-                            'table' => new ezcDbSchemaIndexField()
-                        ),
-                        false,
-                        true
-                    )
-                )
-            ),
-        ) );
+        return new ezcDbSchema( ['table' => new ezcDbSchemaTable(
+            ['from' => new ezcDbSchemaField( 'integer' )]
+        ), 'select' => new ezcDbSchemaTable(
+            ['group' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_change' => new ezcDbSchemaTable(
+            ['from' => new ezcDbSchemaField( 'integer' ), 'table' => new ezcDbSchemaField( 'integer' )],
+            ['primary' => new ezcDbSchemaIndex(
+                ['from' => new ezcDbSchemaIndexField()],
+                true
+            ), 'join' => new ezcDbSchemaIndex(
+                ['table' => new ezcDbSchemaIndexField()],
+                false,
+                true
+            )]
+        )] );
     }
 
     private static function getSchema4()
     {
-        return new ezcDbSchema( array(
-            'table' => new ezcDbSchemaTable(
-                array (
-                    'from' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'order' => new ezcDbSchemaTable(
-                array (
-                    'right' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_change' => new ezcDbSchemaTable(
-                array (
-                    'group' => new ezcDbSchemaField( 'integer', false, true, 0 ),
-                    'table' => new ezcDbSchemaField( 'integer' ),
-                ),
-                array (
-                    'from' => new ezcDbSchemaIndex(
-                        array(
-                            'table' => new ezcDbSchemaIndexField()
-                        ),
-                        false,
-                        true
-                    ),
-                    'primary' => new ezcDbSchemaIndex(
-                        array(
-                            'group' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    )
-                )
-            ),
-        ) );
+        return new ezcDbSchema( ['table' => new ezcDbSchemaTable(
+            ['from' => new ezcDbSchemaField( 'integer' )]
+        ), 'order' => new ezcDbSchemaTable(
+            ['right' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_change' => new ezcDbSchemaTable(
+            ['group' => new ezcDbSchemaField( 'integer', false, true, 0 ), 'table' => new ezcDbSchemaField( 'integer' )],
+            ['from' => new ezcDbSchemaIndex(
+                ['table' => new ezcDbSchemaIndexField()],
+                false,
+                true
+            ), 'primary' => new ezcDbSchemaIndex(
+                ['group' => new ezcDbSchemaIndexField()],
+                true
+            )]
+        )] );
     }
 
     private static function getSchemaDiff1()
@@ -282,32 +210,8 @@ class ezcDatabaseSchemaGenericDiffTest extends ezcTestCase
     {
         $dbh = $this->db;
 
-        $schema1 = new ezcDbSchema( array(
-            'table10801' => new ezcDbSchemaTable( array(
-                'id' => ezcDbSchemaField::__set_state( array(
-                    'type' => 'integer',
-                    'length' => false,
-                    'notNull' => false,
-                    'default' => 0,
-                    'autoIncrement' => false,
-                    'unsigned' => false,
-                ) ),
-                'text' => new ezcDbSchemaField( 'text' )
-            ) )
-        ) );
-        $schema2 = new ezcDbSchema( array(
-            'table10801' => new ezcDbSchemaTable( array(
-                'id' => ezcDbSchemaField::__set_state( array(
-                    'type' => 'integer',
-                    'length' => false,
-                    'notNull' => true,
-                    'default' => null,
-                    'autoIncrement' => true,
-                    'unsigned' => false,
-                ) ),
-                'text' => new ezcDbSchemaField( 'text' )
-            ) )
-        ) );
+        $schema1 = new ezcDbSchema( ['table10801' => new ezcDbSchemaTable( ['id' => ezcDbSchemaField::__set_state( ['type' => 'integer', 'length' => false, 'notNull' => false, 'default' => 0, 'autoIncrement' => false, 'unsigned' => false] ), 'text' => new ezcDbSchemaField( 'text' )] )] );
+        $schema2 = new ezcDbSchema( ['table10801' => new ezcDbSchemaTable( ['id' => ezcDbSchemaField::__set_state( ['type' => 'integer', 'length' => false, 'notNull' => true, 'default' => null, 'autoIncrement' => true, 'unsigned' => false] ), 'text' => new ezcDbSchemaField( 'text' )] )] );
         $schema1->writeToDb( $dbh );
         $diff = ezcDbSchemaComparator::compareSchemas( $schema1, $schema2 );
         $diff->applyToDb( $dbh );

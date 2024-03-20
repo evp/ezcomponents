@@ -8,10 +8,10 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . "/../data/relation_test_employer.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_person.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_address.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_birthday.php";
+require_once __DIR__ . "/../data/relation_test_employer.php";
+require_once __DIR__ . "/../data/relation_test_person.php";
+require_once __DIR__ . "/../data/relation_test_address.php";
+require_once __DIR__ . "/../data/relation_test_birthday.php";
 
 /**
  * Tests ezcPersistentManyToOneRelation class.
@@ -30,7 +30,7 @@ class ezcPersistentSessionIdentityDecoratorRelationPrefetchTest extends ezcTestC
     public function setup()
     {
         $this->defManager = new ezcPersistentCodeManager(
-            dirname( __FILE__ ) . '/../data/'
+            __DIR__ . '/../data/'
         );
 
         try
@@ -64,69 +64,51 @@ class ezcPersistentSessionIdentityDecoratorRelationPrefetchTest extends ezcTestC
 
     protected function getOneLevelOneRelationRelations()
     {
-        return array(
-            'employer' => new ezcPersistentRelationFindDefinition(
-                'RelationTestEmployer'
-            ),
-        );
+        return ['employer' => new ezcPersistentRelationFindDefinition(
+            'RelationTestEmployer'
+        )];
     }
 
     protected function getOneLevelMultiRelationRelations()
     {
-        return array(
-            'employer' => new ezcPersistentRelationFindDefinition(
-                'RelationTestEmployer'
-            ),
-            'address' => new ezcPersistentRelationFindDefinition(
-                'RelationTestAddress'
-            ),
-        );
+        return ['employer' => new ezcPersistentRelationFindDefinition(
+            'RelationTestEmployer'
+        ), 'address' => new ezcPersistentRelationFindDefinition(
+            'RelationTestAddress'
+        )];
 
     }
 
     protected function getMultiLevelSingleRelationRelations()
     {
-        return array(
-            'addresses' => new ezcPersistentRelationFindDefinition(
-                'RelationTestAddress',
-                null,
-                array(
-                    'habitants' => new ezcPersistentRelationFindDefinition(
-                        'RelationTestPerson'
-                    )
-                )
-            ),
-        );
+        return ['addresses' => new ezcPersistentRelationFindDefinition(
+            'RelationTestAddress',
+            null,
+            ['habitants' => new ezcPersistentRelationFindDefinition(
+                'RelationTestPerson'
+            )]
+        )];
     }
 
     protected function getMultiLevelMultiRelationRelations()
     {
-        return array(
-            'addresses' => new ezcPersistentRelationFindDefinition(
-                'RelationTestAddress',
+        return ['addresses' => new ezcPersistentRelationFindDefinition(
+            'RelationTestAddress',
+            null,
+            ['habitants' => new ezcPersistentRelationFindDefinition(
+                'RelationTestPerson',
                 null,
-                array(
-                    'habitants' => new ezcPersistentRelationFindDefinition(
-                        'RelationTestPerson',
-                        null,
-                        array(
-                            'habitant_employer' => new ezcPersistentRelationFindDefinition(
-                                'RelationTestEmployer'
-                            ),
-                            'habitant_birthday' => new ezcPersistentRelationFindDefinition(
-                                'RelationTestBirthday'
-                            ),
-                        )
-                    )
-                )
-            ),
-            'employer' => new ezcPersistentRelationFindDefinition(
-                'RelationTestEmployer'
-            ),
-            'birthday' => new ezcPersistentRelationFindDefinition(
-                'RelationTestBirthday'
-            ),
-        );
+                ['habitant_employer' => new ezcPersistentRelationFindDefinition(
+                    'RelationTestEmployer'
+                ), 'habitant_birthday' => new ezcPersistentRelationFindDefinition(
+                    'RelationTestBirthday'
+                )]
+            )]
+        ), 'employer' => new ezcPersistentRelationFindDefinition(
+            'RelationTestEmployer'
+        ), 'birthday' => new ezcPersistentRelationFindDefinition(
+            'RelationTestBirthday'
+        )];
     }
 
     protected function qi( $identifier )

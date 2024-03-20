@@ -29,7 +29,7 @@ abstract class ezcGraphDriver
      * @return void
      * @ignore
      */
-    abstract public function __construct( array $options = array() );
+    abstract public function __construct( array $options = [] );
     
     /**
      * Options write access
@@ -106,8 +106,8 @@ abstract class ezcGraphDriver
         $pointCount = count( $points );
 
         // Build normalized vectors between polygon edge points
-        $vectors = array();
-        $vectorLength = array();
+        $vectors = [];
+        $vectorLength = [];
         for ( $i = 0; $i < $pointCount; ++$i )
         {
             $nextPoint = ( $i + 1 ) % $pointCount;
@@ -192,7 +192,7 @@ abstract class ezcGraphDriver
             ) < 0 ? 1 : -1;
 
         // Move points to center
-        $newPoints = array();
+        $newPoints = [];
         for ( $i = 0; $i < $pointCount; ++$i )
         {
             $last = $i;
@@ -378,10 +378,10 @@ abstract class ezcGraphDriver
         
         // Ellipse tangent factor
         $ellipseTangentFactor = sqrt(
-            pow( $height, 2 ) *
-                pow( cos( $startAngle ), 2 ) +
-            pow( $width, 2 ) *
-                pow( sin( $startAngle ), 2 )
+            $height ** 2 *
+                cos( $startAngle ) ** 2 +
+            $width ** 2 *
+                sin( $startAngle ) ** 2
         );
         $ellipseTangentVector = new ezcGraphVector(
             $width * -sin( $startAngle ) / $ellipseTangentFactor,
@@ -404,10 +404,10 @@ abstract class ezcGraphDriver
         
         // Ellipse tangent factor
         $ellipseTangentFactor = sqrt(
-            pow( $height, 2 ) *
-                pow( cos( $endAngle ), 2 ) +
-            pow( $width, 2 ) *
-                pow( sin( $endAngle ), 2 )
+            $height ** 2 *
+                cos( $endAngle ) ** 2 +
+            $width ** 2 *
+                sin( $endAngle ) ** 2
         );
         $ellipseTangentVector = new ezcGraphVector(
             $width * -sin( $endAngle ) / $ellipseTangentFactor,
@@ -422,13 +422,7 @@ abstract class ezcGraphDriver
         $newEndVector = clone $endVector;
         $newEndVector->add( $ellipseTangentVector );
 
-        return array(
-            'center' => $newCenter,
-            'start' => $newStartPoint,
-            'end' => $newEndPoint,
-            'startAngle' => rad2deg( $startAngle + $startVector->angle( $newStartVector ) ),
-            'endAngle' => rad2deg( $endAngle - $endVector->angle( $newEndVector ) ),
-        );
+        return ['center' => $newCenter, 'start' => $newStartPoint, 'end' => $newEndPoint, 'startAngle' => rad2deg( $startAngle + $startVector->angle( $newStartVector ) ), 'endAngle' => rad2deg( $endAngle - $endVector->angle( $newEndVector ) )];
     }
 
     /**
@@ -490,7 +484,7 @@ abstract class ezcGraphDriver
         $tokens = preg_split( '/\s+/', $string );
         $initialHeight = $height;
 
-        $lines = array( array() );
+        $lines = [[]];
         $line = 0;
         foreach ( $tokens as $nr => $token )
         {
@@ -638,7 +632,7 @@ abstract class ezcGraphDriver
             $hit .= $postfix;
         }
 
-        return array( array( $hit ) );
+        return [[$hit]];
     }
 
     /**

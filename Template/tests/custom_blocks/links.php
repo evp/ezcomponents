@@ -7,7 +7,7 @@ class LinksCustomBlock implements ezcTemplateCustomFunction, ezcTemplateCustomBl
         {
             case "link_to":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "link_to";
                 $def->parameters[] = "name";
                 $def->parameters[] = "url";
@@ -21,10 +21,10 @@ class LinksCustomBlock implements ezcTemplateCustomFunction, ezcTemplateCustomBl
         {
             case "link":
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "linkCustomBlock";
                 $def->startExpressionName = "from";
-                $def->requiredParameters = array("from", "to" );
+                $def->requiredParameters = ["from", "to"];
                 return $def;
         }
     }

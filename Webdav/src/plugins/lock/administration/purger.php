@@ -34,14 +34,14 @@ class ezcWebdavLockPurger
      * 
      * @var array(ezcWebdavLockDiscoveryProperty)
      */
-    protected $lockProperties = array();
+    protected $lockProperties = [];
 
     /**
      * Lock tokens that need to be purged.
      * 
      * @var array(string=>true)
      */
-    protected $locksToPurge = array();
+    protected $locksToPurge = [];
 
     /**
      * Creates a new lock purger.
@@ -69,8 +69,8 @@ class ezcWebdavLockPurger
      */
     public function purgeLocks( $path )
     {
-        $this->locksToPurge   = array();
-        $this->lockProperties = array();
+        $this->locksToPurge   = [];
+        $this->lockProperties = [];
 
         $propFindReq = new ezcWebdavPropFindRequest( $path );
         $propFindReq->prop = new ezcWebdavBasicPropertyStorage();
@@ -89,7 +89,7 @@ class ezcWebdavLockPurger
         }
 
         $this->collectPurgeProperties( $propFindMultistatusRes );
-        if ( $this->locksToPurge !== array() )
+        if ( $this->locksToPurge !== [] )
         {
             $this->performPurge();
         }
@@ -155,7 +155,7 @@ class ezcWebdavLockPurger
     {
         foreach ( $this->lockProperties as $path => $lockDiscoveryProp )
         {
-            $removeIds = array();
+            $removeIds = [];
             foreach ( $lockDiscoveryProp->activeLock as $id => $activeLock )
             {
                 if ( isset( $this->locksToPurge[(string) $activeLock->token] ) )
@@ -163,7 +163,7 @@ class ezcWebdavLockPurger
                     $removeIds[] = $id;
                 }
             }
-            if ( $removeIds !== array() )
+            if ( $removeIds !== [] )
             {
                 foreach ( $removeIds as $id )
                 {

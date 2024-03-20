@@ -43,22 +43,22 @@ class ezcDocumentPdfOptions extends ezcDocumentOptions
     /**
      * User may edit annotations and form field in the PDF
      */
-    const EDIT = 1;
+    public const EDIT = 1;
 
     /**
      * User may print the PDF document
      */
-    const PRINTABLE = 2;
+    public const PRINTABLE = 2;
 
     /**
      * User may copy contents from the PDF document
      */
-    const COPY = 4;
+    public const COPY = 4;
 
     /**
      * User may modify the contents of the PDF document
      */
-    const MODIFY = 8;
+    public const MODIFY = 8;
 
     /**
      * Constructs an object with the specified values.
@@ -69,7 +69,7 @@ class ezcDocumentPdfOptions extends ezcDocumentOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->hyphenator                 = new ezcDocumentPdfDefaultHyphenator();
         $this->tokenizer                  = new ezcDocumentPdfDefaultTokenizer();

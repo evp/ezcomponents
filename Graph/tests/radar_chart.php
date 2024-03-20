@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -35,8 +35,8 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
         {
             $this->markTestSkipped( "These tests required atleast PHP 5.1.3" );
         }
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -50,11 +50,9 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
     public function testDrawMultipleAxis()
     {
         $chart = new ezcGraphRadarChart();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1 ) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
 
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawAxis',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawAxis'] );
 
         $mockedRenderer
            ->expects( $this->at( 0 ) )
@@ -89,12 +87,10 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
     public function testDrawDataLines()
     {
         $chart = new ezcGraphRadarChart();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1 ) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['sampleData']->color = '#CC0000';
 
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawRadarDataLine',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawRadarDataLine'] );
 
         $mockedRenderer
            ->expects( $this->at( 0 ) )
@@ -138,13 +134,11 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
     public function testDrawDataLinesWithSymbols()
     {
         $chart = new ezcGraphRadarChart();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1 ) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['sampleData']->color = '#CC0000';
         $chart->data['sampleData']->symbol = ezcGraph::DIAMOND;
 
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawRadarDataLine',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawRadarDataLine'] );
 
         $mockedRenderer
            ->expects( $this->at( 0 ) )
@@ -205,9 +199,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->data['sample'] = new ezcGraphArrayDataSet( $this->getRandomData( 6 ) );
 
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawGridLine',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawGridLine'] );
 
         $mockedRenderer
            ->expects( $this->at( 0 ) )
@@ -474,7 +466,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -512,7 +504,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -532,7 +524,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -552,7 +544,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -594,7 +586,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -616,7 +608,7 @@ class ezcGraphRadarChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

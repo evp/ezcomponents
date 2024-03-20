@@ -76,7 +76,7 @@ class ezcPersistentSessionIdentityDecorator implements ezcPersistentSessionFound
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * The persistent session this object wraps.
@@ -116,7 +116,7 @@ class ezcPersistentSessionIdentityDecorator implements ezcPersistentSessionFound
         $this->session                   = $session;
         $this->properties['identityMap'] = $identityMap;
         $this->properties['options']     = (
-            $options === null ? new ezcPersistentSessionIdentityDecoratorOptions() : $options
+            $options ?? new ezcPersistentSessionIdentityDecoratorOptions()
         );
     }
 
@@ -434,7 +434,7 @@ class ezcPersistentSessionIdentityDecorator implements ezcPersistentSessionFound
     {
         $objects = $this->session->find( $query, $class );
 
-        $defs = array();
+        $defs = [];
 
         foreach ( $objects as $i => $object )
         {

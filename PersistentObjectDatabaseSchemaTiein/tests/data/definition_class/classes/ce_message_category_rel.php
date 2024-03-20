@@ -47,11 +47,7 @@ class ce_message_category_rel
      */
      public function getState()
      {
-         return array(
-             'category_id' => $this->category_id,
-             'is_shadow' => $this->is_shadow,
-             'message_id' => $this->message_id,
-         );
+         return ['category_id' => $this->category_id, 'is_shadow' => $this->is_shadow, 'message_id' => $this->message_id];
      }
 }
 ?>

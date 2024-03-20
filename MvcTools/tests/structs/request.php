@@ -55,23 +55,7 @@ class ezcMvcRequestTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'date' => 'php',
-        'protocol' => 'ezc',
-        'host' => 'ezp',
-        'uri' => 'buddymiles',
-        'requestId' => 'buddyguy',
-        'referrer' => 'django',
-        'variables' => 'satchmo',
-        'body' => 'vim',
-        'files' => 'linux',
-        'accept' => 'gentoo',
-        'agent' => 'debian',
-        'authentication' => 'oop',
-        'raw' => 'random',
-        'cookies' => 'foo',
-        'isFatal' => false,
-        );
+        $state = ['date' => 'php', 'protocol' => 'ezc', 'host' => 'ezp', 'uri' => 'buddymiles', 'requestId' => 'buddyguy', 'referrer' => 'django', 'variables' => 'satchmo', 'body' => 'vim', 'files' => 'linux', 'accept' => 'gentoo', 'agent' => 'debian', 'authentication' => 'oop', 'raw' => 'random', 'cookies' => 'foo', 'isFatal' => false];
         $struct = ezcMvcRequest::__set_state( $state );
         $this->assertEquals( 'php', $struct->date, 'Property date does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->protocol, 'Property protocol does not have the expected value' );

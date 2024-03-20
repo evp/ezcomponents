@@ -85,7 +85,7 @@ class ezcDebugVariableDumpTool
                 : min( count( $arg ), $maxChildren )
             );
         
-            $results = array();
+            $results = [];
             reset( $arg );
             for ( $i = 0; $i < $max; ++$i )
             {
@@ -150,7 +150,7 @@ class ezcDebugVariableDumpTool
                 ? min( count( $refProps ), $maxChildren )
                 : count( $refProps )
             );
-            $results = array();
+            $results = [];
 
             reset( $refProps );
             for( $i = 0; $i < $max; $i++ )

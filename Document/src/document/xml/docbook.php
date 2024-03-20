@@ -25,9 +25,7 @@ class ezcDocumentDocbook extends ezcDocumentXmlBase
      */
     public function __construct( ezcDocumentDocbookOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentDocbookOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentDocbookOptions() );
     }
 
     /**
@@ -104,7 +102,7 @@ class ezcDocumentDocbook extends ezcDocumentXmlBase
 
         // Get all errors
         $xmlErrors = libxml_get_errors();
-        $errors = array();
+        $errors = [];
         foreach ( $xmlErrors as $error )
         {
             $errors[] = ezcDocumentValidationError::createFromLibXmlError( $error );
@@ -137,7 +135,7 @@ class ezcDocumentDocbook extends ezcDocumentXmlBase
 
         // Get all errors
         $xmlErrors = libxml_get_errors();
-        $errors = array();
+        $errors = [];
         foreach ( $xmlErrors as $error )
         {
             $errors[] = ezcDocumentValidationError::createFromLibXmlError( $error );

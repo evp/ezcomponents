@@ -44,7 +44,7 @@ abstract class ezcGraphRenderer
      * 
      * @var array
      */
-    protected $elements = array();
+    protected $elements = [];
 
     /**
      * Set renderers driver
@@ -397,28 +397,24 @@ abstract class ezcGraphRenderer
         if ( $this->options->axisEndStyle === ezcGraph::ARROW )
         {
             $this->driver->drawPolygon(
-                array(
-                    new ezcGraphCoordinate(
-                        $position->x,
-                        $position->y
-                    ),
-                    new ezcGraphCoordinate(
-                        $position->x
-                            - $orthogonalDirection->x * $size / 2
-                            + $direction->x * $size,
-                        $position->y
-                            - $orthogonalDirection->y * $size / 2
-                            + $direction->y * $size
-                    ),
-                    new ezcGraphCoordinate(
-                        $position->x
-                            + $orthogonalDirection->x * $size / 2
-                            + $direction->x * $size,
-                        $position->y
-                            + $orthogonalDirection->y * $size / 2
-                            + $direction->y * $size
-                    ),
-                ),
+                [new ezcGraphCoordinate(
+                    $position->x,
+                    $position->y
+                ), new ezcGraphCoordinate(
+                    $position->x
+                        - $orthogonalDirection->x * $size / 2
+                        + $direction->x * $size,
+                    $position->y
+                        - $orthogonalDirection->y * $size / 2
+                        + $direction->y * $size
+                ), new ezcGraphCoordinate(
+                    $position->x
+                        + $orthogonalDirection->x * $size / 2
+                        + $direction->x * $size,
+                    $position->y
+                        + $orthogonalDirection->y * $size / 2
+                        + $direction->y * $size
+                )],
                 $color,
                 true
             );
@@ -494,12 +490,7 @@ abstract class ezcGraphRenderer
             case ezcGraph::NO_SYMBOL:
             case ezcGraph::SQUARE:
                 $return = $this->driver->drawPolygon(
-                    array(
-                        new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ),
-                        new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ),
-                        new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ),
-                        new ezcGraphCoordinate( $boundings->x0, $boundings->y1 ),
-                    ),
+                    [new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ), new ezcGraphCoordinate( $boundings->x0, $boundings->y1 )],
                     $color,
                     true
                 );
@@ -508,24 +499,19 @@ abstract class ezcGraphRenderer
                 if ( $this->options->legendSymbolGleam !== false )
                 {
                     $return = $this->driver->drawPolygon(
-                        array(
-                            $topLeft = new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
-                            ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
-                            ),
-                            $bottomRight = new ezcGraphCoordinate( 
-                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
-                            ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
-                            ),
-                        ),
+                        [$topLeft = new ezcGraphCoordinate( 
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                        ), new ezcGraphCoordinate( 
+                            $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                        ), $bottomRight = new ezcGraphCoordinate( 
+                            $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                        ), new ezcGraphCoordinate( 
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                        )],
                         new ezcGraphLinearGradient(
                             $bottomRight,
                             $topLeft,
@@ -538,36 +524,26 @@ abstract class ezcGraphRenderer
                 return $return;
             case ezcGraph::BOX:
                 $return = $this->driver->drawPolygon(
-                    array(
-                        new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ),
-                        new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ),
-                        new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ),
-                        new ezcGraphCoordinate( $boundings->x0, $boundings->y1 ),
-                    ),
+                    [new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ), new ezcGraphCoordinate( $boundings->x0, $boundings->y1 )],
                     $color,
                     false
                 );
                 return $return;
             case ezcGraph::DIAMOND:
                 $return = $this->driver->drawPolygon(
-                    array(
-                        new ezcGraphCoordinate( 
-                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                            $boundings->y0 
-                        ),
-                        new ezcGraphCoordinate( 
-                            $boundings->x1,
-                            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
-                        ),
-                        new ezcGraphCoordinate( 
-                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                            $boundings->y1 
-                        ),
-                        new ezcGraphCoordinate( 
-                            $boundings->x0,
-                            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
-                        ),
-                    ),
+                    [new ezcGraphCoordinate( 
+                        $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
+                        $boundings->y0 
+                    ), new ezcGraphCoordinate( 
+                        $boundings->x1,
+                        $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
+                    ), new ezcGraphCoordinate( 
+                        $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
+                        $boundings->y1 
+                    ), new ezcGraphCoordinate( 
+                        $boundings->x0,
+                        $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
+                    )],
                     $color,
                     true
                 );
@@ -576,24 +552,19 @@ abstract class ezcGraphRenderer
                 if ( $this->options->legendSymbolGleam !== false )
                 {
                     $return = $this->driver->drawPolygon(
-                        array(
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
-                            ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
-                            ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
-                                $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
-                            ),
-                            new ezcGraphCoordinate( 
-                                $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
-                                $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
-                            ),
-                        ),
+                        [new ezcGraphCoordinate( 
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
+                            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                        ), new ezcGraphCoordinate( 
+                            $boundings->x1 - ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
+                        ), new ezcGraphCoordinate( 
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) / 2, 
+                            $boundings->y1 - ( $boundings->y1 - $boundings->y0 ) * $this->options->legendSymbolGleamSize 
+                        ), new ezcGraphCoordinate( 
+                            $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * $this->options->legendSymbolGleamSize, 
+                            $boundings->y0 + ( $boundings->y1 - $boundings->y0 ) / 2
+                        )],
                         new ezcGraphLinearGradient(
                             new ezcGraphCoordinate( 
                                 $boundings->x0 + ( $boundings->x1 - $boundings->x0 ) * 0.353553391, 

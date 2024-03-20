@@ -41,10 +41,7 @@ class ezcappCamelCaseLetters
      */
      public function getState()
      {
-         return array(
-             'id' => $this->id,
-             'word' => $this->word,
-         );
+         return ['id' => $this->id, 'word' => $this->word];
      }
 }
 ?>

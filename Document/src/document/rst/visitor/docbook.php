@@ -21,48 +21,14 @@ class ezcDocumentRstDocbookVisitor extends ezcDocumentRstVisitor
      *
      * @var array
      */
-    protected $complexVisitMapping = array(
-        'ezcDocumentRstSectionNode'               => 'visitSection',
-        'ezcDocumentRstParagraphNode'             => 'visitParagraph',
-        'ezcDocumentRstTextLineNode'              => 'visitText',
-        'ezcDocumentRstLiteralNode'               => 'visitText',
-        'ezcDocumentRstExternalReferenceNode'     => 'visitExternalReference',
-        'ezcDocumentRstReferenceNode'             => 'visitInternalFootnoteReference',
-        'ezcDocumentRstAnonymousLinkNode'         => 'visitAnonymousReference',
-        'ezcDocumentRstMarkupSubstitutionNode'    => 'visitSubstitutionReference',
-        'ezcDocumentRstMarkupInterpretedTextNode' => 'visitInterpretedTextNode',
-        'ezcDocumentRstMarkupStrongEmphasisNode'  => 'visitEmphasisMarkup',
-        'ezcDocumentRstMarkupEmphasisNode'        => 'visitEmphasisMarkup',
-        'ezcDocumentRstTargetNode'                => 'visitInlineTarget',
-        'ezcDocumentRstBlockquoteNode'            => 'visitBlockquote',
-        'ezcDocumentRstEnumeratedListListNode'    => 'visitEnumeratedList',
-        'ezcDocumentRstDefinitionListNode'        => 'visitDefinitionListItem',
-        'ezcDocumentRstTableNode'                 => 'visitTable',
-        'ezcDocumentRstTableCellNode'             => 'visitTableCell',
-        'ezcDocumentRstFieldListNode'             => 'visitFieldListItem',
-        'ezcDocumentRstLineBlockNode'             => 'visitLineBlock',
-        'ezcDocumentRstLineBlockLineNode'         => 'visitChildren',
-        'ezcDocumentRstDirectiveNode'             => 'visitDirective',
-    );
+    protected $complexVisitMapping = ['ezcDocumentRstSectionNode'               => 'visitSection', 'ezcDocumentRstParagraphNode'             => 'visitParagraph', 'ezcDocumentRstTextLineNode'              => 'visitText', 'ezcDocumentRstLiteralNode'               => 'visitText', 'ezcDocumentRstExternalReferenceNode'     => 'visitExternalReference', 'ezcDocumentRstReferenceNode'             => 'visitInternalFootnoteReference', 'ezcDocumentRstAnonymousLinkNode'         => 'visitAnonymousReference', 'ezcDocumentRstMarkupSubstitutionNode'    => 'visitSubstitutionReference', 'ezcDocumentRstMarkupInterpretedTextNode' => 'visitInterpretedTextNode', 'ezcDocumentRstMarkupStrongEmphasisNode'  => 'visitEmphasisMarkup', 'ezcDocumentRstMarkupEmphasisNode'        => 'visitEmphasisMarkup', 'ezcDocumentRstTargetNode'                => 'visitInlineTarget', 'ezcDocumentRstBlockquoteNode'            => 'visitBlockquote', 'ezcDocumentRstEnumeratedListListNode'    => 'visitEnumeratedList', 'ezcDocumentRstDefinitionListNode'        => 'visitDefinitionListItem', 'ezcDocumentRstTableNode'                 => 'visitTable', 'ezcDocumentRstTableCellNode'             => 'visitTableCell', 'ezcDocumentRstFieldListNode'             => 'visitFieldListItem', 'ezcDocumentRstLineBlockNode'             => 'visitLineBlock', 'ezcDocumentRstLineBlockLineNode'         => 'visitChildren', 'ezcDocumentRstDirectiveNode'             => 'visitDirective'];
 
     /**
      * Direct mapping of AST node class names to docbook element names.
      *
      * @var array
      */
-    protected $simpleVisitMapping = array(
-        'ezcDocumentRstMarkupInlineLiteralNode' => 'literal',
-        'ezcDocumentRstBulletListListNode'      => 'itemizedlist',
-        'ezcDocumentRstDefinitionListListNode'  => 'variablelist',
-        'ezcDocumentRstBulletListNode'          => 'listitem',
-        'ezcDocumentRstEnumeratedListNode'      => 'listitem',
-        'ezcDocumentRstLiteralBlockNode'        => 'literallayout',
-        'ezcDocumentRstCommentNode'             => 'comment',
-        'ezcDocumentRstTransitionNode'          => 'beginpage',
-        'ezcDocumentRstTableHeadNode'           => 'thead',
-        'ezcDocumentRstTableBodyNode'           => 'tbody',
-        'ezcDocumentRstTableRowNode'            => 'row',
-    );
+    protected $simpleVisitMapping = ['ezcDocumentRstMarkupInlineLiteralNode' => 'literal', 'ezcDocumentRstBulletListListNode'      => 'itemizedlist', 'ezcDocumentRstDefinitionListListNode'  => 'variablelist', 'ezcDocumentRstBulletListNode'          => 'listitem', 'ezcDocumentRstEnumeratedListNode'      => 'listitem', 'ezcDocumentRstLiteralBlockNode'        => 'literallayout', 'ezcDocumentRstCommentNode'             => 'comment', 'ezcDocumentRstTransitionNode'          => 'beginpage', 'ezcDocumentRstTableHeadNode'           => 'thead', 'ezcDocumentRstTableBodyNode'           => 'tbody', 'ezcDocumentRstTableRowNode'            => 'row'];
 
     /**
      * Array with nodes, which can be ignored during the transformation
@@ -70,12 +36,7 @@ class ezcDocumentRstDocbookVisitor extends ezcDocumentRstVisitor
      *
      * @var array
      */
-    protected $skipNodes = array(
-        'ezcDocumentRstNamedReferenceNode',
-        'ezcDocumentRstAnonymousReferenceNode',
-        'ezcDocumentRstSubstitutionNode',
-        'ezcDocumentRstFootnoteNode',
-    );
+    protected $skipNodes = ['ezcDocumentRstNamedReferenceNode', 'ezcDocumentRstAnonymousReferenceNode', 'ezcDocumentRstSubstitutionNode', 'ezcDocumentRstFootnoteNode'];
 
     /**
      * DOM document
@@ -208,7 +169,7 @@ class ezcDocumentRstDocbookVisitor extends ezcDocumentRstVisitor
      */
     protected function visitParagraph( DOMNode $root, ezcDocumentRstNode $node )
     {
-        if ( !in_array( $root->tagName, array( 'para', 'attribution', 'citation' ) ) )
+        if ( !in_array( $root->tagName, ['para', 'attribution', 'citation'] ) )
         {
             $paragraph = $this->document->createElement( 'para' );
             $root->appendChild( $paragraph );
@@ -511,13 +472,7 @@ class ezcDocumentRstDocbookVisitor extends ezcDocumentRstVisitor
     {
         $list = $this->document->createElement( 'orderedlist' );
 
-        $enumerationTypeMapping = array(
-            ezcDocumentRstEnumeratedListNode::NUMERIC     => 'arabic',
-            ezcDocumentRstEnumeratedListNode::LOWER_ROMAN => 'lowerroman',
-            ezcDocumentRstEnumeratedListNode::UPPER_ROMAN => 'upperroman',
-            ezcDocumentRstEnumeratedListNode::LOWERCASE   => 'loweralpha',
-            ezcDocumentRstEnumeratedListNode::UPPERCASE   => 'upperalpha',
-        );
+        $enumerationTypeMapping = [ezcDocumentRstEnumeratedListNode::NUMERIC     => 'arabic', ezcDocumentRstEnumeratedListNode::LOWER_ROMAN => 'lowerroman', ezcDocumentRstEnumeratedListNode::UPPER_ROMAN => 'upperroman', ezcDocumentRstEnumeratedListNode::LOWERCASE   => 'loweralpha', ezcDocumentRstEnumeratedListNode::UPPERCASE   => 'upperalpha'];
 
         // Detect enumeration type
         if ( isset( $enumerationTypeMapping[$node->nodes[0]->listType] ) )
@@ -652,14 +607,7 @@ class ezcDocumentRstDocbookVisitor extends ezcDocumentRstVisitor
             $root->insertBefore( $secInfo, $root->firstChild );
         }
 
-        $fieldListItemMapping = array(
-            'authors'     => 'authors',
-            'description' => 'abstract',
-            'copyright'   => 'copyright',
-            'version'     => 'releaseinfo',
-            'date'        => 'date',
-            'author'      => 'author',
-        );
+        $fieldListItemMapping = ['authors'     => 'authors', 'description' => 'abstract', 'copyright'   => 'copyright', 'version'     => 'releaseinfo', 'date'        => 'date', 'author'      => 'author'];
 
         $fieldName = strtolower( trim( $this->tokenListToString( $node->name ) ) );
         if ( !isset( $fieldListItemMapping[$fieldName] ) )

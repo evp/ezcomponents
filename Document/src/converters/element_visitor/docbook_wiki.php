@@ -42,51 +42,11 @@ class ezcDocumentDocbookToWikiConverter extends ezcDocumentElementVisitorConvert
     public function __construct( ezcDocumentDocbookToWikiConverterOptions $options = null )
     {
         parent::__construct(
-            $options === null ?
-                new ezcDocumentDocbookToWikiConverterOptions() :
-                $options
+            $options ?? new ezcDocumentDocbookToWikiConverterOptions()
         );
 
         // Initlize common element handlers
-        $this->visitorElementHandler = array(
-            'docbook' => array(
-                'article'           => $recurse = new ezcDocumentDocbookToWikiRecurseHandler(),
-                'book'              => $recurse,
-                'anchor'            => $recurse,
-                'sect1info'         => $header = new ezcDocumentDocbookToWikiIgnoreHandler(),
-                'sect2info'         => $header,
-                'sect3info'         => $header,
-                'sect4info'         => $header,
-                'sect5info'         => $header,
-                'sectioninfo'       => $header,
-                'sect1'             => $section = new ezcDocumentDocbookToWikiSectionHandler(),
-                'sect2'             => $section,
-                'sect3'             => $section,
-                'sect4'             => $section,
-                'sect5'             => $section,
-                'section'           => $section,
-                'title'             => $section,
-                'para'              => $para = new ezcDocumentDocbookToWikiParagraphHandler(),
-                'emphasis'          => new ezcDocumentDocbookToWikiEmphasisHandler(),
-                'ulink'             => new ezcDocumentDocbookToWikiExternalLinkHandler(),
-                'link'              => new ezcDocumentDocbookToWikiInternalLinkHandler(),
-                'literal'           => new ezcDocumentDocbookToWikiLiteralHandler(),
-                'inlinemediaobject' => new ezcDocumentDocbookToWikiInlineMediaObjectHandler(),
-                'mediaobject'       => new ezcDocumentDocbookToWikiMediaObjectHandler(),
-                'itemizedlist'      => new ezcDocumentDocbookToWikiItemizedListHandler(),
-                'orderedlist'       => new ezcDocumentDocbookToWikiOrderedListHandler(),
-                'note'              => $para,
-                'tip'               => $para,
-                'warning'           => $para,
-                'important'         => $para,
-                'caution'           => $para,
-                'literallayout'     => new ezcDocumentDocbookToWikiLiteralLayoutHandler(),
-                'beginpage'         => new ezcDocumentDocbookToWikiBeginPageHandler(),
-                'comment'           => new ezcDocumentDocbookToWikiIgnoreHandler(),
-                'table'             => new ezcDocumentDocbookToWikiTableHandler(),
-            // */
-            )
-        );
+        $this->visitorElementHandler = ['docbook' => ['article'           => $recurse = new ezcDocumentDocbookToWikiRecurseHandler(), 'book'              => $recurse, 'anchor'            => $recurse, 'sect1info'         => $header = new ezcDocumentDocbookToWikiIgnoreHandler(), 'sect2info'         => $header, 'sect3info'         => $header, 'sect4info'         => $header, 'sect5info'         => $header, 'sectioninfo'       => $header, 'sect1'             => $section = new ezcDocumentDocbookToWikiSectionHandler(), 'sect2'             => $section, 'sect3'             => $section, 'sect4'             => $section, 'sect5'             => $section, 'section'           => $section, 'title'             => $section, 'para'              => $para = new ezcDocumentDocbookToWikiParagraphHandler(), 'emphasis'          => new ezcDocumentDocbookToWikiEmphasisHandler(), 'ulink'             => new ezcDocumentDocbookToWikiExternalLinkHandler(), 'link'              => new ezcDocumentDocbookToWikiInternalLinkHandler(), 'literal'           => new ezcDocumentDocbookToWikiLiteralHandler(), 'inlinemediaobject' => new ezcDocumentDocbookToWikiInlineMediaObjectHandler(), 'mediaobject'       => new ezcDocumentDocbookToWikiMediaObjectHandler(), 'itemizedlist'      => new ezcDocumentDocbookToWikiItemizedListHandler(), 'orderedlist'       => new ezcDocumentDocbookToWikiOrderedListHandler(), 'note'              => $para, 'tip'               => $para, 'warning'           => $para, 'important'         => $para, 'caution'           => $para, 'literallayout'     => new ezcDocumentDocbookToWikiLiteralLayoutHandler(), 'beginpage'         => new ezcDocumentDocbookToWikiBeginPageHandler(), 'comment'           => new ezcDocumentDocbookToWikiIgnoreHandler(), 'table'             => new ezcDocumentDocbookToWikiTableHandler()]];
     }
 
     /**

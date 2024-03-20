@@ -42,7 +42,7 @@ class ezcMailMtaTransport implements ezcMailTransport
      */
     public function send( ezcMail $mail )
     {
-        $mail->appendExcludeHeaders( array( 'to', 'subject' ) );
+        $mail->appendExcludeHeaders( ['to', 'subject'] );
         $headers = rtrim( $mail->generateHeaders() ); // rtrim removes the linebreak at the end, mail doesn't want it.
 
         if ( ( count( $mail->to ) + count( $mail->cc ) + count( $mail->bcc ) ) < 1 )

@@ -15,19 +15,12 @@ $pdf->loadStyles( 'custom.css' );
 
 // Add a customized footer
 $pdf->registerPdfPart( new ezcDocumentPdfFooterPdfPart(
-    new ezcDocumentPdfFooterOptions( array( 
-        'showDocumentTitle'  => false,
-        'showDocumentAuthor' => false,
-        'height'             => '10mm',
-    ) )
+    new ezcDocumentPdfFooterOptions( ['showDocumentTitle'  => false, 'showDocumentAuthor' => false, 'height'             => '10mm'] )
 ) );
 
 // Add a customized header
 $pdf->registerPdfPart( new ezcDocumentPdfHeaderPdfPart(
-    new ezcDocumentPdfFooterOptions( array( 
-        'showPageNumber'     => false,
-        'height'             => '10mm',
-    ) )
+    new ezcDocumentPdfFooterOptions( ['showPageNumber'     => false, 'height'             => '10mm'] )
 ) );
 
 $pdf->createFromDocbook( $document->getAsDocbook() );

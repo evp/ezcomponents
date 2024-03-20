@@ -28,21 +28,21 @@ class ezcSignalCollection
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Holds the connections for this object with the default priority.
      *
      * @var array(string=>array(callback))
      */
-    private $defaultConnections = array();
+    private $defaultConnections = [];
 
     /**
      * Holds the priority connections for this object.
      *
      * @var array(string=>array(int=>array(callback)))
      */
-    private $priorityConnections = array();
+    private $priorityConnections = [];
 
     /**
      * If set this object will be used to fetch static connections instead of ezcSignalStaticConnections.
@@ -71,7 +71,7 @@ class ezcSignalCollection
      * @param string $identifier
      * @param array $options
      */
-    public function __construct( $identifier = "default", array $options = array() )
+    public function __construct( $identifier = "default", array $options = [] )
     {
         $this->options = new ezcSignalCollectionOptions( $options );
         $this->properties['identifier'] = $identifier;
@@ -268,7 +268,7 @@ class ezcSignalCollection
         $parameters = array_slice( func_get_args(), 1 );
 
         // check if there are any static connections
-        $priStaticConnections = array();
+        $priStaticConnections = [];
         if ( self::$staticConnectionsHolder == null )
         {
             $priStaticConnections = ezcSignalStaticConnections::getInstance()->getConnections( $this->identifier, $signal );
@@ -305,14 +305,14 @@ class ezcSignalCollection
         else // default algorithm
         {
             // order slots
-            $defaultKeys = array();
+            $defaultKeys = [];
             if ( isset( $this->priorityConnections[$signal] ) )
             {
                 $defaultKeys = array_keys( $this->priorityConnections[$signal] );
             }
             $staticKeys = array_keys( $priStaticConnections );
 
-            $allKeys = array_unique( array_merge( $defaultKeys, $staticKeys, array( 1000 ) /*default*/ ) );
+            $allKeys = array_unique( array_merge( $defaultKeys, $staticKeys, [1000] /*default*/ ) );
             sort( $allKeys, SORT_NUMERIC );
 
             foreach ( $allKeys as $key ) // call all slots in the correct order
@@ -408,13 +408,13 @@ class ezcSignalCollection
 
         if ( $priority === null ) // delete first found, searched from back
         {
-            $priorityKeys = array();
+            $priorityKeys = [];
             if ( isset( $this->priorityConnections[$signal] ) )
             {
                 $priorityKeys = array_keys( $this->priorityConnections[$signal] );
             }
 
-            $allPriorities = array_unique( array_merge( $priorityKeys, array( 1000 ) /*default*/ ) );
+            $allPriorities = array_unique( array_merge( $priorityKeys, [1000] /*default*/ ) );
             rsort( $allPriorities, SORT_NUMERIC );
             foreach ( $allPriorities as $priority )
             {

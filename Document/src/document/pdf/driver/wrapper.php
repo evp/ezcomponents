@@ -42,14 +42,14 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
      *
      * @var array
      */
-    protected $pages = array();
+    protected $pages = [];
 
     /**
      * Recorded transactions.
      *
      * @var array
      */
-    protected $transactions = array();
+    protected $transactions = [];
 
     /**
      * Transaction identifier of current transaction.
@@ -134,10 +134,10 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
 
                 foreach ( $transactions->calls[$page] as $call )
                 {
-                    call_user_func_array( array( $this->driver, $call[0] ), $call[1] );
+                    call_user_func_array( [$this->driver, $call[0]], $call[1] );
                 }
 
-                $this->transactions[$id]->calls[$page] = array();
+                $this->transactions[$id]->calls[$page] = [];
                 if ( $id === $transaction )
                 {
                     continue 2;
@@ -203,7 +203,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
      */
     protected function recordCall( $name, array $parameters )
     {
-        $this->transactions[$this->transaction]->calls[$this->transactions[$this->transaction]->currentPage][] = array( $name, $parameters );
+        $this->transactions[$this->transaction]->calls[$this->transactions[$this->transaction]->currentPage][] = [$name, $parameters];
     }
 
     /**
@@ -305,7 +305,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function createPage( $width, $height )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $width, $height ) );
+        $this->recordCall( __FUNCTION__, [$width, $height] );
     }
 
     /**
@@ -322,7 +322,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     {
         // This call can be relevant for the size estimation, so it needs to be
         // proxied and recorded
-        $this->recordCall( __FUNCTION__, array( $type, $value ) );
+        $this->recordCall( __FUNCTION__, [$type, $value] );
 
         return $this->driver->setTextFormatting( $type, $value );
     }
@@ -373,7 +373,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function drawWord( $x, $y, $word )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $x, $y, $word ) );
+        $this->recordCall( __FUNCTION__, [$x, $y, $word] );
     }
 
     /**
@@ -400,7 +400,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function drawImage( $file, $type, $x, $y, $width, $height )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $file, $type, $x, $y, $width, $height ) );
+        $this->recordCall( __FUNCTION__, [$file, $type, $x, $y, $width, $height] );
     }
 
     /**
@@ -420,7 +420,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function drawPolygon( array $points, array $color )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $points, $color ) );
+        $this->recordCall( __FUNCTION__, [$points, $color] );
     }
 
     /**
@@ -446,7 +446,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function drawPolyline( array $points, array $color, $width, $close = true )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $points, $color, $width, $close ) );
+        $this->recordCall( __FUNCTION__, [$points, $color, $width, $close] );
     }
 
     /**
@@ -465,7 +465,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function addExternalLink( $x, $y, $width, $height, $url )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $x, $y, $width, $height, $url ) );
+        $this->recordCall( __FUNCTION__, [$x, $y, $width, $height, $url] );
     }
 
     /**
@@ -484,7 +484,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function addInternalLink( $x, $y, $width, $height, $target )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $x, $y, $width, $height, $target ) );
+        $this->recordCall( __FUNCTION__, [$x, $y, $width, $height, $target] );
     }
 
     /**
@@ -498,7 +498,7 @@ class ezcDocumentPdfTransactionalDriverWrapper extends ezcDocumentPdfDriver
     public function addInternalLinkTarget( $id )
     {
         // Just record this write call
-        $this->recordCall( __FUNCTION__, array( $id ) );
+        $this->recordCall( __FUNCTION__, [$id] );
     }
 
     /**

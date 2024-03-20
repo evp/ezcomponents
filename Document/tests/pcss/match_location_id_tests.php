@@ -22,7 +22,7 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -30,7 +30,7 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $this->document = new DOMDocument();
         $this->document->registerNodeClass( 'DOMElement', 'ezcDocumentLocateableDomElement' );
 
-        $this->document->load( dirname( __FILE__ ) . '/../files/docbook/pdf/location_ids.xml' );
+        $this->document->load( __DIR__ . '/../files/docbook/pdf/location_ids.xml' );
 
         $this->xpath = new DOMXPath( $this->document );
         $this->xpath->registerNamespace( 'doc', 'http://docbook.org/ns/docbook' );
@@ -41,8 +41,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:article' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article' ),
-            array()
+            ['article'],
+            []
         );
 
         $this->assertEquals(
@@ -57,8 +57,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:article' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( '> article' ),
-            array()
+            ['> article'],
+            []
         );
 
         $this->assertEquals(
@@ -73,8 +73,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:section' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( '> section' ),
-            array()
+            ['> section'],
+            []
         );
 
         $this->assertEquals(
@@ -89,8 +89,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:section' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article' ),
-            array()
+            ['article'],
+            []
         );
 
         $this->assertEquals(
@@ -105,8 +105,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:article' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article', '#some_id' ),
-            array()
+            ['article', '#some_id'],
+            []
         );
 
         $this->assertEquals(
@@ -121,8 +121,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:article' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article', '.class' ),
-            array()
+            ['article', '.class'],
+            []
         );
 
         $this->assertEquals(
@@ -137,8 +137,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:article' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article', '.class', '#some_id' ),
-            array()
+            ['article', '.class', '#some_id'],
+            []
         );
 
         $this->assertEquals(
@@ -153,8 +153,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:section' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'section', '#paragraph_with_inline_markup' ),
-            array()
+            ['section', '#paragraph_with_inline_markup'],
+            []
         );
 
         $this->assertEquals(
@@ -169,8 +169,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:section' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article', 'section' ),
-            array()
+            ['article', 'section'],
+            []
         );
 
         $this->assertEquals(
@@ -185,8 +185,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:section' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article', 'section' ),
-            array()
+            ['article', 'section'],
+            []
         );
 
         $this->assertEquals(
@@ -201,8 +201,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:sectioninfo' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article', 'sectioninfo' ),
-            array()
+            ['article', 'sectioninfo'],
+            []
         );
 
         $this->assertEquals(
@@ -217,8 +217,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:sectioninfo' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'article', '> sectioninfo' ),
-            array()
+            ['article', '> sectioninfo'],
+            []
         );
 
         $this->assertEquals(
@@ -233,8 +233,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:sectioninfo' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'section', '#paragraph' ),
-            array()
+            ['section', '#paragraph'],
+            []
         );
 
         $this->assertEquals(
@@ -249,8 +249,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:para' )->item( 1 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'para', '.note_warning' ),
-            array()
+            ['para', '.note_warning'],
+            []
         );
 
         $this->assertEquals(
@@ -265,8 +265,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:para' )->item( 1 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'para', '.note' ),
-            array()
+            ['para', '.note'],
+            []
         );
 
         $this->assertEquals(
@@ -281,8 +281,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:para' )->item( 1 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'para', '.warning' ),
-            array()
+            ['para', '.warning'],
+            []
         );
 
         $this->assertEquals(
@@ -297,8 +297,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:para' )->item( 1 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( 'para', '.not' ),
-            array()
+            ['para', '.not'],
+            []
         );
 
         $this->assertEquals(
@@ -313,8 +313,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:para' )->item( 1 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( '.note' ),
-            array()
+            ['.note'],
+            []
         );
 
         $this->assertEquals(
@@ -329,8 +329,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:para' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( '.note' ),
-            array()
+            ['.note'],
+            []
         );
 
         $this->assertEquals(
@@ -345,8 +345,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:section' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( '#paragraph_with_inline_markup' ),
-            array()
+            ['#paragraph_with_inline_markup'],
+            []
         );
 
         $this->assertEquals(
@@ -361,8 +361,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:article' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( '#paragraph_with_inline_markup' ),
-            array()
+            ['#paragraph_with_inline_markup'],
+            []
         );
 
         $this->assertEquals(
@@ -377,8 +377,8 @@ class ezcDocumentPcssMatchLocationIdTests extends ezcTestCase
         $element = $this->xpath->query( '//doc:para' )->item( 0 );
 
         $directive = new ezcDocumentPcssLayoutDirective(
-            array( '#paragraph_with_inline_markup' ),
-            array()
+            ['#paragraph_with_inline_markup'],
+            []
         );
 
         $this->assertEquals(

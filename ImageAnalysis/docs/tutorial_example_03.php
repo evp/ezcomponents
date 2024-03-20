@@ -1,11 +1,9 @@
 <?php
 require_once 'tutorial_autoload.php';
-$tutorialPath = dirname( __FILE__ );
+$tutorialPath = __DIR__;
 
 ezcImageAnalyzer::setHandlerClasses(
-    array(
-        'ezcImageAnalyzerImagemagickHandler' => array( 'binary' => '/usr/bin/identify' ),
-    )
+    ['ezcImageAnalyzerImagemagickHandler' => ['binary' => '/usr/bin/identify']]
 );
 
 $image = new ezcImageAnalyzer( $tutorialPath.'/img/imageanalysis_example_03.jpg' );

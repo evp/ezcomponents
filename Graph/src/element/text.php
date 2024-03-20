@@ -54,7 +54,7 @@ class ezcGraphChartElementText extends ezcGraphChartElement
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['maxHeight'] = .1;
 

@@ -23,12 +23,7 @@ abstract class ezcDocumentPcssStyleBoxValue extends ezcDocumentPcssStyleValue
      * 
      * @var array
      */
-    protected $defaultValue = array(
-        'top'    => null,
-        'right'  => null,
-        'bottom' => null,
-        'left'   => null,
-    );
+    protected $defaultValue = ['top'    => null, 'right'  => null, 'bottom' => null, 'left'   => null];
 
     /**
      * Construct value
@@ -40,7 +35,7 @@ abstract class ezcDocumentPcssStyleBoxValue extends ezcDocumentPcssStyleValue
      */
     public function __construct( $value = null )
     {
-        parent::__construct( $value === null ? $this->defaultValue : $value );
+        parent::__construct( $value ?? $this->defaultValue );
 
         $subValueClass = $this->getSubValue();
         $subValue      = new $subValueClass();
@@ -75,7 +70,7 @@ abstract class ezcDocumentPcssStyleBoxValue extends ezcDocumentPcssStyleValue
         // expression.
         for ( $i = 1; $i <= 4; ++$i )
         {
-            $regexps = array();
+            $regexps = [];
             for ( $j = 1; $j <= $i; ++$j )
             {
                 $regexps[] = "(?P<m$j>$subExpression)";
@@ -89,39 +84,19 @@ abstract class ezcDocumentPcssStyleBoxValue extends ezcDocumentPcssStyleValue
             switch ( $i )
             {
                 case 1:
-                    $this->value = array(
-                        'top'    => $subValue->parse( $match['m1'] )->value,
-                        'right'  => $subValue->parse( $match['m1'] )->value,
-                        'bottom' => $subValue->parse( $match['m1'] )->value,
-                        'left'   => $subValue->parse( $match['m1'] )->value,
-                    );
+                    $this->value = ['top'    => $subValue->parse( $match['m1'] )->value, 'right'  => $subValue->parse( $match['m1'] )->value, 'bottom' => $subValue->parse( $match['m1'] )->value, 'left'   => $subValue->parse( $match['m1'] )->value];
                     return $this;
 
                 case 2:
-                    $this->value = array(
-                        'top'    => $subValue->parse( $match['m1'] )->value,
-                        'right'  => $subValue->parse( $match['m2'] )->value,
-                        'bottom' => $subValue->parse( $match['m1'] )->value,
-                        'left'   => $subValue->parse( $match['m2'] )->value,
-                    );
+                    $this->value = ['top'    => $subValue->parse( $match['m1'] )->value, 'right'  => $subValue->parse( $match['m2'] )->value, 'bottom' => $subValue->parse( $match['m1'] )->value, 'left'   => $subValue->parse( $match['m2'] )->value];
                     return $this;
 
                 case 3:
-                    $this->value = array(
-                        'top'    => $subValue->parse( $match['m1'] )->value,
-                        'right'  => $subValue->parse( $match['m2'] )->value,
-                        'bottom' => $subValue->parse( $match['m3'] )->value,
-                        'left'   => $subValue->parse( $match['m2'] )->value,
-                    );
+                    $this->value = ['top'    => $subValue->parse( $match['m1'] )->value, 'right'  => $subValue->parse( $match['m2'] )->value, 'bottom' => $subValue->parse( $match['m3'] )->value, 'left'   => $subValue->parse( $match['m2'] )->value];
                     return $this;
 
                 case 4:
-                    $this->value = array(
-                        'top'    => $subValue->parse( $match['m1'] )->value,
-                        'right'  => $subValue->parse( $match['m2'] )->value,
-                        'bottom' => $subValue->parse( $match['m3'] )->value,
-                        'left'   => $subValue->parse( $match['m4'] )->value,
-                    );
+                    $this->value = ['top'    => $subValue->parse( $match['m1'] )->value, 'right'  => $subValue->parse( $match['m2'] )->value, 'bottom' => $subValue->parse( $match['m3'] )->value, 'left'   => $subValue->parse( $match['m4'] )->value];
                     return $this;
             }
         }

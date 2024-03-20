@@ -1,11 +1,11 @@
 <?php
 require_once 'tutorial_autoload.php';
 
-$reader = new ezcTranslationTsBackend( dirname( __FILE__ ). '/translations' );
-$reader->setOptions( array( 'format' => 'translation-[LOCALE].xml' ) );
+$reader = new ezcTranslationTsBackend( __DIR__. '/translations' );
+$reader->setOptions( ['format' => 'translation-[LOCALE].xml'] );
 $reader->initReader( 'nb_NO' );
 
-$cacheObj = new ezcCacheStorageFileArray( dirname( __FILE__ ). '/translations-cache' );
+$cacheObj = new ezcCacheStorageFileArray( __DIR__. '/translations-cache' );
 $writer = new ezcTranslationCacheBackend( $cacheObj );
 $writer->initWriter( 'nb_NO' );
 

@@ -17,8 +17,8 @@
  */
 abstract class ezcTemplateAstNode
 {
-    const TYPE_ARRAY = 1;
-    const TYPE_VALUE = 2;
+    public const TYPE_ARRAY = 1;
+    public const TYPE_VALUE = 2;
 
     /**
      * Keep track if the statement returns an Array, a value, or both. 

@@ -19,12 +19,12 @@ class ezcConsoleArgumentAlreadyRegisteredException extends ezcConsoleException
     /**
      * The name of the argument is already in use.
      */
-    const NAMED = 1;
+    public const NAMED = 1;
     
     /**
      * The position of the argument is already in use. Unset the position first and the re-register.
      */
-    const ORDERED = 2;
+    public const ORDERED = 2;
 
     /**
      * Creates a new exception object.

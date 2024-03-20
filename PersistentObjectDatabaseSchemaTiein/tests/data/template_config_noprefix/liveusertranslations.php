@@ -9,7 +9,7 @@ $def->idProperty->columnName = 'translation_id';
 $def->idProperty->propertyName = 'translationId';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(
     'ezcPersistentSequenceGenerator',
-    array( 'sequence' => 'liveuser_translations_translation_id_seq' )
+    ['sequence' => 'liveuser_translations_translation_id_seq']
 );
 
 

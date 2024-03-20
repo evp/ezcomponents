@@ -25,7 +25,7 @@ class ezcDocumentWikiFootnoteEndNode extends ezcDocumentWikiInlineNode
      */
     public static function __set_state( $properties )
     {
-        $nodeClass = __CLASS__;
+        $nodeClass = self::class;
         $node = new $nodeClass( $properties['token'] );
         return $node;
     }

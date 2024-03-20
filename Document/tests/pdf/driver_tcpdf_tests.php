@@ -13,7 +13,7 @@ require_once 'driver_tests.php';
 
 // Try to include TCPDF class from external/tcpdf.
 // @TODO: Maybe also search the include path...
-if ( file_exists( $path = dirname( __FILE__ ) . '/../external/tcpdf-4.8/tcpdf.php' ) )
+if ( file_exists( $path = __DIR__ . '/../external/tcpdf-4.8/tcpdf.php' ) )
 {
     include $path;
 }
@@ -45,21 +45,11 @@ class ezcDocumentPdfDriverTcpdfTests extends ezcDocumentPdfDriverTests
      * 
      * @var array
      */
-    protected $expectedWidths = array(
-        'testEstimateDefaultWordWidthWithoutPageCreation' => 9.6,
-        'testEstimateDefaultWordWidth'                    => 9.6,
-        'testEstimateWordWidthDifferentSize'              => 31.9,
-        'testEstimateWordWidthDifferentSizeAndUnit'       => 11.3,
-        'testEstimateBoldWordWidth'                       => 10.4,
-        'testEstimateMonospaceWordWidth'                  => 36,
-        'testFontStyleFallback'                           => 16.3,
-        'testUtf8FontWidth'                               => 11.8,
-        'testCustomFontWidthEstimation'                   => null,
-    );
+    protected $expectedWidths = ['testEstimateDefaultWordWidthWithoutPageCreation' => 9.6, 'testEstimateDefaultWordWidth'                    => 9.6, 'testEstimateWordWidthDifferentSize'              => 31.9, 'testEstimateWordWidthDifferentSizeAndUnit'       => 11.3, 'testEstimateBoldWordWidth'                       => 10.4, 'testEstimateMonospaceWordWidth'                  => 36, 'testFontStyleFallback'                           => 16.3, 'testUtf8FontWidth'                               => 11.8, 'testCustomFontWidthEstimation'                   => null];
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()

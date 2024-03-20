@@ -21,46 +21,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      *
      * @var array
      */
-    static private $typeMap = array(
-        'int' => 'integer',
-        'int2' => 'integer',
-        'int4' =>  'integer',
-        'int8' => 'integer',
-        'integer' => 'integer',
-        'bool' => 'boolean',
-        'boolean' => 'boolean',
-        'float' => 'float',
-        'double' => 'float',
-        'dec' => 'decimal',
-        'decimal' => 'decimal',
-        'numeric' => 'decimal',
-        'fixed' => 'decimal',
-        
-        'date' => 'date',
-        'datetime' => 'timestamp',
-        'timestamp' => 'timestamp',
-        'timestamp without time zone' => 'timestamp',
-        'time' => 'time',
-        'year' => 'integer',
-       
-        'char' => 'text',
-        'varchar' => 'text',
-        'character' => 'text',
-        'binary' => 'blob',
-        'varbinary' => 'blob',
-        'tinyblob' => 'blob',
-        'blob' => 'blob',
-        'mediumblob' => 'blob',
-        'bytea' => 'blob',
-        'tinytext' => 'clob',
-        'text' => 'clob',
-        'mediumtext' => 'clob',
-        'longtext' => 'clob',
-
-        'character varying'=>'text',
-        'bigint' => 'integer',
-        'double precision' => 'float'
-    );
+    static private $typeMap = ['int' => 'integer', 'int2' => 'integer', 'int4' =>  'integer', 'int8' => 'integer', 'integer' => 'integer', 'bool' => 'boolean', 'boolean' => 'boolean', 'float' => 'float', 'double' => 'float', 'dec' => 'decimal', 'decimal' => 'decimal', 'numeric' => 'decimal', 'fixed' => 'decimal', 'date' => 'date', 'datetime' => 'timestamp', 'timestamp' => 'timestamp', 'timestamp without time zone' => 'timestamp', 'time' => 'time', 'year' => 'integer', 'char' => 'text', 'varchar' => 'text', 'character' => 'text', 'binary' => 'blob', 'varbinary' => 'blob', 'tinyblob' => 'blob', 'blob' => 'blob', 'mediumblob' => 'blob', 'bytea' => 'blob', 'tinytext' => 'clob', 'text' => 'clob', 'mediumtext' => 'clob', 'longtext' => 'clob', 'character varying'=>'text', 'bigint' => 'integer', 'double precision' => 'float'];
 
     /**
      * Loops over all the tables in the database and extracts schema information.
@@ -88,7 +49,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     protected function fetchTableFields( $tableName )
     {
-        $fields = array();
+        $fields = [];
 
         // fetching fields info from PostgreSQL
         $resultArray = $this->db->query( 
@@ -179,7 +140,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
         }
         $genericType = self::$typeMap[$matches[1]];
 
-        if ( in_array( $genericType, array( 'text', 'decimal', 'float' ) ) && isset( $matches[3] ) )
+        if ( in_array( $genericType, ['text', 'decimal', 'float'] ) && isset( $matches[3] ) )
         {
             $typeLength = $matches[3];
             if ( is_numeric( $typeLength ) )
@@ -187,7 +148,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
                 $typeLength = (int) $typeLength;
             }
         }
-        if ( in_array( $genericType, array( 'decimal', 'float' ) ) && isset( $matches[5] ) )
+        if ( in_array( $genericType, ['decimal', 'float'] ) && isset( $matches[5] ) )
         {
             $typePrecision = $matches[5];
         }
@@ -203,7 +164,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     private function isNumericType( $type )
     {
-        $types = array( 'float', 'int' );
+        $types = ['float', 'int'];
         return in_array( $type, $types );
     }
 
@@ -215,7 +176,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     private function isStringType( $type )
     {
-        $types = array( 'tinytext', 'text', 'mediumtext', 'longtext' );
+        $types = ['tinytext', 'text', 'mediumtext', 'longtext'];
         return in_array( $type, $types );
     }
 
@@ -227,7 +188,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     private function isBlobType( $type )
     {
-        $types = array( 'varchar', 'char' );
+        $types = ['varchar', 'char'];
         return in_array( $type, $types );
     }
 
@@ -244,8 +205,8 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     protected function fetchTableIndexes( $tableName )
     {
-        $indexBuffer = array();
-        $resultArray = array();
+        $indexBuffer = [];
+        $resultArray = [];
 
         // fetching index info from PostgreSQL
         $getIndexSQL = "SELECT relname, pg_index.indisunique, pg_index.indisprimary, 
@@ -273,11 +234,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
 
             foreach ( $indexColumns as $colRow )
             {
-                $resultArray[] = array( 'key_name' => $row['relname'], 
-                                        'column_name' => $colRow['attname'],
-                                        'non_unique' => !$row['indisunique'],
-                                        'primary' => !$row['indisprimary']
-                                      );
+                $resultArray[] = ['key_name' => $row['relname'], 'column_name' => $colRow['attname'], 'non_unique' => !$row['indisunique'], 'primary' => !$row['indisprimary']];
                 $indexColumnNames[] = $colRow['attname'];
             }
         }
@@ -306,7 +263,7 @@ class ezcDbSchemaPgsqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
             $indexBuffer[$keyName]['fields'][$row['column_name']] = ezcDbSchema::createNewIndexField();
         }
 
-        $indexes = array();
+        $indexes = [];
 
         foreach ( $indexBuffer as $indexName => $indexInfo )
         {

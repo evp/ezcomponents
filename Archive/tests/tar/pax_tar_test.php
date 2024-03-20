@@ -144,7 +144,7 @@ class ezcArchivePaxTarTest extends ezcArchiveUstarTarTest // Extend the Ustar te
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

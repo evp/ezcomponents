@@ -91,7 +91,7 @@ class ezcBaseMetaDataPearReader
     {
         @$packageInfo = $this->registry->packageInfo( $componentName, null, 'components.ez.no' );
         $release = $packageInfo['version']['release'];
-        return $release === null ? false : $release;
+        return $release ?? false;
     }
 
     /**
@@ -109,7 +109,7 @@ class ezcBaseMetaDataPearReader
         @$packageInfo = $this->registry->packageInfo( $componentName, 'dependencies', 'components.ez.no' );
         if ( isset( $packageInfo['required']['package'] ) )
         {
-            $deps = array();
+            $deps = [];
             if ( isset( $packageInfo['required']['package']['name'] ) )
             {
                 $deps[$packageInfo['required']['package']['name']] = $packageInfo['required']['package']['min'];
@@ -123,7 +123,7 @@ class ezcBaseMetaDataPearReader
             }
             return $deps;
         }
-        return array();
+        return [];
     }
 }
 ?>

@@ -56,7 +56,7 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
     {
         $schema = ezcDbSchema::createFromFile(
             'xml',
-            dirname( __FILE__ ) . '/data/schema.xml'
+            __DIR__ . '/data/schema.xml'
         );
         $schema->writeToDb( $this->db );
     }
@@ -72,12 +72,7 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
             ->set( $this->db->quoteIdentifier( 'description' ), $insert->bindParam( $description ) );
         $stmt = $insert->prepare();
 
-        $values = array(
-            array(1, 'Harry Potter and the Deathly Hallows','Harry Potter episode 7, the final chapter.'),
-            array(2, 'Harry Potter and the Order of the Phoenix','Harry Potter episode 5.'),
-            array(3, 'Object-Oriented Metrics in Practice','Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.'),
-            array(4, 'Modern Information Retrieval','The classical source about information retrieval, second revision'),
-        );
+        $values = [[1, 'Harry Potter and the Deathly Hallows', 'Harry Potter episode 7, the final chapter.'], [2, 'Harry Potter and the Order of the Phoenix', 'Harry Potter episode 5.'], [3, 'Object-Oriented Metrics in Practice', 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.'], [4, 'Modern Information Retrieval', 'The classical source about information retrieval, second revision']];
 
         foreach ( $values as $row )
         {
@@ -94,13 +89,7 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
                ->set( $this->db->quoteIdentifier( 'lastname' ), $insert->bindParam( $lastname ) );
         $stmt = $insert->prepare();
 
-        $values = array(
-            array(1, 'Berthier','Ribeiro-Neto'),
-            array(2, 'Ricardo','Baeza-Yates'),
-            array(3, 'J. K.','Rowling'),
-            array(4, 'Michele','Lanza'),
-            array(5, 'Radu','Marinescu'),
-        );
+        $values = [[1, 'Berthier', 'Ribeiro-Neto'], [2, 'Ricardo', 'Baeza-Yates'], [3, 'J. K.', 'Rowling'], [4, 'Michele', 'Lanza'], [5, 'Radu', 'Marinescu']];
 
         foreach ( $values as $row )
         {
@@ -116,14 +105,7 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
                ->set( $this->db->quoteIdentifier( 'author_id' ), $insert->bindParam( $authorId ) );
         $stmt = $insert->prepare();
 
-        $values = array(
-            array(1,3),
-            array(2,3),
-            array(3,4),
-            array(3,5),
-            array(4,1),
-            array(4,2),
-        );
+        $values = [[1, 3], [2, 3], [3, 4], [3, 5], [4, 1], [4, 2]];
 
         foreach ( $values as $row )
         {
@@ -139,10 +121,7 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
                ->set( $this->db->quoteIdentifier( 'critique' ), $insert->bindParam( $critique ) );
         $stmt = $insert->prepare();
 
-        $values = array(
-            array(1, 'One of the best Harry Potter books. I really enjoyed reading it. Sad that the whole story ended now.'),
-            array(2, 'Another nice Harry Potter book. It is not one of the best, still i enjoyed it quite much.'),
-        );
+        $values = [[1, 'One of the best Harry Potter books. I really enjoyed reading it. Sad that the whole story ended now.'], [2, 'Another nice Harry Potter book. It is not one of the best, still i enjoyed it quite much.']];
 
         foreach ( $values as $row )
         {
@@ -178,44 +157,11 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
         $results = $stmt->fetchAll();
         $stmt->closeCursor();
         
-        $expectedResults = array (
-          0 => 
-          array (
-            'description' => 'Harry Potter episode 7, the final chapter.',
-            0 => 'Harry Potter episode 7, the final chapter.',
-            'id' => '1',
-            1 => '1',
-            'title' => 'Harry Potter and the Deathly Hallows',
-            2 => 'Harry Potter and the Deathly Hallows',
-          ),
-          1 => 
-          array (
-            'description' => 'Harry Potter episode 5.',
-            0 => 'Harry Potter episode 5.',
-            'id' => '2',
-            1 => '2',
-            'title' => 'Harry Potter and the Order of the Phoenix',
-            2 => 'Harry Potter and the Order of the Phoenix',
-          ),
-          2 => 
-          array (
-            'description' => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.',
-            0 => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.',
-            'id' => '3',
-            1 => '3',
-            'title' => 'Object-Oriented Metrics in Practice',
-            2 => 'Object-Oriented Metrics in Practice',
-          ),
-          3 => 
-          array (
-            'description' => 'The classical source about information retrieval, second revision',
-            0 => 'The classical source about information retrieval, second revision',
-            'id' => '4',
-            1 => '4',
-            'title' => 'Modern Information Retrieval',
-            2 => 'Modern Information Retrieval',
-          ),
-        );
+        $expectedResults = [0 => 
+        ['description' => 'Harry Potter episode 7, the final chapter.', 0 => 'Harry Potter episode 7, the final chapter.', 'id' => '1', 1 => '1', 'title' => 'Harry Potter and the Deathly Hallows', 2 => 'Harry Potter and the Deathly Hallows'], 1 => 
+        ['description' => 'Harry Potter episode 5.', 0 => 'Harry Potter episode 5.', 'id' => '2', 1 => '2', 'title' => 'Harry Potter and the Order of the Phoenix', 2 => 'Harry Potter and the Order of the Phoenix'], 2 => 
+        ['description' => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.', 0 => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.', 'id' => '3', 1 => '3', 'title' => 'Object-Oriented Metrics in Practice', 2 => 'Object-Oriented Metrics in Practice'], 3 => 
+        ['description' => 'The classical source about information retrieval, second revision', 0 => 'The classical source about information retrieval, second revision', 'id' => '4', 1 => '4', 'title' => 'Modern Information Retrieval', 2 => 'Modern Information Retrieval']];
 
         $this->assertEquals(
             $expectedResults,
@@ -249,26 +195,9 @@ class ezcDatabaseHandlerBaseTest extends ezcTestCase
 
         $results = $stmt->fetchAll();
 
-        $expectedResults = array(
-              0 => 
-              array (
-                'description' => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.',
-                0 => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.',
-                'id' => '3',
-                1 => '3',
-                'title' => 'Object-Oriented Metrics in Practice',
-                2 => 'Object-Oriented Metrics in Practice',
-              ),
-              1 => 
-              array (
-                'description' => 'The classical source about information retrieval, second revision',
-                0 => 'The classical source about information retrieval, second revision',
-                'id' => '4',
-                1 => '4',
-                'title' => 'Modern Information Retrieval',
-                2 => 'Modern Information Retrieval',
-              ),
-        );
+        $expectedResults = [0 => 
+        ['description' => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.', 0 => 'Using Software Metrics to Characterize, Evaluate, and Improve the Design of Object-Oriented Systems.', 'id' => '3', 1 => '3', 'title' => 'Object-Oriented Metrics in Practice', 2 => 'Object-Oriented Metrics in Practice'], 1 => 
+        ['description' => 'The classical source about information retrieval, second revision', 0 => 'The classical source about information retrieval, second revision', 'id' => '4', 1 => '4', 'title' => 'Modern Information Retrieval', 2 => 'Modern Information Retrieval']];
 
         $this->assertEquals(
             $expectedResults,

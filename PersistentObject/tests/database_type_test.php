@@ -8,7 +8,7 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . "/data/database_type_test_object.php";
+require_once __DIR__ . "/data/database_type_test_object.php";
 
 /**
  * Tests for database type support.
@@ -23,7 +23,7 @@ class ezcPersistentDatabaseTypeTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setup()
@@ -40,7 +40,7 @@ class ezcPersistentDatabaseTypeTest extends ezcTestCase
         DatabaseTypeTestObject::insertData();
         $this->session = new ezcPersistentSession(
             ezcDbInstance::get(),
-            new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" )
+            new ezcPersistentCodeManager( __DIR__ . "/data/" )
         );
     }
 

@@ -63,7 +63,7 @@ class ManualGeneratorTest
     {
         $db = ezcDbInstance::get();
         $schema = ezcDbSchema::createFromDb( $db );
-        $schema->writeToFile( 'array', dirname( __FILE__ ) . '/persistent_test_object_no_auto_increment.dba' );
+        $schema->writeToFile( 'array', __DIR__ . '/persistent_test_object_no_auto_increment.dba' );
     }
 
     /**
@@ -73,7 +73,7 @@ class ManualGeneratorTest
     {
         $db = ezcDbInstance::get();
         // Load schema
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . '/persistent_test_object_no_auto_increment.dba' );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . '/persistent_test_object_no_auto_increment.dba' );
         $schema->writeToDb( $db );
     }
 
@@ -102,7 +102,7 @@ class ManualGeneratorTest
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['id'] = $this->id;
         $result['decimal'] = $this->decimal;
         $result['varchar'] = $this->varchar;

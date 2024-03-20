@@ -52,7 +52,7 @@ class ezcTreeNode implements ezcTreeVisitable
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Constructs a new ezcTreeNode object with ID $nodeId on tree $tree.

@@ -73,14 +73,14 @@ class ezcLogEntry extends ezcBaseStruct
      * @param int $timestamp
      */
     public function __construct( $message = '', $severity = 0,
-        $source = '', $category = '', $optional = array(), $timestamp = null )
+        $source = '', $category = '', $optional = [], $timestamp = null )
     {
         $this->message = $message;
         $this->severity = $severity;
         $this->source = $source;
         $this->category = $category;
         $this->optional = $optional;
-        $this->timestamp = $timestamp === null ? time() : $timestamp;
+        $this->timestamp = $timestamp ?? time();
     }
 
     /**

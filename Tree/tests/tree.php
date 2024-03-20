@@ -542,7 +542,7 @@ abstract class ezcTreeTest extends ezcTestCase
         self::assertSame( '6', $nodeList['6']->id );
         self::assertSame( '8', $nodeList['8']->id );
 
-        self::assertSame( array( 1, 4, 6, 8 ), array_keys( $nodeList->nodes ) );
+        self::assertSame( [1, 4, 6, 8], array_keys( $nodeList->nodes ) );
     }
 
     public function testTreeFetchPathOnTree()
@@ -560,7 +560,7 @@ abstract class ezcTreeTest extends ezcTestCase
         self::assertSame( '6', $nodeList['6']->id );
         self::assertSame( '8', $nodeList['8']->id );
 
-        self::assertSame( array( 1, 4, 6, 8 ), array_keys( $nodeList->nodes ) );
+        self::assertSame( [1, 4, 6, 8], array_keys( $nodeList->nodes ) );
     }
 
     public function testTreeMoveNode1()
@@ -832,57 +832,7 @@ abstract class ezcTreeTest extends ezcTestCase
 
     private function addTestData( $tree )
     {
-        $primates = array(
-            'Hominoidea' => array(
-                'Hylobatidae' => array(
-                    'Hylobates' => array(
-                        'Lar Gibbon',
-                        'Agile Gibbon',
-                        'Müller\'s Bornean Gibbon',
-                        'Silvery Gibbon',
-                        'Pileated Gibbon',
-                        'Kloss\'s Gibbon',
-                    ),
-                    'Hoolock' => array(
-                        'Western Hoolock Gibbon',
-                        'Eastern Hoolock Gibbon',
-                    ),
-                    'Symphalangus' => array(),
-                    'Nomascus' => array(
-                        'Black Crested Gibbon',
-                        'Eastern Black Crested Gibbon',
-                        'White-cheecked Crested Gibbon',
-                        'Yellow-cheecked Gibbon',
-                    ),
-                ),
-                'Hominidae' => array(
-                    'Pongo' => array(
-                        'Bornean Orangutan',
-                        'Sumatran Orangutan',
-                    ), 
-                    'Gorilla' => array(
-                        'Western Gorilla' => array(
-                            'Western Lowland Gorilla',
-                            'Cross River Gorilla',
-                        ),
-                        'Eastern Gorilla' => array(
-                            'Mountain Gorilla',
-                            'Eastern Lowland Gorilla',
-                        ),
-                    ), 
-                    'Homo' => array(
-                        'Homo Sapiens' => array(
-                            'Homo Sapiens Sapiens',
-                            'Homo Superior'
-                        ),
-                    ),
-                    'Pan' => array(
-                        'Common Chimpanzee',
-                        'Bonobo',
-                    ),
-                ),
-            ),
-        );
+        $primates = ['Hominoidea' => ['Hylobatidae' => ['Hylobates' => ['Lar Gibbon', 'Agile Gibbon', 'Müller\'s Bornean Gibbon', 'Silvery Gibbon', 'Pileated Gibbon', 'Kloss\'s Gibbon'], 'Hoolock' => ['Western Hoolock Gibbon', 'Eastern Hoolock Gibbon'], 'Symphalangus' => [], 'Nomascus' => ['Black Crested Gibbon', 'Eastern Black Crested Gibbon', 'White-cheecked Crested Gibbon', 'Yellow-cheecked Gibbon']], 'Hominidae' => ['Pongo' => ['Bornean Orangutan', 'Sumatran Orangutan'], 'Gorilla' => ['Western Gorilla' => ['Western Lowland Gorilla', 'Cross River Gorilla'], 'Eastern Gorilla' => ['Mountain Gorilla', 'Eastern Lowland Gorilla']], 'Homo' => ['Homo Sapiens' => ['Homo Sapiens Sapiens', 'Homo Superior']], 'Pan' => ['Common Chimpanzee', 'Bonobo']]]];
 
         $root = $tree->createNode( 'Hominoidea', 'Hominoidea' );
         $tree->setRootNode( $root );
@@ -926,11 +876,7 @@ abstract class ezcTreeTest extends ezcTestCase
         $tree = $this->setUpEmptyTestTree();
         $this->addTestData( $tree );
 
-        $expected = array(
-            'Gorilla', 'Western Gorilla', 'Western Lowland Gorilla', 
-            'Cross River Gorilla', 'Eastern Gorilla', 'Mountain Gorilla', 
-            'Eastern Lowland Gorilla' 
-        );
+        $expected = ['Gorilla', 'Western Gorilla', 'Western Lowland Gorilla', 'Cross River Gorilla', 'Eastern Gorilla', 'Mountain Gorilla', 'Eastern Lowland Gorilla'];
         $list = $tree->fetchSubtreeDepthFirst( 'Gorilla' );
         $nodes = $list->nodes;
         self::assertSame( 7, $list->size );
@@ -959,11 +905,7 @@ abstract class ezcTreeTest extends ezcTestCase
         $tree = $this->setUpEmptyTestTree();
         $this->addTestData( $tree );
 
-        $expected = array( 
-            'Gorilla', 'Western Gorilla', 'Eastern Gorilla', 
-            'Western Lowland Gorilla', 'Cross River Gorilla', 
-            'Mountain Gorilla', 'Eastern Lowland Gorilla'
-        );
+        $expected = ['Gorilla', 'Western Gorilla', 'Eastern Gorilla', 'Western Lowland Gorilla', 'Cross River Gorilla', 'Mountain Gorilla', 'Eastern Lowland Gorilla'];
         $list = $tree->fetchSubtreeBreadthFirst( 'Gorilla' );
         $nodes = $list->nodes;
         self::assertSame( 7, $list->size );

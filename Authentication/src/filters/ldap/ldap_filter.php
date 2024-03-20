@@ -77,22 +77,22 @@ class ezcAuthenticationLdapFilter extends ezcAuthenticationFilter implements ezc
     /**
      * Username is not found in the database.
      */
-    const STATUS_USERNAME_INCORRECT = 1;
+    public const STATUS_USERNAME_INCORRECT = 1;
 
     /**
      * Password is incorrect.
      */
-    const STATUS_PASSWORD_INCORRECT = 2;
+    public const STATUS_PASSWORD_INCORRECT = 2;
 
     /**
      * Use plain-text password and no encryption for the connection (default).
      */
-    const PROTOCOL_PLAIN = 1;
+    public const PROTOCOL_PLAIN = 1;
 
     /**
      * Use plain-text password and TLS connection.
      */
-    const PROTOCOL_TLS = 2;
+    public const PROTOCOL_TLS = 2;
 
     /**
      * Holds the attributes which will be requested during the authentication
@@ -105,7 +105,7 @@ class ezcAuthenticationLdapFilter extends ezcAuthenticationFilter implements ezc
      *
      * @var array(string)
      */
-    protected $requestedData = array();
+    protected $requestedData = [];
 
     /**
      * Holds the extra data fetched during the authentication process.
@@ -120,14 +120,14 @@ class ezcAuthenticationLdapFilter extends ezcAuthenticationFilter implements ezc
      *
      * @var array(string=>mixed)
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -145,7 +145,7 @@ class ezcAuthenticationLdapFilter extends ezcAuthenticationFilter implements ezc
         }
 
         $this->ldap = $ldap;
-        $this->options = ( $options === null ) ? new ezcAuthenticationLdapOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationLdapOptions();
     }
 
     /**
@@ -364,7 +364,7 @@ class ezcAuthenticationLdapFilter extends ezcAuthenticationFilter implements ezc
      *
      * @param array(string) $data A list of attributes to fetch during authentication
      */
-    public function registerFetchData( array $data = array() )
+    public function registerFetchData( array $data = [] )
     {
         $this->requestedData = $data;
     }

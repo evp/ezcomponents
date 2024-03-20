@@ -32,7 +32,7 @@ class ezcGraphAxisCenteredLabelRenderer extends ezcGraphAxisLabelRenderer
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['showZeroValue'] = false;
 
@@ -105,7 +105,7 @@ class ezcGraphAxisCenteredLabelRenderer extends ezcGraphAxisLabelRenderer
 
         // Get axis space
         $gridBoundings = null;
-        list( $xSpace, $ySpace ) = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
+        [$xSpace, $ySpace] = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
 
         // Draw steps and grid
         foreach ( $steps as $nr => $step )

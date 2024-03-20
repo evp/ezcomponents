@@ -31,14 +31,10 @@ class ezcDocumentDocbookToHtmlXsltConverterOptions extends ezcDocumentXsltConver
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->xslt       = 'http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl';
-        $this->parameters = array(
-            '' => array(
-                'make.valid.html' => '1',
-            ),
-        );
+        $this->parameters = ['' => ['make.valid.html' => '1']];
 
         parent::__construct( $options );
     }

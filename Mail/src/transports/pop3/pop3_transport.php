@@ -84,7 +84,7 @@ class ezcMailPop3Transport
      *
      * @access private
      */
-    const STATE_NOT_CONNECTED = 1;
+    public const STATE_NOT_CONNECTED = 1;
 
     /**
      * Internal state set when the POP3 transport is connected to the server
@@ -92,7 +92,7 @@ class ezcMailPop3Transport
      *
      * @access private
      */
-    const STATE_AUTHORIZATION = 2;
+    public const STATE_AUTHORIZATION = 2;
 
     /**
      * Internal state set when the POP3 transport is connected to the server
@@ -100,7 +100,7 @@ class ezcMailPop3Transport
      *
      * @access private
      */
-    const STATE_TRANSACTION = 3;
+    public const STATE_TRANSACTION = 3;
 
     /**
      * Internal state set when the QUIT command has been issued to the POP3 server
@@ -108,17 +108,17 @@ class ezcMailPop3Transport
      *
      * @access private
      */
-    const STATE_UPDATE = 4;
+    public const STATE_UPDATE = 4;
 
     /**
      * Plain text authorization.
      */
-    const AUTH_PLAIN_TEXT = 1;
+    public const AUTH_PLAIN_TEXT = 1;
 
     /**
      * APOP authorization.
      */
-    const AUTH_APOP = 2;
+    public const AUTH_APOP = 2;
 
     /**
      * Holds the connection state.
@@ -184,7 +184,7 @@ class ezcMailPop3Transport
      * @param int $port
      * @param ezcMailPop3TransportOptions|array(string=>mixed) $options
      */
-    public function __construct( $server, $port = null, $options = array() )
+    public function __construct( $server, $port = null, $options = [] )
     {
         if ( $options instanceof ezcMailPop3TransportOptions )
         {
@@ -442,10 +442,10 @@ class ezcMailPop3Transport
         }
 
         // fetch the data from the server and prepare it to be returned.
-        $messages = array();
+        $messages = [];
         while ( ( $response = $this->connection->getLine( true ) ) !== "." )
         {
-            list( $num, $size ) = explode( ' ', $response );
+            [$num, $size] = explode( ' ', $response );
             $messages[$num] = $size;
         }
         return $messages;
@@ -491,7 +491,7 @@ class ezcMailPop3Transport
         }
 
         // send the command
-        $result = array();
+        $result = [];
         if ( $msgNum !== null )
         {
             $this->connection->sendData( "UIDL {$msgNum}" );
@@ -499,7 +499,7 @@ class ezcMailPop3Transport
             if ( $this->isPositiveResponse( $response ) )
             {
                 // get the single response line from the server
-                list( $dummy, $num, $id ) = explode( ' ', $response );
+                [$dummy, $num, $id] = explode( ' ', $response );
                 $result[(int)$num] = $id;
             }
             else
@@ -516,7 +516,7 @@ class ezcMailPop3Transport
                 // fetch each of the result lines and add it to the result
                 while ( ( $response = $this->connection->getLine( true ) ) !== "." )
                 {
-                    list( $num, $id ) = explode( ' ', $response );
+                    [$num, $id] = explode( ' ', $response );
                     $result[(int)$num] = $id;
                 }
             }
@@ -568,7 +568,7 @@ class ezcMailPop3Transport
         if ( $this->isPositiveResponse( $response ) )
         {
             // get the single response line from the server
-            list( $dummy, $numMessages, $sizeMessages ) = explode( ' ', $response );
+            [$dummy, $numMessages, $sizeMessages] = explode( ' ', $response );
             $numMessages = (int)$numMessages;
             $sizeMessages = (int)$sizeMessages;
         }
@@ -750,7 +750,7 @@ class ezcMailPop3Transport
         {
             throw new ezcMailNoSuchMessageException( $number );
         }
-        return new ezcMailPop3Set( $this->connection, array( $number ), $deleteFromServer );
+        return new ezcMailPop3Set( $this->connection, [$number], $deleteFromServer );
     }
 
     /**

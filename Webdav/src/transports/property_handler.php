@@ -36,7 +36,7 @@ class ezcWebdavPropertyHandler
      *
      * Example: 'text/html; charset=UTF-8'
      */
-    const GETCONTENTTYPE_REGEX = '(^(?P<mime>\w+/\w+)\s*(?:;\s*charset\s*=\s*(?P<charset>.+)\s*)?$)i';
+    public const GETCONTENTTYPE_REGEX = '(^(?P<mime>\w+/\w+)\s*(?:;\s*charset\s*=\s*(?P<charset>.+)\s*)?$)i';
 
     /**
      * Creates a new property handler.
@@ -132,7 +132,7 @@ class ezcWebdavPropertyHandler
                 $property = $this->dispatchExtractDeadProperty( $currentNode );
             }
 
-            $flag === null ? $storage->attach( $property ) : $storage->attach( $property, $flag );
+            $flag === null ? $storage->attach( $property ) : $storage->attach( $property );
         }
         return $storage;
     }
@@ -159,13 +159,10 @@ class ezcWebdavPropertyHandler
         {
             // Plugin hook extractUnknownLiveProperty
             $property = ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-                __CLASS__,
+                self::class,
                 'extractUnknownLiveProperty',
                 new ezcWebdavPluginParameters(
-                    array(
-                        'domElement'  => $element,
-                        'xmlTool'     => $this->getXmlTool(),
-                    )
+                    ['domElement'  => $element, 'xmlTool'     => $this->getXmlTool()]
                 )
             );
         }
@@ -192,13 +189,10 @@ class ezcWebdavPropertyHandler
     {
         // Plugin hook beforeExtractDeadProperty
         $property = ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-            __CLASS__,
+            self::class,
             'extractDeadProperty',
             new ezcWebdavPluginParameters(
-                array(
-                    'domElement' => $element,
-                    'xmlTool'    => $this->getXmlTool(),
-                )
+                ['domElement' => $element, 'xmlTool'    => $this->getXmlTool()]
             )
         );
 
@@ -351,14 +345,10 @@ class ezcWebdavPropertyHandler
                 {
                     // Plugin hook beforeSerializeLiveProperty
                     $propertyElement = ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-                        __CLASS__,
+                        self::class,
                         'serializeUnknownLiveProperty',
                         new ezcWebdavPluginParameters(
-                            array(
-                                'property'      => $property,
-                                'xmlTool'       => $this->getXmlTool(),
-                                'parentElement' => $parentElement,
-                            )
+                            ['property'      => $property, 'xmlTool'       => $this->getXmlTool(), 'parentElement' => $parentElement]
                         )
                     );
                 }
@@ -367,13 +357,10 @@ class ezcWebdavPropertyHandler
             {
                 // Plugin hook serializeDeadProperty
                 $propertyElement = ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-                    __CLASS__,
+                    self::class,
                     'serializeDeadProperty',
                     new ezcWebdavPluginParameters(
-                        array(
-                            'property' => $property,
-                            'xmlTool'  => $this->getXmlTool(),
-                        )
+                        ['property' => $property, 'xmlTool'  => $this->getXmlTool()]
                     )
                 );
 
@@ -409,7 +396,7 @@ class ezcWebdavPropertyHandler
      */
     protected function extractLinkContent( DOMElement $domElement )
     {
-        $links = array();
+        $links = [];
 
         $linkElements = $domElement->getElementsByTagNameNS(
             ezcWebdavXmlTool::XML_DEFAULT_NAMESPACE, 'link'
@@ -501,7 +488,7 @@ class ezcWebdavPropertyHandler
                 break;
             case 'ezcWebdavResourceTypeProperty':
                 $elementName  = 'resourcetype';
-                $elementValue = ( $property->type === ezcWebdavResourceTypeProperty::TYPE_COLLECTION ? array( $this->getXmlTool()->createDomElement( $parentElement->ownerDocument, 'collection' ) ) : null );
+                $elementValue = ( $property->type === ezcWebdavResourceTypeProperty::TYPE_COLLECTION ? [$this->getXmlTool()->createDomElement( $parentElement->ownerDocument, 'collection' )] : null );
                 break;
             case 'ezcWebdavSourceProperty':
                 $elementName  = 'source';
@@ -551,7 +538,7 @@ class ezcWebdavPropertyHandler
      */
     protected function serializeLinkContent( array $links = null, DOMDocument $dom )
     {
-        $linkContentElements = array();
+        $linkContentElements = [];
 
         foreach ( $links as $link )
         {

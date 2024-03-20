@@ -29,8 +29,8 @@ class ezcGraphDatabaseTest extends ezcTestCase
     protected function setUp()
     {
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
 
         // Try to build up database connection
         try
@@ -81,20 +81,14 @@ class ezcGraphDatabaseTest extends ezcTestCase
 
         $dataset = new ezcGraphDatabaseDataSet( $statement );
 
-        $dataSetArray = array(
-            'Firefox' => 2567,
-            'Opera' => 543,
-            'Safari' => 23,
-            'Konquror' => 812,
-            'Lynx' => 431,
-            'wget' => 912,
-        );
+        $dataSetArray = ['Firefox' => 2567, 'Opera' => 543, 'Safari' => 23, 'Konquror' => 812, 'Lynx' => 431, 'wget' => 912];
 
         $count = 0;
         foreach ( $dataset as $key => $value )
         {
-            list( $compareKey, $compareValue ) = each( $dataSetArray );
-
+            $compareKey = key($dataSetArray);
+            $compareValue = current($dataSetArray);
+            next($dataSetArray);
             $this->assertEquals(
                 $compareKey,
                 $key,
@@ -126,20 +120,14 @@ class ezcGraphDatabaseTest extends ezcTestCase
 
         $dataset = new ezcGraphDatabaseDataSet( $statement );
 
-        $dataSetArray = array(
-            'Firefox' => 2567,
-            'Opera' => 543,
-            'Safari' => 23,
-            'Konquror' => 812,
-            'Lynx' => 431,
-            'wget' => 912,
-        );
+        $dataSetArray = ['Firefox' => 2567, 'Opera' => 543, 'Safari' => 23, 'Konquror' => 812, 'Lynx' => 431, 'wget' => 912];
 
         $count = 0;
         foreach ( $dataset as $key => $value )
         {
-            list( $compareKey, $compareValue ) = each( $dataSetArray );
-
+            $compareKey = key($dataSetArray);
+            $compareValue = current($dataSetArray);
+            next($dataSetArray);
             $this->assertEquals(
                 $count,
                 $key,
@@ -190,26 +178,17 @@ class ezcGraphDatabaseTest extends ezcTestCase
 
         $dataset = new ezcGraphDatabaseDataSet(
             $statement,
-            array(
-                ezcGraph::KEY => 'browser',
-                ezcGraph::VALUE => 'hits',
-            )
+            [ezcGraph::KEY => 'browser', ezcGraph::VALUE => 'hits']
         );
 
-        $dataSetArray = array(
-            'Firefox' => 2567,
-            'Opera' => 543,
-            'Safari' => 23,
-            'Konquror' => 812,
-            'Lynx' => 431,
-            'wget' => 912,
-        );
+        $dataSetArray = ['Firefox' => 2567, 'Opera' => 543, 'Safari' => 23, 'Konquror' => 812, 'Lynx' => 431, 'wget' => 912];
 
         $count = 0;
         foreach ( $dataset as $key => $value )
         {
-            list( $compareKey, $compareValue ) = each( $dataSetArray );
-
+            $compareKey = key($dataSetArray);
+            $compareValue = current($dataSetArray);
+            next($dataSetArray);
             $this->assertEquals(
                 $compareKey,
                 $key,
@@ -241,25 +220,17 @@ class ezcGraphDatabaseTest extends ezcTestCase
 
         $dataset = new ezcGraphDatabaseDataSet(
             $statement,
-            array(
-                ezcGraph::VALUE => 'hits',
-            )
+            [ezcGraph::VALUE => 'hits']
         );
 
-        $dataSetArray = array(
-            'Firefox' => 2567,
-            'Opera' => 543,
-            'Safari' => 23,
-            'Konquror' => 812,
-            'Lynx' => 431,
-            'wget' => 912,
-        );
+        $dataSetArray = ['Firefox' => 2567, 'Opera' => 543, 'Safari' => 23, 'Konquror' => 812, 'Lynx' => 431, 'wget' => 912];
 
         $count = 0;
         foreach ( $dataset as $key => $value )
         {
-            list( $compareKey, $compareValue ) = each( $dataSetArray );
-
+            $compareKey = key($dataSetArray);
+            $compareValue = current($dataSetArray);
+            next($dataSetArray);
             $this->assertEquals(
                 $count,
                 $key,
@@ -293,10 +264,7 @@ class ezcGraphDatabaseTest extends ezcTestCase
         {
             $dataset = new ezcGraphDatabaseDataSet(
                 $statement,
-                array(
-                    ezcGraph::KEY => 'nonexistant',
-                    ezcGraph::VALUE => 'hits',
-                )
+                [ezcGraph::KEY => 'nonexistant', ezcGraph::VALUE => 'hits']
             );
         }
         catch ( ezcGraphDatabaseMissingColumnException $e )
@@ -318,9 +286,7 @@ class ezcGraphDatabaseTest extends ezcTestCase
         {
             $dataset = new ezcGraphDatabaseDataSet(
                 $statement,
-                array(
-                    ezcGraph::VALUE => 'nonexistant',
-                )
+                [ezcGraph::VALUE => 'nonexistant']
             );
         }
         catch ( ezcGraphDatabaseMissingColumnException $e )
@@ -358,9 +324,7 @@ class ezcGraphDatabaseTest extends ezcTestCase
 
         $dataset = new ezcGraphDatabaseDataSet(
             $statement,
-            array(
-                ezcGraph::VALUE => 'hits',
-            )
+            [ezcGraph::VALUE => 'hits']
         );
 
         $this->assertEquals(

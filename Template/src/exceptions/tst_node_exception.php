@@ -25,12 +25,12 @@ class ezcTemplateTstNodeException extends ezcTemplateException
     /**
      * Element has no children, cannot get first child.
      */
-    const NO_FIRST_CHILD = 1;
+    public const NO_FIRST_CHILD = 1;
 
     /**
      * Element has no children, cannot get last child.
      */
-    const NO_LAST_CHILD = 2;
+    public const NO_LAST_CHILD = 2;
 
     /**
      * Initialises the exception with the type of error which automatically generates an exception message.

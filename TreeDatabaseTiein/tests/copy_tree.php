@@ -16,13 +16,13 @@ require_once 'Tree/tests/copy_tree.php';
  */
 class ezcTreeDbCopyTest extends ezcTreeCopyTest
 {
-    protected $tables  = array( 'materialized_path', 'nested_set', 'parent_child', 'data', 'datam' );
+    protected $tables  = ['materialized_path', 'nested_set', 'parent_child', 'data', 'datam'];
 
     protected function setUp()
     {
         static $i = 0;
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
         try
         {
             $this->dbh = ezcDbInstance::get();
@@ -48,7 +48,7 @@ class ezcTreeDbCopyTest extends ezcTreeCopyTest
 
     private function loadSchemas()
     {
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . "/files/all-types.dba" );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . "/files/all-types.dba" );
         $schema->writeToDb( $this->dbh );
     }
 

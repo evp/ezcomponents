@@ -50,14 +50,14 @@ class ezcMailPartWalkContext
      *
      * @var array(ezcMailPart)
      */
-    protected $parts = array();
+    protected $parts = [];
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Constructs a new ezcMailPartWalkContext object.
@@ -71,7 +71,7 @@ class ezcMailPartWalkContext
     {
         $this->callbackFunction = $callbackFunction;
         $this->level = 0;
-        $this->filter = array();
+        $this->filter = [];
         $this->includeDigests = false;
     }
 

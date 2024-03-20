@@ -28,7 +28,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     public function testCtorSuccess()
@@ -36,14 +36,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
         $cfg = new ezcWebdavServerConfiguration();
 
         $this->assertAttributeEquals(
-            array(
-                'userAgentRegex'       => '(.*)',
-                'transportClass'       => 'ezcWebdavTransport',
-                'xmlToolClass'         => 'ezcWebdavXmlTool',
-                'propertyHandlerClass' => 'ezcWebdavPropertyHandler',
-                'headerHandlerClass'   => 'ezcWebdavHeaderHandler',
-                'pathFactory'          => new ezcWebdavAutomaticPathFactory(),
-            ),
+            ['userAgentRegex'       => '(.*)', 'transportClass'       => 'ezcWebdavTransport', 'xmlToolClass'         => 'ezcWebdavXmlTool', 'propertyHandlerClass' => 'ezcWebdavPropertyHandler', 'headerHandlerClass'   => 'ezcWebdavHeaderHandler', 'pathFactory'          => new ezcWebdavAutomaticPathFactory()],
             'properties',
             $cfg,
             'Default properties not created correctly on empty ctor.'
@@ -54,14 +47,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'userAgentRegex'       => '(.*Nautilus.*)',
-                'transportClass'       => 'ezcWebdavTransport',
-                'xmlToolClass'         => 'ezcWebdavXmlTool',
-                'propertyHandlerClass' => 'ezcWebdavPropertyHandler',
-                'headerHandlerClass'   => 'ezcWebdavHeaderHandler',
-                'pathFactory'          => new ezcWebdavAutomaticPathFactory(),
-            ),
+            ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'ezcWebdavTransport', 'xmlToolClass'         => 'ezcWebdavXmlTool', 'propertyHandlerClass' => 'ezcWebdavPropertyHandler', 'headerHandlerClass'   => 'ezcWebdavHeaderHandler', 'pathFactory'          => new ezcWebdavAutomaticPathFactory()],
             'properties',
             $cfg,
             'Default properties not created correctly on empty ctor.'
@@ -73,14 +59,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'userAgentRegex'       => '(.*Nautilus.*)',
-                'transportClass'       => 'ezcWebdavCustomTransport',
-                'xmlToolClass'         => 'ezcWebdavXmlTool',
-                'propertyHandlerClass' => 'ezcWebdavPropertyHandler',
-                'headerHandlerClass'   => 'ezcWebdavHeaderHandler',
-                'pathFactory'          => new ezcWebdavAutomaticPathFactory(),
-            ),
+            ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'ezcWebdavCustomTransport', 'xmlToolClass'         => 'ezcWebdavXmlTool', 'propertyHandlerClass' => 'ezcWebdavPropertyHandler', 'headerHandlerClass'   => 'ezcWebdavHeaderHandler', 'pathFactory'          => new ezcWebdavAutomaticPathFactory()],
             'properties',
             $cfg,
             'Default properties not created correctly on empty ctor.'
@@ -93,14 +72,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'userAgentRegex'       => '(.*Nautilus.*)',
-                'transportClass'       => 'fooCustomTransport',
-                'xmlToolClass'         => 'fooCustomXmlTool',
-                'propertyHandlerClass' => 'ezcWebdavPropertyHandler',
-                'headerHandlerClass'   => 'ezcWebdavHeaderHandler',
-                'pathFactory'          => new ezcWebdavAutomaticPathFactory(),
-            ),
+            ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'fooCustomTransport', 'xmlToolClass'         => 'fooCustomXmlTool', 'propertyHandlerClass' => 'ezcWebdavPropertyHandler', 'headerHandlerClass'   => 'ezcWebdavHeaderHandler', 'pathFactory'          => new ezcWebdavAutomaticPathFactory()],
             'properties',
             $cfg,
             'Default properties not created correctly on empty ctor.'
@@ -114,14 +86,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'userAgentRegex'       => '(.*Nautilus.*)',
-                'transportClass'       => 'fooCustomTransport',
-                'xmlToolClass'         => 'fooCustomXmlTool',
-                'propertyHandlerClass' => 'fooCustomPropertyHandler',
-                'headerHandlerClass'   => 'ezcWebdavHeaderHandler',
-                'pathFactory'          => new ezcWebdavAutomaticPathFactory(),
-            ),
+            ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'fooCustomTransport', 'xmlToolClass'         => 'fooCustomXmlTool', 'propertyHandlerClass' => 'fooCustomPropertyHandler', 'headerHandlerClass'   => 'ezcWebdavHeaderHandler', 'pathFactory'          => new ezcWebdavAutomaticPathFactory()],
             'properties',
             $cfg,
             'Default properties not created correctly on empty ctor.'
@@ -136,14 +101,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'userAgentRegex'       => '(.*Nautilus.*)',
-                'transportClass'       => 'fooCustomTransport',
-                'xmlToolClass'         => 'fooCustomXmlTool',
-                'propertyHandlerClass' => 'fooCustomPropertyHandler',
-                'headerHandlerClass'   => 'fooCustomHeaderHandler',
-                'pathFactory'          => new ezcWebdavAutomaticPathFactory(),
-            ),
+            ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'fooCustomTransport', 'xmlToolClass'         => 'fooCustomXmlTool', 'propertyHandlerClass' => 'fooCustomPropertyHandler', 'headerHandlerClass'   => 'fooCustomHeaderHandler', 'pathFactory'          => new ezcWebdavAutomaticPathFactory()],
             'properties',
             $cfg,
             'Default properties not created correctly on empty ctor.'
@@ -159,14 +117,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'userAgentRegex'       => '(.*Nautilus.*)',
-                'transportClass'       => 'fooCustomTransport',
-                'xmlToolClass'         => 'fooCustomXmlTool',
-                'propertyHandlerClass' => 'fooCustomPropertyHandler',
-                'headerHandlerClass'   => 'fooCustomHeaderHandler',
-                'pathFactory'          => new ezcWebdavBasicPathFactory( 'http://example.com' ),
-            ),
+            ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'fooCustomTransport', 'xmlToolClass'         => 'fooCustomXmlTool', 'propertyHandlerClass' => 'fooCustomPropertyHandler', 'headerHandlerClass'   => 'fooCustomHeaderHandler', 'pathFactory'          => new ezcWebdavBasicPathFactory( 'http://example.com' )],
             'properties',
             $cfg,
             'Default properties not created correctly on empty ctor.'
@@ -175,38 +126,40 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
 
     public function testCtorFailure()
     {
-        $typicalFails = array(
-            '',
-            23,
-            23.42,
-            true,
-            false,
-            array(),
-            new stdClass(),
-        );
+        $typicalFails = ['', 23, 23.42, true, false, [], new stdClass()];
         $typicalValid = 'fooSomeClass';
 
-        $validCtorParams = array(
-            $typicalValid, // userAgentRegex
-            $typicalValid, // transportClass
-            $typicalValid, // xmlToolClass
-            $typicalValid, // propertyHandlerClass
-            $typicalValid, // headerHandlerClass
-            new ezcWebdavAutomaticPathFactory(), // pathFactory
-        );
+        $validCtorParams = [
+            $typicalValid,
+            // userAgentRegex
+            $typicalValid,
+            // transportClass
+            $typicalValid,
+            // xmlToolClass
+            $typicalValid,
+            // propertyHandlerClass
+            $typicalValid,
+            // headerHandlerClass
+            new ezcWebdavAutomaticPathFactory(),
+        ];
 
-        $invalidCtorParams = array(
-            $typicalFails, // userAgentRegex
-            $typicalFails, // transportClass
-            $typicalFails, // xmlToolClass
-            $typicalFails, // propertyHandlerClass
-            $typicalFails, // headerHandlerClass
-            array_merge( $typicalFails, array( 'foo' ) ), // pathFactory
-        );
+        $invalidCtorParams = [
+            $typicalFails,
+            // userAgentRegex
+            $typicalFails,
+            // transportClass
+            $typicalFails,
+            // xmlToolClass
+            $typicalFails,
+            // propertyHandlerClass
+            $typicalFails,
+            // headerHandlerClass
+            array_merge( $typicalFails, ['foo'] ),
+        ];
 
         foreach ( $invalidCtorParams as $id => $paramSet )
         {
-            $params = array();
+            $params = [];
             for ( $i = 0; $i < $id; ++$i )
             {
                 $params[$i] = $validCtorParams[$i];
@@ -223,14 +176,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
     {
         $cfg = new ezcWebdavServerConfiguration();
 
-        $defaults = array(
-            'userAgentRegex'       => '(.*)',
-            'transportClass'       => 'ezcWebdavTransport',
-            'xmlToolClass'         => 'ezcWebdavXmlTool',
-            'propertyHandlerClass' => 'ezcWebdavPropertyHandler',
-            'headerHandlerClass'   => 'ezcWebdavHeaderHandler',
-            'pathFactory'          => new ezcWebdavAutomaticPathFactory(),
-        );
+        $defaults = ['userAgentRegex'       => '(.*)', 'transportClass'       => 'ezcWebdavTransport', 'xmlToolClass'         => 'ezcWebdavXmlTool', 'propertyHandlerClass' => 'ezcWebdavPropertyHandler', 'headerHandlerClass'   => 'ezcWebdavHeaderHandler', 'pathFactory'          => new ezcWebdavAutomaticPathFactory()];
 
         foreach ( $defaults as $property => $value )
         {
@@ -253,14 +199,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
             new ezcWebdavBasicPathFactory( 'http://example.com' )
         );
 
-        $values = array(
-            'userAgentRegex'       => '(.*Nautilus.*)',
-            'transportClass'       => 'fooCustomTransport',
-            'xmlToolClass'         => 'fooCustomXmlTool',
-            'propertyHandlerClass' => 'fooCustomPropertyHandler',
-            'headerHandlerClass'   => 'fooCustomHeaderHandler',
-            'pathFactory'          => new ezcWebdavBasicPathFactory( 'http://example.com' ),
-        );
+        $values = ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'fooCustomTransport', 'xmlToolClass'         => 'fooCustomXmlTool', 'propertyHandlerClass' => 'fooCustomPropertyHandler', 'headerHandlerClass'   => 'fooCustomHeaderHandler', 'pathFactory'          => new ezcWebdavBasicPathFactory( 'http://example.com' )];
 
         foreach ( $values as $property => $value )
         {
@@ -291,15 +230,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
     {
         $cfg = new ezcWebdavServerConfiguration();
 
-        $values = array(
-            'userAgentRegex'       => '(.*Nautilus.*)',
-            'transportClass'       => 'fooCustomTransport',
-            'xmlToolClass'         => 'fooCustomXmlTool',
-            'propertyHandlerClass' => 'fooCustomPropertyHandler',
-            'headerHandlerClass'   => 'fooCustomHeaderHandler',
-            'pathFactory'          => new ezcWebdavBasicPathFactory( 'http://example.com' ),
-            
-        );
+        $values = ['userAgentRegex'       => '(.*Nautilus.*)', 'transportClass'       => 'fooCustomTransport', 'xmlToolClass'         => 'fooCustomXmlTool', 'propertyHandlerClass' => 'fooCustomPropertyHandler', 'headerHandlerClass'   => 'fooCustomHeaderHandler', 'pathFactory'          => new ezcWebdavBasicPathFactory( 'http://example.com' )];
 
         foreach( $values as $property => $value )
         {
@@ -323,24 +254,9 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
 
     public function testSetAccessFailure()
     {
-        $typicalFails = array(
-            '',
-            23,
-            23.42,
-            true,
-            false,
-            array(),
-            new stdClass(),
-        );
+        $typicalFails = ['', 23, 23.42, true, false, [], new stdClass()];
 
-        $invalidValues = array(
-            'userAgentRegex'       => $typicalFails, 
-            'transportClass'       => $typicalFails, 
-            'xmlToolClass'         => $typicalFails, 
-            'propertyHandlerClass' => $typicalFails, 
-            'headerHandlerClass'   => $typicalFails,
-            'pathFactory'          => array_merge( $typicalFails, array( 'foo' ) ), 
-        );
+        $invalidValues = ['userAgentRegex'       => $typicalFails, 'transportClass'       => $typicalFails, 'xmlToolClass'         => $typicalFails, 'propertyHandlerClass' => $typicalFails, 'headerHandlerClass'   => $typicalFails, 'pathFactory'          => array_merge( $typicalFails, ['foo'] )];
 
         foreach ( $invalidValues as $propertyName => $propertyValues )
         {
@@ -360,14 +276,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
     {
         $cfg = new ezcWebdavServerConfiguration();
 
-        $properties =array(
-            'userAgentRegex', 
-            'transportClass', 
-            'xmlToolClass', 
-            'propertyHandlerClass', 
-            'headerHandlerClass',
-            'pathFactory', 
-        );
+        $properties =['userAgentRegex', 'transportClass', 'xmlToolClass', 'propertyHandlerClass', 'headerHandlerClass', 'pathFactory'];
 
         foreach( $properties as $propertyName )
         {
@@ -389,14 +298,7 @@ class ezcWebdavServerConfigurationTest extends ezcTestCase
             new ezcWebdavBasicPathFactory( 'http://example.com' )
         );
 
-        $properties =array(
-            'userAgentRegex', 
-            'transportClass', 
-            'xmlToolClass', 
-            'propertyHandlerClass', 
-            'headerHandlerClass', 
-            'pathFactory', 
-        );
+        $properties =['userAgentRegex', 'transportClass', 'xmlToolClass', 'propertyHandlerClass', 'headerHandlerClass', 'pathFactory'];
 
         foreach( $properties as $propertyName )
         {

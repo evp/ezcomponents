@@ -39,7 +39,7 @@ class ezcBaseStructTest extends ezcTestCase
 
     public function testBaseRepositoryDirectorySetState()
     {
-        $dir = ezcBaseRepositoryDirectory::__set_state( array( 'type' => ezcBaseRepositoryDirectory::TYPE_EXTERNAL, 'basePath' => '/tmp', 'autoloadPath' => '/tmp/autoload' ) );
+        $dir = ezcBaseRepositoryDirectory::__set_state( ['type' => ezcBaseRepositoryDirectory::TYPE_EXTERNAL, 'basePath' => '/tmp', 'autoloadPath' => '/tmp/autoload'] );
         $this->assertEquals( ezcBaseRepositoryDirectory::TYPE_EXTERNAL, $dir->type );
         $this->assertEquals( '/tmp', $dir->basePath );
         $this->assertEquals( '/tmp/autoload', $dir->autoloadPath );

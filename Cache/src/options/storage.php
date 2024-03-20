@@ -34,7 +34,7 @@ class ezcCacheStorageOptions extends ezcBaseOptions
      * @throws ezcBaseValueException
      *         If the value for the property is incorrect
      */
-    public function __construct( $options = array() )
+    public function __construct( $options = [] )
     {
         $this->properties['ttl'] = 86400;
         $this->properties['extension'] = '.cache';

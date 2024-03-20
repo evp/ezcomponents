@@ -24,44 +24,7 @@ class ezcConsoleOutputTest extends ezcTestCase
      */
     private $testString = 'A passion for php';
 
-    private $testFormats = array(
-        'color_only_1' => array(
-            'in'  => array( 
-                'color' => 'blue',
-            ),
-            'out' => "\033[34m%s\033[0m"
-        ),
-        'color_only_2' => array( 
-            'in'  => array( 
-                'color' => 'red',
-            ),
-            'out' => "\033[31m%s\033[0m"
-        ),
-        'bgcolor_only_1' => array( 
-            'in'  => array( 
-                'bgcolor' => 'green',
-            ),
-            'out' => "\033[42m%s\033[0m"
-        ),
-        'bgcolor_only_2' => array( 
-            'in'  => array( 
-                'bgcolor' => 'yellow',
-            ),
-            'out' => "\033[43m%s\033[0m"
-        ),
-        'style_only_1' => array( 
-            'in'  => array( 
-                'style' => 'bold',
-            ),
-            'out' => "\033[1m%s\033[0m"
-        ),
-        'style_only_2' => array( 
-            'in'  => array( 
-                'style' => 'negative',
-            ),
-            'out' => "\033[7m%s\033[0m"
-        ),
-    );
+    private $testFormats = ['color_only_1' => ['in'  => ['color' => 'blue'], 'out' => "\033[34m%s\033[0m"], 'color_only_2' => ['in'  => ['color' => 'red'], 'out' => "\033[31m%s\033[0m"], 'bgcolor_only_1' => ['in'  => ['bgcolor' => 'green'], 'out' => "\033[42m%s\033[0m"], 'bgcolor_only_2' => ['in'  => ['bgcolor' => 'yellow'], 'out' => "\033[43m%s\033[0m"], 'style_only_1' => ['in'  => ['style' => 'bold'], 'out' => "\033[1m%s\033[0m"], 'style_only_2' => ['in'  => ['style' => 'negative'], 'out' => "\033[7m%s\033[0m"]];
 
     /**
      * consoleOutput 
@@ -221,11 +184,7 @@ class ezcConsoleOutputTest extends ezcTestCase
 
         $output = new ezcConsoleOutput();
         $output->setOptions(
-            array(
-                "verbosityLevel" => 10,
-                "autobreak"      => 80,
-                "useFormats"     => false,
-            )
+            ["verbosityLevel" => 10, "autobreak"      => 80, "useFormats"     => false]
         );
         $this->assertEquals( $optObj, $output->options );
     }

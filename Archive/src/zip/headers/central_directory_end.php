@@ -59,14 +59,14 @@ class ezcArchiveCentralDirectoryEndHeader
     /**
      * Defines the signature of this header.
      */
-    const magic = 0x06054b50;
+    public const magic = 0x06054b50;
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates and initializes a new header.

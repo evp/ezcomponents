@@ -68,11 +68,7 @@ class ezcDocumentPdfWrappingTextBoxRenderer extends ezcDocumentPdfTextBoxRendere
         $position  = $space->y;
         $pageNr    = 0;
         $wrap      = false;
-        $pages     = array( $pageNr => array(
-            'page'  => $page,
-            'lines' => array(),
-            'space' => $space,
-        ) );
+        $pages     = [$pageNr => ['page'  => $page, 'lines' => [], 'space' => $space]];
         for ( $line = 0; $line < $lineCount; ++$line )
         {
             // Render on current page, of there is still enough space
@@ -88,30 +84,23 @@ class ezcDocumentPdfWrappingTextBoxRenderer extends ezcDocumentPdfTextBoxRendere
                 {
                     $difference = $styles['widows']->value - $current;
                     $pages[$pageNr - 1]['lines'] = array_slice( $pages[$pageNr - 1]['lines'], 0, -$difference, true );
-                    $pages[$pageNr]['lines'] = array();
+                    $pages[$pageNr]['lines'] = [];
                     $line                    = $lineCount - $styles['widows']->value - 1;
                     $current                 = 0;
                     continue;
                 }
 
-                $pages[$pageNr]['lines'][] = array(
-                    'position' => $position,
-                    'line'     => $lines[$line],
-                );
+                $pages[$pageNr]['lines'][] = ['position' => $position, 'line'     => $lines[$line]];
                 $position += $lines[$line]['height'] * $styles['line-height']->value;
                 continue;
             }
 
             // Shift to next page
-            $pages[++$pageNr] = array(
-                'page' => $tmpPage = $mainRenderer->getNextRenderingPosition(
-                    ( $pWidth = $mainRenderer->calculateTextWidth( $page, $text ) ) +
-                    $styles['text-column-spacing']->value,
-                    $pWidth
-                ),
-                'lines' => array(),
-                'space' => $this->evaluateAvailableBoundingBox( $tmpPage, $styles, $width ),
-            );
+            $pages[++$pageNr] = ['page' => $tmpPage = $mainRenderer->getNextRenderingPosition(
+                ( $pWidth = $mainRenderer->calculateTextWidth( $page, $text ) ) +
+                $styles['text-column-spacing']->value,
+                $pWidth
+            ), 'lines' => [], 'space' => $this->evaluateAvailableBoundingBox( $tmpPage, $styles, $width )];
             $position = $pages[$pageNr]['space']->y;
             $current  = 0;
             $wrap     = false;
@@ -120,7 +109,7 @@ class ezcDocumentPdfWrappingTextBoxRenderer extends ezcDocumentPdfTextBoxRendere
             if ( ( $line < $styles['orphans']->value ) &&
                  ( $line < $lineCount ) )
             {
-                $pages[0]['lines'] = array();
+                $pages[0]['lines'] = [];
                 $line = -1;
                 continue;
             }

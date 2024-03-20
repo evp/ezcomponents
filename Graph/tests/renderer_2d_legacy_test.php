@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -29,7 +29,7 @@ class ezcGraphRenderer2dLegacyTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-	    return new PHPUnit_Framework_TestSuite( __CLASS__ );
+	    return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     protected function setUp()
@@ -40,20 +40,12 @@ class ezcGraphRenderer2dLegacyTest extends ezcGraphTestCase
             $this->markTestSkipped( "This test requires PHP 5.1.3 or later." );
         }
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
 
         $this->renderer = new ezcGraphRenderer2d();
 
-        $this->driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawPolygon',
-            'drawLine',
-            'drawTextBox',
-            'drawCircleSector',
-            'drawCircularArc',
-            'drawCircle',
-            'drawImage',
-        ) );
+        $this->driver = $this->getMock( 'ezcGraphSvgDriver', ['drawPolygon', 'drawLine', 'drawTextBox', 'drawCircleSector', 'drawCircularArc', 'drawCircle', 'drawImage'] );
         $this->renderer->setDriver( $this->driver );
 
         $this->driver->options->width = 400;
@@ -85,11 +77,7 @@ class ezcGraphRenderer2dLegacyTest extends ezcGraphTestCase
             ->expects( $this->at( 1 ) )
             ->method( 'drawPolygon' )
             ->with(
-                $this->equalTo( array(
-                    new ezcGraphCoordinate( 120., 20. ),
-                    new ezcGraphCoordinate( 122.5, 25. ),
-                    new ezcGraphCoordinate( 117.5, 25. ),
-                ), 1. ),
+                $this->equalTo( [new ezcGraphCoordinate( 120., 20. ), new ezcGraphCoordinate( 122.5, 25. ), new ezcGraphCoordinate( 117.5, 25. )], 1. ),
                 $this->equalTo( ezcGraphColor::fromHex( '#2E3436' ) ),
                 $this->equalTo( true )
             );
@@ -119,11 +107,7 @@ class ezcGraphRenderer2dLegacyTest extends ezcGraphTestCase
             ->expects( $this->at( 1 ) )
             ->method( 'drawPolygon' )
             ->with(
-                $this->equalTo( array(
-                    new ezcGraphCoordinate( 120., 220. ),
-                    new ezcGraphCoordinate( 117.5, 215. ),
-                    new ezcGraphCoordinate( 122.5, 215. ),
-                ), 1. ),
+                $this->equalTo( [new ezcGraphCoordinate( 120., 220. ), new ezcGraphCoordinate( 117.5, 215. ), new ezcGraphCoordinate( 122.5, 215. )], 1. ),
                 $this->equalTo( ezcGraphColor::fromHex( '#2E3436' ) ),
                 $this->equalTo( true )
             );
@@ -153,11 +137,7 @@ class ezcGraphRenderer2dLegacyTest extends ezcGraphTestCase
             ->expects( $this->at( 1 ) )
             ->method( 'drawPolygon' )
             ->with(
-                $this->equalTo( array(
-                    new ezcGraphCoordinate( 450., 120. ),
-                    new ezcGraphCoordinate( 442., 124. ),
-                    new ezcGraphCoordinate( 442., 116. ),
-                ), 1. ),
+                $this->equalTo( [new ezcGraphCoordinate( 450., 120. ), new ezcGraphCoordinate( 442., 124. ), new ezcGraphCoordinate( 442., 116. )], 1. ),
                 $this->equalTo( ezcGraphColor::fromHex( '#2E3436' ) ),
                 $this->equalTo( true )
             );
@@ -187,11 +167,7 @@ class ezcGraphRenderer2dLegacyTest extends ezcGraphTestCase
             ->expects( $this->at( 1 ) )
             ->method( 'drawPolygon' )
             ->with(
-                $this->equalTo( array(
-                    new ezcGraphCoordinate( 150., 120. ),
-                    new ezcGraphCoordinate( 157., 116.5 ),
-                    new ezcGraphCoordinate( 157., 123.5 ),
-                ), 1. ),
+                $this->equalTo( [new ezcGraphCoordinate( 150., 120. ), new ezcGraphCoordinate( 157., 116.5 ), new ezcGraphCoordinate( 157., 123.5 )], 1. ),
                 $this->equalTo( ezcGraphColor::fromHex( '#2E3436' ) ),
                 $this->equalTo( true )
             );

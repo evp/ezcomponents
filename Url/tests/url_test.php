@@ -22,8 +22,8 @@ class ezcUrlTest extends ezcTestCase
         $this->assertEquals( 'user', $url->user );
         $this->assertEquals( 'password', $url->pass );
         $this->assertEquals( 82, $url->port );
-        $this->assertEquals( array( 'index.php', 'content', 'view' ), $url->path );
-        $this->assertEquals( array( 'products' => '10', 'mode' => 'print' ), $url->query );
+        $this->assertEquals( ['index.php', 'content', 'view'], $url->path );
+        $this->assertEquals( ['products' => '10', 'mode' => 'print'], $url->query );
         $this->assertEquals( 'cat', $url->fragment );
     }
 
@@ -50,8 +50,8 @@ class ezcUrlTest extends ezcTestCase
         $url->pass = 'pass';
         $url->host = 'www.example.com';
         $url->port = 82;
-        $url->path = array( 'content', 'view' );
-        $url->query = array( 'products' => 10, 'mode' => 'print' );
+        $url->path = ['content', 'view'];
+        $url->query = ['products' => 10, 'mode' => 'print'];
         $url->fragment = 'cat';
         $expected = "http://user:pass@www.example.com:82/content/view?products=10&mode=print#cat";
         $this->assertEquals( $expected, $url->buildUrl() );
@@ -91,7 +91,7 @@ class ezcUrlTest extends ezcTestCase
 
     public function testBuildUrl()
     {
-        $urlStrings = array();
+        $urlStrings = [];
         $urlStrings[] = 'http://www.example.com';
         $urlStrings[] = 'http://www.example.com/mydir/index.php';
         $urlStrings[] = 'http://www.example.com/mydir/index.php/other/stuff#cat';
@@ -141,21 +141,21 @@ class ezcUrlTest extends ezcTestCase
     public function testGetQuery()
     {
         $url = new ezcUrl( 'http://www.example.com/mydir/shop?content=view&products=10&mode=print' );
-        $expected = array( 'content' => 'view', 'products' => '10', 'mode' => 'print' );
+        $expected = ['content' => 'view', 'products' => '10', 'mode' => 'print'];
         $this->assertEquals( $expected, $url->getQuery() );
     }
 
     public function testGetQueryEmpty()
     {
         $url = new ezcUrl( 'http://www.example.com/mydir/shop' );
-        $expected = array();
+        $expected = [];
         $this->assertEquals( $expected, $url->getQuery() );
     }
 
     public function testSetQuery()
     {
         $url = new ezcUrl( 'http://www.example.com/mydir/shop' );
-        $url->setQuery( array( 'content' => 'view', 'products' => '10', 'mode' => 'print' ) );
+        $url->setQuery( ['content' => 'view', 'products' => '10', 'mode' => 'print'] );
         $expected = 'http://www.example.com/mydir/shop?content=view&products=10&mode=print';
         $this->assertEquals( $expected, $url->buildUrl() );
     }
@@ -283,7 +283,7 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg->addUnorderedParameter( 'file', ezcUrlConfiguration::MULTIPLE_ARGUMENTS );
 
         $url = new ezcUrl( 'http://www.example.com/doc/components/view/trunk/(file)/Base/ezcBase.html', $urlCfg );
-        $this->assertEquals( array( 'Base', 'ezcBase.html' ), $url->getParam( 'file' ) );
+        $this->assertEquals( ['Base', 'ezcBase.html'], $url->getParam( 'file' ) );
     }
 
     public function testGetUnorderedParameterEmpty()
@@ -353,7 +353,7 @@ class ezcUrlTest extends ezcTestCase
 
         $url = new ezcUrl( 'http://www.example.com/doc/components/view/trunk', $urlCfg );
         $expected = 'http://www.example.com/doc/components/view/trunk/(file)/Base/ezcBase.html';
-        $url->setParam( 'file', array( 'Base', 'ezcBase.html' ) );
+        $url->setParam( 'file', ['Base', 'ezcBase.html'] );
         $this->assertEquals( $expected, $url->buildUrl() );
     }
 
@@ -364,7 +364,7 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         try
         {
-            $url->setParam( 'file', array( 'Base', 'ezcBase.html' ) );
+            $url->setParam( 'file', ['Base', 'ezcBase.html'] );
             $this->fail( 'Expected exception was not thrown.' );
         }
         catch ( ezcUrlInvalidParameterException $e )
@@ -379,7 +379,7 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com' );
         try
         {
-            $url->setParam( 'file', array( 'Base', 'ezcBase.html' ) );
+            $url->setParam( 'file', ['Base', 'ezcBase.html'] );
             $this->fail( 'Expected exception was not thrown.' );
         }
         catch ( ezcUrlNoConfigurationException $e )
@@ -397,12 +397,12 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg->addOrderedParameter( 'view' );
 
         $url = new ezcUrl( 'http://www.example.com/doc/components', $urlCfg );
-        $this->assertEquals( array( 'section' => 0, 'module' => 1, 'view' => 2 ), $url->configuration->orderedParameters );
+        $this->assertEquals( ['section' => 0, 'module' => 1, 'view' => 2], $url->configuration->orderedParameters );
         $this->assertEquals( 'doc', $url->getParam( 'section' ) );
         $this->assertEquals( 'components', $url->getParam( 'module' ) );
 
         $url->configuration->removeOrderedParameter( 'view' );
-        $this->assertEquals( array( 'section' => 0, 'module' => 1 ), $url->configuration->orderedParameters );
+        $this->assertEquals( ['section' => 0, 'module' => 1], $url->configuration->orderedParameters );
 
         try
         {
@@ -437,13 +437,13 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg->addUnorderedParameter( 'file', ezcUrlConfiguration::MULTIPLE_ARGUMENTS );    
 
         $url = new ezcUrl( 'http://www.example.com/doc/components/(file)/Base/ezcBase.html', $urlCfg );
-        $this->assertEquals( array( 'file' => 2 ), $url->configuration->unorderedParameters );
+        $this->assertEquals( ['file' => 2], $url->configuration->unorderedParameters );
         $this->assertEquals( 'doc', $url->getParam( 'section' ) );
         $this->assertEquals( 'components', $url->getParam( 'module' ) );
-        $this->assertEquals( array( 'Base', 'ezcBase.html' ), $url->getParam( 'file' ) );
+        $this->assertEquals( ['Base', 'ezcBase.html'], $url->getParam( 'file' ) );
 
         $url->configuration->removeUnorderedParameter( 'file' );
-        $this->assertEquals( array(), $url->configuration->unorderedParameters );
+        $this->assertEquals( [], $url->configuration->unorderedParameters );
 
         try
         {
@@ -633,7 +633,7 @@ class ezcUrlTest extends ezcTestCase
         $this->assertEquals( 'view', $url->getParam( 'view' ) );
         $this->assertEquals( 'trunk', $url->getParam( 'content' ) );
         $this->assertEquals( 'a', $url->getParam( 'param1' ) );
-        $this->assertEquals( array( 'y', 'z' ), $url->getParam( 'param2' ) );
+        $this->assertEquals( ['y', 'z'], $url->getParam( 'param2' ) );
     }
 
     public function testGetUnorderedParametersMultipleValuesTypeMultipleSingle()
@@ -655,7 +655,7 @@ class ezcUrlTest extends ezcTestCase
         $this->assertEquals( 'view', $url->getParam( 'view' ) );
         $this->assertEquals( 'trunk', $url->getParam( 'content' ) );
         $this->assertEquals( 'a', $url->getParam( 'param1' ) );
-        $this->assertEquals( array( 'y' ), $url->getParam( 'param2' ) );
+        $this->assertEquals( ['y'], $url->getParam( 'param2' ) );
     }
 
     public function testGetUnorderedParametersMultipleValuesTypeAggregateSingleMultiple()
@@ -677,7 +677,7 @@ class ezcUrlTest extends ezcTestCase
         $this->assertEquals( 'view', $url->getParam( 'view' ) );
         $this->assertEquals( 'trunk', $url->getParam( 'content' ) );
         $this->assertEquals( 'a', $url->getParam( 'param1' ) );
-        $this->assertEquals( array( array( 'x' ), array( 'y', 'z' ) ), $url->getParam( 'param2' ) );
+        $this->assertEquals( [['x'], ['y', 'z']], $url->getParam( 'param2' ) );
     }
 
     public function testGetUnorderedParametersMultipleValuesTypeAggregateSingleSingle()
@@ -699,7 +699,7 @@ class ezcUrlTest extends ezcTestCase
         $this->assertEquals( 'view', $url->getParam( 'view' ) );
         $this->assertEquals( 'trunk', $url->getParam( 'content' ) );
         $this->assertEquals( 'a', $url->getParam( 'param1' ) );
-        $this->assertEquals( array( array( 'x' ), array( 'y' ) ), $url->getParam( 'param2' ) );
+        $this->assertEquals( [['x'], ['y']], $url->getParam( 'param2' ) );
     }
 
     public function testGetUnorderedParametersMultipleValuesTypeAggregateMultipleSingle()
@@ -721,7 +721,7 @@ class ezcUrlTest extends ezcTestCase
         $this->assertEquals( 'view', $url->getParam( 'view' ) );
         $this->assertEquals( 'trunk', $url->getParam( 'content' ) );
         $this->assertEquals( 'a', $url->getParam( 'param1' ) );
-        $this->assertEquals( array( array( 'x', 'y' ), array( 'z' ) ), $url->getParam( 'param2' ) );
+        $this->assertEquals( [['x', 'y'], ['z']], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterSingleArraySingleSingle()
@@ -732,7 +732,7 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/(param2)/y';
 
-        $url->setParam( 'param2', array( array( 'x' ), array( 'y' ) ) );
+        $url->setParam( 'param2', [['x'], ['y']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
         $this->assertEquals( 'y', $url->getParam( 'param2' ) );
@@ -746,7 +746,7 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/(param2)/y/z';
 
-        $url->setParam( 'param2', array( array( 'x' ), array( 'y', 'z' ) ) );
+        $url->setParam( 'param2', [['x'], ['y', 'z']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
         $this->assertEquals( 'y', $url->getParam( 'param2' ) );
@@ -760,7 +760,7 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/y/(param2)/z';
 
-        $url->setParam( 'param2', array( array( 'x', 'y' ), array( 'z' ) ) );
+        $url->setParam( 'param2', [['x', 'y'], ['z']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
         $this->assertEquals( 'z', $url->getParam( 'param2' ) );
@@ -774,7 +774,7 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/y/(param2)/z/t';
 
-        $url->setParam( 'param2', array( array( 'x', 'y' ), array( 'z', 't' ) ) );
+        $url->setParam( 'param2', [['x', 'y'], ['z', 't']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
         $this->assertEquals( 'z', $url->getParam( 'param2' ) );
@@ -788,10 +788,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/(param2)/y';
 
-        $url->setParam( 'param2', array( array( 'x' ), array( 'y' ) ) );
+        $url->setParam( 'param2', [['x'], ['y']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( 'y' ), $url->getParam( 'param2' ) );
+        $this->assertEquals( ['y'], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterMultipleArraySingleMultiple()
@@ -802,10 +802,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/(param2)/y/z';
 
-        $url->setParam( 'param2', array( array( 'x' ), array( 'y', 'z' ) ) );
+        $url->setParam( 'param2', [['x'], ['y', 'z']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( 'y', 'z' ), $url->getParam( 'param2' ) );
+        $this->assertEquals( ['y', 'z'], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterMultipleArrayMultipleSingle()
@@ -816,10 +816,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/y/(param2)/z';
 
-        $url->setParam( 'param2', array( array( 'x', 'y' ), array( 'z' ) ) );
+        $url->setParam( 'param2', [['x', 'y'], ['z']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( 'z' ), $url->getParam( 'param2' ) );
+        $this->assertEquals( ['z'], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterMultipleArrayMultipleMultiple()
@@ -830,10 +830,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/y/(param2)/z/t';
 
-        $url->setParam( 'param2', array( array( 'x', 'y' ), array( 'z', 't' ) ) );
+        $url->setParam( 'param2', [['x', 'y'], ['z', 't']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( 'z', 't' ), $url->getParam( 'param2' ) );
+        $this->assertEquals( ['z', 't'], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterAggregateArraySingleSingle()
@@ -844,10 +844,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/(param2)/y';
 
-        $url->setParam( 'param2', array( array( 'x' ), array( 'y' ) ) );
+        $url->setParam( 'param2', [['x'], ['y']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( array( 'x' ), array( 'y' ) ), $url->getParam( 'param2' ) );
+        $this->assertEquals( [['x'], ['y']], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterAggregateArraySingleMultiple()
@@ -858,10 +858,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/(param2)/y/z';
 
-        $url->setParam( 'param2', array( array( 'x' ), array( 'y', 'z' ) ) );
+        $url->setParam( 'param2', [['x'], ['y', 'z']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( array( 'x' ), array( 'y', 'z' ) ), $url->getParam( 'param2' ) );
+        $this->assertEquals( [['x'], ['y', 'z']], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterAggregateArrayMultipleSingle()
@@ -872,10 +872,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/y/(param2)/z';
 
-        $url->setParam( 'param2', array( array( 'x', 'y' ), array( 'z' ) ) );
+        $url->setParam( 'param2', [['x', 'y'], ['z']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( array( 'x', 'y' ), array( 'z' ) ), $url->getParam( 'param2' ) );
+        $this->assertEquals( [['x', 'y'], ['z']], $url->getParam( 'param2' ) );
     }
 
     public function testSetUnorderedParameterAggregateArrayMultipleMultiple()
@@ -886,10 +886,10 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com', $urlCfg );
         $expected = 'http://www.example.com/(param2)/x/y/(param2)/z/t';
 
-        $url->setParam( 'param2', array( array( 'x', 'y' ), array( 'z', 't' ) ) );
+        $url->setParam( 'param2', [['x', 'y'], ['z', 't']] );
         $this->assertEquals( $expected, $url->buildUrl() );
 
-        $this->assertEquals( array( array( 'x', 'y' ), array( 'z', 't' ) ), $url->getParam( 'param2' ) );
+        $this->assertEquals( [['x', 'y'], ['z', 't']], $url->getParam( 'param2' ) );
     }
 
     public function testSetOrderedParameterArrayFail()
@@ -901,7 +901,7 @@ class ezcUrlTest extends ezcTestCase
 
         try
         {
-            $url->setParam( 'param2', array( 'x' ) );
+            $url->setParam( 'param2', ['x'] );
             $this->fail( 'Expected exception was not thrown.' );
         }
         catch ( ezcBaseValueException $e )
@@ -915,7 +915,7 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg = new ezcUrlConfiguration();
 
         $url = new ezcUrl( 'http://www.example.com/Software/PHP/Version/5.2/Extension/XDebug/Extension/openssl', $urlCfg );
-        $this->assertEquals( array( 'Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl' ), $url->getParams() );
+        $this->assertEquals( ['Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl'], $url->getParams() );
     }
 
     public function testGetUnorderedParametersUnknownBasedir()
@@ -924,7 +924,7 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg->basedir = '/mydir/shop';
 
         $url = new ezcUrl( 'http://www.example.com/mydir/shop/Software/PHP/Version/5.2/Extension/XDebug/Extension/openssl', $urlCfg );
-        $this->assertEquals( array( 'Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl' ), $url->getParams() );
+        $this->assertEquals( ['Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl'], $url->getParams() );
     }
 
     public function testGetUnorderedParametersUnknownScript()
@@ -933,7 +933,7 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg->script = 'index.php';
 
         $url = new ezcUrl( 'http://www.example.com/index.php/Software/PHP/Version/5.2/Extension/XDebug/Extension/openssl', $urlCfg );
-        $this->assertEquals( array( 'Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl' ), $url->getParams() );
+        $this->assertEquals( ['Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl'], $url->getParams() );
     }
 
     public function testGetUnorderedParametersUnknownBasedirScript()
@@ -943,7 +943,7 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg->script = 'index.php';
 
         $url = new ezcUrl( 'http://www.example.com/mydir/shop/index.php/Software/PHP/Version/5.2/Extension/XDebug/Extension/openssl', $urlCfg );
-        $this->assertEquals( array( 'Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl' ), $url->getParams() );
+        $this->assertEquals( ['Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl'], $url->getParams() );
     }
 
     public function testGetUnorderedParametersUnknownOrdered()
@@ -952,7 +952,7 @@ class ezcUrlTest extends ezcTestCase
         $urlCfg->addOrderedParameter( 'module' );
 
         $url = new ezcUrl( 'http://www.example.com/order/Software/PHP/Version/5.2/Extension/XDebug/Extension/openssl', $urlCfg );
-        $this->assertEquals( array( 'Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl' ), $url->getParams() );
+        $this->assertEquals( ['Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl'], $url->getParams() );
     }
 
     public function testGetUnorderedParametersUnknownBasedirScriptOrdered()
@@ -964,7 +964,7 @@ class ezcUrlTest extends ezcTestCase
 
         $url = new ezcUrl( 'http://www.example.com/mydir/shop/index.php/order/Software/PHP/Version/5.2/Extension/XDebug/Extension/openssl', $urlCfg );
         $this->assertEquals( 'order', $url->getParam( 'module' ) );
-        $this->assertEquals( array( 'Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl' ), $url->getParams() );
+        $this->assertEquals( ['Software', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl'], $url->getParams() );
         $this->assertEquals( 'order', $url->getParam( 'module' ) );
     }
 
@@ -979,7 +979,7 @@ class ezcUrlTest extends ezcTestCase
         $url = new ezcUrl( 'http://www.example.com/mydir/shop/index.php/order/(Software)/PHP/Version/5.2/Extension/XDebug/Extension/openssl', $urlCfg );
         $this->assertEquals( 'order', $url->getParam( 'module' ) );
         $this->assertEquals( 'PHP', $url->getParam( 'Software' ) );
-        $this->assertEquals( array( '(Software)', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl' ), $url->getParams() );
+        $this->assertEquals( ['(Software)', 'PHP', 'Version', '5.2', 'Extension', 'XDebug', 'Extension', 'openssl'], $url->getParams() );
         $this->assertEquals( 'PHP', $url->getParam( 'Software' ) );
         $this->assertEquals( 'order', $url->getParam( 'module' ) );
     }

@@ -24,26 +24,15 @@ class ezcWebdavResponseTest extends ezcWebdavRequestTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavMultistatusResponse';
-        $this->defaultValues = array(
-            'responseDescription' => null,
-        );
-        $this->workingValues = array(
-            'responseDescription' => array(
-                'This is nice response!',
-            ),
-        );
-        $this->failingValues = array(
-            'responseDescription' => array( 
-                42,
-                true,
-            ),
-        );
+        $this->defaultValues = ['responseDescription' => null];
+        $this->workingValues = ['responseDescription' => ['This is nice response!']];
+        $this->failingValues = ['responseDescription' => [42, true]];
     }
 
     public function testMultistatusResponseSingle()
@@ -54,7 +43,7 @@ class ezcWebdavResponseTest extends ezcWebdavRequestTestCase
 
         $this->assertEquals(
             $response->responses,
-            array( $error ),
+            [$error],
             'Expected array with one response.'
         );
     }
@@ -68,7 +57,7 @@ class ezcWebdavResponseTest extends ezcWebdavRequestTestCase
 
         $this->assertEquals(
             $response->responses,
-            array( $error1, $error2 ),
+            [$error1, $error2],
             'Expected array with one response.'
         );
     }
@@ -77,14 +66,12 @@ class ezcWebdavResponseTest extends ezcWebdavRequestTestCase
     {
         $response = new ezcWebdavMultistatusResponse(
             $error1 = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_404 ),
-            array(
-                $error2 = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_409 ),
-            )
+            [$error2 = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_409 )]
         );
 
         $this->assertEquals(
             $response->responses,
-            array( $error1, $error2 ),
+            [$error1, $error2],
             'Expected array with one response.'
         );
     }
@@ -92,15 +79,12 @@ class ezcWebdavResponseTest extends ezcWebdavRequestTestCase
     public function testMultistatusResponseMultipleOnlyFlatten()
     {
         $response = new ezcWebdavMultistatusResponse(
-            array(
-                $error1 = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_404 ),
-                $error2 = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_409 ),
-            )
+            [$error1 = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_404 ), $error2 = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_409 )]
         );
 
         $this->assertEquals(
             $response->responses,
-            array( $error1, $error2 ),
+            [$error1, $error2],
             'Expected array with one response.'
         );
     }

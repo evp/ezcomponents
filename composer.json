@@ -5,5 +5,7 @@
         "classmap": [""],
         "exclude-from-classmap": ["*/docs/*", "*/design/*"]
     },
-    "require": {}
+    "require-dev": {
+        "rector/rector": "^1.0"
+    }
 }

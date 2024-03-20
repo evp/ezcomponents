@@ -28,28 +28,28 @@ class ezcDocumentDocbookToRstConverter extends ezcDocumentElementVisitorConverte
      *
      * @var array
      */
-    protected $links = array();
+    protected $links = [];
 
     /**
      * Aggregated footnotes.
      *
      * @var array
      */
-    protected $footnotes = array();
+    protected $footnotes = [];
 
     /**
      * Aggregated citations.
      *
      * @var array
      */
-    protected $citations = array();
+    protected $citations = [];
 
     /**
      * Aggregated directives.
      *
      * @var array
      */
-    protected $directives = array();
+    protected $directives = [];
 
     /**
      * Current indentation document.
@@ -85,54 +85,11 @@ class ezcDocumentDocbookToRstConverter extends ezcDocumentElementVisitorConverte
     public function __construct( ezcDocumentDocbookToRstConverterOptions $options = null )
     {
         parent::__construct(
-            $options === null ?
-                new ezcDocumentDocbookToRstConverterOptions() :
-                $options
+            $options ?? new ezcDocumentDocbookToRstConverterOptions()
         );
 
         // Initlize common element handlers
-        $this->visitorElementHandler = array(
-            'docbook' => array(
-                'article'           => $recurse = new ezcDocumentDocbookToRstRecurseHandler(),
-                'book'              => $recurse,
-                'sect1info'         => $header = new ezcDocumentDocbookToRstHeadHandler(),
-                'sect2info'         => $header,
-                'sect3info'         => $header,
-                'sect4info'         => $header,
-                'sect5info'         => $header,
-                'sectioninfo'       => $header,
-                'sect1'             => $section = new ezcDocumentDocbookToRstSectionHandler(),
-                'sect2'             => $section,
-                'sect3'             => $section,
-                'sect4'             => $section,
-                'sect5'             => $section,
-                'section'           => $section,
-                'title'             => $section,
-                'para'              => new ezcDocumentDocbookToRstParagraphHandler(),
-                'emphasis'          => new ezcDocumentDocbookToRstEmphasisHandler(),
-                'ulink'             => new ezcDocumentDocbookToRstExternalLinkHandler(),
-                'link'              => new ezcDocumentDocbookToRstInternalLinkHandler(),
-                'literal'           => new ezcDocumentDocbookToRstLiteralHandler(),
-                'inlinemediaobject' => new ezcDocumentDocbookToRstInlineMediaObjectHandler(),
-                'mediaobject'       => new ezcDocumentDocbookToRstMediaObjectHandler(),
-                'blockquote'        => new ezcDocumentDocbookToRstBlockquoteHandler(),
-                'itemizedlist'      => new ezcDocumentDocbookToRstItemizedListHandler(),
-                'orderedlist'       => new ezcDocumentDocbookToRstOrderedListHandler(),
-                'note'              => $special = new ezcDocumentDocbookToRstSpecialParagraphHandler(),
-                'tip'               => $special,
-                'warning'           => $special,
-                'important'         => $special,
-                'caution'           => $special,
-                'literallayout'     => new ezcDocumentDocbookToRstLiteralLayoutHandler(),
-                'beginpage'         => new ezcDocumentDocbookToRstBeginPageHandler(),
-                'footnote'          => new ezcDocumentDocbookToRstFootnoteHandler(),
-                'citation'          => new ezcDocumentDocbookToRstCitationHandler(),
-                'comment'           => new ezcDocumentDocbookToRstCommentHandler(),
-                'variablelist'      => new ezcDocumentDocbookToRstVariableListHandler(),
-                'table'             => new ezcDocumentDocbookToRstTableHandler(),
-            // */
-            )
-        );
+        $this->visitorElementHandler = ['docbook' => ['article'           => $recurse = new ezcDocumentDocbookToRstRecurseHandler(), 'book'              => $recurse, 'sect1info'         => $header = new ezcDocumentDocbookToRstHeadHandler(), 'sect2info'         => $header, 'sect3info'         => $header, 'sect4info'         => $header, 'sect5info'         => $header, 'sectioninfo'       => $header, 'sect1'             => $section = new ezcDocumentDocbookToRstSectionHandler(), 'sect2'             => $section, 'sect3'             => $section, 'sect4'             => $section, 'sect5'             => $section, 'section'           => $section, 'title'             => $section, 'para'              => new ezcDocumentDocbookToRstParagraphHandler(), 'emphasis'          => new ezcDocumentDocbookToRstEmphasisHandler(), 'ulink'             => new ezcDocumentDocbookToRstExternalLinkHandler(), 'link'              => new ezcDocumentDocbookToRstInternalLinkHandler(), 'literal'           => new ezcDocumentDocbookToRstLiteralHandler(), 'inlinemediaobject' => new ezcDocumentDocbookToRstInlineMediaObjectHandler(), 'mediaobject'       => new ezcDocumentDocbookToRstMediaObjectHandler(), 'blockquote'        => new ezcDocumentDocbookToRstBlockquoteHandler(), 'itemizedlist'      => new ezcDocumentDocbookToRstItemizedListHandler(), 'orderedlist'       => new ezcDocumentDocbookToRstOrderedListHandler(), 'note'              => $special = new ezcDocumentDocbookToRstSpecialParagraphHandler(), 'tip'               => $special, 'warning'           => $special, 'important'         => $special, 'caution'           => $special, 'literallayout'     => new ezcDocumentDocbookToRstLiteralLayoutHandler(), 'beginpage'         => new ezcDocumentDocbookToRstBeginPageHandler(), 'footnote'          => new ezcDocumentDocbookToRstFootnoteHandler(), 'citation'          => new ezcDocumentDocbookToRstCitationHandler(), 'comment'           => new ezcDocumentDocbookToRstCommentHandler(), 'variablelist'      => new ezcDocumentDocbookToRstVariableListHandler(), 'table'             => new ezcDocumentDocbookToRstTableHandler()]];
     }
 
     /**
@@ -331,7 +288,7 @@ class ezcDocumentDocbookToRstConverter extends ezcDocumentElementVisitorConverte
             $root .= '__ ' . $link . "\n";
             $appended = true;
         }
-        $this->links = array();
+        $this->links = [];
 
         // Append directive targets to paragraph
         foreach ( $this->directives as $directive )
@@ -339,7 +296,7 @@ class ezcDocumentDocbookToRstConverter extends ezcDocumentElementVisitorConverte
             $root .= $directive;
             $appended = true;
         }
-        $this->directives = array();
+        $this->directives = [];
 
         return $root . ( $appended ? "\n" : '' );
     }

@@ -24,7 +24,7 @@ class ezcDebugStructure
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Holds the sub-elements of this structure.
@@ -32,7 +32,7 @@ class ezcDebugStructure
      * These elements cannot be a part of the property system because it is an
      * array.
      */
-    public $elements = array();
+    public $elements = [];
 
     /**
      * Sets the property $name to $value.

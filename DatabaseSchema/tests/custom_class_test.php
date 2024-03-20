@@ -8,7 +8,7 @@
  * @subpackage Tests
  */
 
-require dirname( __FILE__ ) . '/testfiles/classes/custom_classes.php';
+require __DIR__ . '/testfiles/classes/custom_classes.php';
 
 /**
  * @package DatabaseSchema
@@ -18,14 +18,9 @@ class ezcDatabaseSchemaCustomClassesTest extends ezcTestCase
 {
     protected function setUp()
     {
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles';
+        $this->testFilesDir = __DIR__ . '/testfiles';
         $this->tempDir = $this->createTempDir( 'ezcDatabaseSchemaCustomClassesTest' );
-        ezcDbSchema::setOptions( new ezcDbSchemaOptions( array(
-            'tableClassName' => 'ezcDbSchemaTable',
-            'fieldClassName' => 'ezcDbSchemaField',
-            'indexClassName' => 'ezcDbSchemaIndex',
-            'indexFieldClassName' => 'ezcDbSchemaIndexField',
-        ) ) );
+        ezcDbSchema::setOptions( new ezcDbSchemaOptions( ['tableClassName' => 'ezcDbSchemaTable', 'fieldClassName' => 'ezcDbSchemaField', 'indexClassName' => 'ezcDbSchemaIndex', 'indexFieldClassName' => 'ezcDbSchemaIndexField'] ) );
     }
 
     protected function tearDown()

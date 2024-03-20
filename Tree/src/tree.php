@@ -62,7 +62,7 @@ abstract class ezcTree implements ezcTreeVisitable
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array( 'nodeClassName' => 'ezcTreeNode' );
+    protected $properties = ['nodeClassName' => 'ezcTreeNode'];
 
     /**
      * Contains whether a transaction has been started.
@@ -83,7 +83,7 @@ abstract class ezcTree implements ezcTreeVisitable
      *
      * @var array(ezcTreeTransactionItem)
      */
-    private $transactionList = array();
+    private $transactionList = [];
 
     /**
      * Returns the value of the property $name.
@@ -496,7 +496,7 @@ abstract class ezcTree implements ezcTreeVisitable
             throw new ezcTreeTransactionAlreadyStartedException;
         }
         $this->inTransaction = true;
-        $this->transactionList = array();
+        $this->transactionList = [];
     }
 
     /**
@@ -552,7 +552,7 @@ abstract class ezcTree implements ezcTreeVisitable
             throw new ezcTreeTransactionNotStartedException;
         }
         $this->inTransaction = false;
-        $this->transactionList = array();
+        $this->transactionList = [];
     }
 }
 ?>

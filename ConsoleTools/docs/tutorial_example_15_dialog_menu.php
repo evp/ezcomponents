@@ -8,11 +8,7 @@ $menu = new ezcConsoleMenuDialog( $output );
 $menu->options = new ezcConsoleMenuDialogOptions();
 $menu->options->text = "Please choose a possibility:\n";
 $menu->options->validator = new ezcConsoleMenuDialogDefaultValidator(
-    array(
-        "1" => "Perform some more actions",
-        "2" => "Perform another action",
-        "0" => "Quit",
-    ),
+    ["1" => "Perform some more actions", "2" => "Perform another action", "0" => "Quit"],
     "0"
 );
 

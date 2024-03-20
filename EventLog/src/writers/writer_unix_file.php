@@ -48,7 +48,7 @@ class ezcLogUnixFileWriter extends ezcLogFileWriter
      * @param string $eventCategory
      * @param array(string=>string) $extraInfo
      */
-    public function writeLogMessage( $message, $eventType, $eventSource, $eventCategory, $extraInfo = array() )
+    public function writeLogMessage( $message, $eventType, $eventSource, $eventCategory, $extraInfo = [] )
     {
         $extra = "";
 

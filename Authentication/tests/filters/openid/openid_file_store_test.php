@@ -25,13 +25,7 @@ class ezcAuthenticationOpenidFileStoreTest extends ezcAuthenticationTest
 
     public static function suite()
     {
-        self::$association = array(
-            'handle' => '{HMAC-SHA1}{465d66d3}{6K1aSw==}',
-            'secret' => 'W0ixM9SYQviSG9TF6HrnXaxHudQ=',
-            'issued' => time(),
-            'validity' => 1209600,
-            'type' => 'HMAC-SHA1',
-            );
+        self::$association = ['handle' => '{HMAC-SHA1}{465d66d3}{6K1aSw==}', 'secret' => 'W0ixM9SYQviSG9TF6HrnXaxHudQ=', 'issued' => time(), 'validity' => 1209600, 'type' => 'HMAC-SHA1'];
         return new PHPUnit_Framework_TestSuite( "ezcAuthenticationOpenidFileStoreTest" );
     }
 
@@ -234,7 +228,7 @@ class ezcAuthenticationOpenidFileStoreTest extends ezcAuthenticationTest
 
     public function testOpenidFileStoreProperties()
     {
-        $path = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data';
+        $path = __DIR__ . DIRECTORY_SEPARATOR . 'data';
         $store = new ezcAuthenticationOpenidFileStore( $path );
 
         // the DirTest functions already create temporary directories, so the

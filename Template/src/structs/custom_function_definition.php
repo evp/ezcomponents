@@ -82,7 +82,7 @@ class ezcTemplateCustomFunctionDefinition extends ezcTemplateCustomExtension
      *
      * @var array(string)
      */
-    public $parameters = array();
+    public $parameters = [];
 
     /**
      * Whether or not the Template object is available in the custom function.

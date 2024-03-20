@@ -18,7 +18,7 @@ class ezcTemplateTest extends ezcTestCase
 {
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( __CLASS__ );
+         return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     /**
@@ -46,7 +46,7 @@ class ezcTemplateTest extends ezcTestCase
         $config->compilePath = $this->compilePath;
 
         $config2 = ezcTemplateConfiguration::getInstance("templates");
-        $config2->templatePath = realpath( dirname( __FILE__ ) ) . '/' . 'templates';
+        $config2->templatePath = realpath( __DIR__ ) . '/' . 'templates';
         $config2->compilePath = $this->compilePath;
     }
 
@@ -397,7 +397,7 @@ class ezcTemplateTest extends ezcTestCase
         $c = new ezcTemplateConfiguration();
         try
         {
-            $c->addExtension( array( 'foo' ) );
+            $c->addExtension( ['foo'] );
             self::fail( "Expected exception was not thrown" );
         }
         catch ( ezcBaseValueException $e )

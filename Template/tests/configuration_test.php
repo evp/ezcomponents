@@ -23,7 +23,7 @@ class ezcTemplateConfigurationTest extends ezcTestCase
 
     protected function setUp()
     {
-        $this->basePath = realpath( dirname( __FILE__ ) ) . '/';
+        $this->basePath = realpath( __DIR__ ) . '/';
         $this->templatePath = $this->basePath . 'templates/';
         $this->templateStorePath = $this->basePath . 'stored_templates/';
     }
@@ -73,12 +73,12 @@ class ezcTemplateConfigurationTest extends ezcTestCase
 
         // try to set invalid types for autoloadDefinitions
         $this->assertSetPropertyFails( $conf, 'autoloadDefinitions',
-                                       array( true, false, 2, 2.0, 'string' ) );
+                                       [true, false, 2, 2.0, 'string'] );
         // Try to set valid path entries
         $this->assertSetProperty( $conf, 'templatePath',
-                                  array( 'templates', '.', '/var/templates' ) );
+                                  ['templates', '.', '/var/templates'] );
         $this->assertSetProperty( $conf, 'compilePath',
-                                  array( 'compiled-templates', '.', '/var/cache/templates' ) );
+                                  ['compiled-templates', '.', '/var/cache/templates'] );
     }
 
 //     public function testAutoloaderRegistration()

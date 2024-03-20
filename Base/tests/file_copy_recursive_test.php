@@ -16,7 +16,7 @@ class ezcBaseFileCopyRecursiveTest extends ezcTestCase
 {
     protected function setUp()
     {
-        $this->tempDir = $this->createTempDir( __CLASS__ );
+        $this->tempDir = $this->createTempDir( self::class );
         mkdir( $this->tempDir . '/dir1' );
         mkdir( $this->tempDir . '/dir2' );
         mkdir( $this->tempDir . '/dir2/dir1' );
@@ -230,7 +230,7 @@ class ezcBaseFileCopyRecursiveTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( __CLASS__ );
+         return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testRecursiveCopyDirCalled0()

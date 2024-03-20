@@ -47,11 +47,7 @@ class data
      */
      public function getState()
      {
-         return array(
-             'boiling_temp_k' => $this->boiling_temp_k,
-             'melting_temp_k' => $this->melting_temp_k,
-             'node_id' => $this->node_id,
-         );
+         return ['boiling_temp_k' => $this->boiling_temp_k, 'melting_temp_k' => $this->melting_temp_k, 'node_id' => $this->node_id];
      }
 }
 ?>

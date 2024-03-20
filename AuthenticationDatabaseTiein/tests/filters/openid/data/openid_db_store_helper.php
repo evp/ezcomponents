@@ -36,7 +36,7 @@ class ezcAuthenticationOpenidDbStoreHelper extends ezcAuthenticationOpenidDbStor
         $query->execute();
         $rows = $query->fetchAll();
 
-        $result = array();
+        $result = [];
         foreach ( $rows as $row )
         {
             $result[] = $row['nonce'];

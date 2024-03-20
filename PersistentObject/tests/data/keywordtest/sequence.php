@@ -12,7 +12,7 @@ $def->idProperty = new ezcPersistentObjectIdProperty;
 $def->idProperty->columnName = 'from';
 $def->idProperty->propertyName = 'column';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition( 'ezcPersistentSequenceGenerator',
-                                                                    array( 'sequence' => 'table_from_seq' ) );
+                                                                    ['sequence' => 'table_from_seq'] );
 
 $def->properties['trigger'] = new ezcPersistentObjectProperty;
 $def->properties['trigger']->columnName = 'select';

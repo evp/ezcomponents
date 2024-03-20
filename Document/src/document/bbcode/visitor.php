@@ -35,7 +35,7 @@ abstract class ezcDocumentBBCodeVisitor implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Create visitor from BBCode document handler.

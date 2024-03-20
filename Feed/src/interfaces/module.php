@@ -49,7 +49,7 @@ abstract class ezcFeedModule
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Constructs a new ezcFeedModule object.

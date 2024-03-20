@@ -23,17 +23,17 @@ class ezcFeedRss1 extends ezcFeedProcessor implements ezcFeedParser
     /**
      * Defines the feed type of this processor.
      */
-    const FEED_TYPE = 'rss1';
+    public const FEED_TYPE = 'rss1';
 
     /**
      * Defines the feed content type of this processor.
      */
-    const CONTENT_TYPE = 'application/rss+xml';
+    public const CONTENT_TYPE = 'application/rss+xml';
 
     /**
      * Defines the namespace for RSS1 (RDF) feeds.
      */
-    const NAMESPACE_URI = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
+    public const NAMESPACE_URI = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
 
     /**
      * Creates a new RSS1 processor.
@@ -234,7 +234,7 @@ class ezcFeedRss1 extends ezcFeedProcessor implements ezcFeedParser
         $aboutAttr->appendChild( $aboutVal );
         $this->channel->appendChild( $aboutAttr );
 
-        $elements = array( 'title', 'link', 'description' );
+        $elements = ['title', 'link', 'description'];
         foreach ( $elements as $element )
         {
             $data = $this->$element;
@@ -343,7 +343,7 @@ class ezcFeedRss1 extends ezcFeedProcessor implements ezcFeedParser
             $aboutAttr->appendChild( $aboutVal );
             $itemTag->appendChild( $aboutAttr );
 
-            $elements = array( 'title', 'link' );
+            $elements = ['title', 'link'];
             foreach ( $elements as $attribute )
             {
                 $data = $element->$attribute;
@@ -356,7 +356,7 @@ class ezcFeedRss1 extends ezcFeedProcessor implements ezcFeedParser
                 $this->generateMetaData( $itemTag, $attribute, $data );
             }
 
-            $elements = array( 'description', 'language' );
+            $elements = ['description', 'language'];
             foreach ( $elements as $attribute )
             {
                 $data = $element->$attribute;
@@ -401,7 +401,7 @@ class ezcFeedRss1 extends ezcFeedProcessor implements ezcFeedParser
             $aboutAttr->appendChild( $aboutVal );
             $imageTag->appendChild( $aboutAttr );
 
-            $elements = array( 'title', 'url', 'link' );
+            $elements = ['title', 'url', 'link'];
             foreach ( $elements as $attribute )
             {
                 $data = $image->$attribute;
@@ -437,7 +437,7 @@ class ezcFeedRss1 extends ezcFeedProcessor implements ezcFeedParser
             $aboutAttr->appendChild( $aboutVal );
             $textInputTag->appendChild( $aboutAttr );
 
-            $elements = array( 'title', 'description', 'name', 'link' );
+            $elements = ['title', 'description', 'name', 'link'];
             foreach ( $elements as $attribute )
             {
                 $data = $textInput->$attribute;

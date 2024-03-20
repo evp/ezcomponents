@@ -33,14 +33,7 @@ class ezcPersistentObjectPropertyTest extends ezcTestCase
     {
         $property = new ezcPersistentObjectProperty();
         $this->assertAttributeEquals(
-            array(
-                'columnName'       => null,
-                'resultColumnName' => null,
-                'propertyName'     => null,
-                'propertyType'     => ezcPersistentObjectProperty::PHP_TYPE_STRING,
-                'converter'        => null,
-                'databaseType'     => PDO::PARAM_STR,
-            ),
+            ['columnName'       => null, 'resultColumnName' => null, 'propertyName'     => null, 'propertyType'     => ezcPersistentObjectProperty::PHP_TYPE_STRING, 'converter'        => null, 'databaseType'     => PDO::PARAM_STR],
             'properties',
             $property
         );
@@ -54,14 +47,7 @@ class ezcPersistentObjectPropertyTest extends ezcTestCase
             PDO::PARAM_LOB
         );
         $this->assertAttributeEquals(
-            array(
-                'columnName'       => 'column',
-                'resultColumnName' => 'column',
-                'propertyName'     => 'property',
-                'propertyType'     => ezcPersistentObjectProperty::PHP_TYPE_INT,
-                'converter'        => new ezcPersistentPropertyDateTimeConverter(),
-                'databaseType'     => PDO::PARAM_LOB,
-            ),
+            ['columnName'       => 'column', 'resultColumnName' => 'column', 'propertyName'     => 'property', 'propertyType'     => ezcPersistentObjectProperty::PHP_TYPE_INT, 'converter'        => new ezcPersistentPropertyDateTimeConverter(), 'databaseType'     => PDO::PARAM_LOB],
             'properties',
             $property
         );
@@ -235,27 +221,27 @@ class ezcPersistentObjectPropertyTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $property,
             'columnName',
-            array( true, false, 23, 23.42, array(), new stdClass() )
+            [true, false, 23, 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $property,
             'propertyName',
-            array( true, false, 23, 23.42, array(), new stdClass() )
+            [true, false, 23, 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $property,
             'propertyType',
-            array( true, false, 'foo', 23.42, array(), new stdClass() )
+            [true, false, 'foo', 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $property,
             'converter',
-            array( true, false, 'foo', 23.42, array(), new stdClass() )
+            [true, false, 'foo', 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $property,
             'databaseType',
-            array( true, false, 'foo', 23, 23.42, array(), new stdClass() )
+            [true, false, 'foo', 23, 23.42, [], new stdClass()]
         );
     }
 

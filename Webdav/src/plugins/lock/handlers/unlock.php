@@ -137,7 +137,7 @@ class ezcWebdavLockUnlockRequestResponseHandler extends ezcWebdavLockRequestResp
         {
             // Requested resource is not the lock base, recurse
             $newRequest = new ezcWebdavUnlockRequest( $affectedActiveLock->baseUri );
-            ezcWebdavLockTools::cloneRequestHeaders( $request, $newRequest, array( 'If', 'Lock-Token' ) );
+            ezcWebdavLockTools::cloneRequestHeaders( $request, $newRequest, ['If', 'Lock-Token'] );
             $newRequest->validateHeaders();
 
             // @TODO Should be protected against infinite recursion

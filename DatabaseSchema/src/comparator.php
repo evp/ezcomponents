@@ -176,7 +176,7 @@ class ezcDbSchemaComparator
             return $field2;
         }
 
-        $testFields = array( 'type', 'length', 'notNull', 'default', 'autoIncrement' );
+        $testFields = ['type', 'length', 'notNull', 'default', 'autoIncrement'];
         foreach ( $testFields as $property )
         {
             if ( $field1->$property !== $field2->$property )
@@ -200,7 +200,7 @@ class ezcDbSchemaComparator
      */
     private static final function diffIndex( ezcDbSchemaIndex $index1, ezcDbSchemaIndex $index2 )
     {
-        $testFields = array( 'primary', 'unique' );
+        $testFields = ['primary', 'unique'];
         foreach ( $testFields as $property )
         {
             if ( $index1->$property !== $index2->$property )
@@ -227,7 +227,7 @@ class ezcDbSchemaComparator
             }
         }
 
-        $testFields = array( 'sorting' );
+        $testFields = ['sorting'];
         foreach ( $index1->indexFields as $indexFieldName => $indexFieldDefinition )
         {
             foreach ( $testFields as $testField )

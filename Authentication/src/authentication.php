@@ -71,7 +71,7 @@ class ezcAuthentication
      * 
      * @var array(ezcAuthenticationFilter)
      */
-    protected $filters = array();
+    protected $filters = [];
 
     /**
      * Options for the Authentication object.
@@ -85,7 +85,7 @@ class ezcAuthentication
      * 
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -97,7 +97,7 @@ class ezcAuthentication
     {
         $this->credentials = $credentials;
         $this->status = new ezcAuthenticationStatus();
-        $this->options = ( $options === null ) ? new ezcAuthenticationOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationOptions();
     }
 
     /**
@@ -247,7 +247,9 @@ class ezcAuthentication
                     // status of the Authentication object
                     foreach ( $statuses as $status )
                     {
-                        list( $key, $value ) = each( $status );
+                        $key = key($status);
+                        $value = current($status);
+                        next($status);
                         $this->status->append( $key, $value );
                     }
                 }
@@ -297,7 +299,7 @@ class ezcAuthentication
      */
     public function addFilter( ezcAuthenticationFilter $filter, $stop = false )
     {
-        $this->filters[] = array( $filter, $stop );
+        $this->filters[] = [$filter, $stop];
     }
 
     /**

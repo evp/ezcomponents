@@ -42,28 +42,28 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $references = array();
+    protected $references = [];
 
     /**
      * Counter of duplicate references for duplicate references.
      *
      * @var array
      */
-    protected $referenceCounter = array();
+    protected $referenceCounter = [];
 
     /**
      * Collected named external reference targets
      *
      * @var array
      */
-    protected $namedExternalReferences = array();
+    protected $namedExternalReferences = [];
 
     /**
      * Collected anonymous externals reference targets
      *
      * @var array
      */
-    protected $anonymousReferences = array();
+    protected $anonymousReferences = [];
 
     /**
      * Index of last requested anonymous reference target.
@@ -77,21 +77,21 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $substitutions = array();
+    protected $substitutions = [];
 
     /**
      * List with footnotes for later rendering.
      *
      * @var array
      */
-    protected $footnotes = array();
+    protected $footnotes = [];
 
     /**
      * Label dependant foot note counters for footnote auto enumeration.
      *
      * @var array
      */
-    protected $footnoteCounter = array( 0 );
+    protected $footnoteCounter = [0];
 
     /**
      * Foot note symbol signs, as defined at
@@ -99,47 +99,36 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $footnoteSymbols = array(
-        "*",
-        "\xE2\x80\xA0",
-        "\xE2\x80\xA1",
-        "\xC2\xA7",
-        "\xC2\xB6",
-        "#",
-        "\xE2\x99\xA0",
-        "\xE2\x99\xA5",
-        "\xE2\x99\xA6",
-        "\xE2\x99\xA3",
-    );
+    protected $footnoteSymbols = ["*", "\xE2\x80\xA0", "\xE2\x80\xA1", "\xC2\xA7", "\xC2\xB6", "#", "\xE2\x99\xA0", "\xE2\x99\xA5", "\xE2\x99\xA6", "\xE2\x99\xA3"];
 
     /**
      * Aggregated minor errors during document processing.
      *
      * @var array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Array of already generated IDs, so none will be used twice.
      * 
      * @var array
      */
-    protected $usedIDs = array();
+    protected $usedIDs = [];
 
     /**
      * Unused reference target
      */
-    const UNUSED    = 1;
+    public const UNUSED    = 1;
 
     /**
      * Used reference target
      */
-    const USED      = 2;
+    public const USED      = 2;
 
     /**
      * Duplicate reference target. Will throw an error on use.
      */
-    const DUBLICATE = 4;
+    public const DUBLICATE = 4;
 
     /**
      * Create visitor from RST document handler.
@@ -215,7 +204,7 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
         reset( $this->footnoteSymbols );
 
         // Reset duplicate reference counter
-        $this->referenceCounter = array();
+        $this->referenceCounter = [];
     }
 
     /**
@@ -334,15 +323,11 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
      */
     protected function aggregateListItems( ezcDocumentRstNode $node )
     {
-        $listTypeMapping = array(
-            'ezcDocumentRstBulletListNode'     => 'ezcDocumentRstBulletListListNode',
-            'ezcDocumentRstEnumeratedListNode' => 'ezcDocumentRstEnumeratedListListNode',
-            'ezcDocumentRstDefinitionListNode' => 'ezcDocumentRstDefinitionListListNode',
-        );
+        $listTypeMapping = ['ezcDocumentRstBulletListNode'     => 'ezcDocumentRstBulletListListNode', 'ezcDocumentRstEnumeratedListNode' => 'ezcDocumentRstEnumeratedListListNode', 'ezcDocumentRstDefinitionListNode' => 'ezcDocumentRstDefinitionListListNode'];
 
         $lastItem = null;
         $list     = null;
-        $children = array();
+        $children = [];
         foreach ( $node->nodes as $nr => $child )
         {
             if ( isset( $listTypeMapping[$class = get_class( $child )] ) )
@@ -490,7 +475,7 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
         reset( $children );
         while ( $child = next( $children ) )
         {
-            $stack = array();
+            $stack = [];
             while ( ( $child instanceof ezcDocumentRstNamedReferenceNode ) &&
                     ( count( $child->nodes ) === 0 ) )
             {
@@ -570,12 +555,7 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
                 break;
         }
 
-        if ( isset( $this->footnotes[$label][$string] ) )
-        {
-            return $this->footnotes[$label][$string];
-        }
-
-        return $this->triggerError(
+        return $this->footnotes[$label][$string] ?? $this->triggerError(
             E_WARNING, "Unknown reference target '{$string}'.", null,
             ( $node !== null ? $node->token->line : null ),
             ( $node !== null ? $node->token->position : null )
@@ -651,12 +631,7 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
     {
         $name = $this->calculateId( $name );
 
-        if ( isset( $this->namedExternalReferences[$name] ) )
-        {
-            return $this->namedExternalReferences[$name];
-        }
-
-        return false;
+        return $this->namedExternalReferences[$name] ?? false;
     }
 
     /**
@@ -695,7 +670,7 @@ abstract class ezcDocumentRstVisitor implements ezcDocumentErrorReporting
         $this->triggerError(
             E_ERROR, "Could not find substitution for '{$string}'.", null
         );
-        return array();
+        return [];
     }
 
     /**

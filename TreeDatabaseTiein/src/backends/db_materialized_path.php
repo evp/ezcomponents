@@ -133,7 +133,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
      */
     protected function checkNodeId( $nodeId )
     {
-        if ( strchr( $nodeId, $this->properties['separationChar'] ) != false )
+        if ( strchr( $nodeId, (string) $this->properties['separationChar'] ) != false )
         {
             throw new ezcTreeInvalidIdException( $nodeId, $this->properties['separationChar'] );
         }
@@ -245,7 +245,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
         $list = new ezcTreeNodeList;
 
         // Fetch node information
-        list( $parentId, $path ) = $this->fetchNodeInformation( $nodeId );
+        [$parentId, $path] = $this->fetchNodeInformation( $nodeId );
 
         $parts = explode( $this->properties['separationChar'], $path );
         array_shift( $parts );
@@ -275,7 +275,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
         $list->addNode( new $className( $this, $nodeId ) );
 
         // Fetch information for node
-        list( $parentId, $path ) = $this->fetchNodeInformation( $nodeId );
+        [$parentId, $path] = $this->fetchNodeInformation( $nodeId );
 
         $db = $this->dbh;
         $q = $db->createSelectQuery();
@@ -378,7 +378,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
     public function getChildCountRecursive( $nodeId )
     {
         // Fetch information for node
-        list( $parentId, $path ) = $this->fetchNodeInformation( $nodeId );
+        [$parentId, $path] = $this->fetchNodeInformation( $nodeId );
 
         $db = $this->dbh;
         $q = $db->createSelectQuery();
@@ -405,7 +405,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
     public function getPathLength( $nodeId )
     {
         // Fetch information for node
-        list( $parentId, $path ) = $this->fetchNodeInformation( $nodeId );
+        [$parentId, $path] = $this->fetchNodeInformation( $nodeId );
 
         return substr_count( $path, $this->properties['separationChar'] ) - 1;
     }
@@ -447,7 +447,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
     public function isDescendantOf( $childId, $parentId )
     {
         // Fetch node information
-        list( $dummyParentId, $path ) = $this->fetchNodeInformation( $childId );
+        [$dummyParentId, $path] = $this->fetchNodeInformation( $childId );
 
         $parts = explode( $this->properties['separationChar'], $path );
         array_shift( $parts );
@@ -529,7 +529,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
         $db = $this->dbh;
 
         // Fetch parent information
-        list( $parentParentId, $path ) = $this->fetchNodeInformation( $parentId );
+        [$parentParentId, $path] = $this->fetchNodeInformation( $parentId );
 
         $q = $this->createAddNodeQuery( $childNode->id );
         $q->set( 'parent_id', $q->bindValue( $parentId ) )
@@ -551,7 +551,7 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
         $db = $this->dbh;
         $q = $db->createDeleteQuery();
 
-        $nodeIdList = array();
+        $nodeIdList = [];
         foreach ( array_keys( $list->nodes ) as $nodeId )
         {
             $nodeIdList[] = (string) $nodeId;
@@ -597,12 +597,12 @@ class ezcTreeDbMaterializedPath extends ezcTreeDb
             return;
         }
 
-        list( $origParentId, $origPath ) = $this->fetchNodeInformation( $nodeId );
-        list( $targetParentParentId, $targetParentPath ) = $this->fetchNodeInformation( $targetParentId );
+        [$origParentId, $origPath] = $this->fetchNodeInformation( $nodeId );
+        [$targetParentParentId, $targetParentPath] = $this->fetchNodeInformation( $targetParentId );
 
         // Get path to parent of $nodeId
         // - position of last /
-        $pos = strrpos( $origPath, $this->properties['separationChar'] );
+        $pos = strrpos( $origPath, (string) $this->properties['separationChar'] );
         // - parent path and its length
         $parentPath = substr( $origPath, 0, $pos );
         $parentPathLength = strlen( $parentPath ) + 1;

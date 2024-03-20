@@ -7,7 +7,7 @@ class PagingLinks implements ezcTemplateCustomBlock
     /**
      * What characters to use to separate the page links (default: 1 - 2 - 3).
      */
-    const DEFAULT_DELIMITER = '-';
+    public const DEFAULT_DELIMITER = '-';
 
     /**
      * Required method to implement.
@@ -21,11 +21,11 @@ class PagingLinks implements ezcTemplateCustomBlock
         {
             case "paging_links":
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "htmlPagingLinks";
                 $def->hasCloseTag = false;
-                $def->requiredParameters = array( "selected", "numberOfPages", "pagesize" );
-                $def->optionalParameters = array( "delimiter", "mailbox" );
+                $def->requiredParameters = ["selected", "numberOfPages", "pagesize"];
+                $def->optionalParameters = ["delimiter", "mailbox"];
                 return $def;
         }
         return false;
@@ -42,8 +42,8 @@ class PagingLinks implements ezcTemplateCustomBlock
         $selected = (int) $params["selected"];
         $numberOfPages = (int) $params["numberOfPages"];
         $pageSize = (int) $params["pagesize"];
-        $delimiter = ( isset( $params["delimiter"] ) ) ? $params["delimiter"] : self::DEFAULT_DELIMITER;
-        $mailbox = ( isset( $params["mailbox"] ) ) ? $params["mailbox"] : 'INBOX';
+        $delimiter = $params["delimiter"] ?? self::DEFAULT_DELIMITER;
+        $mailbox = $params["mailbox"] ?? 'INBOX';
 
         $result = "";
         for ( $i = 1; $i <= $numberOfPages; $i++ )

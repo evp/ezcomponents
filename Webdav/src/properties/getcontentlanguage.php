@@ -26,7 +26,7 @@ class ezcWebdavGetContentLanguageProperty extends ezcWebdavLiveProperty
      * @param array(string) $languages
      * @return void
      */
-    public function __construct( array $languages = array() )
+    public function __construct( array $languages = [] )
     {
         parent::__construct( 'getcontentlanguage' );
 
@@ -91,7 +91,7 @@ class ezcWebdavGetContentLanguageProperty extends ezcWebdavLiveProperty
     {
         parent::clear();
 
-        $this->properties['languages'] = array();
+        $this->properties['languages'] = [];
     }
 }
 

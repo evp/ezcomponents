@@ -26,7 +26,7 @@ class ezcDocumentOdtFormattingPropertyCollection
      * 
      * @var array(const=>ezcDocumentOdtFormattingProperties)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Sets the given $properties.

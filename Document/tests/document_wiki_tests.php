@@ -19,18 +19,18 @@ class ezcDocumentWikiTests extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testReadCreoleDocument()
     {
         $wiki = new ezcDocumentCreoleWiki();
-        $wiki->loadFile( dirname( __FILE__ ) . '/files/wiki/creole/s_008_paragraphs.txt' );
+        $wiki->loadFile( __DIR__ . '/files/wiki/creole/s_008_paragraphs.txt' );
 
         $docbook = $wiki->getAsDocbook();
 
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/files/wiki/creole/s_008_paragraphs.xml' ),
+            file_get_contents( __DIR__ . '/files/wiki/creole/s_008_paragraphs.xml' ),
             $docbook->save(),
             'Document not visited as expected.'
         );
@@ -39,13 +39,13 @@ class ezcDocumentWikiTests extends ezcTestCase
     public function testWriteCreoleDocument()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/files/wiki/creole/s_008_paragraphs.xml' );
+        $docbook->loadFile( __DIR__ . '/files/wiki/creole/s_008_paragraphs.xml' );
 
         $wiki = new ezcDocumentCreoleWiki();
         $wiki->createFromDocbook( $docbook );
 
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/files/wiki/creole/s_008_paragraphs.txt' ),
+            file_get_contents( __DIR__ . '/files/wiki/creole/s_008_paragraphs.txt' ),
             $wiki->save(),
             'Document not visited as expected.'
         );
@@ -54,12 +54,12 @@ class ezcDocumentWikiTests extends ezcTestCase
     public function testReadDokuwikiDocument()
     {
         $wiki = new ezcDocumentDokuwikiWiki();
-        $wiki->loadFile( dirname( __FILE__ ) . '/files/wiki/dokuwiki/s_001_inline_markup.txt' );
+        $wiki->loadFile( __DIR__ . '/files/wiki/dokuwiki/s_001_inline_markup.txt' );
 
         $docbook = $wiki->getAsDocbook();
 
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/files/wiki/dokuwiki/s_001_inline_markup.xml' ),
+            file_get_contents( __DIR__ . '/files/wiki/dokuwiki/s_001_inline_markup.xml' ),
             $docbook->save(),
             'Document not visited as expected.'
         );
@@ -68,7 +68,7 @@ class ezcDocumentWikiTests extends ezcTestCase
     public function testWriteDokuwikiDocument()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/files/wiki/dokuwiki/s_001_inline_markup.xml' );
+        $docbook->loadFile( __DIR__ . '/files/wiki/dokuwiki/s_001_inline_markup.xml' );
 
         try
         {
@@ -84,12 +84,12 @@ class ezcDocumentWikiTests extends ezcTestCase
     public function testReadConfluenceDocument()
     {
         $wiki = new ezcDocumentConfluenceWiki();
-        $wiki->loadFile( dirname( __FILE__ ) . '/files/wiki/confluence/s_002_inline_markup.txt' );
+        $wiki->loadFile( __DIR__ . '/files/wiki/confluence/s_002_inline_markup.txt' );
 
         $docbook = $wiki->getAsDocbook();
 
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/files/wiki/confluence/s_002_inline_markup.xml' ),
+            file_get_contents( __DIR__ . '/files/wiki/confluence/s_002_inline_markup.xml' ),
             $docbook->save(),
             'Document not visited as expected.'
         );
@@ -98,7 +98,7 @@ class ezcDocumentWikiTests extends ezcTestCase
     public function testWriteConfluenceDocument()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/files/wiki/confluence/s_002_inline_markup.xml' );
+        $docbook->loadFile( __DIR__ . '/files/wiki/confluence/s_002_inline_markup.xml' );
 
         try
         {

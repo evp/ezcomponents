@@ -45,8 +45,7 @@ class ezcTemplateDocCommentTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'name'        => $this->name,
-                      'commentText' => $this->commentText );
+        return ['name'        => $this->name, 'commentText' => $this->commentText];
     }
 
     /**

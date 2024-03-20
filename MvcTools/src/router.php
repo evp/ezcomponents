@@ -23,7 +23,7 @@ abstract class ezcMvcRouter
      *
      * @var array(ezcMvcRoute)
      */
-    protected $routes = array();
+    protected $routes = [];
 
     /**
      * Contains the request object

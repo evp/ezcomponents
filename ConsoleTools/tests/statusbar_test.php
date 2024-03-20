@@ -17,33 +17,7 @@
  */
 class ezcConsoleStatusbarTest extends ezcTestCase
 {
-    private $stati = array( 
-        true,
-        false,
-        true,
-        true,
-        false,
-        true,
-        true,
-        true,
-        false,
-        false,
-        true,
-        true,
-        false,
-        true,
-        true,
-        false,
-        true,
-        false,
-        true,
-        true,
-        false,
-        false,
-        false,
-        true,
-        false,
-    );
+    private $stati = [true, false, true, true, false, true, true, true, false, false, true, true, false, true, true, false, true, false, true, true, false, false, false, true, false];
 
     private $errorCaught = false;
 
@@ -64,7 +38,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $res = ob_get_contents();
         ob_end_clean();
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testStatusbar1.dat' ),
+            file_get_contents( __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testStatusbar1.dat' ),
             $res,
             "Formated statusbar not generated correctly."
         );
@@ -85,7 +59,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $res = ob_get_contents();
         ob_end_clean();
         $this->assertEquals(
-            file_get_contents( dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testStatusbar2.dat' ),
+            file_get_contents( __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testStatusbar2.dat' ),
             $res,
             "Unformated statusbar not generated correctly."
         );
@@ -208,10 +182,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $refOpt->successChar = "*";
         $refOpt->failureChar = "#";
 
-        $optArr = array(
-            "successChar" => "*",
-            "failureChar" => "#",
-        );
+        $optArr = ["successChar" => "*", "failureChar" => "#"];
 
         $out = new ezcConsoleOutput();
         $status = new ezcConsoleStatusbar( $out );
@@ -313,7 +284,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
         $out = new ezcConsoleOutput();
         $status = new ezcConsoleStatusbar( $out );
 
-        set_error_handler( array( $this, "catchWarning" ), E_USER_WARNING );
+        set_error_handler( [$this, "catchWarning"], E_USER_WARNING );
 
         ob_start();
         $status->add( "foo" );
@@ -327,7 +298,7 @@ class ezcConsoleStatusbarTest extends ezcTestCase
     public function catchWarning( $errno, $errstr, $errfile, $errline, $errcontext )
     {
         $this->assertEquals( "Unknown status 'foo'.", $errstr );
-        $this->assertEquals( realpath( dirname( __FILE__ ) . "/../src/statusbar.php" ), $errfile );
+        $this->assertEquals( realpath( __DIR__ . "/../src/statusbar.php" ), $errfile );
         $this->errorCaught = true;
     }
 }

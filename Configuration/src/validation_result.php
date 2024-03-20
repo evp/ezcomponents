@@ -75,7 +75,7 @@ class ezcConfigurationValidationResult
      * Contains an array with ezcConfigurationValidationItem objects which are either
      * errors or warnings detected during the validation process.
      */
-    private $resultList = array();
+    private $resultList = [];
 
     /**
      * The location of the configuration which was validated.

@@ -21,7 +21,7 @@ class ezcDocumentDocbookTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getDocbookDocuments()
@@ -29,14 +29,12 @@ class ezcDocumentDocbookTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/docbook/rst/s_*.xml' );
+            $testFiles = glob( __DIR__ . '/files/docbook/rst/s_*.xml' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file
-                );
+                self::$testDocuments[] = [$file];
             }
         }
 
@@ -59,7 +57,7 @@ class ezcDocumentDocbookTests extends ezcTestCase
     {
         $doc = new ezcDocumentDocbook();
         $this->assertTrue(
-            is_array( $errors = $doc->validateFile( dirname( __FILE__ ) . '/files/docbook/errorneous.xml' ) )
+            is_array( $errors = $doc->validateFile( __DIR__ . '/files/docbook/errorneous.xml' ) )
         );
 
         $this->assertSame(
@@ -72,7 +70,7 @@ class ezcDocumentDocbookTests extends ezcTestCase
     {
         $doc = new ezcDocumentDocbook();
         $this->assertTrue(
-            is_array( $errors = $doc->validateFile( dirname( __FILE__ ) . '/files/docbook/invalid.xml' ) )
+            is_array( $errors = $doc->validateFile( __DIR__ . '/files/docbook/invalid.xml' ) )
         );
 
         $this->assertSame(

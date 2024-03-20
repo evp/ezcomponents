@@ -173,7 +173,7 @@ class ezcWebdavLockCopyRequestResponseHandler extends ezcWebdavLockRequestRespon
         ezcWebdavLockTools::cloneRequestHeaders(
             $this->request,
             $propFindReq,
-            array( 'If', 'Depth' )
+            ['If', 'Depth']
         );
         $propFindReq->validateHeaders();
 
@@ -186,7 +186,7 @@ class ezcWebdavLockCopyRequestResponseHandler extends ezcWebdavLockRequestRespon
             return $propFindMultiStatusRes;
         }
 
-        $paths = array();
+        $paths = [];
         foreach ( $propFindMultiStatusRes->responses as $propFindRes )
         {
             $paths[] = $propFindRes->node->path;

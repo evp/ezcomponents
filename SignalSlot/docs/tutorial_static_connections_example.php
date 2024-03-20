@@ -13,7 +13,7 @@ class DataObject
 
     public function signals()
     {
-        if ( $this->signals == null ) $this->signals = new ezcSignalCollection( __CLASS__ );
+        if ( $this->signals == null ) $this->signals = new ezcSignalCollection( self::class );
         return $this->signals;
     }
 
@@ -34,7 +34,7 @@ class Cache
 
 $cache = new Cache();
 ezcSignalStaticConnections::getInstance()->connect( "DataObject",
-                                                    "dataChanged", array( $cache, "deleteCache" ) );
+                                                    "dataChanged", [$cache, "deleteCache"] );
 
 $data1 = new DataObject( 1 );
 $data2 = new DataObject( 2 );

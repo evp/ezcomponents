@@ -65,14 +65,7 @@ class liveuser_translations
      */
      public function getState()
      {
-         return array(
-             'description' => $this->description,
-             'language_id' => $this->language_id,
-             'name' => $this->name,
-             'section_id' => $this->section_id,
-             'section_type' => $this->section_type,
-             'translation_id' => $this->translation_id,
-         );
+         return ['description' => $this->description, 'language_id' => $this->language_id, 'name' => $this->name, 'section_id' => $this->section_id, 'section_type' => $this->section_type, 'translation_id' => $this->translation_id];
      }
 }
 ?>

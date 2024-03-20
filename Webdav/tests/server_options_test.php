@@ -9,7 +9,7 @@
  * @subpackage Test
  */
 
-require_once dirname( __FILE__ ) . '/property_test.php';
+require_once __DIR__ . '/property_test.php';
 
 /**
  * Test case for the ezcWebdavFileBackendOptions class.
@@ -22,34 +22,15 @@ class ezcWebdavServerOptionsTest extends ezcWebdavPropertyTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavServerOptions';
-        $this->defaultValues = array(
-            'realm' => 'eZ Components WebDAV',
-        );
-        $this->workingValues = array(
-            'realm' => array(
-                'Some nice realm.',
-                '    ',
-                '23',
-                ''
-            ),
-        );
-        $this->failingValues = array(
-            'realm' => array(
-                null,
-                true,
-                false,
-                23,
-                -42.23,
-                array(),
-                new stdClass(),
-            ),
-        );
+        $this->defaultValues = ['realm' => 'eZ Components WebDAV'];
+        $this->workingValues = ['realm' => ['Some nice realm.', '    ', '23', '']];
+        $this->failingValues = ['realm' => [null, true, false, 23, -42.23, [], new stdClass()]];
     }
 
     public function testCtorSuccess()

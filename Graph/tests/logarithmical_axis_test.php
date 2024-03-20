@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -31,8 +31,8 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
     protected function setUp()
     {
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -181,7 +181,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
     {
         $chart = new ezcGraphLineChart();
         $chart->yAxis = new ezcGraphChartElementLogarithmicalAxis();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array( .003, 12, 43, 1023, .02, 1.5 ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( [.003, 12, 43, 1023, .02, 1.5] );
         $chart->render( 500, 300 );
 
         $this->assertEquals(
@@ -216,7 +216,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
 
         try
         {
-            $chart->data['sample'] = new ezcGraphArrayDataSet( array( .003, 12, 43, 1023, .02, -1.5 ) );
+            $chart->data['sample'] = new ezcGraphArrayDataSet( [.003, 12, 43, 1023, .02, -1.5] );
             $chart->render( 500, 300 );
         }
         catch ( ezcGraphOutOfLogithmicalBoundingsException $e )
@@ -232,7 +232,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->yAxis = new ezcGraphChartElementLogarithmicalAxis();
 
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array( .03, 12, 43, 1023, .02, 1.5, 9823 ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( [.03, 12, 43, 1023, .02, 1.5, 9823] );
         $chart->render( 500, 300 );
 
         $this->assertEquals(
@@ -303,7 +303,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
         $chart->yAxis = new ezcGraphChartElementLogarithmicalAxis();
         $chart->yAxis->base = 2;
 
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array( .03, 12, 43, 1023, .02, 1.5, 3823 ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( [.03, 12, 43, 1023, .02, 1.5, 3823] );
         $chart->render( 500, 300 );
 
         $this->assertEquals(
@@ -383,7 +383,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
         $chart->yAxis->logarithmicalFormatString = '^%2$d';
         $chart->yAxis->label = 'Base 10';
 
-        $values = array();
+        $values = [];
         for ( $x = -50; $x <= 50; $x += 1 )
         {
             $values[$x] = $x * $x + .01;
@@ -396,7 +396,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -406,7 +406,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
         {
             $chart = new ezcGraphLineChart();
             $chart->yAxis = new ezcGraphChartElementLogarithmicalAxis();
-            $chart->data['sample'] = new ezcGraphArrayDataSet( array( .03, 12, 43, 1023, .02, 1.5, 9823 ) );
+            $chart->data['sample'] = new ezcGraphArrayDataSet( [.03, 12, 43, 1023, .02, 1.5, 9823] );
             $chart->render( 500, 200 );
         }
         catch ( ezcGraphFontRenderingException $e )
@@ -416,9 +416,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
 
         $steps = $chart->yAxis->getSteps();
 
-        $expectedLabels = array(
-            '10^-2', '10^-1', '10^0', '10^1', '10^2', '10^3', '10^4',
-        );
+        $expectedLabels = ['10^-2', '10^-1', '10^0', '10^1', '10^2', '10^3', '10^4'];
 
         foreach ( $steps as $nr => $step )
         {
@@ -437,12 +435,9 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
             $chart = new ezcGraphLineChart();
 
             $chart->yAxis = new ezcGraphChartElementLogarithmicalAxis();
-            $chart->yAxis->labelCallback = create_function(
-                '$label',
-                'return "*$label*";'
-            );
+            $chart->yAxis->labelCallback = fn($label) => "*{$label}*";
 
-            $chart->data['sample'] = new ezcGraphArrayDataSet( array( .03, 12, 43, 1023, .02, 1.5, 9823 ) );
+            $chart->data['sample'] = new ezcGraphArrayDataSet( [.03, 12, 43, 1023, .02, 1.5, 9823] );
 
             $chart->render( 500, 200 );
         }
@@ -453,9 +448,7 @@ class ezcGraphLogarithmicalAxisTest extends ezcGraphTestCase
 
         $steps = $chart->yAxis->getSteps();
 
-        $expectedLabels = array(
-            '*10^-2*', '*10^-1*', '*10^0*', '*10^1*', '*10^2*', '*10^3*', '*10^4*',
-        );
+        $expectedLabels = ['*10^-2*', '*10^-1*', '*10^0*', '*10^1*', '*10^2*', '*10^3*', '*10^4*'];
 
         foreach ( $steps as $nr => $step )
         {

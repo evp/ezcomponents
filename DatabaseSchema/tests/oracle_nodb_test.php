@@ -4,13 +4,13 @@ class ezcDatabaseSchemaOracleNoDbTest extends ezcTestCase
 {
     public function testGeneratedSequenceAndTriggerNameMax30Chars()
     {
-        $fields = array();
+        $fields = [];
         $fields["veryverylong_id"] = new ezcDbSchemaField( "integer", 10, true, null, true, false );
 
-        $indexes = array();
-        $indexes["primary"] = new ezcDbSchemaIndex( array( "veryverylong_id" => new ezcDbSchemaIndexField() ) );
+        $indexes = [];
+        $indexes["primary"] = new ezcDbSchemaIndex( ["veryverylong_id" => new ezcDbSchemaIndexField()] );
 
-        $tables = array( "veryverylongtablename" => new ezcDbSchemaTable( $fields, $indexes ) );
+        $tables = ["veryverylongtablename" => new ezcDbSchemaTable( $fields, $indexes )];
         
         $schema = new ezcDbSchema( $tables );
 
@@ -32,13 +32,13 @@ class ezcDatabaseSchemaOracleNoDbTest extends ezcTestCase
 
     public function testGeneratedConstraintNameMax30Chars()
     {
-        $fields = array();
+        $fields = [];
         $fields["oneid"] = new ezcDbSchemaField( "integer", 10, true, null, true, false );
 
-        $indexes = array();
-        $indexes["primary"] = new ezcDbSchemaIndex( array( "oneid" => new ezcDbSchemaIndexField() ) );
+        $indexes = [];
+        $indexes["primary"] = new ezcDbSchemaIndex( ["oneid" => new ezcDbSchemaIndexField()] );
 
-        $tables = array( "ultraultraveryverylongtablename" => new ezcDbSchemaTable( $fields, $indexes ) );
+        $tables = ["ultraultraveryverylongtablename" => new ezcDbSchemaTable( $fields, $indexes )];
 
         $schema = new ezcDbSchema( $tables );
 

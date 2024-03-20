@@ -48,18 +48,7 @@
  */
 class ezcConsoleTableOptions extends ezcBaseOptions
 {
-    protected $properties = array(
-        'colWidth'            => 'auto',
-        'colWrap'             => ezcConsoleTable::WRAP_AUTO,
-        'defaultAlign'        => ezcConsoleTable::ALIGN_LEFT,
-        'colPadding'          => ' ',
-        'widthType'           => ezcConsoleTable::WIDTH_MAX,
-        'lineVertical'        => '-',
-        'lineHorizontal'      => '|',
-        'corner'              => '+',
-        'defaultFormat'       => 'default',
-        'defaultBorderFormat' => 'default',
-    );
+    protected $properties = ['colWidth'            => 'auto', 'colWrap'             => ezcConsoleTable::WRAP_AUTO, 'defaultAlign'        => ezcConsoleTable::ALIGN_LEFT, 'colPadding'          => ' ', 'widthType'           => ezcConsoleTable::WIDTH_MAX, 'lineVertical'        => '-', 'lineHorizontal'      => '|', 'corner'              => '+', 'defaultFormat'       => 'default', 'defaultBorderFormat' => 'default'];
 
     /**
      * Construct a new options object.

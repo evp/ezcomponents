@@ -41,7 +41,7 @@ class ezcWebdavLockCheckPropertyCollector implements ezcWebdavLockCheckObserver
      * 
      * @var array(string=> ezcWebdavBasicPropertyStorare)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Collects properties from the given $response.
@@ -74,11 +74,7 @@ class ezcWebdavLockCheckPropertyCollector implements ezcWebdavLockCheckObserver
      */
     public function getProperties( $path )
     {
-        if ( isset( $this->properties[$path] ) )
-        {
-            return $this->properties[$path];
-        }
-        return new ezcWebdavBasicPropertyStorage();
+        return $this->properties[$path] ?? new ezcWebdavBasicPropertyStorage();
     }
 }
 

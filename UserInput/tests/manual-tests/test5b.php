@@ -16,7 +16,7 @@ var_dump( filter_list() );
 $cb1 = filter_input( INPUT_GET, 'test1', filter_id( 'boolean' ), FILTER_NULL_ON_FAILURE );
 $cb2 = filter_input( INPUT_GET, 'test2', filter_id( 'boolean' ) );
 $int1 = filter_input( INPUT_GET, 'test3', filter_id( 'int' ), FILTER_NULL_ON_FAILURE );
-$int2 = filter_input( INPUT_GET, 'test4', filter_id( 'int' ), array( 'flags' => FILTER_NULL_ON_FAILURE, 'options' => array ('max_range' => 42 ) ) );
+$int2 = filter_input( INPUT_GET, 'test4', filter_id( 'int' ), ['flags' => FILTER_NULL_ON_FAILURE, 'options' => ['max_range' => 42]] );
 
 if ( $cb1 && $cb2 )
 {

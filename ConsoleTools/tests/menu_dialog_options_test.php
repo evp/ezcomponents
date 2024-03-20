@@ -34,20 +34,11 @@ class ezcConsoleMenuDialogOptionsTest extends ezcTestCase
 
     public function testGetAccessCustomSuccess()
     {
-        $menuElements = array(
-            "F" => "Foo",
-            "B" => "Bar",
-        );
+        $menuElements = ["F" => "Foo", "B" => "Bar"];
         $opts = new ezcConsoleMenuDialogOptions(
-            array(
-                "text"              => "Please select a fitting mode:\n",
-                "validator"         => new ezcConsoleMenuDialogDefaultValidator(
-                    $menuElements
-                ),
-                "selectText"        => "Select a mode: ",
-                "formatString"      => "%10s] %s\n",
-                "format"            => "test",
-            )
+            ["text"              => "Please select a fitting mode:\n", "validator"         => new ezcConsoleMenuDialogDefaultValidator(
+                $menuElements
+            ), "selectText"        => "Select a mode: ", "formatString"      => "%10s] %s\n", "format"            => "test"]
         );
         $this->assertEquals( "Please select a fitting mode:\n", $opts->text );
         $this->assertEquals( "%10s] %s\n", $opts->formatString );
@@ -74,10 +65,7 @@ class ezcConsoleMenuDialogOptionsTest extends ezcTestCase
 
     public function testSetAccessSuccess()
     {
-        $menuElements = array(
-            "F" => "Foo",
-            "B" => "Bar",
-        );
+        $menuElements = ["F" => "Foo", "B" => "Bar"];
         $opts = new ezcConsoleMenuDialogOptions();
         $opts->text         = "Please select a fitting mode:\n";
         $opts->validator    = new ezcConsoleMenuDialogDefaultValidator( $menuElements );

@@ -19,14 +19,14 @@ class ezcDocumentPdfTokenizerTests extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testDefaultTokenizerNoSplit()
     {
         $hyphenator = new ezcDocumentPdfDefaultTokenizer();
         $this->assertSame(
-            array( 'foo' ),
+            ['foo'],
             $hyphenator->tokenize( 'foo' )
         );
     }
@@ -35,7 +35,7 @@ class ezcDocumentPdfTokenizerTests extends ezcTestCase
     {
         $hyphenator = new ezcDocumentPdfDefaultTokenizer();
         $this->assertSame(
-            array( 'foo', ezcDocumentPdfTokenizer::SPACE, 'bar' ),
+            ['foo', ezcDocumentPdfTokenizer::SPACE, 'bar'],
             $hyphenator->tokenize( 'foo bar' )
         );
     }
@@ -44,7 +44,7 @@ class ezcDocumentPdfTokenizerTests extends ezcTestCase
     {
         $hyphenator = new ezcDocumentPdfDefaultTokenizer();
         $this->assertSame(
-            array( ezcDocumentPdfTokenizer::SPACE, 'Hello', ezcDocumentPdfTokenizer::SPACE, 'world!', ezcDocumentPdfTokenizer::SPACE ),
+            [ezcDocumentPdfTokenizer::SPACE, 'Hello', ezcDocumentPdfTokenizer::SPACE, 'world!', ezcDocumentPdfTokenizer::SPACE],
             $hyphenator->tokenize( ' Hello world! ' )
         );
     }
@@ -53,7 +53,7 @@ class ezcDocumentPdfTokenizerTests extends ezcTestCase
     {
         $hyphenator = new ezcDocumentPdfDefaultTokenizer();
         $this->assertSame(
-            array( 'foo', ezcDocumentPdfTokenizer::SPACE, 'bar' ),
+            ['foo', ezcDocumentPdfTokenizer::SPACE, 'bar'],
             $hyphenator->tokenize( "foo\tbar" )
         );
     }
@@ -62,7 +62,7 @@ class ezcDocumentPdfTokenizerTests extends ezcTestCase
     {
         $hyphenator = new ezcDocumentPdfDefaultTokenizer();
         $this->assertSame(
-            array( 'foo', ezcDocumentPdfTokenizer::SPACE, 'bar' ),
+            ['foo', ezcDocumentPdfTokenizer::SPACE, 'bar'],
             $hyphenator->tokenize( "foo\tbar" )
         );
     }
@@ -71,7 +71,7 @@ class ezcDocumentPdfTokenizerTests extends ezcTestCase
     {
         $hyphenator = new ezcDocumentPdfDefaultTokenizer();
         $this->assertSame(
-            array( 'foo', ezcDocumentPdfTokenizer::SPACE, 'bar' ),
+            ['foo', ezcDocumentPdfTokenizer::SPACE, 'bar'],
             $hyphenator->tokenize( "foo \t \r \n  bar" )
         );
     }

@@ -18,6 +18,6 @@ ezcBaseInit::setCallback(
 // Use log
 $log = ezcLog::getInstance();
 
-$log->log( "Paid with credit card.", ezcLog::SUCCESS_AUDIT, array( "category" => "shop" ) );
-$log->log( "The credit card information is removed.", ezcLog::NOTICE, array( "category" => "shop" ) );
+$log->log( "Paid with credit card.", ezcLog::SUCCESS_AUDIT, ["category" => "shop"] );
+$log->log( "The credit card information is removed.", ezcLog::NOTICE, ["category" => "shop"] );
 ?>

@@ -37,7 +37,7 @@ class ezcGraphArrayDataSet extends ezcGraphDataSet
      * @access public
      * @return void
      */
-    protected function createFromArray( $data = array() ) 
+    protected function createFromArray( $data = [] ) 
     {
         if ( !is_array( $data ) && 
              !( $data instanceof Traversable ) )
@@ -45,7 +45,7 @@ class ezcGraphArrayDataSet extends ezcGraphDataSet
             throw new ezcGraphInvalidArrayDataSourceException( $data );
         }
 
-        $this->data = array();
+        $this->data = [];
         foreach ( $data as $key => $value )
         {
             $this->data[$key] = $value;

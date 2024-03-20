@@ -22,8 +22,8 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
     
     public static function suite()
     {
-        self::$path = dirname( __FILE__ ) . '/../htpasswd/data/htpasswd';
-        self::$empty = dirname( __FILE__ ) . '/../htpasswd/data/htpasswd_empty';
+        self::$path = __DIR__ . '/../htpasswd/data/htpasswd';
+        self::$empty = __DIR__ . '/../htpasswd/data/htpasswd_empty';
 
         return new PHPUnit_Framework_TestSuite( "ezcAuthenticationGroupTest" );
     }
@@ -44,7 +44,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $authentication = new ezcAuthentication( $credentials );
         $options = new ezcAuthenticationHtpasswdOptions();
         $options->plain = true;
-        $authentication->addFilter( new ezcAuthenticationGroupFilter( array() ) );
+        $authentication->addFilter( new ezcAuthenticationGroupFilter( [] ) );
         $this->assertEquals( true, $authentication->run() );
     }
 
@@ -56,7 +56,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $authentication = new ezcAuthentication( $credentials );
         $options = new ezcAuthenticationHtpasswdOptions();
         $options->plain = true;
-        $authentication->addFilter( new ezcAuthenticationGroupFilter( array(), $optionsGroup ) );
+        $authentication->addFilter( new ezcAuthenticationGroupFilter( [], $optionsGroup ) );
         $this->assertEquals( true, $authentication->run() );
     }
 
@@ -68,9 +68,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    )
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options )]
                 )
             );
         $this->assertEquals( true, $authentication->run() );
@@ -86,9 +84,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    ), $optionsGroup
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options )], $optionsGroup
                 )
             );
         $this->assertEquals( true, $authentication->run() );
@@ -102,9 +98,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    )
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options )]
                 )
             );
         $this->assertEquals( false, $authentication->run() );
@@ -120,9 +114,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    ), $optionsGroup
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options )], $optionsGroup
                 )
             );
         $this->assertEquals( false, $authentication->run() );
@@ -136,10 +128,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    )
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options ), new ezcAuthenticationHtpasswdFilter( self::$path, $options )]
                 )
             );
         $this->assertEquals( true, $authentication->run() );
@@ -155,10 +144,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    ), $optionsGroup
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options ), new ezcAuthenticationHtpasswdFilter( self::$path, $options )], $optionsGroup
                 )
             );
         $this->assertEquals( true, $authentication->run() );
@@ -171,9 +157,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options = new ezcAuthenticationHtpasswdOptions();
         $options->plain = true;
         $group = new ezcAuthenticationGroupFilter(
-                    array(
-                        new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                        )
+                    [new ezcAuthenticationHtpasswdFilter( self::$path, $options )]
                     );
         $group->addFilter( new ezcAuthenticationHtpasswdFilter( self::$path, $options ) );
         $authentication->addFilter( $group );
@@ -189,9 +173,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options = new ezcAuthenticationHtpasswdOptions();
         $options->plain = true;
         $group = new ezcAuthenticationGroupFilter(
-                    array(
-                        new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                        ), $optionsGroup
+                    [new ezcAuthenticationHtpasswdFilter( self::$path, $options )], $optionsGroup
                     );
         $group->addFilter( new ezcAuthenticationHtpasswdFilter( self::$path, $options ) );
         $authentication->addFilter( $group );
@@ -206,10 +188,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options )
-                    )
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options ), new ezcAuthenticationHtpasswdFilter( self::$empty, $options )]
                 )
             );
         $this->assertEquals( true, $authentication->run() );
@@ -225,10 +204,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options )
-                    ), $optionsGroup
+                [new ezcAuthenticationHtpasswdFilter( self::$path, $options ), new ezcAuthenticationHtpasswdFilter( self::$empty, $options )], $optionsGroup
                 )
             );
         $this->assertEquals( false, $authentication->run() );
@@ -242,10 +218,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    )
+                [new ezcAuthenticationHtpasswdFilter( self::$empty, $options ), new ezcAuthenticationHtpasswdFilter( self::$path, $options )]
                 )
             );
         $this->assertEquals( true, $authentication->run() );
@@ -261,10 +234,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$path, $options )
-                    ), $optionsGroup
+                [new ezcAuthenticationHtpasswdFilter( self::$empty, $options ), new ezcAuthenticationHtpasswdFilter( self::$path, $options )], $optionsGroup
                 )
             );
         $this->assertEquals( false, $authentication->run() );
@@ -278,10 +248,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options )
-                    )
+                [new ezcAuthenticationHtpasswdFilter( self::$empty, $options ), new ezcAuthenticationHtpasswdFilter( self::$empty, $options )]
                 )
             );
         $this->assertEquals( false, $authentication->run() );
@@ -297,10 +264,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options ),
-                    new ezcAuthenticationHtpasswdFilter( self::$empty, $options )
-                    ), $optionsGroup
+                [new ezcAuthenticationHtpasswdFilter( self::$empty, $options ), new ezcAuthenticationHtpasswdFilter( self::$empty, $options )], $optionsGroup
                 )
             );
         $this->assertEquals( false, $authentication->run() );
@@ -316,10 +280,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
         $options->plain = true;
         $authentication->addFilter(
             new ezcAuthenticationGroupFilter(
-                array(
-                    array( new ezcAuthenticationHtpasswdFilter( self::$empty, $options ) ),
-                    array( new ezcAuthenticationHtpasswdFilter( self::$empty, $options ) )
-                    ), $optionsGroup
+                [[new ezcAuthenticationHtpasswdFilter( self::$empty, $options )], [new ezcAuthenticationHtpasswdFilter( self::$empty, $options )]], $optionsGroup
                 )
             );
         $this->assertEquals( false, $authentication->run() );
@@ -340,14 +301,14 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
     {
         $options = new ezcAuthenticationGroupOptions();
 
-        $filter = new ezcAuthenticationGroupFilter( array() );
+        $filter = new ezcAuthenticationGroupFilter( [] );
         $filter->setOptions( $options );
         $this->assertEquals( $options, $filter->getOptions() );
     }
 
     public function testGroupProperties()
     {
-        $filter = new ezcAuthenticationGroupFilter( array() );
+        $filter = new ezcAuthenticationGroupFilter( [] );
 
         $this->invalidPropertyTest( $filter, 'status', 'wrong value', 'ezcAuthenticationStatus' );
         $this->missingPropertyTest( $filter, 'no_such_property' );
@@ -355,7 +316,7 @@ class ezcAuthenticationGroupTest extends ezcAuthenticationTest
 
     public function testGroupPropertiesIsSet()
     {
-        $filter = new ezcAuthenticationGroupFilter( array() );
+        $filter = new ezcAuthenticationGroupFilter( [] );
 
         $this->issetPropertyTest( $filter, 'status', true );
         $this->issetPropertyTest( $filter, 'no_such_property', false );

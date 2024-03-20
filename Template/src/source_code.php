@@ -77,7 +77,7 @@ class ezcTemplateSourceCode
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Property get

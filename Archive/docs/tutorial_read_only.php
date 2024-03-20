@@ -1,7 +1,7 @@
 <?php
 require_once 'tutorial_autoload.php';
 
-$options = new ezcArchiveOptions( array( 'readOnly' => true ) );
+$options = new ezcArchiveOptions( ['readOnly' => true] );
 $archive = ezcArchive::open(
     "compress.zlib:///tmp/my_archive.tar.gz", null, $options );
 

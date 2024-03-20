@@ -70,7 +70,7 @@ class ezcDbInstance
      *
      * @var array(string=>ezcDbHandler)
      */
-    static private $Instances = array();
+    static private $Instances = [];
 
     /**
      * Returns the database instance $identifier.
@@ -167,7 +167,7 @@ class ezcDbInstance
      */
     public static function reset()
     {
-        self::$Instances = array();
+        self::$Instances = [];
         self::resetDefault();
     }
 }

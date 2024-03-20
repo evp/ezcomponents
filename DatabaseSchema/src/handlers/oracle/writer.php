@@ -21,17 +21,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
      *
      * @var array
      */
-    private $typeMap = array(
-        'integer' => 'number',
-        'boolean' => 'char',
-        'float' => 'float',
-        'decimal' => 'number',
-        'date' => 'date',
-        'timestamp' => 'timestamp',
-        'text' => 'varchar2',
-        'blob' => 'blob',
-        'clob' => 'clob'
-    );
+    private $typeMap = ['integer' => 'number', 'boolean' => 'char', 'float' => 'float', 'decimal' => 'number', 'date' => 'date', 'timestamp' => 'timestamp', 'text' => 'varchar2', 'blob' => 'blob', 'clob' => 'clob'];
 
     /**
      * Checks if query allowed.
@@ -59,7 +49,9 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
             if ( $result[0]['count'] == 1 )
             {
                 $sequences = $db->query( "SELECT sequence_name FROM user_sequences" )->fetchAll();
-                array_walk( $sequences, create_function( '&$item,$key', '$item = $item[0];' ) );
+                array_walk( $sequences, function (&$item, $key) {
+                    $item = $item[0];
+                } );
                 foreach ( $sequences as $sequenceName )
                 {
                     // try to drop sequences related to dropped table.
@@ -193,7 +185,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
                                   "select \"{$newName}\".nextval into :new.\"{$autoIncrementFieldName}\" from dual; ".
                                   "end;" );
 
-        $constraintName = ezcDbSchemaOracleHelper::generateSuffixedIdentName( array( $tableName ), "pkey" );
+        $constraintName = ezcDbSchemaOracleHelper::generateSuffixedIdentName( [$tableName], "pkey" );
         $constraint = $db->query( "SELECT constraint_name FROM user_cons_columns WHERE constraint_name = '{$constraintName}'" )->fetchAll();
         if ( count( $constraint) > 0  )
         {
@@ -216,8 +208,8 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
         $this->diffSchema = $dbSchemaDiff;
 
         // reset queries
-        $this->queries = array();
-        $this->context = array();
+        $this->queries = [];
+        $this->context = [];
 
         // Find sequences which require explicit drop statesments, see bug 
         // #16222
@@ -263,7 +255,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
                 }
 
                 $seqName = ezcDbSchemaOracleHelper::generateSuffixCompositeIdentName( $table, $name, "seq" );
-                if ( strpos( $seqName, $table ) !== 0 )
+                if ( strpos( $seqName, (string) $table ) !== 0 )
                 {
                     $this->queries[] = "DROP SEQUENCE \"$seqName\"";
                 }
@@ -290,7 +282,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     protected function convertFromGenericType( ezcDbSchemaField $fieldDefinition )
     {
         $typeAddition = '';
-        if ( in_array( $fieldDefinition->type, array( 'decimal', 'text' ) ) )
+        if ( in_array( $fieldDefinition->type, ['decimal', 'text'] ) )
         {
             if ( $fieldDefinition->length !== false && $fieldDefinition->length !== 0 )
             {
@@ -336,8 +328,8 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
         $this->context['skip_primary'] = false;
 
         // dump fields
-        $fieldsSQL = array();
-        $autoincrementSQL = array();
+        $fieldsSQL = [];
+        $autoincrementSQL = [];
         $fieldCounter = 1;
 
         foreach ( $tableDefinition->fields as $fieldName => $fieldDefinition )
@@ -348,7 +340,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
             {
                 $sequenceName = ezcDbSchemaOracleHelper::generateSuffixCompositeIdentName( $tableName, $fieldName, "seq" );
                 $triggerName = ezcDbSchemaOracleHelper::generateSuffixCompositeIdentName( $tableName, $fieldName, "trg" );
-                $constraintName = ezcDbSchemaOracleHelper::generateSuffixedIdentName( array( $tableName ), "pkey" );
+                $constraintName = ezcDbSchemaOracleHelper::generateSuffixedIdentName( [$tableName], "pkey" );
                 $autoincrementSQL[] = "CREATE SEQUENCE \"{$sequenceName}\" start with 1 increment by 1 nomaxvalue";
                 $autoincrementSQL[] = "CREATE OR REPLACE TRIGGER \"{$triggerName}\" ".
                                           "before insert on \"{$tableName}\" for each row ".
@@ -452,7 +444,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     protected function generateFieldSql( $fieldName, ezcDbSchemaField $fieldDefinition )
     {
         $sqlDefinition = '"'.$fieldName.'" ';
-        $defList = array();
+        $defList = [];
 
         $type = $this->convertFromGenericType( $fieldDefinition );
         $defList[] = $type;
@@ -529,7 +521,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
 
         $sql .= " ( ";
 
-        $indexFieldSql = array();
+        $indexFieldSql = [];
         foreach ( $indexDefinition->indexFields as $indexFieldName => $dummy )
         {
                 $indexFieldSql[] = "\"$indexFieldName\"";
@@ -549,7 +541,7 @@ class ezcDbSchemaOracleWriter extends ezcDbSchemaCommonSqlWriter implements ezcD
     {
         if ( $indexName == 'primary' ) // handling primary indexes
         {
-            $constraintName = ezcDbSchemaOracleHelper::generateSuffixedIdentName( array( $tableName ), "pkey");
+            $constraintName = ezcDbSchemaOracleHelper::generateSuffixedIdentName( [$tableName], "pkey");
             $this->queries[] = "ALTER TABLE \"$tableName\" DROP CONSTRAINT \"{$constraintName}\"";
         }
         else

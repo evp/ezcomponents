@@ -68,7 +68,7 @@ class ezcTemplateParser
     {
         $this->source = $source;
         $this->template = $template;
-        $this->textElements = array();
+        $this->textElements = [];
         $this->trimWhitespace = $template->trimWhitespace;
 
         $this->symbolTable = ezcTemplateSymbolTable::getInstance();
@@ -216,7 +216,7 @@ class ezcTemplateParser
         $sourceText = $this->source->code;
         $cursor = new ezcTemplateCursor( $sourceText );
 
-        $this->textElements = array();
+        $this->textElements = [];
 
         $parser = new ezcTemplateProgramSourceToTstParser( $this, null, null );
         $parser->setAllCursors( $cursor );

@@ -35,7 +35,7 @@ class ezcPersistentFindIteratorTest extends ezcTestCase
 
         PersistentTestObject::setupTable();
         PersistentTestObject::insertCleanData();
-        $this->manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" );
+        $this->manager = new ezcPersistentCodeManager( __DIR__ . "/data/" );
         $this->session = new ezcPersistentSession( $this->db, $this->manager );
     }
 

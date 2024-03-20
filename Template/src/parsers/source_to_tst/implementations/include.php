@@ -125,7 +125,7 @@ class ezcTemplateIncludeSourceToTstParser extends ezcTemplateSourceToTstParser
      */
     protected function parseExprAsVarArray( $symbolCheck )
     {
-        $variables = array();
+        $variables = [];
 
         do
         {
@@ -196,7 +196,7 @@ class ezcTemplateIncludeSourceToTstParser extends ezcTemplateSourceToTstParser
      */
     protected function parseVarAsVarArray( $symbolCheck )
     {
-        $variables = array();
+        $variables = [];
 
         do
         {

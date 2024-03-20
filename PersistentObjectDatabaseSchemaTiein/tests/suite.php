@@ -9,11 +9,11 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . "/generator_test.php";
+require_once __DIR__ . "/generator_test.php";
 
-require_once dirname( __FILE__ ) . "/template_functions_test.php";
-require_once dirname( __FILE__ ) . "/template_writer_options_test.php";
-require_once dirname( __FILE__ ) . "/template_writer_test.php";
+require_once __DIR__ . "/template_functions_test.php";
+require_once __DIR__ . "/template_writer_options_test.php";
+require_once __DIR__ . "/template_writer_test.php";
 
 /**
  * Test suite for PersistentObjectDatabaseSchemaTiein package.

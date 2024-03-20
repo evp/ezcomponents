@@ -35,7 +35,7 @@ abstract class ezcDocumentWikiNode extends ezcBaseStruct
      *
      * @var mixed
      */
-    public $nodes = array();
+    public $nodes = [];
 
     /**
      * Optional reference to token, not available for all nodes.

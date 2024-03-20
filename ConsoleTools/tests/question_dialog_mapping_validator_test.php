@@ -24,32 +24,32 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testGetAccessDefaultSuccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator( $collection );
         $this->assertEquals( $collection, $validator->collection );
         $this->assertNull( $validator->default );
         $this->assertEquals( ezcConsoleQuestionDialogMappingValidator::CONVERT_NONE, $validator->conversion );
-        $this->assertEquals( array(), $validator->map );
+        $this->assertEquals( [], $validator->map );
     }
 
     public function testGetAccessCustomSuccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator(
             $collection,
             "foo",
             ezcConsoleQuestionDialogMappingValidator::CONVERT_UPPER,
-            array( 'f' => 'foo' )
+            ['f' => 'foo']
         );
         $this->assertEquals( $collection, $validator->collection );
         $this->assertEquals( "foo", $validator->default );
         $this->assertEquals( ezcConsoleQuestionDialogMappingValidator::CONVERT_UPPER, $validator->conversion );
-        $this->assertEquals( array( 'f' => 'foo' ), $validator->map );
+        $this->assertEquals( ['f' => 'foo'], $validator->map );
     }
 
     public function testGetAccessFailure()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator( $collection );
         
         try
@@ -65,14 +65,14 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testSetAccessSuccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator( $collection );
 
-        $collectionNew         = array( 23, 42 );
+        $collectionNew         = [23, 42];
         $validator->collection = $collectionNew;
         $validator->default    = 23;
         $validator->conversion = ezcConsoleQuestionDialogMappingValidator::CONVERT_LOWER;
-        $newMap                = array( 'f' => 23, 'g' => 42 );
+        $newMap                = ['f' => 23, 'g' => 42];
         $validator->map        = $newMap;
 
         $this->assertEquals( $collectionNew, $validator->collection );
@@ -83,7 +83,7 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testSetAccessFailure()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator( $collection );
         
         $exceptionCaught = false;
@@ -98,7 +98,7 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
         try
         {
-            $validator->default = array();
+            $validator->default = [];
             $this->fail( "Exception not thrown on invalid value for property default." );
         }
         catch ( ezcBaseValueException $e )
@@ -136,7 +136,7 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testIssetAccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator( $collection );
         $this->assertTrue( isset( $validator->collection ), "Property collection not set." );
         $this->assertTrue( isset( $validator->default ), "Property default not set." );
@@ -148,7 +148,7 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testValidate()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator( $collection );
         $this->assertTrue( $validator->validate( "foo" ) );
         $this->assertFalse( $validator->validate( "test" ) );
@@ -156,7 +156,7 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testFixup()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator( $collection, null );
 
         $this->assertEquals( "foo", $validator->fixup( "foo" ), 'Fixup incorrect without conversion.' );
@@ -181,17 +181,12 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testFixupWithMapping()
     {
-        $collection = array( 'y', 'n' );
+        $collection = ['y', 'n'];
         $validator = new ezcConsoleQuestionDialogMappingValidator(
             $collection,
             null,
             ezcConsoleQuestionDialogMappingValidator::CONVERT_NONE,
-            array(
-                'yes' => 'y',
-                'no'  => 'n',
-                '1'   => 'y',
-                '0'   => 'n',
-            )
+            ['yes' => 'y', 'no'  => 'n', '1'   => 'y', '0'   => 'n']
         );
 
         $this->assertEquals( "y", $validator->fixup( "yes" ) );
@@ -231,12 +226,12 @@ class ezcConsoleQuestionDialogMappingValidatorTest extends ezcTestCase
 
     public function testGetResultString()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogMappingValidator(
             $collection,
             null,
             ezcConsoleQuestionDialogMappingValidator::CONVERT_NONE,
-            array( 'f' => 'foo', 'b' => 'bar' )
+            ['f' => 'foo', 'b' => 'bar']
         );
 
         $this->assertEquals( "(foo/bar/baz)", $validator->getResultString() );

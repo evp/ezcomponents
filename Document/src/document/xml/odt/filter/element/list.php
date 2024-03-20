@@ -25,10 +25,7 @@ class ezcDocumentOdtElementListFilter extends ezcDocumentOdtElementBaseFilter
      *
      * @var array(string=>string)
      */
-    protected $mapping = array(
-        'list'      => 'itemizedlist',
-        'list-item' => 'listitem',
-    );
+    protected $mapping = ['list'      => 'itemizedlist', 'list-item' => 'listitem'];
 
     /**
      * Filter a single element.

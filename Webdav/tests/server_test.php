@@ -44,18 +44,7 @@ class ezcWebdavBasicServerTest extends ezcTestCase
         $srv = ezcWebdavServer::getInstance();
 
         $this->assertAttributeEquals(
-            array(
-                'configurations'  => new ezcWebdavServerConfigurationManager(),
-                'pluginRegistry'  => new ezcWebdavPluginRegistry(),
-                'auth'            => null,
-                'options'         => new ezcWebdavServerOptions(),
-                'transport'       => null,
-                'backend'         => null,
-                'pathFactory'     => null,
-                'xmlTool'         => null,
-                'propertyHandler' => null,
-                'headerHandler'   => null,
-            ),
+            ['configurations'  => new ezcWebdavServerConfigurationManager(), 'pluginRegistry'  => new ezcWebdavPluginRegistry(), 'auth'            => null, 'options'         => new ezcWebdavServerOptions(), 'transport'       => null, 'backend'         => null, 'pathFactory'     => null, 'xmlTool'         => null, 'propertyHandler' => null, 'headerHandler'   => null],
             'properties',
             $srv
         );
@@ -65,18 +54,7 @@ class ezcWebdavBasicServerTest extends ezcTestCase
     {
         $srv = ezcWebdavServer::getInstance();
 
-        $defaults = array(
-            'transport'       => null,
-            'backend'         => null,
-            'configurations'  => new ezcWebdavServerConfigurationManager(),
-            'pluginRegistry'  => new ezcWebdavPluginRegistry(),
-            'auth'            => null,
-            'options'         => new ezcWebdavServerOptions(),
-            'xmlTool'         => null,
-            'propertyHandler' => null,
-            'headerHandler'   => null,
-            'pathFactory'     => null,
-        );
+        $defaults = ['transport'       => null, 'backend'         => null, 'configurations'  => new ezcWebdavServerConfigurationManager(), 'pluginRegistry'  => new ezcWebdavPluginRegistry(), 'auth'            => null, 'options'         => new ezcWebdavServerOptions(), 'xmlTool'         => null, 'propertyHandler' => null, 'headerHandler'   => null, 'pathFactory'     => null];
 
         foreach ( $defaults as $property => $value )
         {
@@ -109,23 +87,8 @@ class ezcWebdavBasicServerTest extends ezcTestCase
 
         $auth = $this->getMock( 'ezcWebdavBasicAuthenticator' );
 
-        $setValues = array(
-            'configurations' => new ezcWebdavServerConfigurationManager(),
-            'options'        => new ezcWebdavServerOptions(),
-            'auth'           => $auth,
-        );
-        $checkValues = array(
-            'configurations'  => new ezcWebdavServerConfigurationManager(),
-            'pluginRegistry'  => new ezcWebdavPluginRegistry(),
-            'auth'            => $auth,
-            'options'         => new ezcWebdavServerOptions(),
-            'transport'       => null,
-            'backend'         => null,
-            'pathFactory'     => null,
-            'xmlTool'         => null,
-            'propertyHandler' => null,
-            'headerHandler'   => null,
-        );
+        $setValues = ['configurations' => new ezcWebdavServerConfigurationManager(), 'options'        => new ezcWebdavServerOptions(), 'auth'           => $auth];
+        $checkValues = ['configurations'  => new ezcWebdavServerConfigurationManager(), 'pluginRegistry'  => new ezcWebdavPluginRegistry(), 'auth'            => $auth, 'options'         => new ezcWebdavServerOptions(), 'transport'       => null, 'backend'         => null, 'pathFactory'     => null, 'xmlTool'         => null, 'propertyHandler' => null, 'headerHandler'   => null];
 
         foreach( $setValues as $property => $value )
         {
@@ -150,20 +113,9 @@ class ezcWebdavBasicServerTest extends ezcTestCase
 
     public function testSetAccessFailure()
     {
-        $typicalFails = array(
-            '',
-            23,
-            23.42,
-            true,
-            false,
-            array(),
-            new stdClass(),
-        );
+        $typicalFails = ['', 23, 23.42, true, false, [], new stdClass()];
 
-        $invalidValues = array(
-            'configurations' => $typicalFails, 
-            'options'        => $typicalFails,
-        );
+        $invalidValues = ['configurations' => $typicalFails, 'options'        => $typicalFails];
 
         foreach ( $invalidValues as $propertyName => $propertyValues )
         {
@@ -199,17 +151,7 @@ class ezcWebdavBasicServerTest extends ezcTestCase
     {
         $srv = ezcWebdavServer::getInstance();
 
-        $properties =array(
-            'configurations', 
-            'backend', 
-            'pluginRegistry', 
-            'transport', 
-            'xmlTool',
-            'propertyHandler',
-            'pathFactory',
-            'auth',
-            'options',
-        );
+        $properties =['configurations', 'backend', 'pluginRegistry', 'transport', 'xmlTool', 'propertyHandler', 'pathFactory', 'auth', 'options'];
 
         foreach( $properties as $propertyName )
         {

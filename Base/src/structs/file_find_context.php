@@ -44,7 +44,7 @@ class ezcBaseFileFindContext extends ezcBaseStruct
      * @param int $count
      * @param int $size
      */
-    public function __construct( $elements = array(), $count = 0, $size = 0 )
+    public function __construct( $elements = [], $count = 0, $size = 0 )
     {
         $this->elements = $elements;
         $this->count = $count;

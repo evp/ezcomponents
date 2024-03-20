@@ -33,10 +33,7 @@ class ezcConsoleStringToolsTest extends ezcTestCase
     {
         $tools = new ezcConsoleStringTool();
         $actual = call_user_func_array(
-            array(
-                $tools,
-                'wordwrap'
-            ),
+            [$tools, 'wordwrap'],
             $input
         );
         $this->assertEquals(
@@ -49,7 +46,7 @@ class ezcConsoleStringToolsTest extends ezcTestCase
     {
         if ( !isset( self::$provideTestWordWrap ) )
         {
-            self::$provideTestWordWrap = require dirname( __FILE__ ) . '/data/string_tools_wordwrap_data.php';
+            self::$provideTestWordWrap = require __DIR__ . '/data/string_tools_wordwrap_data.php';
         }
         return self::$provideTestWordWrap;
     }
@@ -67,10 +64,7 @@ class ezcConsoleStringToolsTest extends ezcTestCase
     {
         $tools = new ezcConsoleStringTool();
         $actual = call_user_func_array(
-            array(
-                $tools,
-                'strPad'
-            ),
+            [$tools, 'strPad'],
             $input
         );
         $this->assertEquals(
@@ -83,14 +77,14 @@ class ezcConsoleStringToolsTest extends ezcTestCase
     {
         if ( !isset( self::$provideTestStrPad ) )
         {
-            self::$provideTestStrPad = require dirname( __FILE__ ) . '/data/string_tools_strpad_data.php';
+            self::$provideTestStrPad = require __DIR__ . '/data/string_tools_strpad_data.php';
         }
         return self::$provideTestStrPad;
     }
 
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

@@ -21,7 +21,7 @@ class ezcMailTransportFileTest extends ezcTestCase
 
     public function testSingle()
     {
-        $set = new ezcMailFileSet( array( dirname( __FILE__ ) . '/../parser/data/gmail/html_mail.mail' ) );
+        $set = new ezcMailFileSet( [__DIR__ . '/../parser/data/gmail/html_mail.mail'] );
         $data = '';
         $line = $set->getNextLine();
         while ( $line !== null )
@@ -29,15 +29,14 @@ class ezcMailTransportFileTest extends ezcTestCase
             $data .= $line;
             $line = $set->getNextLine();
         }
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . '/../parser/data/gmail/html_mail.mail' ),
+        $this->assertEquals( file_get_contents( __DIR__ . '/../parser/data/gmail/html_mail.mail' ),
                              $data );
         $this->assertEquals( false, $set->nextMail() );
     }
 
     public function testMultiple()
     {
-        $set = new ezcMailFileSet( array( dirname( __FILE__ ) . '/../parser/data/gmail/html_mail.mail',
-                                          dirname( __FILE__ ) . '/../parser/data/gmail/simple_mail_with_text_subject_and_body.mail' ));
+        $set = new ezcMailFileSet( [__DIR__ . '/../parser/data/gmail/html_mail.mail', __DIR__ . '/../parser/data/gmail/simple_mail_with_text_subject_and_body.mail']);
         // check first mail
         $data = '';
         $line = $set->getNextLine();
@@ -46,7 +45,7 @@ class ezcMailTransportFileTest extends ezcTestCase
             $data .= $line;
             $line = $set->getNextLine();
         }
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . '/../parser/data/gmail/html_mail.mail' ),
+        $this->assertEquals( file_get_contents( __DIR__ . '/../parser/data/gmail/html_mail.mail' ),
                              $data );
         // advance to next
         $this->assertEquals( true, $set->nextMail() );
@@ -59,7 +58,7 @@ class ezcMailTransportFileTest extends ezcTestCase
             $data .= $line;
             $line = $set->getNextLine();
         }
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . '/../parser/data/gmail/simple_mail_with_text_subject_and_body.mail' ),
+        $this->assertEquals( file_get_contents( __DIR__ . '/../parser/data/gmail/simple_mail_with_text_subject_and_body.mail' ),
                              $data );
 
 
@@ -68,24 +67,26 @@ class ezcMailTransportFileTest extends ezcTestCase
 
     public function testNoSuchFile()
     {
-        $set = new ezcMailFileSet( array( 'no_such_file', 'not_this_either' ) );
+        $set = new ezcMailFileSet( ['no_such_file', 'not_this_either'] );
         $this->assertEquals( null, $set->getNextLine() );
         $this->assertEquals( false, $set->nextMail() );
     }
 
     public function testStdIn()
     {
-        $dataDir = dirname( __FILE__ ) . "/data/";
-        $phpPath = isset( $_SERVER["_"] ) ? $_SERVER["_"] : "/bin/env php";
+        $dataDir = __DIR__ . "/data/";
+        $phpPath = $_SERVER["_"] ?? "/bin/env php";
         $scriptFile = "{$dataDir}/parse-script.php";
-        $desc = array(
-            0 => array( "pipe", "r" ),  // stdin
-            1 => array( "pipe", "w" ),  // stdout
-            2 => array( "pipe", "w" )   // stderr
-        );
+        $desc = [
+            0 => ["pipe", "r"],
+            // stdin
+            1 => ["pipe", "w"],
+            // stdout
+            2 => ["pipe", "w"],
+        ];
         $proc = proc_open("'{$phpPath}' '{$scriptFile}'", $desc, $pipes );
 
-        fwrite( $pipes[0], file_get_contents( dirname( __FILE__ ) . '/../parser/data/gmail/html_mail.mail' ) );
+        fwrite( $pipes[0], file_get_contents( __DIR__ . '/../parser/data/gmail/html_mail.mail' ) );
         fclose( $pipes[0] );
 
         $ret = '';

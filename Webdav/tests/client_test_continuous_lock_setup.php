@@ -4,9 +4,9 @@ require_once 'client_test_continuous_setup.php';
 
 class ezcWebdavClientTestContinuousLockSetup extends ezcWebdavClientTestContinuousSetup
 {
-    protected $tokenAssignement = array();
+    protected $tokenAssignement = [];
 
-    protected $tokenReplacement = array();
+    protected $tokenReplacement = [];
 
     public function performSetup( ezcWebdavClientTest $test, $testSetId )
     {
@@ -15,9 +15,7 @@ class ezcWebdavClientTestContinuousLockSetup extends ezcWebdavClientTestContinuo
         $test->server->pluginRegistry->registerPlugin(
             new ezcWebdavLockPluginConfiguration(
                 new ezcWebdavLockPluginOptions(
-                    array(
-                        'backendLockTimeout' => 2000000,
-                    )
+                    ['backendLockTimeout' => 2000000]
                 )
             )
         );

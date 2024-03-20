@@ -78,7 +78,7 @@ class ezcTemplateProgramSourceToTstParser extends ezcTemplateSourceToTstParser
             if ( $this->lastCursor->length( $blockCursor ) > 0 )
             {
                 $textElement = new ezcTemplateTextBlockTstNode( $this->parser->source, clone $this->lastCursor, clone $blockCursor );
-                $this->handleElements( array( $textElement ) );
+                $this->handleElements( [$textElement] );
                 unset( $textElement );
             }
 
@@ -137,7 +137,7 @@ class ezcTemplateProgramSourceToTstParser extends ezcTemplateSourceToTstParser
         if ( $lastCursor->length( $cursor ) > 0 )
         {
             $textElement = new ezcTemplateTextBlockTstNode( $this->parser->source, clone $lastCursor, clone $cursor );
-            $this->handleElements( array( $textElement ) );
+            $this->handleElements( [$textElement] );
         }
 
         if ( $this->lastBlock === null )
@@ -147,7 +147,7 @@ class ezcTemplateProgramSourceToTstParser extends ezcTemplateSourceToTstParser
 
         if ( !$this->lastBlock instanceof ezcTemplateProgramTstNode )
         {
-            $parents = array();
+            $parents = [];
 
             // Calculate level of the last block, this used to indent the last block
             $level = 0;

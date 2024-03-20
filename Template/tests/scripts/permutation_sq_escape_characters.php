@@ -1,11 +1,11 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/literals/string_sq_escaped_characters.in
 
-$chars = array();
-$escChars = array();
+$chars = [];
+$escChars = [];
 for ( $i = 1; $i < 256; ++$i )
 {
     $chars[] = chr( $i );
@@ -67,8 +67,7 @@ do
     }
     elseif ( $alt->index == 1 &&
              in_array( $escaped->generate(),
-                       array( "\\'",
-                              "\\\\" )
+                       ["\\'", "\\\\"]
                         ) )
     {
         $str = "\\" . $str;

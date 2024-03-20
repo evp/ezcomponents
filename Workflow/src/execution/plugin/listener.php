@@ -23,7 +23,7 @@ class ezcWorkflowExecutionListenerPlugin extends ezcWorkflowExecutionPlugin
      *
      * @var array
      */
-    protected $listeners = array();
+    protected $listeners = [];
 
     /**
      * Adds a listener.

@@ -21,7 +21,7 @@ class ezcWebdavClientTestContinuousSetup extends ezcWebdavClientTestSetup
 
     protected function setupBackend()
     {
-        return require dirname( __FILE__ ) . '/scripts/test_generator_backend.php';
+        return require __DIR__ . '/scripts/test_generator_backend.php';
     }
 }
 

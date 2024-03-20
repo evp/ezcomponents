@@ -17,7 +17,7 @@
  */
 class ezcCacheStackTestConfigurator implements ezcCacheStackConfigurator
 {
-    public static $storages  = array();
+    public static $storages  = [];
 
     public static $metaStorage;
 
@@ -41,7 +41,7 @@ class ezcCacheStackTestConfigurator implements ezcCacheStackConfigurator
 
     public static function reset()
     {
-        self::$storages    = array();
+        self::$storages    = [];
         self::$metaStorage = null;
         self::$options     = null;
     }

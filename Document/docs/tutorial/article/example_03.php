@@ -11,7 +11,7 @@ $graph->xAxis = new ezcGraphChartElementNumericAxis();
 $graph->xAxis->axisLabelRenderer = new ezcGraphAxisBoxedLabelRenderer();
 $graph->xAxis->majorStep = 1;
 
-$data = array();
+$data = [];
 for ( $i = 0; $i <= 10; $i++ )
 {
     $data[$i] = mt_rand( -5, 5 );

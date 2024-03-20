@@ -9,7 +9,5 @@
  * @package MvcTemplateTiein
  */
 
-return array(
-    'ezcMvcTemplateViewHandler' => 'MvcTemplateTiein/viewhandlers/template.php',
-);
+return ['ezcMvcTemplateViewHandler' => 'MvcTemplateTiein/viewhandlers/template.php'];
 ?>

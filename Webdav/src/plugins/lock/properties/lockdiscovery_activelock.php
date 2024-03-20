@@ -75,9 +75,9 @@ class ezcWebdavLockDiscoveryPropertyActiveLock extends ezcWebdavSupportedLockPro
     {
         parent::__construct( $lockType, $lockScope );
         $this->depth      = $depth;
-        $this->owner      = ( $owner === null ? new ezcWebdavPotentialUriContent() : $owner );
+        $this->owner      = ( $owner ?? new ezcWebdavPotentialUriContent() );
         $this->timeout    = $timeout;
-        $this->token      = ( $token === null ? new ezcWebdavPotentialUriContent() : $token );
+        $this->token      = ( $token ?? new ezcWebdavPotentialUriContent() );
         $this->baseUri    = $baseUri;
         $this->lastAccess = $lastAccess;
 

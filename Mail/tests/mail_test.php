@@ -24,8 +24,8 @@ class ezcMailTest extends ezcTestCase
 
     public function testProperties()
     {
-        $this->assertSetPropertyFails( $this->mail, "does_not_exist", array( 42 ) );
-        $this->assertSetProperty( $this->mail, "to", array( array( new ezcMailAddress( 'fh@ez.no' ) ) ) );
+        $this->assertSetPropertyFails( $this->mail, "does_not_exist", [42] );
+        $this->assertSetProperty( $this->mail, "to", [[new ezcMailAddress( 'fh@ez.no' )]] );
 
         try
         {
@@ -52,18 +52,15 @@ class ezcMailTest extends ezcTestCase
     {
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->addTo( new ezcMailAddress( 'bh@ez.no' ) );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ),
-                                    new ezcMailAddress( 'bh@ez.no' ) ), $this->mail->to );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ), new ezcMailAddress( 'bh@ez.no' )], $this->mail->to );
 
         $this->mail->addCc( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->addCc( new ezcMailAddress( 'bh@ez.no' ) );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ),
-                                    new ezcMailAddress( 'bh@ez.no' ) ), $this->mail->cc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ), new ezcMailAddress( 'bh@ez.no' )], $this->mail->cc );
 
         $this->mail->addBcc( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->addBcc( new ezcMailAddress( 'bh@ez.no' ) );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ),
-                                    new ezcMailAddress( 'bh@ez.no' ) ), $this->mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ), new ezcMailAddress( 'bh@ez.no' )], $this->mail->bcc );
 
 
     }
@@ -113,7 +110,7 @@ class ezcMailTest extends ezcTestCase
     {
         $this->mail->from = new ezcMailAddress( 'from@ez.no' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $this->mail->subject = "Døtte er en test";
+        $this->mail->subject = "Dï¿½tte er en test";
         $this->mail->subjectCharset = 'ISO-8859-1';
         $expected = "From: from@ez.no" . ezcMailTools::lineBreak() .
             "To: Frederik Holljen <fh@ez.no>" . ezcMailTools::lineBreak() .
@@ -130,11 +127,11 @@ class ezcMailTest extends ezcTestCase
 
     public function testHeadersWithCharset()
     {
-        $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Fræderik Hølljen', 'ISO-8859-1' );
-        $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Fræderik Hølljen','ISO-8859-1' ) );
-        $this->mail->addCc( new ezcMailAddress( 'fh@ez.no', 'Fræderik Hølljen','ISO-8859-1' ) );
-        $this->mail->addBcc( new ezcMailAddress( 'fh@ez.no', 'Fræderik Hølljen','ISO-8859-1' ) );
-        $this->mail->subject = "Døtte er en test";
+        $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frï¿½derik Hï¿½lljen', 'ISO-8859-1' );
+        $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frï¿½derik Hï¿½lljen','ISO-8859-1' ) );
+        $this->mail->addCc( new ezcMailAddress( 'fh@ez.no', 'Frï¿½derik Hï¿½lljen','ISO-8859-1' ) );
+        $this->mail->addBcc( new ezcMailAddress( 'fh@ez.no', 'Frï¿½derik Hï¿½lljen','ISO-8859-1' ) );
+        $this->mail->subject = "Dï¿½tte er en test";
         $this->mail->subjectCharset = 'ISO-8859-1';
         $expected = "From: =?ISO-8859-1?Q?Fr=E6derik=20H=F8lljen?= <fh@ez.no>" . ezcMailTools::lineBreak() .
             "To: =?ISO-8859-1?Q?Fr=E6derik=20H=F8lljen?= <fh@ez.no>" . ezcMailTools::lineBreak() .
@@ -216,8 +213,8 @@ class ezcMailTest extends ezcTestCase
     {
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $this->mail->subject = "æøå";
-        $this->mail->body = new ezcMailText( "Dette er body ßßæøååå" );
+        $this->mail->subject = "ï¿½ï¿½ï¿½";
+        $this->mail->body = new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" );
 //        echo "\n---------------\n";
 //        echo $this->mail->generate();
 //        echo "---------------\n";
@@ -228,11 +225,11 @@ class ezcMailTest extends ezcTestCase
 
     public function testFullMailMultipart()
     {
-        $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Fræderik Hølljen', "iso-8859-1" );
-        $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Fræderik Hølljeñ', "iso-8859-1" ) );
-        $this->mail->subject = "æøå";
+        $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frï¿½derik Hï¿½lljen', "iso-8859-1" );
+        $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frï¿½derik Hï¿½lljeï¿½', "iso-8859-1" ) );
+        $this->mail->subject = "ï¿½ï¿½ï¿½";
         $this->mail->subjectCharset = 'iso-8859-1';
-        $this->mail->body = new ezcMailMultipartAlternative( new ezcMailText( "Dette er body ßßæøååå", "iso-8859-1" ),
+        $this->mail->body = new ezcMailMultipartAlternative( new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "iso-8859-1" ),
                                                              $html = new ezcMailText( "<html>Hello</html>" ) );
         $html->subType = "html";
 
@@ -249,14 +246,14 @@ class ezcMailTest extends ezcTestCase
         $digest = new ezcMail();
         $digest->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $digest->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $digest->subject = "æøå";
-        $digest->body = new ezcMailText( "Dette er body ßßæøååå" );
+        $digest->subject = "ï¿½ï¿½ï¿½";
+        $digest->body = new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" );
 
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $this->mail->subject = "æøå";
+        $this->mail->subject = "ï¿½ï¿½ï¿½";
         $this->mail->subjectCharset = 'iso-8859-1';
-        $this->mail->body = new ezcMailMultipartMixed( new ezcMailText( "Dette er body ßßæøååå", "iso-8859-1" ),
+        $this->mail->body = new ezcMailMultipartMixed( new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "iso-8859-1" ),
                                                        new ezcMailRfc822Digest( $digest ) );
 
 //        $transport = new ezcMailSmtpTransport( "smtp.ez.no" );
@@ -268,14 +265,14 @@ class ezcMailTest extends ezcTestCase
         $digest = new ezcMail();
         $digest->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $digest->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $digest->subject = "æøå";
-        $digest->body = new ezcMailText( "Dette er body ßßæøååå" );
+        $digest->subject = "ï¿½ï¿½ï¿½";
+        $digest->body = new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" );
 
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $this->mail->subject = "æøå";
+        $this->mail->subject = "ï¿½ï¿½ï¿½";
         $this->mail->subjectCharset = 'iso-8859-1';
-        $this->mail->body = new ezcMailMultipartMixed( new ezcMailText( "Dette er body ßßæøååå", "iso-8859-1" ),
+        $this->mail->body = new ezcMailMultipartMixed( new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "iso-8859-1" ),
                                                        new ezcMailMultipartDigest( new ezcMailRfc822Digest( $digest ) ) );
 
 //        $transport = new ezcMailSmtpTransport( "smtp.ez.no" );
@@ -287,15 +284,15 @@ class ezcMailTest extends ezcTestCase
         $digest = new ezcMail();
         $digest->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $digest->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $digest->subject = "æøå";
-        $digest->body = new ezcMailText( "Dette er body ßßæøååå" );
+        $digest->subject = "ï¿½ï¿½ï¿½";
+        $digest->body = new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" );
 
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $this->mail->subject = "æøå";
+        $this->mail->subject = "ï¿½ï¿½ï¿½";
         $this->mail->subjectCharset = 'iso-8859-1';
-        $this->mail->body = new ezcMailMultipartMixed( new ezcMailText( "Dette er body ßßæøååå", "iso-8859-1" ),
-                                                       new ezcMailMultipartDigest( array( new ezcMailRfc822Digest( $digest ) ) ) );
+        $this->mail->body = new ezcMailMultipartMixed( new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "iso-8859-1" ),
+                                                       new ezcMailMultipartDigest( [new ezcMailRfc822Digest( $digest )] ) );
 
 //        $transport = new ezcMailSmtpTransport( "smtp.ez.no" );
 //        $transport->send( $this->mail );
@@ -313,7 +310,7 @@ class ezcMailTest extends ezcTestCase
         $lastRecipient = $delivery->createRecipient();
         $delivery->recipients[$lastRecipient]["Action"] = "failed";
         $mail->body = new ezcMailMultipartReport(
-            new ezcMailText( "Dette er body ßßæøååå", "iso-8859-1" ),
+            new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "iso-8859-1" ),
             $delivery,
             new ezcMailText( "The content initially sent" )
             );
@@ -323,8 +320,8 @@ class ezcMailTest extends ezcTestCase
     {
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $this->mail->subject = "æøå";
-        $this->mail->body = new ezcMailText( "Dette er body ßßæøååå" );
+        $this->mail->subject = "ï¿½ï¿½ï¿½";
+        $this->mail->body = new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" );
 
         $this->mail->generateHeaders();
         $expected = '<'. date( 'YmdGHjs' ) . '.' . getmypid() . '.7@ez.no>';
@@ -335,8 +332,8 @@ class ezcMailTest extends ezcTestCase
     {
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
-        $this->mail->subject = "æøå";
-        $this->mail->body = new ezcMailText( "Dette er body ßßæøååå" );
+        $this->mail->subject = "ï¿½ï¿½ï¿½";
+        $this->mail->body = new ezcMailText( "Dette er body ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" );
 
         $this->mail->messageID = "<test-ezc-message-id@ezc.ez.no>";
         $this->mail->generateHeaders();
@@ -366,8 +363,7 @@ class ezcMailTest extends ezcTestCase
     public function testFoldingAddresses()
     {
         $this->mail->from = new ezcMailAddress( 'from@ez.no' );
-        $addresses = array( 'nospam1@ez.no', 'nospam2@ez.no', 'nospam3@ez.no',
-            'nospam4@ez.no', 'nospam5@ez.no', 'nospam6@ez.no', 'nospam7@ez.no' );
+        $addresses = ['nospam1@ez.no', 'nospam2@ez.no', 'nospam3@ez.no', 'nospam4@ez.no', 'nospam5@ez.no', 'nospam6@ez.no', 'nospam7@ez.no'];
 
         foreach ( $addresses as $address )
         {
@@ -406,36 +402,33 @@ class ezcMailTest extends ezcTestCase
 
     public function testContentDispositionHeaderSetState()
     {
-        $header = ezcMailContentDispositionHeader::__set_state( array(
-                        'disposition' => 'inline',
-                        'fileName' => 'spacer.gif',
-                        'creationDate' => 'Sun, 21 May 2006 16:00:50 +0400',
-                        'modificationDate' => 'Sun, 21 May 2006 16:01:50 +0400',
-                        'readDate' => 'Sun, 21 May 2006 16:02:50 +0400',
-                        'size' => 51,
-                        'additionalParameters' => array( 'foo' => 'bar' ),
-                        'fileNameLanguage' => 'EN',
-                        'fileNameCharSet' => 'ISO-8859-1',
-                        // for issue #13038
-                        'displayFileName' => null
-                ) );
+        $header = ezcMailContentDispositionHeader::__set_state( [
+            'disposition' => 'inline',
+            'fileName' => 'spacer.gif',
+            'creationDate' => 'Sun, 21 May 2006 16:00:50 +0400',
+            'modificationDate' => 'Sun, 21 May 2006 16:01:50 +0400',
+            'readDate' => 'Sun, 21 May 2006 16:02:50 +0400',
+            'size' => 51,
+            'additionalParameters' => ['foo' => 'bar'],
+            'fileNameLanguage' => 'EN',
+            'fileNameCharSet' => 'ISO-8859-1',
+            // for issue #13038
+            'displayFileName' => null,
+        ] );
         $this->assertEquals( 'inline', $header->disposition );
         $this->assertEquals( 'spacer.gif', $header->fileName );
         $this->assertEquals( 'Sun, 21 May 2006 16:00:50 +0400', $header->creationDate );
         $this->assertEquals( 'Sun, 21 May 2006 16:01:50 +0400', $header->modificationDate );
         $this->assertEquals( 'Sun, 21 May 2006 16:02:50 +0400', $header->readDate );
         $this->assertEquals( 51, $header->size );
-        $this->assertEquals( array( 'foo' => 'bar' ), $header->additionalParameters );
+        $this->assertEquals( ['foo' => 'bar'], $header->additionalParameters );
         $this->assertEquals( 'EN', $header->fileNameLanguage );
         $this->assertEquals( 'ISO-8859-1', $header->fileNameCharSet );
     }
 
     public function testMailAddressSetState()
     {
-        $address = ezcMailAddress::__set_state( array(
-                         'email' => 'nospam@example.com',
-                         'name' => 'No Spam'
-                ) );
+        $address = ezcMailAddress::__set_state( ['email' => 'nospam@example.com', 'name' => 'No Spam'] );
         $this->assertEquals( 'nospam@example.com', $address->email );
         $this->assertEquals( 'No Spam', $address->name );
     }

@@ -55,11 +55,7 @@ class ezcDbFactory
      *
      * @var array(string=>string)
      */
-    static private $implementations = array( 'mysql'  => 'ezcDbHandlerMysql',
-                                             'pgsql'  => 'ezcDbHandlerPgsql',
-                                             'oracle' => 'ezcDbHandlerOracle',
-                                             'sqlite' => 'ezcDbHandlerSqlite',
-                                             'mssql' => 'ezcDbHandlerMssql', );
+    static private $implementations = ['mysql'  => 'ezcDbHandlerMysql', 'pgsql'  => 'ezcDbHandlerPgsql', 'oracle' => 'ezcDbHandlerOracle', 'sqlite' => 'ezcDbHandlerSqlite', 'mssql' => 'ezcDbHandlerMssql'];
 
     /**
      * Adds a database implementation to the list of known implementations.
@@ -100,7 +96,7 @@ class ezcDbFactory
      */
     static public function getImplementations()
     {
-        $list = array();
+        $list = [];
         foreach ( self::$implementations as $name => $className )
         {
             $list[] = $name;
@@ -146,7 +142,7 @@ class ezcDbFactory
 
         foreach ( $dbParams as $key => $val )
         {
-            if ( in_array( $key, array( 'phptype', 'type', 'handler', 'driver' ) ) )
+            if ( in_array( $key, ['phptype', 'type', 'handler', 'driver'] ) )
             {
                  $impName = $val;
                  break;
@@ -202,17 +198,7 @@ class ezcDbFactory
      */
     public static function parseDSN( $dsn )
     {
-        $parsed = array(
-            'phptype'  => false,
-            'dbsyntax' => false,
-            'username' => false,
-            'password' => false,
-            'protocol' => false,
-            'hostspec' => false,
-            'port'     => false,
-            'socket'   => false,
-            'database' => false,
-        );
+        $parsed = ['phptype'  => false, 'dbsyntax' => false, 'username' => false, 'password' => false, 'protocol' => false, 'hostspec' => false, 'port'     => false, 'socket'   => false, 'database' => false];
 
         if ( is_array( $dsn ) )
         {
@@ -277,7 +263,7 @@ class ezcDbFactory
         {
             // $dsn => proto(proto_opts)/database
             $proto       = $match[1];
-            $proto_opts  = $match[2] ? $match[2] : false;
+            $proto_opts  = $match[2] ?: false;
             $dsn         = $match[3];
         }
         else
@@ -285,11 +271,11 @@ class ezcDbFactory
             // $dsn => protocol+hostspec/database (old format)
             if ( strpos( $dsn, '+' ) !== false )
             {
-                list( $proto, $dsn ) = explode( '+', $dsn, 2 );
+                [$proto, $dsn] = explode( '+', $dsn, 2 );
             }
             if ( strpos( $dsn, '/' ) !== false )
             {
-                list( $proto_opts, $dsn ) = explode( '/', $dsn, 2 );
+                [$proto_opts, $dsn] = explode( '/', $dsn, 2 );
             }
             else
             {
@@ -305,7 +291,7 @@ class ezcDbFactory
         {
             if ( strpos( $proto_opts, ':' ) !== false )
             {
-                list( $parsed['hostspec'], $parsed['port'] ) = explode( ':', $proto_opts );
+                [$parsed['hostspec'], $parsed['port']] = explode( ':', $proto_opts );
             }
             else
             {
@@ -337,11 +323,11 @@ class ezcDbFactory
                 }
                 else
                 { // database?param1=value1
-                    $opts = array( $dsn );
+                    $opts = [$dsn];
                 }
                 foreach ( $opts as $opt )
                 {
-                    list( $key, $value ) = explode( '=', $opt );
+                    [$key, $value] = explode( '=', $opt );
                     if ( !isset( $parsed[$key] ) )
                     {
                         // don't allow params overwrite

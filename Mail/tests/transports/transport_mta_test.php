@@ -62,7 +62,7 @@ class ezcMailTransportMtaTest extends ezcTestCase
     // Tests sending a mail with empty to field.
     public function testInvalidMail1()
     {
-        $this->mail->to = array();
+        $this->mail->to = [];
         $this->mail->subject = "No recepients";
         try
         {

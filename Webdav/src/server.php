@@ -108,7 +108,7 @@ class ezcWebdavServer
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new instance.
@@ -173,9 +173,7 @@ class ezcWebdavServer
      */
     public final function handle( ezcWebdavBackend $backend, $uri = null )
     {
-        $uri = ( $uri === null 
-            ? 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']
-            : $uri );
+        $uri ??= 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
 
         // Perform final setup
         $this->properties['backend'] = $backend;
@@ -207,12 +205,10 @@ class ezcWebdavServer
         {
             // Plugin hook receivedRequest
             $pluginRes = ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-                __CLASS__,
+                self::class,
                 'receivedRequest',
                 new ezcWebdavPluginParameters(
-                    array(
-                        'request'  => $request,
-                    )
+                    ['request'  => $request]
                 )
             );
             if ( is_object( $pluginRes ) && $pluginRes instanceof ezcWebdavResponse )
@@ -234,12 +230,10 @@ class ezcWebdavServer
 
         // Plugin hook generatedResponse
         ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-            __CLASS__,
+            self::class,
             'generatedResponse',
             new ezcWebdavPluginParameters(
-                array(
-                    'response'  => $response,
-                )
+                ['response'  => $response]
             )
         );
 
@@ -404,9 +398,7 @@ class ezcWebdavServer
     public function createUnauthenticatedResponse( $uri, $desc )
     {
         $res = new ezcWebdavErrorResponse( ezcWebdavResponse::STATUS_401, $uri, $desc );
-        $wwwAuthHeader = array(
-            'basic' => 'Basic realm="' . $this->options->realm . '"',
-        );
+        $wwwAuthHeader = ['basic' => 'Basic realm="' . $this->options->realm . '"'];
         if ( $this->properties['auth'] instanceof ezcWebdavDigestAuthenticator )
         {
             $wwwAuthHeader['digest'] = 'Digest realm="' .$this->options->realm . '"'

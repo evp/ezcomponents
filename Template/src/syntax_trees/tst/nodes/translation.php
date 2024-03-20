@@ -67,10 +67,7 @@ class ezcTemplateTranslationTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'string'    => $this->string,
-                      'context'   => $this->context,
-                      'comment'   => $this->comment,
-                      'variables' => $this->variables );
+        return ['string'    => $this->string, 'context'   => $this->context, 'comment'   => $this->comment, 'variables' => $this->variables];
     }
 }
 ?>

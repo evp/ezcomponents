@@ -21,17 +21,7 @@ class ezcDbSchemaPgsqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
      *
      * @var array
      */
-    private $typeMap = array(
-        'integer' => 'bigint',
-        'boolean' => 'boolean',
-        'float' => 'double precision',
-        'decimal' => 'numeric',
-        'date' => 'date',
-        'timestamp' => 'timestamp',
-        'text' => 'varchar',
-        'blob' => 'bytea',
-        'clob' => 'text'
-    );
+    private $typeMap = ['integer' => 'bigint', 'boolean' => 'boolean', 'float' => 'double precision', 'decimal' => 'numeric', 'date' => 'date', 'timestamp' => 'timestamp', 'text' => 'varchar', 'blob' => 'bytea', 'clob' => 'text'];
 
     /**
      * Creates tables defined in $dbSchema in the database referenced by $db.
@@ -237,8 +227,8 @@ class ezcDbSchemaPgsqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
     {
         $this->diffSchema = $dbSchemaDiff;
         // reset queries
-        $this->queries = array();
-        $this->context = array();
+        $this->queries = [];
+        $this->context = [];
 
         $this->generateDiffSchemaAsSql();
         return $this->queries;
@@ -263,7 +253,7 @@ class ezcDbSchemaPgsqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
     protected function convertFromGenericType( ezcDbSchemaField $fieldDefinition )
     {
         $typeAddition = '';
-        if ( in_array( $fieldDefinition->type, array( 'decimal', 'text' ) ) )
+        if ( in_array( $fieldDefinition->type, ['decimal', 'text'] ) )
         {
             if ( $fieldDefinition->length !== false && $fieldDefinition->length !== 0 )
             {
@@ -372,7 +362,7 @@ class ezcDbSchemaPgsqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
     {
         $sqlDefinition = "\"$fieldName\" ";
 
-        $defList = array();
+        $defList = [];
 
         if ( $fieldDefinition->autoIncrement )
         {
@@ -437,7 +427,7 @@ class ezcDbSchemaPgsqlWriter extends ezcDbSchemaCommonSqlWriter implements ezcDb
 
         $sql .= " ( ";
 
-        $indexFieldSql = array();
+        $indexFieldSql = [];
         foreach ( $indexDefinition->indexFields as $indexFieldName => $dummy )
         {
                 $indexFieldSql[] = "\"$indexFieldName\"";

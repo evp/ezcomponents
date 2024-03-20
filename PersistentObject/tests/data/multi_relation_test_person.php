@@ -77,7 +77,7 @@ class MultiRelationTestPerson
     {
         $db = ezcDbInstance::get();
         $schema = ezcDbSchema::createFromDb( $db );
-        $schema->writeToFile( 'array', dirname( __FILE__ ) . '/multi_relation.dba' );
+        $schema->writeToFile( 'array', __DIR__ . '/multi_relation.dba' );
     }
 
     /**
@@ -88,7 +88,7 @@ class MultiRelationTestPerson
     public static function setupTables( $autoIncrement = true )
     {
         $db = ezcDbInstance::get();
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . '/multi_relation.dba' );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . '/multi_relation.dba' );
         $schema->writeToDb( $db );
     }
 
@@ -113,7 +113,7 @@ class MultiRelationTestPerson
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['id'] = $this->id;
         $result['name'] = $this->name;
         $result['mother'] = $this->mother;

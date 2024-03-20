@@ -41,7 +41,7 @@ class ezcPersistentIdentityRelationQueryCreator
      * 
      * @var array(string=>string)
      */
-    protected $aliases = array();
+    protected $aliases = [];
 
     /**
      * Creates a new query generator. 
@@ -85,7 +85,7 @@ class ezcPersistentIdentityRelationQueryCreator
             )
         );
 
-        $this->aliases = array();
+        $this->aliases = [];
 
         return $q;
     }
@@ -107,7 +107,7 @@ class ezcPersistentIdentityRelationQueryCreator
         $q = $this->createBasicFindQuery( $srcDef, $relations );
         $q->setAliases( $this->aliases );
 
-        $this->aliases = array();
+        $this->aliases = [];
 
         return new ezcPersistentFindWithRelationsQuery(
             $q,
@@ -197,7 +197,7 @@ class ezcPersistentIdentityRelationQueryCreator
 
             $relation->definition = $this->defManager->fetchDefinition( $relation->relatedClass );
             
-            if ( $relation->furtherRelations !== array() )
+            if ( $relation->furtherRelations !== [] )
             {
                 $this->fetchDefinitions( $relation->definition, $relation->furtherRelations );
             }
@@ -254,7 +254,7 @@ class ezcPersistentIdentityRelationQueryCreator
                 );
             }
 
-            if ( $relation->furtherRelations !== array() )
+            if ( $relation->furtherRelations !== [] )
             {
                 $this->createSelects( $q, $relation->furtherRelations );
             }

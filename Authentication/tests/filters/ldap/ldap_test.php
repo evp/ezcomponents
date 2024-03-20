@@ -239,7 +239,7 @@ class ezcAuthenticationLdapTest extends ezcAuthenticationTest
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'hans.mustermann', 'wrong password' );
         $ldap = new ezcAuthenticationLdapInfo( self::$host, self::$format, self::$base, self::$port );
-        $filter = $this->getMock( 'ezcAuthenticationLdapFilter', array( 'ldapConnect' ), array( $ldap ) );
+        $filter = $this->getMock( 'ezcAuthenticationLdapFilter', ['ldapConnect'], [$ldap] );
         $filter->expects( $this->any() )
                ->method( 'ldapConnect' )
                ->will( $this->returnValue( false ) );
@@ -259,7 +259,7 @@ class ezcAuthenticationLdapTest extends ezcAuthenticationTest
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'hans.mustermann', 'wrong password' );
         $ldap = new ezcAuthenticationLdapInfo( self::$host, self::$format, self::$base, self::$port, ezcAuthenticationLdapFilter::PROTOCOL_TLS );
-        $filter = $this->getMock( 'ezcAuthenticationLdapFilter', array( 'ldapStartTls' ), array( $ldap ) );
+        $filter = $this->getMock( 'ezcAuthenticationLdapFilter', ['ldapStartTls'], [$ldap] );
         $filter->expects( $this->any() )
                ->method( 'ldapStartTls' )
                ->will( $this->returnValue( false ) );
@@ -281,11 +281,11 @@ class ezcAuthenticationLdapTest extends ezcAuthenticationTest
         $ldap = new ezcAuthenticationLdapInfo( self::$host, self::$format, self::$base, self::$port );
         $authentication = new ezcAuthentication( $credentials );
         $filter = new ezcAuthenticationLdapFilter( $ldap );
-        $filter->registerFetchData( array( 'uid' ) );
+        $filter->registerFetchData( ['uid'] );
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array( 'uid' => array( 'jan.modaal' ) );
+        $expected = ['uid' => ['jan.modaal']];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 
@@ -300,11 +300,11 @@ class ezcAuthenticationLdapTest extends ezcAuthenticationTest
         $ldap = new ezcAuthenticationLdapInfo( self::$host, self::$format, self::$base, self::$port );
         $authentication = new ezcAuthentication( $credentials );
         $filter = new ezcAuthenticationLdapFilter( $ldap );
-        $filter->registerFetchData( array( 'uid', 'displayName' ) );
+        $filter->registerFetchData( ['uid', 'displayName'] );
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array( 'uid' => array( 'johnny.doe' ), 'displayName' => array ( 'Johnny Doe' ) );
+        $expected = ['uid' => ['johnny.doe'], 'displayName' => ['Johnny Doe']];
         $this->assertEquals( $expected, $filter->fetchData() );
         self::$base = $base;
     }
@@ -320,13 +320,11 @@ class ezcAuthenticationLdapTest extends ezcAuthenticationTest
         $ldap = new ezcAuthenticationLdapInfo( self::$host, self::$format, self::$base, self::$port );
         $authentication = new ezcAuthentication( $credentials );
         $filter = new ezcAuthenticationLdapFilter( $ldap );
-        $filter->registerFetchData( array( 'uid', 'objectClass' ) );
+        $filter->registerFetchData( ['uid', 'objectClass'] );
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array( 'uid' => array( 'jan.modaal' ),
-                           'objectClass' => array( 'account', 'simpleSecurityObject', 'top' )
-                         );
+        $expected = ['uid' => ['jan.modaal'], 'objectClass' => ['account', 'simpleSecurityObject', 'top']];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 
@@ -339,11 +337,11 @@ class ezcAuthenticationLdapTest extends ezcAuthenticationTest
         $ldap = new ezcAuthenticationLdapInfo( self::$host, self::$format, self::$base, self::$port );
         $authentication = new ezcAuthentication( $credentials );
         $filter = new ezcAuthenticationLdapFilter( $ldap );
-        $filter->registerFetchData( array( 'uid', 'displayName' ) );
+        $filter->registerFetchData( ['uid', 'displayName'] );
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array( 'uid' => array( 'johnny.doe' ), 'displayName' => array ( 'Johnny Doe' ) );
+        $expected = ['uid' => ['johnny.doe'], 'displayName' => ['Johnny Doe']];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 
@@ -356,20 +354,17 @@ class ezcAuthenticationLdapTest extends ezcAuthenticationTest
         $ldap = new ezcAuthenticationLdapInfo( self::$host, self::$format, self::$base, self::$port );
         $authentication = new ezcAuthentication( $credentials );
         $filter = new ezcAuthenticationLdapFilter( $ldap );
-        $filter->registerFetchData( array( 'uid', 'dn' ) );
+        $filter->registerFetchData( ['uid', 'dn'] );
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array(
-            'uid' => array( 'jan.modaal' ),
-            'dn' => 'uid=jan.modaal,dc=ezctest,dc=ez,dc=no'
-        );
+        $expected = ['uid' => ['jan.modaal'], 'dn' => 'uid=jan.modaal,dc=ezctest,dc=ez,dc=no'];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 
     public function testLdapInfo()
     {
-        $ldap = ezcAuthenticationLdapInfo::__set_state( array( 'host' => self::$host, 'format' => self::$format, 'base' => self::$base, 'port' => self::$port, 'protocol' => ezcAuthenticationLdapFilter::PROTOCOL_TLS ) );
+        $ldap = ezcAuthenticationLdapInfo::__set_state( ['host' => self::$host, 'format' => self::$format, 'base' => self::$base, 'port' => self::$port, 'protocol' => ezcAuthenticationLdapFilter::PROTOCOL_TLS] );
         $this->assertEquals( self::$host, $ldap->host );
         $this->assertEquals( self::$format, $ldap->format );
         $this->assertEquals( self::$base, $ldap->base );

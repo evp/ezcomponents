@@ -44,10 +44,7 @@ abstract class ezcDbHandler extends PDO
      * 
      * @var string
      */
-    protected $identifierQuoteChars = array(
-        "start" => '"',
-        "end"   => '"',
-    );
+    protected $identifierQuoteChars = ["start" => '"', "end"   => '"'];
 
     /**
      * Constructs a handler object.

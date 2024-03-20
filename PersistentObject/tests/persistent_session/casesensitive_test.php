@@ -8,7 +8,7 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . '/../data/persistent_test_object_casesensitive.php';
+require_once __DIR__ . '/../data/persistent_test_object_casesensitive.php';
 
 /**
  * Tests the code manager.
@@ -35,7 +35,7 @@ class ezcPersistentSessionCasesensitiveTest extends ezcTestCase
         PersistentTestObjectCasesensitive::insertCleanData();
         $this->session = new ezcPersistentSession(
             ezcDbInstance::get(),
-            new ezcPersistentCodeManager( dirname( __FILE__ ) . "/../data/" )
+            new ezcPersistentCodeManager( __DIR__ . "/../data/" )
         );
     }
 
@@ -124,7 +124,7 @@ class ezcPersistentSessionCasesensitiveTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 

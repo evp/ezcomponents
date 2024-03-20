@@ -42,7 +42,7 @@ class ezcDbSchemaPersistentClassWriter implements ezcDbSchemaFileWriter
     public function __construct( $overwrite = false, $classPrefix = null )
     {
         $this->overwrite = $overwrite;
-        $this->prefix    = ( $classPrefix === null ) ? "" : $classPrefix;
+        $this->prefix    = $classPrefix ?? "";
     }
     
     /**

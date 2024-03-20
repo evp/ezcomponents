@@ -339,33 +339,33 @@ class ezcFeed
     /**
      * The version of the feed generator, to be included in the generated feeds.
      */
-    const GENERATOR_VERSION = '1.3';
+    public const GENERATOR_VERSION = '1.3';
 
     /**
      * The uri of the feed generator, to be included in the generated feeds.
      */
-    const GENERATOR_URI = 'http://ezcomponents.org/docs/tutorials/Feed';
+    public const GENERATOR_URI = 'http://ezcomponents.org/docs/tutorials/Feed';
 
     /**
      * Holds a list of all supported feed types.
      *
      * @var array(string=>string)
      */
-    private static $supportedFeedTypes = array();
+    private static $supportedFeedTypes = [];
 
     /**
      * Holds a list of all supported modules.
      *
      * @var array(string=>string)
      */
-    private static $supportedModules = array();
+    private static $supportedModules = [];
 
     /**
      * Holds a list of all supported modules prefixes.
      *
      * @var array(string=>string)
      */
-    private static $supportedModulesPrefixes = array();
+    private static $supportedModulesPrefixes = [];
 
     /**
      * Holds the feed type (eg. 'rss1').
@@ -393,7 +393,7 @@ class ezcFeed
      *
      * @var array(ezcFeedModule)
      */
-    private $modules = array();
+    private $modules = [];
 
     /**
      * Creates a new feed object.
@@ -1123,7 +1123,7 @@ class ezcFeed
 
         foreach ( self::getSupportedTypes() as $feedType => $feedClass )
         {
-            $canParse = call_user_func( array( $feedClass, 'canParse' ), $xml );
+            $canParse = call_user_func( [$feedClass, 'canParse'], $xml );
             if ( $canParse === true )
             {
                 $feed = new ezcFeed( $feedType );

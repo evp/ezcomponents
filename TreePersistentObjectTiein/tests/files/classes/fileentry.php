@@ -7,10 +7,10 @@
  */
 class fileentry
 {
-    const ROOT = 1;
-    const PARTITION = 2;
-    const DIR = 3;
-    const FILE = 4;
+    public const ROOT = 1;
+    public const PARTITION = 2;
+    public const DIR = 3;
+    public const FILE = 4;
 
     /**
      * id
@@ -77,13 +77,7 @@ class fileentry
      */
      public function getState()
      {
-         return array(
-             'extra' => $this->extra,
-             'id' => $this->id,
-             'name' => $this->name,
-             'size' => $this->size,
-             'type' => $this->type,
-         );
+         return ['extra' => $this->extra, 'id' => $this->id, 'name' => $this->name, 'size' => $this->size, 'type' => $this->type];
      }
 }
 ?>

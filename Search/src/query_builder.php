@@ -64,7 +64,7 @@ class ezcSearchQueryBuilder
     {
         $this->reset();
 
-        $tokens = $this->tokenize( $searchQuery );
+        $tokens = static::tokenize($searchQuery);
         $this->buildQuery( $query, $tokens, $searchFields );
         if ( $this->stackType[0] == 'and' || $this->stackType[0] == 'default' )
         {
@@ -86,9 +86,9 @@ class ezcSearchQueryBuilder
     {
         $this->state = 'normal';
         $this->stackLevel = 0;
-        $this->stack = array();
-        $this->stack[$this->stackLevel] = array();
-        $this->stackType = array();
+        $this->stack = [];
+        $this->stack[$this->stackLevel] = [];
+        $this->stackType = [];
         $this->stackType[$this->stackLevel] = 'default';
         $this->prefix = null;
     }
@@ -101,19 +101,8 @@ class ezcSearchQueryBuilder
      */
     static protected function tokenize( $searchQuery )
     {
-        $map = array(
-            ' '  => ezcSearchQueryToken::SPACE,
-            '\t' => ezcSearchQueryToken::SPACE,
-            '"'  => ezcSearchQueryToken::QUOTE,
-            '+'  => ezcSearchQueryToken::PLUS,
-            '-'  => ezcSearchQueryToken::MINUS,
-            '('  => ezcSearchQueryToken::BRACE_OPEN,
-            ')'  => ezcSearchQueryToken::BRACE_CLOSE,
-            'and' => ezcSearchQueryToken::LOGICAL_AND,
-            'or'  => ezcSearchQueryToken::LOGICAL_OR,
-            ':'   => ezcSearchQueryToken::COLON,
-        );
-        $tokens = array();
+        $map = [' '  => ezcSearchQueryToken::SPACE, '\t' => ezcSearchQueryToken::SPACE, '"'  => ezcSearchQueryToken::QUOTE, '+'  => ezcSearchQueryToken::PLUS, '-'  => ezcSearchQueryToken::MINUS, '('  => ezcSearchQueryToken::BRACE_OPEN, ')'  => ezcSearchQueryToken::BRACE_CLOSE, 'and' => ezcSearchQueryToken::LOGICAL_AND, 'or'  => ezcSearchQueryToken::LOGICAL_OR, ':'   => ezcSearchQueryToken::COLON];
+        $tokens = [];
         $tokenArray = preg_split( '@(\s)|(["+():-])@', $searchQuery, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
         foreach ( $tokenArray as $token )
         {
@@ -169,7 +158,7 @@ class ezcSearchQueryBuilder
     {
         if ( count( $searchFields ) > 1 )
         {
-            $parts = array();
+            $parts = [];
             foreach ( $searchFields as $searchField )
             {
                 $parts[] = $this->processPrefix( $q, $q->eq( $searchField, $term ) );

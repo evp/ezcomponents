@@ -39,7 +39,7 @@ class ezcConsoleQuestionDialogOptions extends ezcConsoleDialogOptions
      *         If the value for a property is out of range.
      * @param array(string=>mixed) $options The initial options to set.
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties["text"]           = "Please enter a value: ";
         $this->properties["validator"]      = new ezcConsoleQuestionDialogTypeValidator();

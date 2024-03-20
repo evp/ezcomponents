@@ -48,29 +48,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
      * @var array
      * @access protected
      */
-    protected $testData = array(
-        0 => array( 'a' ),
-        1 => array( 1, 2, 3 ),
-        2 => array( 'a', 1, 'b', 2, 'c', 3 ),
-        3 => array(
-            1, 2, 3, 
-            array( 'a', 'b', 'c' ), 
-            4, 5
-        ),
-        4 => array(
-            array(
-                array( 1 ), array( 2, 3 )
-            ),
-            1, 2, 3,
-            array( 'a', 'b', 'c' ),
-        ),
-        5 => "Test 1 2 3 4 5 6 7 8\\\\",
-        6 => 'La la la 02064 lololo',
-        7 => true,
-        8 => false,
-        9 => 12345,
-       10 => 12.3746,
-    );
+    protected $testData = [0 => ['a'], 1 => [1, 2, 3], 2 => ['a', 1, 'b', 2, 'c', 3], 3 => [1, 2, 3, ['a', 'b', 'c'], 4, 5], 4 => [[[1], [2, 3]], 1, 2, 3, ['a', 'b', 'c']], 5 => "Test 1 2 3 4 5 6 7 8\\\\", 6 => 'La la la 02064 lololo', 7 => true, 8 => false, 9 => 12345, 10 => 12.3746];
 
     protected function setUp()
     {
@@ -114,11 +92,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
             $this->assertEquals( $this->storage->countDataItems( $id, $attributes ), 1, 'Storage file does not exist for ID: <' . $id . '>.' );
         }
@@ -209,11 +183,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
             $data = $this->storage->restore( $id, $attributes );
             $this->assertTrue( $data == $dataArr, "Restore data broken for ID <{$id}>." );
@@ -228,7 +198,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     public function testStoreRestoreOutdatedWithoutAttributes()
     {
         // Test with 10 seconds lifetime
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
         foreach ( $this->testData as $id => $dataArr ) 
         {
         
@@ -252,15 +222,11 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     public function testStoreRestoreOutdatedWithAttributes()
     {
         // Test with 10 seconds lifetime
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
         
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             
             $filename = $this->storage->getLocation() . $this->storage->generateIdentifier( $id, $attributes );
             
@@ -298,11 +264,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
             $this->storage->delete( $id, $attributes );
             $data = $this->storage->restore( $id );
@@ -317,11 +279,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
      */
     public function testStoreDeleteSuccessOnlyAttributes()
     {
-        $attributes = array(
-            'name'      => 'test',
-            'title'     => 'Test item',
-            'date'      => time(),
-        );
+        $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time()];
         foreach ( $this->testData as $id => $dataArr ) 
         {
             $this->storage->store( $id, $dataArr, $attributes );
@@ -357,11 +315,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
             $this->assertTrue( $this->storage->countDataItems( $id, $attributes ) == 1, "countDataItems cannot find data for ID <{$id}>." );
         }
@@ -376,11 +330,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
             $this->assertTrue( $this->storage->countDataItems( null, $attributes ) == 1, "countDataItems cannot find data for ID <{$id}>." );
         }
@@ -388,10 +338,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
 
     public function testStoreHasDataSuccessMultipleAttributes()
     {
-        $attributes = array(
-            'name'      => 'test',
-            'title'     => 'Test item',
-        );
+        $attributes = ['name'      => 'test', 'title'     => 'Test item'];
         foreach ( $this->testData as $id => $dataArr ) 
         {
             $this->storage->store( $id, $dataArr, $attributes );
@@ -402,7 +349,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     public function testCountDataItemsNoIdSubdirs()
     {
         $id = 'id/with/slashes/';
-        $attributes = array( 'class' => 23 );
+        $attributes = ['class' => 23];
         foreach ( $this->testData as $idSuffix => $data)
         {
             $this->storage->store( $id . $idSuffix, $data, $attributes );
@@ -419,7 +366,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     public function testCountDataItemsIdSubdirs()
     {
         $id = 'id/with/slashes/';
-        $attributes = array( 'class' => 23 );
+        $attributes = ['class' => 23];
         foreach ( $this->testData as $idSuffix => $data)
         {
             $this->storage->store( $id . $idSuffix, $data, $attributes );
@@ -437,7 +384,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     public function testCountDataItemsIdNoAttributesSubdirs()
     {
         $id = 'id/with/slashes/';
-        $attributes = array( 'class' => 23 );
+        $attributes = ['class' => 23];
         foreach ( $this->testData as $idSuffix => $data)
         {
             $this->storage->store( $id . $idSuffix, $data, $attributes );
@@ -457,7 +404,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
         foreach ( $this->testData as $id => $dataArr ) 
         {
             $this->storage->store( $id, $dataArr );
-            $data = $this->storage->restore( $id, array(), true );
+            $data = $this->storage->restore( $id, [], true );
             $this->assertTrue( $data == $dataArr, "Restore data broken for ID <{$id}>." );
         }
     }
@@ -466,11 +413,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
             $data = $this->storage->restore( $id, $attributes, true );
             $this->assertTrue( $data == $dataArr, "Restore data broken for ID <{$id}>." );
@@ -481,13 +424,9 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
-            $data = $this->storage->restore( $id, array(), true );
+            $data = $this->storage->restore( $id, [], true );
             $this->assertTrue( $data == $dataArr, "Restore data broken for ID <{$id}>." );
         }
     }
@@ -496,11 +435,7 @@ abstract class ezcCacheStorageTest extends ezcTestCase
     {
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
             $data = $this->storage->restore( null, $attributes, true );
             $this->assertTrue( $data == $dataArr, "Restore data broken for ID <{$id}>." );
@@ -512,13 +447,9 @@ abstract class ezcCacheStorageTest extends ezcTestCase
         $count = 0;
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time().$id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time().$id];
             $this->storage->store( $id, $dataArr, $attributes );
-            $data = $this->storage->restore( null, array(), true );
+            $data = $this->storage->restore( null, [], true );
             if ( $count === 0 )
             {
                 $this->assertTrue( $data == $dataArr, "Restore data broken for ID <{$id}>." );

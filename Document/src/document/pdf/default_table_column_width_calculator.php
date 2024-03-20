@@ -41,7 +41,7 @@ class ezcDocumentPdfDefaultTableColumnWidthCalculator extends ezcDocumentPdfTabl
     public function estimateWidths( DOMElement $table )
     {
         $xpath = new DOMXPath( $table->ownerDocument );
-        $columns = array();
+        $columns = [];
         foreach ( $xpath->query( './*/*/*[local-name() = "row"] | ./*/*[local-name() = "row"]', $table ) as $rowNr => $row )
         {
             foreach ( $xpath->query( './*[local-name() = "entry"]', $row ) as $cellNr => $cell )

@@ -66,7 +66,7 @@ class ezcMailTutorialExamples extends ezcTestCase
         $mail->subject = "This is the subject of the example mail";
         $textPart = new ezcMailText( "This is the body of the example mail." );
 //        $fileAttachment = new ezcMailFile( "~/myfile.jpg" );
-        $fileAttachment = new ezcMailFile( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $fileAttachment = new ezcMailFile( __DIR__ . "/parts/data/fly.jpg" );
 
         $mail->body = new ezcMailMultipartMixed( $textPart, $fileAttachment );
         $transport = new ezcMailMtaTransport();
@@ -81,7 +81,7 @@ class ezcMailTutorialExamples extends ezcTestCase
         $digest->subject = "This is the subject of the example mail";
         $digestTextPart = new ezcMailText( "This is the body of the example mail." );
 //        $fileAttachment = new ezcMailFile( "~/myfile.jpg" );
-        $fileAttachment = new ezcMailFile( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $fileAttachment = new ezcMailFile( __DIR__ . "/parts/data/fly.jpg" );
 
         $digest->body = new ezcMailMultipartMixed( $digestTextPart, $fileAttachment );
 
@@ -100,11 +100,11 @@ class ezcMailTutorialExamples extends ezcTestCase
     public function testMail4()
     {
         $mail = new ezcMail();
-        $mail->from = new ezcMailAddress( 'sender@example.com', 'Norwegian characters: æøå', 'iso-8859-1' );
-        $mail->addTo( new ezcMailAddress( 'reciever@example.com', 'More norwegian characters: æøå', 'iso-8859-1' ) );
-        $mail->subject = 'Oslo ligger sør i Norge og har vært landets hovedstad i over 600 år.';
+        $mail->from = new ezcMailAddress( 'sender@example.com', 'Norwegian characters: ï¿½ï¿½ï¿½', 'iso-8859-1' );
+        $mail->addTo( new ezcMailAddress( 'reciever@example.com', 'More norwegian characters: ï¿½ï¿½ï¿½', 'iso-8859-1' ) );
+        $mail->subject = 'Oslo ligger sï¿½r i Norge og har vï¿½rt landets hovedstad i over 600 ï¿½r.';
         $mail->subjectCharset = 'iso-8859-1';
-        $mail->body = new ezcMailText( 'Oslo be grunnlagt rundt 1048 av Harald Hardråde.', 'iso-8859-1' );
+        $mail->body = new ezcMailText( 'Oslo be grunnlagt rundt 1048 av Harald Hardrï¿½de.', 'iso-8859-1' );
         $transport = new ezcMailMtaTransport();
 //        $transport->send( $mail );
     }

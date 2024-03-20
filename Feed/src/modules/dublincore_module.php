@@ -221,22 +221,14 @@ class ezcFeedDublinCoreModule extends ezcFeedModule
         switch ( $this->level )
         {
             case 'feed':
-                if ( in_array( $name, array( 'contributor', 'coverage', 'creator',
-                                             'date', 'description', 'format',
-                                             'identifier', 'language', 'publisher',
-                                             'relation', 'rights', 'source',
-                                             'subject', 'title', 'type' ) ) )
+                if ( in_array( $name, ['contributor', 'coverage', 'creator', 'date', 'description', 'format', 'identifier', 'language', 'publisher', 'relation', 'rights', 'source', 'subject', 'title', 'type'] ) )
                 {
                     return true;
                 }
                 break;
 
             case 'item':
-                if ( in_array( $name, array( 'contributor', 'coverage', 'creator',
-                                             'date', 'description', 'format',
-                                             'identifier', 'language', 'publisher',
-                                             'relation', 'rights', 'source',
-                                             'subject', 'title', 'type' ) ) )
+                if ( in_array( $name, ['contributor', 'coverage', 'creator', 'date', 'description', 'format', 'identifier', 'language', 'publisher', 'relation', 'rights', 'source', 'subject', 'title', 'type'] ) )
                 {
                     return true;
                 }
@@ -301,11 +293,7 @@ class ezcFeedDublinCoreModule extends ezcFeedModule
      */
     public function generate( DOMDocument $xml, DOMNode $root )
     {
-        $elements = array( 'contributor', 'coverage', 'creator',
-                           'date', 'description', 'format',
-                           'identifier', 'language', 'publisher',
-                           'relation', 'rights', 'source',
-                           'subject', 'title', 'type');
+        $elements = ['contributor', 'coverage', 'creator', 'date', 'description', 'format', 'identifier', 'language', 'publisher', 'relation', 'rights', 'source', 'subject', 'title', 'type'];
 
         foreach ( $elements as $element )
         {
@@ -313,7 +301,7 @@ class ezcFeedDublinCoreModule extends ezcFeedModule
             {
                 foreach ( $this->$element as $values )
                 {
-                    $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . $element );
+                    $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . $element );
                     $root->appendChild( $elementTag );
 
                     switch ( $element )

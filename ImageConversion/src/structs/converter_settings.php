@@ -32,7 +32,7 @@ class ezcImageConverterSettings extends ezcBaseStruct
      *
      * @var array(ezcImageHandlerSettings)
      */
-    public $handlers = array();
+    public $handlers = [];
 
     /**
      * Map of automatic MIME type conversions. The converter will automatically
@@ -49,7 +49,7 @@ class ezcImageConverterSettings extends ezcBaseStruct
      *
      * @var array
      */
-    public $conversions = array();
+    public $conversions = [];
 
     /**
      * Create a new instance of ezcImageConverterSettings.
@@ -62,7 +62,7 @@ class ezcImageConverterSettings extends ezcBaseStruct
      * @param array $handlers    Array of {@link ezcImageHandlerSettings handler objects}.
      * @param array $conversions Map of standard MIME type conversions.
      */
-    public function __construct( array $handlers = array(), array $conversions = array() )
+    public function __construct( array $handlers = [], array $conversions = [] )
     {
         $this->handlers    = $handlers;
         $this->conversions = $conversions;

@@ -33,10 +33,7 @@ class ezcMvcRequestAuthenticationTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'identifier' => 'php',
-        'password' => 'ezc',
-        );
+        $state = ['identifier' => 'php', 'password' => 'ezc'];
         $struct = ezcMvcRequestAuthentication::__set_state( $state );
         $this->assertEquals( 'php', $struct->identifier, 'Property identifier does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->password, 'Property password does not have the expected value' );

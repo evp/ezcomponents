@@ -79,8 +79,8 @@ class ezcGraphVector extends ezcGraphCoordinate
     public function length()
     {
         return sqrt(
-            pow( $this->x, 2 ) +
-            pow( $this->y, 2 )
+            $this->x ** 2 +
+            $this->y ** 2
         );
     }
 

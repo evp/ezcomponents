@@ -27,7 +27,7 @@ class ezcWebdavSourceProperty extends ezcWebdavLiveProperty
      * @param array(ezcWebdavSourcePropertyLink) $links
      * @return void
      */
-    public function __construct( array $links = array() )
+    public function __construct( array $links = [] )
     {
         parent::__construct( 'source' );
 
@@ -92,7 +92,7 @@ class ezcWebdavSourceProperty extends ezcWebdavLiveProperty
     {
         parent::clear();
 
-        $this->properties['links'] = array();
+        $this->properties['links'] = [];
     }
 }
 

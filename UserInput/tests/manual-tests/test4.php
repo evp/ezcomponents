@@ -30,16 +30,16 @@ if ( count( $_POST ) )
             <pre>
 <?php
     echo "Valid properties:\n";
-    var_dump( array( 'test1', 'test3' ) );
+    var_dump( ['test1', 'test3'] );
 
     echo "Invalid properties:\n";
-    var_dump( array( 'test2' ) );
+    var_dump( ['test2'] );
 
     echo "Required properties:\n";
-    var_dump( array( 'test1') );
+    var_dump( ['test1'] );
 
     echo "Optional properties:\n";
-    var_dump( array( 'test2', 'test3' ) );
+    var_dump( ['test2', 'test3'] );
 
     echo "Values:\n";
 ?>
@@ -47,11 +47,7 @@ if ( count( $_POST ) )
         <td>
             <pre>
 <?php
-    $def = array(
-        'test1' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::REQUIRED, 'string', FILTER_FLAG_STRIP_HIGH ),
-        'test2' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'int', array( 'min_range' => 42 ) ),
-        'test3' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'int', array( 'min_range' => 42 ) ),
-    );
+    $def = ['test1' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::REQUIRED, 'string', FILTER_FLAG_STRIP_HIGH ), 'test2' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'int', ['min_range' => 42] ), 'test3' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'int', ['min_range' => 42] )];
     $form = new ezcInputForm( INPUT_POST, $def );
 
     echo "Valid properties:\n";
@@ -151,7 +147,7 @@ else
 {
 ?>
 <form method="post" align="center">
-<input type="text"   name="test1"  value="blåbærøl"/>
+<input type="text"   name="test1"  value="blï¿½bï¿½rï¿½l"/>
 <input type="text"   name="test2"  value="40"/>
 <input type="text"   name="test3"  value="142"/>
 <input type="submit" name="submit" value="Go!"/>

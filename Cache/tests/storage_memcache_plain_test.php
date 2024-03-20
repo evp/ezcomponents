@@ -50,13 +50,8 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
         // Class name == <inheriting class> - "Test"
         $storageClass = ( $this->storageClass = substr( get_class( $this ), 0, strlen( get_class(  $this ) ) - 4 ) );
-        $this->storage = new $storageClass( $this->createTempDir( 'ezcCacheTest' ), array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 ) );
-        $this->testData = array(
-                    1 => "Test 1 2 3 4 5 6 7 8\\\\",
-                    2 => 'La la la 02064 lololo',
-                    3 => 12345,
-                    4 => 12.3746,
-                );
+        $this->storage = new $storageClass( $this->createTempDir( 'ezcCacheTest' ), ['host' => 'localhost', 'port' => 11211, 'ttl' => 10] );
+        $this->testData = [1 => "Test 1 2 3 4 5 6 7 8\\\\", 2 => 'La la la 02064 lololo', 3 => 12345, 4 => 12.3746];
     }
 
     // Override test from parent class
@@ -68,7 +63,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     // Override test from parent class
     public function testStoreRestoreOutdatedWithoutAttributes()
     {
-        $options = array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 );
+        $options = ['host' => 'localhost', 'port' => 11211, 'ttl' => 10];
         $storage = new ezcCacheStorageMemcacheWrapper( $this->getTempDir(), $options );
         $storage->reset();
 
@@ -81,7 +76,9 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
             $registry = $storage->getRegistry();
 
             $location = $this->getTempDir() . DIRECTORY_SEPARATOR;
-            list( $identifier, $dataObj ) = each( $registry[$location][$id] );
+            $identifier = key($registry[$location][$id]);
+            $dataObj = current($registry[$location][$id]);
+            next($registry[$location][$id]);
             $registry[$location][$id][$identifier]->time = time() - 100;
             $storage->setRegistry( $registry );
 
@@ -93,17 +90,13 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     // Override test from parent class
     public function testStoreRestoreOutdatedWithAttributes()
     {
-        $options = array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 );
+        $options = ['host' => 'localhost', 'port' => 11211, 'ttl' => 10];
         $storage = new ezcCacheStorageMemcacheWrapper( $this->getTempDir(), $options );
         $storage->reset();
 
         foreach ( $this->testData as $id => $dataArr ) 
         {
-            $attributes = array(
-                'name'      => 'test',
-                'title'     => 'Test item',
-                'date'      => time() . $id,
-            );
+            $attributes = ['name'      => 'test', 'title'     => 'Test item', 'date'      => time() . $id];
 
             $storage->store( $id, $dataArr, $attributes );
 
@@ -112,7 +105,9 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
             $registry = $storage->getRegistry();
 
             $location = $this->getTempDir() . DIRECTORY_SEPARATOR;
-            list( $identifier, $dataObj ) = each( $registry[$location][$id] );
+            $identifier = key($registry[$location][$id]);
+            $dataObj = current($registry[$location][$id]);
+            next($registry[$location][$id]);
             $registry[$location][$id][$identifier]->time = time() - 100;
             $storage->setRegistry( $registry );
 
@@ -127,7 +122,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         $this->storage->reset();
         $id = 'id/with/slashes/';
-        $attributes = array( 'class' => 23 );
+        $attributes = ['class' => 23];
         foreach ( $this->testData as $idSuffix => $data )
         {
             $this->storage->store( $id . $idSuffix, $data, $attributes );
@@ -145,7 +140,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     public function testStoreResource()
     {
         $this->storage->reset();
-        $resource = fopen( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'wrappers' . DIRECTORY_SEPARATOR . 'memcache_wrapper.php', 'r' );
+        $resource = fopen( __DIR__ . DIRECTORY_SEPARATOR . 'wrappers' . DIRECTORY_SEPARATOR . 'memcache_wrapper.php', 'r' );
         try
         {
             $this->storage->store( "key", $resource );
@@ -163,7 +158,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         try
         {
-            $memcache = new ezcCacheStorageMemcachePlain( '.', array( 'host' => 'unknown_host', 'port' => 11211, 'ttl' => 10 ) );
+            $memcache = new ezcCacheStorageMemcachePlain( '.', ['host' => 'unknown_host', 'port' => 11211, 'ttl' => 10] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcCacheMemcacheException $e )
@@ -177,7 +172,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         try
         {
-            $memcache = new ezcCacheMemcacheBackend( array( 'host' => 'unknown_host', 'port' => 11211, 'ttl' => 10, 'persistent' => true ) );
+            $memcache = new ezcCacheMemcacheBackend( ['host' => 'unknown_host', 'port' => 11211, 'ttl' => 10, 'persistent' => true] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcCacheMemcacheException $e )
@@ -188,14 +183,14 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
     public function testBackendPersistentConnectionThenDestruct()
     {
-        $storage = new ezcCacheMemcacheBackend( array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10, 'persistent' => true ) );;
+        $storage = new ezcCacheMemcacheBackend( ['host' => 'localhost', 'port' => 11211, 'ttl' => 10, 'persistent' => true] );;
         $storage->__destruct();
     }
 
     public function testGetRemainingLifetimeId()
     {
         $this->storage->reset();
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
 
         $this->storage->store( '1', 'data1' );
 
@@ -207,19 +202,19 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     public function testGetRemainingLifetimeAttributes()
     {
         $this->storage->reset();
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
 
-        $this->storage->store( '1', 'data1', array( 'type' => 'simple' ) );
-        $this->storage->store( '2', 'data2', array( 'type' => 'simple' ) );
+        $this->storage->store( '1', 'data1', ['type' => 'simple'] );
+        $this->storage->store( '2', 'data2', ['type' => 'simple'] );
 
         // "8 <= " - for those cases where the current second changes after the storage
-        $this->assertEquals( true, 8 <= $this->storage->getRemainingLifetime( null, array( 'type' => 'simple' ) ) );
+        $this->assertEquals( true, 8 <= $this->storage->getRemainingLifetime( null, ['type' => 'simple'] ) );
 
     }
 
     public function testGetRemainingLifetimeNoMatch()
     {
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
 
         $this->assertEquals( 0, $this->storage->getRemainingLifetime( 'no_such_id' ) );
 
@@ -227,7 +222,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
     public function testCacheManagerLocationEmpty()
     {
-        $options = array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 );
+        $options = ['host' => 'localhost', 'port' => 11211, 'ttl' => 10];
         ezcCacheManager::createCache( 'cache', null, 'ezcCacheStorageMemcachePlain', $options );
         $storage = ezcCacheManager::getCache( 'cache' );
         $storage->reset();
@@ -291,58 +286,58 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
         $this->assertSetPropertyFails(
             $options,
             'host',
-            array( true, false, 23, 42.23, array(), new stdClass(), '' )
+            [true, false, 23, 42.23, [], new stdClass(), '']
         );
         $this->assertSetPropertyFails(
             $options,
             'ttl',
-            array( true, 42.23, array(), new stdClass(), '', 'foo' )
+            [true, 42.23, [], new stdClass(), '', 'foo']
         );
         $this->assertSetPropertyFails(
             $options,
             'port',
-            array( true, false, -23, 42.23, array(), new stdClass(), '', 'foo' )
+            [true, false, -23, 42.23, [], new stdClass(), '', 'foo']
         );
         $this->assertSetPropertyFails(
             $options,
             'compressed',
-            array( 42, -23, 42.23, array(), new stdClass(), '', 'foo' )
+            [42, -23, 42.23, [], new stdClass(), '', 'foo']
         );
         $this->assertSetPropertyFails(
             $options,
             'persistent',
-            array( 42, -23, 42.23, array(), new stdClass(), '', 'foo' )
+            [42, -23, 42.23, [], new stdClass(), '', 'foo']
         );
         $this->assertSetPropertyFails(
             $options,
             'lockWaitTime',
-            array( true, false, -23, 42.23, array(), new stdClass(), '', 'foo' )
+            [true, false, -23, 42.23, [], new stdClass(), '', 'foo']
         );
         $this->assertSetPropertyFails(
             $options,
             'maxLockTime',
-            array( true, false, -23, 42.23, array(), new stdClass(), '', 'foo' )
+            [true, false, -23, 42.23, [], new stdClass(), '', 'foo']
         );
         $this->assertSetPropertyFails(
             $options,
             'lockKey',
-            array( true, false, 42, -23, 42.23, array(), new stdClass(), '' )
+            [true, false, 42, -23, 42.23, [], new stdClass(), '']
         );
         $this->assertSetPropertyFails(
             $options,
             'metaDataKey',
-            array( true, false, 42, -23, 42.23, array(), new stdClass(), '' )
+            [true, false, 42, -23, 42.23, [], new stdClass(), '']
         );
         
-        $this->assertSetProperty( $options, 'host', array( 'localhost', '192.168.0.14' ) );
-        $this->assertSetProperty( $options, 'ttl', array( 1, 1000 ) );
-        $this->assertSetProperty( $options, 'port', array( 1, 23 ) );
-        $this->assertSetProperty( $options, 'persistent', array( true, false ) );
-        $this->assertSetProperty( $options, 'compressed', array( true, false ) );
-        $this->assertSetProperty( $options, 'lockWaitTime', array( 1, 10 ) );
-        $this->assertSetProperty( $options, 'maxLockTime', array( 1, 10 ) );
-        $this->assertSetProperty( $options, 'lockKey', array( 'foo' ) );
-        $this->assertSetProperty( $options, 'metaDataKey', array( 'foo' ) );
+        $this->assertSetProperty( $options, 'host', ['localhost', '192.168.0.14'] );
+        $this->assertSetProperty( $options, 'ttl', [1, 1000] );
+        $this->assertSetProperty( $options, 'port', [1, 23] );
+        $this->assertSetProperty( $options, 'persistent', [true, false] );
+        $this->assertSetProperty( $options, 'compressed', [true, false] );
+        $this->assertSetProperty( $options, 'lockWaitTime', [1, 10] );
+        $this->assertSetProperty( $options, 'maxLockTime', [1, 10] );
+        $this->assertSetProperty( $options, 'lockKey', ['foo'] );
+        $this->assertSetProperty( $options, 'metaDataKey', ['foo'] );
     }
 
     public function testCtorWithoutOptions()
@@ -352,7 +347,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
     public function testCacheBackendSingleConnection()
     {
-        $options = array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 );
+        $options = ['host' => 'localhost', 'port' => 11211, 'ttl' => 10];
 
         ezcCacheManager::createCache( 'cache-a', null, 'ezcCacheStorageMemcachePlain', $options );
         ezcCacheManager::createCache( 'cache-b', null, 'ezcCacheStorageMemcachePlain', $options );
@@ -376,7 +371,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
     public function testStorageProperties()
     {
-        $storage = new ezcCacheStorageMemcachePlain( '.', array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 ) );
+        $storage = new ezcCacheStorageMemcachePlain( '.', ['host' => 'localhost', 'port' => 11211, 'ttl' => 10] );
         $storage->reset();
 
         $this->assertTrue( isset( $storage->options ) );
@@ -388,12 +383,12 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
         $this->assertSetProperty(
             $storage,
             'options',
-            array( new ezcCacheStorageMemcacheOptions() )
+            [new ezcCacheStorageMemcacheOptions()]
         );
         $this->assertSetPropertyFails(
             $storage,
             'options',
-            array( 'foo', 23, 42.23, true, false, new stdClass() )
+            ['foo', 23, 42.23, true, false, new stdClass()]
         );
 
         $this->assertFalse( isset( $storage->foo ) );
@@ -415,11 +410,11 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         $storageOptions = new ezcCacheStorageOptions();
         $storageMemcacheOptions = new ezcCacheStorageMemcacheOptions();
-        $arrayOptions = array();
+        $arrayOptions = [];
 
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
-            array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 )
+            ['host' => 'localhost', 'port' => 11211, 'ttl' => 10]
         );
         $storage->reset();
 
@@ -462,17 +457,11 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
-            array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 10 )
+            ['host' => 'localhost', 'port' => 11211, 'ttl' => 10]
         );
         $storage->reset();
 
-        $data = array( 
-            'ID',
-            'Some/Dir/ID',
-            'Some/other/Dir/ID/1',
-            'Some/other/Dir/ID/2',
-            'Some/other/Dir/ID/3',
-        );
+        $data = ['ID', 'Some/Dir/ID', 'Some/other/Dir/ID/1', 'Some/other/Dir/ID/2', 'Some/other/Dir/ID/3'];
         foreach ( $data as $id ) 
         {
             $storage->store( $id, $id );
@@ -495,21 +484,13 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
-            array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 100 )
+            ['host' => 'localhost', 'port' => 11211, 'ttl' => 100]
         );
         $storage->reset();
 
-        $data = array( 
-            'ID',
-            'Some/Dir/ID',
-            'Some/other/Dir/ID/1',
-            'Some/other/Dir/ID/2',
-            'Some/other/Dir/ID/3',
-        );
+        $data = ['ID', 'Some/Dir/ID', 'Some/other/Dir/ID/1', 'Some/other/Dir/ID/2', 'Some/other/Dir/ID/3'];
 
-        $attributes = array(
-            'lang' => 'en',
-        );
+        $attributes = ['lang' => 'en'];
 
         foreach ( $data as $id ) 
         {
@@ -520,7 +501,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
         $deleted = $storage->delete( 'Some/other/Dir/ID/3', $attributes );
         
         $this->assertEquals(
-            array( 'Some/other/Dir/ID/3' ),
+            ['Some/other/Dir/ID/3'],
             $deleted,
             'Deleted IDs not returned correctly.'
         );
@@ -528,12 +509,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
         $deleted = $storage->delete( null, $attributes, true );
 
         $this->assertEquals(
-            array( 
-                'ID',
-                'Some/Dir/ID',
-                'Some/other/Dir/ID/1',
-                'Some/other/Dir/ID/2',
-            ),
+            ['ID', 'Some/Dir/ID', 'Some/other/Dir/ID/1', 'Some/other/Dir/ID/2'],
             $deleted,
             'Deleted IDs not returned correctly.'
         );
@@ -543,17 +519,11 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
-            array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 1 )
+            ['host' => 'localhost', 'port' => 11211, 'ttl' => 1]
         );
         $storage->reset();
 
-        $data = array( 
-            'ID',
-            'Some/Dir/ID',
-            'Some/other/Dir/ID/1',
-            'Some/other/Dir/ID/2',
-            'Some/other/Dir/ID/3',
-        );
+        $data = ['ID', 'Some/Dir/ID', 'Some/other/Dir/ID/1', 'Some/other/Dir/ID/2', 'Some/other/Dir/ID/3'];
 
         foreach ( $data as $id ) 
         {
@@ -576,17 +546,11 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
-            array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 1 )
+            ['host' => 'localhost', 'port' => 11211, 'ttl' => 1]
         );
         $storage->reset();
 
-        $data = array( 
-            'ID',
-            'Some/Dir/ID',
-            'Some/other/Dir/ID/1',
-            'Some/other/Dir/ID/2',
-            'Some/other/Dir/ID/3',
-        );
+        $data = ['ID', 'Some/Dir/ID', 'Some/other/Dir/ID/1', 'Some/other/Dir/ID/2', 'Some/other/Dir/ID/3'];
 
         foreach ( $data as $id ) 
         {
@@ -599,11 +563,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
         $purgedIds = $storage->purge( 3 );
 
         $this->assertEquals(
-            array( 
-                'ID',
-                'Some/Dir/ID',
-                'Some/other/Dir/ID/1',
-            ),
+            ['ID', 'Some/Dir/ID', 'Some/other/Dir/ID/1'],
             $purgedIds,
             'Purged IDs not returned correctly.'
         );
@@ -613,7 +573,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     {
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
-            array( 'host' => 'localhost', 'port' => 11211, 'ttl' => 1 )
+            ['host' => 'localhost', 'port' => 11211, 'ttl' => 1]
         );
         $storage->reset();
 
@@ -662,12 +622,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
     public function testLockTimeout()
     {
         // Init 2 storages on same Memcache
-        $opts = array(
-            'host'        => 'localhost',
-            'port'        => 11211,
-            'ttl'         => 1,
-            'maxLockTime' => 1
-        );
+        $opts = ['host'        => 'localhost', 'port'        => 11211, 'ttl'         => 1, 'maxLockTime' => 1];
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
             $opts
@@ -765,11 +720,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
     public function testMetaDataSuccess()
     {
-        $opts = array(
-            'host'        => 'localhost',
-            'port'        => 11211,
-            'ttl'         => 1,
-        );
+        $opts = ['host'        => 'localhost', 'port'        => 11211, 'ttl'         => 1];
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
             $opts
@@ -784,21 +735,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
         $meta = new ezcCacheStackLruMetaData();
         $meta->setState(
-            array(
-                'replacementData' => array(
-                    'id_1' => 23,
-                    'id_2' => 42,
-                ),
-                'storageData' => array(
-                    'storage_id_1' => array(
-                        'id_1' => true,
-                        'id_2' => true,
-                    ),
-                    'storage_id_2' => array(
-                        'id_2' => true,
-                    ),
-                ),
-            )
+            ['replacementData' => ['id_1' => 23, 'id_2' => 42], 'storageData' => ['storage_id_1' => ['id_1' => true, 'id_2' => true], 'storage_id_2' => ['id_2' => true]]]
         );
 
         $this->assertFalse(
@@ -831,11 +768,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
     public function testMetaDataFailure()
     {
-        $opts = array(
-            'host'        => 'localhost',
-            'port'        => 11211,
-            'ttl'         => 1,
-        );
+        $opts = ['host'        => 'localhost', 'port'        => 11211, 'ttl'         => 1];
         $storage = new ezcCacheStorageMemcacheWrapper(
             '.',
             $opts
@@ -868,7 +801,7 @@ class ezcCacheStorageMemcachePlainTest extends ezcCacheStorageTest
 
     public static function suite()
 	{
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
 	}
 }
 ?>

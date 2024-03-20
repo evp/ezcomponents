@@ -75,7 +75,7 @@ class ezcConsoleOption
      * 
      * @var array(string=>ezcConsoleParamemterRule)
      */
-    protected $dependencies = array();
+    protected $dependencies = [];
 
     /**
      * Exclusion rules of this parameter.
@@ -88,7 +88,7 @@ class ezcConsoleOption
      * 
      * @var array(string=>ezcConsoleParamemterRule)
      */
-    protected $exclusions = array();
+    protected $exclusions = [];
 
     /**
      * The value the parameter was assigned to when being submitted.
@@ -154,8 +154,8 @@ class ezcConsoleOption
         $multiple = false,
         $shorthelp = 'No help available.',
         $longhelp = 'Sorry, there is no help text available for this parameter.', 
-        array $dependencies = array(),
-        array $exclusions = array(), 
+        array $dependencies = [],
+        array $exclusions = [], 
         $arguments = true,
         $mandatory = false,
         $isHelpOption = false
@@ -177,26 +177,26 @@ class ezcConsoleOption
         }
         $this->properties['long'] = $long;
         
-        $this->__set( "type",      $type         !== null ? $type      : ezcConsoleInput::TYPE_NONE  );
-        $this->__set( "multiple",  $multiple     !== null ? $multiple  : false  );
-        $this->__set( "default",   $default      !== null ? $default   : null );
-        $this->__set( "shorthelp", $shorthelp    !== null ? $shorthelp : 'No help available.' );
-        $this->__set( "longhelp",  $longhelp     !== null ? $longhelp  : 'Sorry, there is no help text available for this parameter.' );
+        $this->__set( "type",      $type ?? ezcConsoleInput::TYPE_NONE  );
+        $this->__set( "multiple",  $multiple ?? false  );
+        $this->__set( "default",   $default ?? null );
+        $this->__set( "shorthelp", $shorthelp ?? 'No help available.' );
+        $this->__set( "longhelp",  $longhelp ?? 'Sorry, there is no help text available for this parameter.' );
         
-        $dependencies    = $dependencies !== null && is_array( $dependencies ) ? $dependencies : array();
+        $dependencies    = $dependencies !== null && is_array( $dependencies ) ? $dependencies : [];
         foreach ( $dependencies as $dep )
         {
             $this->addDependency( $dep );
         }
         
-        $exclusions = $exclusions !== null && is_array( $exclusions ) ? $exclusions : array();
+        $exclusions = $exclusions !== null && is_array( $exclusions ) ? $exclusions : [];
         foreach ( $exclusions as $exc )
         {
             $this->addExclusion( $exc );
         }
 
-        $this->__set( "mandatory",    $mandatory !== null ? $mandatory : false );
-        $this->__set( "isHelpOption", $isHelpOption !== null ? $isHelpOption : false );
+        $this->__set( "mandatory",    $mandatory ?? false );
+        $this->__set( "isHelpOption", $isHelpOption ?? false );
     }
 
     /**
@@ -307,7 +307,7 @@ class ezcConsoleOption
      */
     public function resetDependencies() 
     {
-        $this->dependencies = array();
+        $this->dependencies = [];
     }
 
     /**
@@ -418,7 +418,7 @@ class ezcConsoleOption
      */
     public function resetExclusions() 
     {
-        $this->exclusions = array();
+        $this->exclusions = [];
     }
     
     /**

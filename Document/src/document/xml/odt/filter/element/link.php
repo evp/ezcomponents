@@ -30,7 +30,7 @@ class ezcDocumentOdtElementLinkFilter extends ezcDocumentOdtElementBaseFilter
         $attrs = $element->getProperty( 'attributes' );
         if ( !is_array( $attrs ) )
         {
-            $attrs = array();
+            $attrs = [];
         }
         // @todo: Can we convert more attributes here? Maybe <ulink type="…"/>?
         $attrs['url'] = $element->getAttributeNS(

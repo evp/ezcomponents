@@ -16,22 +16,7 @@
  */
 class ezcWorkflowSignalSlotTestReceiver
 {
-    public $stack = array(
-      'afterExecutionStarted' => 0,
-      'afterExecutionSuspended' => 0,
-      'afterExecutionResumed' => 0,
-      'afterExecutionCancelled' => 0,
-      'afterExecutionEnded' => 0,
-      'beforeNodeActivated' => 0,
-      'afterNodeActivated' => 0,
-      'afterNodeExecuted' => 0,
-      'afterThreadStarted' => 0,
-      'afterThreadEnded' => 0,
-      'beforeVariableSet' => 0,
-      'afterVariableSet' => 0,
-      'beforeVariableUnset' => 0,
-      'afterVariableUnset' => 0
-    );
+    public $stack = ['afterExecutionStarted' => 0, 'afterExecutionSuspended' => 0, 'afterExecutionResumed' => 0, 'afterExecutionCancelled' => 0, 'afterExecutionEnded' => 0, 'beforeNodeActivated' => 0, 'afterNodeActivated' => 0, 'afterNodeExecuted' => 0, 'afterThreadStarted' => 0, 'afterThreadEnded' => 0, 'beforeVariableSet' => 0, 'afterVariableSet' => 0, 'beforeVariableUnset' => 0, 'afterVariableUnset' => 0];
 
     public function afterExecutionStarted( ezcWorkflowExecution $execution )
     {

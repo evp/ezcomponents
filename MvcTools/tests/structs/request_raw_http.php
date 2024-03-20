@@ -33,10 +33,7 @@ class ezcMvcHttpRawRequestTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'headers' => 'php',
-        'body' => 'ezc',
-        );
+        $state = ['headers' => 'php', 'body' => 'ezc'];
         $struct = ezcMvcHttpRawRequest::__set_state( $state );
         $this->assertEquals( 'php', $struct->headers, 'Property headers does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->body, 'Property body does not have the expected value' );

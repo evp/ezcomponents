@@ -27,14 +27,7 @@ class ezcDbSchemaHandlerManager
      *
      * @var array(string=>string)
      */
-    static public $readHandlers = array(
-        'array' => 'ezcDbSchemaPhpArrayReader',
-        'mysql' => 'ezcDbSchemaMysqlReader',
-        'oracle' => 'ezcDbSchemaOracleReader',
-        'pgsql' => 'ezcDbSchemaPgsqlReader',
-        'sqlite' => 'ezcDbSchemaSqliteReader',
-        'xml' => 'ezcDbSchemaXmlReader',
-    );
+    static public $readHandlers = ['array' => 'ezcDbSchemaPhpArrayReader', 'mysql' => 'ezcDbSchemaMysqlReader', 'oracle' => 'ezcDbSchemaOracleReader', 'pgsql' => 'ezcDbSchemaPgsqlReader', 'sqlite' => 'ezcDbSchemaSqliteReader', 'xml' => 'ezcDbSchemaXmlReader'];
 
     /**
      * Set of standard write handlers.
@@ -44,15 +37,7 @@ class ezcDbSchemaHandlerManager
      *
      * @var array(string=>string)
      */
-    static public $writeHandlers = array(
-        'array' => 'ezcDbSchemaPhpArrayWriter',
-        'mysql' => 'ezcDbSchemaMysqlWriter',
-        'oracle' => 'ezcDbSchemaOracleWriter',
-        'pgsql' => 'ezcDbSchemaPgsqlWriter',
-        'sqlite' => 'ezcDbSchemaSqliteWriter',
-        'xml' => 'ezcDbSchemaXmlWriter',
-        'persistent' => 'ezcDbSchemaPersistentWriter',
-    );
+    static public $writeHandlers = ['array' => 'ezcDbSchemaPhpArrayWriter', 'mysql' => 'ezcDbSchemaMysqlWriter', 'oracle' => 'ezcDbSchemaOracleWriter', 'pgsql' => 'ezcDbSchemaPgsqlWriter', 'sqlite' => 'ezcDbSchemaSqliteWriter', 'xml' => 'ezcDbSchemaXmlWriter', 'persistent' => 'ezcDbSchemaPersistentWriter'];
 
     /**
      * Set of standard difference read handlers.
@@ -62,10 +47,7 @@ class ezcDbSchemaHandlerManager
      *
      * @var array(string=>string)
      */
-    static public $diffReadHandlers = array(
-        'array' => 'ezcDbSchemaPhpArrayReader',
-        'xml' => 'ezcDbSchemaXmlReader',
-    );
+    static public $diffReadHandlers = ['array' => 'ezcDbSchemaPhpArrayReader', 'xml' => 'ezcDbSchemaXmlReader'];
 
     /**
      * Set of standard difference write handlers.
@@ -75,14 +57,7 @@ class ezcDbSchemaHandlerManager
      *
      * @var array(string=>string)
      */
-    static public $diffWriteHandlers = array(
-        'array' => 'ezcDbSchemaPhpArrayWriter',
-        'mysql' => 'ezcDbSchemaMysqlWriter',
-        'oracle' => 'ezcDbSchemaOracleWriter',
-        'pgsql' => 'ezcDbSchemaPgsqlWriter',
-        'sqlite' => 'ezcDbSchemaSqliteWriter',
-        'xml' => 'ezcDbSchemaXmlWriter',
-    );
+    static public $diffWriteHandlers = ['array' => 'ezcDbSchemaPhpArrayWriter', 'mysql' => 'ezcDbSchemaMysqlWriter', 'oracle' => 'ezcDbSchemaOracleWriter', 'pgsql' => 'ezcDbSchemaPgsqlWriter', 'sqlite' => 'ezcDbSchemaSqliteWriter', 'xml' => 'ezcDbSchemaXmlWriter'];
 
     /**
      * Returns the class name of the read handler for format $format.

@@ -75,12 +75,7 @@ class ezcDocumentRstImageDirective extends ezcDocumentRstDirective implements ez
         $root->appendChild( $image );
 
         // Handle optional settings on images
-        $settings = array(
-            'alt'    => 'title',
-            'width'  => 'width',
-            'height' => 'height',
-            'align'  => 'class',
-        );
+        $settings = ['alt'    => 'title', 'width'  => 'width', 'height' => 'height', 'align'  => 'class'];
 
         foreach ( $settings as $option => $attribute )
         {
@@ -113,12 +108,7 @@ class ezcDocumentRstImageDirective extends ezcDocumentRstDirective implements ez
         $root->appendChild( $image );
 
         // Handle optional settings on images
-        $settings = array(
-            'alt'    => 'alt',
-            'width'  => 'width',
-            'height' => 'height',
-            'align'  => 'class',
-        );
+        $settings = ['alt'    => 'alt', 'width'  => 'width', 'height' => 'height', 'align'  => 'class'];
 
         foreach ( $settings as $option => $attribute )
         {
@@ -158,7 +148,7 @@ class ezcDocumentRstImageDirective extends ezcDocumentRstDirective implements ez
             $root = $div;
         }
 
-        if ( in_array( strtolower( pathInfo( trim( $this->node->parameters ), PATHINFO_EXTENSION ) ), array( 'swf', 'svg' ) ) )
+        if ( in_array( strtolower( pathInfo( trim( $this->node->parameters ), PATHINFO_EXTENSION ) ), ['swf', 'svg'] ) )
         {
             $this->toXhtmlObject( $document, $root );
         }

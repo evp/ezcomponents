@@ -13,7 +13,7 @@ $def->idProperty->columnName = 'from';
 $def->idProperty->propertyName = 'from';
 $def->idProperty->visibility = ezcPersistentObjectProperty::VISIBILITY_PRIVATE;
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition( 'ezcPersistentSequenceGenerator',
-                                                                    array( 'sequence' => 'table_from_seq' ) );
+                                                                    ['sequence' => 'table_from_seq'] );
 
 $def->properties['select'] = new ezcPersistentObjectProperty;
 $def->properties['select']->columnName = 'select';
@@ -24,12 +24,10 @@ $def->relations["Where"] = new ezcPersistentOneToManyRelation(
      "table",
      "where"
 );
-$def->relations["Where"]->columnMap = array(
-     new ezcPersistentSingleTableMap(
-         "from",
-         "update"
-     ),
- );
+$def->relations["Where"]->columnMap = [new ezcPersistentSingleTableMap(
+    "from",
+    "update"
+)];
 
 $def->relations["Like"] = new ezcPersistentManyToManyRelation(
      "table",
@@ -37,9 +35,7 @@ $def->relations["Like"] = new ezcPersistentManyToManyRelation(
      "as"
 );
 
-$def->relations["Like"]->columnMap = array(
-    new ezcPersistentDoubleTableMap( "from", "and", "or", "like" ),
-);
+$def->relations["Like"]->columnMap = [new ezcPersistentDoubleTableMap( "from", "and", "or", "like" )];
 
 return $def;
 

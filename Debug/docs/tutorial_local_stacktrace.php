@@ -8,7 +8,7 @@ require_once 'tutorial_autoload.php';
 ezcDebug::getInstance()->log(
     'Function testThis() has been called.',
     ezcLog::NOTICE,
-    array( 'additional' => 'info' ),
+    ['additional' => 'info'],
     // Enable stack trace
     true
 );

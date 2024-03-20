@@ -31,7 +31,7 @@ class ezcDocumentRstDocumentNode extends ezcDocumentRstNode
      * @param array $nodes
      * @return void
      */
-    public function __construct( array $nodes = array() )
+    public function __construct( array $nodes = [] )
     {
         $this->line     = 0;
         $this->position = 0;

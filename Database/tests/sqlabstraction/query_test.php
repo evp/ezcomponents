@@ -65,16 +65,14 @@ class ezcQueryTest extends ezcTestCase
     {
         $this->assertEquals( false, $this->q->hasAliases() );
         // create some aliases
-        $aliases = array( 'MyTable' => 'my_table',
-                          'MyColumn' => 'my_column' );
+        $aliases = ['MyTable' => 'my_table', 'MyColumn' => 'my_column'];
         $this->q->setAliases( $aliases );
         $this->assertEquals( true, $this->q->hasAliases() );
     }
 
     public function testAliasExists()
     {
-        $aliases = array( 'MyTable' => 'my_table',
-                          'MyColumn' => 'my_column' );
+        $aliases = ['MyTable' => 'my_table', 'MyColumn' => 'my_column'];
         $this->q->setAliases( $aliases );
         $this->assertEquals( 'my_table', $this->q->id( 'MyTable' ) );
     }
@@ -86,7 +84,7 @@ class ezcQueryTest extends ezcTestCase
 
     public function testGetIdentifierWithAlias()
     {
-        $aliases = array( 'id' => 'table2.id' );
+        $aliases = ['id' => 'table2.id'];
         $this->q->setAliases( $aliases );
 
         $this->assertEquals( 'table2.id', $this->q->id( 'id' ) );
@@ -98,7 +96,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT column FROM table1';
 
-        $q->setAliases( array( 't_alias' => 'table1' ) );
+        $q->setAliases( ['t_alias' => 'table1'] );
         $q->select( 'column' )->from( 't_alias' );
 
         $this->assertEquals( $reference, $q->getQuery() );
@@ -109,7 +107,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT column1 FROM table1';
 
-        $q->setAliases( array( 'c_alias1' => 'column1' ) );
+        $q->setAliases( ['c_alias1' => 'column1'] );
         $q->select( 'c_alias1' )->from( 'table1' );
 
         $this->assertEquals( $reference, $q->getQuery() );
@@ -120,7 +118,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT column1, column2 FROM table1';
 
-        $q->setAliases( array( 'c_alias1' => 'column1' ) );
+        $q->setAliases( ['c_alias1' => 'column1'] );
         $q->select( 'c_alias1', 'column2' )->from( 'table1' );
 
         $this->assertEquals( $reference, $q->getQuery() );
@@ -131,7 +129,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT column1, column2 FROM table1';
 
-        $q->setAliases( array( 'c_alias1' => 'column1', 'c_alias2' => 'column2' ) );
+        $q->setAliases( ['c_alias1' => 'column1', 'c_alias2' => 'column2'] );
         $q->select( 'c_alias1', 'c_alias2' )->from( 'table1' );
 
         $this->assertEquals( $reference, $q->getQuery() );
@@ -142,7 +140,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT column1 FROM table1';
 
-        $q->setAliases( array( 't_column1' => 'column1', 't_alias' => 'table1' ) );
+        $q->setAliases( ['t_column1' => 'column1', 't_alias' => 'table1'] );
         $q->select( 't_column1' )->from( 't_alias' );
 
         $this->assertEquals( $reference, $q->getQuery() );
@@ -153,7 +151,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT table1.column1 FROM table1';
 
-        $q->setAliases( array( 't_column1' => 'column1', 't_alias' => 'table1' ) );
+        $q->setAliases( ['t_column1' => 'column1', 't_alias' => 'table1'] );
         $q->select( 't_alias.t_column1' )->from( 't_alias' );
 
         $this->assertEquals( $reference, $q->getQuery() );
@@ -164,7 +162,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT orders.Recipient FROM orders';
 
-        $q->setAliases( array( 'Order' => 'orders', 'Recipient' => 'orders.company' ) );
+        $q->setAliases( ['Order' => 'orders', 'Recipient' => 'orders.company'] );
         $q->select( 'Order.Recipient' )
           ->from( 'Order' );
 
@@ -196,7 +194,7 @@ class ezcQueryTest extends ezcTestCase
         $q = ezcDbInstance::get()->createSelectQuery();
         $reference = 'SELECT orders.Recipient FROM orders';
 
-        $q->setAliases( array( 'Order' => 'orders', 'Recipient' => 'orders.company' ) );
+        $q->setAliases( ['Order' => 'orders', 'Recipient' => 'orders.company'] );
         $q->select( 'Order.Recipient' )
           ->from( 'Order' );
 

@@ -58,7 +58,7 @@ class ezcSearchDeleteQueryZendLucene implements ezcSearchDeleteQuery
      */
     public function reset()
     {
-        $this->whereClauses = array();
+        $this->whereClauses = [];
     }
 
     /**

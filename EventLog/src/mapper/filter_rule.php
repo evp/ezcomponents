@@ -93,18 +93,18 @@ class ezcLogFilterRule
 
         if ( sizeof( $this->filter->source ) == 0 )
         {
-            $this->filter->source = array( "*" );
+            $this->filter->source = ["*"];
             $this->sourceStar = true;
         }
 
         if ( sizeof( $this->filter->category ) == 0 )
         {
-            $this->filter->category = array( "*" );
+            $this->filter->category = ["*"];
             $this->categoryStar = true;
         }
 
         $this->continueProcessing = $continueProcessing;
-        $this->container = ( is_array( $container ) ? $container : array( $container ) );
+        $this->container = ( is_array( $container ) ? $container : [$container] );
 
         $this->createStructure();
     }
@@ -118,7 +118,7 @@ class ezcLogFilterRule
         $severities = $this->getMaskArray( $this->filter->severity );
         if ( sizeof( $severities ) == 0 )
         {
-            $severities = array( "*" );
+            $severities = ["*"];
         }
 
         foreach ( $severities as $severity )
@@ -193,7 +193,7 @@ class ezcLogFilterRule
      */
     protected function getMaskArray( $mask )
     {
-        $result = array();
+        $result = [];
 
         $input = 1;
         while ( $input <= $mask )

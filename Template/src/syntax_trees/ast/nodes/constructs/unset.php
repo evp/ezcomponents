@@ -31,7 +31,7 @@ class ezcTemplateUnsetAstNode extends ezcTemplateStatementAstNode
     public function __construct( Array $expressions = null )
     {
         parent::__construct();
-        $this->expressions = array();
+        $this->expressions = [];
 
         if ( $expressions !== null )
         {

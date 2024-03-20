@@ -25,25 +25,7 @@ class ezcGraphGdDriverUnsupportedImageTypeException extends ezcGraphException
      */
     public function __construct( $type )
     {
-        $typeName = array(
-            1 => 'GIF',
-            2 => 'Jpeg',
-            3 => 'PNG',
-            4 => 'SWF',
-            5 => 'PSD',
-            6 => 'BMP',
-            7 => 'TIFF (intel)',
-            8 => 'TIFF (motorola)',
-            9 => 'JPC',
-            10 => 'JP2',
-            11 => 'JPX',
-            12 => 'JB2',
-            13 => 'SWC',
-            14 => 'IFF',
-            15 => 'WBMP',
-            16 => 'XBM',
-
-        );
+        $typeName = [1 => 'GIF', 2 => 'Jpeg', 3 => 'PNG', 4 => 'SWF', 5 => 'PSD', 6 => 'BMP', 7 => 'TIFF (intel)', 8 => 'TIFF (motorola)', 9 => 'JPC', 10 => 'JP2', 11 => 'JPX', 12 => 'JB2', 13 => 'SWC', 14 => 'IFF', 15 => 'WBMP', 16 => 'XBM'];
 
         if ( isset( $typeName[$type] ) )
         {

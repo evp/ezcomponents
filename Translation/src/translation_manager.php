@@ -75,7 +75,7 @@ class ezcTranslationManager
     function __construct( ezcTranslationBackend $backend )
     {
         $this->backend = $backend;
-        $this->filters = array();
+        $this->filters = [];
     }
 
     /**
@@ -102,11 +102,7 @@ class ezcTranslationManager
      */
     private function getFromCache( $locale, $context )
     {
-        if ( isset( $this->contextCache[$locale][$context] ) )
-        {
-            return $this->contextCache[$locale][$context];
-        }
-        return null;
+        return $this->contextCache[$locale][$context] ?? null;
     }
 
     /**

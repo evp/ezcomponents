@@ -27,7 +27,7 @@ class ezcWebdavLockCheckPathCollector implements ezcWebdavLockCheckObserver
      *
      * @var array(string)
      */
-    protected $paths = array();
+    protected $paths = [];
 
     /**
      * Collects properties from the given $response.

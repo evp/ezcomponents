@@ -83,7 +83,7 @@ class ezcSearchResult
      * @param string $error
      * @param array(string=>array(mixed)) $facets
      */
-    public function __construct( $status =  0, $queryTime =  0, $resultCount =  0, $start =  0, $documents =  array(), $error =  '', $facets = array() )
+    public function __construct( $status =  0, $queryTime =  0, $resultCount =  0, $start =  0, $documents =  [], $error =  '', $facets = [] )
     {
         $this->status = $status;
         $this->queryTime = $queryTime;

@@ -7,13 +7,7 @@ $graph->palette = new ezcGraphPaletteEzRed();
 $graph->title = 'Access statistics';
 $graph->legend = false;
 
-$graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
-    'Mozilla' => 19113,
-    'Explorer' => 10917,
-    'Opera' => 1464,
-    'Safari' => 652,
-    'Konqueror' => 474,
-) );
+$graph->data['Access statistics'] = new ezcGraphArrayDataSet( ['Mozilla' => 19113, 'Explorer' => 10917, 'Opera' => 1464, 'Safari' => 652, 'Konqueror' => 474] );
 $graph->data['Access statistics']->highlight['Explorer'] = true;
 
 // $graph->renderer = new ezcGraphRenderer2d();

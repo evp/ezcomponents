@@ -256,7 +256,7 @@ class ezcQuerySubSelectTest extends ezcTestCase
         $db = ezcDbInstance::get();
 
         $q = $db->createSelectQuery();
-        $q->setAliases( array( 'ID' => 'id' ) );
+        $q->setAliases( ['ID' => 'id'] );
         $q = $q->select( 'ID', 'name' )->from( 'main' );
 
         $q2 = $q->subSelect();

@@ -28,7 +28,7 @@ class ezcDocumentPcssMeasure
     /**
      * One millimeter in inch
      */
-    const MM_IN_INCH = 0.0393700787;
+    public const MM_IN_INCH = 0.0393700787;
 
     /**
      * Resolution in DPI for transformations between mm and pixels.
@@ -42,7 +42,7 @@ class ezcDocumentPcssMeasure
      *
      * @var array
      */
-    protected static $cache = array();
+    protected static $cache = [];
 
     /**
      * Construct measure from input value
@@ -144,7 +144,7 @@ class ezcDocumentPcssMeasure
      */
     public function get( $format = 'mm', $resolution = null )
     {
-        $resolution = $resolution === null ? $this->resolution : $resolution;
+        $resolution ??= $this->resolution;
         return $this->value * $this->getUnitFactor( $format, $resolution );
     }
 }

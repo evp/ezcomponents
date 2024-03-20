@@ -23,7 +23,7 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
 
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -40,27 +40,12 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
             new ezcWebdavLockPluginConfiguration()
         );
 
-        $tmpDir = $this->createTempDir( __CLASS__ );
+        $tmpDir = $this->createTempDir( self::class );
 
         $this->backend = new ezcWebdavMemoryBackend();
         $this->backend->options['lockFile'] = $tmpDir . '/backend.lock';
         $this->backend->addContents(
-            array(
-                'collection' => array(
-                    'res_1' => '',
-                    'subcol' => array(
-                        'res_2' => '',
-                        'res_3' => '',
-                    ),
-                ),
-                'secure_collection' => array(
-                    'res_4' => '',
-                    'other_subcol' => array(
-                        'res_5' => '',
-                        'res_6' => '',
-                    ),
-                ),
-            )
+            ['collection' => ['res_1' => '', 'subcol' => ['res_2' => '', 'res_3' => '']], 'secure_collection' => ['res_4' => '', 'other_subcol' => ['res_5' => '', 'res_6' => '']]]
         );
 
     }
@@ -117,24 +102,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
             '/collection/res_1',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_ZERO,
-                            new ezcWebdavPotentialUriContent(
-                                'http://example.com/some_user',
-                                true
-                            ),
-                            300, // 5 mins timeout
-                            new ezcWebdavPotentialUriContent(
-                                'opaquelocktoken:1234',
-                                true
-                            ),
-                            null,
-                            new ezcWebdavDateTime( '@' . ( time() - 600 ) )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_ZERO,
+                        new ezcWebdavPotentialUriContent(
+                            'http://example.com/some_user',
+                            true
                         ),
-                    )
+                        300, // 5 mins timeout
+                        new ezcWebdavPotentialUriContent(
+                            'opaquelocktoken:1234',
+                            true
+                        ),
+                        null,
+                        new ezcWebdavDateTime( '@' . ( time() - 600 ) )
+                    )]
                 )
             )
         );
@@ -152,24 +135,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
     {
         $expectedLockDiscovery = new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_SHARED,
-                        ezcWebdavRequest::DEPTH_ZERO,
-                        new ezcWebdavPotentialUriContent(
-                            'http://example.com/some_user',
-                            true
-                        ),
-                        300, // 5 mins timeout
-                        new ezcWebdavPotentialUriContent(
-                            'opaquelocktoken:1234',
-                            true
-                        ),
-                        null,
-                        new ezcWebdavDateTime()
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_SHARED,
+                    ezcWebdavRequest::DEPTH_ZERO,
+                    new ezcWebdavPotentialUriContent(
+                        'http://example.com/some_user',
+                        true
                     ),
-                )
+                    300, // 5 mins timeout
+                    new ezcWebdavPotentialUriContent(
+                        'opaquelocktoken:1234',
+                        true
+                    ),
+                    null,
+                    new ezcWebdavDateTime()
+                )]
             )
         );
 
@@ -218,24 +199,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
     {
         $expectedLockDiscoveryParent = new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_SHARED,
-                        ezcWebdavRequest::DEPTH_ZERO,
-                        new ezcWebdavPotentialUriContent(
-                            'http://example.com/some_user',
-                            true
-                        ),
-                        300, // 5 mins timeout
-                        new ezcWebdavPotentialUriContent(
-                            'opaquelocktoken:1234',
-                            true
-                        ),
-                        null,
-                        new ezcWebdavDateTime()
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_SHARED,
+                    ezcWebdavRequest::DEPTH_ZERO,
+                    new ezcWebdavPotentialUriContent(
+                        'http://example.com/some_user',
+                        true
                     ),
-                )
+                    300, // 5 mins timeout
+                    new ezcWebdavPotentialUriContent(
+                        'opaquelocktoken:1234',
+                        true
+                    ),
+                    null,
+                    new ezcWebdavDateTime()
+                )]
             )
         );
         $expectedLockDiscoveryChild = new ezcWebdavLockDiscoveryProperty();
@@ -320,24 +299,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
             '/secure_collection/res_1',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_ZERO,
-                            new ezcWebdavPotentialUriContent(
-                                'http://example.com/some_user',
-                                true
-                            ),
-                            300, // 5 mins timeout
-                            new ezcWebdavPotentialUriContent(
-                                'opaquelocktoken:1234',
-                                true
-                            ),
-                            null,
-                            new ezcWebdavDateTime( '@' . ( time() - 600 ) )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_ZERO,
+                        new ezcWebdavPotentialUriContent(
+                            'http://example.com/some_user',
+                            true
                         ),
-                    )
+                        300, // 5 mins timeout
+                        new ezcWebdavPotentialUriContent(
+                            'opaquelocktoken:1234',
+                            true
+                        ),
+                        null,
+                        new ezcWebdavDateTime( '@' . ( time() - 600 ) )
+                    )]
                 )
             )
         );
@@ -355,24 +332,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
     {
         $expectedLockDiscovery = new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_SHARED,
-                        ezcWebdavRequest::DEPTH_ZERO,
-                        new ezcWebdavPotentialUriContent(
-                            'http://example.com/some_user',
-                            true
-                        ),
-                        300, // 5 mins timeout
-                        new ezcWebdavPotentialUriContent(
-                            'opaquelocktoken:1234',
-                            true
-                        ),
-                        null,
-                        new ezcWebdavDateTime()
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_SHARED,
+                    ezcWebdavRequest::DEPTH_ZERO,
+                    new ezcWebdavPotentialUriContent(
+                        'http://example.com/some_user',
+                        true
                     ),
-                )
+                    300, // 5 mins timeout
+                    new ezcWebdavPotentialUriContent(
+                        'opaquelocktoken:1234',
+                        true
+                    ),
+                    null,
+                    new ezcWebdavDateTime()
+                )]
             )
         );
 
@@ -421,24 +396,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
     {
         $expectedLockDiscoveryParent = new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_SHARED,
-                        ezcWebdavRequest::DEPTH_ZERO,
-                        new ezcWebdavPotentialUriContent(
-                            'http://example.com/some_user',
-                            true
-                        ),
-                        300, // 5 mins timeout
-                        new ezcWebdavPotentialUriContent(
-                            'opaquelocktoken:1234',
-                            true
-                        ),
-                        null,
-                        new ezcWebdavDateTime()
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_SHARED,
+                    ezcWebdavRequest::DEPTH_ZERO,
+                    new ezcWebdavPotentialUriContent(
+                        'http://example.com/some_user',
+                        true
                     ),
-                )
+                    300, // 5 mins timeout
+                    new ezcWebdavPotentialUriContent(
+                        'opaquelocktoken:1234',
+                        true
+                    ),
+                    null,
+                    new ezcWebdavDateTime()
+                )]
             )
         );
         $expectedLockDiscoveryChild = new ezcWebdavLockDiscoveryProperty();
@@ -510,24 +483,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
             '/collection/res_1',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_ZERO,
-                            new ezcWebdavPotentialUriContent(
-                                'http://example.com/some_user',
-                                true
-                            ),
-                            300, // 5 mins timeout
-                            new ezcWebdavPotentialUriContent(
-                                'opaquelocktoken:1234',
-                                true
-                            ),
-                            null,
-                            new ezcWebdavDateTime( '@' . ( time() - 600 ) )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_ZERO,
+                        new ezcWebdavPotentialUriContent(
+                            'http://example.com/some_user',
+                            true
                         ),
-                    )
+                        300, // 5 mins timeout
+                        new ezcWebdavPotentialUriContent(
+                            'opaquelocktoken:1234',
+                            true
+                        ),
+                        null,
+                        new ezcWebdavDateTime( '@' . ( time() - 600 ) )
+                    )]
                 )
             )
         );
@@ -545,24 +516,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
     {
         $expectedLockDiscovery = new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_SHARED,
-                        ezcWebdavRequest::DEPTH_ZERO,
-                        new ezcWebdavPotentialUriContent(
-                            'http://example.com/some_user',
-                            true
-                        ),
-                        300, // 5 mins timeout
-                        new ezcWebdavPotentialUriContent(
-                            'opaquelocktoken:1234',
-                            true
-                        ),
-                        null,
-                        new ezcWebdavDateTime()
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_SHARED,
+                    ezcWebdavRequest::DEPTH_ZERO,
+                    new ezcWebdavPotentialUriContent(
+                        'http://example.com/some_user',
+                        true
                     ),
-                )
+                    300, // 5 mins timeout
+                    new ezcWebdavPotentialUriContent(
+                        'opaquelocktoken:1234',
+                        true
+                    ),
+                    null,
+                    new ezcWebdavDateTime()
+                )]
             )
         );
 
@@ -611,24 +580,22 @@ class ezcWebdavLockAdministratorTest extends ezcTestCase
     {
         $expectedLockDiscoveryParent = new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_SHARED,
-                        ezcWebdavRequest::DEPTH_ZERO,
-                        new ezcWebdavPotentialUriContent(
-                            'http://example.com/some_user',
-                            true
-                        ),
-                        300, // 5 mins timeout
-                        new ezcWebdavPotentialUriContent(
-                            'opaquelocktoken:1234',
-                            true
-                        ),
-                        null,
-                        new ezcWebdavDateTime()
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_SHARED,
+                    ezcWebdavRequest::DEPTH_ZERO,
+                    new ezcWebdavPotentialUriContent(
+                        'http://example.com/some_user',
+                        true
                     ),
-                )
+                    300, // 5 mins timeout
+                    new ezcWebdavPotentialUriContent(
+                        'opaquelocktoken:1234',
+                        true
+                    ),
+                    null,
+                    new ezcWebdavDateTime()
+                )]
             )
         );
         $expectedLockDiscoveryChild = new ezcWebdavLockDiscoveryProperty();

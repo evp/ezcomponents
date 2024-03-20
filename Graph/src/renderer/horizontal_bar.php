@@ -61,24 +61,19 @@ class ezcGraphHorizontalRenderer
         $barHeight = ( $stepSize - $margin ) / $dataCount - $padding;
         $offset = - $stepSize / 2 + $margin / 2 + ( $dataCount - $dataNumber - 1 ) * ( $padding + $barHeight ) + $padding / 2;
 
-        $barPointArray = array(
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $axisPosition,
-                $boundings->y0 + ( $boundings->height ) * $position->y + $offset
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x,
-                $boundings->y0 + ( $boundings->height ) * $position->y + $offset
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x,
-                $boundings->y0 + ( $boundings->height ) * $position->y + $offset + $barHeight
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $axisPosition,
-                $boundings->y0 + ( $boundings->height ) * $position->y + $offset + $barHeight
-            ),
-        );
+        $barPointArray = [new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $axisPosition,
+            $boundings->y0 + ( $boundings->height ) * $position->y + $offset
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x,
+            $boundings->y0 + ( $boundings->height ) * $position->y + $offset
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x,
+            $boundings->y0 + ( $boundings->height ) * $position->y + $offset + $barHeight
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $axisPosition,
+            $boundings->y0 + ( $boundings->height ) * $position->y + $offset + $barHeight
+        )];
 
         $this->addElementReference(
             $context,

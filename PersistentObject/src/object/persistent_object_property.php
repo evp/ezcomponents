@@ -39,26 +39,19 @@
 class ezcPersistentObjectProperty
 {
 
-    const PHP_TYPE_STRING = 1;
-    const PHP_TYPE_INT    = 2;
-    const PHP_TYPE_FLOAT  = 3;
-    const PHP_TYPE_ARRAY  = 4;
-    const PHP_TYPE_OBJECT = 5;
-    const PHP_TYPE_BOOL   = 6;
+    public const PHP_TYPE_STRING = 1;
+    public const PHP_TYPE_INT    = 2;
+    public const PHP_TYPE_FLOAT  = 3;
+    public const PHP_TYPE_ARRAY  = 4;
+    public const PHP_TYPE_OBJECT = 5;
+    public const PHP_TYPE_BOOL   = 6;
 
     /**
      * Holds the properties for this class.
      *
      * @var array
      */
-    private $properties = array(
-        'columnName'       => null,
-        'resultColumnName' => null,
-        'propertyName'     => null,
-        'propertyType'     => self::PHP_TYPE_STRING,
-        'converter'        => null,
-        'databaseType'     => PDO::PARAM_STR,
-    );
+    private $properties = ['columnName'       => null, 'resultColumnName' => null, 'propertyName'     => null, 'propertyType'     => self::PHP_TYPE_STRING, 'converter'        => null, 'databaseType'     => PDO::PARAM_STR];
 
     /**
      * Creates a new property definition object.
@@ -111,8 +104,8 @@ class ezcPersistentObjectProperty
                 $array['properties']['columnName'],
                 $array['properties']['propertyName'],
                 $array['properties']['propertyType'],
-                ( isset( $array['properties']['converter'] ) ? $array['properties']['converter'] : null ),
-                ( isset( $array['properties']['databaseType'] ) ? $array['properties']['databaseType'] : PDO::PARAM_STR )
+                ( $array['properties']['converter'] ?? null ),
+                ( $array['properties']['databaseType'] ?? PDO::PARAM_STR )
             );
         }
         else
@@ -122,8 +115,8 @@ class ezcPersistentObjectProperty
                 $array['columnName'],
                 $array['propertyName'],
                 $array['propertyType'],
-                ( isset( $array['converter'] ) ? $array['converter'] : null ),
-                ( isset( $array['databaseType'] ) ? $array['databaseType'] : PDO::PARAM_STR )
+                ( $array['converter'] ?? null ),
+                ( $array['databaseType'] ?? PDO::PARAM_STR )
             );
         }
     }
@@ -238,24 +231,24 @@ class ezcPersistentObjectProperty
      * @apichange Never used but left for BC reasons. Will be removed on next
      *            major version.
      */
-    const VISIBILITY_PRIVATE = 1;
+    public const VISIBILITY_PRIVATE = 1;
 
     /**
      * @apichange Never used but left for BC reasons. Will be removed on next 
      *            major version.
      */
-    const VISIBILITY_PROTECTED = 2;
+    public const VISIBILITY_PROTECTED = 2;
 
     /**
      * @apichange Never used but left for BC reasons. Will be removed on next 
      *            major version.
      */
-    const VISIBILITY_PUBLIC  = 3;
+    public const VISIBILITY_PUBLIC  = 3;
 
     /**
      * @apichange Never used but left for BC reasons. Will be removed on next 
      *            major version.
      */
-    const VISIBILITY_PROPERTY = 4;
+    public const VISIBILITY_PROPERTY = 4;
 }
 ?>

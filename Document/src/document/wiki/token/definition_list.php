@@ -34,7 +34,7 @@ class ezcDocumentWikiDefinitionListItemToken extends ezcDocumentWikiBlockMarkupT
      */
     public static function __set_state( $properties )
     {
-        $tokenClass = __CLASS__;
+        $tokenClass = self::class;
         $token = new $tokenClass(
             $properties['content'],
             $properties['line'],

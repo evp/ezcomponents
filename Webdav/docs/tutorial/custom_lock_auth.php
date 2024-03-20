@@ -12,7 +12,7 @@ class myCustomLockAuth extends myCustomAuth
     public function __construct( $storageFile )
     {
         $this->storageFile = $storageFile;
-        $this->tokens      = array();
+        $this->tokens      = [];
         if ( file_exists( $storageFile ) )
         {
             $this->tokens = include $storageFile;
@@ -21,7 +21,7 @@ class myCustomLockAuth extends myCustomAuth
 
     public function __destruct()
     {
-        if ( $this->tokens !== array() )
+        if ( $this->tokens !== [] )
         {
             file_put_contents(
                 $this->storageFile,
@@ -34,7 +34,7 @@ class myCustomLockAuth extends myCustomAuth
     {
         if ( !isset( $this->tokens[$user] ) )
         {
-            $this->tokens[$user] = array();
+            $this->tokens[$user] = [];
         }
         $this->tokens[$user][$lockToken] = true;
     }

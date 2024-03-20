@@ -15,9 +15,7 @@ $def->properties['birthday']->propertyType   = ezcPersistentObjectProperty::PHP_
 
 $def->relations["RelationTestPerson"]                = new ezcPersistentOneToOneRelation( "PO_birthdays", "PO_persons" );
 $def->relations["RelationTestPerson"]->reverse       = true;
-$def->relations["RelationTestPerson"]->columnMap     = array(
-    new ezcPersistentSingleTableMap( "person_id", "id" ),
-);
+$def->relations["RelationTestPerson"]->columnMap     = [new ezcPersistentSingleTableMap( "person_id", "id" )];
 
 return $def;
 

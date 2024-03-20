@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -29,7 +29,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     protected function setUp()
@@ -41,8 +41,8 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
             $this->markTestSkipped( "This test requires PHP 5.1.3 or later." );
         }
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
     
     protected function tearDown()
@@ -61,13 +61,13 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedBoxedLabelRenderer();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 100, 'sample 2' => 0, 'sample 3' => 500, 'sample 4' => 250, 'sample 5' => 500) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 100, 'sample 2' => 0, 'sample 3' => 500, 'sample 4' => 250, 'sample 5' => 500] );
 
         $chart->render( 500, 200, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -77,8 +77,8 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $chart = new ezcGraphBarChart();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedBoxedLabelRenderer();
         $chart->xAxis->axisSpace = .25;
@@ -91,7 +91,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -115,7 +115,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -139,7 +139,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -163,7 +163,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -188,7 +188,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -198,8 +198,8 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $chart = new ezcGraphBarChart();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedBoxedLabelRenderer();
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisRotatedBoxedLabelRenderer();
@@ -208,7 +208,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         $this->assertEquals(
@@ -251,7 +251,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -280,7 +280,7 @@ class ezcGraphAxisRotatedBoxedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

@@ -21,7 +21,7 @@ class ezcDocumentOdtStyleTextPropertyGeneratorTest extends ezcDocumentOdtStylePr
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCtor()
@@ -37,14 +37,7 @@ class ezcDocumentOdtStyleTextPropertyGeneratorTest extends ezcDocumentOdtStylePr
         );
 
         $this->assertAttributeEquals(
-            array(
-                'text-decoration',
-                'font-size',
-                'font-name',
-                'font-weight',
-                'color',
-                'background-color',
-            ),
+            ['text-decoration', 'font-size', 'font-name', 'font-weight', 'color', 'background-color'],
             'styleAttributes',
             $gen
         );
@@ -59,17 +52,13 @@ class ezcDocumentOdtStyleTextPropertyGeneratorTest extends ezcDocumentOdtStylePr
 
         $gen->createProperty(
             $parent,
-            array(
-                'font-name' => new ezcDocumentPcssStyleStringValue( 'Font Name' ),
-            )
+            ['font-name' => new ezcDocumentPcssStyleStringValue( 'Font Name' )]
         );
 
         $this->assertPropertyExists(
             ezcDocumentOdt::NS_ODT_STYLE,
             'text-properties',
-            array(
-                array( ezcDocumentOdt::NS_ODT_STYLE, 'font-name' )
-            ),
+            [[ezcDocumentOdt::NS_ODT_STYLE, 'font-name']],
             $parent
         );
     }

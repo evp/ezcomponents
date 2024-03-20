@@ -99,7 +99,7 @@ class ezcFeedEntryElement extends ezcFeedElement
      *
      * @var array(string=>ezcFeedModule)
      */
-    private $modules = array();
+    private $modules = [];
 
     /**
      * Sets the property $name to $value.

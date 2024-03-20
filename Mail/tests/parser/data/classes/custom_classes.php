@@ -8,7 +8,7 @@ class SingleFileSet implements ezcMailParserSet
 
     public function __construct( $file )
     {
-        $fp = fopen( dirname( __FILE__ ). '../../' . $file, 'r' );
+        $fp = fopen( __DIR__. '../../' . $file, 'r' );
         if ( $fp == false )
         {
             throw new Exception( "Could not open file '{$file}' for testing." );

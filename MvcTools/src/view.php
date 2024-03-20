@@ -82,7 +82,7 @@ abstract class ezcMvcView
      */
     protected function createResponseBody()
     {
-        $processed = array();
+        $processed = [];
         $zones = $this->createZones( true );
         if ( ezcBase::inDevMode() && ( !is_array( $zones ) || !count( $zones ) ) )
         {

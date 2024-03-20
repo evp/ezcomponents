@@ -62,7 +62,7 @@ class ezcDocumentRstBlockquoteNode extends ezcDocumentRstBlockNode
         $node->nodes       = $properties['nodes'];
         $node->annotation  = $properties['annotation'];
         $node->closed      = $properties['closed'];
-        $node->indentation = isset( $properties['indentation'] ) ? $properties['indentation'] : 0;
+        $node->indentation = $properties['indentation'] ?? 0;
         return $node;
     }
 }

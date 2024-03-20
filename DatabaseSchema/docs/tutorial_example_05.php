@@ -10,12 +10,8 @@ $schema =& $xmlSchema->getSchema();
 
 // add a new table (employees) to the database
 $schema['employees'] = new ezcDbSchemaTable(
-    array(
-        'id' => new ezcDbSchemaField( 'integer', false, true, null, true ),
-    ),
-    array(
-        'primary' => new ezcDbSchemaIndex( array( 'id' => new ezcDbSchemaIndexField() ), true ),
-    )
+    ['id' => new ezcDbSchemaField( 'integer', false, true, null, true )],
+    ['primary' => new ezcDbSchemaIndex( ['id' => new ezcDbSchemaIndexField()], true )]
 );
 
 // copy the schema of table employees to table persons

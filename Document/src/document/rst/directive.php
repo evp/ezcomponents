@@ -106,7 +106,7 @@ abstract class ezcDocumentRstDirective
         $parser = new ezcDocumentRstParser();
         $ast = $parser->parse( $tokens );
 
-        $doc = $visitor->visit( $ast, $this->path );
+        $doc = $visitor->visit( $ast );
         return $doc;
     }
 }

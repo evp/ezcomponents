@@ -83,7 +83,7 @@ class ezcTemplateBlockTstNode extends ezcTemplateCodeTstNode
     public function __construct( ezcTemplateSourceCode $source, /*ezcTemplateCursor*/ $start, /*ezcTemplateCursor*/ $end )
     {
         parent::__construct( $source, $start, $end );
-        $this->children = array();
+        $this->children = [];
         $this->isClosingBlock = false;
         $this->parentBlock = null;
         $this->closingCursor = null;
@@ -99,10 +99,7 @@ class ezcTemplateBlockTstNode extends ezcTemplateCodeTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'name'           => $this->name,
-                      'isClosingBlock' => $this->isClosingBlock,
-                      'isNestingBlock' => $this->isNestingBlock,
-                      'children'       => $this->children );
+        return ['name'           => $this->name, 'isClosingBlock' => $this->isClosingBlock, 'isNestingBlock' => $this->isNestingBlock, 'children'       => $this->children];
     }
 
     /**

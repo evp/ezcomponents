@@ -65,7 +65,7 @@ abstract class ezcTemplateParameterizedAstNode extends ezcTemplateAstNode
 
         $this->minParameterCount = $minParameterCount;
         $this->maxParameterCount = $maxParameterCount;
-        $this->parameters = array();
+        $this->parameters = [];
     }
 
     /**

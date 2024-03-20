@@ -31,14 +31,14 @@ abstract class ezcMailMultipart extends ezcMailPart
     /**
      * Default message displayed to non-MIME capable email clients.
      */
-    const DEFAULT_NO_MIME_MESSAGE = "This message is in MIME format. Since your mail reader does not understand\r\nthis format, some or all of this message may not be legible.";
+    public const DEFAULT_NO_MIME_MESSAGE = "This message is in MIME format. Since your mail reader does not understand\r\nthis format, some or all of this message may not be legible.";
 
     /**
      * An array holding the parts of this multipart.
      *
      * @var array(ezcMailPart)
      */
-    protected $parts = array();
+    protected $parts = [];
 
     /**
      * The counter is unique between all multipart types and is used to
@@ -64,7 +64,7 @@ abstract class ezcMailMultipart extends ezcMailPart
         parent::__construct();
 
         $this->noMimeMessage = self::DEFAULT_NO_MIME_MESSAGE;
-        $this->boundary = $this->generateBoundary();
+        $this->boundary = static::generateBoundary();
         $this->setHeader( "Content-Type", 'multipart/' . $this->multipartType() . '; '
                                            . 'boundary="' . $this->boundary . '"' );
         foreach ( $parts as $part )

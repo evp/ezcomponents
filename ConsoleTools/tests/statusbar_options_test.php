@@ -31,10 +31,7 @@ class ezcConsoleStatusbarOptionsTest extends ezcTestCase
     public function testConstructorNew()
     {
         $fake = new ezcConsoleStatusbarOptions(
-            array( 
-                "successChar" => "+",
-                "failureChar" => "-",
-            )
+            ["successChar" => "+", "failureChar" => "-"]
         );
         $this->assertEquals( 
             $fake,

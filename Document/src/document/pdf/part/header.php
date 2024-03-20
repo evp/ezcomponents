@@ -46,9 +46,7 @@ class ezcDocumentPdfHeaderPdfPart extends ezcDocumentPdfFooterPdfPart
      */
     public function __construct( ezcDocumentPdfFooterOptions $options = null )
     {
-        $this->options = ( $options === null ?
-            new ezcDocumentPdfFooterOptions() :
-            $options );
+        $this->options = ( $options ?? new ezcDocumentPdfFooterOptions() );
         $this->options->footer = false;
     }
 }

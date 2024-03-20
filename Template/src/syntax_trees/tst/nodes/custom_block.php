@@ -37,7 +37,7 @@ class ezcTemplateCustomBlockTstNode extends ezcTemplateBlockTstNode
      *
      * @var array
      */
-    public $namedParameters = array();
+    public $namedParameters = [];
 
     /**
      * Constructs a new custom block
@@ -49,7 +49,7 @@ class ezcTemplateCustomBlockTstNode extends ezcTemplateBlockTstNode
     public function __construct( ezcTemplateSourceCode $source, /*ezcTemplateCursor*/ $start, /*ezcTemplateCursor*/ $end )
     {
         parent::__construct( $source, $start, $end );
-        $this->customParameters = array();
+        $this->customParameters = [];
     }
     
     /**
@@ -59,11 +59,7 @@ class ezcTemplateCustomBlockTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'name'             => $this->name,
-                      'isClosingBlock'   => $this->isClosingBlock,
-                      'isNestingBlock'   => $this->isNestingBlock,
-                      'customParameters' => $this->customParameters,
-                      'children'         => $this->children );
+        return ['name'             => $this->name, 'isClosingBlock'   => $this->isClosingBlock, 'isNestingBlock'   => $this->isNestingBlock, 'customParameters' => $this->customParameters, 'children'         => $this->children];
     }
 
     /**
@@ -74,8 +70,7 @@ class ezcTemplateCustomBlockTstNode extends ezcTemplateBlockTstNode
      */
     public function appendParameter( $parameterName, ezcTemplateTstNode $nameElement, ezcTemplateTstNode $parameter )
     {
-        $this->customParameters[$parameterName] = array( $nameElement,
-                                                         $parameter );
+        $this->customParameters[$parameterName] = [$nameElement, $parameter];
     }
 
     /**

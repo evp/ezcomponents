@@ -8,8 +8,8 @@
  * @subpackage Tests
  */
 
-require_once( dirname( __FILE__ ) . "/testdata.php" );
-require_once(dirname(__FILE__) . "/archive_test_case.php");
+require_once( __DIR__ . "/testdata.php" );
+require_once(__DIR__ . "/archive_test_case.php");
 
 /**
  * @package Archive
@@ -31,7 +31,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
 
     public function testRecognizePaxTar()
     {
-        $archive = ezcArchive::open( dirname( __FILE__ ) . "/data/tar_pax_2_textfiles.tar" );
+        $archive = ezcArchive::open( __DIR__ . "/data/tar_pax_2_textfiles.tar" );
 
         $this->assertNotNull( $archive );
         $this->assertEquals( ezcArchive::TAR_PAX, $archive->getAlgorithm() );
@@ -41,7 +41,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
 
     public function testRecognizeGnuTar()
     {
-        $archive = ezcArchive::open( dirname( __FILE__ ) . "/data/tar_gnu_2_textfiles.tar" );
+        $archive = ezcArchive::open( __DIR__ . "/data/tar_gnu_2_textfiles.tar" );
 
         $this->assertNotNull( $archive );
         $this->assertEquals( ezcArchive::TAR_GNU, $archive->getAlgorithm() );
@@ -51,21 +51,21 @@ class ezcArchiveTest extends ezcArchiveTestCase
 
     public function testRecognizeGnuTar2()
     {
-        $file = dirname(__FILE__). '/data/gnu_tar.tar';
+        $file = __DIR__. '/data/gnu_tar.tar';
         $archive = ezcArchive::open( $file );
         $this->assertEquals( ezcArchive::TAR_GNU, $archive->getAlgorithm() );
     }
 
     public function testRecognizeGnuTar3()
     {
-        $file = dirname(__FILE__). '/data/gnu_tar2.tar';
+        $file = __DIR__. '/data/gnu_tar2.tar';
         $archive = ezcArchive::open( $file );
         $this->assertEquals( ezcArchive::TAR_GNU, $archive->getAlgorithm() );
     }
 
     public function testRecognizeUstar()
     {
-        $archive = ezcArchive::open( dirname( __FILE__ ) . "/data/tar_ustar_2_textfiles.tar" );
+        $archive = ezcArchive::open( __DIR__ . "/data/tar_ustar_2_textfiles.tar" );
 
         $this->assertNotNull( $archive );
         $this->assertEquals( ezcArchive::TAR_USTAR, $archive->getAlgorithm() );
@@ -75,7 +75,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
 
     public function testRecognizeV7Tar()
     {
-        $archive = ezcArchive::open( dirname( __FILE__ ) . "/data/tar_v7_2_textfiles.tar" );
+        $archive = ezcArchive::open( __DIR__ . "/data/tar_v7_2_textfiles.tar" );
 
         $this->assertNotNull( $archive );
         $this->assertEquals( ezcArchive::TAR_V7, $archive->getAlgorithm() );
@@ -85,7 +85,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
 
     public function testRecognizeZip()
     {
-        $archive = ezcArchive::open( dirname( __FILE__ ) . "/data/infozip_2_textfiles.zip" );
+        $archive = ezcArchive::open( __DIR__ . "/data/infozip_2_textfiles.zip" );
 
         $this->assertNotNull( $archive );
         $this->assertEquals( ezcArchive::ZIP, $archive->getAlgorithm() );
@@ -97,7 +97,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     {
         // Just choose one type. The specific algorithms are already tested.
         $dir = $this->getTempDir();
-        $archive = ezcArchive::open( dirname( __FILE__ ) . "/data/tar_pax_2_textfiles.tar" );
+        $archive = ezcArchive::open( __DIR__ . "/data/tar_pax_2_textfiles.tar" );
         $archive->extract( $dir );
 
         clearstatcache();
@@ -109,7 +109,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testReadGzippedTarAuto()
     {
         $dir = $this->getTempDir() . DIRECTORY_SEPARATOR;
-        copy( dirname( __FILE__ ) . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
+        copy( __DIR__ . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
 
         exec( "gzip {$dir}mytar.tar" );
         $archive = ezcArchive::open( "{$dir}mytar.tar.gz" );
@@ -125,7 +125,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testReadGzippedTar()
     {
         $dir = $this->getTempDir(). DIRECTORY_SEPARATOR;
-        copy( dirname( __FILE__ ) . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
+        copy( __DIR__ . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
 
         exec( "gzip {$dir}mytar.tar" );
         $archive = ezcArchive::open( "compress.zlib://{$dir}mytar.tar.gz" );
@@ -144,7 +144,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
         }
 
         $dir = $this->getTempDir() . DIRECTORY_SEPARATOR;
-        copy( dirname( __FILE__ ) . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
+        copy( __DIR__ . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
 
         exec( "bzip2 {$dir}mytar.tar" );
         $archive = ezcArchive::open( "compress.bzip2://{$dir}mytar.tar.bz2" );
@@ -166,7 +166,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
         }
 
         $dir = $this->getTempDir() . DIRECTORY_SEPARATOR;
-        copy( dirname( __FILE__ ) . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
+        copy( __DIR__ . "/data/tar_ustar_2_textfiles.tar", "{$dir}mytar.tar" );
 
         exec( "bzip2 {$dir}mytar.tar" );
         $archive = ezcArchive::open( "{$dir}mytar.tar.bz2" );
@@ -182,11 +182,11 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testReadBzippedGzippedTar()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/tar_ustar_2_textfiles.tar", "$dir/mytar.tar" );
+        copy( __DIR__ . "/data/tar_ustar_2_textfiles.tar", "$dir/mytar.tar" );
 
         exec( "gzip $dir/mytar.tar" );
         exec( "bzip2 $dir/mytar.tar.gz" );
-        $archive = ezcArchive::open( "$dir/mytar.tar.gz.bz2", null, new ezcArchiveOptions( array( 'readOnly' => true ) ) );
+        $archive = ezcArchive::open( "$dir/mytar.tar.gz.bz2", null, new ezcArchiveOptions( ['readOnly' => true] ) );
 
         $archive->extract( $dir );
 
@@ -198,7 +198,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testTarIncorrectBlockSizeException()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/infozip_2_textfiles.zip", "$dir/mytar.tar" );
+        copy( __DIR__ . "/data/infozip_2_textfiles.zip", "$dir/mytar.tar" );
 
         try
         {
@@ -279,7 +279,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
         $dir = $this->getTempDir();
 
         // Filesize is smaller than the blocksize.
-        copy( dirname( __FILE__ ) . "/data/infozip_2_textfiles.zip", "$dir/myzip.zip" );
+        copy( __DIR__ . "/data/infozip_2_textfiles.zip", "$dir/myzip.zip" );
 
         try
         {
@@ -297,7 +297,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testForceUstarTarPart2()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/infozip_file_dir_symlink_link.zip", "$dir/myzip.zip");
+        copy( __DIR__ . "/data/infozip_file_dir_symlink_link.zip", "$dir/myzip.zip");
 
         try
         {
@@ -369,7 +369,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testWinzipExtract()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/winzip_1_textfile.zip", "$dir/myzip.zip" );
+        copy( __DIR__ . "/data/winzip_1_textfile.zip", "$dir/myzip.zip" );
 
         $archive = ezcArchive::open( "$dir/myzip.zip" );
         $archive->extract( $dir );
@@ -380,7 +380,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testWinzipAppend()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/winzip_1_textfile.zip", "$dir/myzip.zip" );
+        copy( __DIR__ . "/data/winzip_1_textfile.zip", "$dir/myzip.zip" );
 
         $archive = ezcArchive::open( "$dir/myzip.zip" );
         file_put_contents( "$dir/myfile.txt", "Hi" );
@@ -400,7 +400,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
 
     public function testListing()
     {
-        $archive = ezcArchive::open( dirname( __FILE__ ) . "/data/tar_pax_2_textfiles.tar" );
+        $archive = ezcArchive::open( __DIR__ . "/data/tar_pax_2_textfiles.tar" );
         $list = $archive->getListing();
 
         $this->assertEquals( "file1.txt", substr( $list[0], -9 ) );
@@ -410,7 +410,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testAppendWithWrongPrefix()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/tar_ustar_2_textfiles.tar", "$dir/mytar.tar" );
+        copy( __DIR__ . "/data/tar_ustar_2_textfiles.tar", "$dir/mytar.tar" );
         $archive = ezcArchive::open( "$dir/mytar.tar" );
 
         file_put_contents( "$dir/haha.txt", "Hahahah" );
@@ -428,7 +428,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testModifyFileTime()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/gzip-test.tar.gz", "$dir/mytar.tar.gz" );
+        copy( __DIR__ . "/data/gzip-test.tar.gz", "$dir/mytar.tar.gz" );
         $before = stat( "$dir/mytar.tar.gz" );
         clearstatcache();
         sleep(2);
@@ -448,12 +448,12 @@ class ezcArchiveTest extends ezcArchiveTestCase
     public function testReadOnlyModifyFileTime()
     {
         $dir = $this->getTempDir();
-        copy( dirname( __FILE__ ) . "/data/gzip-test.tar.gz", "$dir/mytar.tar.gz" );
+        copy( __DIR__ . "/data/gzip-test.tar.gz", "$dir/mytar.tar.gz" );
         $before = stat( "$dir/mytar.tar.gz" );
         clearstatcache();
         sleep(2);
 
-        $options = new ezcArchiveOptions( array( 'readOnly' => true ) );
+        $options = new ezcArchiveOptions( ['readOnly' => true] );
         $archive = ezcArchive::open( "$dir/mytar.tar.gz", null, $options );
         mkdir( $dir . '/extract' );
         foreach ( $archive as $file )
@@ -468,7 +468,7 @@ class ezcArchiveTest extends ezcArchiveTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

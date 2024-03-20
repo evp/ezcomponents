@@ -282,7 +282,7 @@ class ezcGraphMatrix
         $this->rows = $matrix->columns();
         $this->columns = $matrix->rows();
 
-        $this->matrix = array();
+        $this->matrix = [];
 
         for ( $i = 0; $i < $this->rows; ++$i )
         {
@@ -480,10 +480,7 @@ class ezcGraphMatrix
             }
         }
 
-        return array( 
-            'l' => $l, 
-            'r' => $r,
-        );
+        return ['l' => $l, 'r' => $r];
     }
 
     /**

@@ -88,9 +88,7 @@ class ezcDocumentWiki extends ezcDocument implements ezcDocumentValidation
      *
      * @var array
      */
-    protected $plugins = array(
-        'code' => 'ezcDocumentWikiCodePlugin',
-    );
+    protected $plugins = ['code' => 'ezcDocumentWikiCodePlugin'];
 
     /**
      * Asbtract syntax tree.
@@ -117,9 +115,7 @@ class ezcDocumentWiki extends ezcDocument implements ezcDocumentValidation
      */
     public function __construct( ezcDocumentWikiOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentWikiOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentWikiOptions() );
     }
 
     /**
@@ -198,7 +194,7 @@ class ezcDocumentWiki extends ezcDocument implements ezcDocumentValidation
 
         $visitor = new ezcDocumentWikiDocbookVisitor( $this, $this->path );
         $document->setDomDocument(
-            $visitor->visit( $this->ast, $this->path )
+            $visitor->visit( $this->ast )
         );
         $document->setPath( $this->path );
 
@@ -278,7 +274,7 @@ class ezcDocumentWiki extends ezcDocument implements ezcDocumentValidation
         // Only halt on parse errors, and collect all other errors.
         $parser->options->errorReporting = E_PARSE;
 
-        $errors = array();
+        $errors = [];
         $ast    = null;
         try
         {
@@ -303,7 +299,7 @@ class ezcDocumentWiki extends ezcDocument implements ezcDocumentValidation
             try
             {
                 $visitor = new ezcDocumentWikiDocbookVisitor( $this, $this->path );
-                $visitor->visit( $ast, $this->path );
+                $visitor->visit( $ast );
 
                 // Get errors and notices from parsed document
                 $errors = array_merge( $errors, $visitor->getErrors() );

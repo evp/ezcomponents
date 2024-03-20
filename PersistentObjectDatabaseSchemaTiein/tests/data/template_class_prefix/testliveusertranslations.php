@@ -19,7 +19,7 @@ class testLiveuserTranslations implements ezcPersistentObject
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new testLiveuserTranslations

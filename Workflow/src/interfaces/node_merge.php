@@ -100,7 +100,7 @@ abstract class ezcWorkflowNodeMerge extends ezcWorkflowNode
     {
         parent::initState();
 
-        $this->state = array( 'threads' => array(), 'siblings' => -1 );
+        $this->state = ['threads' => [], 'siblings' => -1];
     }
 }
 ?>

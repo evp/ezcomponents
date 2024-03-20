@@ -31,7 +31,7 @@ class ezcDocumentRstReferenceNode extends ezcDocumentRstLinkNode
      *
      * @var array
      */
-    public $name = array();
+    public $name = [];
 
     /**
      * Construct RST document node

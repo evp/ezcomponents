@@ -22,7 +22,7 @@ class ezcGraphChartDataContainer implements ArrayAccess, Iterator, Countable
      * 
      * @var array(ezcGraphDataSet)
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Chart using this data set storage

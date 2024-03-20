@@ -149,7 +149,7 @@ class ezcAuthenticationGmpLibrary extends ezcAuthenticationBignumLibrary
     public function gcd( $a, $b )
     {
         $result = gmp_gcdext( $a, $b );
-        return array( $result['s'], $result['t'], $result['g'] );
+        return [$result['s'], $result['t'], $result['g']];
     }
 
     /**

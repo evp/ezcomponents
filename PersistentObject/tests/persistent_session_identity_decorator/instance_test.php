@@ -33,7 +33,7 @@ class ezcPersistentSessionIdentityDecoratorInstanceTest extends ezcTestCase
     protected function getSession()
     {
         $manager = new ezcPersistentCodeManager(
-            dirname( __FILE__ ) . "/../data/"
+            __DIR__ . "/../data/"
         );
         return new ezcPersistentSession(
             ezcDbInstance::get(),
@@ -102,7 +102,7 @@ class ezcPersistentSessionIdentityDecoratorInstanceTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( __CLASS__ );
+         return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 

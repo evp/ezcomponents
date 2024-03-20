@@ -41,7 +41,7 @@ class ezcAuthenticationOpenidDbStore extends ezcAuthenticationOpenidStore
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -52,7 +52,7 @@ class ezcAuthenticationOpenidDbStore extends ezcAuthenticationOpenidStore
     public function __construct( ezcDbHandler $instance, ezcAuthenticationOpenidDbStoreOptions $options = null )
     {
         $this->instance = $instance;
-        $this->options = ( $options === null ) ? new ezcAuthenticationOpenidDbStoreOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationOpenidDbStoreOptions();
     }
 
     /**

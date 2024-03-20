@@ -108,7 +108,7 @@ class ezcMailParser
      *         if $options contains a property with a value not allowed
      * @param ezcMailParserOptions|array(string=>mixed) $options
      */
-    public function __construct( $options = array() )
+    public function __construct( $options = [] )
     {
         if ( $options instanceof ezcMailParserOptions )
         {
@@ -217,7 +217,7 @@ class ezcMailParser
      */
     public function parseMail( ezcMailParserSet $set, $class = null )
     {
-        $mail = array();
+        $mail = [];
         if ( !$set->hasData() )
         {
             return $mail;

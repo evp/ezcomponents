@@ -36,12 +36,12 @@ class ezcTemplateEolCommentAstNode extends ezcTemplateStatementAstNode
     /**
      * Comment start marker is a double slash.
      */
-    const MARKER_DOUBLE_SLASH = 1;
+    public const MARKER_DOUBLE_SLASH = 1;
 
     /**
      * Comment start marker is a hash.
      */
-    const MARKER_HASH         = 2;
+    public const MARKER_HASH         = 2;
 
     /**
      * The text for the comment.

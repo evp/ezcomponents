@@ -27,50 +27,7 @@ class ezcParamValuesTest extends ezcTestCase
     protected $blob;
     protected $clob;
 
-    protected $columnMapping = array(
-        'bool' => array(
-            'ezcDbHandlerMysql' => 'boolean',
-            'ezcDbHandlerOracle' => 'char',
-            'ezcDbHandlerPgsql' => 'boolean',
-            'ezcDbHandlerSqlite' => 'integer',
-            'ezcDbHandlerMssql' => 'integer',
-        ),
-        'int' => array(
-            'ezcDbHandlerMysql' => 'bigint',
-            'ezcDbHandlerOracle' => 'number',
-            'ezcDbHandlerPgsql' => 'bigint',
-            'ezcDbHandlerSqlite' => 'integer',
-            'ezcDbHandlerMssql' => 'bigint',
-        ),
-        'null' => array(
-            'ezcDbHandlerMysql' => 'bigint',
-            'ezcDbHandlerOracle' => 'number',
-            'ezcDbHandlerPgsql' => 'bigint',
-            'ezcDbHandlerSqlite' => 'integer',
-            'ezcDbHandlerMssql' => 'bigint',
-        ),
-        'str' => array(
-            'ezcDbHandlerMysql' => 'varchar( 255 )',
-            'ezcDbHandlerOracle' => 'varchar2( 255 )',
-            'ezcDbHandlerPgsql' => 'varchar( 255 )',
-            'ezcDbHandlerSqlite' => 'text',
-            'ezcDbHandlerMssql' => 'varchar( 255 )',
-        ),
-        'blob' => array(
-            'ezcDbHandlerMysql' => 'longblob',
-            'ezcDbHandlerOracle' => 'blob',
-            'ezcDbHandlerPgsql' => 'bytea',
-            'ezcDbHandlerSqlite' => 'blob',
-            'ezcDbHandlerMssql' => 'image',
-        ),
-        'clob' => array(
-            'ezcDbHandlerMysql' => 'longtext',
-            'ezcDbHandlerOracle' => 'clob',
-            'ezcDbHandlerPgsql' => 'text',
-            'ezcDbHandlerSqlite' => 'clob',
-            'ezcDbHandlerMssql' => 'ntext',
-        ),
-    );
+    protected $columnMapping = ['bool' => ['ezcDbHandlerMysql' => 'boolean', 'ezcDbHandlerOracle' => 'char', 'ezcDbHandlerPgsql' => 'boolean', 'ezcDbHandlerSqlite' => 'integer', 'ezcDbHandlerMssql' => 'integer'], 'int' => ['ezcDbHandlerMysql' => 'bigint', 'ezcDbHandlerOracle' => 'number', 'ezcDbHandlerPgsql' => 'bigint', 'ezcDbHandlerSqlite' => 'integer', 'ezcDbHandlerMssql' => 'bigint'], 'null' => ['ezcDbHandlerMysql' => 'bigint', 'ezcDbHandlerOracle' => 'number', 'ezcDbHandlerPgsql' => 'bigint', 'ezcDbHandlerSqlite' => 'integer', 'ezcDbHandlerMssql' => 'bigint'], 'str' => ['ezcDbHandlerMysql' => 'varchar( 255 )', 'ezcDbHandlerOracle' => 'varchar2( 255 )', 'ezcDbHandlerPgsql' => 'varchar( 255 )', 'ezcDbHandlerSqlite' => 'text', 'ezcDbHandlerMssql' => 'varchar( 255 )'], 'blob' => ['ezcDbHandlerMysql' => 'longblob', 'ezcDbHandlerOracle' => 'blob', 'ezcDbHandlerPgsql' => 'bytea', 'ezcDbHandlerSqlite' => 'blob', 'ezcDbHandlerMssql' => 'image'], 'clob' => ['ezcDbHandlerMysql' => 'longtext', 'ezcDbHandlerOracle' => 'clob', 'ezcDbHandlerPgsql' => 'text', 'ezcDbHandlerSqlite' => 'clob', 'ezcDbHandlerMssql' => 'ntext']];
 
     public static function suite()
     {
@@ -90,7 +47,7 @@ class ezcParamValuesTest extends ezcTestCase
         $this->assertNotNull( $db, 'Database instance is not initialized.' );
 
         $db->exec( 'CREATE TABLE ' .
-            $db->quoteIdentifier( __CLASS__ ) . 
+            $db->quoteIdentifier( self::class ) . 
             '( ' . 
                 ( $this->boolColumn = $db->quoteIdentifier( 'bool' ) ) . ' ' . $this->columnMapping['bool'][get_class( $db )] . ' NULL, ' .
                 ( $this->intColumn =  $db->quoteIdentifier( 'int' )  ) . ' ' . $this->columnMapping['int' ][get_class( $db )] . ' NULL, ' .
@@ -111,7 +68,7 @@ class ezcParamValuesTest extends ezcTestCase
         $db = ezcDbInstance::get();
 
         $db->exec( 'DROP TABLE ' .
-            $db->quoteIdentifier( __CLASS__ )
+            $db->quoteIdentifier( self::class )
         );
     }
 
@@ -121,7 +78,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->boolColumn,
                 $query->bindValue( true ) 
@@ -135,7 +92,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->boolColumn,
                 $query->bindValue( true, null, PDO::PARAM_BOOL ) 
@@ -149,7 +106,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->boolColumn,
                 $query->bindValue( 'some string', null, PDO::PARAM_BOOL ) 
@@ -163,7 +120,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->intColumn,
                 $query->bindValue( 42 ) 
@@ -177,7 +134,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->intColumn,
                 $query->bindValue( 42, null, PDO::PARAM_INT ) 
@@ -191,7 +148,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->intColumn,
                 $query->bindValue( '42 strings', null, PDO::PARAM_INT ) 
@@ -205,7 +162,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->strColumn,
                 $query->bindValue( 'some string' ) 
@@ -219,7 +176,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->strColumn,
                 $query->bindValue( 'some string', null, PDO::PARAM_INT ) 
@@ -233,7 +190,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->strColumn,
                 $query->bindValue( true, null, PDO::PARAM_INT ) 
@@ -247,7 +204,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->clobColumn,
                 $query->bindValue( $this->clob ) 
@@ -261,7 +218,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->clobColumn,
                 $query->bindValue( $this->clob, null, PDO::PARAM_LOB ) 
@@ -275,7 +232,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->clobColumn,
                 $query->bindValue( 42, null, PDO::PARAM_LOB ) 
@@ -289,7 +246,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->blobColumn,
                 $query->bindValue( $this->blob ) 
@@ -303,7 +260,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->blobColumn,
                 $query->bindValue( $this->blob, null, PDO::PARAM_LOB ) 
@@ -317,7 +274,7 @@ class ezcParamValuesTest extends ezcTestCase
 
         $query = $db->createInsertQuery();
         $query
-            ->insertInto( $db->quoteIdentifier( __CLASS__ ) )
+            ->insertInto( $db->quoteIdentifier( self::class ) )
             ->set( 
                 $this->blobColumn,
                 $query->bindValue( 42, null, PDO::PARAM_LOB ) 

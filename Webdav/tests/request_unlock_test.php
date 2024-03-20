@@ -25,21 +25,16 @@ class ezcWebdavUnlockRequestTest extends ezcWebdavRequestTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavUnlockRequest';
-        $this->constructorArguments = array(
-            '/foo', '/bar'
-        );
-        $this->defaultValues = array(
-        );
-        $this->workingValues = array(
-        );
-        $this->failingValues = array(
-        );
+        $this->constructorArguments = ['/foo', '/bar'];
+        $this->defaultValues = [];
+        $this->workingValues = [];
+        $this->failingValues = [];
     }
 
     public function testValidateHeadersSuccess()

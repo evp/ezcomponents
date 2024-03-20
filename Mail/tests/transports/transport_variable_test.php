@@ -72,7 +72,7 @@ class ezcMailTransportVariableTest extends ezcTestCase
 
     public function testFromProcMail()
     {
-        $mail_msg = file_get_contents( dirname( __FILE__ ) . '/data/test-variable' );
+        $mail_msg = file_get_contents( __DIR__ . '/data/test-variable' );
         $set = new ezcMailVariableSet( $mail_msg );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );

@@ -2,7 +2,7 @@
 require_once 'tutorial_autoload.php';
 
 $reader = new ezcConfigurationIniReader();
-$reader->init( dirname( __FILE__ ), 'settings' );
+$reader->init( __DIR__, 'settings' );
 
 // validate the settings file, and loop over all the validation errors and
 // warnings

@@ -2,12 +2,8 @@
 
 require_once 'tutorial_autoload.php';
 
-$optionsPlain = array(
-    'ttl'   => 30,
-);
-$optionsArray = array(
-    'ttl'   => 45,
-);
+$optionsPlain = ['ttl'   => 30];
+$optionsArray = ['ttl'   => 45];
 
 ezcCacheManager::createCache( 'plain', '/tmp/cache/plain', 'ezcCacheStorageFilePlain', $optionsPlain );
 ezcCacheManager::createCache( 'array', '/tmp/cache/array', 'ezcCacheStorageFileArray', $optionsArray );
@@ -31,12 +27,7 @@ $cache = ezcCacheManager::getCache( 'array' );
 
 if ( ( $arrayData = $cache->restore( $myId ) ) === false )
 {
-    $arrayData = array( 
-        $plainData,
-        "Array cache stored on " . date( 'Y-m-d, H:m:s'),
-        true,
-        23
-    );
+    $arrayData = [$plainData, "Array cache stored on " . date( 'Y-m-d, H:m:s'), true, 23];
     $cache->store( $myId, $arrayData );
 }
 

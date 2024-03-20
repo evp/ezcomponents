@@ -81,17 +81,17 @@ class ezcConsoleOutput
     /**
      * Target to print to standard out, with output buffering possibility.
      */
-    const TARGET_OUTPUT = "php://output";
+    public const TARGET_OUTPUT = "php://output";
 
     /**
      * Target to print to standard out. 
      */
-    const TARGET_STDOUT = "php://stdout";
+    public const TARGET_STDOUT = "php://stdout";
 
     /**
      * Target to print to standard error. 
      */
-    const TARGET_STDERR = "php://stderr";
+    public const TARGET_STDERR = "php://stderr";
 
     /**
      * Container to hold the properties
@@ -114,9 +114,10 @@ class ezcConsoleOutput
      *
      * @var array(string=>int)
      */
-    protected static $color = array(
+    protected static $color = [
         'gray'          => 30,
-        'black'         => 30,      // Alias black to gray (Bug #8478)
+        'black'         => 30,
+        // Alias black to gray (Bug #8478)
         'red'           => 31,
         'green'         => 32,
         'yellow'        => 33,
@@ -124,8 +125,8 @@ class ezcConsoleOutput
         'magenta'       => 35,
         'cyan'          => 36,
         'white'         => 37,
-        'default'       => 39
-    );
+        'default'       => 39,
+    ];
 
     /**
      * Stores the mapping of bgcolor names to their escape
@@ -133,8 +134,9 @@ class ezcConsoleOutput
      * 
      * @var array(string=>int)
      */
-    protected static $bgcolor = array(
-        'gray'       => 40,      // Alias gray to black (Bug #8478)
+    protected static $bgcolor = [
+        'gray'       => 40,
+        // Alias gray to black (Bug #8478)
         'black'      => 40,
         'red'        => 41,
         'green'      => 42,
@@ -144,7 +146,7 @@ class ezcConsoleOutput
         'cyan'       => 46,
         'white'      => 47,
         'default'    => 49,
-    );
+    ];
 
     /**
      * Stores the mapping of styles names to their escape
@@ -152,27 +154,7 @@ class ezcConsoleOutput
      * 
      * @var array(string=>int)
      */
-    protected static $style = array( 
-        'default'           => '0',
-    
-        'bold'              => 1,
-        'faint'             => 2,
-        'normal'            => 22,
-        
-        'italic'            => 3,
-        'notitalic'         => 23,
-        
-        'underlined'        => 4,
-        'doubleunderlined'  => 21,
-        'notunderlined'     => 24,
-        
-        'blink'             => 5,
-        'blinkfast'         => 6,
-        'noblink'           => 25,
-        
-        'negative'          => 7,
-        'positive'          => 27,
-    );
+    protected static $style = ['default'           => '0', 'bold'              => 1, 'faint'             => 2, 'normal'            => 22, 'italic'            => 3, 'notitalic'         => 23, 'underlined'        => 4, 'doubleunderlined'  => 21, 'notunderlined'     => 24, 'blink'             => 5, 'blinkfast'         => 6, 'noblink'           => 25, 'negative'          => 7, 'positive'          => 27];
 
     /**
      * Basic escape sequence string. Use sprintf() to insert escape codes.
@@ -186,7 +168,7 @@ class ezcConsoleOutput
      * 
      * @var array
      */
-    private $targets = array();
+    private $targets = [];
 
     /**
      * Create a new console output handler.
@@ -199,10 +181,10 @@ class ezcConsoleOutput
      * @param ezcConsoleOutputFormats $formats Formats to be used for output.
      * @param array(string=>string) $options   Options to set.
      */
-    public function __construct( ezcConsoleOutputFormats $formats = null, array $options = array() )
+    public function __construct( ezcConsoleOutputFormats $formats = null, array $options = [] )
     {
-        $options = isset( $options ) ? $options : new ezcConsoleOutputOptions();
-        $formats = isset( $formats ) ? $formats : new ezcConsoleOutputFormats();
+        $options ??= new ezcConsoleOutputOptions();
+        $formats ??= new ezcConsoleOutputFormats();
         $this->properties['options'] = new ezcConsoleOutputOptions( $options );
         $this->properties['formats'] = $formats;
     }
@@ -527,8 +509,8 @@ class ezcConsoleOutput
         {
             return sprintf( $this->escapeSequence, 0 );
         }
-        $modifiers = array();
-        $formats = array( 'color', 'style', 'bgcolor' );
+        $modifiers = [];
+        $formats = ['color', 'style', 'bgcolor'];
         foreach ( $formats as $formatType ) 
         {
             // Get modifiers

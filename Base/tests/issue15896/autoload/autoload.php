@@ -1,7 +1,5 @@
 <?php
 
-return array(
-    'ab' 				=> 'ab.php'
-);
+return ['ab' 				=> 'ab.php'];
 
 ?>

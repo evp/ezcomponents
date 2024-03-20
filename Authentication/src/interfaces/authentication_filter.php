@@ -29,7 +29,7 @@ abstract class ezcAuthenticationFilter
     /**
      * Successful authentication.
      */
-    const STATUS_OK = 0;
+    public const STATUS_OK = 0;
 
     /**
      * Options for authentication filters.

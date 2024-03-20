@@ -59,7 +59,7 @@ class ezcQuerySelectMssql extends ezcQuerySelect
         $this->hasLimit = false;
         $this->limit = 0;
         $this->offset = 0;
-        $this->orderColumns = array();
+        $this->orderColumns = [];
         parent::reset();
     }
 

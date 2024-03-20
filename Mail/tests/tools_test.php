@@ -35,8 +35,7 @@ class ezcMailToolsTest extends ezcTestCase
     // @todo test if no 'email' is given.
     public function testComposeEmailAddresses()
     {
-        $addresses = array( new ezcMailAddress( 'john@example.com', 'John Doe' ),
-                            new ezcMailAddress( 'debra@example.com' ) );
+        $addresses = [new ezcMailAddress( 'john@example.com', 'John Doe' ), new ezcMailAddress( 'debra@example.com' )];
 
         $this->assertEquals( 'John Doe <john@example.com>, debra@example.com',
                              ezcMailTools::composeEmailAddresses( $addresses ) );
@@ -47,9 +46,9 @@ class ezcMailToolsTest extends ezcTestCase
         $address = new ezcMailAddress( 'john-ascii@example.com', 'John Ascii' );
         $this->assertEquals( 'John Ascii <john-ascii@example.com>', ezcMailTools::composeEmailAddress( $address ) );
 
-        // The Ä does not in US ASCII, but we pass it along anyway
-        $address = new ezcMailAddress( 'john-ascii@example.com', 'John Äscii' );
-        $this->assertEquals( 'John Äscii <john-ascii@example.com>', ezcMailTools::composeEmailAddress( $address ) );
+        // The ï¿½ does not in US ASCII, but we pass it along anyway
+        $address = new ezcMailAddress( 'john-ascii@example.com', 'John ï¿½scii' );
+        $this->assertEquals( 'John ï¿½scii <john-ascii@example.com>', ezcMailTools::composeEmailAddress( $address ) );
     }
 
     public function testComposeEmailAddressLatin1()
@@ -59,20 +58,20 @@ class ezcMailToolsTest extends ezcTestCase
         $this->assertEquals( 'John Ascii <john-ascii@example.com>', ezcMailTools::composeEmailAddress( $address ) );
 
         // with 8-bit chars
-        $address = new ezcMailAddress( 'john-ascii@example.com', 'John Äscii', 'iso-8859-1' );
+        $address = new ezcMailAddress( 'john-ascii@example.com', 'John ï¿½scii', 'iso-8859-1' );
         $this->assertEquals( '=?iso-8859-1?Q?John=20=C4scii?= <john-ascii@example.com>', ezcMailTools::composeEmailAddress( $address ) );
     }
 
     public function testComposeEmailAddressOtherLatin()
     {
-        foreach ( array( 'iso-8859-2', 'iso-8859-6', 'iso-8859-7', 'iso-8859-9', 'iso-8859-15' ) as $charset )
+        foreach ( ['iso-8859-2', 'iso-8859-6', 'iso-8859-7', 'iso-8859-9', 'iso-8859-15'] as $charset )
         {
             // no 8-bit-chars
             $address = new ezcMailAddress( 'john-ascii@example.com', 'John Ascii', $charset );
             $this->assertEquals( 'John Ascii <john-ascii@example.com>', ezcMailTools::composeEmailAddress( $address ) );
 
             // with 8-bit chars
-            $address = new ezcMailAddress( 'john-ascii@example.com', 'John Äscii', $charset );
+            $address = new ezcMailAddress( 'john-ascii@example.com', 'John ï¿½scii', $charset );
             $this->assertEquals( "=?{$charset}?Q?John=20=C4scii?= <john-ascii@example.com>", ezcMailTools::composeEmailAddress( $address ) );
         }
     }
@@ -93,10 +92,7 @@ class ezcMailToolsTest extends ezcTestCase
         $reference = "John Doe <john@example.com>, Harry Doe <harry@example.com>," .
             ezcMailTools::lineBreak() .
             " Gordon Doe <gordon@example.com>, debra@example.com";
-        $addresses = array( new ezcMailAddress( 'john@example.com', 'John Doe' ),
-                            new ezcMailAddress( 'harry@example.com', 'Harry Doe' ),
-                            new ezcMailAddress( 'gordon@example.com', 'Gordon Doe' ),
-                            new ezcMailAddress( 'debra@example.com' ) );
+        $addresses = [new ezcMailAddress( 'john@example.com', 'John Doe' ), new ezcMailAddress( 'harry@example.com', 'Harry Doe' ), new ezcMailAddress( 'gordon@example.com', 'Gordon Doe' ), new ezcMailAddress( 'debra@example.com' )];
         $result = ezcMailTools::composeEmailAddresses( $addresses, 76 );
         $this->assertEquals( $reference, $result );
     }
@@ -108,29 +104,30 @@ class ezcMailToolsTest extends ezcTestCase
             " Nancy Doe <nancy@example.com>, Faith Doe <faith@example.com>," .
             ezcMailTools::lineBreak() .
             " Gordon Doe <gordon@example.com>, debra@example.com";
-        $addresses = array( new ezcMailAddress( 'john@example.com', 'John Doe' ),
-                            new ezcMailAddress( 'harry@example.com', 'Harry Doe' ),
-                            new ezcMailAddress( 'nancy@example.com', 'Nancy Doe' ),
-                            new ezcMailAddress( 'faith@example.com', 'Faith Doe' ),
-                            new ezcMailAddress( 'gordon@example.com', 'Gordon Doe' ),
-                            new ezcMailAddress( 'debra@example.com' ) );
+        $addresses = [new ezcMailAddress( 'john@example.com', 'John Doe' ), new ezcMailAddress( 'harry@example.com', 'Harry Doe' ), new ezcMailAddress( 'nancy@example.com', 'Nancy Doe' ), new ezcMailAddress( 'faith@example.com', 'Faith Doe' ), new ezcMailAddress( 'gordon@example.com', 'Gordon Doe' ), new ezcMailAddress( 'debra@example.com' )];
         $result = ezcMailTools::composeEmailAddresses( $addresses, 76 );
         $this->assertEquals( $reference, $result );
     }
 
     public function testComposeEmailAddressNameNotQuoted()
     {
-        $addressesNotQuoted = array(
-            array( "Doe John <john@example.com>", new ezcMailAddress( 'john@example.com', 'Doe John' ) ),
-            array( "\"Doe, John\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe, John"' ) ), // already quoted
-            array( "\"<Doe John>\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"<Doe John>"' ) ), // already quoted
-            array( "\"Doe@John.example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe@John.example.com"' ) ), // already quoted
-            array( "\"John, Doe@John.example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"John, Doe@John.example.com"' ) ), // already quoted
-            array( "\":sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', '":sysmail"' ) ), // already quoted
-            array( "\";sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', '";sysmail"' ) ), // already quoted
-            array( "sysmail <john@example.com>", new ezcMailAddress( 'john@example.com', 'sysmail' ) ),
-            array( "\"John 'Doe'\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John \'Doe\'' ) ),
-            );
+        $addressesNotQuoted = [
+            ["Doe John <john@example.com>", new ezcMailAddress( 'john@example.com', 'Doe John' )],
+            ["\"Doe, John\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe, John"' )],
+            // already quoted
+            ["\"<Doe John>\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"<Doe John>"' )],
+            // already quoted
+            ["\"Doe@John.example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe@John.example.com"' )],
+            // already quoted
+            ["\"John, Doe@John.example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"John, Doe@John.example.com"' )],
+            // already quoted
+            ["\":sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', '":sysmail"' )],
+            // already quoted
+            ["\";sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', '";sysmail"' )],
+            // already quoted
+            ["sysmail <john@example.com>", new ezcMailAddress( 'john@example.com', 'sysmail' )],
+            ["\"John 'Doe'\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John \'Doe\'' )],
+        ];
 
         foreach ( $addressesNotQuoted as $address )
         {
@@ -143,22 +140,25 @@ class ezcMailToolsTest extends ezcTestCase
         
     public function testComposeEmailAddressNameQuoted()
     {
-        $addressesQuoted = array(
-            array( "\"Doe, John\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'Doe, John' ) ),
-            array( "\"<Doe John>\" <john@example.com>", new ezcMailAddress( 'john@example.com', '<Doe John>' ) ), // double bad character < and >
-            array( "\"john.doe@example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'john.doe@example.com' ) ),
-            array( "\"John, john.doe@example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John, john.doe@example.com' ) ), // double bad character , and @
-            array( "\"John \\\"Doe\\\"\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John "Doe"' ) ),
-            array( "\":sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', ':sysmail' ) ),
-            array( "\";sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', ';sysmail' ) ),
-            array( "\"John \\\"Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John "Doe' ) ),
-            array( "\"John 'Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John \'Doe' ) ),
-            array( "\"John \\\\\\\"Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John \"Doe' ) ), // already escaped quotes
-            array( "\"John \\\"Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"John "Doe"' ) ),
-            array( "\"\\\"Doe\\\" \\\"John\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe" "John' ) ),
-            array( "\"Doe\\\" John\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe" John"' ) ),
-            array( "\"'Doe' 'John\" <john@example.com>", new ezcMailAddress( 'john@example.com', "'Doe' 'John" ) ),
-            );
+        $addressesQuoted = [
+            ["\"Doe, John\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'Doe, John' )],
+            ["\"<Doe John>\" <john@example.com>", new ezcMailAddress( 'john@example.com', '<Doe John>' )],
+            // double bad character < and >
+            ["\"john.doe@example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'john.doe@example.com' )],
+            ["\"John, john.doe@example.com\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John, john.doe@example.com' )],
+            // double bad character , and @
+            ["\"John \\\"Doe\\\"\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John "Doe"' )],
+            ["\":sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', ':sysmail' )],
+            ["\";sysmail\" <john@example.com>", new ezcMailAddress( 'john@example.com', ';sysmail' )],
+            ["\"John \\\"Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John "Doe' )],
+            ["\"John 'Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John \'Doe' )],
+            ["\"John \\\\\\\"Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', 'John \"Doe' )],
+            // already escaped quotes
+            ["\"John \\\"Doe\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"John "Doe"' )],
+            ["\"\\\"Doe\\\" \\\"John\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe" "John' )],
+            ["\"Doe\\\" John\" <john@example.com>", new ezcMailAddress( 'john@example.com', '"Doe" John"' )],
+            ["\"'Doe' 'John\" <john@example.com>", new ezcMailAddress( 'john@example.com', "'Doe' 'John" )],
+        ];
 
         foreach ( $addressesQuoted as $key => $address )
         {
@@ -217,14 +217,14 @@ class ezcMailToolsTest extends ezcTestCase
 
     public function testParseEmailAddressLocalEncoding()
     {
-        $add = ezcMailTools::parseEmailAddress( 'Test äöää <foobar@example.com>', 'iso-8859-1' );
+        $add = ezcMailTools::parseEmailAddress( 'Test ï¿½ï¿½ï¿½ï¿½ <foobar@example.com>', 'iso-8859-1' );
         $this->assertEquals( 'Test Ã¤Ã¶Ã¤Ã¤', $add->name );
         $this->assertEquals( 'foobar@example.com', $add->email );
     }
 
     public function testParseEmailAddressesLocalEncoding()
     {
-        $add = ezcMailTools::parseEmailAddresses( 'Test äöää<foobar@example.com>, En Lømmel <test@example.com>',
+        $add = ezcMailTools::parseEmailAddresses( 'Test ï¿½ï¿½ï¿½ï¿½<foobar@example.com>, En Lï¿½mmel <test@example.com>',
                                                 'iso-8859-1' );
         $this->assertEquals( 'Test Ã¤Ã¶Ã¤Ã¤', $add[0]->name );
         $this->assertEquals( 'foobar@example.com', $add[0]->email );
@@ -234,12 +234,12 @@ class ezcMailToolsTest extends ezcTestCase
 
     public function testValidateEmailAddressCorrect()
     {
-        $data = file_get_contents( dirname( __FILE__ ) . '/tools/data/addresses_correct.txt' );
+        $data = file_get_contents( __DIR__ . '/tools/data/addresses_correct.txt' );
         $addresses = explode( "\n", $data );
         foreach ( $addresses as $address )
         {
             $address = trim( $address );
-            if ( strlen( $address ) > 1 && $address{0} !== '#' )
+            if ( strlen( $address ) > 1 && $address[0] !== '#' )
             {
                 $this->assertEquals( true, ezcMailTools::validateEmailAddress( $address ), "Failed asserting that {$address} is correct." );
             }
@@ -253,12 +253,12 @@ class ezcMailToolsTest extends ezcTestCase
             $this->markTestSkipped( 'This test needs getmxrr() and checkdnsrr() support' );
         }
 
-        $data = file_get_contents( dirname( __FILE__ ) . '/tools/data/addresses_correct_mx.txt' );
+        $data = file_get_contents( __DIR__ . '/tools/data/addresses_correct_mx.txt' );
         $addresses = explode( "\n", $data );
         foreach ( $addresses as $address )
         {
             $address = trim( $address );
-            if ( strlen( $address ) > 1 && $address{0} !== '#' )
+            if ( strlen( $address ) > 1 && $address[0] !== '#' )
             {
                 $this->assertEquals( true, ezcMailTools::validateEmailAddress( $address, true ), "Failed asserting that {$address} is correct with MX." );
             }
@@ -267,12 +267,12 @@ class ezcMailToolsTest extends ezcTestCase
 
     public function testValidateEmailAddressIncorrect()
     {
-        $data = file_get_contents( dirname( __FILE__ ) . '/tools/data/addresses_incorrect.txt' );
+        $data = file_get_contents( __DIR__ . '/tools/data/addresses_incorrect.txt' );
         $addresses = explode( "\n", $data );
         foreach ( $addresses as $address )
         {
             $address = trim( $address );
-            if ( strlen( $address ) > 1 && $address{0} !== '#' )
+            if ( strlen( $address ) > 1 && $address[0] !== '#' )
             {
                 $this->assertEquals( false, ezcMailTools::validateEmailAddress( $address ), "Failed asserting that {$address} is incorrect." );
             }
@@ -286,12 +286,12 @@ class ezcMailToolsTest extends ezcTestCase
             $this->markTestSkipped( 'This test needs getmxrr() and checkdnsrr() support' );
         }
 
-        $data = file_get_contents( dirname( __FILE__ ) . '/tools/data/addresses_incorrect_mx.txt' );
+        $data = file_get_contents( __DIR__ . '/tools/data/addresses_incorrect_mx.txt' );
         $addresses = explode( "\n", $data );
         foreach ( $addresses as $address )
         {
             $address = trim( $address );
-            if ( strlen( $address ) > 1 && $address{0} !== '#' )
+            if ( strlen( $address ) > 1 && $address[0] !== '#' )
             {
                 $this->assertEquals( false, ezcMailTools::validateEmailAddress( $address, true ), "Failed asserting that {$address} is incorrect with MX." );
             }
@@ -351,14 +351,14 @@ class ezcMailToolsTest extends ezcTestCase
     public function testReplyTo()
     {
         $parser = new ezcMailParser();
-        $set = new ezcMailFileSet( array( dirname( __FILE__ )
-                                          . '/parser/data/kmail/simple_mail_with_text_subject_and_body.mail' ) );
+        $set = new ezcMailFileSet( [__DIR__
+                                          . '/parser/data/kmail/simple_mail_with_text_subject_and_body.mail'] );
         $mail = $parser->parseMail( $set );
 
         $reply = ezcMailTools::replyToMail( $mail[0],
                                             new ezcMailAddress( 'test@example.com', 'Reply Guy' ) );
 
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ) ),
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' )],
                              $reply->to );
         $this->assertEquals( new ezcMailAddress( 'test@example.com', 'Reply Guy' ), $reply->from );
         $this->assertEquals( 'Re: Simple mail with text subject and body', $reply->subject );
@@ -369,8 +369,8 @@ class ezcMailToolsTest extends ezcTestCase
     public function testReplyToExtended()
     {
         $parser = new ezcMailParser();
-        $set = new ezcMailFileSet( array( dirname( __FILE__ )
-                                          . '/parser/data/kmail/simple_mail_with_text_subject_and_body.mail' ) );
+        $set = new ezcMailFileSet( [__DIR__
+                                          . '/parser/data/kmail/simple_mail_with_text_subject_and_body.mail'] );
         $mail = $parser->parseMail( $set );
 
         $reply = ezcMailTools::replyToMail(
@@ -391,19 +391,18 @@ class ezcMailToolsTest extends ezcTestCase
     public function testReplyToAll()
     {
         $parser = new ezcMailParser();
-        $set = new ezcMailFileSet( array( dirname( __FILE__ )
-                                          . '/parser/data/various/multiple_recipients' ) );
+        $set = new ezcMailFileSet( [__DIR__
+                                          . '/parser/data/various/multiple_recipients'] );
         $mail = $parser->parseMail( $set );
 
         $reply = ezcMailTools::replyToMail( $mail[0],
                                             new ezcMailAddress( 'test@example.com', 'Reply Guy' ),
                                             ezcMailTools::REPLY_ALL, 'Sv: ' );
 
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ) ),
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' )],
                              $reply->to );
         $this->assertEquals( new ezcMailAddress( 'test@example.com', 'Reply Guy' ), $reply->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ),
-                                    new ezcMailAddress( 'user@example.com', '', 'utf-8' ) ), $reply->cc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ), new ezcMailAddress( 'user@example.com', '', 'utf-8' )], $reply->cc );
         $this->assertEquals( 'Sv: Simple mail with text subject and body', $reply->subject );
         $this->assertEquals( '<200602061533.27600.fh@ez.no>', $reply->getHeader( 'In-Reply-To' ) );
         $this->assertEquals( '<1234.567@example.com> <200602061533.27600.fh@ez.no>', $reply->getHeader( 'References' ) );
@@ -412,40 +411,21 @@ class ezcMailToolsTest extends ezcTestCase
     public function testReplyToReply()
     {
         $mail = new ezcMail();
-        $mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Fræderik Hølljen', 'ISO-8859-1' ) );
+        $mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frï¿½derik Hï¿½lljen', 'ISO-8859-1' ) );
 
-        $address = new ezcMailAddress( 'test@example.com', 'Reply Går', 'ISO-8859-1' );
+        $address = new ezcMailAddress( 'test@example.com', 'Reply Gï¿½r', 'ISO-8859-1' );
         $mail->setHeader( 'Reply-To', ezcMailTools::composeEmailAddress( $address ) );
         // $mail->setHeader( 'Reply-To', 'test@example.com' );
 
         $reply = ezcMailTools::replyToMail( $mail,
-                                            new ezcMailAddress( 'test@example.com', 'Reply Går', 'ISO-8859-1' ) );
-        $this->assertEquals( $reply->to, array( new ezcMailAddress( 'test@example.com', "Reply G\xC3\xA5r", 'utf-8' ) ) );
+                                            new ezcMailAddress( 'test@example.com', 'Reply Gï¿½r', 'ISO-8859-1' ) );
+        $this->assertEquals( $reply->to, [new ezcMailAddress( 'test@example.com', "Reply G\xC3\xA5r", 'utf-8' )] );
     }
 
     public function testGuessContentType()
     {
-        $fileNames = array( '/home/1.jpg',
-                            '2.jpe',
-                            '3.jpeg',
-                            '4.gif',
-                            '5.tif',
-                            '6.tiff',
-                            '7.bmp',
-                            '8.png',
-                            '9.xxx',
-                            '10'
-                          );
-        $types = array( 'image/jpeg',
-                        'image/jpeg',
-                        'image/jpeg',
-                        'image/gif',
-                        'image/tiff',
-                        'image/tiff',
-                        'image/bmp',
-                        'image/png',
-                        '/',
-                        '/' );
+        $fileNames = ['/home/1.jpg', '2.jpe', '3.jpeg', '4.gif', '5.tif', '6.tiff', '7.bmp', '8.png', '9.xxx', '10'];
+        $types = ['image/jpeg', 'image/jpeg', 'image/jpeg', 'image/gif', 'image/tiff', 'image/tiff', 'image/bmp', 'image/png', '/', '/'];
         for ( $i = 0; $i < count( $fileNames ); $i++ )
         {
             $contentType = null;
@@ -458,18 +438,15 @@ class ezcMailToolsTest extends ezcTestCase
     public function testResolveCids()
     {
         $parser = new ezcMailParser();
-        $set = new ezcMailFileSet( array( dirname( __FILE__ )
-                                          . '/parser/data/various/test-html-inline-images' ) );
+        $set = new ezcMailFileSet( [__DIR__
+                                          . '/parser/data/various/test-html-inline-images'] );
         $mail = $parser->parseMail( $set );
 
         $relatedParts = $mail[0]->body->getParts();
         $alternativeParts = $relatedParts[0]->getParts();
         $html = $alternativeParts[1]->getMainPart();
 
-        $convertArray = array(
-            'consoletools-table.png@1421450' => 'foo',
-            'consoletools-table.png@1421452' => 'bar'
-        );
+        $convertArray = ['consoletools-table.png@1421450' => 'foo', 'consoletools-table.png@1421452' => 'bar'];
 
         $htmlBody = ezcMailTools::replaceContentIdRefs( $html->text, $convertArray );
         $expected = <<<EOFE

@@ -48,7 +48,7 @@ class ezcSystemInfoMacReader extends ezcSystemInfoReader
      *
      * @var array(string)
      */
-    private $validProperties = array();
+    private $validProperties = [];
 
     /**
      * Contains the amount of CPUs in system.
@@ -138,13 +138,16 @@ class ezcSystemInfoMacReader extends ezcSystemInfoReader
             return false;
         }
         
-        $macInfo = array(); 
-        $supportedElements = array ( "cpu_type",
-                                     "current_processor_speed", 
-                                     // "machine_name", We don't support this yet.
-                                     // "number_processors", /* Number CPU cores */ This is not reported as of yet
-                                     "packages", /* Number of physical CPUS */
-                                     "physical_memory" );
+        $macInfo = []; 
+        $supportedElements = [
+            "cpu_type",
+            "current_processor_speed",
+            // "machine_name", We don't support this yet.
+            // "number_processors", /* Number CPU cores */ This is not reported as of yet
+            "packages",
+            /* Number of physical CPUS */
+            "physical_memory",
+        ];
         $allValuesDetected = false;
         
         $hwInfo = shell_exec( "system_profiler -xml -detailLevel mini SPHardwareDataType" );

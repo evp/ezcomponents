@@ -29,27 +29,27 @@ abstract class ezcWebdavBackend
     /**
      * Backend has native support for gzip compression.
      */
-    const COMPRESSION_GZIP      = 1;
+    public const COMPRESSION_GZIP      = 1;
 
     /**
      * Backend has native support for bzip2 compression.
      */
-    const COMPRESSION_BZIP2     = 2;
+    public const COMPRESSION_BZIP2     = 2;
 
     /**
      * Backend performs locking itself - no handling by server is required.
      */
-    const CUSTOM_LOCK           = 4;
+    public const CUSTOM_LOCK           = 4;
 
     /**
      * Backend has native support for partial requests.
      */
-    const PARTIAL               = 8;
+    public const PARTIAL               = 8;
 
     /**
      * Backend has native support for multipart requests.
      */
-    const MULTIPART             = 16;
+    public const MULTIPART             = 16;
 
     /**
      * Returns additional features supported by the backend.

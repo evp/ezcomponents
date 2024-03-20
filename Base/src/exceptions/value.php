@@ -28,7 +28,7 @@ class ezcBaseValueException extends ezcBaseException
     function __construct( $settingName, $value, $expectedValue = null, $variableType = 'setting' )
     {
         $type = gettype( $value );
-        if ( in_array( $type, array( 'array', 'object', 'resource' ) ) )
+        if ( in_array( $type, ['array', 'object', 'resource'] ) )
         {
             $value = serialize( $value );
         }

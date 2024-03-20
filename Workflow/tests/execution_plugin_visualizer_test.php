@@ -51,7 +51,7 @@ class ezcWorkflowExecutionPluginVisualizerTest extends ezcWorkflowTestCase
         $this->execution->start();
 
         $common   = DIRECTORY_SEPARATOR . 'StartEnd_000_%03d.dot';
-        $expected = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $common;
+        $expected = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $common;
         $actual   = $this->tempDir      . $common;
 
         for ( $i = 1; $i <= 4; $i++ )
@@ -69,7 +69,7 @@ class ezcWorkflowExecutionPluginVisualizerTest extends ezcWorkflowTestCase
         $this->execution->start();
 
         $common   = DIRECTORY_SEPARATOR . 'IncrementingLoop_000_%03d.dot';
-        $expected = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $common;
+        $expected = __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $common;
         $actual   = $this->tempDir      . $common;
 
         for ( $i = 1; $i <= 44; $i++ )

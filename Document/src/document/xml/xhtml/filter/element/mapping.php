@@ -24,32 +24,7 @@ class ezcDocumentXhtmlElementMappingFilter extends ezcDocumentXhtmlElementBaseFi
      *
      * @var array
      */
-    protected $nameMapping = array(
-        'abbr'       => 'abbrev',
-        'acronym'    => 'acronym',
-        'big'        => 'emphasis',
-        'blockquote' => 'blockquote',
-        'dl'         => 'variablelist',
-        'dt'         => 'term',
-        'dd'         => 'listitem',
-        'em'         => 'emphasis',
-        'head'       => 'sectioninfo',
-        'hr'         => 'beginpage',
-        'html'       => 'section',
-        'i'          => 'emphasis',
-        'li'         => 'listitem',
-        'q'          => 'blockquote',
-        'title'      => 'title',
-        'tt'         => 'literal',
-        'table'      => 'table',
-        'td'         => 'entry',
-        'th'         => 'entry',
-        'tr'         => 'row',
-        'tbody'      => 'tbody',
-        'thead'      => 'thead',
-        'u'          => 'emphasis',
-        'ul'         => 'itemizedlist',
-    );
+    protected $nameMapping = ['abbr'       => 'abbrev', 'acronym'    => 'acronym', 'big'        => 'emphasis', 'blockquote' => 'blockquote', 'dl'         => 'variablelist', 'dt'         => 'term', 'dd'         => 'listitem', 'em'         => 'emphasis', 'head'       => 'sectioninfo', 'hr'         => 'beginpage', 'html'       => 'section', 'i'          => 'emphasis', 'li'         => 'listitem', 'q'          => 'blockquote', 'title'      => 'title', 'tt'         => 'literal', 'table'      => 'table', 'td'         => 'entry', 'th'         => 'entry', 'tr'         => 'row', 'tbody'      => 'tbody', 'thead'      => 'thead', 'u'          => 'emphasis', 'ul'         => 'itemizedlist'];
 
     /**
      * Filter a single element

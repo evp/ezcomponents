@@ -142,8 +142,8 @@ class ezcAuthenticationSessionTest extends ezcAuthenticationTest
 
         $this->invalidPropertyTest( $options, 'validity', 'wrong value', 'int >= 1' );
         $this->invalidPropertyTest( $options, 'validity', 0, 'int >= 1' );
-        $this->invalidPropertyTest( $options, 'idKey', array(), 'string' );
-        $this->invalidPropertyTest( $options, 'timestampKey', array(), 'string' );
+        $this->invalidPropertyTest( $options, 'idKey', [], 'string' );
+        $this->invalidPropertyTest( $options, 'timestampKey', [], 'string' );
         $this->missingPropertyTest( $options, 'no_such_option' );
     }
 

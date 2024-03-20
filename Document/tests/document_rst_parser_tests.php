@@ -21,7 +21,7 @@ class ezcDocumentRstParserTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testParserOptionsXhtmlVisitor()
@@ -70,15 +70,12 @@ class ezcDocumentRstParserTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/rst/parser/s_*.txt' );
+            $testFiles = glob( __DIR__ . '/files/rst/parser/s_*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'rst'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'rst'];
             }
         }
 
@@ -125,20 +122,7 @@ class ezcDocumentRstParserTests extends ezcTestCase
     public static function getErroneousTestDocuments()
     {
 //        return array();
-        return array(
-            array(
-                dirname( __FILE__ ) . '/files/rst/parser/e_001_non_aligned_text.txt',
-                'Parse error: Fatal error: \'Unexpected indentation change from level 4 to 0.\' in line 4 at position 38.',
-            ),
-            array(
-                dirname( __FILE__ ) . '/files/rst/parser/e_002_titles_mismatch.txt',
-                'Parse error: Notice: \'Title underline length (12) is shorter then text length (13).\' in line 3 at position 1.',
-            ),
-            array(
-                dirname( __FILE__ ) . '/files/rst/parser/e_003_titles_depth.txt',
-                'Parse error: Fatal error: \'Title depth inconsitency.\' in line 13 at position 1.',
-            ),
-        );
+        return [[__DIR__ . '/files/rst/parser/e_001_non_aligned_text.txt', 'Parse error: Fatal error: \'Unexpected indentation change from level 4 to 0.\' in line 4 at position 38.'], [__DIR__ . '/files/rst/parser/e_002_titles_mismatch.txt', 'Parse error: Notice: \'Title underline length (12) is shorter then text length (13).\' in line 3 at position 1.'], [__DIR__ . '/files/rst/parser/e_003_titles_depth.txt', 'Parse error: Fatal error: \'Title depth inconsitency.\' in line 13 at position 1.']];
     }
 
     /**

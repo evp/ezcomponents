@@ -74,27 +74,27 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
      * 
      * @var array
      */
-    protected $labels = array();
+    protected $labels = [];
 
     /**
      * Labels indexed by their name as key for faster lookups
      * 
      * @var array
      */
-    protected $labelsIndexed = array();
+    protected $labelsIndexed = [];
 
     /**
      * Reduced amount of labels which will be displayed in the chart
      * 
      * @var array
      */
-    protected $displayedLabels = array();
+    protected $displayedLabels = [];
 
     /**
      * Maximum count of labels which can be displayed on one axis
      * @todo Perhaps base this on the chart size
      */
-    const MAX_LABEL_COUNT = 10;
+    public const MAX_LABEL_COUNT = 10;
 
     /**
      * Precalculated steps on the axis
@@ -110,7 +110,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['labelCount'] = null;
 
@@ -239,7 +239,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
      */
     public function calculateAxisBoundings()
     {
-        $this->steps = array();
+        $this->steps = [];
 
         // Apply label format callback function
         if ( $this->properties['labelCallback'] !==  null )
@@ -248,10 +248,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
             {
                 $this->labels[$nr] = call_user_func_array(
                     $this->properties['labelCallback'],
-                    array(
-                        $label,
-                        $nr
-                    )
+                    [$label, $nr]
                 );
             }
         }
@@ -261,16 +258,14 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
         if ( $labelCount === 0 )
         {
             // Create single only step
-            $this->steps = array(
-                new ezcGraphAxisStep(
-                    0,
-                    1,
-                    reset( $this->labels ),
-                    array(),
-                    true,
-                    true
-                ),
-            );
+            $this->steps = [new ezcGraphAxisStep(
+                0,
+                1,
+                reset( $this->labels ),
+                [],
+                true,
+                true
+            )];
 
             return true;
         }
@@ -287,7 +282,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                         $stepSize * $nr,
                         $stepSize,
                         $label,
-                        array(),
+                        [],
                         $nr === 0,
                         $nr === $labelCount
                     );
@@ -341,7 +336,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                         $stepSize * ( $nr / $step ),
                         $stepSize,
                         $label,
-                        array(),
+                        [],
                         $nr === 0,
                         $nr === $labelCount
                     );
@@ -382,7 +377,7 @@ class ezcGraphChartElementLabeledAxis extends ezcGraphChartElementAxis
                         $minorStepSize * $nr,
                         ceil( $position - $nr ) * $minorStepSize,
                         $label,
-                        array(),
+                        [],
                         $nr === 0,
                         $nr === $labelCount
                     );

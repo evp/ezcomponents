@@ -35,7 +35,7 @@ interface ezcAuthenticationDataFetch
      *
      * @param array(string) $data A list of attributes to fetch during authentication
      */
-    public function registerFetchData( array $data = array() );
+    public function registerFetchData( array $data = [] );
 
     /**
      * Returns the extra data fetched during the authentication process.

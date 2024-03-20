@@ -33,7 +33,7 @@ class ezcPersistentObjectProperties extends ArrayObject
      */
     public function __construct()
     {
-        $this->properties = array();
+        $this->properties = [];
         parent::__construct( $this->properties );
     }
 

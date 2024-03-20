@@ -25,7 +25,7 @@ class ezcPersistentObjectTemplateSchemaWriter
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new writer instance.

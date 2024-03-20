@@ -75,7 +75,7 @@ class ezcTemplateConfiguration
      *
      * @var array(ezcTemplateConfiguration)
      */
-    static private $instanceList = array();
+    static private $instanceList = [];
 
     /**
      * An array containing the properties of this object.
@@ -85,25 +85,7 @@ class ezcTemplateConfiguration
      *
      * @var array(string=>mixed)
      */
-     private $properties = array( 'context' => false,
-                                  'cacheManager' => null,
-                                  'disableCache' => false,
-                                  'locator' => null,
-                                  'templatePath' => ".",
-                                  'compilePath' => ".",
-                                  'cachedTemplatesPath' => null,
-                                  'compiledTemplatesPath' => null,
-                                  'checkModifiedTemplates' => true,
-                                  'executeTemplate' => true,
-                                  'customBlocks' => array(),
-                                  'customFunctions' => array(),
-
-                                  'sourceCharset' => "UTF-8",
-                                  'targetCharset' => "UTF-8",
-                                  'translation' => null,
-
-                                  'trimWhitespace' => true,
-                              );
+     private $properties = ['context' => false, 'cacheManager' => null, 'disableCache' => false, 'locator' => null, 'templatePath' => ".", 'compilePath' => ".", 'cachedTemplatesPath' => null, 'compiledTemplatesPath' => null, 'checkModifiedTemplates' => true, 'executeTemplate' => true, 'customBlocks' => [], 'customFunctions' => [], 'sourceCharset' => "UTF-8", 'targetCharset' => "UTF-8", 'translation' => null, 'trimWhitespace' => true];
     /**
      * Returns the value of the property $name.
      *

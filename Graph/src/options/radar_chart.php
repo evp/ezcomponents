@@ -56,7 +56,7 @@ class ezcGraphRadarChartOptions extends ezcGraphChartOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['lineThickness'] = 1;
         $this->properties['fillLines'] = false;

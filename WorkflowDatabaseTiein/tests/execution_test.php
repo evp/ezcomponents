@@ -45,7 +45,7 @@ class ezcWorkflowDatabaseTieinExecutionTest extends ezcWorkflowDatabaseTieinTest
         $this->assertFalse( $execution->isResumed() );
         $this->assertTrue( $execution->isSuspended() );
 
-        $execution->resume( array( 'variable' => 'value' ) );
+        $execution->resume( ['variable' => 'value'] );
 
         $this->assertTrue( $execution->hasEnded() );
         $this->assertFalse( $execution->isCancelled() );
@@ -76,7 +76,7 @@ class ezcWorkflowDatabaseTieinExecutionTest extends ezcWorkflowDatabaseTieinTest
         $this->assertFalse( $execution->isResumed() );
         $this->assertTrue( $execution->isSuspended() );
 
-        $execution->resume( array( 'variable' => 'value' ) );
+        $execution->resume( ['variable' => 'value'] );
 
         $this->assertTrue( $execution->hasEnded() );
         $this->assertFalse( $execution->isCancelled() );
@@ -102,7 +102,7 @@ class ezcWorkflowDatabaseTieinExecutionTest extends ezcWorkflowDatabaseTieinTest
         $this->assertFalse( $execution->isResumed() );
         $this->assertTrue( $execution->isSuspended() );
 
-        $execution->resume( array( 'variable' => 'value' ) );
+        $execution->resume( ['variable' => 'value'] );
 
         $this->assertTrue( $execution->hasEnded() );
         $this->assertFalse( $execution->isCancelled() );
@@ -133,7 +133,7 @@ class ezcWorkflowDatabaseTieinExecutionTest extends ezcWorkflowDatabaseTieinTest
         $this->assertFalse( $execution->isResumed() );
         $this->assertTrue( $execution->isSuspended() );
 
-        $execution->resume( array( 'foo' => 'bar' ) );
+        $execution->resume( ['foo' => 'bar'] );
 
         $this->assertFalse( $execution->hasEnded() );
         $this->assertFalse( $execution->isCancelled() );
@@ -147,7 +147,7 @@ class ezcWorkflowDatabaseTieinExecutionTest extends ezcWorkflowDatabaseTieinTest
         $this->assertFalse( $execution->isResumed() );
         $this->assertTrue( $execution->isSuspended() );
 
-        $execution->resume( array( 'bar' => 'foo' ) );
+        $execution->resume( ['bar' => 'foo'] );
 
         $this->assertTrue( $execution->hasEnded() );
         $this->assertFalse( $execution->isCancelled() );
@@ -201,7 +201,7 @@ class ezcWorkflowDatabaseTieinExecutionTest extends ezcWorkflowDatabaseTieinTest
         $this->assertFalse( $execution->isResumed() );
         $this->assertTrue( $execution->isSuspended() );
 
-        $execution->resume( array( 'variable' => 'value' ) );
+        $execution->resume( ['variable' => 'value'] );
 
         $this->assertTrue( $execution->hasEnded() );
         $this->assertFalse( $execution->isCancelled() );

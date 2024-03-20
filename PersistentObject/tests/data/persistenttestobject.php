@@ -14,7 +14,7 @@ $def->idProperty->columnName = 'id';
 $def->idProperty->propertyName = 'id';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(
     'ezcPersistentSequenceGenerator',
-    array( 'sequence' => 'PO_test_id_seq' )
+    ['sequence' => 'PO_test_id_seq']
 );
 
 $def->properties['varchar'] = new ezcPersistentObjectProperty;

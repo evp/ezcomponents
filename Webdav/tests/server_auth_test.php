@@ -31,16 +31,11 @@ require_once 'classes/test_auth.php';
  */
 class ezcWebdavServerAuthTest extends ezcTestCase
 {
-    private $serverBase = array(
-        'DOCUMENT_ROOT'   => '/var/www/localhost/htdocs',
-        'HTTP_USER_AGENT' => 'RFC compliant',
-        'SCRIPT_FILENAME' => '/var/www/localhost/htdocs',
-        'SERVER_NAME'     => 'webdav',
-    );
+    private $serverBase = ['DOCUMENT_ROOT'   => '/var/www/localhost/htdocs', 'HTTP_USER_AGENT' => 'RFC compliant', 'SCRIPT_FILENAME' => '/var/www/localhost/htdocs', 'SERVER_NAME'     => 'webdav'];
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     public function setUp()
@@ -128,9 +123,9 @@ class ezcWebdavServerAuthTest extends ezcTestCase
 
     public static function provideTestData()
     {
-        $dataFiles = glob( dirname( __FILE__ ) . '/data/auth/*.php' );
+        $dataFiles = glob( __DIR__ . '/data/auth/*.php' );
 
-        $data = array();
+        $data = [];
         foreach ( $dataFiles as $dataFile )
         {
             $data[$dataFile] = require $dataFile;
@@ -144,29 +139,7 @@ class ezcWebdavServerAuthTest extends ezcTestCase
         $backend = new ezcWebdavMemoryBackend();
 
         $backend->addContents(
-            array(
-                'a' => array(
-                    'a1' => array(
-                        'a11' => 'a11',
-                        'a12' => 'a12',
-                    ),
-                    'a2' => 'a2',
-                ),
-                'b' => array(
-                    'b1' => array(
-                        'b11' => 'b11',
-                        'b12' => 'b12',
-                    ),
-                    'b2' => 'b2',
-                ),
-                'c' => array(
-                    'c1' => array(
-                        'c11' => 'c11',
-                        'c12' => 'c12',
-                    ),
-                    'c2' => 'c2',
-                ),
-            )
+            ['a' => ['a1' => ['a11' => 'a11', 'a12' => 'a12'], 'a2' => 'a2'], 'b' => ['b1' => ['b11' => 'b11', 'b12' => 'b12'], 'b2' => 'b2'], 'c' => ['c1' => ['c11' => 'c11', 'c12' => 'c12'], 'c2' => 'c2']]
         );
 
         return $backend;

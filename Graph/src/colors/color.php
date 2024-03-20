@@ -36,7 +36,7 @@ class ezcGraphColor extends ezcBaseOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['red']   = 0;
         $this->properties['green'] = 0;
@@ -97,7 +97,7 @@ class ezcGraphColor extends ezcBaseOptions
         
         // Iterate over chunks and convert to integer
         $color = new ezcGraphColor();
-        $keys = array( 'red', 'green', 'blue', 'alpha' );
+        $keys = ['red', 'green', 'blue', 'alpha'];
         foreach ( str_split( $string, 2) as $nr => $hexValue )
         {
             if ( isset( $keys[$nr] ) ) 
@@ -127,7 +127,7 @@ class ezcGraphColor extends ezcBaseOptions
     {
         // Iterate over array elements
         $color = new ezcGraphColor();
-        $keys = array( 'red', 'green', 'blue', 'alpha' );
+        $keys = ['red', 'green', 'blue', 'alpha'];
         $nr = 0;
         foreach ( $array as $colorValue )
         {
@@ -158,7 +158,7 @@ class ezcGraphColor extends ezcBaseOptions
     {
         // Iterate over array elements
         $color = new ezcGraphColor();
-        $keys = array( 'red', 'green', 'blue', 'alpha' );
+        $keys = ['red', 'green', 'blue', 'alpha'];
         $nr = 0;
         foreach ( $array as $colorValue )
         {

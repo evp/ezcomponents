@@ -24,17 +24,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
      * 
      * @var array
      */
-    protected $expectedWidths = array(
-        'testEstimateDefaultWordWidthWithoutPageCreation' => null,
-        'testEstimateDefaultWordWidth'                    => null,
-        'testEstimateWordWidthDifferentSize'              => null,
-        'testEstimateWordWidthDifferentSizeAndUnit'       => null,
-        'testEstimateBoldWordWidth'                       => null,
-        'testEstimateMonospaceWordWidth'                  => null,
-        'testFontStyleFallback'                           => null,
-        'testUtf8FontWidth'                               => null,
-        'testCustomFontWidthEstimation'                   => null,
-    );
+    protected $expectedWidths = ['testEstimateDefaultWordWidthWithoutPageCreation' => null, 'testEstimateDefaultWordWidth'                    => null, 'testEstimateWordWidthDifferentSize'              => null, 'testEstimateWordWidthDifferentSizeAndUnit'       => null, 'testEstimateBoldWordWidth'                       => null, 'testEstimateMonospaceWordWidth'                  => null, 'testFontStyleFallback'                           => null, 'testUtf8FontWidth'                               => null, 'testCustomFontWidthEstimation'                   => null];
 
     /**
      * Get driver to test
@@ -154,11 +144,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
             $driver->registerFont(
                 'my_font',
                 ezcDocumentPdfDriver::FONT_PLAIN,
-                array(
-                    dirname( __FILE__ ) . '/../files/fonts/fdb_font.fdb',
-                    dirname( __FILE__ ) . '/../files/fonts/ps_font.pfb',
-                    dirname( __FILE__ ) . '/../files/fonts/font.ttf',
-                )
+                [__DIR__ . '/../files/fonts/fdb_font.fdb', __DIR__ . '/../files/fonts/ps_font.pfb', __DIR__ . '/../files/fonts/font.ttf']
             );
         } catch ( ezcBaseFunctionalityNotSupportedException $e )
         {
@@ -258,7 +244,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
         $driver->createPage( 210, 297 );
 
         $driver->drawImage(
-            dirname( __FILE__ ) . '/../files/pdf/images/logo-white.png', 'image/png',
+            __DIR__ . '/../files/pdf/images/logo-white.png', 'image/png',
             50, 50,
             ezcDocumentPcssMeasure::create( '113px' )->get(),
             ezcDocumentPcssMeasure::create( '57px' )->get()
@@ -274,7 +260,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
         $driver->createPage( 210, 297 );
 
         $driver->drawImage(
-            dirname( __FILE__ ) . '/../files/pdf/images/large.jpeg', 'image/jpeg',
+            __DIR__ . '/../files/pdf/images/large.jpeg', 'image/jpeg',
             50, 50,
             110, 100
         );
@@ -307,11 +293,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
         $color->parse( '#204a87' );
 
         $driver->drawPolygon(
-            array(
-                array( 10, 10 ),
-                array( 200, 10 ),
-                array( 105, 287 ),
-            ),
+            [[10, 10], [200, 10], [105, 287]],
             $color->value
         );
 
@@ -327,11 +309,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
         $color->parse( '#204a87' );
 
         $driver->drawPolyline(
-            array(
-                array( 10, 10 ),
-                array( 200, 10 ),
-                array( 105, 287 ),
-            ),
+            [[10, 10], [200, 10], [105, 287]],
             $color->value,
             1
         );
@@ -348,11 +326,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
         $color->parse( '#204a87' );
 
         $driver->drawPolyline(
-            array(
-                array( 200, 10 ),
-                array( 105, 287 ),
-                array( 10, 10 ),
-            ),
+            [[200, 10], [105, 287], [10, 10]],
             $color->value,
             ezcDocumentPcssMeasure::create( '1pt' )->get(),
             false
@@ -370,22 +344,14 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
         $color = new ezcDocumentPcssStyleColorValue();
         $color->parse( '#204a87' );
         $driver->drawPolygon(
-            array(
-                array( 10, 10 ),
-                array( 200, 10 ),
-                array( 105, 287 ),
-            ),
+            [[10, 10], [200, 10], [105, 287]],
             $color->value
         );
 
         $color = new ezcDocumentPcssStyleColorValue();
         $color->parse( '#2e3436' );
         $driver->drawPolyline(
-            array(
-                array( 200, 287 ),
-                array( 105, 10 ),
-                array( 10, 287 ),
-            ),
+            [[200, 287], [105, 10], [10, 287]],
             $color->value,
             1,
             false
@@ -487,9 +453,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
             $driver->registerFont(
                 'my_font',
                 ezcDocumentPdfDriver::FONT_PLAIN,
-                array(
-                    dirname( __FILE__ ) . '/../files/fonts/font.ttf',
-                )
+                [__DIR__ . '/../files/fonts/font.ttf']
             );
         } catch ( ezcBaseFunctionalityNotSupportedException $e )
         {
@@ -514,9 +478,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
             $driver->registerFont(
                 'my_font',
                 ezcDocumentPdfDriver::FONT_PLAIN,
-                array(
-                    dirname( __FILE__ ) . '/../files/fonts/font.ttf',
-                )
+                [__DIR__ . '/../files/fonts/font.ttf']
             );
         } catch ( ezcBaseFunctionalityNotSupportedException $e )
         {
@@ -542,16 +504,12 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
             $driver->registerFont(
                 'my_font',
                 ezcDocumentPdfDriver::FONT_PLAIN,
-                array(
-                    dirname( __FILE__ ) . '/../files/fonts/font.ttf',
-                )
+                [__DIR__ . '/../files/fonts/font.ttf']
             );
             $driver->registerFont(
                 'my_font',
                 ezcDocumentPdfDriver::FONT_BOLD,
-                array(
-                    dirname( __FILE__ ) . '/../files/fonts/font2.ttf',
-                )
+                [__DIR__ . '/../files/fonts/font2.ttf']
             );
         } catch ( ezcBaseFunctionalityNotSupportedException $e )
         {
@@ -577,11 +535,7 @@ abstract class ezcDocumentPdfDriverTests extends ezcDocumentPdfTestCase
             $driver->registerFont(
                 'my_font',
                 ezcDocumentPdfDriver::FONT_PLAIN,
-                array(
-                    dirname( __FILE__ ) . '/../files/fonts/fdb_font.fdb',
-                    dirname( __FILE__ ) . '/../files/fonts/ps_font.pfb',
-                    dirname( __FILE__ ) . '/../files/fonts/font.ttf',
-                )
+                [__DIR__ . '/../files/fonts/fdb_font.fdb', __DIR__ . '/../files/fonts/ps_font.pfb', __DIR__ . '/../files/fonts/font.ttf']
             );
         } catch ( ezcBaseFunctionalityNotSupportedException $e )
         {

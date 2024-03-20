@@ -36,7 +36,7 @@ class ezcMvcFilterDefinition extends ezcBaseStruct
      * @param string $className
      * @param array $options
      */
-    public function __construct( $className = '', $options = array() )
+    public function __construct( $className = '', $options = [] )
     {
         $this->className = $className;
         $this->options = $options;

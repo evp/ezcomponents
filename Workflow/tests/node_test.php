@@ -51,7 +51,7 @@ class ezcWorkflowNodeTest extends ezcWorkflowTestCase
     {
         try
         {
-            new ezcWorkflowNodeInput( array( 'foo' => new StdClass ) );
+            new ezcWorkflowNodeInput( ['foo' => new StdClass] );
         }
         catch ( ezcBaseValueException $e )
         {
@@ -66,7 +66,7 @@ class ezcWorkflowNodeTest extends ezcWorkflowTestCase
     {
         try
         {
-            new ezcWorkflowNodeInput( array( new StdClass ) );
+            new ezcWorkflowNodeInput( [new StdClass] );
         }
         catch ( ezcBaseValueException $e )
         {
@@ -79,7 +79,7 @@ class ezcWorkflowNodeTest extends ezcWorkflowTestCase
 
     public function testInputConstructor4()
     {
-        $input         = new ezcWorkflowNodeInput( array( 'variable' ) );
+        $input         = new ezcWorkflowNodeInput( ['variable'] );
         $configuration = $input->getConfiguration();
 
         $this->assertArrayHasKey( 'variable', $configuration );
@@ -218,19 +218,19 @@ class ezcWorkflowNodeTest extends ezcWorkflowTestCase
     public function testVerifyTooManyIncomingNodes()
     {
         $a = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $b = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $c = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $d = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $c->addInNode( $a );
@@ -253,19 +253,19 @@ class ezcWorkflowNodeTest extends ezcWorkflowTestCase
     public function testVerifyTooManyOutgoingNodes()
     {
         $a = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $b = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $c = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $d = new ezcWorkflowNodeVariableSet(
-          array( 'foo' => 'bar' )
+          ['foo' => 'bar']
         );
 
         $b->addOutNode( $c );
@@ -308,9 +308,9 @@ class ezcWorkflowNodeTest extends ezcWorkflowTestCase
     public function testActivatedFrom()
     {
         $node = new ezcWorkflowNodeStart;
-        $this->assertEquals( array(), $node->getActivatedFrom() );
-        $node->setActivatedFrom( array( TRUE ) );
-        $this->assertEquals( array( TRUE ), $node->getActivatedFrom() );
+        $this->assertEquals( [], $node->getActivatedFrom() );
+        $node->setActivatedFrom( [TRUE] );
+        $this->assertEquals( [TRUE], $node->getActivatedFrom() );
     }
 
     public function testState()

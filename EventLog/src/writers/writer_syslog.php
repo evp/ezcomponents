@@ -83,7 +83,7 @@ class ezcLogSyslogWriter implements ezcLogWriter
      * @param string $category
      * @param array(string=>string) $extraInfo
      */
-    public function writeLogMessage( $message, $severity, $source, $category, $extraInfo = array() )
+    public function writeLogMessage( $message, $severity, $source, $category, $extraInfo = [] )
     {
         // generate the log message
         $extra = "";

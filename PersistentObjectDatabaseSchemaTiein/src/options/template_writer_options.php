@@ -27,9 +27,9 @@ class ezcPersistentObjectTemplateSchemaWriterOptions extends ezcBaseOptions
      *         If the value for a property is out of range.
      * @param array(string=>mixed) $options The initial options to set.
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
-        $this->properties['templatePath']        = dirname( __FILE__ ) . '/../template_writer/templates';
+        $this->properties['templatePath']        = __DIR__ . '/../template_writer/templates';
         $this->properties['templateCompilePath'] = '.';
         $this->properties['overwrite']           = false;
         $this->properties['classPrefix']         = '';

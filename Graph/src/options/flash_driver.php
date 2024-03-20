@@ -56,7 +56,7 @@ class ezcGraphFlashDriverOptions extends ezcGraphDriverOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['compression'] = 9;
         $this->properties['circleResolution'] = 2.;

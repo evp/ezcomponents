@@ -51,8 +51,7 @@ abstract class ezcTemplateTstNode
      *
      * @var array(string=>mixed)
      */
-    private $properties = array( 'originalText' => false,
-                                 'treeProperties' => false );
+    private $properties = ['originalText' => false, 'treeProperties' => false];
 
     /**
      * Initialize with the source code and start/stop cursors.
@@ -206,7 +205,7 @@ abstract class ezcTemplateTstNode
     {
         $class = get_class( $this );
         $visit = "visit" . substr( $class, 11 );
-        if ( is_callable( array( $visitor, $visit ) ) )
+        if ( is_callable( [$visitor, $visit] ) )
         {
             $res = $visitor->$visit( $this );
             return $res;

@@ -1,5 +1,5 @@
 <?php
-$dir = dirname( __FILE__ );
+$dir = __DIR__;
 $dirParts = explode( DIRECTORY_SEPARATOR, $dir );
 switch ( $dirParts[count( $dirParts ) - 3] )
 {

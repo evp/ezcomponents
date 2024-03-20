@@ -9,7 +9,7 @@
  * @subpackage Test
  */
 
-require_once dirname( __FILE__ ) . '/property_test.php';
+require_once __DIR__ . '/property_test.php';
 
 /**
  * Test case for the ezcWebdavFileBackendOptions class.
@@ -22,114 +22,15 @@ class ezcWebdavFileBackendOptionsTestCase extends ezcWebdavPropertyTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavFileBackendOptions';
-        $this->defaultValues = array(
-            'noLock'                => false,
-            'waitForLock'           => 200000,
-            'lockFileName'          => '.ezc_lock',
-            'propertyStoragePath'   => '.ezc',
-            'directoryMode'         => 0755,
-            'fileMode'              => 0644,
-            'useMimeExts'           => true,
-            'hideDotFiles'          => true,
-        );
-        $this->workingValues = array(
-            'noLock'                => array(
-                true,
-                false
-            ),
-            'waitForLock'           => array(
-                0,
-                100000
-            ),
-            'lockFileName'          => array(
-                '.foo',
-                'bar'
-            ),
-            'propertyStoragePath'   => array(
-                '.foo',
-                'bar'
-            ),
-            'directoryMode'         => array(
-                0,
-                100
-            ),
-            'fileMode'              => array(
-                0,
-                100
-            ),
-            'useMimeExts'           => array(
-                true,
-                false
-            ),
-            'hideDotFiles'          => array(
-                true,
-                false
-            ),
-        );
-        $this->failingValues = array(
-            'noLock'                => array(
-                23,
-                23.34,
-                'foo',
-                array(),
-                new stdClass(),
-            ),
-            'waitForLock'           => array(
-                23.34,
-                'foo',
-                array(),
-                false,
-                new stdClass(),
-            ),
-            'lockFileName'          => array(
-                23,
-                23.34,
-                array(),
-                false,
-                new stdClass(),
-            ),
-            'propertyStoragePath'   => array(
-                23,
-                23.34,
-                array(),
-                false,
-                new stdClass(),
-            ),
-            'directoryMode'         => array(
-                23.34,
-                'foo',
-                array(),
-                false,
-                new stdClass(),
-            ),
-            'fileMode'              => array(
-                23.34,
-                'foo',
-                array(),
-                false,
-                new stdClass(),
-            ),
-            'useMimeExts'           => array(
-                23,
-                23.34,
-                'foo',
-                array(),
-                new stdClass(),
-            ),
-            'hideDotFiles'          => array(
-                23,
-                23.34,
-                'foo',
-                array(),
-                new stdClass(),
-            ),
-        );
+        $this->defaultValues = ['noLock'                => false, 'waitForLock'           => 200000, 'lockFileName'          => '.ezc_lock', 'propertyStoragePath'   => '.ezc', 'directoryMode'         => 0755, 'fileMode'              => 0644, 'useMimeExts'           => true, 'hideDotFiles'          => true];
+        $this->workingValues = ['noLock'                => [true, false], 'waitForLock'           => [0, 100000], 'lockFileName'          => ['.foo', 'bar'], 'propertyStoragePath'   => ['.foo', 'bar'], 'directoryMode'         => [0, 100], 'fileMode'              => [0, 100], 'useMimeExts'           => [true, false], 'hideDotFiles'          => [true, false]];
+        $this->failingValues = ['noLock'                => [23, 23.34, 'foo', [], new stdClass()], 'waitForLock'           => [23.34, 'foo', [], false, new stdClass()], 'lockFileName'          => [23, 23.34, [], false, new stdClass()], 'propertyStoragePath'   => [23, 23.34, [], false, new stdClass()], 'directoryMode'         => [23.34, 'foo', [], false, new stdClass()], 'fileMode'              => [23.34, 'foo', [], false, new stdClass()], 'useMimeExts'           => [23, 23.34, 'foo', [], new stdClass()], 'hideDotFiles'          => [23, 23.34, 'foo', [], new stdClass()]];
     }
 
     public function testCtorSuccess()

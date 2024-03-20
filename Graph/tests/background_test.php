@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -19,11 +19,7 @@ require_once dirname( __FILE__ ) . '/test_case.php';
  */
 class ezcGraphBackgroundTest extends ezcGraphTestCase
 {
-    protected $testFiles = array(
-        'jpeg'          => 'jpeg.jpg',
-        'nonexistant'   => 'nonexisting.jpg',
-        'invalid'       => 'text.txt',
-    );
+    protected $testFiles = ['jpeg'          => 'jpeg.jpg', 'nonexistant'   => 'nonexisting.jpg', 'invalid'       => 'text.txt'];
 
 	public static function suite()
 	{
@@ -34,8 +30,8 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
     {
         static $i = 0;
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -122,13 +118,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->border = '#000000';
         $chart->background->borderWidth = 1;
@@ -138,7 +128,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -147,13 +137,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->border = '#000000';
         $chart->background->borderWidth = 5;
@@ -163,7 +147,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -172,13 +156,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->border = '#000000';
         $chart->background->borderWidth = 1;
@@ -189,7 +167,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -198,13 +176,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->border = '#000000';
         $chart->background->borderWidth = 1;
@@ -215,7 +187,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -224,13 +196,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->border = '#000000';
         $chart->background->borderWidth = 2;
@@ -242,7 +208,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -251,16 +217,10 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->color = '#FFFFFFDD';
-        $chart->background->image = dirname( __FILE__ ) . '/data/ez.png';
+        $chart->background->image = __DIR__ . '/data/ez.png';
         $chart->background->position = ezcGraph::BOTTOM | ezcGraph::RIGHT;
 
         $chart->driver = new ezcGraphSvgDriver();
@@ -268,7 +228,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -277,16 +237,10 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->color = '#FFFFFFDD';
-        $chart->background->image = dirname( __FILE__ ) . '/data/texture.png';
+        $chart->background->image = __DIR__ . '/data/texture.png';
         $chart->background->repeat = ezcGraph::HORIZONTAL | ezcGraph::VERTICAL;
 
         $chart->driver = new ezcGraphSvgDriver();
@@ -294,7 +248,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -303,16 +257,10 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->color = '#FFFFFFDD';
-        $chart->background->image = dirname( __FILE__ ) . '/data/ez.png';
+        $chart->background->image = __DIR__ . '/data/ez.png';
         $chart->background->position = ezcGraph::BOTTOM | ezcGraph::CENTER;
 
         $chart->driver = new ezcGraphSvgDriver();
@@ -321,7 +269,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -330,16 +278,10 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background->color = '#FFFFFFDD';
-        $chart->background->image = dirname( __FILE__ ) . '/data/texture.png';
+        $chart->background->image = __DIR__ . '/data/texture.png';
         $chart->background->repeat = ezcGraph::HORIZONTAL;
         $chart->background->position = ezcGraph::BOTTOM;
 
@@ -349,7 +291,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -358,13 +300,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background = '#2e3436';
 
@@ -372,7 +308,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -381,13 +317,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphLineChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->background = '#2e3436';
 
@@ -395,7 +325,7 @@ class ezcGraphBackgroundTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

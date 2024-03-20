@@ -33,7 +33,7 @@ class ezcAuthenticationGeneralTest extends ezcAuthenticationTest
     {
         $credentials = new ezcAuthenticationIdCredentials( 'john.doe' );
         $authentication = new ezcAuthentication( $credentials );
-        $this->assertEquals( array(), $authentication->getStatus() );
+        $this->assertEquals( [], $authentication->getStatus() );
     }
 
     public function testGeneralIdCredentials()
@@ -45,7 +45,7 @@ class ezcAuthenticationGeneralTest extends ezcAuthenticationTest
 
     public function testGeneralIdCredentialsSetState()
     {
-        $credentials = ezcAuthenticationIdCredentials::__set_state( array( 'id' => 'john.doe' ) );
+        $credentials = ezcAuthenticationIdCredentials::__set_state( ['id' => 'john.doe'] );
         $authentication = new ezcAuthentication( $credentials );
         $this->assertEquals( 'john.doe', $credentials->__toString() );
     }
@@ -59,7 +59,7 @@ class ezcAuthenticationGeneralTest extends ezcAuthenticationTest
 
     public function testGeneralPasswordCredentialsSetState()
     {
-        $credentials = ezcAuthenticationPasswordCredentials::__set_state( array( 'id' => 'john.doe', 'password' => 'foobar' ) );
+        $credentials = ezcAuthenticationPasswordCredentials::__set_state( ['id' => 'john.doe', 'password' => 'foobar'] );
         $authentication = new ezcAuthentication( $credentials );
         $this->assertEquals( 'john.doe', $credentials->__toString() );
     }

@@ -32,7 +32,7 @@ class ezcTreeVisitorYUI implements ezcTreeVisitor
      *
      * @var array(string=>array(string))
      */
-    protected $edges = array();
+    protected $edges = [];
 
     /**
      * Holds the root ID.
@@ -129,7 +129,7 @@ class ezcTreeVisitorYUI implements ezcTreeVisitor
             $parent = $visitable->fetchParent();
             if ( $parent )
             {
-                $this->edges[$parent->id][] = array( $visitable->id, $visitable->data, $visitable->fetchPath() );
+                $this->edges[$parent->id][] = [$visitable->id, $visitable->data, $visitable->fetchPath()];
             }
         }
 
@@ -149,7 +149,7 @@ class ezcTreeVisitorYUI implements ezcTreeVisitor
      *
      * @return string
      */
-    protected function doChildren( $id, $level = 0, $levelLast = array() )
+    protected function doChildren( $id, $level = 0, $levelLast = [] )
     {
         $text = '';
 

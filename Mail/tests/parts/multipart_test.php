@@ -48,8 +48,8 @@ class ezcMailMultipartTest extends ezcTestCase
      */
     public function testProperties()
     {
-        $this->assertSetPropertyFails( $this->multipart, "does_not_exist", array( 42 )  );
-        $this->assertSetProperty( $this->multipart, "boundary", array( "testvalue" ) );
+        $this->assertSetPropertyFails( $this->multipart, "does_not_exist", [42]  );
+        $this->assertSetProperty( $this->multipart, "boundary", ["testvalue"] );
         try
         {
             $this->multipart->does_not_exist;
@@ -94,7 +94,7 @@ class ezcMailMultipartTest extends ezcTestCase
 
         $this->multipart->boundary = "pirate";
 
-        $this->assertEquals( trim( file_get_contents( dirname( __FILE__) . "/data/ezcMailMultiPartTest_testGenerate.data" ) ),
+        $this->assertEquals( trim( file_get_contents( __DIR__ . "/data/ezcMailMultiPartTest_testGenerate.data" ) ),
                              $this->multipart->generate() );
     }
 
@@ -112,7 +112,7 @@ class ezcMailMultipartTest extends ezcTestCase
         $this->multipart->boundary = "pirate";
         $this->multipart->noMimeMessage = "Denne meldingen er kult, men e-postklienten din forstår ikke MIME, så du kan ikke se det.";
 
-        $this->assertEquals( trim( file_get_contents( dirname( __FILE__) . "/data/ezcMailMultiPartTest_customNoMimeMessage.data" ) ),
+        $this->assertEquals( trim( file_get_contents( __DIR__ . "/data/ezcMailMultiPartTest_customNoMimeMessage.data" ) ),
                              $this->multipart->generate() );
     }
 
@@ -122,12 +122,11 @@ class ezcMailMultipartTest extends ezcTestCase
     public function testConstructor()
     {
         $this->multipart = new TestMultipart( new ezcMailText( "Look behind you, a three headed monkey!." ),
-                                              array( new ezcMailText( "Ask me about Loom(tm)" ),
-                                                     new ezcMailText( "Whew, a rubber tree" ) ) );
+                                              [new ezcMailText( "Ask me about Loom(tm)" ), new ezcMailText( "Whew, a rubber tree" )] );
 
         $this->multipart->boundary = "pirate";
 
-        $this->assertEquals( trim( file_get_contents( dirname( __FILE__) . "/data/ezcMailMultiPartTest_testGenerate.data" ) ),
+        $this->assertEquals( trim( file_get_contents( __DIR__ . "/data/ezcMailMultiPartTest_testGenerate.data" ) ),
                              $this->multipart->generate() );
     }
 
@@ -197,10 +196,7 @@ class ezcMailMultipartTest extends ezcTestCase
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, true );
-        $expected = array( 'ezcMailText',
-                           'ezcMailDeliveryStatus',
-                           'ezcMailText'
-                         );
+        $expected = ['ezcMailText', 'ezcMailDeliveryStatus', 'ezcMailText'];
         $this->assertEquals( 3, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {

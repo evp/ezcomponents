@@ -44,7 +44,7 @@ class ezcGraphColorTest extends ezcTestCase
 
     public function testFactoryColorFromIntegerArray()
     {
-        $color = ezcGraphColor::fromIntegerArray( array( 5, 23, 42 ) );
+        $color = ezcGraphColor::fromIntegerArray( [5, 23, 42] );
 
         $this->assertEquals( $color->red, 5, 'Wrong red color value' );
         $this->assertEquals( $color->green, 23, 'Wrong green color value' );
@@ -54,7 +54,7 @@ class ezcGraphColorTest extends ezcTestCase
 
     public function testFactoryColorFromFloatArray()
     {
-        $color = ezcGraphColor::fromFloatArray( array( .02, .092, .165 ) );
+        $color = ezcGraphColor::fromFloatArray( [.02, .092, .165] );
 
         $this->assertEquals( $color->red, 5, 'Wrong red color value' );
         $this->assertEquals( $color->green, 23, 'Wrong green color value' );
@@ -84,7 +84,7 @@ class ezcGraphColorTest extends ezcTestCase
 
     public function testFactoryColorCreateFromIntegerArray()
     {
-        $color = ezcGraphColor::create( array( 5, 23, 42 ) );
+        $color = ezcGraphColor::create( [5, 23, 42] );
 
         $this->assertEquals( $color->red, 5, 'Wrong red color value' );
         $this->assertEquals( $color->green, 23, 'Wrong green color value' );
@@ -94,7 +94,7 @@ class ezcGraphColorTest extends ezcTestCase
 
     public function testFactoryColorCreateFromFloatArray()
     {
-        $color = ezcGraphColor::create( array( .02, .092, .165 ) );
+        $color = ezcGraphColor::create( [.02, .092, .165] );
 
         $this->assertEquals( $color->red, 5, 'Wrong red color value' );
         $this->assertEquals( $color->green, 23, 'Wrong green color value' );
@@ -222,7 +222,7 @@ class ezcGraphColorTest extends ezcTestCase
     {
         try
         {
-            $color = ezcGraphColor::create( array( .02, .092, .165 ) );
+            $color = ezcGraphColor::create( [.02, .092, .165] );
             $color->black = 23;
         }
         catch ( ezcBasePropertyNotFoundException $e )

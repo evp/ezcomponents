@@ -57,11 +57,7 @@ class ezcGraphRotation extends ezcGraphTransformation
             $this->center = new ezcGraphCoordinate( 0, 0 );
 
             $clockwiseRotation = deg2rad( $rotation );
-            $rotationMatrixArray = array( 
-                array( cos( $clockwiseRotation ), -sin( $clockwiseRotation ), 0 ),
-                array( sin( $clockwiseRotation ), cos( $clockwiseRotation ), 0 ),
-                array( 0, 0, 1 ),
-            );
+            $rotationMatrixArray = [[cos( $clockwiseRotation ), -sin( $clockwiseRotation ), 0], [sin( $clockwiseRotation ), cos( $clockwiseRotation ), 0], [0, 0, 1]];
 
             return parent::__construct( $rotationMatrixArray );
         }

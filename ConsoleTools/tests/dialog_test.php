@@ -17,7 +17,7 @@
  */
 class ezcConsoleDialogTest extends ezcTestCase
 {
-    const PIPE_READ_SLEEP = 5000;
+    public const PIPE_READ_SLEEP = 5000;
 
     protected $dataDir;
 
@@ -27,13 +27,13 @@ class ezcConsoleDialogTest extends ezcTestCase
 
     protected $proc;
 
-    protected $pipes = array();
+    protected $pipes = [];
 
-    protected $res = array();
+    protected $res = [];
 
     protected function setUp()
     {
-        $this->dataDir = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR
+        $this->dataDir = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR
             . ( ezcBaseFeatures::os() === 'Windows' ? "windows" : "posix" );
         $this->determinePhpPath();
         $this->output  = new ezcConsoleOutput();
@@ -65,9 +65,7 @@ class ezcConsoleDialogTest extends ezcTestCase
     {
         $methodName = strtr(
             $methodName,
-            array(
-                ":" => "_",
-            )
+            [":" => "_"]
         );
         $scriptFile = $this->dataDir . DIRECTORY_SEPARATOR . $methodName . '.php';
         $resFile    = $this->dataDir . DIRECTORY_SEPARATOR . $methodName . '_res.php';
@@ -76,11 +74,13 @@ class ezcConsoleDialogTest extends ezcTestCase
             throw new RuntimeException( "Missing script file '$scriptFile'!" );
         }
 
-        $desc = array(
-            0 => array( "pipe", "r" ),  // stdin
-            1 => array( "pipe", "w" ),  // stdout
-            2 => array( "pipe", "w" )   // stderr
-        );
+        $desc = [
+            0 => ["pipe", "r"],
+            // stdin
+            1 => ["pipe", "w"],
+            // stdout
+            2 => ["pipe", "w"],
+        ];
         $this->proc = proc_open("{$this->phpPath} '{$scriptFile}'", $desc, $this->pipes );
         $this->res  = ( file_exists( $resFile ) ? require( $resFile ) : false );
     }
@@ -95,9 +95,7 @@ class ezcConsoleDialogTest extends ezcTestCase
     {
         $methodName = strtr(
             $methodName,
-            array(
-                ":" => "_",
-            )
+            [":" => "_"]
         );
         $resFile    = "{$this->dataDir}/{$methodName}_res.php";
         file_put_contents(

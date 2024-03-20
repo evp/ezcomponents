@@ -9,7 +9,7 @@ $def->idProperty->columnName = 'badword_id';
 $def->idProperty->propertyName = 'badwordId';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(
     'ezcPersistentSequenceGenerator',
-    array( 'sequence' => 'ce_bad_word_badword_id_seq' )
+    ['sequence' => 'ce_bad_word_badword_id_seq']
 );
 
 

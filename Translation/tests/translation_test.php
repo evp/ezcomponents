@@ -16,7 +16,7 @@ class ezcTranslationTest extends ezcTestCase
 {
     private static function setUpTestArray()
     {
-        $array = array();
+        $array = [];
         $array[] = new ezcTranslationData( 'This is a translatable string', 'Dit is een vertaalbare zin', '', ezcTranslationData::TRANSLATED );
         $array[] = new ezcTranslationData( '%Apples are not %pears', '%Pears zijn niet hetzelfde als %apples', '', ezcTranslationData::TRANSLATED );
         $array[] = new ezcTranslationData( 'A %1 is not a %2', 'Een %1 is geen %2', '', ezcTranslationData::TRANSLATED );
@@ -68,14 +68,14 @@ class ezcTranslationTest extends ezcTestCase
     public function testGetStringWithParameters()
     {
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
-        $string = $obj->getTranslation( '%Apples are not %pears', array( 'apples' => 'appelen', 'pears' => 'peren' ) );
+        $string = $obj->getTranslation( '%Apples are not %pears', ['apples' => 'appelen', 'pears' => 'peren'] );
         self::assertEquals( 'Peren zijn niet hetzelfde als appelen', $string );
     }
 
     public function testCompileStringWithParameters()
     {
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
-        $string = $obj->compileTranslation( '%Apples are not %pears', array( 'apples' => '$appelen', 'pears' => '$peren' ) );
+        $string = $obj->compileTranslation( '%Apples are not %pears', ['apples' => '$appelen', 'pears' => '$peren'] );
         self::assertEquals( "'' . ucfirst(\$peren) . ' zijn niet hetzelfde als ' . \$appelen . ''", $string );
     }
 
@@ -84,7 +84,7 @@ class ezcTranslationTest extends ezcTestCase
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
         try
         {
-            $string = $obj->getTranslation( '%Apples are not %pears', array( 'apples' => 'appelen' ) );
+            $string = $obj->getTranslation( '%Apples are not %pears', ['apples' => 'appelen'] );
             self::fail( 'Expected exception "Parameter missing" was not thrown' );
         }
         catch ( ezcTranslationParameterMissingException $e )
@@ -98,7 +98,7 @@ class ezcTranslationTest extends ezcTestCase
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
         try
         {
-            $string = $obj->compileTranslation( '%Apples are not %pears', array( 'apples' => 'appelen' ) );
+            $string = $obj->compileTranslation( '%Apples are not %pears', ['apples' => 'appelen'] );
             self::fail( 'Expected exception "Parameter missing" was not thrown' );
         }
         catch ( ezcTranslationParameterMissingException $e )
@@ -110,14 +110,14 @@ class ezcTranslationTest extends ezcTestCase
     public function testGetStringWithNumericalParameters()
     {
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
-        $string = $obj->getTranslation( 'A %1 is not a %2', array( 1 => 'koe', 2 => 'paard' ) );
+        $string = $obj->getTranslation( 'A %1 is not a %2', [1 => 'koe', 2 => 'paard'] );
         self::assertEquals( 'Een koe is geen paard', $string );
     }
 
     public function testCompileStringWithNumericalParameters()
     {
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
-        $string = $obj->compileTranslation( 'A %1 is not a %2', array( 1 => '$koe', 2 => '$paard' ) );
+        $string = $obj->compileTranslation( 'A %1 is not a %2', [1 => '$koe', 2 => '$paard'] );
         self::assertEquals( '\'Een \' . $koe . \' is geen \' . $paard . \'\'', $string );
     }
 
@@ -126,7 +126,7 @@ class ezcTranslationTest extends ezcTestCase
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
         try
         {
-            $string = $obj->getTranslation( 'A %1 is not a %2', array( 1 => 'koe' ) );
+            $string = $obj->getTranslation( 'A %1 is not a %2', [1 => 'koe'] );
             self::fail( 'Expected exception "Parameter missing" was not thrown' );
         }
         catch ( ezcTranslationParameterMissingException $e )
@@ -140,7 +140,7 @@ class ezcTranslationTest extends ezcTestCase
         $obj = new ezcTranslation( ezcTranslationTest::setUpTestArray() );
         try
         {
-            $string = $obj->compileTranslation( 'A %1 is not a %2', array( 1 => 'koe' ) );
+            $string = $obj->compileTranslation( 'A %1 is not a %2', [1 => 'koe'] );
             self::fail( 'Expected exception "Parameter missing" was not thrown' );
         }
         catch ( ezcTranslationParameterMissingException $e )

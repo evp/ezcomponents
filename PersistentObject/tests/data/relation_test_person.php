@@ -1,5 +1,5 @@
 <?php
-require_once dirname( __FILE__ ) . "/relation_test.php";
+require_once __DIR__ . "/relation_test.php";
 
 class RelationTestPerson extends RelationTest
 {
@@ -19,12 +19,7 @@ class RelationTestPerson extends RelationTest
 
     public function getState()
     {
-        return array(
-            "id"        => $this->id,
-            "firstname" => $this->firstname,
-            "surname"   => $this->surname,
-            "employer"  => $this->employer,
-        );
+        return ["id"        => $this->id, "firstname" => $this->firstname, "surname"   => $this->surname, "employer"  => $this->employer];
     }
 
     public static function __set_state( array $state  )

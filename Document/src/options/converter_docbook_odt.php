@@ -34,9 +34,7 @@ class ezcDocumentDocbookToOdtConverterOptions extends ezcDocumentConverterOption
      * @var array(string)
      * @access private
      */
-    public static $validLengthMeasures = array(
-        'cm', 'mm', 'in', 'pt', 'pc', 'px'
-    );
+    public static $validLengthMeasures = ['cm', 'mm', 'in', 'pt', 'pc', 'px'];
 
     /**
      * Constructs an object with the specified values.
@@ -47,9 +45,9 @@ class ezcDocumentDocbookToOdtConverterOptions extends ezcDocumentConverterOption
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
-        $this->template      = dirname( __FILE__ ) . '/data/template.fodt';
+        $this->template      = __DIR__ . '/data/template.fodt';
         $this->styler        = new ezcDocumentOdtPcssStyler();
         $this->lengthMeasure = 'px';
         parent::__construct( $options );

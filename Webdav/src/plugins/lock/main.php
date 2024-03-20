@@ -34,41 +34,26 @@ class ezcWebdavLockPlugin
     /**
      * Namespace of the LOCK plugin. 
      */
-    const PLUGIN_NAMESPACE = 'ezcWebdavLockPlugin';
+    public const PLUGIN_NAMESPACE = 'ezcWebdavLockPlugin';
 
     /**
      * XML namespace for properties.
      */
-    const XML_NAMESPACE = 'http://ezcomponents.org/s/Webdav#lock';
+    public const XML_NAMESPACE = 'http://ezcomponents.org/s/Webdav#lock';
 
     /**
      * Properties.
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'transport'       => null,
-        'propertyHandler' => null,
-        'headerHandler'   => null,
-    );
+    protected $properties = ['transport'       => null, 'propertyHandler' => null, 'headerHandler'   => null];
 
     /**
      * Maps request classes to handling methods.
      *
      * @var array(string=>string)
      */
-    protected static $requestHandlingMap = array(
-        'ezcWebdavLockRequest'           => 'ezcWebdavLockLockRequestResponseHandler',
-        'ezcWebdavUnlockRequest'         => 'ezcWebdavLockUnlockRequestResponseHandler',
-        'ezcWebdavCopyRequest'           => 'ezcWebdavLockCopyRequestResponseHandler',
-        'ezcWebdavDeleteRequest'         => 'ezcWebdavLockDeleteRequestResponseHandler',
-        'ezcWebdavMoveRequest'           => 'ezcWebdavLockMoveRequestResponseHandler',
-        'ezcWebdavMakeCollectionRequest' => 'ezcWebdavLockMakeCollectionRequestResponseHandler',
-        'ezcWebdavOptionsRequest'        => 'ezcWebdavLockOptionsRequestResponseHandler',
-        'ezcWebdavPropFindRequest'       => 'ezcWebdavLockPropFindRequestResponseHandler',
-        'ezcWebdavPropPatchRequest'      => 'ezcWebdavLockPropPatchRequestResponseHandler',
-        'ezcWebdavPutRequest'            => 'ezcWebdavLockPutRequestResponseHandler',
-    );
+    protected static $requestHandlingMap = ['ezcWebdavLockRequest'           => 'ezcWebdavLockLockRequestResponseHandler', 'ezcWebdavUnlockRequest'         => 'ezcWebdavLockUnlockRequestResponseHandler', 'ezcWebdavCopyRequest'           => 'ezcWebdavLockCopyRequestResponseHandler', 'ezcWebdavDeleteRequest'         => 'ezcWebdavLockDeleteRequestResponseHandler', 'ezcWebdavMoveRequest'           => 'ezcWebdavLockMoveRequestResponseHandler', 'ezcWebdavMakeCollectionRequest' => 'ezcWebdavLockMakeCollectionRequestResponseHandler', 'ezcWebdavOptionsRequest'        => 'ezcWebdavLockOptionsRequestResponseHandler', 'ezcWebdavPropFindRequest'       => 'ezcWebdavLockPropFindRequestResponseHandler', 'ezcWebdavPropPatchRequest'      => 'ezcWebdavLockPropPatchRequestResponseHandler', 'ezcWebdavPutRequest'            => 'ezcWebdavLockPutRequestResponseHandler'];
 
     /**
      * Lock plugin options. 
@@ -273,15 +258,15 @@ class ezcWebdavLockPlugin
             // Set headers parsed by the lock plugin only.
             $request->setHeader(
                 'If',
-                $this->headerHandler->parseIfHeader( $request )
+                $this->headerHandler->parseIfHeader()
             );
             $request->setHeader(
                 'Timeout',
-                $this->headerHandler->parseTimeoutHeader( $request )
+                $this->headerHandler->parseTimeoutHeader()
             );
             $request->setHeader(
                 'Lock-Token',
-                $this->headerHandler->parseLockTokenHeader( $request )
+                $this->headerHandler->parseLockTokenHeader()
             );
             $request->validateHeaders();
 

@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -35,8 +35,8 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         {
             $this->markTestSkipped( "These tests required atleast PHP 5.1.3" );
         }
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -82,9 +82,9 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
             'Setting property value did not work for property labelCallback in class ezcGraphPieChartOptions'
         );
 
-        $options->labelCallback = array( $this, __METHOD__ );
+        $options->labelCallback = [$this, __METHOD__];
         $this->assertSame(
-            array( $this, __METHOD__ ),
+            [$this, __METHOD__],
             $options->labelCallback,
             'Setting property value did not work for property labelCallback in class ezcGraphPieChartOptions'
         );
@@ -176,7 +176,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
     public function testElementGenerationLegend()
     {
         $chart = new ezcGraphPieChart();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1 ) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->render( 500, 200 );
         
         $legend = $this->readAttribute( $chart->legend, 'labels' );
@@ -209,7 +209,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
     public function testInvalidDisplayType()
     {
         $chart = new ezcGraphPieChart();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1 ) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['sampleData']->displayType = ezcGraph::LINE;
 
         try 
@@ -227,19 +227,11 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
     public function testPieRenderPieSegments()
     {
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['wget'] = true;
 
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawPieSegment',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawPieSegment'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -309,25 +301,14 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
     public function testPieRenderPieSegmentsWithLabelCallback()
     {
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['wget'] = true;
 
         $chart->options->labelCallback = 
-            create_function( 
-                '$label, $value, $percent', 
-                "return 'Callback: ' . \$label;"
-            );
+            fn($label, $value, $percent) => 'Callback: ' . $label;
 
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawPieSegment',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawPieSegment'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -399,7 +380,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         try
         {
             $chart = new ezcGraphPieChart();
-            $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 3, -1, 2 ) );
+            $chart->data['Skien'] = new ezcGraphArrayDataSet( [3, -1, 2] );
             $chart->render( 500, 200 );
         }
         catch ( ezcGraphInvalidDataException $e )
@@ -415,7 +396,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         try
         {
             $chart = new ezcGraphPieChart();
-            $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 0, 0 ) );
+            $chart->data['Skien'] = new ezcGraphArrayDataSet( [0, 0] );
             $chart->render( 500, 200 );
         }
         catch ( ezcGraphInvalidDataException $e )
@@ -431,7 +412,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         try
         {
             $chart = new ezcGraphPieChart();
-            $chart->data['Skien'] = new ezcGraphArrayDataSet( array() );
+            $chart->data['Skien'] = new ezcGraphArrayDataSet( [] );
             $chart->render( 500, 200 );
         } 
         catch ( ezcGraphInvalidDataException $e )
@@ -447,7 +428,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
         $chart->data['Skien']->highlight['Norwegian'] = true;
 
         $chart->renderer->options->pieVerticalSize = .2;
@@ -457,7 +438,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -466,7 +447,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         ob_start();
         // Suppress header already sent warning
@@ -475,7 +456,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -484,14 +465,14 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 0, 'Brazilian' => 1, 'Venezuelan' => 0, 'Japanese' => 1, 'Czech' => 0, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 0, 'Brazilian' => 1, 'Venezuelan' => 0, 'Japanese' => 1, 'Czech' => 0, 'Hungarian' => 1, 'Romanian' => 1] );
         $chart->data['Skien']->highlight['Norwegian'] = true;
 
         $chart->render( 500, 200, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -500,7 +481,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         $chart->data['Skien']->highlight['Norwegian'] = true;
 
@@ -508,7 +489,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -517,7 +498,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         $chart->data['Skien']->highlight['Norwegian'] = true;
 
@@ -525,7 +506,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -535,13 +516,13 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $chart = new ezcGraphPieChart();
         $chart->options->sum = 30;
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         $chart->render( 500, 300, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         try
@@ -562,13 +543,13 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $chart = new ezcGraphPieChart();
         $chart->options->absoluteThreshold = 1;
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         $chart->render( 500, 300, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         try
@@ -590,13 +571,13 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $chart = new ezcGraphPieChart();
         $chart->options->percentThreshold = .05;
         $chart->options->summarizeCaption = 'Others';
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         $chart->render( 500, 300, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         try
@@ -617,13 +598,13 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $chart = new ezcGraphPieChart();
         $chart->options->absoluteThreshold = 1;
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1] );
 
         $chart->render( 500, 300, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         try
@@ -645,13 +626,13 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $chart = new ezcGraphPieChart();
         $chart->options->percentThreshold = .06;
         $chart->options->summarizeCaption = 'Others';
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1] );
 
         $chart->render( 500, 300, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         try
@@ -674,13 +655,13 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $chart->options->sum = 30;
         $chart->options->percentThreshold = .05;
         $chart->options->summarizeCaption = 'Others';
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         $chart->render( 500, 300, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -689,13 +670,13 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10] );
 
         $chart->render( 500, 300, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -704,7 +685,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10] );
 
         $chart->renderer = new ezcGraphRenderer3d();
         $chart->renderer->options->dataBorder = false;
@@ -712,7 +693,7 @@ class ezcGraphPieChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

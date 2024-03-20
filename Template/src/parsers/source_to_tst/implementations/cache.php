@@ -51,7 +51,7 @@ class ezcTemplateCacheSourceToTstParser extends ezcTemplateSourceToTstParser
             }
 
             $this->appendElement( $cacheNode);
-            $this->findNextElement( $cursor );
+            $this->findNextElement();
 
             if ( !$cursor->match( "}" ) ) 
             {
@@ -79,7 +79,7 @@ class ezcTemplateCacheSourceToTstParser extends ezcTemplateSourceToTstParser
                 $cacheNode->isClosingBlock = true; // Set closing block.
 
                 $this->appendElement( $cacheNode );
-                $this->findNextElement( $cursor );
+                $this->findNextElement();
 
                 if ( !$cursor->match( "}" ) ) 
                 {
@@ -96,26 +96,26 @@ class ezcTemplateCacheSourceToTstParser extends ezcTemplateSourceToTstParser
 
 
         // We do have an opening cache_block or cache_template.
-        $this->findNextElement( $cursor );
+        $this->findNextElement();
 
         while ( $matches = $cursor->pregMatchComplete( "#^([a-zA-Z_][a-zA-Z0-9_-]*)(?:[^a-zA-Z])#i" ) )
         {
             $name = $matches[1][0];
             $cursor->advance( strlen( $name ) );
-            $this->findNextElement( $cursor );
+            $this->findNextElement();
 
             if ( $name == "keys" )
             {
                 do
                 {
-                    $this->findNextElement( $cursor );
+                    $this->findNextElement();
 
                     if ( ! $this->parseOptionalType( "Expression", $this->currentCursor, false ) )
                     {
                         throw new ezcTemplateParserException( $this->parser->source, $this->startCursor, $this->currentCursor, ezcTemplateSourceToTstErrorMessages::MSG_EXPECT_VARIABLE );
                     }
                     $cacheNode->keys[] = $this->lastParser->children[0];
-                    $this->findNextElement( $cursor );
+                    $this->findNextElement();
                 } 
                 while ( $cursor->match(",") );
 
@@ -144,7 +144,7 @@ class ezcTemplateCacheSourceToTstParser extends ezcTemplateSourceToTstParser
         }
 
         $this->appendElement( $cacheNode);
-        $this->findNextElement( $cursor );
+        $this->findNextElement();
 
         if ( !$cursor->match( "}" ) ) 
         {

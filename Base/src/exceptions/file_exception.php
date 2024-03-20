@@ -16,10 +16,10 @@
  */
 abstract class ezcBaseFileException extends ezcBaseException
 {
-    const READ    = 1;
-    const WRITE   = 2;
-    const EXECUTE = 4;
-    const CHANGE  = 8;
-    const REMOVE  = 16;
+    public const READ    = 1;
+    public const WRITE   = 2;
+    public const EXECUTE = 4;
+    public const CHANGE  = 8;
+    public const REMOVE  = 16;
 }
 ?>

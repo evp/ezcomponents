@@ -9,7 +9,7 @@ $debug = ezcDebug::getInstance();
 // Write a log message with verbosity 1.
 $debug->log( "Connecting with the Payment server", 1 );  
 
-$debug->log( "Connected with the Payment server", 2, array( "source" => "shop", "category" => "payment" ) );  
+$debug->log( "Connected with the Payment server", 2, ["source" => "shop", "category" => "payment"] );  
 
 // Get HTML output.
 $output = $debug->generateOutput();

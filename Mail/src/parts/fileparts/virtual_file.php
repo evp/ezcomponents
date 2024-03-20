@@ -51,7 +51,7 @@ class ezcMailVirtualFile extends ezcMailFilePart
             $mimeParts = $fileInfo->buffer( $contents );
             if ( $mimeParts !== false && strpos( $mimeParts, '/' ) !== false )
             {
-                list( $this->contentType, $this->mimeType ) = explode( '/', $mimeParts );
+                [$this->contentType, $this->mimeType] = explode( '/', $mimeParts );
             }
             else
             {

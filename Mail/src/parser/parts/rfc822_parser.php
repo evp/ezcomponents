@@ -30,12 +30,12 @@ class ezcMailRfc822Parser extends ezcMailPartParser
     /**
      * This state is used when the parser is parsing headers.
      */
-    const PARSE_STATE_HEADERS = 1;
+    public const PARSE_STATE_HEADERS = 1;
 
     /**
      * This state is used when the parser is parsing the body.
      */
-    const PARSE_STATE_BODY = 2;
+    public const PARSE_STATE_BODY = 2;
 
     /**
      * Stores the state of the parser.

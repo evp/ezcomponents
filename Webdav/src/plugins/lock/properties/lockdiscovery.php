@@ -34,7 +34,7 @@ class ezcWebdavLockDiscoveryProperty extends ezcWebdavLiveProperty
     {
         parent::__construct( 'lockdiscovery' );
 
-        $this->activeLock = ( $activeLock === null ? new ArrayObject() : $activeLock );
+        $this->activeLock = ( $activeLock ?? new ArrayObject() );
     }
 
     /**

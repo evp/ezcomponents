@@ -24,7 +24,7 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     {
         try
         {
-            ezcTemplateTranslationProvider::translate( "Test", "test", array() );
+            ezcTemplateTranslationProvider::translate( "Test", "test", [] );
             self::fail( "Expected exception not thrown." );
         }
         catch ( ezcTemplateTranslationManagerNotConfiguredException $e )
@@ -36,27 +36,27 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testTranslate()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
-        self::assertEquals( 'Test Eén', ezcTemplateTranslationProvider::translate( "Test 1", "test", array() ) );
+        self::assertEquals( 'Test Eén', ezcTemplateTranslationProvider::translate( "Test 1", "test", [] ) );
     }
 
     public function testTranslateWithNumericParams()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
-        self::assertEquals( 'Test Eén (a, c, b)', ezcTemplateTranslationProvider::translate( "Test 1 %1 %2 %3", "test", array( 1 => 'a', 'b', 'c' ) ) );
+        self::assertEquals( 'Test Eén (a, c, b)', ezcTemplateTranslationProvider::translate( "Test 1 %1 %2 %3", "test", [1 => 'a', 'b', 'c'] ) );
     }
 
     public function testTranslateWithNumericParamsWithMissingParam()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::translate( "Test 1 %1 %2 %3", "test", array( 1 => 'a', 'b' ) );
+            ezcTemplateTranslationProvider::translate( "Test 1 %1 %2 %3", "test", [1 => 'a', 'b'] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationParameterMissingException $e )
@@ -68,19 +68,19 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testTranslateWithNamedParams()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
-        self::assertEquals( 'Test Eén (a, c, b)', ezcTemplateTranslationProvider::translate( "Test 1 %un %deux %trois", "test", array( 'un' => 'a', 'deux' => 'b', 'trois' => 'c', 'quatre' => 'd' ) ) );
+        self::assertEquals( 'Test Eén (a, c, b)', ezcTemplateTranslationProvider::translate( "Test 1 %un %deux %trois", "test", ['un' => 'a', 'deux' => 'b', 'trois' => 'c', 'quatre' => 'd'] ) );
     }
 
     public function testTranslateWithNamedParamsWithMissingParam()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::translate( "Test 1 %un %deux %trois", "test", array( 'un' => 'a', 'trois' => 'b' ) );
+            ezcTemplateTranslationProvider::translate( "Test 1 %un %deux %trois", "test", ['un' => 'a', 'trois' => 'b'] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationParameterMissingException $e )
@@ -92,11 +92,11 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testTranslateWithWrongKey()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::translate( "Test 2", "test", array() );
+            ezcTemplateTranslationProvider::translate( "Test 2", "test", [] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationKeyNotAvailableException $e )
@@ -108,11 +108,11 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testTranslateWithWrongContext()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::translate( "Test 3", "test2", array() );
+            ezcTemplateTranslationProvider::translate( "Test 3", "test2", [] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationContextNotAvailableException $e )
@@ -124,27 +124,27 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testCompile()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
-        self::assertEquals( "'Test Eén'", ezcTemplateTranslationProvider::compile( "Test 1", "test", array() ) );
+        self::assertEquals( "'Test Eén'", ezcTemplateTranslationProvider::compile( "Test 1", "test", [] ) );
     }
 
     public function testCompileWithNumericParams()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
-        self::assertEquals( "'Test Eén (' . a . ', ' . c . ', ' . b . ')'", ezcTemplateTranslationProvider::compile( "Test 1 %1 %2 %3", "test", array( 1 => 'a', 'b', 'c' ) ) );
+        self::assertEquals( "'Test Eén (' . a . ', ' . c . ', ' . b . ')'", ezcTemplateTranslationProvider::compile( "Test 1 %1 %2 %3", "test", [1 => 'a', 'b', 'c'] ) );
     }
 
     public function testCompileWithNumericParamsWithMissingParam()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::compile( "Test 1 %1 %2 %3", "test", array( 1 => 'a', 'b' ) );
+            ezcTemplateTranslationProvider::compile( "Test 1 %1 %2 %3", "test", [1 => 'a', 'b'] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationParameterMissingException $e )
@@ -156,27 +156,27 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testCompileWithQuote()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
-        self::assertEquals( "'He that loves to be flattered is worthy o\'' .  the flatterer . '.'", ezcTemplateTranslationProvider::compile( "Test with quotes in result", "test", array( 'hvem' => ' the flatterer' ) ) );
+        self::assertEquals( "'He that loves to be flattered is worthy o\'' .  the flatterer . '.'", ezcTemplateTranslationProvider::compile( "Test with quotes in result", "test", ['hvem' => ' the flatterer'] ) );
     }
 
     public function testCompileWithNamedParams()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
-        self::assertEquals( "'Test Eén (' . a . ', ' . c . ', ' . b . ')'", ezcTemplateTranslationProvider::compile( "Test 1 %un %deux %trois", "test", array( 'un' => 'a', 'deux' => 'b', 'trois' => 'c', 'quatre' => 'd' ) ) );
+        self::assertEquals( "'Test Eén (' . a . ', ' . c . ', ' . b . ')'", ezcTemplateTranslationProvider::compile( "Test 1 %un %deux %trois", "test", ['un' => 'a', 'deux' => 'b', 'trois' => 'c', 'quatre' => 'd'] ) );
     }
 
     public function testCompileWithNamedParamsWithMissingParam()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::compile( "Test 1 %un %deux %trois", "test", array( 'un' => 'a', 'trois' => 'b' ) );
+            ezcTemplateTranslationProvider::compile( "Test 1 %un %deux %trois", "test", ['un' => 'a', 'trois' => 'b'] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationParameterMissingException $e )
@@ -188,11 +188,11 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testCompileWithWrongKey()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::compile( "Test 2", "test", array() );
+            ezcTemplateTranslationProvider::compile( "Test 2", "test", [] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationKeyNotAvailableException $e )
@@ -204,11 +204,11 @@ class ezcTemplateTranslationProviderTest extends ezcTestCase
     public function testCompileWithWrongContext()
     {
         $ttc = ezcTemplateTranslationConfiguration::getInstance();
-        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( dirname( __FILE__ ) . '/translations' ) );
+        $ttc->manager = new ezcTranslationManager( new ezcTranslationTsBackend( __DIR__ . '/translations' ) );
 
         try
         {
-            ezcTemplateTranslationProvider::compile( "Test 3", "test2", array() );
+            ezcTemplateTranslationProvider::compile( "Test 3", "test2", [] );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcTranslationContextNotAvailableException $e )

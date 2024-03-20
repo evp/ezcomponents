@@ -42,7 +42,7 @@ class ezcMailFileSet implements ezcMailParserSet
      *
      * @var array(string)
      */
-    private $files = array();
+    private $files = [];
 
     /**
      * This variable is true if there is more data in the mail that is being fetched.

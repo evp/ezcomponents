@@ -19,12 +19,12 @@ class ezcBaseRepositoryDirectory extends ezcBaseStruct
     /**
      * Specifies that the entry is for the eZ Components repository.
      */
-    const TYPE_INTERNAL = 0;
+    public const TYPE_INTERNAL = 0;
 
     /**
      * Specifies that the entry is for an external (user defined) repository.
      */
-    const TYPE_EXTERNAL = 1;
+    public const TYPE_EXTERNAL = 1;
 
     /**
      * The $type is one of the two TYPE_* constants defined in this class.

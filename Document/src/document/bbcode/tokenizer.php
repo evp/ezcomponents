@@ -57,24 +57,24 @@ class ezcDocumentBBCodeTokenizer
      *
      * @var array
      */
-    protected $tokens = array();
+    protected $tokens = [];
 
     /**
      * Common whitespace characters. The vertical tab is excluded, because it
      * causes strange problems with PCRE.
      */
-    const WHITESPACE_CHARS  = '[\\x20\\t]';
+    public const WHITESPACE_CHARS  = '[\\x20\\t]';
 
     /**
      * Characters ending a pure text section.
      */
-    const TEXT_END_CHARS    = '\\[\\]\\r\\n';
+    public const TEXT_END_CHARS    = '\\[\\]\\r\\n';
 
     /**
      * Special characters, which do have some special meaaning and though may
      * not have been matched otherwise.
      */
-    const SPECIAL_CHARS     = '\\[\\]';
+    public const SPECIAL_CHARS     = '\\[\\]';
 
     /**
      * Construct tokenizer
@@ -86,50 +86,26 @@ class ezcDocumentBBCodeTokenizer
      */
     public function __construct()
     {
-        $this->tokens = array(
+        $this->tokens = [
             // Match tokens which require to be at the start of a line before
             // matching the actual newlines, because they are the indicator for
             // line starts.
-            array(
-                'class' => 'ezcDocumentBBCodeLiteralBlockToken',
-                'match' => '(\\A(?P<match>\\[code(?:=[^\\]]+)?\\](?P<value>.+)\\[/code\\]))SUs' ),
-            array(
-                'class' => 'ezcDocumentBBCodeListItemToken',
-                'match' => '(\\A(?P<match>\\[\\*\\]))SUs' ),
-            array(
-                'class' => 'ezcDocumentBBCodeTagOpenToken',
-                'match' => '(\\A(?P<match>\\[(?P<value>[A-Za-z]+(?:=[^\\]]+)?)\\]))SUs' ),
-            array(
-                'class' => 'ezcDocumentBBCodeTagCloseToken',
-                'match' => '(\\A(?P<match>\\[/(?P<value>[A-Za-z]+)\\]))SUs' ),
-
+            ['class' => 'ezcDocumentBBCodeLiteralBlockToken', 'match' => '(\\A(?P<match>\\[code(?:=[^\\]]+)?\\](?P<value>.+)\\[/code\\]))SUs'],
+            ['class' => 'ezcDocumentBBCodeListItemToken', 'match' => '(\\A(?P<match>\\[\\*\\]))SUs'],
+            ['class' => 'ezcDocumentBBCodeTagOpenToken', 'match' => '(\\A(?P<match>\\[(?P<value>[A-Za-z]+(?:=[^\\]]+)?)\\]))SUs'],
+            ['class' => 'ezcDocumentBBCodeTagCloseToken', 'match' => '(\\A(?P<match>\\[/(?P<value>[A-Za-z]+)\\]))SUs'],
             // Whitespaces
-            array(
-                'class' => 'ezcDocumentBBCodeNewLineToken',
-                'match' => '(\\A' . self::WHITESPACE_CHARS . '*(?P<value>\\r\\n|\\r|\\n))S' ),
-            array(
-                'class' => 'ezcDocumentBBCodeWhitespaceToken',
-                'match' => '(\\A(?P<value>' . self::WHITESPACE_CHARS . '+))S' ),
-            array(
-                'class' => 'ezcDocumentBBCodeEndOfFileToken',
-                'match' => '(\\A(?P<value>\\x0c))S' ),
-
+            ['class' => 'ezcDocumentBBCodeNewLineToken', 'match' => '(\\A' . self::WHITESPACE_CHARS . '*(?P<value>\\r\\n|\\r|\\n))S'],
+            ['class' => 'ezcDocumentBBCodeWhitespaceToken', 'match' => '(\\A(?P<value>' . self::WHITESPACE_CHARS . '+))S'],
+            ['class' => 'ezcDocumentBBCodeEndOfFileToken', 'match' => '(\\A(?P<value>\\x0c))S'],
             // Escape character
-            array(
-                'class' => 'ezcDocumentBBCodeEscapeCharacterToken',
-                'match' => '(\\A(?P<value>~))S' ),
-
+            ['class' => 'ezcDocumentBBCodeEscapeCharacterToken', 'match' => '(\\A(?P<value>~))S'],
             // Match text except
-            array(
-                'class' => 'ezcDocumentBBCodeTextLineToken',
-                'match' => '(\\A(?P<value>[^' . self::TEXT_END_CHARS . ']+))S' ),
-
+            ['class' => 'ezcDocumentBBCodeTextLineToken', 'match' => '(\\A(?P<value>[^' . self::TEXT_END_CHARS . ']+))S'],
             // Match all special characters, which are not valid textual chars,
             // but do not have been matched by any other expression.
-            array(
-                'class' => 'ezcDocumentBBCodeSpecialCharsToken',
-                'match' => '(\\A(?P<value>([' . self::SPECIAL_CHARS . '])\\2*))S' ),
-        );
+            ['class' => 'ezcDocumentBBCodeSpecialCharsToken', 'match' => '(\\A(?P<value>([' . self::SPECIAL_CHARS . '])\\2*))S'],
+        ];
     }
 
     /**
@@ -188,7 +164,7 @@ class ezcDocumentBBCodeTokenizer
     {
         $line     = 1;
         $position = 1;
-        $tokens   = array();
+        $tokens   = [];
 
         // Normalize newlines
         $string = preg_replace( '([\x20\\t]*(?:\\r\\n|\\r|\\n))', "\n", $string );
@@ -214,12 +190,12 @@ class ezcDocumentBBCodeTokenizer
                     // list and update all variables.
                     $class = $match['class'];
                     $newToken = new $class(
-                        ( isset( $matches['value'] ) ? $matches['value'] : null ),
+                        ( $matches['value'] ?? null ),
                         $line,
                         $position
                     );
 
-                    $match = isset( $matches['match'] ) ? $matches['match'] : $matches[0];
+                    $match = $matches['match'] ?? $matches[0];
 
                     // Removed matched stuff from input string
                     $string = substr( $string, $length = strlen( $match ) );

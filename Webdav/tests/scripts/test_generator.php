@@ -115,35 +115,16 @@ class ezcWebdavClientTestGenerator
      * 
      * @var array(Exception)
      */
-    protected $exceptions = array();
+    protected $exceptions = [];
 
     /**
      * PCREs that indicate $_SERVER keys to keep.
      * 
      * @var array
      */
-    protected $serverWhiteList = array(
-        '(^CONTENT_.*$)',
-        '(^DOCUMENT_.*$)',
-        '(^GATEWAY_.*$)',
-        '(^HTTP_.*)',
-        '(^LANG$)',
-        '(^PATH_.*$)',
-        '(^PHP_SELF$)',
-        '(^PHP_AUTH.*$)',
-        '(^QUERY_.*$)',
-        '(^REDIRECT_.*$)',
-        '(^REMOTE_.*$)',
-        '(^REQUEST_.*$)',
-        '(^SCRIPT_.*$)',
-        '(^SERVER_.*$)',
-    );
+    protected $serverWhiteList = ['(^CONTENT_.*$)', '(^DOCUMENT_.*$)', '(^GATEWAY_.*$)', '(^HTTP_.*)', '(^LANG$)', '(^PATH_.*$)', '(^PHP_SELF$)', '(^PHP_AUTH.*$)', '(^QUERY_.*$)', '(^REDIRECT_.*$)', '(^REMOTE_.*$)', '(^REQUEST_.*$)', '(^SCRIPT_.*$)', '(^SERVER_.*$)'];
 
-    protected $serverOverwrite = array(
-        'REQUEST_TIME' => 1220431173,
-        'REMOTE_HOST'  => '127.0.0.1',
-        'REMOTE_PORT'  => '33458',
-    );
+    protected $serverOverwrite = ['REQUEST_TIME' => 1220431173, 'REMOTE_HOST'  => '127.0.0.1', 'REMOTE_PORT'  => '33458'];
 
     /**
      * Number of digits for the test case number. 
@@ -254,12 +235,7 @@ class ezcWebdavClientTestGenerator
     {
         return strtr(
             $requestMethod,
-            array(
-                ' ' => '_',
-                ':' => '_',
-                '(' => '',
-                ')' => '',
-            )
+            [' ' => '_', ':' => '_', '(' => '', ')' => '']
         );
     }
 
@@ -293,8 +269,8 @@ class ezcWebdavClientTestGenerator
      */
     public function run()
     {
-        $GLOBALS['EZC_WEBDAV_ERROR']  = array();
-        set_error_handler( array( $this, 'handleErrors' ) );
+        $GLOBALS['EZC_WEBDAV_ERROR']  = [];
+        set_error_handler( [$this, 'handleErrors'] );
 
         try
         {
@@ -314,14 +290,7 @@ class ezcWebdavClientTestGenerator
         debug_print_backtrace();
         $backtrace = ob_get_clean();
 
-        $GLOBALS['EZC_WEBDAV_ERROR'][] = array(
-            'no'        => $errNo,
-            'string'    => $errStr,
-            'file'      => $errFile,
-            'line'      => $errLine,
-            'context'   => $errContext,
-            'backtrace' => $backtrace,
-        );
+        $GLOBALS['EZC_WEBDAV_ERROR'][] = ['no'        => $errNo, 'string'    => $errStr, 'file'      => $errFile, 'line'      => $errLine, 'context'   => $errContext, 'backtrace' => $backtrace];
     }
 
     /**
@@ -436,7 +405,7 @@ class ezcWebdavClientTestGenerator
     {
         try
         {
-            return require_once dirname( __FILE__ ) . '/test_generator_backend.php';
+            return require_once __DIR__ . '/test_generator_backend.php';
         }
         catch ( Exception $e )
         {
@@ -478,9 +447,7 @@ class ezcWebdavClientTestGenerator
             $this->server->pluginRegistry->registerPlugin(
                 new ezcWebdavLockPluginConfiguration(
                     new ezcWebdavLockPluginOptions(
-                        array(
-                            'backendLockTimeout' => 2000000,
-                        )
+                        ['backendLockTimeout' => 2000000]
                     )
                 )
             );
@@ -489,7 +456,7 @@ class ezcWebdavClientTestGenerator
         $this->server->auth->tokenAssignement = (
             file_exists( $this->tokenFile = TMP_DIR . '/tokens.ser' )
                 ? unserialize( file_get_contents( $this->tokenFile ) )
-                : array()
+                : []
         );
     }
 

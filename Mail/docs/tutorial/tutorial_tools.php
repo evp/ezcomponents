@@ -1,10 +1,7 @@
 <?php
 require_once 'tutorial_autoload.php';
 
-$mailAddresses = array(
-                        new ezcMailAddress( 'john@example.com', 'Jøhn Doe', 'ISO-8859-1' ),
-                        new ezcMailAddress( 'jane@example.com', 'Jane Doe' )
-                      );
+$mailAddresses = [new ezcMailAddress( 'john@example.com', 'Jøhn Doe', 'ISO-8859-1' ), new ezcMailAddress( 'jane@example.com', 'Jane Doe' )];
 $addresses = '=?ISO-8859-1?B?SsO4aG4gRG9l?= <john@example.com>, Jane Doe <jane@example.com';
 
 // Convert ezcMailAddress to string representation

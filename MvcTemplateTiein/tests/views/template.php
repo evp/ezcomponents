@@ -19,7 +19,7 @@ class ezcMvcTemplateViewTest extends ezcTestCase
 {
     function setUp()
     {
-        $this->baseDir = dirname( __FILE__ ) . '/../testfiles/views/template/';
+        $this->baseDir = __DIR__ . '/../testfiles/views/template/';
     }
 
     function testSimpleView()
@@ -36,7 +36,7 @@ class ezcMvcTemplateViewTest extends ezcTestCase
     {
         $request = new ezcMvcRequest;
         $result  = new ezcMvcResult;
-        $result->variables = array( 'name' => 'Churchill', 'quote' => '“If you are going through hell, keep going.”' );
+        $result->variables = ['name' => 'Churchill', 'quote' => '“If you are going through hell, keep going.”'];
 
         $view    = new testOneTemplateView( $request, $result );
         $response = $view->createResponse();
@@ -48,12 +48,7 @@ class ezcMvcTemplateViewTest extends ezcTestCase
     {
         $request = new ezcMvcRequest;
         $result  = new ezcMvcResult;
-        $result->variables = array(
-            'name' => 'Churchill',
-            'quote' => '“If you are going through hell, keep going.”',
-            'navMaxPages' => 5,
-            'navCurrentPage' => 2
-        );
+        $result->variables = ['name' => 'Churchill', 'quote' => '“If you are going through hell, keep going.”', 'navMaxPages' => 5, 'navCurrentPage' => 2];
 
         $view    = new testTwoTemplateViews( $request, $result );
         $response = $view->createResponse();
@@ -65,16 +60,11 @@ class ezcMvcTemplateViewTest extends ezcTestCase
     {
         $request = new ezcMvcRequest;
         $result  = new ezcMvcResult;
-        $result->variables = array(
-            'name' => 'Churchill',
-            'quote' => '“If you are going through hell, keep going.”',
-            'navMaxPages' => 5,
-            'navCurrentPage' => 2
-        );
+        $result->variables = ['name' => 'Churchill', 'quote' => '“If you are going through hell, keep going.”', 'navMaxPages' => 5, 'navCurrentPage' => 2];
 
         $view    = new testNonExistingTemplateView( $request, $result );
 
-        $dir = dirname( __FILE__ );
+        $dir = __DIR__;
         $dir = realpath( "$dir/.." );
 
         try

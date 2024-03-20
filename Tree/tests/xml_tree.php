@@ -39,7 +39,7 @@ class ezcTreeXmlTest extends ezcTreeTest
 
     protected function setUpTestTree()
     {
-        copy( dirname( __FILE__ ) . '/files/init.xml', $this->tempDir . '/test.xml' );
+        copy( __DIR__ . '/files/init.xml', $this->tempDir . '/test.xml' );
         $tree = new ezcTreeXml( 
             $this->tempDir . '/test.xml',
             new ezcTreeXmlInternalDataStore()
@@ -49,7 +49,7 @@ class ezcTreeXmlTest extends ezcTreeTest
 
     public function testOpenInvalidFormatXmlTree()
     {
-        $dirname = dirname( __FILE__ );
+        $dirname = __DIR__;
         try
         {
             $tree = new ezcTreeXml( 
@@ -65,7 +65,7 @@ class ezcTreeXmlTest extends ezcTreeTest
 
     public function testOpenInvalidXmlTree()
     {
-        $dirname = dirname( __FILE__ );
+        $dirname = __DIR__;
         try
         {
             $tree = new ezcTreeXml( 
@@ -81,7 +81,7 @@ class ezcTreeXmlTest extends ezcTreeTest
 
     public function testOpenNonExistingXmlTree()
     {
-        $dirname = dirname( __FILE__ );
+        $dirname = __DIR__;
         try
         {
             $tree = new ezcTreeXml( 
@@ -120,7 +120,7 @@ class ezcTreeXmlTest extends ezcTreeTest
         self::assertSame( true, $tree->nodeExists( '4' ) );
 
         self::assertXmlFileEqualsXmlFile(
-            dirname( __FILE__ ) . '/files/create-test.xml', 
+            __DIR__ . '/files/create-test.xml', 
             $this->tempDir . '/new-tree.xml'
         );
     }
@@ -152,7 +152,7 @@ class ezcTreeXmlTest extends ezcTreeTest
         self::assertSame( true, $tree->nodeExists( '4' ) );
 
         self::assertXmlFileEqualsXmlFile(
-            dirname( __FILE__ ) . '/files/create-test-prefix.xml', 
+            __DIR__ . '/files/create-test-prefix.xml', 
             $this->tempDir . '/new-tree.xml'
         );
     }
@@ -210,7 +210,7 @@ class ezcTreeXmlTest extends ezcTreeTest
         self::assertSame( true, $tree->nodeExists( '3' ) );
 
         self::assertXmlFileEqualsXmlFile(
-            dirname( __FILE__ ) . '/files/create-test.xml', 
+            __DIR__ . '/files/create-test.xml', 
             $this->tempDir . '/new-tree.xml'
         );
     }
@@ -296,7 +296,7 @@ class ezcTreeXmlTest extends ezcTreeTest
         $node->data = "Node 1 renamed";
 
         self::assertXmlFileEqualsXmlFile(
-            dirname( __FILE__ ) . '/files/init-renamed-node.xml', 
+            __DIR__ . '/files/init-renamed-node.xml', 
             $this->tempDir . '/test.xml'
         );
     }
@@ -376,7 +376,7 @@ class ezcTreeXmlTest extends ezcTreeTest
     // test for bug #13155
     public function testFetchDataNode1()
     {
-        $dirname = dirname( __FILE__ );
+        $dirname = __DIR__;
         $tree = new ezcTreeXml( 
             "$dirname/files/fetch-data-test.xml",
             new ezcTreeXmlInternalDataStore()

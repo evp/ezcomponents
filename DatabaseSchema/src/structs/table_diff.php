@@ -66,9 +66,9 @@ class ezcDbSchemaTableDiff extends ezcBaseStruct
      * @param array(string=>ezcDbSchemaIndex) $changedIndexes
      * @param array(string=>bool)             $removedIndexes
      */
-    function __construct( $addedFields = array(), $changedFields = array(),
-            $removedFields = array(), $addedIndexes = array(), $changedIndexes =
-            array(), $removedIndexes = array() )
+    function __construct( $addedFields = [], $changedFields = [],
+            $removedFields = [], $addedIndexes = [], $changedIndexes =
+            [], $removedIndexes = [] )
     {
         $this->addedFields = $addedFields;
         $this->changedFields = $changedFields;

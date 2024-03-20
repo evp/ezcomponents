@@ -18,7 +18,7 @@ class ezcFeedTest extends ezcFeedTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testFeedNonExistentLocal()
@@ -81,7 +81,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseBroken()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}rss2{$dot}regression{$dot}parse{$dot}incomplete{$dot}broken.in";
+        $file = __DIR__ . "{$dot}rss2{$dot}regression{$dot}parse{$dot}incomplete{$dot}broken.in";
 
         try
         {
@@ -234,7 +234,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseAtomUnsupportedModule()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}atom{$dot}data{$dot}atom_example_from_specs.xml";
+        $file = __DIR__ . "{$dot}atom{$dot}data{$dot}atom_example_from_specs.xml";
 
         $feed = ezcFeed::parse( $file );
 
@@ -252,7 +252,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseAtomUndefinedModule()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}atom{$dot}data{$dot}atom_example_from_specs.xml";
+        $file = __DIR__ . "{$dot}atom{$dot}data{$dot}atom_example_from_specs.xml";
 
         $feed = ezcFeed::parse( $file );
 
@@ -270,7 +270,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseAtom1()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}atom{$dot}data{$dot}atom_example_from_specs.xml";
+        $file = __DIR__ . "{$dot}atom{$dot}data{$dot}atom_example_from_specs.xml";
 
         $feed = ezcFeed::parse( $file );
 
@@ -283,18 +283,15 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseAtom2()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}atom{$dot}data{$dot}atom_multiple_entries.xml";
+        $file = __DIR__ . "{$dot}atom{$dot}data{$dot}atom_multiple_entries.xml";
 
         $feed = ezcFeed::parse( $file );
 
         $this->assertEquals( 'atom', $feed->getFeedType() );
         $items = $feed->item;
-        $expectedTitles = array(
-            'Atom-Powered Robots Run Amok 1',
-            'Atom-Powered Robots Run Amok 2',
-            );
+        $expectedTitles = ['Atom-Powered Robots Run Amok 1', 'Atom-Powered Robots Run Amok 2'];
 
-        $titles = array();
+        $titles = [];
         foreach ( $items as $item )
         {
             $titles[] = $item->title->text;
@@ -306,7 +303,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseRss1()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}rss1{$dot}data{$dot}rss1_example_from_specs.xml";
+        $file = __DIR__ . "{$dot}rss1{$dot}data{$dot}rss1_example_from_specs.xml";
 
         $feed = ezcFeed::parse( $file );
 
@@ -317,7 +314,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseRss2()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}rss2{$dot}data{$dot}rss2_example_from_specs.xml";
+        $file = __DIR__ . "{$dot}rss2{$dot}data{$dot}rss2_example_from_specs.xml";
 
         $feed = ezcFeed::parse( $file );
 
@@ -328,7 +325,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseRss2Podcast1()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}rss2{$dot}data{$dot}librivox_podcast.xml";
+        $file = __DIR__ . "{$dot}rss2{$dot}data{$dot}librivox_podcast.xml";
 
         $feed = ezcFeed::parse( $file );
 
@@ -342,7 +339,7 @@ class ezcFeedTest extends ezcFeedTestCase
     public function testParseRss2Podcast2()
     {
         $dot = DIRECTORY_SEPARATOR;
-        $file = dirname( __FILE__ ) . "{$dot}rss2{$dot}data{$dot}woodsongs_old_time_radio_hour.xml";
+        $file = __DIR__ . "{$dot}rss2{$dot}data{$dot}woodsongs_old_time_radio_hour.xml";
 
         $feed = ezcFeed::parse( $file );
 

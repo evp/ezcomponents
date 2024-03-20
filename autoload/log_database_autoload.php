@@ -9,7 +9,5 @@
  * @package EventLogDatabaseTiein
  */
 
-return array(
-    'ezcLogDatabaseWriter' => 'EventLogDatabaseTiein/writers/writer_database.php',
-);
+return ['ezcLogDatabaseWriter' => 'EventLogDatabaseTiein/writers/writer_database.php'];
 ?>

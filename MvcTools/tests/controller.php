@@ -39,7 +39,7 @@ class ezcMvcToolsControllerTest extends ezcTestCase
     public function testGetNonExistingVariables()
     {
         $r = new ezcMvcRequest;
-        $r->variables = array( 'var1' => 42, 'var42' => 'bansai!' );
+        $r->variables = ['var1' => 42, 'var42' => 'bansai!'];
         $f = new testControllerController( 'testAction', $r );
 
         try
@@ -56,7 +56,7 @@ class ezcMvcToolsControllerTest extends ezcTestCase
     public function testSetVariables()
     {
         $r = new ezcMvcRequest;
-        $r->variables = array( 'var1' => 42, 'var42' => 'bansai!' );
+        $r->variables = ['var1' => 42, 'var42' => 'bansai!'];
         $f = new testControllerController( 'testAction', $r );
 
         self::assertEquals( 42, $f->var1 );
@@ -66,7 +66,7 @@ class ezcMvcToolsControllerTest extends ezcTestCase
     public function testSetProperties()
     {
         $r = new ezcMvcRequest;
-        $r->variables = array( 'var1' => 42, 'var42' => 'bansai!' );
+        $r->variables = ['var1' => 42, 'var42' => 'bansai!'];
         $f = new testControllerController( 'testAction', $r );
 
         try
@@ -93,7 +93,7 @@ class ezcMvcToolsControllerTest extends ezcTestCase
     public function testIssetProperties()
     {
         $r = new ezcMvcRequest;
-        $r->variables = array( 'var1' => 42, 'var42' => 'bansai!' );
+        $r->variables = ['var1' => 42, 'var42' => 'bansai!'];
         $f = new testControllerController( 'testAction', $r );
 
         self::assertEquals( false, isset( $f->notSet ) );
@@ -103,7 +103,7 @@ class ezcMvcToolsControllerTest extends ezcTestCase
     public function testRoutingInformation()
     {
         $r = new ezcMvcRequest;
-        $r->variables = array( 'var1' => 42, 'var42' => 'bansai!' );
+        $r->variables = ['var1' => 42, 'var42' => 'bansai!'];
         $f = new testControllerController( 'testAction', $r );
         $f->setRouter( new testSimpleRouter( $r ) );
 

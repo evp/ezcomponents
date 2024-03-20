@@ -59,7 +59,7 @@ class PersistentTestObject
     {
         $db = ezcDbInstance::get();
         $schema = ezcDbSchema::createFromDb( $db );
-        $schema->writeToFile( 'array', dirname( __FILE__ ) . '/persistent_test_object.dba' );
+        $schema->writeToFile( 'array', __DIR__ . '/persistent_test_object.dba' );
     }
 
     /**
@@ -70,7 +70,7 @@ class PersistentTestObject
     public static function setupTable()
     {
         $db = ezcDbInstance::get();
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . '/persistent_test_object.dba' );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . '/persistent_test_object.dba' );
         $schema->writeToDb( $db );
     }
 
@@ -103,7 +103,7 @@ class PersistentTestObject
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['id'] = $this->id;
         $result['decimal'] = $this->decimal;
         $result['varchar'] = $this->varchar;

@@ -115,7 +115,7 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['title'] = false;
         $this->properties['background'] = false;
@@ -222,12 +222,7 @@ abstract class ezcGraphChartElement extends ezcBaseOptions
                 }
                 break;
             case 'position':
-                $positions = array(
-                    ezcGraph::TOP,
-                    ezcGraph::BOTTOM,
-                    ezcGraph::LEFT,
-                    ezcGraph::RIGHT,
-                );
+                $positions = [ezcGraph::TOP, ezcGraph::BOTTOM, ezcGraph::LEFT, ezcGraph::RIGHT];
 
                 if ( in_array( $propertyValue, $positions, true ) )
                 {

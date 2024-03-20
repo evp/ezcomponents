@@ -27,62 +27,62 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
     /**
      * May be contained only in <style:page-layout>. 
      */
-    const PROPERTIES_PAGE_LAYOUT = 'page-layout-properties';
+    public const PROPERTIES_PAGE_LAYOUT = 'page-layout-properties';
 
     /**
      * May be contained in <style:header-style> and <style:footer-style>, which 
      * are sub-elements of <style:page-layout>.
      */
-    const PROPERTIES_HEADER_FOOTER = 'header-footer-properties';
+    public const PROPERTIES_HEADER_FOOTER = 'header-footer-properties';
 
     /**
      * May be contained in <style:style> for families "text", "paragraph" and 
      * "cell", but might also occur in arbitrary style families (specs not 
      * clear).
      */
-    const PROPERTIES_TEXT = 'text-properties';
+    public const PROPERTIES_TEXT = 'text-properties';
 
     /**
      * May be contained in <style:style> for families "paragraph" and "cell", 
      * but might also occur in arbitrary style families (specs not clear).
      */
-    const PROPERTIES_PARAGRAPH = 'paragraph-properties';
+    public const PROPERTIES_PARAGRAPH = 'paragraph-properties';
 
     /**
      * May be contained in <style:style> for the family "ruby".
      */
-    const PROPERTIES_RUBY_TEXT = 'ruby-properties';
+    public const PROPERTIES_RUBY_TEXT = 'ruby-properties';
 
     /**
      * May be contained in <style:style> for the family "section".
      */
-    const PROPERTIES_SECTION = 'section-properties';
+    public const PROPERTIES_SECTION = 'section-properties';
 
     /**
      * May be contained in <style:style> for the family "table".
      */
-    const PROPERTIES_TABLE = 'table-properties';
+    public const PROPERTIES_TABLE = 'table-properties';
 
     /**
      * May be contained in <style:style> for the family "table-column".
      */
-    const PROPERTIES_COLUMN = 'table-column-properties';
+    public const PROPERTIES_COLUMN = 'table-column-properties';
 
     /**
      * May be contained in <style:style> for the family "table-row".
      */
-    const PROPERTIES_TABLE_ROW = 'table-row-properties';
+    public const PROPERTIES_TABLE_ROW = 'table-row-properties';
 
     /**
      * May be contained in <style:style> for the family "table-cell".
      */
-    const PROPERTIES_TABLE_CELL = 'table-cell-properties';
+    public const PROPERTIES_TABLE_CELL = 'table-cell-properties';
 
     /**
      * May be contained in <text:list-style> and others inside 
      * <text:list-level-style-*> elements, no matter which kind.
      */
-    const PROPERTIES_LIST_LEVEL = 'list-level-properties';
+    public const PROPERTIES_LIST_LEVEL = 'list-level-properties';
 
     /**
      * May be contained in <style:style> for the families "graphic" and "presentation".
@@ -92,21 +92,21 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
      * therefore not supported. Supported are, e.g., graphic properties that 
      * apply to a frame.
      */
-    const PROPERTIES_GRAPHIC = 'graphic-properties';
+    public const PROPERTIES_GRAPHIC = 'graphic-properties';
 
     /**
      * May be contained in <style:style> for the family "chart".
      *
      * Note: These properties are not supported!
      */
-    const PROPERTIES_CHART = 'chart-properties';
+    public const PROPERTIES_CHART = 'chart-properties';
 
     /**
      * Properties.
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new property object of $type.
@@ -118,7 +118,7 @@ class ezcDocumentOdtFormattingProperties extends ArrayObject
     public function __construct( $type )
     {
         $this->properties['type'] = $type;
-        parent::__construct( array(), ArrayObject::STD_PROP_LIST );
+        parent::__construct( [], ArrayObject::STD_PROP_LIST );
     }
 
     /**

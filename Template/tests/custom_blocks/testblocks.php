@@ -7,80 +7,80 @@ class TestBlocks implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
         {
             case "no_parameters": 
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "noParameters";
-                $def->parameters = array();
+                $def->parameters = [];
                 return $def;
 
             case "req_parameter": 
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "requiredParameter";
-                $def->parameters = array( "required" );
+                $def->parameters = ["required"];
                 return $def;
 
             case "opt_parameter": 
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "optionalParameter";
-                $def->parameters = array( "[optional]" );
+                $def->parameters = ["[optional]"];
                 return $def;
 
 
             case "named_parameters":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "namedParameters";
-                $def->parameters = array( "p1", "[p2]", "[p3]");
+                $def->parameters = ["p1", "[p2]", "[p3]"];
                 return $def;
 
             case "named_parameters_reflection":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "namedParameters";
-                $def->parameters = array( "p1", "[p2]", "[p3]");
+                $def->parameters = ["p1", "[p2]", "[p3]"];
                 return $def;
 
 
             case "named_parameters_invalid_def":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "namedParameters";
-                $def->parameters = array( "[p1]", "[p2]", "[p3]");
+                $def->parameters = ["[p1]", "[p2]", "[p3]"];
                 return $def;
 
             case "named_parameters_invalid_def2":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "namedParameters";
-                $def->parameters = array( "p1", "[p2]", "[p3]", "[p4]");
+                $def->parameters = ["p1", "[p2]", "[p3]", "[p4]"];
                 return $def;
  
             case "named_parameters_invalid_def3":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "namedParameters";
-                $def->parameters = array( "p1", "[p2]", "p3");
+                $def->parameters = ["p1", "[p2]", "p3"];
                 return $def;
 
             case "named_parameters_obj":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "namedParametersObj";
                 return $def;
 
 
             case "template_parameter":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "templateParameter";
-                $def->parameters = array( "p1", "[p2]");
+                $def->parameters = ["p1", "[p2]"];
                 $def->sendTemplateObject = true;
                 return $def;
 
             case "template_parameter_reflection":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "templateParameter";
                 $def->sendTemplateObject = true;
                 return $def;
@@ -88,7 +88,7 @@ class TestBlocks implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
 
             case "variable_argument_list":
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "varArgList";
                 $def->variableArgumentList = true;
                 return $def;
@@ -122,7 +122,7 @@ class TestBlocks implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
         return $p1." ".$p2." ".$p3;
     }
   
-    public static function namedParametersObj($p1, $p2 = "p2", $p3 = array(), $p4 = null, $p5 = 5)
+    public static function namedParametersObj($p1, $p2 = "p2", $p3 = [], $p4 = null, $p5 = 5)
     {
         return var_export($p1, true)." ".var_export($p2, true)." ".var_export($p3, true) ." ".var_export($p4, true)." ".var_export($p5, true);
     }
@@ -143,62 +143,62 @@ class TestBlocks implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
         {
             case "nesting_opt_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = true;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("optional");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["optional"];
                 return $def;
 
             case "nesting_req_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = true;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array();
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = [];
                 return $def;
 
             case "nesting_req_opt_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = true;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array("optional");
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = ["optional"];
                 return $def;
 
             case "nesting_req_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = true;
                 $def->startExpressionName = "start_expression";
-                $def->requiredParameters = array("start_expression");
-                $def->optionalParameters = array();
+                $def->requiredParameters = ["start_expression"];
+                $def->optionalParameters = [];
                 return $def;
 
             case "nesting_opt_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = true;
                 $def->startExpressionName = "start_expression";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("start_expression");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["start_expression"];
                 return $def;
 
             case "nesting_incorrect_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = true;
                 $def->startExpressionName = "start_expresssion";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("bla");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["bla"];
                 return $def;
 
 
@@ -206,71 +206,71 @@ class TestBlocks implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
 
             case "inline_opt_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("optional");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["optional"];
                 return $def;
 
             case "inline_req_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array();
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = [];
                 return $def;
 
             case "inline_req_opt_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array("optional");
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = ["optional"];
                 return $def;
 
             case "inline_req_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "start_expression";
-                $def->requiredParameters = array("start_expression");
-                $def->optionalParameters = array();
+                $def->requiredParameters = ["start_expression"];
+                $def->optionalParameters = [];
                 return $def;
 
             case "inline_opt_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "start_expression";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("start_expression");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["start_expression"];
                 return $def;
 
             case "inline_incorrect_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "start_expresssion";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("bla");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["bla"];
                 return $def;
 
             case "variable_parameters": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array();
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = [];
                 $def->excessParameters = true;
                 return $def;
 
@@ -279,108 +279,108 @@ class TestBlocks implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
 
             case "static_opt_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("optional");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["optional"];
                 $def->isStatic = true;
                 return $def;
 
             case "static_req_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array();
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = [];
                 $def->isStatic = true;
                 return $def;
 
             case "static_req_opt_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array("optional");
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = ["optional"];
                 $def->isStatic = true;
                 return $def;
 
             case "static_req_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "start_expression";
-                $def->requiredParameters = array("start_expression");
-                $def->optionalParameters = array();
+                $def->requiredParameters = ["start_expression"];
+                $def->optionalParameters = [];
                 $def->isStatic = true;
                 return $def;
 
             case "static_opt_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "start_expression";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("start_expression");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["start_expression"];
                 $def->isStatic = true;
                 return $def;
 
             case "static_incorrect_startexpression": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "start_expresssion";
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("bla");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["bla"];
                 $def->isStatic = true;
                 return $def;
 
 
             case "static_req_opt_parameter": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "reflectParameters";
                 $def->hasCloseTag = false;
                 $def->startExpressionName = "";
-                $def->requiredParameters = array("required");
-                $def->optionalParameters = array("optional");
+                $def->requiredParameters = ["required"];
+                $def->optionalParameters = ["optional"];
                 $def->isStatic = true;
                 return $def;
 
 
             case "set_block":
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "setBlock";
                 $def->hasCloseTag = true;
-                $def->requiredParameters = array("variable");
+                $def->requiredParameters = ["variable"];
                 return $def;
 
 
            case "template_object_no_close":
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "templateObject";
                 $def->hasCloseTag = false;
-                $def->requiredParameters = array("required");
+                $def->requiredParameters = ["required"];
                 $def->sendTemplateObject = true;
                 return $def;
 
 
            case "template_object_close":
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "templateObject";
                 $def->hasCloseTag = true;
-                $def->requiredParameters = array("required");
+                $def->requiredParameters = ["required"];
                 $def->sendTemplateObject = true;
                 return $def;
 

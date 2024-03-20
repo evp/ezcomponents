@@ -13,10 +13,7 @@ $graph->xAxis->min = -15;
 $graph->xAxis->max = 15;
 $graph->xAxis->majorStep = 5;
 
-$data = array(
-    array(),
-    array()
-);
+$data = [[], []];
 for ( $i = -10; $i <= 10; $i++ )
 {
     $data[0][$i] = mt_rand( -23, 59 );

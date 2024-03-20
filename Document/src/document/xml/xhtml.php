@@ -32,14 +32,9 @@ class ezcDocumentXhtml extends ezcDocumentXmlBase implements ezcDocumentValidati
      */
     public function __construct( ezcDocumentXhtmlOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentXhtmlOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentXhtmlOptions() );
 
-        $this->filters = array(
-            new ezcDocumentXhtmlElementFilter(),
-            new ezcDocumentXhtmlMetadataFilter(),
-        );
+        $this->filters = [new ezcDocumentXhtmlElementFilter(), new ezcDocumentXhtmlMetadataFilter()];
     }
 
     /**
@@ -129,38 +124,7 @@ class ezcDocumentXhtml extends ezcDocumentXmlBase implements ezcDocumentValidati
      */
     protected function isInlineElement( DOMElement $element )
     {
-        return in_array( $element->tagName, array(
-            'abbrev',
-            'abstract',
-            'acronym',
-            'anchor',
-            'attribution',
-            'author',
-            'authors',
-            'citation',
-            'contrib',
-            'copyright',
-            'date',
-            'email',
-            'emphasis',
-            'footnote',
-            'footnoteref',
-            'inlinemediaobject',
-            'link',
-            'literal',
-            'literallayout',
-            'para',
-            'pubdate',
-            'publisher',
-            'quote',
-            'releaseinfo',
-            'subscript',
-            'subtitle',
-            'superscript',
-            'term',
-            'title',
-            'ulink',
-        ) );
+        return in_array( $element->tagName, ['abbrev', 'abstract', 'acronym', 'anchor', 'attribution', 'author', 'authors', 'citation', 'contrib', 'copyright', 'date', 'email', 'emphasis', 'footnote', 'footnoteref', 'inlinemediaobject', 'link', 'literal', 'literallayout', 'para', 'pubdate', 'publisher', 'quote', 'releaseinfo', 'subscript', 'subtitle', 'superscript', 'term', 'title', 'ulink'] );
     }
 
     /**
@@ -350,11 +314,11 @@ class ezcDocumentXhtml extends ezcDocumentXmlBase implements ezcDocumentValidati
         libxml_clear_errors();
         $document = new DOMDocument();
         $document->load( $file );
-        $document->schemaValidate( dirname( __FILE__ ) . '/xhtml/schema/xhtml1-transitional.xsd' );
+        $document->schemaValidate( __DIR__ . '/xhtml/schema/xhtml1-transitional.xsd' );
 
         // Get all errors
         $xmlErrors = libxml_get_errors();
-        $errors = array();
+        $errors = [];
         foreach ( $xmlErrors as $error )
         {
             $errors[] = new ezcDocumentValidationError( $error );
@@ -383,11 +347,11 @@ class ezcDocumentXhtml extends ezcDocumentXmlBase implements ezcDocumentValidati
         libxml_clear_errors();
         $document = new DOMDocument();
         $document->loadXml( $string );
-        $document->schemaValidate( dirname( __FILE__ ) . '/xhtml/schema/xhtml1-transitional.xsd' );
+        $document->schemaValidate( __DIR__ . '/xhtml/schema/xhtml1-transitional.xsd' );
 
         // Get all errors
         $xmlErrors = libxml_get_errors();
-        $errors = array();
+        $errors = [];
         foreach ( $xmlErrors as $error )
         {
             $errors[] = ezcDocumentValidationError::createFromLibXmlError( $error );

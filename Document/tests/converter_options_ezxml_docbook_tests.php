@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/options_test_case.php';
+require_once __DIR__ . '/options_test_case.php';
 
 /**
  * Test suite for class.
@@ -21,7 +21,7 @@ class ezcConverterEzXmlDocbookOptionsTests extends ezcDocumentOptionsTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function getOptionsClassName()
@@ -31,31 +31,17 @@ class ezcConverterEzXmlDocbookOptionsTests extends ezcDocumentOptionsTestCase
 
     public static function provideDefaultValues()
     {
-        return array(
-            array(
-                'linkProvider', new ezcDocumentEzXmlDummyLinkProvider(),
-            ),
-        );
+        return [['linkProvider', new ezcDocumentEzXmlDummyLinkProvider()]];
     }
 
     public static function provideValidData()
     {
-        return array(
-            array(
-                'linkProvider',
-                array( new ezcDocumentEzXmlDummyLinkProvider() ),
-            ),
-        );
+        return [['linkProvider', [new ezcDocumentEzXmlDummyLinkProvider()]]];
     }
 
     public static function provideInvalidData()
     {
-        return array(
-            array(
-                'linkProvider',
-                array( 'foo', new StdClass() ),
-            ),
-        );
+        return [['linkProvider', ['foo', new StdClass()]]];
     }
 }
 

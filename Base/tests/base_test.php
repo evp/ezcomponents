@@ -57,7 +57,7 @@ class ezcBaseTest extends ezcTestCase
     {
         try
         {
-            throw new ezcBaseSettingValueException( 'broken', array(1, 1, 3, 4, 5), 'int' );
+            throw new ezcBaseSettingValueException( 'broken', [1, 1, 3, 4, 5], 'int' );
         }
         catch ( ezcBaseSettingValueException $e )
         {
@@ -249,7 +249,7 @@ class ezcBaseTest extends ezcTestCase
     {
         try
         {
-            throw new ezcBaseValueException( 'broken', array( 42 ) );
+            throw new ezcBaseValueException( 'broken', [42] );
         }
         catch ( ezcBaseValueException $e )
         {
@@ -467,7 +467,7 @@ class ezcBaseTest extends ezcTestCase
     {
         $path = ezcBase::getInstallationPath();
         $pathParts = explode( DIRECTORY_SEPARATOR, $path );
-        self::assertEquals( array( 'trunk', '' ), array_splice( $pathParts, -2 ) );
+        self::assertEquals( ['trunk', ''], array_splice( $pathParts, -2 ) );
         self::assertEquals( DIRECTORY_SEPARATOR, substr( $path, -1 ) );
     }
 

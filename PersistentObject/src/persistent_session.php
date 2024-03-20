@@ -31,7 +31,7 @@ class ezcPersistentSession implements ezcPersistentSessionFoundation
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Constructs a new persistent session that works on the database $db.
@@ -688,7 +688,7 @@ class ezcPersistentSession implements ezcPersistentSessionFoundation
      */
     public function generateAliasMap( ezcPersistentObjectDefinition $def, $prefixTableName = true )
     {
-        $table = array();
+        $table = [];
         $table[$def->idProperty->propertyName] = ( $prefixTableName 
             ? $this->database->quoteIdentifier( $def->table ) . '.' . $this->database->quoteIdentifier( $def->idProperty->columnName )
             : $this->database->quoteIdentifier( $def->idProperty->columnName ) );
@@ -714,7 +714,7 @@ class ezcPersistentSession implements ezcPersistentSessionFoundation
      */
     public function getColumnsFromDefinition( ezcPersistentObjectDefinition $def, $prefixTableName = true )
     {
-        $columns = array();
+        $columns = [];
         $columns[] = ( $prefixTableName 
             ? $this->database->quoteIdentifier( $def->table ) . '.' . $this->database->quoteIdentifier( $def->idProperty->columnName )
             : $this->database->quoteIdentifier( $def->idProperty->columnName ) );

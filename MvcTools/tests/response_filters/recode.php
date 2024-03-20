@@ -40,7 +40,7 @@ class ezcMvcToolsRecodeResponseFilterTest extends ezcTestCase
         $response = new ezcMvcResponse;
         $response->body = 'blåbærøl';
         $filter = new ezcMvcRecodeResponseFilter;
-        $filter->setOptions( array( 'toEncoding' => 'latin1' ) );
+        $filter->setOptions( ['toEncoding' => 'latin1'] );
         $filter->filterResponse( $response );
 
         self::assertSame( 'bl' . chr( 0xE5 ) . 'b' . chr( 0xE6 ) . 'r' . chr( 0xF8 ) . 'l', $response->body );
@@ -51,7 +51,7 @@ class ezcMvcToolsRecodeResponseFilterTest extends ezcTestCase
         $response = new ezcMvcResponse;
         $response->body = 'bl' . chr( 0xE5 ) . 'b' . chr( 0xE6 ) . 'r' . chr( 0xF8 ) . 'l';
         $filter = new ezcMvcRecodeResponseFilter;
-        $filter->setOptions( array( 'fromEncoding' => 'latin1' ) );
+        $filter->setOptions( ['fromEncoding' => 'latin1'] );
         $filter->filterResponse( $response );
 
         self::assertSame( 'blåbærøl', $response->body );
@@ -62,7 +62,7 @@ class ezcMvcToolsRecodeResponseFilterTest extends ezcTestCase
         $response = new ezcMvcResponse;
         $response->body = 'bl' . chr( 0xE5 ) . 'b' . chr( 0xE6 ) . 'r' . chr( 0xF8 ) . 'l';
         $filter = new ezcMvcRecodeResponseFilter;
-        $filter->setOptions( array( 'toEncoding' => 'latin1' ) );
+        $filter->setOptions( ['toEncoding' => 'latin1'] );
         try
         {
             $filter->filterResponse( $response );
@@ -76,7 +76,7 @@ class ezcMvcToolsRecodeResponseFilterTest extends ezcTestCase
 
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( __CLASS__ );
+         return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

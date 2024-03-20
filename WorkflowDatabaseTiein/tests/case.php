@@ -26,11 +26,11 @@ abstract class ezcWorkflowDatabaseTieinTestCase extends ezcWorkflowTestCase
         {
             $this->db = ezcDbInstance::get();
 
-            $this->cleanupTables( $this->db );
+            $this->cleanupTables();
 
             $schema = ezcDbSchema::createFromFile(
               'array',
-              dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'workflow.dba'
+              __DIR__ . DIRECTORY_SEPARATOR . 'workflow.dba'
             );
 
             $schema->writeToDb( $this->db );
@@ -61,7 +61,9 @@ abstract class ezcWorkflowDatabaseTieinTestCase extends ezcWorkflowTestCase
             case 'pgsql':
             {
                 $tables = $this->db->query( "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'" )->fetchAll();
-                array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+                array_walk( $tables, function (&$item, $key) {
+                    $item = $item[0];
+                } );
 
                 foreach ( $tables as $tableName )
                 {
@@ -73,7 +75,9 @@ abstract class ezcWorkflowDatabaseTieinTestCase extends ezcWorkflowTestCase
             case 'oracle':
             {
                 $tables = $this->db->query( "SELECT table_name FROM user_tables" )->fetchAll();
-                array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+                array_walk( $tables, function (&$item, $key) {
+                    $item = $item[0];
+                } );
 
                 foreach ( $tables as $tableName )
                 {
@@ -81,7 +85,9 @@ abstract class ezcWorkflowDatabaseTieinTestCase extends ezcWorkflowTestCase
                 }
 
                 $sequences = $this->db->query( "SELECT sequence_name FROM user_sequences" )->fetchAll();
-                array_walk( $sequences, create_function( '&$item,$key', '$item = $item[0];' ) );
+                array_walk( $sequences, function (&$item, $key) {
+                    $item = $item[0];
+                } );
 
                 foreach ( $sequences as $sequenceName )
                 {

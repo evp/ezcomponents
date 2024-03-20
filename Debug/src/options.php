@@ -47,13 +47,7 @@ class ezcDebugOptions extends ezcBaseOptions
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'stackTrace'            => false,
-        'stackTraceDepth'       => 5,
-        'stackTraceMaxData'     => 512,
-        'stackTraceMaxChildren' => 128,
-        'stackTraceMaxDepth'    => 3,
-    );
+    protected $properties = ['stackTrace'            => false, 'stackTraceDepth'       => 5, 'stackTraceMaxData'     => 512, 'stackTraceMaxChildren' => 128, 'stackTraceMaxDepth'    => 3];
 
     /**
      * Property write access.

@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/blocks/correct/delimiter_with_loop.in
 
@@ -30,7 +30,7 @@ $list = perm( "{foreach 1..4 as \$a",
               "============\n"
               );
 
-$dir = dirname( __FILE__ ) . "/../regression_tests/";
+$dir = __DIR__ . "/../regression_tests/";
 
 $a = app( "blocks/correct/delimiter_with_loop.in", $argv );
 

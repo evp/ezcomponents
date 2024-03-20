@@ -22,14 +22,14 @@ class ezcConsoleArguments implements ArrayAccess, Iterator, Countable
      * 
      * @var array(ezcConsoleArgument)
      */
-    protected $ordered = array();
+    protected $ordered = [];
 
     /**
      * Named list of arguments. 
      * 
      * @var array(string=>ezcConsoleArgument)
      */
-    protected $named = array();
+    protected $named = [];
 
     /**
      * Returns if the given offset exists.

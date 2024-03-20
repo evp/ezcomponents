@@ -22,17 +22,17 @@ class ezcTreeTransactionItem extends ezcBaseStruct
     /**
      * Used when this transaction deals with adding nodes.
      */
-    const ADD = 1;
+    public const ADD = 1;
 
     /**
      * Used when this transaction deals with deleting nodes.
      */
-    const DELETE = 2;
+    public const DELETE = 2;
 
     /**
      * Used when this transaction deals with moving nodes.
      */
-    const MOVE = 3;
+    public const MOVE = 3;
 
     /**
      * The item type.

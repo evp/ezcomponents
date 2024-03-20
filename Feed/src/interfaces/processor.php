@@ -63,7 +63,7 @@ abstract class ezcFeedProcessor
      * @var array(string)
      * @ignore
      */
-    protected $usedPrefixes = array();
+    protected $usedPrefixes = [];
 
     /**
      * Sets the value of element $name to $value based on the feed schema.
@@ -124,7 +124,7 @@ abstract class ezcFeedProcessor
     {
         if ( !is_array( $value ) )
         {
-            $value = array( $value );
+            $value = [$value];
         }
         foreach ( $value as $valueElement )
         {
@@ -147,7 +147,7 @@ abstract class ezcFeedProcessor
     {
         if ( !is_array( $value ) )
         {
-            $value = array( $value );
+            $value = [$value];
         }
         foreach ( $value as $valueElement )
         {
@@ -217,8 +217,8 @@ abstract class ezcFeedProcessor
         $supportedModules = ezcFeed::getSupportedModules();
         if ( strpos( $tagName, ':' ) !== false )
         {
-            list( $prefix, $key ) = explode( ':', $tagName );
-            $moduleName = isset( $this->usedPrefixes[$prefix] ) ? $this->usedPrefixes[$prefix] : null;
+            [$prefix, $key] = explode( ':', $tagName );
+            $moduleName = $this->usedPrefixes[$prefix] ?? null;
             if ( isset( $supportedModules[$moduleName] ) )
             {
                 $module = $item->hasModule( $moduleName ) ? $item->$moduleName : $item->addModule( $moduleName );
@@ -245,23 +245,23 @@ abstract class ezcFeedProcessor
      */
     protected function fetchUsedPrefixes( DOMDocument $xml )
     {
-        $usedPrefixes = array();
+        $usedPrefixes = [];
 
         $xp = new DOMXpath( $xml );
         $set = $xp->query( './namespace::*', $xml->documentElement );
-        $usedNamespaces = array();
+        $usedNamespaces = [];
 
         foreach ( $set as $node )
         {
             foreach ( ezcFeed::getSupportedModules() as $moduleName => $moduleClass )
             {
-                $moduleNamespace = call_user_func( array( $moduleClass, 'getNamespace' ) );
+                $moduleNamespace = call_user_func( [$moduleClass, 'getNamespace'] );
 
                 // compare the namespace URIs from the XML source with the supported ones
                 if ( $moduleNamespace === $node->nodeValue )
                 {
                     // the nodeName looks like: xmlns:some_module
-                    list( $xmlns, $prefix ) = explode( ':', $node->nodeName );
+                    [$xmlns, $prefix] = explode( ':', $node->nodeName );
 
                     // use the prefix from the XML source as a key in the array $usedPrefixes
                     // eg. array( 'some_prefix' => 'DublinCore' );
@@ -278,7 +278,7 @@ abstract class ezcFeedProcessor
                  && $xml->documentElement->tagName !== 'feed' )
             {
                 // the nodeName looks like: xmlns:some_module
-                list( $xmlns, $prefix ) = explode( ':', $node->nodeName );
+                [$xmlns, $prefix] = explode( ':', $node->nodeName );
 
                 $usedPrefixes[$prefix] = 'Atom';
             }

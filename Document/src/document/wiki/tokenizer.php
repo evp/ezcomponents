@@ -73,7 +73,7 @@ abstract class ezcDocumentWikiTokenizer
      *
      * @var array
      */
-    protected $tokens = array();
+    protected $tokens = [];
 
     /**
      * Construct tokenizer
@@ -154,7 +154,7 @@ abstract class ezcDocumentWikiTokenizer
     {
         $line     = 0;
         $position = 1;
-        $tokens   = array();
+        $tokens   = [];
         $string   = "\n" . $string;
 
         // Normalize newlines
@@ -181,12 +181,12 @@ abstract class ezcDocumentWikiTokenizer
                     // list and update all variables.
                     $class = $match['class'];
                     $newToken = new $class(
-                        ( isset( $matches['value'] ) ? $matches['value'] : null ),
+                        ( $matches['value'] ?? null ),
                         $line,
                         $position
                     );
 
-                    $match = isset( $matches['match'] ) ? $matches['match'] : $matches[0];
+                    $match = $matches['match'] ?? $matches[0];
 
                     // Removed matched stuff from input string
                     $string = substr( $string, $length = strlen( $match ) );

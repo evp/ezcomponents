@@ -22,15 +22,7 @@ class ezcDocumentBBCodeDocbookVisitor extends ezcDocumentBBCodeVisitor
      * 
      * @var array
      */
-    protected $visitMapping = array(
-        'ezcDocumentBBCodeParagraphNode'      => 'visitParagraph',
-        'ezcDocumentBBCodeTextNode'           => 'visitText',
-        'ezcDocumentBBCodeTagNode'            => 'visitTag',
-        'ezcDocumentBBCodeInlineLiteralNode'  => 'visitInlineLiteral',
-        'ezcDocumentBBCodeLiteralBlockNode'   => 'visitLiteralBlock',
-        'ezcDocumentBBCodeBulletListNode'     => 'visitBulletList',
-        'ezcDocumentBBCodeEnumeratedListNode' => 'visitEnumeratedList',
-    );
+    protected $visitMapping = ['ezcDocumentBBCodeParagraphNode'      => 'visitParagraph', 'ezcDocumentBBCodeTextNode'           => 'visitText', 'ezcDocumentBBCodeTagNode'            => 'visitTag', 'ezcDocumentBBCodeInlineLiteralNode'  => 'visitInlineLiteral', 'ezcDocumentBBCodeLiteralBlockNode'   => 'visitLiteralBlock', 'ezcDocumentBBCodeBulletListNode'     => 'visitBulletList', 'ezcDocumentBBCodeEnumeratedListNode' => 'visitEnumeratedList'];
 
     /**
      * DOM document

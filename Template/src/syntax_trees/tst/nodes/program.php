@@ -26,7 +26,7 @@ class ezcTemplateProgramTstNode extends ezcTemplateBlockTstNode
 
     public function getTreeProperties()
     {
-        return array( 'children' => $this->children );
+        return ['children' => $this->children];
     }
 
     /**

@@ -176,7 +176,7 @@ class ezcImageConversionHandlerShellTest extends ezcImageConversionHandlerTest
         $dstPath = $this->getTempPath();
 
         $ref = $this->handler->load( $srcPath );
-        $this->handler->applyFilter( $ref, new ezcImageFilter( "scale", array( "width" => 200, "height" => 200, "direction" => ezcImageGeometryFilters::SCALE_BOTH ) ) );
+        $this->handler->applyFilter( $ref, new ezcImageFilter( "scale", ["width" => 200, "height" => 200, "direction" => ezcImageGeometryFilters::SCALE_BOTH] ) );
         $this->handler->save( $ref, $dstPath );
         $this->handler->close( $ref );
         $this->assertImageSimilar(
@@ -194,9 +194,9 @@ class ezcImageConversionHandlerShellTest extends ezcImageConversionHandlerTest
 
         $ref = $this->handler->load( $srcPath );
 
-        $this->handler->applyFilter( $ref, new ezcImageFilter( "scale", array( "width" => 200, "height" => 200, "direction" => ezcImageGeometryFilters::SCALE_BOTH ) ) );
-        $this->handler->applyFilter( $ref, new ezcImageFilter( "crop", array( "x" => 50, "width" => 100, "y" => 50, "height" => 100 ) ) );
-        $this->handler->applyFilter( $ref, new ezcImageFilter( "colorspace", array( "space" => ezcImageColorspaceFilters::COLORSPACE_SEPIA ) ) );
+        $this->handler->applyFilter( $ref, new ezcImageFilter( "scale", ["width" => 200, "height" => 200, "direction" => ezcImageGeometryFilters::SCALE_BOTH] ) );
+        $this->handler->applyFilter( $ref, new ezcImageFilter( "crop", ["x" => 50, "width" => 100, "y" => 50, "height" => 100] ) );
+        $this->handler->applyFilter( $ref, new ezcImageFilter( "colorspace", ["space" => ezcImageColorspaceFilters::COLORSPACE_SEPIA] ) );
         
         $this->handler->save( $ref, $dstPath );
 
@@ -297,7 +297,7 @@ class ezcImageConversionHandlerShellTest extends ezcImageConversionHandlerTest
         $ref = $this->handler->load( $srcPath );
 
         $options = new ezcImageSaveOptions();
-        $options->transparencyReplacementColor = array( 255, 0, 0 );
+        $options->transparencyReplacementColor = [255, 0, 0];
 
         $this->handler->save( $ref, $dstPath, 'image/jpeg', $options );
         

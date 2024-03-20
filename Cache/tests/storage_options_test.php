@@ -32,10 +32,7 @@ class ezcCacheStorageOptionsTest extends ezcTestCase
     public function testConstructor()
     {
         $fake = new ezcCacheStorageOptions(
-            array( 
-                "ttl" => 86400,
-                "extension" => ".cache",
-            )
+            ["ttl" => 86400, "extension" => ".cache"]
         );
         $this->assertEquals( 
             $fake,

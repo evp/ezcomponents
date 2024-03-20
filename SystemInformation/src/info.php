@@ -371,11 +371,11 @@ class ezcSystemInfo
             case 'backupFileName':
                 return $this->backupFileName;
             case 'phpVersion':
-                return $this->phpVersion();
+                return static::phpVersion();
             case 'phpAccelerator':
-                return $this->phpAccelerator();
+                return static::phpAccelerator();
             case 'isShellExecution':
-                return $this->isShellExecution();
+                return static::isShellExecution();
 
             default:
                 break;

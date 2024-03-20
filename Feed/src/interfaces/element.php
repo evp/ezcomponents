@@ -28,7 +28,7 @@ class ezcFeedElement
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Sets the property $name to $value.

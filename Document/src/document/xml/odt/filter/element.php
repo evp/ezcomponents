@@ -24,7 +24,7 @@ class ezcDocumentOdtElementFilter extends ezcDocumentOdtBaseFilter
      *
      * @var array
      */
-    protected $elementFilter = array();
+    protected $elementFilter = [];
 
     /**
      * Constructor
@@ -35,7 +35,7 @@ class ezcDocumentOdtElementFilter extends ezcDocumentOdtBaseFilter
      */
     public function __construct()
     {
-        $this->elementFilter = array(
+        $this->elementFilter = [
             // Basic mapping filter
             new ezcDocumentOdtElementHeaderFilter(),
             new ezcDocumentOdtElementTableFilter(),
@@ -46,7 +46,7 @@ class ezcDocumentOdtElementFilter extends ezcDocumentOdtBaseFilter
             new ezcDocumentOdtElementFootnoteFilter(),
             new ezcDocumentOdtElementLinkFilter(),
             new ezcDocumentOdtElementWhitespaceFilter(),
-        );
+        ];
     }
 
     /**

@@ -31,14 +31,7 @@ class ezcDocumentOdtElementHtmlTableFilter extends ezcDocumentOdtElementBaseFilt
      * 
      * @var array
      */
-    protected $methodMap = array(
-        'table'             => 'convertTable',
-        'table-column'      => 'convertColumn',
-        'table-header-rows' => 'convertHeader',
-        'table-row'         => 'convertRow',
-        'table-cell'        => 'convertCell',
-        // covered-table-cell is left alone, will be ignored
-    );
+    protected $methodMap = ['table'             => 'convertTable', 'table-column'      => 'convertColumn', 'table-header-rows' => 'convertHeader', 'table-row'         => 'convertRow', 'table-cell'        => 'convertCell'];
 
     /**
      * Filter a single element.
@@ -180,7 +173,7 @@ class ezcDocumentOdtElementHtmlTableFilter extends ezcDocumentOdtElementBaseFilt
         $attrs = $element->getProperty( 'attributes' );
         if ( !is_array( $attrs ) )
         {
-            $attrs = array();
+            $attrs = [];
         }
 
         if ( $element->hasAttributeNS(

@@ -76,7 +76,7 @@ class ezcConsoleProgressMonitor
      *
      * @see ezcConsoleProgressMonitor::$options
      */
-    public function __construct( ezcConsoleOutput $outHandler, $max, array $options = array() )
+    public function __construct( ezcConsoleOutput $outHandler, $max, array $options = [] )
     {
         $this->outputHandler = $outHandler;
         $this->max = $max;

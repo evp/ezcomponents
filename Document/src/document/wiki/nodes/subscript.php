@@ -25,7 +25,7 @@ class ezcDocumentWikiSubscriptNode extends ezcDocumentWikiMatchingInlineNode
      */
     public static function __set_state( $properties )
     {
-        $nodeClass = __CLASS__;
+        $nodeClass = self::class;
         $node = new $nodeClass( $properties['token'] );
         $node->nodes = $properties['nodes'];
         return $node;

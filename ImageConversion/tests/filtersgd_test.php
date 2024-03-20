@@ -8,7 +8,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . "/test_case.php";
+require_once __DIR__ . "/test_case.php";
 
 /**
  * Test suite for ImageFiltersGd class.
@@ -90,10 +90,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleDown_do()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scale( 500, 2, ezcImageGeometryFilters::SCALE_DOWN );
         $this->assertEquals(
             3,
@@ -109,10 +106,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleDown_dont()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scale( 500, 200, ezcImageGeometryFilters::SCALE_DOWN );
         $this->assertEquals(
             150,
@@ -128,10 +122,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleUp_do()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scale( 500, 300, ezcImageGeometryFilters::SCALE_UP );
         $this->assertEquals(
             398,
@@ -147,10 +138,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleUp_dont()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scale( 500, 2, ezcImageGeometryFilters::SCALE_UP );
         $this->assertEquals(
             150,
@@ -193,10 +181,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleWidthBoth()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleWidth( 50, ezcImageGeometryFilters::SCALE_BOTH );
         $this->assertEquals(
             50,
@@ -212,10 +197,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleWidthUp_1()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleWidth( 50, ezcImageGeometryFilters::SCALE_UP );
         $this->assertEquals(
             150,
@@ -231,10 +213,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleWidthUp_2()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleWidth( 300, ezcImageGeometryFilters::SCALE_UP );
         $this->assertEquals(
             300,
@@ -250,10 +229,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleWidthDown_1()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleWidth( 300, ezcImageGeometryFilters::SCALE_DOWN );
         $this->assertEquals(
             150,
@@ -269,10 +245,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleWidthDown_2()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleWidth( 50, ezcImageGeometryFilters::SCALE_DOWN );
         $this->assertEquals(
             50,
@@ -315,10 +288,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleHeightBoth()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleHeight( 50, ezcImageGeometryFilters::SCALE_BOTH );
         $this->assertEquals(
             66,
@@ -334,10 +304,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleHeightUp_1()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleHeight( 226, ezcImageGeometryFilters::SCALE_UP );
         $this->assertEquals(
             300,
@@ -353,10 +320,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleHeightUp_2()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleHeight( 50, ezcImageGeometryFilters::SCALE_UP );
         $this->assertEquals(
             150,
@@ -372,10 +336,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleHeightDown_1()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleHeight( 300, ezcImageGeometryFilters::SCALE_DOWN );
         $this->assertEquals(
             150,
@@ -391,10 +352,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleHeightDown_2()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleHeight( 50, ezcImageGeometryFilters::SCALE_DOWN );
         $this->assertEquals(
             66,
@@ -437,10 +395,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScalePercent_1()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scalePercent( 50, 50 );
         $this->assertEquals(
             75,
@@ -456,10 +411,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScalePercent_2()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scalePercent( 200, 200 );
         $this->assertEquals(
             300,
@@ -502,10 +454,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleExact_1()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleExact( 200, 200 );
         $this->assertEquals(
             200,
@@ -521,10 +470,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleExact_2()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleExact( 10, 200 );
         $this->assertEquals(
             10,
@@ -540,10 +486,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleExact_3()
     {
-        $oldDim = array(
-            "x" => imagesx( $this->getActiveResource() ),
-            "y" => imagesy( $this->getActiveResource() ),
-        );
+        $oldDim = ["x" => imagesx( $this->getActiveResource() ), "y" => imagesy( $this->getActiveResource() )];
         $this->handler->scaleExact( 200, 10 );
         $this->assertEquals(
             200,
@@ -586,7 +529,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testScaleTransparent()
     {
-        $ref = $this->handler->load( dirname( __FILE__ ) . "/data/watermark.png" );
+        $ref = $this->handler->load( __DIR__ . "/data/watermark.png" );
         $this->handler->scale( 80, 80 );
         $this->handler->save( $ref, $this->getTempPath() );
         $this->assertImageSimilar(
@@ -659,7 +602,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
     public function testCropTransparent()
     {
-        $ref = $this->handler->load( dirname( __FILE__ ) . "/data/watermark.png" );
+        $ref = $this->handler->load( __DIR__ . "/data/watermark.png" );
         $this->handler->crop( 20, 0, 10, 5 );
         $this->handler->save( $ref, $this->getTempPath() );
         $this->assertImageSimilar(
@@ -790,7 +733,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testWatermarkAbsoluteNoScale()
     {
-        $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", 100, 80 );
+        $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", 100, 80 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -802,7 +745,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testWatermarkAbsoluteScale()
     {
-        $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", 10, 10, 130, 93 );
+        $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", 10, 10, 130, 93 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -814,10 +757,10 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testWatermarkAbsoluteNoScaleNegativeOffset()
     {
-        $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -50, -33 );
+        $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -50, -33 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
-            strtr( $this->getReferencePath(), array( "NegativeOffset" =>  "" ) ),
+            strtr( $this->getReferencePath(), ["NegativeOffset" =>  ""] ),
             $this->getTempPath(),
             "Image not rendered as expected.",
             ezcImageConversionTestCase::DEFAULT_SIMILARITY_GAP
@@ -826,7 +769,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testWatermarkPercentNoScale()
     {
-        $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 10, 90 );
+        $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 10, 90 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -840,7 +783,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/foo.png", -140, -103, 130, 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/foo.png", -140, -103, 130, 93 );
             $this->fail( 'Exception not throwen on invalid watermark file.' );
         }
         catch ( ezcBaseValueException $e )
@@ -848,7 +791,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", 'foo', -103, 130, 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", 'foo', -103, 130, 93 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -856,7 +799,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -140, 'foo', 130, 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -140, 'foo', 130, 93 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -864,7 +807,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -140, -103, 'foo', 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -140, -103, 'foo', 93 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -872,7 +815,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -140, -103, 130, 'foo' );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -140, -103, 130, 'foo' );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -881,7 +824,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testWatermarkPercentScale()
     {
-        $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 80, 80, 20 );
+        $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 80, 80, 20 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -895,7 +838,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/foo.png", 80, 80, 20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/foo.png", 80, 80, 20 );
             $this->fail( 'Exception not throwen on invalid watermark file.' );
         }
         catch ( ezcBaseValueException $e )
@@ -903,7 +846,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", -80, 80, 20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", -80, 80, 20 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -911,7 +854,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 80, -80, 20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 80, -80, 20 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -919,7 +862,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 80, 80, -20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 80, 80, -20 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -984,7 +927,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testFillThumbnailVertical()
     {
-        $this->handler->filledThumbnail( 50, 50, array( 255, 0, 0 ) );
+        $this->handler->filledThumbnail( 50, 50, [255, 0, 0] );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -996,7 +939,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testFillThumbnailHorizontal()
     {
-        $this->handler->filledThumbnail( 100, 50, array( 255, 0, 0 ) );
+        $this->handler->filledThumbnail( 100, 50, [255, 0, 0] );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -1008,7 +951,7 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     
     public function testFillThumbnailTooLargeColorArray()
     {
-        $this->handler->filledThumbnail( 100, 50, array( 255, 0, 0, 400, 500, 600 ) );
+        $this->handler->filledThumbnail( 100, 50, [255, 0, 0, 400, 500, 600] );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -1022,42 +965,42 @@ class ezcImageConversionFiltersGdTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->handler->filledThumbnail( -10, 50, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( -10, 50, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( "foo", 50, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( "foo", 50, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, -10, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( 50, -10, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, false, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( 50, false, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, 50, array( 255, false, 0 ) );
+            $this->handler->filledThumbnail( 50, 50, [255, false, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, 50, array( "bar", 0, 0 ) );
+            $this->handler->filledThumbnail( 50, 50, ["bar", 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )

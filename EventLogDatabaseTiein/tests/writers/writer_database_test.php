@@ -25,8 +25,8 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
             $this->markTestSkipped();
         }
 
-        $this->command = array();
-        $schema = ezcDbSchema::createFromFile( 'xml', dirname( __FILE__ ) . '/testfiles/log_db_schema.xml' );
+        $this->command = [];
+        $schema = ezcDbSchema::createFromFile( 'xml', __DIR__ . '/testfiles/log_db_schema.xml' );
         foreach ( $schema->convertToDDL( $this->db ) as $statement )
         {
             $this->command[] = $statement;
@@ -69,7 +69,7 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
         $log->getMapper()->appendRule( new ezcLogFilterRule( new ezcLogFilter, $writer, true ) );
         try
         {
-            $log->log( 'Adding category', ezcLog::INFO, array( 'source' => 'mail' ) );
+            $log->log( 'Adding category', ezcLog::INFO, ['source' => 'mail'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcLogWriterException $e )
@@ -111,7 +111,7 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
 
     public function testWriteExtraEntries()
     {
-        $this->writer->writeLogMessage("Hello world", ezcLog::WARNING, "MySource", "MyCategory", array("file" => "/usr/share/dott/", "line" => 123) );
+        $this->writer->writeLogMessage("Hello world", ezcLog::WARNING, "MySource", "MyCategory", ["file" => "/usr/share/dott/", "line" => 123] );
 
         $q = $this->db->createSelectQuery();
         $q->select( '*' )->from( 'log' );
@@ -130,7 +130,7 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
     {
         try
         {
-            $this->writer->writeLogMessage("Hello world", ezcLog::WARNING, "MySource", "MyCategory", array( "myFileName" => "/usr/share/dott/", "LineNumbers" => 123) );
+            $this->writer->writeLogMessage("Hello world", ezcLog::WARNING, "MySource", "MyCategory", ["myFileName" => "/usr/share/dott/", "LineNumbers" => 123] );
         } 
         catch (Exception $e) 
         {
@@ -140,7 +140,7 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
 
         $this->writer->myFileName = "file";
         $this->writer->LineNumbers = "line";
-        $this->writer->writeLogMessage("Hello world", ezcLog::WARNING, "MySource", "MyCategory", array( "myFileName" => "/usr/share/dott/", "LineNumbers" => 123) );
+        $this->writer->writeLogMessage("Hello world", ezcLog::WARNING, "MySource", "MyCategory", ["myFileName" => "/usr/share/dott/", "LineNumbers" => 123] );
         
         $q = $this->db->createSelectQuery();
         $q->select( '*' )->from( 'log' );
@@ -157,7 +157,7 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
 
     public function testGetColumnTranslations()
     {
-        $columns = array("message" => "message", "datetime" =>"time", "severity" => "severity", "source" => "source", "category" => "category");
+        $columns = ["message" => "message", "datetime" =>"time", "severity" => "severity", "source" => "source", "category" => "category"];
         $this->assertEquals( $columns, $this->writer->getColumnTranslations() );
 
         $this->writer->datetime = "bla";
@@ -171,8 +171,8 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
 
     public function testAdditionalTables()
     {
-        $command = array();
-        $schema = ezcDbSchema::createFromFile( 'xml', dirname( __FILE__ ) . '/testfiles/audits_db_schema.xml' );
+        $command = [];
+        $schema = ezcDbSchema::createFromFile( 'xml', __DIR__ . '/testfiles/audits_db_schema.xml' );
         foreach ( $schema->convertToDDL( $this->db ) as $statement )
         {
             $command[] = $statement;
@@ -192,7 +192,7 @@ class ezcLogDatabaseWriterTest extends ezcTestCase
         $filter->severity = ezcLog::FAILED_AUDIT | ezcLog::SUCCESS_AUDIT;
 
         $this->writer->setTable( $filter, "audits" );
-        $this->writer->writeLogMessage("Hoagie logged in.", ezcLog::SUCCESS_AUDIT, "administration interface", "security", array("name" => "Hoagie"));
+        $this->writer->writeLogMessage("Hoagie logged in.", ezcLog::SUCCESS_AUDIT, "administration interface", "security", ["name" => "Hoagie"]);
 
         $q = $this->db->createSelectQuery();
         $q->select( '*' )->from( 'audits' );

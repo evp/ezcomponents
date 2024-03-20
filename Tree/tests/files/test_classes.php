@@ -5,7 +5,7 @@ class TestTranslateDataStore extends ezcTreeMemoryDataStore implements ezcTreeDa
     {
         if ( $node->id == 'vuur' )
         {
-            $node->data = array( 'en' => 'fire', 'de' => 'feuer', 'no' => 'fyr' );
+            $node->data = ['en' => 'fire', 'de' => 'feuer', 'no' => 'fyr'];
         }
         if ( $node->id == 'Be' )
         {

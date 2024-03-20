@@ -73,7 +73,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
      * 
      * @var array
      */
-    protected $strings = array();
+    protected $strings = [];
 
     /**
      * Constructor
@@ -82,7 +82,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         ezcBase::checkDependency( 'Graph', ezcBase::DEP_PHP_EXTENSION, 'cairo_wrapper' );
         $this->options = new ezcGraphCairoDriverOptions( $options );
@@ -264,7 +264,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         $this->getStyle( $color, false, $thickness );
         cairo_stroke( $this->context );
 
-        return array( $start, $end );
+        return [$start, $end];
     }
 
     /**
@@ -340,22 +340,9 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         }
 
         $this->options->font->minimalUsedFont = $size;
-        $this->strings[] = array(
-            'text' => $result,
-            'position' => $textPosition,
-            'width' => $width,
-            'height' => $height,
-            'align' => $align,
-            'font' => $this->options->font,
-            'rotation' => $rotation,
-        );
+        $this->strings[] = ['text' => $result, 'position' => $textPosition, 'width' => $width, 'height' => $height, 'align' => $align, 'font' => $this->options->font, 'rotation' => $rotation];
 
-        return array(
-            clone $position,
-            new ezcGraphCoordinate( $position->x + $width, $position->y ),
-            new ezcGraphCoordinate( $position->x + $width, $position->y + $height ),
-            new ezcGraphCoordinate( $position->x, $position->y + $height ),
-        );
+        return [clone $position, new ezcGraphCoordinate( $position->x + $width, $position->y ), new ezcGraphCoordinate( $position->x + $width, $position->y + $height ), new ezcGraphCoordinate( $position->x, $position->y + $height )];
     }
     
     /**
@@ -482,45 +469,35 @@ class ezcGraphCairoDriver extends ezcGraphDriver
                         break;
                 }
 
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding + $xOffset,
-                        $text['position']->y - $padding + $yOffset
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $xOffset + $width,
-                        $text['position']->y - $padding + $yOffset
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $xOffset + $width,
-                        $text['position']->y + $padding * 2 + $yOffset + $completeHeight
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding + $xOffset,
-                        $text['position']->y + $padding * 2 + $yOffset + $completeHeight
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $text['position']->x - $padding + $xOffset,
+                    $text['position']->y - $padding + $yOffset
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $xOffset + $width,
+                    $text['position']->y - $padding + $yOffset
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $xOffset + $width,
+                    $text['position']->y + $padding * 2 + $yOffset + $completeHeight
+                ), new ezcGraphCoordinate(
+                    $text['position']->x - $padding + $xOffset,
+                    $text['position']->y + $padding * 2 + $yOffset + $completeHeight
+                )];
             }
             else
             {
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding,
-                        $text['position']->y - $padding
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $text['width'],
-                        $text['position']->y - $padding
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $text['width'],
-                        $text['position']->y + $padding * 2 + $text['height']
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding,
-                        $text['position']->y + $padding * 2 + $text['height']
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $text['position']->x - $padding,
+                    $text['position']->y - $padding
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $text['width'],
+                    $text['position']->y - $padding
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $text['width'],
+                    $text['position']->y + $padding * 2 + $text['height']
+                ), new ezcGraphCoordinate(
+                    $text['position']->x - $padding,
+                    $text['position']->y + $padding * 2 + $text['height']
+                )];
             }
 
             if ( $text['rotation'] !==  null )
@@ -662,7 +639,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         cairo_stroke( $this->context );
 
         // Create polygon array to return
-        $polygonArray = array( $center );
+        $polygonArray = [$center];
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
@@ -801,7 +778,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         }
 
         // Create polygon array to return
-        $polygonArray = array();
+        $polygonArray = [];
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
@@ -874,7 +851,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
         cairo_stroke( $this->context );
 
         // Create polygon array to return
-        $polygonArray = array();
+        $polygonArray = [];
         for ( $angle = 0; $angle < ( 2 * M_PI ); $angle += deg2rad( $this->options->imageMapResolution ) )
         {
             $polygonArray[] = new ezcGraphCoordinate(
@@ -1000,10 +977,7 @@ class ezcGraphCairoDriver extends ezcGraphDriver
      */
     public function getResource()
     {
-        return array( 
-            'surface' => $this->surface,
-            'context' => $this->context,
-        );
+        return ['surface' => $this->surface, 'context' => $this->context];
     }
 }
 

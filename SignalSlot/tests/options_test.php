@@ -27,23 +27,23 @@ class ezcSignalSlotCollectionOptionsTest extends ezcTestCase
         $this->receiver = new TheReceiver();
         TheReceiver::$globalFunctionRun = false;
         TheReceiver::$staticFunctionRun = false;
-        ezcSignalStaticConnections::getInstance()->connections = array();
+        ezcSignalStaticConnections::getInstance()->connections = [];
         ezcSignalCollection::setStaticConnectionsHolder( new EmptyStaticConnections() );
     }
 
     public function testSetOptionsArray()
     {
-        $this->giver->signals->setOptions( array( 'signals' => array( 'someSignal' ) ) );
+        $this->giver->signals->setOptions( ['signals' => ['someSignal']] );
     }
 
     public function testSetOptionsObject()
     {
-        $this->giver->signals->setOptions( new ezcSignalCollectionOptions( array( 'signals' => array( 'someSignal' ) ) ) );
+        $this->giver->signals->setOptions( new ezcSignalCollectionOptions( ['signals' => ['someSignal']] ) );
     }
 
     public function testsetOptionsDirect()
     {
-        $this->giver->signals->options = new ezcSignalCollectionOptions( array( 'signals' => array( 'someSignal' ) ) );
+        $this->giver->signals->options = new ezcSignalCollectionOptions( ['signals' => ['someSignal']] );
     }
 
     public function testGetOptions()
@@ -53,13 +53,13 @@ class ezcSignalSlotCollectionOptionsTest extends ezcTestCase
 
     public function testOptionSignalsFunctionIsConnectedValid()
     {
-        $this->giver->signals->options->signals = array( 'mySignal' );
+        $this->giver->signals->options->signals = ['mySignal'];
         $this->assertFalse( $this->giver->signals->isConnected( 'mySignal' ) );
     }
 
     public function testOptionSignalsFunctionIsConnectedInvalid()
     {
-        $this->giver->signals->options->signals = array( 'mySignal' );
+        $this->giver->signals->options->signals = ['mySignal'];
         try
         {
             $this->assertFalse( $this->giver->signals->isConnected( 'NoSuchSignal' ) );
@@ -72,13 +72,13 @@ class ezcSignalSlotCollectionOptionsTest extends ezcTestCase
 
     public function testOptionSignalsFunctionEmitValid()
     {
-        $this->giver->signals->options->signals = array( 'mySignal' );
+        $this->giver->signals->options->signals = ['mySignal'];
         $this->giver->signals->emit( 'mySignal' ); // no exception
     }
 
     public function testOptionSignalsFunctionEmitInvalid()
     {
-        $this->giver->signals->options->signals = array( 'mySignal' );
+        $this->giver->signals->options->signals = ['mySignal'];
         try
         {
             $this->giver->signals->emit( 'NoSuchSignal' );
@@ -92,16 +92,16 @@ class ezcSignalSlotCollectionOptionsTest extends ezcTestCase
 
     public function testOptionsSignalsFunctionConnectValid()
     {
-        $this->giver->signals->options->signals = array( 'mySignal' );
-        $this->giver->signals->connect( "mySignal", array( $this->receiver, "slotSingleParam" ) );
+        $this->giver->signals->options->signals = ['mySignal'];
+        $this->giver->signals->connect( "mySignal", [$this->receiver, "slotSingleParam"] );
     }
 
     public function testOptionsSignalsFunctionConnectInvalid()
     {
-        $this->giver->signals->options->signals = array( 'mySignal' );
+        $this->giver->signals->options->signals = ['mySignal'];
         try
         {
-            $this->giver->signals->connect( "noSuchSignal", array( $this->receiver, "slotSingleParam" ) );
+            $this->giver->signals->connect( "noSuchSignal", [$this->receiver, "slotSingleParam"] );
         }
         catch ( ezcSignalSlotException $e ){
             return;
@@ -111,16 +111,16 @@ class ezcSignalSlotCollectionOptionsTest extends ezcTestCase
 
     public function testOptionsSignalsFunctionDisconnectValid()
     {
-        $this->giver->signals->options->signals = array( 'mySignal' );
-        $this->giver->signals->disconnect( "mySignal", array( $this->receiver, "slotSingleParam" ) );
+        $this->giver->signals->options->signals = ['mySignal'];
+        $this->giver->signals->disconnect( "mySignal", [$this->receiver, "slotSingleParam"] );
     }
 
     public function testOptionsSignalsFunctionDisconnectInvalid()
     {
-        $this->giver->signals->options->signals = array( 'myignal' );
+        $this->giver->signals->options->signals = ['myignal'];
         try
         {
-            $this->giver->signals->disconnect( "noSuchSignal", array( $this->receiver, "slotSingleParam" ) );
+            $this->giver->signals->disconnect( "noSuchSignal", [$this->receiver, "slotSingleParam"] );
         }
         catch ( ezcSignalSlotException $e ){
             return;

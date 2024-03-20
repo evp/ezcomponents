@@ -118,22 +118,22 @@ class ezcDbHandlerMssql extends ezcDbHandler
             $mode = (int)$rows[0][0];
             if ( $mode == 0 )
             {
-                $this->identifierQuoteChars = array( 'start' => '[', 'end' => ']' );
+                $this->identifierQuoteChars = ['start' => '[', 'end' => ']'];
             }
             else
             {
-                $this->identifierQuoteChars = array( 'start' => '"', 'end' => '"' );
+                $this->identifierQuoteChars = ['start' => '"', 'end' => '"'];
             }
         }
         else if ( $requiredMode == ezcDbMssqlOptions::QUOTES_COMPLIANT )
         {
             parent::exec( 'SET QUOTED_IDENTIFIER ON' );
-            $this->identifierQuoteChars = array( 'start' => '"', 'end' => '"' );
+            $this->identifierQuoteChars = ['start' => '"', 'end' => '"'];
         }
         else if ( $requiredMode == ezcDbMssqlOptions::QUOTES_LEGACY )
         {
             parent::exec( 'SET QUOTED_IDENTIFIER OFF' );
-            $this->identifierQuoteChars = array( 'start' => '[', 'end' => ']' );
+            $this->identifierQuoteChars = ['start' => '[', 'end' => ']'];
         }
     }
 

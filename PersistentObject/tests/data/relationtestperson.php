@@ -8,7 +8,7 @@ $def->idProperty->columnName    = 'id';
 $def->idProperty->propertyName  = 'id';
 $def->idProperty->generator     = new ezcPersistentGeneratorDefinition(
     'ezcPersistentSequenceGenerator',
-    array( 'sequence' => 'PO_persons_id_seq' )
+    ['sequence' => 'PO_persons_id_seq']
 );
 
 $def->properties['firstname']                 = new ezcPersistentObjectProperty;
@@ -27,25 +27,17 @@ $def->properties['employer']->propertyName   = 'employer';
 $def->properties['employer']->propertyType   = ezcPersistentObjectProperty::PHP_TYPE_INT;
 
 $def->relations["RelationTestEmployer"]                = new ezcPersistentManyToOneRelation( "PO_persons", "PO_employers" );
-$def->relations["RelationTestEmployer"]->columnMap     = array(
-    new ezcPersistentSingleTableMap( "employer", "id" ),
-);
+$def->relations["RelationTestEmployer"]->columnMap     = [new ezcPersistentSingleTableMap( "employer", "id" )];
 
 $def->relations["RelationTestBirthday"]                = new ezcPersistentOneToOneRelation( "PO_persons", "PO_birthdays" );
 $def->relations["RelationTestBirthday"]->cascade       = true;
-$def->relations["RelationTestBirthday"]->columnMap     = array(
-    new ezcPersistentSingleTableMap( "id", "person_id" ),
-);
+$def->relations["RelationTestBirthday"]->columnMap     = [new ezcPersistentSingleTableMap( "id", "person_id" )];
 
 $def->relations["RelationTestAddress"]                = new ezcPersistentManyToManyRelation( "PO_persons", "PO_addresses", "PO_persons_addresses" );
-$def->relations["RelationTestAddress"]->columnMap     = array(
-    new ezcPersistentDoubleTableMap( "id", "person_id", "address_id", "id" ),
-);
+$def->relations["RelationTestAddress"]->columnMap     = [new ezcPersistentDoubleTableMap( "id", "person_id", "address_id", "id" )];
 
 $def->relations["RelationTestPerson"]                = new ezcPersistentManyToManyRelation( "PO_persons", "PO_persons", "PO_friends" );
-$def->relations["RelationTestPerson"]->columnMap     = array(
-    new ezcPersistentDoubleTableMap( "id", "id", "friend_id", "id" ),
-);
+$def->relations["RelationTestPerson"]->columnMap     = [new ezcPersistentDoubleTableMap( "id", "id", "friend_id", "id" )];
 
 return $def;
 

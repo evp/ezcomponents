@@ -14,13 +14,13 @@
  */
 class ezcMailTransportStorageTest extends ezcTestCase
 {
-    private static $sizes = array();
+    private static $sizes = [];
 
     public static function suite()
     {
-        self::$sizes = array( 1539, 64072, 1696, 1725 );
+        self::$sizes = [1539, 64072, 1696, 1725];
 
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testImapMessageSource()
@@ -63,7 +63,7 @@ class ezcMailTransportStorageTest extends ezcTestCase
 
         $set = new ezcMailStorageSet( $transport->fetchAll(), $this->tempDir );
         $mail = $parser->parseMail( $set );
-        $this->assertEquals( array(), $mail );
+        $this->assertEquals( [], $mail );
         $transport->selectMailbox( "Inbox" );
         $transport->deleteMailbox( "Guybrush" );
     }
@@ -98,7 +98,7 @@ class ezcMailTransportStorageTest extends ezcTestCase
 
     public function testMboxMessageSource()
     {
-        $transport = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/testlimit-mbox" );
+        $transport = new ezcMailMboxTransport( __DIR__ . "/data/testlimit-mbox" );
         $parser = new ezcMailParser();
 
         $set = new ezcMailStorageSet( $transport->fetchByMessageNr( 1 ), $this->tempDir );
@@ -111,7 +111,7 @@ class ezcMailTransportStorageTest extends ezcTestCase
 
     public function testMboxMessageSourceFetchAll()
     {
-        $transport = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/testlimit-mbox" );
+        $transport = new ezcMailMboxTransport( __DIR__ . "/data/testlimit-mbox" );
         $parser = new ezcMailParser();
 
         $set = new ezcMailStorageSet( $transport->fetchAll(), $this->tempDir );
@@ -124,7 +124,7 @@ class ezcMailTransportStorageTest extends ezcTestCase
 
     public function testMboxMessageEmpty()
     {
-        $transport = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/empty.mbox" );
+        $transport = new ezcMailMboxTransport( __DIR__ . "/data/empty.mbox" );
         $parser = new ezcMailParser();
 
         $set = new ezcMailStorageSet( $transport->fetchAll(), $this->tempDir );
@@ -135,7 +135,7 @@ class ezcMailTransportStorageTest extends ezcTestCase
     public function testVariableMessageSource()
     {
         $parser = new ezcMailParser();
-        $message = file_get_contents( dirname( __FILE__ ) . "/data/test-variable" );
+        $message = file_get_contents( __DIR__ . "/data/test-variable" );
 
         $set = new ezcMailStorageSet( new ezcMailVariableSet( $message ), $this->tempDir );
         $mail = $parser->parseMail( $set );
@@ -152,13 +152,13 @@ class ezcMailTransportStorageTest extends ezcTestCase
 
         $set = new ezcMailStorageSet( new ezcMailVariableSet( $message ), $this->tempDir );
         $mail = $parser->parseMail( $set );
-        $this->assertEquals( array(), $mail );
+        $this->assertEquals( [], $mail );
     }
 
     public function testFileMessageSource()
     {
         $parser = new ezcMailParser();
-        $messages = array( dirname( __FILE__ ) . "/data/test-variable" );
+        $messages = [__DIR__ . "/data/test-variable"];
 
         $set = new ezcMailStorageSet( new ezcMailFileSet( $messages ), $this->tempDir );
         $mail = $parser->parseMail( $set );
@@ -171,7 +171,7 @@ class ezcMailTransportStorageTest extends ezcTestCase
     public function testFileMessageSourceMultiple()
     {
         $parser = new ezcMailParser();
-        $messages = array( dirname( __FILE__ ) . "/data/test-variable", dirname( __FILE__ ) . "/data/test-variable" );
+        $messages = [__DIR__ . "/data/test-variable", __DIR__ . "/data/test-variable"];
 
         $set = new ezcMailStorageSet( new ezcMailFileSet( $messages ), $this->tempDir );
         $mail = $parser->parseMail( $set );
@@ -190,11 +190,11 @@ class ezcMailTransportStorageTest extends ezcTestCase
         $fileHandle = fopen( $fileName, "w" );
         fwrite( $fileHandle, "" );
         fclose( $fileHandle );
-        $messages = array( $fileName );
+        $messages = [$fileName];
 
         $set = new ezcMailStorageSet( new ezcMailFileSet( $messages ), $this->tempDir );
         $mail = $parser->parseMail( $set );
-        $this->assertEquals( array(), $mail );
+        $this->assertEquals( [], $mail );
     }
 
     /**
@@ -210,10 +210,7 @@ class ezcMailTransportStorageTest extends ezcTestCase
         $set = new ezcMailStorageSet( $transport->fetchAll(), $this->tempDir );
         $mail = $parser->parseMail( $set );
         $files = $set->getSourceFiles();
-        $expected = array( getmypid() . '-' . time() . '-' . 1,
-                           getmypid() . '-' . time() . '-' . 2,
-                           getmypid() . '-' . time() . '-' . 3,
-                           getmypid() . '-' . time() . '-' . 4, );
+        $expected = [getmypid() . '-' . time() . '-' . 1, getmypid() . '-' . time() . '-' . 2, getmypid() . '-' . time() . '-' . 3, getmypid() . '-' . time() . '-' . 4];
 
         for ( $i = 0; $i < count( $files ); $i++ )
         {

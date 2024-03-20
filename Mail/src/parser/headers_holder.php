@@ -25,7 +25,7 @@ class ezcMailHeadersHolder implements ArrayAccess
      *
      * @var array(string=>string)
      */
-    private $lookup = array();
+    private $lookup = [];
 
     /**
      * Holds the normal associative array between keys in correct case and values.
@@ -34,7 +34,7 @@ class ezcMailHeadersHolder implements ArrayAccess
      *
      * @var array(string=>string)
      */
-    private $map = array();
+    private $map = [];
 
     /**
      * Constructs a new case insensitive associtive array formed around the array
@@ -42,7 +42,7 @@ class ezcMailHeadersHolder implements ArrayAccess
      *
      * @param array(string=>string) $map
      */
-    public function __construct( array $map = array() )
+    public function __construct( array $map = [] )
     {
         $this->map = $map;
         foreach ( $map as $key => $value )

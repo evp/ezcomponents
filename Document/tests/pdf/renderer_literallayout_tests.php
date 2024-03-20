@@ -21,7 +21,7 @@ class ezcDocumentPdfLiterallayoutRendererTests extends ezcDocumentPdfTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -29,32 +29,20 @@ class ezcDocumentPdfLiterallayoutRendererTests extends ezcDocumentPdfTestCase
         parent::setUp();
 
         $this->styles = new ezcDocumentPcssStyleInferencer();
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'page' ),
-                array(
-                    'page-size' => 'TEST',
-                    'margin'    => '0',
-                    'padding'   => '10',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'literallayout' ),
-                array(
-                    'font-size' => '6mm',
-                )
-            ),
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['page'],
+            ['page-size' => 'TEST', 'margin'    => '0', 'padding'   => '10']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['literallayout'],
+            ['font-size' => '6mm']
+        )] );
     }
 
     public function testRenderLiterallayout()
     {
         // Additional formatting
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -77,7 +65,7 @@ class ezcDocumentPdfLiterallayoutRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/literallayout_short.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/literallayout_short.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(
@@ -90,12 +78,7 @@ class ezcDocumentPdfLiterallayoutRendererTests extends ezcDocumentPdfTestCase
     {
         // Additional formatting
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'createPage',
-            'drawWord',
-            'drawPolygon',
-            'drawPolyline',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['createPage', 'drawWord', 'drawPolygon', 'drawPolyline'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'createPage' )->with(
@@ -121,7 +104,7 @@ class ezcDocumentPdfLiterallayoutRendererTests extends ezcDocumentPdfTestCase
         );
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/literallayout_long.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/literallayout_long.xml' );
 
         $renderer  = new ezcDocumentPdfMainRenderer( $mock, $this->styles );
         $pdf = $renderer->render(

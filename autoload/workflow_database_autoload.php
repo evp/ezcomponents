@@ -9,10 +9,5 @@
  * @package WorkflowDatabaseTiein
  */
 
-return array(
-    'ezcWorkflowDatabaseDefinitionStorage' => 'WorkflowDatabaseTiein/definition_storage.php',
-    'ezcWorkflowDatabaseExecution'         => 'WorkflowDatabaseTiein/execution.php',
-    'ezcWorkflowDatabaseOptions'           => 'WorkflowDatabaseTiein/options/database.php',
-    'ezcWorkflowDatabaseUtil'              => 'WorkflowDatabaseTiein/util.php',
-);
+return ['ezcWorkflowDatabaseDefinitionStorage' => 'WorkflowDatabaseTiein/definition_storage.php', 'ezcWorkflowDatabaseExecution'         => 'WorkflowDatabaseTiein/execution.php', 'ezcWorkflowDatabaseOptions'           => 'WorkflowDatabaseTiein/options/database.php', 'ezcWorkflowDatabaseUtil'              => 'WorkflowDatabaseTiein/util.php'];
 ?>

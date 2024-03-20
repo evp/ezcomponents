@@ -20,12 +20,12 @@ class ezcSearchQueryTools
     /**
      * Ascending sorting for order-by.
      */
-    const ASC = 1;
+    public const ASC = 1;
 
     /**
      * Descending sorting for order-by.
      */
-    const DESC = 2;
+    public const DESC = 2;
 
     /**
      * Returns all the elements in $array as one large single dimensional array.
@@ -35,7 +35,7 @@ class ezcSearchQueryTools
      */
     static public function arrayFlatten( array $array )
     {
-        $flat = array();
+        $flat = [];
         foreach ( $array as $arg )
         {
             switch ( gettype( $arg ) )

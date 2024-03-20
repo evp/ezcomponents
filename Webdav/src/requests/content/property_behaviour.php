@@ -38,14 +38,14 @@ class ezcWebdavRequestPropertyBehaviourContent extends ezcWebdavInfrastructureBa
     /**
      * Indicates that the <keepalive /> XML element contained #PCDATA *.
      */
-    const ALL = 0;
+    public const ALL = 0;
 
     /**
      * Container to hold the properties
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new instance.

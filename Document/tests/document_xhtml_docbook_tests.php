@@ -27,13 +27,13 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCreateFromDocbook()
     {
-        $from = dirname( __FILE__ ) . '/files/docbook/xhtml/s_001_empty.xml';
-        $to   = dirname( __FILE__ ) . '/files/docbook/xhtml/s_001_empty.html';
+        $from = __DIR__ . '/files/docbook/xhtml/s_001_empty.xml';
+        $to   = __DIR__ . '/files/docbook/xhtml/s_001_empty.html';
 
         $docbook = new ezcDocumentDocbook();
         $docbook->loadFile( $from );
@@ -60,15 +60,12 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         if ( self::$rstTestDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/xhtml/rst_html/s_*.html' );
+            $testFiles = glob( __DIR__ . '/files/xhtml/rst_html/s_*.html' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$rstTestDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -4 ) . 'xml'
-                );
+                self::$rstTestDocuments[] = [$file, substr( $file, 0, -4 ) . 'xml'];
             }
         }
 
@@ -81,15 +78,12 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         if ( self::$metadataTestDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/xhtml/metadata/s_*.html' );
+            $testFiles = glob( __DIR__ . '/files/xhtml/metadata/s_*.html' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$metadataTestDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -4 ) . 'xml'
-                );
+                self::$metadataTestDocuments[] = [$file, substr( $file, 0, -4 ) . 'xml'];
             }
         }
 
@@ -102,15 +96,12 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         if ( self::$badTestDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/xhtml/bad_markup/s_*.html' );
+            $testFiles = glob( __DIR__ . '/files/xhtml/bad_markup/s_*.html' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$badTestDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -4 ) . 'xml'
-                );
+                self::$badTestDocuments[] = [$file, substr( $file, 0, -4 ) . 'xml'];
             }
         }
 
@@ -123,15 +114,12 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         if ( self::$tableTestDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/xhtml/table/s_*.html' );
+            $testFiles = glob( __DIR__ . '/files/xhtml/table/s_*.html' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$tableTestDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -4 ) . 'xml'
-                );
+                self::$tableTestDocuments[] = [$file, substr( $file, 0, -4 ) . 'xml'];
             }
         }
 
@@ -144,15 +132,12 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/xhtml/tests/s_*.html' );
+            $testFiles = glob( __DIR__ . '/files/xhtml/tests/s_*.html' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -4 ) . 'xml'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -4 ) . 'xml'];
             }
         }
 
@@ -237,11 +222,7 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         }
 
         $document = new ezcDocumentXhtml();
-        $document->setFilters( array(
-            new ezcDocumentXhtmlElementFilter(),
-            new ezcDocumentXhtmlMetadataFilter(),
-            new ezcDocumentXhtmlContentLocatorFilter(),
-        ) );
+        $document->setFilters( [new ezcDocumentXhtmlElementFilter(), new ezcDocumentXhtmlMetadataFilter(), new ezcDocumentXhtmlContentLocatorFilter()] );
         $document->loadFile( $from );
 
         $docbook = $document->getAsDocbook();
@@ -266,17 +247,13 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
 
     public function testXpathFilter()
     {
-        $from = dirname( __FILE__ ) . '/files/xhtml/xpath/s_004_detect_url_in_texts.html';
-        $to   = dirname( __FILE__ ) . '/files/xhtml/xpath/s_004_detect_url_in_texts.xml';
+        $from = __DIR__ . '/files/xhtml/xpath/s_004_detect_url_in_texts.html';
+        $to   = __DIR__ . '/files/xhtml/xpath/s_004_detect_url_in_texts.xml';
 
         $document = new ezcDocumentXhtml();
-        $document->setFilters( array(
-            new ezcDocumentXhtmlXpathFilter(
-                '//div[@class = "content"]'
-            ),
-            new ezcDocumentXhtmlElementFilter(),
-            new ezcDocumentXhtmlMetadataFilter(),
-        ) );
+        $document->setFilters( [new ezcDocumentXhtmlXpathFilter(
+            '//div[@class = "content"]'
+        ), new ezcDocumentXhtmlElementFilter(), new ezcDocumentXhtmlMetadataFilter()] );
         $document->loadFile( $from );
 
         $docbook = $document->getAsDocbook();
@@ -310,12 +287,7 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         }
 
         $document = new ezcDocumentXhtml();
-        $document->setFilters( array(
-            new ezcDocumentXhtmlElementFilter(),
-            new ezcDocumentXhtmlMetadataFilter(),
-            new ezcDocumentXhtmlContentLocatorFilter(),
-            new ezcDocumentXhtmlTablesFilter(),
-        ) );
+        $document->setFilters( [new ezcDocumentXhtmlElementFilter(), new ezcDocumentXhtmlMetadataFilter(), new ezcDocumentXhtmlContentLocatorFilter(), new ezcDocumentXhtmlTablesFilter()] );
         $document->loadFile( $from );
 
         $docbook = $document->getAsDocbook();
@@ -349,11 +321,7 @@ class ezcDocumentXhtmlDocbookTests extends ezcTestCase
         }
 
         $document = new ezcDocumentXhtml();
-        $document->setFilters( array(
-            new ezcDocumentXhtmlElementFilter(),
-            new ezcDocumentXhtmlMetadataFilter(),
-            new ezcDocumentXhtmlTablesFilter(),
-        ) );
+        $document->setFilters( [new ezcDocumentXhtmlElementFilter(), new ezcDocumentXhtmlMetadataFilter(), new ezcDocumentXhtmlTablesFilter()] );
         $document->loadFile( $from );
 
         $docbook = $document->getAsDocbook();

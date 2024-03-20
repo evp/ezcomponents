@@ -66,7 +66,7 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         parent::__construct( $options );
         $this->properties['angle']  = null;
@@ -145,7 +145,7 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
                 $xSpace * $this->direction->y
             );
 
-            $length = sqrt( pow( $width, 2 ) + pow( $height, 2 ) );
+            $length = sqrt( $width ** 2 + $height ** 2 );
             $this->angle = rad2deg( acos( $height / $length ) );
         }
     }
@@ -271,20 +271,16 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
         $end->y += min( 0., $axisSpaceFactor * $this->offset ) * $axisHeight;
 
         $labelLength = sqrt(
-            pow(
-                $xSpace * $this->direction->y +
-                ( $this->labelOffset ? 
-                    $axisSpaceFactor * $this->offset * ( $end->x - $start->x ) :
-                    $ySpace * 2 * $this->direction->x
-                ),
-                2 ) +
-            pow(
-                $ySpace * $this->direction->x +
-                ( $this->labelOffset ? 
-                    $axisSpaceFactor * $this->offset * ( $end->y - $start->y ) :
-                    $xSpace * 2 * $this->direction->y
-                ),
-                2 )
+            ($xSpace * $this->direction->y +
+            ( $this->labelOffset ? 
+                $axisSpaceFactor * $this->offset * ( $end->x - $start->x ) :
+                $ySpace * 2 * $this->direction->x
+            )) ** 2 +
+            ($ySpace * $this->direction->x +
+            ( $this->labelOffset ? 
+                $axisSpaceFactor * $this->offset * ( $end->y - $start->y ) :
+                $xSpace * 2 * $this->direction->y
+            )) ** 2
         );
 
         $this->offset *= $axisSpaceFactor;
@@ -449,7 +445,7 @@ class ezcGraphAxisRotatedLabelRenderer extends ezcGraphAxisLabelRenderer
 
         // Get axis space
         $gridBoundings = null;
-        list( $xSpace, $ySpace ) = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
+        [$xSpace, $ySpace] = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
 
         // Determine optimal angle if none specified
         $this->determineAngle( $steps, $xSpace, $ySpace, $axisBoundings );

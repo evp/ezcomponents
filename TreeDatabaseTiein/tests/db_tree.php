@@ -38,7 +38,7 @@ abstract class ezcDbTreeTest extends ezcTreeTest
         // create the parent_child table
         $schema = ezcDbSchema::createFromFile(
             'array',
-            dirname( __FILE__ ) . '/files/' . $this->schemaName
+            __DIR__ . '/files/' . $this->schemaName
         );
         $schema->writeToDb( $this->dbh );
     }
@@ -221,37 +221,37 @@ abstract class ezcDbTreeTest extends ezcTreeTest
 
     public function testMultipleDataFields()
     {
-        $tree = $this->setUpTestTree( 'data', null );
+        $tree = $this->setUpTestTree();
 
         $node8 = $tree->fetchNodeById( 8 ); // returns 8
         self::assertType( 'ezcTreeNode', $node8 );
         self::assertSame( '8', $node8->id );
-        self::assertSame( array( 'data' => 'Node 8' ), $node8->data );
+        self::assertSame( ['data' => 'Node 8'], $node8->data );
     }
 
     public function testStoreUpdatedDataMultipleDataFields()
     {
-        $tree = $this->setUpEmptyTestTree( 'datam', null );
+        $tree = $this->setUpEmptyTestTree();
 
-        $root = $tree->createNode( 1, array( 'name' => 'Harald V', 'born' => '1937' ) );
+        $root = $tree->createNode( 1, ['name' => 'Harald V', 'born' => '1937'] );
         $tree->setRootNode( $root );
 
-        $root->addChild( $tree->createNode( 2, array( 'name' => 'Haakon', 'born' => '1973' ) ) );
-        $root->addChild( $tree->createNode( 3, array( 'name' => 'Märtha Louise', 'born' => '1971' ) ) );
+        $root->addChild( $tree->createNode( 2, ['name' => 'Haakon', 'born' => '1973'] ) );
+        $root->addChild( $tree->createNode( 3, ['name' => 'Märtha Louise', 'born' => '1971'] ) );
 
         // start over
-        $tree = $this->setUpTestTree( 'datam', null );
+        $tree = $this->setUpTestTree();
 
         $haakon = $tree->fetchNodeById( 2 );
-        self::assertEquals( array( 'name' => 'Haakon', 'born' => '1973' ), $haakon->data );
-        $haakon->data = array( 'name' => 'Haakon', 'born' => 1981 );
-        $haakon->data = array( 'name' => 'Haakon', 'born' => 1983 );
+        self::assertEquals( ['name' => 'Haakon', 'born' => '1973'], $haakon->data );
+        $haakon->data = ['name' => 'Haakon', 'born' => 1981];
+        $haakon->data = ['name' => 'Haakon', 'born' => 1983];
 
         // start over
-        $tree = $this->setUpTestTree( 'datam', null );
+        $tree = $this->setUpTestTree();
 
         $haakon = $tree->fetchNodeById( 2 );
-        self::assertEquals( array( 'name' => 'Haakon', 'born' => '1983' ), $haakon->data );
+        self::assertEquals( ['name' => 'Haakon', 'born' => '1983'], $haakon->data );
     }
 
     public function testNodeListIteratorEmptyList()

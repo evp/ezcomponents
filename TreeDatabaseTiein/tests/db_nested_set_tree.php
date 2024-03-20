@@ -19,27 +19,27 @@ class ezcTreeDbNestedSetTest extends ezcDbTreeTest
 {
     private $tempDir;
 
-    protected $tables  = array( 'nested_set', 'data', 'datam' );
+    protected $tables  = ['nested_set', 'data', 'datam'];
     protected $schemaName = 'nested_set.dba';
 
     public function insertData()
     {
         // insert test data
-        $data = array(
+        $data = [
             // child -> parent
-            1 => array( 'null',  1, 18 ),
-            2 => array(      1,  2,  3 ),
-            3 => array(      1,  4,  5 ),
-            4 => array(      1,  6, 13 ),
-            6 => array(      4,  7, 12 ),
-            7 => array(      6,  8,  9 ),
-            8 => array(      6, 10, 11 ),
-            5 => array(      1, 14, 17 ),
-            9 => array(      5, 15, 16 ),
-        );
+            1 => ['null', 1, 18],
+            2 => [1, 2, 3],
+            3 => [1, 4, 5],
+            4 => [1, 6, 13],
+            6 => [4, 7, 12],
+            7 => [6, 8, 9],
+            8 => [6, 10, 11],
+            5 => [1, 14, 17],
+            9 => [5, 15, 16],
+        ];
         foreach( $data as $childId => $details )
         {
-            list( $parentId, $left, $right ) = $details;
+            [$parentId, $left, $right] = $details;
             $this->dbh->exec( "INSERT INTO nested_set(id, parent_id, lft, rgt) VALUES( $childId, $parentId, $left, $right )" );
         }
 

@@ -40,20 +40,20 @@ class ezcWorkflowSignalSlotTieinPluginTest extends ezcWorkflowTestCase
         $this->receiver = new ezcWorkflowSignalSlotTestReceiver;
         $this->signals = $this->plugin->signals;
 
-        $this->signals->connect( 'afterExecutionStarted', array( $this->receiver, 'afterExecutionStarted' ) );
-        $this->signals->connect( 'afterExecutionSuspended', array( $this->receiver, 'afterExecutionSuspended' ) );
-        $this->signals->connect( 'afterExecutionResumed', array( $this->receiver, 'afterExecutionResumed' ) );
-        $this->signals->connect( 'afterExecutionCancelled', array( $this->receiver, 'afterExecutionCancelled' ) );
-        $this->signals->connect( 'afterExecutionEnded', array( $this->receiver, 'afterExecutionEnded' ) );
-        $this->signals->connect( 'beforeNodeActivated', array( $this->receiver, 'beforeNodeActivated' ) );
-        $this->signals->connect( 'afterNodeActivated', array( $this->receiver, 'afterNodeActivated' ) );
-        $this->signals->connect( 'afterNodeExecuted', array( $this->receiver, 'afterNodeExecuted' ) );
-        $this->signals->connect( 'afterThreadStarted', array( $this->receiver, 'afterThreadStarted' ) );
-        $this->signals->connect( 'afterThreadEnded', array( $this->receiver, 'afterThreadEnded' ) );
-        $this->signals->connect( 'beforeVariableSet', array( $this->receiver, 'beforeVariableSet' ) );
-        $this->signals->connect( 'afterVariableSet', array( $this->receiver, 'afterVariableSet' ) );
-        $this->signals->connect( 'beforeVariableUnset', array( $this->receiver, 'beforeVariableUnset' ) );
-        $this->signals->connect( 'afterVariableUnset', array( $this->receiver, 'afterVariableUnset' ) );
+        $this->signals->connect( 'afterExecutionStarted', [$this->receiver, 'afterExecutionStarted'] );
+        $this->signals->connect( 'afterExecutionSuspended', [$this->receiver, 'afterExecutionSuspended'] );
+        $this->signals->connect( 'afterExecutionResumed', [$this->receiver, 'afterExecutionResumed'] );
+        $this->signals->connect( 'afterExecutionCancelled', [$this->receiver, 'afterExecutionCancelled'] );
+        $this->signals->connect( 'afterExecutionEnded', [$this->receiver, 'afterExecutionEnded'] );
+        $this->signals->connect( 'beforeNodeActivated', [$this->receiver, 'beforeNodeActivated'] );
+        $this->signals->connect( 'afterNodeActivated', [$this->receiver, 'afterNodeActivated'] );
+        $this->signals->connect( 'afterNodeExecuted', [$this->receiver, 'afterNodeExecuted'] );
+        $this->signals->connect( 'afterThreadStarted', [$this->receiver, 'afterThreadStarted'] );
+        $this->signals->connect( 'afterThreadEnded', [$this->receiver, 'afterThreadEnded'] );
+        $this->signals->connect( 'beforeVariableSet', [$this->receiver, 'beforeVariableSet'] );
+        $this->signals->connect( 'afterVariableSet', [$this->receiver, 'afterVariableSet'] );
+        $this->signals->connect( 'beforeVariableUnset', [$this->receiver, 'beforeVariableUnset'] );
+        $this->signals->connect( 'afterVariableUnset', [$this->receiver, 'afterVariableUnset'] );
     }
 
     public function testProperties()
@@ -309,7 +309,7 @@ class ezcWorkflowSignalSlotTieinPluginTest extends ezcWorkflowTestCase
     {
         $this->setUpParallelSplitSynchronization2();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'foo' => 'bar', 'bar' => 'foo' ) );
+        $this->execution->setVariables( ['foo' => 'bar', 'bar' => 'foo'] );
         $this->execution->start();
 
         $this->assertEquals( 1, $this->receiver->stack['afterExecutionStarted'] );
@@ -332,7 +332,7 @@ class ezcWorkflowSignalSlotTieinPluginTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
 
         $this->assertEquals( 1, $this->receiver->stack['afterExecutionStarted'] );
@@ -355,7 +355,7 @@ class ezcWorkflowSignalSlotTieinPluginTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceWithElseSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
 
         $this->assertEquals( 1, $this->receiver->stack['afterExecutionStarted'] );
@@ -378,7 +378,7 @@ class ezcWorkflowSignalSlotTieinPluginTest extends ezcWorkflowTestCase
     {
         $this->setUpExclusiveChoiceWithUnconditionalOutNodeSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
 
         $this->assertEquals( 1, $this->receiver->stack['afterExecutionStarted'] );

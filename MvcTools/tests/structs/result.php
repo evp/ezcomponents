@@ -43,15 +43,7 @@ class ezcMvcResultTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'status' => 'php',
-        'date' => 'ezc',
-        'generator' => 'ezp',
-        'cache' => 'buddymiles',
-        'cookies' => 'buddyguy',
-        'content' => 'django',
-        'variables' => 'satchmo',
-        );
+        $state = ['status' => 'php', 'date' => 'ezc', 'generator' => 'ezp', 'cache' => 'buddymiles', 'cookies' => 'buddyguy', 'content' => 'django', 'variables' => 'satchmo'];
         $struct = ezcMvcResult::__set_state( $state );
         $this->assertEquals( 'php', $struct->status, 'Property status does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->date, 'Property date does not have the expected value' );

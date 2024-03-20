@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/blocks/incorrect/block_invalid_closing_*.in
 

@@ -39,7 +39,7 @@ class ezcTemplateTryAstNode extends ezcTemplateStatementAstNode
     {
         parent::__construct();
         $this->body = $body;
-        $this->catches = array();
+        $this->catches = [];
 
         if ( $catches !== null )
         {

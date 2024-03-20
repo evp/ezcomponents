@@ -2,42 +2,11 @@
 
 class ezcWebdavTestAuth extends ezcWebdavDigestAuthenticatorBase implements ezcWebdavAuthorizer, ezcWebdavLockAuthorizer
 {
-    public $tokenAssignement = array();
+    public $tokenAssignement = [];
 
-    public $permissions = array(
-        'a' => array(
-            'foo'  => ezcWebdavAuthorizer::ACCESS_READ,
-            'some' => ezcWebdavAuthorizer::ACCESS_WRITE,
-        ),
-        'b' => array(
-            'foo'  => ezcWebdavAuthorizer::ACCESS_WRITE,
-            'some' => ezcWebdavAuthorizer::ACCESS_WRITE,
-            ''     => ezcWebdavAuthorizer::ACCESS_WRITE,
-        ),
-        'c' => array(
-            'foo'  => ezcWebdavAuthorizer::ACCESS_READ,
-            'some' => ezcWebdavAuthorizer::ACCESS_READ,
-            ''     => ezcWebdavAuthorizer::ACCESS_READ,
-        ),
-        '' => array(
-            ''     => ezcWebdavAuthorizer::ACCESS_WRITE,
-            'some' => ezcWebdavAuthorizer::ACCESS_WRITE,
-        ),
-        'collection' => array(
-            ''     => ezcWebdavAuthorizer::ACCESS_WRITE,
-            'some' => ezcWebdavAuthorizer::ACCESS_WRITE,
-        ),
-        'secure_collection' => array(
-            'some' => ezcWebdavAuthorizer::ACCESS_WRITE,
-        ),
-    );
+    public $permissions = ['a' => ['foo'  => ezcWebdavAuthorizer::ACCESS_READ, 'some' => ezcWebdavAuthorizer::ACCESS_WRITE], 'b' => ['foo'  => ezcWebdavAuthorizer::ACCESS_WRITE, 'some' => ezcWebdavAuthorizer::ACCESS_WRITE, ''     => ezcWebdavAuthorizer::ACCESS_WRITE], 'c' => ['foo'  => ezcWebdavAuthorizer::ACCESS_READ, 'some' => ezcWebdavAuthorizer::ACCESS_READ, ''     => ezcWebdavAuthorizer::ACCESS_READ], '' => [''     => ezcWebdavAuthorizer::ACCESS_WRITE, 'some' => ezcWebdavAuthorizer::ACCESS_WRITE], 'collection' => [''     => ezcWebdavAuthorizer::ACCESS_WRITE, 'some' => ezcWebdavAuthorizer::ACCESS_WRITE], 'secure_collection' => ['some' => ezcWebdavAuthorizer::ACCESS_WRITE]];
 
-    public $credentials = array(
-        'foo'    => 'bar',
-        'some'   => 'thing',
-        '23'     => '42',
-        'Mufasa' => 'Circle Of Life',
-    );
+    public $credentials = ['foo'    => 'bar', 'some'   => 'thing', '23'     => '42', 'Mufasa' => 'Circle Of Life'];
 
     public function authenticateAnonymous( ezcWebdavAnonymousAuth $data )
     {
@@ -57,7 +26,7 @@ class ezcWebdavTestAuth extends ezcWebdavDigestAuthenticatorBase implements ezcW
     public function authorize( $user, $path, $access = ezcWebdavAuthorizer::ACCESS_READ )
     {
         preg_match( '(^/([^/]+)(/|$))', $path, $matches );
-        $basedir = ( isset( $matches[1] ) ? $matches[1] : '' );
+        $basedir = ( $matches[1] ?? '' );
         return ( !isset( $this->permissions[$basedir] )
             || ( isset( $this->permissions[$basedir][$user] ) 
                 && $this->permissions[$basedir][$user] >= $access )
@@ -68,7 +37,7 @@ class ezcWebdavTestAuth extends ezcWebdavDigestAuthenticatorBase implements ezcW
     {
         if ( !isset( $this->tokenAssignement[$user] ) )
         {
-            $this->tokenAssignement[$user] = array();
+            $this->tokenAssignement[$user] = [];
         }
         $this->tokenAssignement[$user][$lockToken] = true;
     }

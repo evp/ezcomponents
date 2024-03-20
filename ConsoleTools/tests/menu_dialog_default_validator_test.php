@@ -24,7 +24,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testGetAccessDefaultSuccess()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements );
         $this->assertEquals( $elements, $validator->elements );
         $this->assertNull( $validator->default );
@@ -33,7 +33,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testGetAccessCustomSuccess()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator(
             $elements,
             "F",
@@ -46,7 +46,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testGetAccessFailure()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements );
         
         try
@@ -62,10 +62,10 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testSetAccessSuccess()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements );
 
-        $elementsNew = array( 23, 42 );
+        $elementsNew = [23, 42];
         $validator->elements = $elementsNew;
         $validator->default = 23;
         $validator->conversion = ezcConsoleMenuDialogDefaultValidator::CONVERT_LOWER;
@@ -77,7 +77,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testSetAccessFailure()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements );
         
         $exceptionCaught = false;
@@ -94,7 +94,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
         $exceptionCaught = false;
         try
         {
-            $validator->default = array();
+            $validator->default = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -127,7 +127,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testIssetAccess()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements );
         $this->assertTrue( isset( $validator->elements ), "Property elements not set." );
         $this->assertTrue( isset( $validator->default ), "Property default not set." );
@@ -138,7 +138,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testValidate()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements );
         $this->assertTrue( $validator->validate( "F" ) );
         $this->assertFalse( $validator->validate( "test" ) );
@@ -146,7 +146,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testFixup()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements, null );
 
         $this->assertEquals( "F", $validator->fixup( "F" ) );
@@ -171,7 +171,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testGetResultString()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements, null );
 
         $this->assertEquals( "", $validator->getResultString() );
@@ -183,7 +183,7 @@ class ezcConsoleMenuDialogDefaultValidatorTest extends ezcTestCase
 
     public function testGetElements()
     {
-        $elements = array( "F" => "Foo", "B" => "Bar", "Z" => "Baz" );
+        $elements = ["F" => "Foo", "B" => "Bar", "Z" => "Baz"];
         $validator = new ezcConsoleMenuDialogDefaultValidator( $elements, null );
         
         $this->assertEquals( $elements, $validator->getElements() );

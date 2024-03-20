@@ -28,9 +28,7 @@ abstract class ezcDocumentParser implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $properties = array(
-        'errors' => array(),
-    );
+    protected $properties = ['errors' => []];
 
     /**
      * Construct new document
@@ -39,9 +37,7 @@ abstract class ezcDocumentParser implements ezcDocumentErrorReporting
      */
     public function __construct( ezcDocumentParserOptions $options = null )
     {
-        $this->options = ( $options === null ?
-            new ezcDocumentParserOptions() :
-            $options );
+        $this->options = ( $options ?? new ezcDocumentParserOptions() );
     }
 
     /**

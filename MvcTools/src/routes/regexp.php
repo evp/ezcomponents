@@ -62,7 +62,7 @@ class ezcMvcRegexpRoute implements ezcMvcRoute
      * @param string $action
      * @param array(string) $defaultValues
      */
-    public function __construct( $pattern, $controllerClassName, $action = null, array $defaultValues = array() )
+    public function __construct( $pattern, $controllerClassName, $action = null, array $defaultValues = [] )
     {
         $this->pattern = $pattern;
         $this->controllerClassName = $controllerClassName;
@@ -145,7 +145,7 @@ class ezcMvcRegexpRoute implements ezcMvcRoute
         // Find prefix delimiter
         $prefixDelim = $prefix[0];
         // Obtain prefix modifiers
-        $prefixModifier = substr( strrchr( $prefix, $prefixDelim ), 1 );
+        $prefixModifier = substr( strrchr( $prefix, (string) $prefixDelim ), 1 );
         // If modifiers are not the same, throw exception
         if ( $patternModifier !== $prefixModifier )
         {

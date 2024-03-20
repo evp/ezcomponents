@@ -9,7 +9,7 @@
  * @subpackage Test
  */
 
-require_once dirname( __FILE__ ) . '/property_test.php';
+require_once __DIR__ . '/property_test.php';
 
 /**
  * Test case for the ezcWebdavFileBackendOptions class.
@@ -22,7 +22,7 @@ class ezcWebdavLockIfHeaderListItemTest extends ezcTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testConstructor()
@@ -30,22 +30,16 @@ class ezcWebdavLockIfHeaderListItemTest extends ezcTestCase
         $item = new ezcWebdavLockIfHeaderListItem();
 
         $this->assertEquals(
-            array(),
+            [],
             $item->lockTokens
         );
         $this->assertEquals(
-            array(),
+            [],
             $item->eTags
         );
 
-        $tokens = array(
-            new ezcWebdavLockIfHeaderCondition( 'some lock token' ),
-            new ezcWebdavLockIfHeaderCondition( 'another lock token', true )
-        );
-        $eTags  = array(
-            new ezcWebdavLockIfHeaderCondition( 'tag 1', true ),
-            new ezcWebdavLockIfHeaderCondition( 'tag 2' )
-        );
+        $tokens = [new ezcWebdavLockIfHeaderCondition( 'some lock token' ), new ezcWebdavLockIfHeaderCondition( 'another lock token', true )];
+        $eTags  = [new ezcWebdavLockIfHeaderCondition( 'tag 1', true ), new ezcWebdavLockIfHeaderCondition( 'tag 2' )];
         $item   = new ezcWebdavLockIfHeaderListItem( $tokens, $eTags );
 
         $this->assertEquals(
@@ -64,14 +58,14 @@ class ezcWebdavLockIfHeaderListItemTest extends ezcTestCase
 
         try
         {
-            $item->lockTokens = array();
+            $item->lockTokens = [];
             $this->fail( 'Exception not thrown on set access to property $lockTokens.' );
         }
         catch ( ezcBasePropertyPermissionException $e ) {}
 
         try
         {
-            $item->eTags = array();
+            $item->eTags = [];
             $this->fail( 'Exception not thrown on set access to property $eTags.' );
         }
         catch ( ezcBasePropertyPermissionException $e ) {}

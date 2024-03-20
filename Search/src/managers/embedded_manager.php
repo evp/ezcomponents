@@ -25,7 +25,7 @@ class ezcSearchEmbeddedManager implements ezcSearchDefinitionManager
      *
      * @var array(string=>ezcSearchDocumentDefinition)
      */
-    private $cache = array();
+    private $cache = [];
 
     /**
      * Constructs a new embedded manager.
@@ -58,7 +58,7 @@ class ezcSearchEmbeddedManager implements ezcSearchDefinitionManager
         }
 
         // load definition
-        $definition = call_user_func( array( $type, 'getDefinition' ) );
+        $definition = call_user_func( [$type, 'getDefinition'] );
 
         if ( $definition->idProperty === null )
         {

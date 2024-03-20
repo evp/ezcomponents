@@ -21,7 +21,7 @@ class ezcDocumentOdtStyleParagraphPropertyGeneratorTest extends ezcDocumentOdtSt
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCtor()
@@ -37,15 +37,7 @@ class ezcDocumentOdtStyleParagraphPropertyGeneratorTest extends ezcDocumentOdtSt
         );
 
         $this->assertAttributeEquals(
-            array(
-                'text-align',
-                'widows',
-                'orphans',
-                'text-indent',
-                'margin',
-                'border',
-                'break-before',
-            ),
+            ['text-align', 'widows', 'orphans', 'text-indent', 'margin', 'border', 'break-before'],
             'styleAttributes',
             $gen
         );
@@ -60,20 +52,13 @@ class ezcDocumentOdtStyleParagraphPropertyGeneratorTest extends ezcDocumentOdtSt
 
         $gen->createProperty(
             $parent,
-            array(
-                'text-align' => new ezcDocumentPcssStyleStringValue( 'center' ),
-            )
+            ['text-align' => new ezcDocumentPcssStyleStringValue( 'center' )]
         );
 
         $this->assertPropertyExists(
             ezcDocumentOdt::NS_ODT_STYLE,
             'paragraph-properties',
-            array(
-                array(
-                    ezcDocumentOdt::NS_ODT_FO,
-                    'text-align'
-                ),
-            ),
+            [[ezcDocumentOdt::NS_ODT_FO, 'text-align']],
             $parent
         );
     }

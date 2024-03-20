@@ -54,12 +54,7 @@ class ezcTemplateDelimiterTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'name'             => $this->name,
-                      'isClosingBlock'   => $this->isClosingBlock,
-                      'isNestingBlock'   => $this->isNestingBlock,
-                      'modulo'           => $this->modulo,
-                      'rest'             => $this->rest,
-                      'children'         => $this->children );
+        return ['name'             => $this->name, 'isClosingBlock'   => $this->isClosingBlock, 'isNestingBlock'   => $this->isNestingBlock, 'modulo'           => $this->modulo, 'rest'             => $this->rest, 'children'         => $this->children];
     }
 
     /**

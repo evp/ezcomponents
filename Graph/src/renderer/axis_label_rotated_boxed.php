@@ -68,7 +68,7 @@ class ezcGraphAxisRotatedBoxedLabelRenderer extends ezcGraphAxisRotatedLabelRend
 
         // Get axis space
         $gridBoundings = null;
-        list( $xSpace, $ySpace ) = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
+        [$xSpace, $ySpace] = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
 
         // Determine optimal angle if none specified
         $this->determineAngle( $steps, $xSpace, $ySpace, $axisBoundings );

@@ -49,37 +49,7 @@ abstract class ezcDocumentXhtmlElementBaseFilter
     {
         return in_array(
             $element->tagName,
-            array(
-                'address',
-                'blockquote',
-                'body',
-                'center',
-                'del',
-                'dir',
-                'div',
-                'dl',
-                'fieldset',
-                'form',
-                'h1',
-                'h2',
-                'h3',
-                'h4',
-                'h5',
-                'h6',
-                'hr',
-                'ins',
-                'li',
-                'menu',
-                'noframes',
-                'noscript',
-                'ol',
-                'p',
-                'pre',
-                'table',
-                'th',
-                'td',
-                'ul',
-            )
+            ['address', 'blockquote', 'body', 'center', 'del', 'dir', 'div', 'dl', 'fieldset', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'ins', 'li', 'menu', 'noframes', 'noscript', 'ol', 'p', 'pre', 'table', 'th', 'td', 'ul']
         );
     }
 
@@ -97,44 +67,7 @@ abstract class ezcDocumentXhtmlElementBaseFilter
         return (
             ( $node->nodeType === XML_TEXT_NODE ) ||
             ( ( $node->nodeType === XML_ELEMENT_NODE ) &&
-              in_array( $node->tagName, array(
-                'a',
-                'abbr',
-                'acronym',
-                'applet',
-                'b',
-                'basefont',
-                'bdo',
-                'big',
-                'button',
-                'cite',
-                'code',
-                'del',
-                'dfn',
-                'em',
-                'font',
-                'i',
-                'img',
-                'ins',
-                'input',
-                'iframe',
-                'kbd',
-                'label',
-                'map',
-                'object',
-                'q',
-                'samp',
-                'script',
-                'select',
-                'small',
-                'span',
-                'strong',
-                'sub',
-                'sup',
-                'textarea',
-                'tt',
-                'var',
-              ), true )
+              in_array( $node->tagName, ['a', 'abbr', 'acronym', 'applet', 'b', 'basefont', 'bdo', 'big', 'button', 'cite', 'code', 'del', 'dfn', 'em', 'font', 'i', 'img', 'ins', 'input', 'iframe', 'kbd', 'label', 'map', 'object', 'q', 'samp', 'script', 'select', 'small', 'span', 'strong', 'sub', 'sup', 'textarea', 'tt', 'var'], true )
             )
         );
     }
@@ -153,29 +86,7 @@ abstract class ezcDocumentXhtmlElementBaseFilter
     {
         $toCheck = $element;
         do {
-            if ( in_array( $toCheck->getProperty( 'type' ), array(
-                    'para',
-                    'subtitle',
-                    'title',
-                    'term',
-                    'abbrev',
-                    'acronym',
-                    'anchor',
-                    'attribution',
-                    'author',
-                    'citation',
-                    'citetitle',
-                    'email',
-                    'emphasis',
-                    'footnoteref',
-                    'link',
-                    'literal',
-                    'literallayout',
-                    'quote',
-                    'subscript',
-                    'superscript',
-                    'ulink',
-                ) ) )
+            if ( in_array( $toCheck->getProperty( 'type' ), ['para', 'subtitle', 'title', 'term', 'abbrev', 'acronym', 'anchor', 'attribution', 'author', 'citation', 'citetitle', 'email', 'emphasis', 'footnoteref', 'link', 'literal', 'literallayout', 'quote', 'subscript', 'superscript', 'ulink'] ) )
             {
                 return true;
             }

@@ -31,7 +31,7 @@ class ezcTemplateEchoAstNode extends ezcTemplateStatementAstNode
     public function __construct( Array $outputList = null )
     {
         parent::__construct();
-        $this->outputList = array();
+        $this->outputList = [];
 
         if ( $outputList !== null )
         {

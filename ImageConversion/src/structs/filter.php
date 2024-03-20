@@ -72,7 +72,7 @@ class ezcImageFilter extends ezcBaseStruct
      * @param array $name    Name of filter operation.
      * @param array $options Associative array of options for filter operation.
      */
-    public function __construct( $name, array $options = array() )
+    public function __construct( $name, array $options = [] )
     {
         $this->name    = $name;
         $this->options = $options;

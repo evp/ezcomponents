@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/options_test_case.php';
+require_once __DIR__ . '/options_test_case.php';
 
 /**
  * Test suite for class.
@@ -21,7 +21,7 @@ class ezcDocumentOptionsTests extends ezcDocumentOptionsTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function getOptionsClassName()
@@ -31,42 +31,17 @@ class ezcDocumentOptionsTests extends ezcDocumentOptionsTestCase
 
     public static function provideDefaultValues()
     {
-        return array(
-            array(
-                'errorReporting', 15,
-            ),
-            array(
-                'validate', true,
-            ),
-        );
+        return [['errorReporting', 15], ['validate', true]];
     }
 
     public static function provideValidData()
     {
-        return array(
-            array(
-                'errorReporting',
-                array( E_PARSE, E_PARSE | E_NOTICE ),
-            ),
-            array(
-                'validate',
-                array( true, false ),
-            ),
-        );
+        return [['errorReporting', [E_PARSE, E_PARSE | E_NOTICE]], ['validate', [true, false]]];
     }
 
     public static function provideInvalidData()
     {
-        return array(
-            array(
-                'errorReporting',
-                array( 'foo', E_ALL & ~E_PARSE ),
-            ),
-            array(
-                'validate',
-                array( 'foo', new StdClass() ),
-            ),
-        );
+        return [['errorReporting', ['foo', E_ALL & ~E_PARSE]], ['validate', ['foo', new StdClass()]]];
     }
 }
 

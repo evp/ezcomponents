@@ -4,11 +4,9 @@ class ezcWebdavClientTestRfcLockAuth
     extends ezcWebdavDigestAuthenticatorBase
     implements ezcWebdavAuthorizer, ezcWebdavLockAuthorizer
 {
-    public $tokenAssignement = array();
+    public $tokenAssignement = [];
 
-    public $credentials = array(
-        'ejw' => '',
-    );
+    public $credentials = ['ejw' => ''];
 
     public function authenticateAnonymous( ezcWebdavAnonymousAuth $auth )
     {
@@ -41,7 +39,7 @@ class ezcWebdavClientTestRfcLockAuth
     {
         if ( !isset( $this->tokenAssignement[$user] ) )
         {
-            $this->tokenAssignement[$user] = array();
+            $this->tokenAssignement[$user] = [];
         }
         $this->tokenAssignement[$user][$lockToken] = true;
     }

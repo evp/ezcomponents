@@ -5,9 +5,9 @@ require_once 'classes/client_test_lock_auth.php';
 
 class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
 {
-    protected $tokenAssignement = array();
+    protected $tokenAssignement = [];
 
-    protected $tokenReplacement = array();
+    protected $tokenReplacement = [];
 
     public function performSetup( ezcWebdavClientTest $test, $testSetId )
     {
@@ -17,7 +17,7 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
         $test->server->pluginRegistry->registerPlugin(
             new ezcWebdavLockPluginConfiguration(
                 new ezcWebdavLockPluginOptions(
-                    array( 'lockTimeout' => 604800 )
+                    ['lockTimeout' => 604800]
                 )
             )
         );
@@ -56,18 +56,13 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
                 throw new RuntimeException( "Could not find setup for test set '$testSetName'." );
         }
 
-        $this->tokenAssignement = array();
-        $this->tokenReplacement = array();
+        $this->tokenAssignement = [];
+        $this->tokenReplacement = [];
     }
 
     public function adjustRequest( array &$request )
     {
-        $serverBase = array(
-            'DOCUMENT_ROOT'   => '/var/www/localhost/htdocs',
-            'HTTP_USER_AGENT' => 'RFC compliant',
-            'SCRIPT_FILENAME' => '/var/www/localhost/htdocs',
-            'SERVER_NAME'     => 'webdav',
-        );
+        $serverBase = ['DOCUMENT_ROOT'   => '/var/www/localhost/htdocs', 'HTTP_USER_AGENT' => 'RFC compliant', 'SCRIPT_FILENAME' => '/var/www/localhost/htdocs', 'SERVER_NAME'     => 'webdav'];
 
         $request['server'] = array_merge( $serverBase, $request['server'] );
 
@@ -141,44 +136,32 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
         $test->backend = new ezcWebdavMemoryBackend();
 
         $test->backend->addContents(
-            array(
-                'workspace' => array(
-                    'webdav' => array(
-                        'proposal.doc' => '',
-                    ),
-                ),
-            )
+            ['workspace' => ['webdav' => ['proposal.doc' => '']]]
         );
     }
 
     protected function getSetup2( ezcWebdavClientTest $test )
     {
         $this->getSetup1( $test );
-        $test->server->auth->tokenAssignement = array(
-            '' => array(
-                'opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4' => true,
-            ),
-        );
+        $test->server->auth->tokenAssignement = ['' => ['opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4' => true]];
         $test->backend->setProperty(
             '/workspace/webdav/proposal.doc',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_INFINITY,
-                            new ezcWebdavPotentialUriContent(
-                                'http://example.com/~ejw/contact.html',
-                                true
-                            ),
-                            40,
-                            new ezcWebdavPotentialUriContent(
-                                'opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4',
-                                true
-                            )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_INFINITY,
+                        new ezcWebdavPotentialUriContent(
+                            'http://example.com/~ejw/contact.html',
+                            true
                         ),
-                    )
+                        40,
+                        new ezcWebdavPotentialUriContent(
+                            'opaquelocktoken:e71d4fae-5dec-22d6-fea5-00a0c91e6be4',
+                            true
+                        )
+                    )]
                 )
             )
         );
@@ -189,11 +172,7 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
         $test->backend = new ezcWebdavMemoryBackend();
 
         $test->backend->addContents(
-            array(
-                'webdav' => array(
-                    'secret' => ''
-                ),
-            )
+            ['webdav' => ['secret' => '']]
         );
     }
 
@@ -202,30 +181,25 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
         $test->backend = new ezcWebdavMemoryBackend();
 
         $test->backend->addContents(
-            array(
-                'container' => array(
-                ),
-            )
+            ['container' => []]
         );
         $test->backend->setProperty(
             '/container',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_ZERO,
-                            new ezcWebdavPotentialUriContent(
-                                'Jane Smith'
-                            ),
-                            40,
-                            new ezcWebdavPotentialUriContent(
-                                'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76',
-                                true
-                            )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_ZERO,
+                        new ezcWebdavPotentialUriContent(
+                            'Jane Smith'
                         ),
-                    )
+                        40,
+                        new ezcWebdavPotentialUriContent(
+                            'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76',
+                            true
+                        )
+                    )]
                 )
             )
         );
@@ -234,41 +208,28 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
     protected function getSetup5( ezcWebdavClientTest $test )
     {
         $test->backend = new ezcWebdavMemoryBackend();
-        $test->server->auth->tokenAssignement = array(
-            '' => array(
-                'opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4' => true,
-                'opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77' => true,
-            ),
-        );
+        $test->server->auth->tokenAssignement = ['' => ['opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4' => true, 'opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77' => true]];
 
         $test->backend->addContents(
-            array(
-                'othercontainer' => array(
-                    'C2' => array(),
-                ),
-                'container' => array(
-                ),
-            )
+            ['othercontainer' => ['C2' => []], 'container' => []]
         );
         $test->backend->setProperty(
             '/container',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_ZERO,
-                            new ezcWebdavPotentialUriContent(
-                                'Jane Smith'
-                            ),
-                            40,
-                            new ezcWebdavPotentialUriContent(
-                                'opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4',
-                                true
-                            )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_ZERO,
+                        new ezcWebdavPotentialUriContent(
+                            'Jane Smith'
                         ),
-                    )
+                        40,
+                        new ezcWebdavPotentialUriContent(
+                            'opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4',
+                            true
+                        )
+                    )]
                 )
             )
         );
@@ -276,21 +237,19 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
             '/othercontainer',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_ZERO,
-                            new ezcWebdavPotentialUriContent(
-                                'Jane Smith'
-                            ),
-                            40,
-                            new ezcWebdavPotentialUriContent(
-                                'opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77',
-                                true
-                            )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_ZERO,
+                        new ezcWebdavPotentialUriContent(
+                            'Jane Smith'
                         ),
-                    )
+                        40,
+                        new ezcWebdavPotentialUriContent(
+                            'opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77',
+                            true
+                        )
+                    )]
                 )
             )
         );
@@ -298,20 +257,18 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
             '/othercontainer/C2',
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavLockDiscoveryPropertyActiveLock(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                            ezcWebdavRequest::DEPTH_INFINITY,
-                            new ezcWebdavPotentialUriContent(
-                                'Someone else'
-                            ),
-                            40,
-                            new ezcWebdavPotentialUriContent(
-                                'some lock token'
-                            )
+                    [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                        ezcWebdavRequest::DEPTH_INFINITY,
+                        new ezcWebdavPotentialUriContent(
+                            'Someone else'
                         ),
-                    )
+                        40,
+                        new ezcWebdavPotentialUriContent(
+                            'some lock token'
+                        )
+                    )]
                 )
             )
         );
@@ -320,40 +277,28 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
     protected function getSetup9( ezcWebdavClientTest $test )
     {
         $test->backend = new ezcWebdavMemoryBackend();
-        $test->server->auth->tokenAssignement = array(
-            '' => array(
-                'opaquelocktoken:a515cfa4-5da4-22e1-f5b5-00a0451e6bf7' => true,
-            ),
-        );
+        $test->server->auth->tokenAssignement = ['' => ['opaquelocktoken:a515cfa4-5da4-22e1-f5b5-00a0451e6bf7' => true]];
 
         $test->backend->addContents(
-            array(
-                'workspace' => array(
-                    'webdav' => array(
-                        'info.doc' => '',
-                    ),
-                ),
-            )
+            ['workspace' => ['webdav' => ['info.doc' => '']]]
         );
 
         $lockDiscoveryProperty = new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                        ezcWebdavRequest::DEPTH_INFINITY,
-                        new ezcWebdavPotentialUriContent(
-                            'http://example.com/~ejw/contact.html',
-                            true
-                        ),
-                        40,
-                        new ezcWebdavPotentialUriContent(
-                            'opaquelocktoken:a515cfa4-5da4-22e1-f5b5-00a0451e6bf7',
-                            true
-                        )
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                    ezcWebdavRequest::DEPTH_INFINITY,
+                    new ezcWebdavPotentialUriContent(
+                        'http://example.com/~ejw/contact.html',
+                        true
                     ),
-                )
+                    40,
+                    new ezcWebdavPotentialUriContent(
+                        'opaquelocktoken:a515cfa4-5da4-22e1-f5b5-00a0451e6bf7',
+                        true
+                    )
+                )]
             )
         );
 
@@ -374,13 +319,7 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
         $test->backend = new ezcWebdavMemoryBackend( false );
 
         $test->backend->addContents(
-            array(
-                'container' => array(
-                    'front.html' => '',
-                    'R2'         => '',
-                    'resource3'  => '',
-                ),
-            )
+            ['container' => ['front.html' => '', 'R2'         => '', 'resource3'  => '']]
         );
 
         // Properties for /container
@@ -397,7 +336,7 @@ class ezcWebdavClientTestRfcLockSetup extends ezcWebdavClientTestSetup
         );
         $test->backend->setProperty(
             '/container',
-            new ezcWebdavGetContentLanguageProperty( array( 'en' ) )
+            new ezcWebdavGetContentLanguageProperty( ['en'] )
         );
         $test->backend->setProperty(
             '/container',
@@ -460,7 +399,7 @@ EOT
         );
         $test->backend->setProperty(
             '/container/front.html',
-            new ezcWebdavGetContentLanguageProperty( array( 'en' ) )
+            new ezcWebdavGetContentLanguageProperty( ['en'] )
         );
         $test->backend->setProperty(
             '/container/front.html',
@@ -511,7 +450,7 @@ EOT
         );
         $test->backend->setProperty(
             '/container/R2',
-            new ezcWebdavGetContentLanguageProperty( array( 'en' ) )
+            new ezcWebdavGetContentLanguageProperty( ['en'] )
         );
         $test->backend->setProperty(
             '/container/R2',
@@ -552,7 +491,7 @@ EOT
         );
         $test->backend->setProperty(
             '/container/resource3',
-            new ezcWebdavGetContentLanguageProperty( array( 'en' ) )
+            new ezcWebdavGetContentLanguageProperty( ['en'] )
         );
         $test->backend->setProperty(
             '/container/resource3',
@@ -583,10 +522,7 @@ EOT
         $test->backend = new ezcWebdavMemoryBackend( false );
 
         $test->backend->addContents(
-            array(
-                'container' => array(
-                ),
-            )
+            ['container' => []]
         );
 
         // Properties for /container
@@ -603,7 +539,7 @@ EOT
         );
         $test->backend->setProperty(
             '/container',
-            new ezcWebdavGetContentLanguageProperty( array( 'en' ) )
+            new ezcWebdavGetContentLanguageProperty( ['en'] )
         );
         $test->backend->setProperty(
             '/container',

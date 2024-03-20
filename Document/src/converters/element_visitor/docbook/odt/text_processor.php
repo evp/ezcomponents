@@ -45,7 +45,7 @@ class ezcDocumentOdtTextProcessor
 
         if ( strpos( $parent->getLocationId(), '/literallayout' ) === false )
         {
-            return array( new DOMText( $textNode->data ) );
+            return [new DOMText( $textNode->data )];
         }
         return $this->processSpaces( $textNode, $newRoot );
     }
@@ -63,7 +63,7 @@ class ezcDocumentOdtTextProcessor
      */
     protected function processSpaces( DOMText $textNode, DOMElement $newRoot )
     {
-        $res = array();
+        $res = [];
 
         // Match more than 2 spaces and tabs and line breaks
         preg_match_all(
@@ -121,7 +121,7 @@ class ezcDocumentOdtTextProcessor
      */
     protected function repeatSpace( $spaceType, $length, DOMElement $root )
     {
-        $spaces = array();
+        $spaces = [];
         if ( $spaceType === 's' )
         {
             // Simple spaces use the count attribute

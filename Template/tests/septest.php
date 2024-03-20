@@ -43,8 +43,8 @@ function __autoload( $className )
         }
     }
 
-   $directories = array();
-   $regressionDir = dirname(__FILE__) . "/regression_tests";
+   $directories = [];
+   $regressionDir = __DIR__ . "/regression_tests";
    readDirRecursively( $regressionDir, $directories, "in" );
 
 

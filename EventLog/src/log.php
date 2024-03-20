@@ -147,49 +147,49 @@ class ezcLog
     /**
      * Debug severity constant.
      */
-     const DEBUG          = 1;
+     public const DEBUG          = 1;
 
     /**
      * Success audit severity constant.
      */
-     const SUCCESS_AUDIT  = 2;
+     public const SUCCESS_AUDIT  = 2;
 
     /**
      * Failed audit severity constant.
      */
-     const FAILED_AUDIT   = 4;
+     public const FAILED_AUDIT   = 4;
 
      /**
       * Info severity constant.
       */
-     const INFO           = 8;
+     public const INFO           = 8;
 
      /**
       * Notice severity constant.
       */
-     const NOTICE         = 16;
+     public const NOTICE         = 16;
 
      /**
       * Warning severity constant.
       */
-     const WARNING        = 32;
+     public const WARNING        = 32;
 
      /**
       * Error severity constant.
       */
-     const ERROR          = 64;
+     public const ERROR          = 64;
 
      /**
       * Fatal severity constant.
       */
-     const FATAL          = 128;
+     public const FATAL          = 128;
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Contains the logic of mapping an incoming log message to the writer.
@@ -429,10 +429,10 @@ class ezcLog
      *                       DEBUG, SUCCES_AUDIT, FAIL_AUDIT, INFO, NOTICE, WARNING, ERROR, or FATAL.
      * @param array(string=>string) $attributes
      */
-    public function log( $message, $severity, array $attributes = array() )
+    public function log( $message, $severity, array $attributes = [] )
     {
-        $source = ( isset( $attributes["source"] ) ? $attributes["source"] : $this->properties["source"] );
-        $category = ( isset( $attributes["category"] ) ? $attributes["category"] : $this->properties["category"] );
+        $source = ( $attributes["source"] ?? $this->properties["source"] );
+        $category = ( $attributes["category"] ?? $this->properties["category"] );
 
         unset( $attributes["source"] );
         unset( $attributes["category"] );
@@ -577,7 +577,7 @@ class ezcLog
          $lm = new ezcLogMessage( $errstr, $errno, $log->source, $log->category );
          $log->log(
              $lm->message, $lm->severity,
-             array( "source" => $lm->source, "category" => $lm->category, "file" => $errfile, "line" => $errline )
+             ["source" => $lm->source, "category" => $lm->category, "file" => $errfile, "line" => $errline]
          );
      }
 

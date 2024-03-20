@@ -18,43 +18,27 @@ class ezcFeedExtendTest extends ezcFeedTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testGetSupportedTypes()
     {
         $types = ezcFeed::getSupportedTypes();
-        $expected = array(
-            'rss1' => 'ezcFeedRss1',
-            'rss2' => 'ezcFeedRss2',
-            'atom' => 'ezcFeedAtom'
-            );
+        $expected = ['rss1' => 'ezcFeedRss1', 'rss2' => 'ezcFeedRss2', 'atom' => 'ezcFeedAtom'];
         $this->assertEquals( $expected, $types );
     }
 
     public function testGetSupportedModules()
     {
         $types = ezcFeed::getSupportedModules();
-        $expected = array(
-            'Content'         => 'ezcFeedContentModule',
-            'CreativeCommons' => 'ezcFeedCreativeCommonsModule',
-            'DublinCore'      => 'ezcFeedDublinCoreModule',
-            'Geo'             => 'ezcFeedGeoModule',
-            'iTunes'          => 'ezcFeedITunesModule'
-            );
+        $expected = ['Content'         => 'ezcFeedContentModule', 'CreativeCommons' => 'ezcFeedCreativeCommonsModule', 'DublinCore'      => 'ezcFeedDublinCoreModule', 'Geo'             => 'ezcFeedGeoModule', 'iTunes'          => 'ezcFeedITunesModule'];
         $this->assertEquals( $expected, $types );
     }
 
     public function testGetSupportedModulesPrefixes()
     {
         $types = ezcFeed::getSupportedModulesPrefixes();
-        $expected = array(
-            'content'         => 'Content',
-            'creativeCommons' => 'CreativeCommons',
-            'dc'              => 'DublinCore',
-            'geo'             => 'Geo',
-            'itunes'          => 'iTunes'
-            );
+        $expected = ['content'         => 'Content', 'creativeCommons' => 'CreativeCommons', 'dc'              => 'DublinCore', 'geo'             => 'Geo', 'itunes'          => 'iTunes'];
         $this->assertEquals( $expected, $types );
     }
 
@@ -184,12 +168,7 @@ EOL;
     {
         ezcFeed::registerFeed( 'opml', 'myOpmlHandler' );
         $types = ezcFeed::getSupportedTypes();
-        $expected = array(
-            'rss1' => 'ezcFeedRss1',
-            'rss2' => 'ezcFeedRss2',
-            'atom' => 'ezcFeedAtom',
-            'opml' => 'myOpmlHandler'
-            );
+        $expected = ['rss1' => 'ezcFeedRss1', 'rss2' => 'ezcFeedRss2', 'atom' => 'ezcFeedAtom', 'opml' => 'myOpmlHandler'];
         $this->assertEquals( $expected, $types );
         ezcFeed::unregisterFeed( 'opml' );
     }
@@ -199,25 +178,11 @@ EOL;
         ezcFeed::registerModule( 'Slash', 'mySlashHandler', 'slash' );
 
         $types = ezcFeed::getSupportedModules();
-        $expected = array(
-            'Content'         => 'ezcFeedContentModule',
-            'CreativeCommons' => 'ezcFeedCreativeCommonsModule',
-            'DublinCore'      => 'ezcFeedDublinCoreModule',
-            'Geo'             => 'ezcFeedGeoModule',
-            'iTunes'          => 'ezcFeedITunesModule',
-            'Slash'           => 'mySlashHandler'
-            );
+        $expected = ['Content'         => 'ezcFeedContentModule', 'CreativeCommons' => 'ezcFeedCreativeCommonsModule', 'DublinCore'      => 'ezcFeedDublinCoreModule', 'Geo'             => 'ezcFeedGeoModule', 'iTunes'          => 'ezcFeedITunesModule', 'Slash'           => 'mySlashHandler'];
         $this->assertEquals( $expected, $types );
 
         $types = ezcFeed::getSupportedModulesPrefixes();
-        $expected = array(
-            'content'         => 'Content',
-            'creativeCommons' => 'CreativeCommons',
-            'dc'              => 'DublinCore',
-            'geo'             => 'Geo',
-            'itunes'          => 'iTunes',
-            'slash'           => 'Slash'
-            );
+        $expected = ['content'         => 'Content', 'creativeCommons' => 'CreativeCommons', 'dc'              => 'DublinCore', 'geo'             => 'Geo', 'itunes'          => 'iTunes', 'slash'           => 'Slash'];
         $this->assertEquals( $expected, $types );
         ezcFeed::unregisterModule( 'Slash' );
     }

@@ -1,5 +1,3 @@
 <?php
-return array(
-	'Object' => 'object/object.php',
-);
+return ['Object' => 'object/object.php'];
 ?>

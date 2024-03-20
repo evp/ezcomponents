@@ -19,9 +19,9 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     protected function tearDown()
     {
-        if ( file_exists( dirname( __FILE__ ) . '/data/generator_test.php' ) )
+        if ( file_exists( __DIR__ . '/data/generator_test.php' ) )
         {
-            unlink( dirname( __FILE__ ) . '/data/generator_test.php' );
+            unlink( __DIR__ . '/data/generator_test.php' );
         }
     }
 
@@ -30,11 +30,11 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendAssignment()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendValueAssignment( 'test', 42 );
         $generator->appendCustomCode( 'return $test;' . $generator->lineBreak );
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 42, eval( $data ) );
     }
 
@@ -43,12 +43,12 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendAssignmentText()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendValueAssignment( 'test', 'Darth' );
         $generator->appendValueAssignment( 'test', ' Vader', ezcPhpGenerator::ASSIGN_APPEND_TEXT );
         $generator->appendCustomCode( 'return $test;' . $generator->lineBreak );
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 'Darth Vader', eval( $data ) );
     }
 
@@ -57,12 +57,12 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendAssignmentAdd()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendValueAssignment( 'test', 41 );
         $generator->appendValueAssignment( 'test', 1, ezcPhpGenerator::ASSIGN_ADD );
         $generator->appendCustomCode( 'return $test;' . $generator->lineBreak );
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 42, eval( $data ) );
     }
 
@@ -71,12 +71,12 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendAssignmentSubtract()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendValueAssignment( 'test', 43 );
         $generator->appendValueAssignment( 'test', 1, ezcPhpGenerator::ASSIGN_SUBTRACT );
         $generator->appendCustomCode( 'return $test;' . $generator->lineBreak );
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 42, eval( $data ) );
     }
 
@@ -85,13 +85,13 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendAssignmentArray()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
-        $generator->appendValueAssignment( 'test', array( 1, 2 ) );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
+        $generator->appendValueAssignment( 'test', [1, 2] );
         $generator->appendValueAssignment( 'test', 3, ezcPhpGenerator::ASSIGN_ARRAY_APPEND );
         $generator->appendCustomCode( 'return $test;' . $generator->lineBreak );
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
-        $this->assertEquals( array( 1, 2, 3 ), eval( $data ) );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
+        $this->assertEquals( [1, 2, 3], eval( $data ) );
     }
 
     /**
@@ -99,12 +99,12 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendUnset()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendValueAssignment( 'test', 42 );
         $generator->appendUnset( 'test' );
         $generator->appendCustomCode( 'return isset( $test );' . $generator->lineBreak );
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( false, eval( $data ) );
     }
 
@@ -113,13 +113,13 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendUnsetList()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendValueAssignment( 'test', 42 );
         $generator->appendValueAssignment( 'test2', 99 );
-        $generator->appendUnsetList( array( 'test', 'test2') );
+        $generator->appendUnsetList( ['test', 'test2'] );
         $generator->appendCustomCode( 'return (isset( $test ) || isset( $test2 ));' . $generator->lineBreak );
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( false, eval( $data ) );
     }
 
@@ -129,7 +129,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testWrongConditionNesting()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendIf( 'true' );
         $generator->appendCustomCode( 'return true;' . $generator->lineBreak );
         try
@@ -149,14 +149,14 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendIf()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendIf( 'true' );
         $generator->appendCustomCode( 'return true;' . $generator->lineBreak );
         $generator->appendEndIf();
         $generator->appendCustomCode( 'return false;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( true, eval( $data ) );
         unset( $generator );
     }
@@ -166,7 +166,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendConditoinedElse()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendIf( 'false' );
         $generator->appendCustomCode( 'return false;' );
         $generator->appendElse( 'true' );
@@ -175,7 +175,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return false;' );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( true, eval( $data ) );
     }
 
@@ -184,7 +184,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendUnconditoinedElse()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
         $generator->appendIf( 'false' );
         $generator->appendCustomCode( 'return false;' . $generator->lineBreak );
         $generator->appendElse( );
@@ -193,7 +193,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return false;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( true, eval( $data ) );
     }
 
@@ -202,9 +202,9 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendForeach()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false, true );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false, true );
 
-        $generator->appendValueAssignment( 'items', array( 1, 2, 3 ) );
+        $generator->appendValueAssignment( 'items', [1, 2, 3] );
         $generator->appendValueAssignment( 'counter', 0 );
         $generator->appendForeach( '$items as $item' );
         $generator->appendVariableAssignment( 'counter', 'item', ezcPhpGenerator::ASSIGN_ADD );
@@ -212,7 +212,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $counter;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 6, eval( $data ) );
     }
 
@@ -221,7 +221,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendWhile()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'counter', 0 );
         $generator->appendWhile( '$counter < 3' );
@@ -230,7 +230,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $counter;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 3, eval( $data ) );
     }
 
@@ -239,7 +239,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendDo()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'counter', 0 );
         $generator->appendDo();
@@ -248,7 +248,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $counter;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 3, eval( $data ) );
     }
 
@@ -261,7 +261,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
     {
         try
         {
-            $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php' );
+            $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php' );
             $generator->appendEndIf();
         }
         catch ( ezcPhpGeneratorException $e )
@@ -276,7 +276,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendDefineCaseSensitive()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendDefine( 'GRETZKY', 99 );
         $generator->appendIf( "@defined( 'gretzky' )" );
@@ -285,7 +285,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return GRETZKY;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 99, eval( $data ) );
     }
 
@@ -294,13 +294,13 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendDefineCaseInsensitive()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendDefine( 'GRETZKY', 99, true );
         $generator->appendCustomCode( 'return gretzky;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 99, eval( $data ) );
     }
 
@@ -309,7 +309,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendFunctionCall()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'data', 'eric_88_lindros' );
         $parameters[] = new ezcPhpGeneratorParameter( 'data', ezcPhpGeneratorParameter::VARIABLE );
@@ -318,7 +318,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendFunctionCall( 'strstr', $parameters );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( '88_lindros', eval( $data ) );
     }
 
@@ -327,7 +327,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendFunctionCallWithResult()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'data', 'eric_88_lindros' );
         $parameters[] = new ezcPhpGeneratorParameter( 'data', ezcPhpGeneratorParameter::VARIABLE );
@@ -336,7 +336,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $data;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( '88_lindros', eval( $data ) );
     }
 
@@ -345,7 +345,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendFunctionCallWithResultNORMAL()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'data', 'eric_88_lindros' );
         $parameters[] = new ezcPhpGeneratorParameter( 'data', ezcPhpGeneratorParameter::VARIABLE );
@@ -355,7 +355,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $data;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( '88_lindros', eval( $data ) );
     }
 
@@ -364,7 +364,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendFunctionCallWithResultAPPENDTEXT()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'data', 'eric_88' );
         $parameters[] = new ezcPhpGeneratorParameter( 'data', ezcPhpGeneratorParameter::VARIABLE );
@@ -374,7 +374,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $data;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 'eric_8888', eval( $data ) );
     }
 
@@ -383,7 +383,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendFunctionCallWithResultADD()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'data', 'eric_88' );
         $generator->appendValueAssignment( 'result', -88 );
@@ -394,7 +394,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $result;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 0, eval( $data ) );
     }
 
@@ -403,7 +403,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendFunctionCallWithResultSUBTRACT()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'data', 'eric_88' );
         $generator->appendValueAssignment( 'result', 88 );
@@ -414,7 +414,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $result;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( 0, eval( $data ) );
     }
 
@@ -423,7 +423,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendFunctionCallWithResultARRAYAPPEND()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendValueAssignment( 'data', 'eric_88' );
         $parameters[] = new ezcPhpGeneratorParameter( 'data', ezcPhpGeneratorParameter::VARIABLE );
@@ -433,8 +433,8 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $result;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
-        $this->assertEquals( array( '88' ), eval( $data ) );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
+        $this->assertEquals( ['88'], eval( $data ) );
     }
 
     /**
@@ -443,21 +443,21 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testAppendMethodCall()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false );
 
         $generator->appendCustomCode( "class TestClass{\n public function hello() { return 'hello'; }}" );
         $generator->appendCustomCode( "\$object = new TestClass();" );
-        $generator->appendMethodCall( 'object', 'hello', array(), new ezcPhpGeneratorReturnData( 'result' ) );
+        $generator->appendMethodCall( 'object', 'hello', [], new ezcPhpGeneratorReturnData( 'result' ) );
         $generator->appendCustomCode( 'return $result;' . $generator->lineBreak );
 
         $generator->finish();
-        $data = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
+        $data = file_get_contents( __DIR__ . '/data/generator_test.php' );
         $this->assertEquals( "hello", eval( $data ) );
     }
 
     public function testNiceIndent()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false, true );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false, true );
         $generator->lineBreak =  "\r\n";
         $generator->appendIf( 'true' );
         {
@@ -479,8 +479,8 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return true;' );
         $generator->appendEndIf();
         $generator->finish();
-        $genData = file_get_contents( dirname( __FILE__ ) . '/data/generator_test.php' );
-        $storeData = file_get_contents( dirname( __FILE__ ) . '/data/indent_test.data' );
+        $genData = file_get_contents( __DIR__ . '/data/generator_test.php' );
+        $storeData = file_get_contents( __DIR__ . '/data/indent_test.data' );
         $this->assertEquals( $storeData, $genData );
     }
 
@@ -489,7 +489,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testWriteAfterFinish()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false, true );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false, true );
         $generator->finish();
         try
         {
@@ -508,7 +508,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
      */
     public function testFinishWithImproperNesting()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/generator_test.php', false, true );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/generator_test.php', false, true );
         $generator->appendIf( '$brush == true' );
         try
         {
@@ -528,9 +528,9 @@ class ezcPhpGeneratorTest extends ezcTestCase
     public function assertLeftOverFiles()
     {
         // if this test fails, make sure the file is not left over by some other test first!
-        if ( $this->countFiles( dirname( __FILE__ ) . '/data/', 'generator_test.php' ) != 0 )
+        if ( $this->countFiles( __DIR__ . '/data/', 'generator_test.php' ) != 0 )
         {
-            $this->fail( "There were left over files in '". dirname( __FILE__ ) ."/data/' after the operation completed" );
+            $this->fail( "There were left over files in '". __DIR__ ."/data/' after the operation completed" );
         }
     }
 
@@ -546,7 +546,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
             {
                 while ( ( $file = readdir( $dh ) ) !== false )
                 {
-                    if ( strstr( $file, $match ) !== false ) ++$count;
+                    if ( strstr( $file, (string) $match ) !== false ) ++$count;
                 }
                 closedir($dh);
             }
@@ -595,7 +595,7 @@ class ezcPhpGeneratorTest extends ezcTestCase
     // you need to change the class example in PhpGenerator
     public function testExample()
     {
-        $generator = new ezcPhpGenerator( dirname( __FILE__ ) . '/data/fibo.php', true, true );
+        $generator = new ezcPhpGenerator( __DIR__ . '/data/fibo.php', true, true );
         $generator->appendCustomCode( 'function fibonacci( $number )' );
         $generator->appendCustomCode( "{" );
 
@@ -611,9 +611,9 @@ class ezcPhpGeneratorTest extends ezcTestCase
         $generator->appendCustomCode( 'return $hi;' );
         $generator->appendCustomCode( "}" );
         $generator->finish();
-        require( dirname( __FILE__ ) . '/data/fibo.php' );
+        require( __DIR__ . '/data/fibo.php' );
         $this->assertEquals( 34, fibonacci( 10 ) );
-        unlink( dirname( __FILE__ ) . '/data/fibo.php' );
+        unlink( __DIR__ . '/data/fibo.php' );
     }
 
     public static function suite()

@@ -6,15 +6,9 @@ class tutorialCustomPalette extends ezcGraphPalette
 
     protected $majorGridColor = '#000000BB';
 
-    protected $dataSetColor = array(
-        '#4E9A0688',
-        '#3465A4',
-        '#F57900'
-    );
+    protected $dataSetColor = ['#4E9A0688', '#3465A4', '#F57900'];
 
-    protected $dataSetSymbol = array(
-        ezcGraph::BULLET,
-    );
+    protected $dataSetSymbol = [ezcGraph::BULLET];
 
     protected $fontName = 'sans-serif';
 

@@ -73,9 +73,7 @@ class ezcDocumentPdfFooterPdfPart extends ezcDocumentPdfPart
      */
     public function __construct( ezcDocumentPdfFooterOptions $options = null )
     {
-        $this->options = ( $options === null ?
-            new ezcDocumentPdfFooterOptions() :
-            $options );
+        $this->options = ( $options ?? new ezcDocumentPdfFooterOptions() );
     }
 
     /**

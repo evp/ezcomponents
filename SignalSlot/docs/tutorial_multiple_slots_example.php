@@ -38,8 +38,8 @@ $cache = new Cache();
 $cacheGenerator = new CacheGenerator();
 
 $data = new Data();
-$data->signals()->connect( "dataChanged", array( $cache, "deleteCache" ) );
-$data->signals()->connect( "dataChanged", array( $cacheGenerator, "generateCache" ) );
+$data->signals()->connect( "dataChanged", [$cache, "deleteCache"] );
+$data->signals()->connect( "dataChanged", [$cacheGenerator, "generateCache"] );
 
 $data->manipulate();
 ?>

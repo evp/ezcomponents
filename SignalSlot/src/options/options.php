@@ -38,7 +38,7 @@ class ezcSignalCollectionOptions extends ezcBaseOptions
      * @throws ezcBaseValueException
      *         If a the value for a property is out of range.
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['signals'] = null;
         parent::__construct( $options );

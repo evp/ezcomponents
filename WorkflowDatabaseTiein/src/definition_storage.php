@@ -29,9 +29,7 @@ class ezcWorkflowDatabaseDefinitionStorage implements ezcWorkflowDefinitionStora
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-      'options' => null
-    );
+    protected $properties = ['options' => null];
 
     /**
      * Construct a new database definition handler.
@@ -173,7 +171,7 @@ class ezcWorkflowDatabaseDefinitionStorage implements ezcWorkflowDefinitionStora
         $stmt->execute();
 
         $result = $stmt->fetchAll( PDO::FETCH_ASSOC );
-        $nodes  = array();
+        $nodes  = [];
 
         // Create node objects.
         foreach ( $result as $node )
@@ -269,7 +267,7 @@ class ezcWorkflowDatabaseDefinitionStorage implements ezcWorkflowDefinitionStora
         $stmt->execute();
 
         $result = $stmt->fetchAll( PDO::FETCH_ASSOC );
-        $nodes  = array();
+        $nodes  = [];
 
         if ( $result !== false )
         {
@@ -370,7 +368,7 @@ class ezcWorkflowDatabaseDefinitionStorage implements ezcWorkflowDefinitionStora
         $workflow->version = (int)$workflowVersion;
 
         // Write node table rows.
-        $nodeMap = array();
+        $nodeMap = [];
 
         foreach ( $workflow->nodes as $node )
         {

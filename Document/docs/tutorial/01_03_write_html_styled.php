@@ -11,9 +11,7 @@ $converter = new ezcDocumentDocbookToHtmlConverter();
 $converter->options->styleSheet = null;
 
 // Add custom CSS style sheets
-$converter->options->styleSheets = array(
-    '/styles/screen.css',
-);
+$converter->options->styleSheets = ['/styles/screen.css'];
 
 $html = $converter->convert( $docbook );
 

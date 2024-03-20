@@ -24,7 +24,7 @@ class ezcDocumentXhtmlElementFilter extends ezcDocumentXhtmlBaseFilter
      *
      * @var array
      */
-    protected $elementFilter = array();
+    protected $elementFilter = [];
 
     /**
      * Constructor
@@ -37,10 +37,9 @@ class ezcDocumentXhtmlElementFilter extends ezcDocumentXhtmlBaseFilter
     {
         // Special handling required
         //  - object
-        $this->elementFilter = array(
+        $this->elementFilter = [
             // Basic mapping filter
             new ezcDocumentXhtmlElementMappingFilter(),
-
             // Special filters for more complex elements
             new ezcDocumentXhtmlHeaderElementFilter(),
             new ezcDocumentXhtmlLinkElementFilter(),
@@ -56,12 +55,11 @@ class ezcDocumentXhtmlElementFilter extends ezcDocumentXhtmlBaseFilter
             new ezcDocumentXhtmlTableCellElementFilter(),
             new ezcDocumentXhtmlSpecialParagraphElementFilter(),
             new ezcDocumentXhtmlTextToParagraphFilter(),
-
             // Since paragraphs are often annotated differently, or texts may
             // be removed in other filters, it is best to keep this filter near
             // the end.
             new ezcDocumentXhtmlParagraphElementFilter(),
-        );
+        ];
     }
 
     /**

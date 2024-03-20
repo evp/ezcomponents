@@ -30,9 +30,7 @@ class ezcDocumentDocbookToOdtMappingHandler extends ezcDocumentDocbookToOdtBaseH
      *
      * @var array(string=>array(string))
      */
-    protected $mapping = array(
-        'listitem' => array( ezcDocumentOdt::NS_ODT_TEXT, 'text:list-item' )
-    );
+    protected $mapping = ['listitem' => [ezcDocumentOdt::NS_ODT_TEXT, 'text:list-item']];
 
     /**
      * Handle a node

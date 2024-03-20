@@ -1,12 +1,12 @@
 <?php
-require dirname( __FILE__ ) . '/../../../../Base/src/base.php';
+require __DIR__ . '/../../../../Base/src/base.php';
 function __autoload( $className )
 {
     ezcBase::autoload( $className );
 }
 $parser = new ezcMailParser();
 
-$set = new ezcMailFileSet( array( 'php://stdin' ) );
+$set = new ezcMailFileSet( ['php://stdin'] );
 
 $mail = $parser->parseMail( $set );
 

@@ -53,14 +53,14 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      *
      * @var array(mixed)
      */
-    protected $registry = array();
+    protected $registry = [];
 
     /**
      * Holds the search registry.
      *
      * @var array(mixed)
      */
-    protected $searchRegistry = array();
+    protected $searchRegistry = [];
 
     /**
      * Wether this storage holds a lock. 
@@ -86,9 +86,9 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      *                         storage.
      * @param array(string=>string) $options Options for the cache
      */
-    public function __construct( $location, array $options = array() )
+    public function __construct( $location, array $options = [] )
     {
-        parent::__construct( $location, array() );
+        parent::__construct( $location, [] );
     }
 
     /**
@@ -109,7 +109,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param mixed $data The data to store
      * @param array(string=>string) $attributes Attributes describing the cached data
      */
-    public function store( $id, $data, $attributes = array() )
+    public function store( $id, $data, $attributes = [] )
     {
         // Generate the Identifier
         $identifier = $this->generateIdentifier( $id, $attributes );
@@ -152,7 +152,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param bool $search Whether to search for items if not found directly
      * @return mixed The cached data on success, otherwise false
      */
-    public function restore( $id, $attributes = array(), $search = false )
+    public function restore( $id, $attributes = [], $search = false )
     {
         // Generate the Identifier
         $identifier = $this->generateIdentifier( $id, $attributes );
@@ -163,11 +163,11 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
         {
             if ( !isset( $this->registry[$location] ) )
             {
-                $this->registry[$location] = array();
+                $this->registry[$location] = [];
             }
             if ( !isset( $this->registry[$location][$id] ) )
             {
-                $this->registry[$location][$id] = array();
+                $this->registry[$location][$id] = [];
             }
             $this->registry[$location][$id][$identifier] = $this->fetchData( $identifier, true );
         }
@@ -228,27 +228,27 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param array(string=>string) $attributes Attributes describing the data to restore
      * @param bool $search Whether to search for items if not found directly
      */
-    public function delete( $id = null, $attributes = array(), $search = false )
+    public function delete( $id = null, $attributes = [], $search = false )
     {
         // Generate the Identifier
         $identifier = $this->generateIdentifier( $id, $attributes );
         $location = $this->properties['location'];
 
         // Finds the caches that require deletion
-        $delCaches = array();
+        $delCaches = [];
         if ( $this->fetchData( $identifier ) !== false )
         {
-            $delCaches[] = array( $id, $attributes, $identifier );
+            $delCaches[] = [$id, $attributes, $identifier];
         }
         else if ( $search === true )
         {
             $delCaches = $this->search( $id, $attributes );
         }
 
-        $deletedIds = array();
+        $deletedIds = [];
 
         // Process the caches to delete
-        $identifiers = array();
+        $identifiers = [];
         foreach ( $delCaches as $cache )
         {
             $this->backend->delete( $cache[2] );
@@ -274,7 +274,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param array(string=>string) $attributes Attributes describing the data
      * @return int Number of data items matching the criteria
      */
-    public function countDataItems( $id = null, $attributes = array() )
+    public function countDataItems( $id = null, $attributes = [] )
     {
         return count( $this->search( $id, $attributes ) );
     }
@@ -288,7 +288,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param array(string=>string) $attributes Attributes describing the data
      * @return int The remaining lifetime (0 if it does not exist or outdated)
      */
-    public function getRemainingLifetime( $id, $attributes = array() )
+    public function getRemainingLifetime( $id, $attributes = [] )
     {
         if ( count( $found = $this->search( $id, $attributes ) ) > 0 ) 
         {
@@ -333,7 +333,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
     {
         $this->fetchSearchRegistry( true );
 
-        $purgedIds = array();
+        $purgedIds = [];
         $ttl       = $this->properties['options']->ttl;
 
         foreach ( $this->searchRegistry[$this->properties['location']] as $id => $identifiers )
@@ -378,8 +378,8 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
     public function reset()
     {
         $this->backend->reset();
-        $this->registry = array();
-        $this->searchRegistry = array( $this->properties['location'] => null );
+        $this->registry = [];
+        $this->searchRegistry = [$this->properties['location'] => null];
         $this->storeSearchRegistry();
     }
     
@@ -510,9 +510,9 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param array $attributes Attributes for the cache item
      * @param string $identifier Identifier generated for the cache item
      */
-    protected function registerIdentifier( $id = null, $attributes = array(), $identifier = null )
+    protected function registerIdentifier( $id = null, $attributes = [], $identifier = null )
     {
-        $identifier = ( $identifier !== null ) ? $identifier : $this->generateIdentifier( $id, $attributes );
+        $identifier ??= $this->generateIdentifier( $id, $attributes );
         $location = $this->properties['location'];
 
         $this->fetchSearchRegistry();
@@ -524,7 +524,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
             if ( !isset( $this->searchRegistry[$location][$id] )
                  || !is_array( $this->searchRegistry[$location][$id] ) )
             {
-                $this->searchRegistry[$location][$id] = array();
+                $this->searchRegistry[$location][$id] = [];
             }
 
             $this->searchRegistry[$location][$id][$identifier] = new ezcCacheStorageMemoryRegisterStruct( $id, $attributes, $identifier, $location );
@@ -540,16 +540,16 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param string $identifier Identifier generated for the cache item
      * @param bool $delayStore Delays the storing of the updated search registry
      */
-    protected function unRegisterIdentifier( $id = null, $attributes = array(), $identifier = null, $delayStore = false )
+    protected function unRegisterIdentifier( $id = null, $attributes = [], $identifier = null, $delayStore = false )
     {
-        $identifier = ( $identifier !== null ) ? $identifier : $this->generateIdentifier( $id, $attributes );
+        $identifier ??= $this->generateIdentifier( $id, $attributes );
         $location = $this->properties['location'];
 
         $this->fetchSearchRegistry( !$delayStore );
 
         if ( $this->searchRegistry === false )
         {
-            $this->searchRegistry = array();
+            $this->searchRegistry = [];
         }
 
         if ( isset( $this->searchRegistry[$location][$id][$identifier] ) )
@@ -572,12 +572,12 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
         $location = $this->properties['location'];
         if ( !is_array( $this->searchRegistry ) )
         {
-            $this->searchRegistry = array();
+            $this->searchRegistry = [];
         }
         if ( !isset( $this->searchRegistry[$location] )
              || !is_array( $this->searchRegistry[$location] ) )
         {
-            $this->searchRegistry[$location] = array();
+            $this->searchRegistry[$location] = [];
         }
 
         // Makes sure the registry exists
@@ -610,7 +610,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @apichange Was only used to generate "pseudo-regex". Attribute arrays
      *            are compared directly now.
      */
-    protected function generateAttrStr( $attributes = array() )
+    protected function generateAttrStr( $attributes = [] )
     {
         ksort( $attributes );
         $attrStr = '';
@@ -636,7 +636,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
      * @param array(string=>string) $attributes Attributes describing the data
      * @return array(mixed)
      */
-    protected function search( $id = null, $attributes = array() )
+    protected function search( $id = null, $attributes = [] )
     {
         // Grabs the identifier registry
         $this->fetchSearchRegistry();
@@ -650,21 +650,21 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
              && isset( $this->searchRegistry[$location] )
              && is_array( $this->searchRegistry[$location] ) )
         {
-            $itemArr = array();
+            $itemArr = [];
             foreach ( $this->searchRegistry[$location] as $idArr )
             {
                 foreach ( $idArr as $registryObj )
                 {
                     if ( !is_null( $registryObj->id ) )
                     {
-                        $itemArr[] = array( $registryObj->id, $registryObj->attributes, $registryObj->identifier );
+                        $itemArr[] = [$registryObj->id, $registryObj->attributes, $registryObj->identifier];
                     }
                 }
             }
             return $itemArr;
         }
 
-        $itemArr = array();
+        $itemArr = [];
         // Makes sure we've seen this ID before
         if ( isset( $this->searchRegistry[$location][$id] )
              && is_array( $this->searchRegistry[$location][$id] ) )
@@ -673,7 +673,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
             {
                 if ( $this->fetchData( $identifier ) !== false )
                 {
-                    $itemArr[] = array( $id, $attributes, $identifier );
+                    $itemArr[] = [$id, $attributes, $identifier];
                 }
             }
         }
@@ -689,11 +689,7 @@ abstract class ezcCacheStorageMemory extends ezcCacheStorage implements ezcCache
                     {
                         if ( count( array_diff_assoc( $attributes, $registryObj->attributes ) ) === 0 )
                         {
-                            $itemArr[] = array(
-                                $registryObj->id,
-                                $registryObj->attributes,
-                                $registryObj->identifier
-                            );
+                            $itemArr[] = [$registryObj->id, $registryObj->attributes, $registryObj->identifier];
                         }
                     }
                 }

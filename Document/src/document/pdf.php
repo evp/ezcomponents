@@ -73,7 +73,7 @@ class ezcDocumentPdf extends ezcDocument
      *
      * @var array(ezcDocumentPdfPart)
      */
-    protected $pdfParts = array();
+    protected $pdfParts = [];
 
     /**
      * Construct RST document.
@@ -84,9 +84,7 @@ class ezcDocumentPdf extends ezcDocument
      */
     public function __construct( ezcDocumentPdfOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentPdfOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentPdfOptions() );
 
         $this->styles          = new ezcDocumentPcssStyleInferencer();
 

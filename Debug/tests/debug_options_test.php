@@ -18,7 +18,7 @@ class ezcDebugOptionsTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCtor()
@@ -47,27 +47,27 @@ class ezcDebugOptionsTest extends ezcTestCase
         $this->assertSetProperty(
             $opts,
             'stackTrace',
-            array( true, false )
+            [true, false]
         );
         $this->assertSetProperty(
             $opts,
             'stackTraceDepth',
-            array( 0, 1, 23 )
+            [0, 1, 23]
         );
         $this->assertSetProperty(
             $opts,
             'stackTraceMaxData',
-            array( 0, 1, 23, false )
+            [0, 1, 23, false]
         );
         $this->assertSetProperty(
             $opts,
             'stackTraceMaxChildren',
-            array( 0, 1, 23, false )
+            [0, 1, 23, false]
         );
         $this->assertSetProperty(
             $opts,
             'stackTraceMaxDepth',
-            array( 0, 1, 23, false )
+            [0, 1, 23, false]
         );
     }
 
@@ -78,27 +78,27 @@ class ezcDebugOptionsTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $opts,
             'stackTrace',
-            array( null, 23, 'foobar', array(), new stdClass() )
+            [null, 23, 'foobar', [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opts,
             'stackTraceDepth',
-            array( null, true, -23, 'foobar', array(), new stdClass() )
+            [null, true, -23, 'foobar', [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opts,
             'stackTraceMaxData',
-            array( null, true, -23, 'foobar', array(), new stdClass() )
+            [null, true, -23, 'foobar', [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opts,
             'stackTraceMaxChildren',
-            array( null, true, -23, 'foobar', array(), new stdClass() )
+            [null, true, -23, 'foobar', [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opts,
             'stackTraceMaxDepth',
-            array( null, true, -23, 'foobar', array(), new stdClass() )
+            [null, true, -23, 'foobar', [], new stdClass()]
         );
     }
 }

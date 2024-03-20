@@ -58,7 +58,7 @@ class ezcWorkflowVisitorVisualizationTest extends ezcWorkflowTestCase
 
     public function testHighlightedStartNode()
     {
-        $this->visitor->options['highlightedNodes'] = array( 1 );
+        $this->visitor->options['highlightedNodes'] = [1];
 
         $this->setUpStartEnd();
         $this->workflow->accept( $this->visitor );
@@ -178,7 +178,7 @@ class ezcWorkflowVisitorVisualizationTest extends ezcWorkflowTestCase
     protected function readExpected( $name )
     {
         return file_get_contents(
-          dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR. $name . '.dot'
+          __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR. $name . '.dot'
         );
     }
 }

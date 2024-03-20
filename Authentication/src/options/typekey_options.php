@@ -64,11 +64,11 @@ class ezcAuthenticationTypekeyOptions extends ezcAuthenticationFilterOptions
      *         if the $value file cannot be opened for reading
      * @param array(string=>mixed) $options Options for this class
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->validity = 0; // seconds
         $this->keysFile = 'http://www.typekey.com/extras/regkeys.txt';
-        $this->requestSource = ( $_GET !== null ) ? $_GET : array();
+        $this->requestSource = $_GET ?? [];
 
         parent::__construct( $options );
     }

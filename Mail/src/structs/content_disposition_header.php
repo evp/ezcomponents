@@ -111,7 +111,7 @@ class ezcMailContentDispositionHeader extends ezcBaseStruct
      *
      * @var array(string=>string)
      */
-    public $additionalParameters = array();
+    public $additionalParameters = [];
 
     /**
      * Holds language and characterset data for the additional parameters.
@@ -121,7 +121,7 @@ class ezcMailContentDispositionHeader extends ezcBaseStruct
      * @apichange Merge this with $additionalParamters OR come up with an entirely new idea for the ContentDispositionHeader
      * @var array(string=>array())
      */
-    public $additionalParametersMetaData = array();
+    public $additionalParametersMetaData = [];
 
     /**
      * Constructs a new ezcMailContentDispositionHeader holding the various values of this
@@ -143,7 +143,7 @@ class ezcMailContentDispositionHeader extends ezcBaseStruct
                                  $modificationDate = null,
                                  $readDate = null,
                                  $size = null,
-                                 $additionalParameters = array(),
+                                 $additionalParameters = [],
                                  $fileNameLanguage = null,
                                  $fileNameCharSet = null,
                                  $displayFileName = null )

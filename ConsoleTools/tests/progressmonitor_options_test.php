@@ -31,9 +31,7 @@ class ezcConsoleProgressMonitorOptionsTest extends ezcTestCase
     public function testConstructorNew()
     {
         $fake = new ezcConsoleProgressMonitorOptions(
-            array( 
-                "formatString" => "%8.1f%% %s %s",
-            )
+            ["formatString" => "%8.1f%% %s %s"]
         );
         $this->assertEquals( 
             $fake,

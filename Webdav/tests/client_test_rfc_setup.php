@@ -46,7 +46,7 @@ class ezcWebdavClientTestRfcSetup extends ezcWebdavClientTestSetup
                 throw new RuntimeException( "Could not find setup for test set '$testSetName'." );
         }
 
-        $test->server = $this->getServer( ( $customPathFactory === null ? $pathFactory : $customPathFactory ) );
+        $test->server = $this->getServer( ( $customPathFactory ?? $pathFactory ) );
     }
 
     protected function getFooBarSetup1( ezcWebdavClientTest $test )
@@ -56,13 +56,7 @@ class ezcWebdavClientTestRfcSetup extends ezcWebdavClientTestSetup
         $test->backend->options->failingOperations = ezcWebdavMemoryBackendOptions::REQUEST_DELETE;
 
         $test->backend->addContents(
-            array(
-                'container' => array(
-                    'front.html' => '',
-                    'R2'         => array(),
-                    'resource3'  => '',
-                ),
-            )
+            ['container' => ['front.html' => '', 'R2'         => [], 'resource3'  => '']]
         );
 
         $test->backend->setProperty(
@@ -113,16 +107,13 @@ EOT
             '/container',
             new ezcWebdavSupportedLockProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-                        ),
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_SHARED
-                        ),
-                    )
+                    [new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+                    ), new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_SHARED
+                    )]
                 )
             )
         );
@@ -184,16 +175,13 @@ EOT
             '/container/front.html',
             new ezcWebdavSupportedLockProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-                        ),
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_SHARED
-                        ),
-                    )
+                    [new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+                    ), new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_SHARED
+                    )]
                 )
             )
         );
@@ -203,9 +191,7 @@ EOT
     {
         $test->backend = new ezcWebdavMemoryBackend();
         $test->backend->addContents(
-            array(
-                'file' => ''
-            )
+            ['file' => '']
         );
 
         $test->backend->setProperty(
@@ -243,9 +229,7 @@ EOT
         $test->backend->options->failingOperations = ezcWebdavMemoryBackendOptions::REQUEST_PROPPATCH;
         
         $test->backend->addContents(
-            array(
-                'bar.html' => ''
-            )
+            ['bar.html' => '']
         );
 
         $test->backend->setProperty(
@@ -272,13 +256,7 @@ EOT
         $test->backend->options->failingOperations = ezcWebdavMemoryBackendOptions::REQUEST_COPY;
 
         $test->backend->addContents(
-            array(
-                'container' => array(
-                    'front.html' => '',
-                    'R2/'         => array(),
-                    'resource3'  => '',
-                ),
-            )
+            ['container' => ['front.html' => '', 'R2/'         => [], 'resource3'  => '']]
         );
 
         $test->backend->setProperty(
@@ -329,16 +307,13 @@ EOT
             '/container',
             new ezcWebdavSupportedLockProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-                        ),
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_SHARED
-                        ),
-                    )
+                    [new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+                    ), new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_SHARED
+                    )]
                 )
             )
         );
@@ -400,16 +375,13 @@ EOT
             '/container/front.html',
             new ezcWebdavSupportedLockProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-                        ),
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_SHARED
-                        ),
-                    )
+                    [new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+                    ), new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_SHARED
+                    )]
                 )
             )
         );
@@ -424,13 +396,7 @@ EOT
         $test->backend->options->failingOperations = ezcWebdavMemoryBackendOptions::REQUEST_MOVE;
 
         $test->backend->addContents(
-            array(
-                'container' => array(
-                    'front.html' => '',
-                    'C2/'         => array(),
-                    'resource3'  => '',
-                ),
-            )
+            ['container' => ['front.html' => '', 'C2/'         => [], 'resource3'  => '']]
         );
 
         $test->backend->setProperty(
@@ -481,16 +447,13 @@ EOT
             '/container',
             new ezcWebdavSupportedLockProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-                        ),
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_SHARED
-                        ),
-                    )
+                    [new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+                    ), new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_SHARED
+                    )]
                 )
             )
         );
@@ -552,16 +515,13 @@ EOT
             '/container/front.html',
             new ezcWebdavSupportedLockProperty(
                 new ArrayObject(
-                    array(
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-                        ),
-                        new ezcWebdavSupportedLockPropertyLockentry(
-                            ezcWebdavLockRequest::TYPE_WRITE,
-                            ezcWebdavLockRequest::SCOPE_SHARED
-                        ),
-                    )
+                    [new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+                    ), new ezcWebdavSupportedLockPropertyLockentry(
+                        ezcWebdavLockRequest::TYPE_WRITE,
+                        ezcWebdavLockRequest::SCOPE_SHARED
+                    )]
                 )
             )
         );
@@ -573,22 +533,10 @@ EOT
     {
         $test->backend = new ezcWebdavMemoryBackend();
         $test->backend->addContents(
-            array(
-                '~fielding' => array(
-                    'index.html' => "<html><head><title>Foo Bar</title></head></html>\n",
-                ),
-            )
+            ['~fielding' => ['index.html' => "<html><head><title>Foo Bar</title></head></html>\n"]]
         );
         $test->backend->addContents(
-            array(
-                'users' => array(
-                    'f' => array(
-                        'fielding' => array(
-                            'index.html' => ''
-                        )
-                    ),
-                ),
-            )
+            ['users' => ['f' => ['fielding' => ['index.html' => '']]]]
         );
 
         $test->backend->setProperty(
@@ -610,21 +558,10 @@ EOT
     {
         $test->backend = new ezcWebdavMemoryBackend();
         $test->backend->addContents(
-            array(
-                '~fielding' => array(
-                    'index.html' => '',
-                ),
-            )
+            ['~fielding' => ['index.html' => '']]
         );
         $test->backend->addContents(
-            array(
-                'users' => array(
-                    'f' => array(
-                        'fielding' => array(
-                        )
-                    ),
-                ),
-            )
+            ['users' => ['f' => ['fielding' => []]]]
         );
     }
 
@@ -632,9 +569,7 @@ EOT
     {
         $test->backend = new ezcWebdavMemoryBackend();
         $test->backend->addContents(
-            array(
-                'webdisc' => array(),
-            )
+            ['webdisc' => []]
         );
     }
 }

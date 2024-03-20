@@ -56,8 +56,8 @@ class ezcBaseMetaDataPearTest extends ezcTestCase
     public static function testGetComponentDependencies2()
     {
         $r = new ezcBaseMetaData( 'pear' );
-        self::assertSame( array(), $r->getComponentDependencies( 'Base' ) );
-        self::assertSame( array( 'Base' ), array_keys( $r->getComponentDependencies( 'Template' ) ) );
+        self::assertSame( [], $r->getComponentDependencies( 'Base' ) );
+        self::assertSame( ['Base'], array_keys( $r->getComponentDependencies( 'Template' ) ) );
     }
 
     public static function testGetComponentDependencies3()

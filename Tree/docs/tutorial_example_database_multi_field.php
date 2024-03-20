@@ -28,8 +28,8 @@ $store = new ezcTreeDbExternalTableDataStore( $dbh, 'data', 'node_id' );
 $tree = new ezcTreeDbNestedSet( $dbh, 'nested_set', $store );
 
 // Insert data
-$tree->setRootNode( $root = $tree->createNode( 'Metals', array() ) );
-$root->addChild( $tree->createNode( 'Fe',  array( 'melting_temp_K' => 1811, 'boiling_temp_K' => 3134 ) ) );
+$tree->setRootNode( $root = $tree->createNode( 'Metals', [] ) );
+$root->addChild( $tree->createNode( 'Fe',  ['melting_temp_K' => 1811, 'boiling_temp_K' => 3134] ) );
 
 // Fetch data
 var_dump( $tree->fetchNodeById( 'Fe' )->data );

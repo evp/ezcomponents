@@ -46,18 +46,12 @@ class ezcDocumentWikiParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $shifts = array(
-        'ezcDocumentWikiEscapeCharacterToken'
-            => 'shiftEscapeToken',
-        'ezcDocumentWikiTitleToken'
-            => 'shiftTitleToken',
-        'ezcDocumentWikiNewLineToken'
-            => 'shiftNewLineToken',
-        'ezcDocumentWikiEscapeCharacterToken'
-            => 'shiftEscapeToken',
-        'ezcDocumentWikiToken'
-            => 'shiftWithTokenConversion',
-    );
+    protected $shifts = ['ezcDocumentWikiEscapeCharacterToken'
+        => 'shiftEscapeToken', 'ezcDocumentWikiTitleToken'
+        => 'shiftTitleToken', 'ezcDocumentWikiNewLineToken'
+        => 'shiftNewLineToken', 'ezcDocumentWikiEscapeCharacterToken'
+        => 'shiftEscapeToken', 'ezcDocumentWikiToken'
+        => 'shiftWithTokenConversion'];
 
     /**
      * Array containing simplified reduce ruleset.
@@ -76,48 +70,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $reductions = array(
-        'ezcDocumentWikiTextNode' => array(
-            'reduceText',
-        ),
-        'ezcDocumentWikiParagraphNode' => array(
-            'reduceParagraph',
-        ),
-        'ezcDocumentWikiInvisibleBreakNode' => array(
-            'reduceLineNode',
-        ),
-        'ezcDocumentWikiTitleNode' => array(
-            'reduceTitleToSection',
-        ),
-        'ezcDocumentWikiSectionNode' => array(
-            'reduceLists',
-            'reduceSection',
-        ),
-        'ezcDocumentWikiMatchingInlineNode' => array(
-            'reduceMatchingInlineMarkup',
-        ),
-        'ezcDocumentWikiBlockquoteNode' => array(
-            'reduceBlockquoteNode',
-        ),
-        'ezcDocumentWikiLinkEndNode' => array(
-            'reduceLinkNodes',
-        ),
-        'ezcDocumentWikiImageEndNode' => array(
-            'reduceImageNodes',
-        ),
-        'ezcDocumentWikiFootnoteEndNode' => array(
-            'reduceFootnoteNodes',
-        ),
-        'ezcDocumentWikiBulletListItemNode' => array(
-            'reduceBulletListItem',
-        ),
-        'ezcDocumentWikiEnumeratedListItemNode' => array(
-            'reduceEnumeratedListItem',
-        ),
-        'ezcDocumentWikiTableRowNode' => array(
-            'reduceTableRow',
-        ),
-    );
+    protected $reductions = ['ezcDocumentWikiTextNode' => ['reduceText'], 'ezcDocumentWikiParagraphNode' => ['reduceParagraph'], 'ezcDocumentWikiInvisibleBreakNode' => ['reduceLineNode'], 'ezcDocumentWikiTitleNode' => ['reduceTitleToSection'], 'ezcDocumentWikiSectionNode' => ['reduceLists', 'reduceSection'], 'ezcDocumentWikiMatchingInlineNode' => ['reduceMatchingInlineMarkup'], 'ezcDocumentWikiBlockquoteNode' => ['reduceBlockquoteNode'], 'ezcDocumentWikiLinkEndNode' => ['reduceLinkNodes'], 'ezcDocumentWikiImageEndNode' => ['reduceImageNodes'], 'ezcDocumentWikiFootnoteEndNode' => ['reduceFootnoteNodes'], 'ezcDocumentWikiBulletListItemNode' => ['reduceBulletListItem'], 'ezcDocumentWikiEnumeratedListItemNode' => ['reduceEnumeratedListItem'], 'ezcDocumentWikiTableRowNode' => ['reduceTableRow']];
 
     /**
      * Contains a list of detected syntax elements.
@@ -132,7 +85,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $documentStack = array();
+    protected $documentStack = [];
 
     /**
      * Flag if we are inside a line level node
@@ -150,49 +103,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $conversionsArray = array(
-        'ezcDocumentWikiEndOfFileToken'            => 'ezcDocumentWikiDocumentNode',
-        'ezcDocumentWikiTextLineToken'             => 'ezcDocumentWikiTextNode',
-        'ezcDocumentWikiWhitespaceToken'           => 'ezcDocumentWikiTextNode',
-        'ezcDocumentWikiSpecialCharsToken'         => 'ezcDocumentWikiTextNode',
-
-        'ezcDocumentWikiTitleToken'                => 'ezcDocumentWikiTitleNode',
-        'ezcDocumentWikiParagraphIndentationToken' => 'ezcDocumentWikiBlockquoteNode',
-        'ezcDocumentWikiQuoteToken'                => 'ezcDocumentWikiBlockquoteNode',
-        'ezcDocumentWikiPageBreakToken'            => 'ezcDocumentWikiPageBreakNode',
-        'ezcDocumentWikiBulletListItemToken'       => 'ezcDocumentWikiBulletListItemNode',
-        'ezcDocumentWikiEnumeratedListItemToken'   => 'ezcDocumentWikiEnumeratedListItemNode',
-        'ezcDocumentWikiLiteralBlockToken'         => 'ezcDocumentWikiLiteralBlockNode',
-        'ezcDocumentWikiTableRowToken'             => 'ezcDocumentWikiTableRowNode',
-        'ezcDocumentWikiPluginToken'               => 'ezcDocumentWikiPluginNode',
-
-        'ezcDocumentWikiBoldToken'                 => 'ezcDocumentWikiBoldNode',
-        'ezcDocumentWikiItalicToken'               => 'ezcDocumentWikiItalicNode',
-        'ezcDocumentWikiUnderlineToken'            => 'ezcDocumentWikiUnderlineNode',
-        'ezcDocumentWikiMonospaceToken'            => 'ezcDocumentWikiMonospaceNode',
-        'ezcDocumentWikiSubscriptToken'            => 'ezcDocumentWikiSubscriptNode',
-        'ezcDocumentWikiSuperscriptToken'          => 'ezcDocumentWikiSuperscriptNode',
-        'ezcDocumentWikiDeletedToken'              => 'ezcDocumentWikiDeletedNode',
-        'ezcDocumentWikiStrikeToken'               => 'ezcDocumentWikiDeletedNode',
-        'ezcDocumentWikiInlineQuoteToken'          => 'ezcDocumentWikiInlineQuoteNode',
-        'ezcDocumentWikiLineBreakToken'            => 'ezcDocumentWikiLineBreakNode',
-        'ezcDocumentWikiInlineLiteralToken'        => 'ezcDocumentWikiInlineLiteralNode',
-
-        'ezcDocumentWikiSeparatorToken'            => 'ezcDocumentWikiSeparatorNode',
-        'ezcDocumentWikiTableHeaderToken'          => 'ezcDocumentWikiTableHeaderSeparatorNode',
-
-        'ezcDocumentWikiExternalLinkToken'         => 'ezcDocumentWikiExternalLinkNode',
-        'ezcDocumentWikiInterWikiLinkToken'        => 'ezcDocumentWikiInterWikiLinkNode',
-        'ezcDocumentWikiInternalLinkToken'         => 'ezcDocumentWikiInternalLinkNode',
-        'ezcDocumentWikiLinkStartToken'            => 'ezcDocumentWikiLinkNode',
-        'ezcDocumentWikiLinkEndToken'              => 'ezcDocumentWikiLinkEndNode',
-
-        'ezcDocumentWikiImageStartToken'           => 'ezcDocumentWikiImageNode',
-        'ezcDocumentWikiImageEndToken'             => 'ezcDocumentWikiImageEndNode',
-
-        'ezcDocumentWikiFootnoteStartToken'        => 'ezcDocumentWikiFootnoteNode',
-        'ezcDocumentWikiFootnoteEndToken'          => 'ezcDocumentWikiFootnoteEndNode',
-    );
+    protected $conversionsArray = ['ezcDocumentWikiEndOfFileToken'            => 'ezcDocumentWikiDocumentNode', 'ezcDocumentWikiTextLineToken'             => 'ezcDocumentWikiTextNode', 'ezcDocumentWikiWhitespaceToken'           => 'ezcDocumentWikiTextNode', 'ezcDocumentWikiSpecialCharsToken'         => 'ezcDocumentWikiTextNode', 'ezcDocumentWikiTitleToken'                => 'ezcDocumentWikiTitleNode', 'ezcDocumentWikiParagraphIndentationToken' => 'ezcDocumentWikiBlockquoteNode', 'ezcDocumentWikiQuoteToken'                => 'ezcDocumentWikiBlockquoteNode', 'ezcDocumentWikiPageBreakToken'            => 'ezcDocumentWikiPageBreakNode', 'ezcDocumentWikiBulletListItemToken'       => 'ezcDocumentWikiBulletListItemNode', 'ezcDocumentWikiEnumeratedListItemToken'   => 'ezcDocumentWikiEnumeratedListItemNode', 'ezcDocumentWikiLiteralBlockToken'         => 'ezcDocumentWikiLiteralBlockNode', 'ezcDocumentWikiTableRowToken'             => 'ezcDocumentWikiTableRowNode', 'ezcDocumentWikiPluginToken'               => 'ezcDocumentWikiPluginNode', 'ezcDocumentWikiBoldToken'                 => 'ezcDocumentWikiBoldNode', 'ezcDocumentWikiItalicToken'               => 'ezcDocumentWikiItalicNode', 'ezcDocumentWikiUnderlineToken'            => 'ezcDocumentWikiUnderlineNode', 'ezcDocumentWikiMonospaceToken'            => 'ezcDocumentWikiMonospaceNode', 'ezcDocumentWikiSubscriptToken'            => 'ezcDocumentWikiSubscriptNode', 'ezcDocumentWikiSuperscriptToken'          => 'ezcDocumentWikiSuperscriptNode', 'ezcDocumentWikiDeletedToken'              => 'ezcDocumentWikiDeletedNode', 'ezcDocumentWikiStrikeToken'               => 'ezcDocumentWikiDeletedNode', 'ezcDocumentWikiInlineQuoteToken'          => 'ezcDocumentWikiInlineQuoteNode', 'ezcDocumentWikiLineBreakToken'            => 'ezcDocumentWikiLineBreakNode', 'ezcDocumentWikiInlineLiteralToken'        => 'ezcDocumentWikiInlineLiteralNode', 'ezcDocumentWikiSeparatorToken'            => 'ezcDocumentWikiSeparatorNode', 'ezcDocumentWikiTableHeaderToken'          => 'ezcDocumentWikiTableHeaderSeparatorNode', 'ezcDocumentWikiExternalLinkToken'         => 'ezcDocumentWikiExternalLinkNode', 'ezcDocumentWikiInterWikiLinkToken'        => 'ezcDocumentWikiInterWikiLinkNode', 'ezcDocumentWikiInternalLinkToken'         => 'ezcDocumentWikiInternalLinkNode', 'ezcDocumentWikiLinkStartToken'            => 'ezcDocumentWikiLinkNode', 'ezcDocumentWikiLinkEndToken'              => 'ezcDocumentWikiLinkEndNode', 'ezcDocumentWikiImageStartToken'           => 'ezcDocumentWikiImageNode', 'ezcDocumentWikiImageEndToken'             => 'ezcDocumentWikiImageEndNode', 'ezcDocumentWikiFootnoteStartToken'        => 'ezcDocumentWikiFootnoteNode', 'ezcDocumentWikiFootnoteEndToken'          => 'ezcDocumentWikiFootnoteEndNode'];
 
     /**
      * Parse token stream.
@@ -303,7 +214,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
         if ( ( count( $this->documentStack ) !== 1 ) ||
              ( !( $document = reset( $this->documentStack ) ) instanceof ezcDocumentWikiDocumentNode ) )
         {
-            $node = isset( $document ) ? $document : reset( $this->documentStack );
+            $node = $document ?? reset( $this->documentStack );
             $this->triggerError(
                 E_PARSE,
                 'Expected end of file, got: ' . get_class( $this->documentStack[1] ) . ".",
@@ -512,7 +423,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function reduceParagraph( ezcDocumentWikiParagraphNode $node )
     {
         // Collect inline nodes
-        $collected = array();
+        $collected = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentWikiInlineNode ) )
         {
@@ -521,14 +432,14 @@ class ezcDocumentWikiParser extends ezcDocumentParser
             // Convert markup nodes without matching equivalent or out of the
             // normal context to text nodes.
             if ( ( ( $inlineNode instanceof ezcDocumentWikiMatchingInlineNode ) &&
-                   ( $inlineNode->nodes === array() ) ) ||
+                   ( $inlineNode->nodes === [] ) ) ||
                  ( ( $inlineNode instanceof ezcDocumentWikiSeparatorNode ) ) ||
                  ( ( $inlineNode instanceof ezcDocumentWikiImageNode ) &&
-                   ( $inlineNode->resource === array() ) ) ||
+                   ( $inlineNode->resource === [] ) ) ||
                  ( ( $inlineNode instanceof ezcDocumentWikiFootnoteNode ) &&
-                   ( $inlineNode->nodes === array() ) ) ||
+                   ( $inlineNode->nodes === [] ) ) ||
                  ( ( $inlineNode instanceof ezcDocumentWikiLinkNode ) &&
-                   ( $inlineNode->link === array() ) ) )
+                   ( $inlineNode->link === [] ) ) )
             {
                 $inlineNode = new ezcDocumentWikiTextNode( $inlineNode->token );
             }
@@ -546,7 +457,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
         if ( isset( $this->documentStack[0] ) &&
              ( ( $this->documentStack[0] instanceof ezcDocumentWikiBulletListItemNode ) ||
                ( $this->documentStack[0] instanceof ezcDocumentWikiEnumeratedListItemNode ) ) &&
-             ( $this->documentStack[0]->nodes === array() ) )
+             ( $this->documentStack[0]->nodes === [] ) )
         {
             $paragraph = $node;
             $node = array_shift( $this->documentStack );
@@ -568,7 +479,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function reduceSection( ezcDocumentWikiSectionNode $node )
     {
         // Collected node for prior section
-        $collected = array();
+        $collected = [];
         $lastSectionLevel = -1;
 
         // Include all paragraphs, tables, lists and sections with a higher
@@ -625,7 +536,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
                         $child->nodes,
                         $collected
                     );
-                    $collected = array();
+                    $collected = [];
                 }
 
                 // Sections on an equal level are just appended, for all
@@ -650,7 +561,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
      */
     protected function reduceTitleToSection( ezcDocumentWikiTitleNode $node )
     {
-        if ( $node->nodes === array() )
+        if ( $node->nodes === [] )
         {
             // Title node has no content yet, skip for now.
             return $node;
@@ -658,7 +569,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
 
         // Prepend section element to document stack
         $section = new ezcDocumentWikiSectionNode( $node->token );
-        $section->nodes = array( $node );
+        $section->nodes = [$node];
         return $section;
     }
 
@@ -674,19 +585,19 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function reduceMatchingInlineMarkup( ezcDocumentWikiMatchingInlineNode $node )
     {
         // Collect inline nodes
-        $collected = array();
+        $collected = [];
         $class     = get_class( $node );
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentWikiInlineNode ) &&
                 ( ( !$this->documentStack[0] instanceof $class ) ||
-                  ( $this->documentStack[0]->nodes !== array() ) ) )
+                  ( $this->documentStack[0]->nodes !== [] ) ) )
         {
             array_unshift( $collected, array_shift( $this->documentStack ) );
         }
 
         if ( isset( $this->documentStack[0] ) &&
              ( $this->documentStack[0] instanceof $class ) &&
-             ( $this->documentStack[0]->nodes === array() ) )
+             ( $this->documentStack[0]->nodes === [] ) )
         {
             // We found an empty matching node. Reduce
             $markupNode = array_shift( $this->documentStack );
@@ -716,7 +627,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
         /* DEBUG
         echo "  -> Find childs for line level markup:";
         // /DEBUG */
-        $collected = array();
+        $collected = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentWikiInlineNode ) )
         {
@@ -762,8 +673,8 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function reduceLinkNodes( ezcDocumentWikiLinkEndNode $node )
     {
         // Collect inline nodes
-        $parameters = array( array() );
-        $collected  = array();
+        $parameters = [[]];
+        $collected  = [];
         $parameter  = 0;
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentWikiInlineNode ) &&
@@ -774,7 +685,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
 
             if ( $child instanceof ezcDocumentWikiSeparatorNode )
             {
-                $parameters[++$parameter] = array();
+                $parameters[++$parameter] = [];
             }
             else
             {
@@ -815,8 +726,8 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function reduceImageNodes( ezcDocumentWikiImageEndNode $node )
     {
         // Collect inline nodes
-        $parameters = array( array() );
-        $collected  = array();
+        $parameters = [[]];
+        $collected  = [];
         $parameter  = 0;
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentWikiInlineNode ) &&
@@ -827,7 +738,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
 
             if ( $child instanceof ezcDocumentWikiSeparatorNode )
             {
-                $parameters[++$parameter] = array();
+                $parameters[++$parameter] = [];
             }
             else
             {
@@ -874,7 +785,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function reduceFootnoteNodes( ezcDocumentWikiFootnoteEndNode $node )
     {
         // Collect inline nodes
-        $collected = array();
+        $collected = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentWikiInlineNode ) &&
                 ( !$this->documentStack[0] instanceof ezcDocumentWikiFootnoteNode ) )
@@ -909,18 +820,18 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function reduceBlockquoteNode( ezcDocumentWikiBlockquoteNode $node )
     {
         // Collect inline nodes
-        $collected = array();
+        $collected = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentWikiInlineNode ) &&
                 ( ( !$this->documentStack[0] instanceof ezcDocumentWikiBlockquoteNode ) ||
-                  ( $this->documentStack[0]->nodes !== array() ) ) )
+                  ( $this->documentStack[0]->nodes !== [] ) ) )
         {
             array_unshift( $collected, array_shift( $this->documentStack ) );
         }
 
         if ( isset( $this->documentStack[0] ) &&
              ( $this->documentStack[0] instanceof ezcDocumentWikiBlockquoteNode ) &&
-             ( $this->documentStack[0]->nodes === array() ) )
+             ( $this->documentStack[0]->nodes === [] ) )
         {
             // We found an empty matching node. Reduce
             $blockquote = array_shift( $this->documentStack );
@@ -947,7 +858,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     {
         // Do not reduce empty bullet list nodes, but wait until they are
         // filled
-        if ( $node->nodes === array() )
+        if ( $node->nodes === [] )
         {
             return $node;
         }
@@ -965,7 +876,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
             $list = array_shift( $this->documentStack );
         }
 
-        $list->nodes = array_merge( $list->nodes, array( $node ) );
+        $list->nodes = array_merge( $list->nodes, [$node] );
         return $list;
     }
 
@@ -981,7 +892,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     {
         // Do not reduce empty enumerated list nodes, but wait until they are
         // filled
-        if ( $node->nodes === array() )
+        if ( $node->nodes === [] )
         {
             return $node;
         }
@@ -999,7 +910,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
             $list = array_shift( $this->documentStack );
         }
 
-        $list->nodes = array_merge( $list->nodes, array( $node ) );
+        $list->nodes = array_merge( $list->nodes, [$node] );
         return $list;
     }
 
@@ -1014,7 +925,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     protected function mergeListRecursively( array $lists )
     {
         $list      = array_shift( $lists );
-        $collected = array();
+        $collected = [];
         while ( $child = array_shift( $lists ) )
         {
             if ( $child->level > $list->level )
@@ -1026,7 +937,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
                 if ( count( $collected ) )
                 {
                     $list->nodes[] = $this->mergeListRecursively( $collected );
-                    $collected     = array();
+                    $collected     = [];
                 }
 
                 $list->nodes = array_merge(
@@ -1050,8 +961,8 @@ class ezcDocumentWikiParser extends ezcDocumentParser
      */
     protected function reduceLists( ezcDocumentWikiBlockLevelNode $node )
     {
-        $collected       = array();
-        $documentStack   = array();
+        $collected       = [];
+        $documentStack   = [];
         $class           = null;
         $lastIndentation = 1;
 
@@ -1078,7 +989,7 @@ class ezcDocumentWikiParser extends ezcDocumentParser
                     // /DEBUG */
                     $documentStack[] = $this->mergeListRecursively( $collected );
                     $class     = null;
-                    $collected = array();
+                    $collected = [];
                 }
 
                 if ( !$child instanceof ezcDocumentWikiListNode )
@@ -1130,13 +1041,13 @@ class ezcDocumentWikiParser extends ezcDocumentParser
     {
         // We only care about table rows which already have some contents
         // assigned.
-        if ( $node->nodes === array() )
+        if ( $node->nodes === [] )
         {
             return $node;
         }
 
-        $cells      = array();
-        $separators = array();
+        $cells      = [];
+        $separators = [];
         $cell       = ( $node->nodes[0] instanceof ezcDocumentWikiSeparatorNode ) ? -1 : 0;
         foreach ( $node->nodes as $child )
         {

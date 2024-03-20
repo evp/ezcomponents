@@ -19,7 +19,7 @@ $debug->options->stackTraceMaxDepth    = 2;
 ezcDebug::getInstance()->log(
     'Function testThis() has been called.',
     ezcLog::NOTICE,
-    array( 'additional' => 'info' )
+    ['additional' => 'info']
 );
 
 // ... somewhere else ...

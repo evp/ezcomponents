@@ -64,81 +64,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
      *
      * @var array(string=>string)
      */
-    protected $mimeMap = array(
-        'bmp'   => 'image/bmp',
-        'bmp2'  => 'image/bmp',
-        'bmp3'  => 'image/bmp',
-        'cur'   => 'image/x-win-bitmap',
-        'dcx'   => 'image/dcx',
-        'epdf'  => 'application/pdf',
-        'epi'   => 'application/postscript',
-        'eps'   => 'application/postscript',
-        'eps2'  => 'application/postscript',
-        'eps3'  => 'application/postscript',
-        'epsf'  => 'application/postscript',
-        'epsi'  => 'application/postscript',
-        'ept'   => 'application/postscript',
-        'ept2'  => 'application/postscript',
-        'ept3'  => 'application/postscript',
-        'fax'   => 'image/g3fax',
-        'fits'  => 'image/x-fits',
-        'g3'    => 'image/g3fax',
-        'gif'   => 'image/gif',
-        'gif87' => 'image/gif',
-        'icb'   => 'application/x-icb',
-        'ico'   => 'image/x-win-bitmap',
-        'icon'  => 'image/x-win-bitmap',
-        'jng'   => 'image/jng',
-        'jpeg'  => 'image/jpeg',
-        'jpg'   => 'image/jpeg',
-        'm2v'   => 'video/mpeg2',
-        'miff'  => 'application/x-mif',
-        'mng'   => 'video/mng',
-        'mpeg'  => 'video/mpeg',
-        'mpg'   => 'video/mpeg',
-        'otb'   => 'image/x-otb',
-        'p7'    => 'image/x-xv',
-        'palm'  => 'image/x-palm',
-        'pbm'   => 'image/pbm',
-        'pcd'   => 'image/pcd',
-        'pcds'  => 'image/pcd',
-        'pcl'   => 'application/pcl',
-        'pct'   => 'image/pict',
-        'pcx'   => 'image/x-pcx',
-        'pdb'   => 'application/vnd.palm',
-        'pdf'   => 'application/pdf',
-        'pgm'   => 'image/x-pgm',
-        'picon' => 'image/xpm',
-        'pict'  => 'image/pict',
-        'pjpeg' => 'image/pjpeg',
-        'png'   => 'image/png',
-        'png24' => 'image/png',
-        'png32' => 'image/png',
-        'png8'  => 'image/png',
-        'pnm'   => 'image/pbm',
-        'ppm'   => 'image/x-ppm',
-        'ps'    => 'application/postscript',
-        'psd'   => 'image/x-photoshop',
-        'ptif'  => 'image/x-ptiff',
-        'ras'   => 'image/ras',
-        'sgi'   => 'image/sgi',
-        'sun'   => 'image/ras',
-        'svg'   => 'image/svg+xml',
-        'svgz'  => 'image/svg',
-        'text'  => 'text/plain',
-        'tga'   => 'image/tga',
-        'tif'   => 'image/tiff',
-        'tiff'  => 'image/tiff',
-        'txt'   => 'text/plain',
-        'vda'   => 'image/vda',
-        'viff'  => 'image/x-viff',
-        'vst'   => 'image/vst',
-        'wbmp'  => 'image/vnd.wap.wbmp',
-        'xbm'   => 'image/x-xbitmap',
-        'xpm'   => 'image/x-xbitmap',
-        'xv'    => 'image/x-viff',
-        'xwd'   => 'image/xwd',
-    );
+    protected $mimeMap = ['bmp'   => 'image/bmp', 'bmp2'  => 'image/bmp', 'bmp3'  => 'image/bmp', 'cur'   => 'image/x-win-bitmap', 'dcx'   => 'image/dcx', 'epdf'  => 'application/pdf', 'epi'   => 'application/postscript', 'eps'   => 'application/postscript', 'eps2'  => 'application/postscript', 'eps3'  => 'application/postscript', 'epsf'  => 'application/postscript', 'epsi'  => 'application/postscript', 'ept'   => 'application/postscript', 'ept2'  => 'application/postscript', 'ept3'  => 'application/postscript', 'fax'   => 'image/g3fax', 'fits'  => 'image/x-fits', 'g3'    => 'image/g3fax', 'gif'   => 'image/gif', 'gif87' => 'image/gif', 'icb'   => 'application/x-icb', 'ico'   => 'image/x-win-bitmap', 'icon'  => 'image/x-win-bitmap', 'jng'   => 'image/jng', 'jpeg'  => 'image/jpeg', 'jpg'   => 'image/jpeg', 'm2v'   => 'video/mpeg2', 'miff'  => 'application/x-mif', 'mng'   => 'video/mng', 'mpeg'  => 'video/mpeg', 'mpg'   => 'video/mpeg', 'otb'   => 'image/x-otb', 'p7'    => 'image/x-xv', 'palm'  => 'image/x-palm', 'pbm'   => 'image/pbm', 'pcd'   => 'image/pcd', 'pcds'  => 'image/pcd', 'pcl'   => 'application/pcl', 'pct'   => 'image/pict', 'pcx'   => 'image/x-pcx', 'pdb'   => 'application/vnd.palm', 'pdf'   => 'application/pdf', 'pgm'   => 'image/x-pgm', 'picon' => 'image/xpm', 'pict'  => 'image/pict', 'pjpeg' => 'image/pjpeg', 'png'   => 'image/png', 'png24' => 'image/png', 'png32' => 'image/png', 'png8'  => 'image/png', 'pnm'   => 'image/pbm', 'ppm'   => 'image/x-ppm', 'ps'    => 'application/postscript', 'psd'   => 'image/x-photoshop', 'ptif'  => 'image/x-ptiff', 'ras'   => 'image/ras', 'sgi'   => 'image/sgi', 'sun'   => 'image/ras', 'svg'   => 'image/svg+xml', 'svgz'  => 'image/svg', 'text'  => 'text/plain', 'tga'   => 'image/tga', 'tif'   => 'image/tiff', 'tiff'  => 'image/tiff', 'txt'   => 'text/plain', 'vda'   => 'image/vda', 'viff'  => 'image/x-viff', 'vst'   => 'image/vst', 'wbmp'  => 'image/vnd.wap.wbmp', 'xbm'   => 'image/x-xbitmap', 'xpm'   => 'image/x-xbitmap', 'xv'    => 'image/x-viff', 'xwd'   => 'image/xwd'];
 
     /**
      * MIME types this handler is capable to read.
@@ -150,51 +76,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
      *
      * @var array(string=>bool)
      */
-    protected $mimeTypes = array(
-        'application/pcl' => true,
-        'application/pdf' => true,
-        'application/postscript' => true,
-        'application/vnd.palm' => true,
-        'application/x-icb' => true,
-        'application/x-mif' => true,
-        'image/dcx' => true,
-        'image/g3fax' => true,
-        'image/gif' => true,
-        'image/jng' => true,
-        'image/jpeg' => true,
-        'image/pbm' => true,
-        'image/pcd' => true,
-        'image/pict' => true,
-        'image/pjpeg' => true,
-        'image/png' => true,
-        'image/ras' => true,
-        'image/sgi' => true,
-        'image/svg' => true,
-        'image/tga' => true,
-        'image/tiff' => true,
-        'image/vda' => true,
-        'image/vnd.wap.wbmp' => true,
-        'image/vst' => true,
-        'image/x-fits' => true,
-        'image/x-ms-bmp' => true,
-        'image/x-otb' => true,
-        'image/x-palm' => true,
-        'image/x-pcx' => true,
-        'image/x-pgm' => true,
-        'image/x-photoshop' => true,
-        'image/x-ppm' => true,
-        'image/x-ptiff' => true,
-        'image/x-viff' => true,
-        'image/x-win-bitmap' => true,
-        'image/x-xbitmap' => true,
-        'image/x-xv' => true,
-        'image/xpm' => true,
-        'image/xwd' => true,
-        'text/plain' => true,
-        'video/mng' => true,
-        'video/mpeg' => true,
-        'video/mpeg2' => true,
-    );
+    protected $mimeTypes = ['application/pcl' => true, 'application/pdf' => true, 'application/postscript' => true, 'application/vnd.palm' => true, 'application/x-icb' => true, 'application/x-mif' => true, 'image/dcx' => true, 'image/g3fax' => true, 'image/gif' => true, 'image/jng' => true, 'image/jpeg' => true, 'image/pbm' => true, 'image/pcd' => true, 'image/pict' => true, 'image/pjpeg' => true, 'image/png' => true, 'image/ras' => true, 'image/sgi' => true, 'image/svg' => true, 'image/tga' => true, 'image/tiff' => true, 'image/vda' => true, 'image/vnd.wap.wbmp' => true, 'image/vst' => true, 'image/x-fits' => true, 'image/x-ms-bmp' => true, 'image/x-otb' => true, 'image/x-palm' => true, 'image/x-pcx' => true, 'image/x-pgm' => true, 'image/x-photoshop' => true, 'image/x-ppm' => true, 'image/x-ptiff' => true, 'image/x-viff' => true, 'image/x-win-bitmap' => true, 'image/x-xbitmap' => true, 'image/x-xv' => true, 'image/xpm' => true, 'image/xwd' => true, 'text/plain' => true, 'video/mng' => true, 'video/mpeg' => true, 'video/mpeg2' => true];
 
     /**
      * Analyzes the image type.
@@ -211,7 +93,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
     public function analyzeType( $file )
     {
         $parameters = '-format ' . escapeshellarg( '%m|' ) . ' ' . escapeshellarg( $file );
-        $res = ezcImageAnalyzerImagemagickHandler::runCommand( $parameters, $outputString, $errorString );
+        $res = (new ezcImageAnalyzerImagemagickHandler())->runCommand($parameters, $outputString, $errorString);
         if ( $res !== 0 || $errorString !== '' )
         {
             return false;
@@ -314,7 +196,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
                 else
                 {
                     $dataStruct->comment = $parsedData[6];
-                    $dataStruct->commentList = array( $parsedData[6] );
+                    $dataStruct->commentList = [$parsedData[6]];
                 }
             }
 
@@ -340,67 +222,45 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
      */
     protected function analyzeExif( ezcImageAnalyzerData $data, $file )
     {
-        $tagMap = array(
-            "IFD0" => array(
-                "ImageDescription",
-                "Make",
-                "Model",
-                "Orientation",
-                "XResolution",
-                "YResolution",
-                "ResolutionUnit",
-                "Software",
-                "DateTime",
-                "YCbCrPositioning",
-                "Exif_IFD_Pointer",
-                "Copyright",
-                "UserComment",
-            ),
-
-            "EXIF" => array(
-                "ExposureTime",
-                "FNumber",
-                "ExposureProgram",
-                "ISOSpeedRatings",
-                "ExifVersion",
-                "DateTimeOriginal",
-                "DateTimeDigitized",
-                "ComponentsConfiguration",
-                "BrightnessValue",
-                "ExposureBiasValue",
-                "MaxApertureValue",
-                "MeteringMode",
-                "LightSource",
-                "Flash",
-                "FocalLength",
+        $tagMap = ["IFD0" => ["ImageDescription", "Make", "Model", "Orientation", "XResolution", "YResolution", "ResolutionUnit", "Software", "DateTime", "YCbCrPositioning", "Exif_IFD_Pointer", "Copyright", "UserComment"], "EXIF" => [
+            "ExposureTime",
+            "FNumber",
+            "ExposureProgram",
+            "ISOSpeedRatings",
+            "ExifVersion",
+            "DateTimeOriginal",
+            "DateTimeDigitized",
+            "ComponentsConfiguration",
+            "BrightnessValue",
+            "ExposureBiasValue",
+            "MaxApertureValue",
+            "MeteringMode",
+            "LightSource",
+            "Flash",
+            "FocalLength",
             // ImageMagick does not grab this correct, therefore not supported
             //  "SubjectLocation",
-                "MakerNote",
-                "UserComment",
-                "FlashPixVersion",
-                "ColorSpace",
-                "ExifImageWidth",
-                "ExifImageLength",
-                "InteroperabilityOffset",
-                "FileSource",
-                "SceneType",
-                "CustomRendered",
-                "ExposureMode",
-                "WhiteBalance",
-                "DigitalZoomRatio",
-                "FocalLengthIn35mmFilm",
-                "SceneCaptureType",
-                "GainControl",
-                "Contrast",
-                "Saturation",
-                "Sharpness",
-                "SubjectDistanceRange",
-            ),
-            "INTEROP" => array(
-                "InterOperabilityIndex",
-                "InterOperabilityVersion"
-            )
-        );
+            "MakerNote",
+            "UserComment",
+            "FlashPixVersion",
+            "ColorSpace",
+            "ExifImageWidth",
+            "ExifImageLength",
+            "InteroperabilityOffset",
+            "FileSource",
+            "SceneType",
+            "CustomRendered",
+            "ExposureMode",
+            "WhiteBalance",
+            "DigitalZoomRatio",
+            "FocalLengthIn35mmFilm",
+            "SceneCaptureType",
+            "GainControl",
+            "Contrast",
+            "Saturation",
+            "Sharpness",
+            "SubjectDistanceRange",
+        ], "INTEROP" => ["InterOperabilityIndex", "InterOperabilityVersion"]];
 
         // Retreive exif data
         $command = '-format ' . escapeshellarg( "%[EXIF:*]"  ) . ' ' . escapeshellarg( $file );
@@ -414,7 +274,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
 
         // Pre-process data
         $rawData = explode( "\n", $outputString );
-        $dataArr = array();
+        $dataArr = [];
         foreach ( $rawData as $dataString )
         {
             $dataParts = explode( "=", $dataString, 2 );
@@ -442,7 +302,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
         }
 
         // Assign data to tags
-        $exifArr = array();
+        $exifArr = [];
         foreach ( $tagMap as $section => $tags )
         {
             foreach ( $tags as $tag )
@@ -478,7 +338,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
         }
 
         // Compute additional section ext/EXIF provides
-        $additionsArr = array();
+        $additionsArr = [];
         $addtionsArr["FILE"]["FileName"]               =  basename( $file );
         $addtionsArr["FILE"]["FileDateTime"]           =  filemtime( $file );
         $addtionsArr["FILE"]["FileSize"]               =  filesize( $file );
@@ -604,11 +464,7 @@ class ezcImageAnalyzerImagemagickHandler extends ezcImageAnalyzerHandler
     {
         $command = escapeshellcmd( $this->binary ) . ( $parameters !== '' ?  ' ' . $parameters : '' );
         // Prepare to run ImageMagick command
-        $descriptors = array(
-            array( 'pipe', 'r' ),
-            array( 'pipe', 'w' ),
-            array( 'pipe', 'w' ),
-        );
+        $descriptors = [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']];
 
         // Open ImageMagick process
         $process = proc_open( $command, $descriptors, $pipes );

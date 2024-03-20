@@ -36,14 +36,11 @@ class ezcDocumentDocbookToRstMediaObjectHandler extends ezcDocumentDocbookToRstB
         $resource = $node->getElementsBytagName( 'imagedata' )->item( 0 );
 
         $parameter = $resource->getAttribute( 'fileref' );
-        $options = array();
+        $options = [];
         $content = null;
 
         // Transform attributes
-        $attributes = array(
-            'width'   => 'width',
-            'depth'   => 'height',
-        );
+        $attributes = ['width'   => 'width', 'depth'   => 'height'];
         foreach ( $attributes as $src => $dst )
         {
             if ( $resource->hasAttribute( $src ) )
@@ -75,12 +72,7 @@ class ezcDocumentDocbookToRstMediaObjectHandler extends ezcDocumentDocbookToRstB
         // instead of an image.
         $type = ( $content !== null ) ? 'figure' : 'image';
 
-        return array(
-            'type'      => $type,
-            'parameter' => $parameter,
-            'options'   => $options,
-            'content'   => $content,
-        );
+        return ['type'      => $type, 'parameter' => $parameter, 'options'   => $options, 'content'   => $content];
     }
 
     /**

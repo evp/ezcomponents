@@ -128,7 +128,7 @@ class ezcTemplateArray
      */
     public static function array_extract_by_properties( $array, $properties )
     {
-        $list = array();
+        $list = [];
 
         foreach ( $array as $item )
         {
@@ -150,7 +150,7 @@ class ezcTemplateArray
      */
     public static function array_repeat( $array, $length )
     {
-        $out = array(); 
+        $out = []; 
         for( $i = 0; $i < $length; ++$i)
         {
             $out = array_merge( $out, $array );

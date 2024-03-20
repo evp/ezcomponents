@@ -25,7 +25,7 @@ class ezcDocumentBBCodeOptions extends ezcDocumentOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['tags'] = new ArrayObject();
         $this->properties['tags']['b']     = new ezcDocumentBBCodeEmphasisPlugin();

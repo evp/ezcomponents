@@ -16,7 +16,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 {
     public function testFetchMailEmptyMbox()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/empty.mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/empty.mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -25,7 +25,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMailEmptyMboxNoHeader()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/empty-no-header.mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/empty-no-header.mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -34,7 +34,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMailMboxHeader()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/one-mail.mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/one-mail.mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -44,7 +44,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMailMboxNoHeader()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/one-mail-no-header.mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/one-mail-no-header.mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -74,7 +74,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMail()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/test-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/test-mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -85,7 +85,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMail2()
     {
-        $set = new ezcMailMboxSet( fopen( dirname( __FILE__ ) . "/data/test-mbox", 'rt' ), array( 0 => 12053 ) );
+        $set = new ezcMailMboxSet( fopen( __DIR__ . "/data/test-mbox", 'rt' ), [0 => 12053] );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 1, count( $mail ) );
@@ -94,7 +94,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMail3()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/test-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/test-mbox" );
         $set = $mbox->fetchByMessageNr( 1 );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -104,7 +104,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMail4()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/test-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/test-mbox" );
         try
         {
             $set = $mbox->fetchByMessageNr( -1 );
@@ -128,7 +128,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMail5()
     {
-        $dirname = dirname( __FILE__ );
+        $dirname = __DIR__;
         try
         {
             $mbox = new ezcMailMboxTransport( $dirname . "/data/not-here-at-all" );
@@ -142,7 +142,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testfetchFromOffset1()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/testlimit-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/testlimit-mbox" );
         try
         {
             $set = $mbox->fetchFromOffset( -1, 10 );
@@ -156,7 +156,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testfetchFromOffset2()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/testlimit-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/testlimit-mbox" );
         try
         {
             $set = $mbox->fetchFromOffset( 10, 1 );
@@ -170,7 +170,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testfetchFromOffset3()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/testlimit-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/testlimit-mbox" );
         try
         {
             $set = $mbox->fetchFromOffset( 0, -1 );
@@ -184,7 +184,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testfetchFromOffset4()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/testlimit-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/testlimit-mbox" );
         $set = $mbox->fetchFromOffset( 0, 10 );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -194,7 +194,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testfetchFromOffset5()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/testlimit-mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/testlimit-mbox" );
         $set = $mbox->fetchFromOffset( 0, 0 );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -206,7 +206,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
     {
         try
         {
-            $set = new ezcMailMboxSet( false, array() );
+            $set = new ezcMailMboxSet( false, [] );
             self::fail( "Expected exception not thrown" );
         }
         catch ( ezcBaseFileIoException $e )
@@ -217,7 +217,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMailTabsInHeaders()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/tab.mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/tab.mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
@@ -229,7 +229,7 @@ class ezcMailTransportMboxTest extends ezcTestCase
 
     public function testFetchMailUnknownCharsets()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/unknown-charsets.mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/unknown-charsets.mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );

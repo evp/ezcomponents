@@ -70,7 +70,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
      * 
      * @var array
      */
-    protected $internalTargets = array();
+    protected $internalTargets = [];
 
     /**
      * List of internal links.
@@ -80,7 +80,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
      * 
      * @var array
      */
-    protected $pendingInternalLinks = array();
+    protected $pendingInternalLinks = [];
 
     /**
      * Array with fonts, and their equivalents for bold and italic markup. This
@@ -93,32 +93,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
      *
      * @var array
      */
-    protected $fonts = array(
-        'sans-serif' => array(
-            self::FONT_PLAIN   => 'Helvetica',
-            self::FONT_BOLD    => 'Helvetica-Bold',
-            self::FONT_OBLIQUE => 'Helvetica-Oblique',
-            3                  => 'Helvetica-BoldOblique',
-        ),
-        'serif' => array(
-            self::FONT_PLAIN   => 'Times-Roman',
-            self::FONT_BOLD    => 'Times-Bold',
-            self::FONT_OBLIQUE => 'Times-Oblique',
-            3                  => 'Times-BoldOblique',
-        ),
-        'monospace' => array(
-            self::FONT_PLAIN   => 'Courier',
-            self::FONT_BOLD    => 'Courier-Bold',
-            self::FONT_OBLIQUE => 'Courier-Oblique',
-            3                  => 'Courier-BoldOblique',
-        ),
-        'Symbol' => array(
-            self::FONT_PLAIN   => 'Symbol',
-        ),
-        'ZapfDingbats' => array(
-            self::FONT_PLAIN   => 'ZapfDingbats',
-        ),
-    );
+    protected $fonts = ['sans-serif' => [self::FONT_PLAIN   => 'Helvetica', self::FONT_BOLD    => 'Helvetica-Bold', self::FONT_OBLIQUE => 'Helvetica-Oblique', 3                  => 'Helvetica-BoldOblique'], 'serif' => [self::FONT_PLAIN   => 'Times-Roman', self::FONT_BOLD    => 'Times-Bold', self::FONT_OBLIQUE => 'Times-Oblique', 3                  => 'Times-BoldOblique'], 'monospace' => [self::FONT_PLAIN   => 'Courier', self::FONT_BOLD    => 'Courier-Bold', self::FONT_OBLIQUE => 'Courier-Oblique', 3                  => 'Courier-BoldOblique'], 'Symbol' => [self::FONT_PLAIN   => 'Symbol'], 'ZapfDingbats' => [self::FONT_PLAIN   => 'ZapfDingbats']];
 
     /**
      * Encodings known by libharu.
@@ -131,8 +106,9 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
      *
      * @var array
      */
-    protected $encodings = array(
-        'StandardEncoding' => 'ISO_8859-1', // Assumption
+    protected $encodings = [
+        'StandardEncoding' => 'ISO_8859-1',
+        // Assumption
         'MacRomanEncoding' => 'MAC',
         'WinAnsiEncoding'  => 'ISO_8859-1',
         'ISO8859-2'        => 'ISO_8859-2',
@@ -159,27 +135,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
         'CP1257'           => 'CP1257',
         'CP1258'           => 'CP1258',
         'KOI8-R'           => 'KOI8-R',
-        /*
-         * @todo: Find out how about the respective equivalents in inconv
-         * encoding notation.
-        'GB-EUC-H'         => '',
-        'GB-EUC-V'         => '',
-        'GBK-EUC-H'        => '',
-        'GBK-EUC-V'        => '',
-        'ETen-B5-H'        => '',
-        'ETen-B5-V'        => '',
-        '90ms-RKSJ-H'      => '',
-        '90ms-RKSJ-V'      => '',
-        '90msp-RKSJ-H'     => '',
-        'EUC-H'            => '',
-        'EUC-V'            => '',
-        'KSC-EUC-H'        => '',
-        'KSC-EUC-V'        => '',
-        'KSCms-UHC-H'      => '',
-        'KSCms-UHC-HW-H'   => '',
-        'KSCms-UHC-HW-V'   => '',
-         */
-    );
+    ];
 
     /**
      * Reference to the page currently rendered on
@@ -193,24 +149,14 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
      *
      * @var array
      */
-    protected $currentFont = array(
-        'name'  => 'sans-serif',
-        'style' => self::FONT_PLAIN,
-        'size'  => 28.5,
-        'font'  => null,
-    );
+    protected $currentFont = ['name'  => 'sans-serif', 'style' => self::FONT_PLAIN, 'size'  => 28.5, 'font'  => null];
 
     /**
      * Mapping of native permission flags, to Haru permission flags
      * 
      * @var array
      */
-    protected $permissionMapping = array(
-        ezcDocumentPdfOptions::EDIT      => HaruDoc::ENABLE_EDIT,
-        ezcDocumentPdfOptions::PRINTABLE => HaruDoc::ENABLE_PRINT,
-        ezcDocumentPdfOptions::COPY      => HaruDoc::ENABLE_COPY,
-        ezcDocumentPdfOptions::MODIFY    => HaruDoc::ENABLE_EDIT_ALL,
-    );
+    protected $permissionMapping = [ezcDocumentPdfOptions::EDIT      => HaruDoc::ENABLE_EDIT, ezcDocumentPdfOptions::PRINTABLE => HaruDoc::ENABLE_PRINT, ezcDocumentPdfOptions::COPY      => HaruDoc::ENABLE_COPY, ezcDocumentPdfOptions::MODIFY    => HaruDoc::ENABLE_EDIT_ALL];
 
     /**
      * Construct driver
@@ -224,7 +170,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
         parent::__construct();
 
         $this->document = null;
-        $this->pages    = array();
+        $this->pages    = [];
         $this->dummyDoc = null;
     }
 
@@ -238,7 +184,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
         $this->document = new HaruDoc();
         $this->document->setPageMode( HaruDoc::PAGE_MODE_USE_THUMBS );
         $this->document->setInfoAttr( HaruDoc::INFO_CREATOR, 'eZ Components - Document 1.3.1' );
-        $this->pages = array();
+        $this->pages = [];
 
         if ( $this->options->compress )
         {
@@ -339,12 +285,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
             $this->dummyDoc->getCurrentPage()->setFontAndSize( $font, $this->currentFont['size'] );
         }
 
-        $this->currentFont = array(
-            'name'  => $name,
-            'style' => $style,
-            'size'  => $this->currentFont['size'],
-            'font'  => $font,
-        );
+        $this->currentFont = ['name'  => $name, 'style' => $style, 'size'  => $this->currentFont['size'], 'font'  => $font];
     }
 
     /**
@@ -679,14 +620,9 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
     public function addExternalLink( $x, $y, $width, $height, $url )
     {
         $this->currentPage->createURLAnnotation(
-            array(
-                ezcDocumentPcssMeasure::create( $x )->get( 'pt' ),
-                $this->currentPage->getHeight() -
-                    ezcDocumentPcssMeasure::create( $y + $height )->get( 'pt' ),
-                ezcDocumentPcssMeasure::create( $x + $width )->get( 'pt' ),
-                $this->currentPage->getHeight() -
-                    ezcDocumentPcssMeasure::create( $y )->get( 'pt' ),
-            ),
+            [ezcDocumentPcssMeasure::create( $x )->get( 'pt' ), $this->currentPage->getHeight() -
+                ezcDocumentPcssMeasure::create( $y + $height )->get( 'pt' ), ezcDocumentPcssMeasure::create( $x + $width )->get( 'pt' ), $this->currentPage->getHeight() -
+                ezcDocumentPcssMeasure::create( $y )->get( 'pt' )],
             $url
         );
     }
@@ -707,7 +643,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
      */
     public function addInternalLink( $x, $y, $width, $height, $target )
     {
-        $this->pendingInternalLinks[] = array( $this->currentPage, $x, $y, $width, $height, $target );
+        $this->pendingInternalLinks[] = [$this->currentPage, $x, $y, $width, $height, $target];
     }
 
     /**
@@ -736,7 +672,7 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
     {
         foreach ( $this->pendingInternalLinks as $link )
         {
-            list( $page, $x, $y, $width, $height, $target ) = $link;
+            [$page, $x, $y, $width, $height, $target] = $link;
             if ( !isset( $this->internalTargets[$target] ) )
             {
                 // Link reference without any target
@@ -744,14 +680,9 @@ class ezcDocumentPdfHaruDriver extends ezcDocumentPdfDriver
             }
 
             $page->createLinkAnnotation(
-                array(
-                    ezcDocumentPcssMeasure::create( $x )->get( 'pt' ),
-                    $this->currentPage->getHeight() -
-                        ezcDocumentPcssMeasure::create( $y + $height )->get( 'pt' ),
-                    ezcDocumentPcssMeasure::create( $x + $width )->get( 'pt' ),
-                    $this->currentPage->getHeight() -
-                        ezcDocumentPcssMeasure::create( $y )->get( 'pt' ),
-                ),
+                [ezcDocumentPcssMeasure::create( $x )->get( 'pt' ), $this->currentPage->getHeight() -
+                    ezcDocumentPcssMeasure::create( $y + $height )->get( 'pt' ), ezcDocumentPcssMeasure::create( $x + $width )->get( 'pt' ), $this->currentPage->getHeight() -
+                    ezcDocumentPcssMeasure::create( $y )->get( 'pt' )],
                 $this->internalTargets[$target]
             );
         }

@@ -9,15 +9,5 @@
  * @package SystemInformation
  */
 
-return array(
-    'ezcSystemInfoException'                 => 'SystemInformation/exceptions/exception.php',
-    'ezcSystemInfoReaderCantScanOSException' => 'SystemInformation/exceptions/reader_cant_scan_os.php',
-    'ezcSystemInfoReader'                    => 'SystemInformation/interfaces/reader.php',
-    'ezcSystemInfo'                          => 'SystemInformation/info.php',
-    'ezcSystemInfoAccelerator'               => 'SystemInformation/structs/accelerator.php',
-    'ezcSystemInfoFreeBsdReader'             => 'SystemInformation/readers/freebsd.php',
-    'ezcSystemInfoLinuxReader'               => 'SystemInformation/readers/linux.php',
-    'ezcSystemInfoMacReader'                 => 'SystemInformation/readers/mac.php',
-    'ezcSystemInfoWindowsReader'             => 'SystemInformation/readers/windows.php',
-);
+return ['ezcSystemInfoException'                 => 'SystemInformation/exceptions/exception.php', 'ezcSystemInfoReaderCantScanOSException' => 'SystemInformation/exceptions/reader_cant_scan_os.php', 'ezcSystemInfoReader'                    => 'SystemInformation/interfaces/reader.php', 'ezcSystemInfo'                          => 'SystemInformation/info.php', 'ezcSystemInfoAccelerator'               => 'SystemInformation/structs/accelerator.php', 'ezcSystemInfoFreeBsdReader'             => 'SystemInformation/readers/freebsd.php', 'ezcSystemInfoLinuxReader'               => 'SystemInformation/readers/linux.php', 'ezcSystemInfoMacReader'                 => 'SystemInformation/readers/mac.php', 'ezcSystemInfoWindowsReader'             => 'SystemInformation/readers/windows.php'];
 ?>

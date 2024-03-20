@@ -3,11 +3,7 @@
 $backendBefore = new ezcWebdavMemoryBackend();
 
 $backendBefore->addContents(
-    array(
-        'collection' => array(
-            'resource.html' => '',
-        ),
-    )
+    ['collection' => ['resource.html' => '']]
 );
 
 $backendBefore->setProperty(

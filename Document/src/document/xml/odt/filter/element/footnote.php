@@ -38,7 +38,7 @@ class ezcDocumentOdtElementFootnoteFilter extends ezcDocumentOdtElementBaseFilte
             $attrs = $element->getProperty( 'attributes' );
             if ( $attrs === false )
             {
-                $attrs = array();
+                $attrs = [];
             }
             $attrs['label'] = $cite->nodeValue;
             $element->setProperty( 'attributes', $attrs );

@@ -21,7 +21,7 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
@@ -78,61 +78,54 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
      */
     public static function getTextDecorationTestSets()
     {
-        return array(
-            'line-through' => array(
-                // style
-                new ezcDocumentPcssStyleListValue( array( 'line-through' ) ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-type', 'single' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-style', 'solid' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-width', 'auto' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-color', 'font-color' ),
-                )
-            ),
-            'underline' => array(
-                // style
-                new ezcDocumentPcssStyleListValue( array( 'underline' ) ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-type', 'single' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-style', 'solid' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-width', 'auto' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-color', 'font-color' ),
-                )
-            ),
-            'overline' => array(
-                // style
-                new ezcDocumentPcssStyleListValue( array( 'overline' ) ),
-                // expected attributes
-                array(
-                )
-            ),
-            'blink' => array(
-                // style
-                new ezcDocumentPcssStyleListValue( array( 'blink' ) ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-blinking', 'true' ),
-                )
-            ),
-            'multiple' => array(
-                // style
-                new ezcDocumentPcssStyleListValue( array( 'blink', 'underline' ) ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-blinking', 'true' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-type', 'single' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-style', 'solid' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-width', 'auto' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-color', 'font-color' ),
-                )
-            ),
-        );
+        return ['line-through' => [
+            // style
+            new ezcDocumentPcssStyleListValue( ['line-through'] ),
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-type', 'single'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-style', 'solid'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-width', 'auto'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-line-through-color', 'font-color'],
+            ],
+        ], 'underline' => [
+            // style
+            new ezcDocumentPcssStyleListValue( ['underline'] ),
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-type', 'single'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-style', 'solid'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-width', 'auto'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-color', 'font-color'],
+            ],
+        ], 'overline' => [
+            // style
+            new ezcDocumentPcssStyleListValue( ['overline'] ),
+            // expected attributes
+            [],
+        ], 'blink' => [
+            // style
+            new ezcDocumentPcssStyleListValue( ['blink'] ),
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-blinking', 'true'],
+            ],
+        ], 'multiple' => [
+            // style
+            new ezcDocumentPcssStyleListValue( ['blink', 'underline'] ),
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-blinking', 'true'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-type', 'single'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-style', 'solid'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-width', 'auto'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'text-underline-color', 'font-color'],
+            ],
+        ]];
     }
 
     /**
@@ -153,56 +146,37 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
      */
     public static function getColorTestSets()
     {
-        return array(
-            'non-transparent' => array(
-                // style
-                new ezcDocumentPcssStyleColorValue(
-                    array(
-                        'red'   => 1.0,
-                        'green' => 1.0,
-                        'blue'  => 1.0,
-                        'alpha' => 0.4,
-                    )
-                ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'color', '#ffffff' ),
-                )
+        return ['non-transparent' => [
+            // style
+            new ezcDocumentPcssStyleColorValue(
+                ['red'   => 1.0, 'green' => 1.0, 'blue'  => 1.0, 'alpha' => 0.4]
             ),
-            'transparent' => array(
-                // style
-                new ezcDocumentPcssStyleColorValue(
-                    array(
-                        'red'   => 1.0,
-                        'green' => 1.0,
-                        'blue'  => 1.0,
-                        'alpha' => 0.5,
-                    )
-                ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'color', 'transparent' ),
-                )
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'color', '#ffffff'],
+            ],
+        ], 'transparent' => [
+            // style
+            new ezcDocumentPcssStyleColorValue(
+                ['red'   => 1.0, 'green' => 1.0, 'blue'  => 1.0, 'alpha' => 0.5]
             ),
-            'value' => array(
-                // style
-                new ezcDocumentPcssStyleColorValue(
-                    array(
-                        'red'   => 0.75294117647059,
-                        'green' => 1.0,
-                        'blue'  => 0,
-                        'alpha' => 0.0,
-                    )
-                ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'color', '#c0ff00' ),
-                )
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'color', 'transparent'],
+            ],
+        ], 'value' => [
+            // style
+            new ezcDocumentPcssStyleColorValue(
+                ['red'   => 0.75294117647059, 'green' => 1.0, 'blue'  => 0, 'alpha' => 0.0]
             ),
-        );
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'color', '#c0ff00'],
+            ],
+        ]];
     }
 
     /**
@@ -254,19 +228,17 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
      */
     public static function getFontSizeTestSets()
     {
-        return array(
-            'font-size' => array(
-                // styles
-                new ezcDocumentPcssStyleMeasureValue( 23 ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'font-size', '23mm' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'font-size-asian', '23mm' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'font-size-complex', '23mm' ),
-                )
-            ),
-        );
+        return ['font-size' => [
+            // styles
+            new ezcDocumentPcssStyleMeasureValue( 23 ),
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'font-size', '23mm'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'font-size-asian', '23mm'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'font-size-complex', '23mm'],
+            ],
+        ]];
     }
 
     /**
@@ -284,19 +256,17 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
 
     public static function getTextFontNameTestSets()
     {
-        return array(
-            'font-name' => array(
-                // styles
-                new ezcDocumentPcssStyleStringValue( 'DejaVu Sans' ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'font-name', 'DejaVu Sans' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'font-name-asian', 'DejaVu Sans' ),
-                    array( ezcDocumentOdt::NS_ODT_STYLE, 'font-name-complex', 'DejaVu Sans' ),
-                )
-            ),
-        );
+        return ['font-name' => [
+            // styles
+            new ezcDocumentPcssStyleStringValue( 'DejaVu Sans' ),
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_STYLE, 'font-name', 'DejaVu Sans'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'font-name-asian', 'DejaVu Sans'],
+                [ezcDocumentOdt::NS_ODT_STYLE, 'font-name-complex', 'DejaVu Sans'],
+            ],
+        ]];
     }
 
     /**
@@ -314,17 +284,15 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
 
     public static function getTextAlignTestSets()
     {
-        return array(
-            array(
-                // style
-                new ezcDocumentPcssStyleStringValue( 'center' ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'text-align', 'center' ),
-                )
-            ),
-        );
+        return [[
+            // style
+            new ezcDocumentPcssStyleStringValue( 'center' ),
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'text-align', 'center'],
+            ],
+        ]];
     }
 
     /**
@@ -345,61 +313,44 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
      */
     public static function getMarginTestSets()
     {
-        return array(
-            'margin full' => array(
-                // style
-                new ezcDocumentPcssStyleMeasureBoxValue(
-                    array(
-                        'top'    => 1,
-                        'left'   => 2,
-                        'bottom' => 3,
-                        'right'  => 4
-                    )
-                ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-top', '1mm' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-left', '2mm' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-bottom', '3mm' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-right', '4mm' ),
-                )
+        return ['margin full' => [
+            // style
+            new ezcDocumentPcssStyleMeasureBoxValue(
+                ['top'    => 1, 'left'   => 2, 'bottom' => 3, 'right'  => 4]
             ),
-            'margin missings' => array(
-                // style
-                new ezcDocumentPcssStyleMeasureBoxValue(
-                    array(
-                        'top'    => 1,
-                        'right'  => 4
-                    )
-                ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-top', '1mm' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-right', '4mm' ),
-                )
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-top', '1mm'],
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-left', '2mm'],
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-bottom', '3mm'],
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-right', '4mm'],
+            ],
+        ], 'margin missings' => [
+            // style
+            new ezcDocumentPcssStyleMeasureBoxValue(
+                ['top'    => 1, 'right'  => 4]
             ),
-            'margin empty' => array(
-                // style
-                new ezcDocumentPcssStyleMeasureBoxValue(
-                    array(
-                        'top'    => 1,
-                        'left'   => 0,
-                        'bottom' => 3,
-                        'right'  => null
-                    )
-                ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-top', '1mm' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-left', '0mm' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-bottom', '3mm' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'margin-right', '0mm' ),
-                )
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-top', '1mm'],
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-right', '4mm'],
+            ],
+        ], 'margin empty' => [
+            // style
+            new ezcDocumentPcssStyleMeasureBoxValue(
+                ['top'    => 1, 'left'   => 0, 'bottom' => 3, 'right'  => null]
             ),
-       );
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-top', '1mm'],
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-left', '0mm'],
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-bottom', '3mm'],
+                [ezcDocumentOdt::NS_ODT_FO, 'margin-right', '0mm'],
+            ],
+        ]];
     }
 
     /**
@@ -420,63 +371,20 @@ class ezcDocumentOdtPcssConvertersTest extends ezcTestCase
      */
     public static function getBorderTestSets()
     {
-        return array(
-            'border full' => array(
-                // style
-                new ezcDocumentPcssStyleBorderBoxValue(
-                    array(
-                        'top' => array(
-                            'width' => 1,
-                            'style' => 'solid',
-                            'color' => array(
-                                'red'   => 1,
-                                'green' => 0,
-                                'blue'  => 0,
-                                'alpha' => 0
-                            )
-                        ),
-                        'left' => array(
-                            'width' => 10,
-                            'style' => 'solid',
-                            'color' => array(
-                                'red'   => 0,
-                                'green' => 1,
-                                'blue'  => 0,
-                                'alpha' => 0
-                            )
-                        ),
-                        'bottom' => array(
-                            'width' => 1,
-                            'style' => 'solid',
-                            'color' => array(
-                                'red'   => 0,
-                                'green' => 0,
-                                'blue'  => 1,
-                                'alpha' => .8
-                            )
-                        ),
-                        'right' => array(
-                            'width' => 1,
-                            'style' => 'dotted',
-                            'color' => array(
-                                'red'   => .3,
-                                'green' => .2,
-                                'blue'  => .4,
-                                'alpha' => .2
-                            )
-                        ),
-                    )
-                ),
-                // expected attributes
-                array(
-                    // NS, attribute name, value
-                    array( ezcDocumentOdt::NS_ODT_FO, 'border-top', '1mm solid #ff0000' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'border-left', '10mm solid #00ff00' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'border-bottom', '1mm solid transparent' ),
-                    array( ezcDocumentOdt::NS_ODT_FO, 'border-right', '1mm dotted #4d3366' ),
-                )
+        return ['border full' => [
+            // style
+            new ezcDocumentPcssStyleBorderBoxValue(
+                ['top' => ['width' => 1, 'style' => 'solid', 'color' => ['red'   => 1, 'green' => 0, 'blue'  => 0, 'alpha' => 0]], 'left' => ['width' => 10, 'style' => 'solid', 'color' => ['red'   => 0, 'green' => 1, 'blue'  => 0, 'alpha' => 0]], 'bottom' => ['width' => 1, 'style' => 'solid', 'color' => ['red'   => 0, 'green' => 0, 'blue'  => 1, 'alpha' => .8]], 'right' => ['width' => 1, 'style' => 'dotted', 'color' => ['red'   => .3, 'green' => .2, 'blue'  => .4, 'alpha' => .2]]]
             ),
-       );
+            // expected attributes
+            [
+                // NS, attribute name, value
+                [ezcDocumentOdt::NS_ODT_FO, 'border-top', '1mm solid #ff0000'],
+                [ezcDocumentOdt::NS_ODT_FO, 'border-left', '10mm solid #00ff00'],
+                [ezcDocumentOdt::NS_ODT_FO, 'border-bottom', '1mm solid transparent'],
+                [ezcDocumentOdt::NS_ODT_FO, 'border-right', '1mm dotted #4d3366'],
+            ],
+        ]];
     }
 
 }

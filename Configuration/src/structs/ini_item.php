@@ -25,14 +25,14 @@ class ezcConfigurationIniItem extends ezcBaseStruct
      *
      * @var int
      */
-    const SETTING = 1;
+    public const SETTING = 1;
 
     /**
      * The Configuration item is a group..
      *
      * @var int
      */
-    const GROUP_HEADER = 2;
+    public const GROUP_HEADER = 2;
 
     /**
      * The item type.

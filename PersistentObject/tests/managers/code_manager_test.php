@@ -18,14 +18,14 @@ class ezcPersistentCodeManagerTest extends ezcTestCase
 {
     public function testFetchValid()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/data/" );
         $def = $manager->fetchDefinition( "SimpleDefinition" );
         $this->assertEquals( true, $def instanceof ezcPersistentObjectDefinition );
     }
 
     public function testFetchValidTwice()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/data/" );
         $def = $manager->fetchDefinition( "SimpleDefinition" );
         $this->assertEquals( true, $def instanceof ezcPersistentObjectDefinition );
         $def2 = $manager->fetchDefinition( "SimpleDefinition" );
@@ -34,7 +34,7 @@ class ezcPersistentCodeManagerTest extends ezcTestCase
 
     public function testInvalidClass()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/data/" );
         try
         {
             $manager->fetchDefinition( "NoSuchClass" );
@@ -48,7 +48,7 @@ class ezcPersistentCodeManagerTest extends ezcTestCase
 
     public function testInvalidDirectory()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/nosuchthing/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/nosuchthing/" );
         try
         {
             $manager->fetchDefinition( "SimpleDefinition" );
@@ -62,7 +62,7 @@ class ezcPersistentCodeManagerTest extends ezcTestCase
 
     public function testNoNamespace()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . '/../data/namespaces/' );
+        $manager = new ezcPersistentCodeManager( __DIR__ . '/../data/namespaces/' );
         
         $def = $manager->fetchDefinition( 'NoNamespace' );
 
@@ -72,7 +72,7 @@ class ezcPersistentCodeManagerTest extends ezcTestCase
 
     public function testRootNamespace()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . '/../data/namespaces/' );
+        $manager = new ezcPersistentCodeManager( __DIR__ . '/../data/namespaces/' );
         
         $def = $manager->fetchDefinition( '\\RootNamespace' );
 
@@ -82,7 +82,7 @@ class ezcPersistentCodeManagerTest extends ezcTestCase
 
     public function testSingleNamespace()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . '/../data/namespaces/' );
+        $manager = new ezcPersistentCodeManager( __DIR__ . '/../data/namespaces/' );
         
         $def = $manager->fetchDefinition( '\\foo\\InFooNamespace' );
 
@@ -92,7 +92,7 @@ class ezcPersistentCodeManagerTest extends ezcTestCase
 
     public function testMultipleNamespace()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . '/../data/namespaces/' );
+        $manager = new ezcPersistentCodeManager( __DIR__ . '/../data/namespaces/' );
         
         $def = $manager->fetchDefinition( '\\foo\\Bar\\InBarNamespace' );
 

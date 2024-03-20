@@ -92,12 +92,12 @@ class ezcUrlConfiguration
     /**
      * Flag for specifying single arguments for unordered parameters.
      */
-    const SINGLE_ARGUMENT = 1;
+    public const SINGLE_ARGUMENT = 1;
 
     /**
      * Flag for specifying multiple arguments for unordered parameters.
      */
-    const MULTIPLE_ARGUMENTS = 2;
+    public const MULTIPLE_ARGUMENTS = 2;
 
     /**
      * Flag for specifying aggregation for unordered parameter values if the
@@ -108,14 +108,14 @@ class ezcUrlConfiguration
      * $url->getParam( 'param1' ) will return array( array( "x" ), array( "y", "z" ) ),
      * if $url is an ezcUrl object created from the above URL.
      */
-    const AGGREGATE_ARGUMENTS = 4;
+    public const AGGREGATE_ARGUMENTS = 4;
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Stores the instance of this class.
@@ -139,9 +139,9 @@ class ezcUrlConfiguration
     {
         $this->basedir = null;
         $this->script = null;
-        $this->unorderedDelimiters = array( '(', ')' );
-        $this->orderedParameters = array();
-        $this->unorderedParameters = array();
+        $this->unorderedDelimiters = ['(', ')'];
+        $this->orderedParameters = [];
+        $this->unorderedParameters = [];
     }
 
     /**

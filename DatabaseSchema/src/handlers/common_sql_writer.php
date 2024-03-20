@@ -83,8 +83,8 @@ abstract class ezcDbSchemaCommonSqlWriter implements ezcDbSchemaDbWriter, ezcDbS
         $this->schema = $dbSchema->getSchema();
 
         // reset queries
-        $this->queries = array();
-        $this->context = array();
+        $this->queries = [];
+        $this->context = [];
 
         $this->generateSchemaAsSql();
         return $this->queries;
@@ -147,7 +147,7 @@ abstract class ezcDbSchemaCommonSqlWriter implements ezcDbSchemaDbWriter, ezcDbS
         $sql .= " (\n";
 
         // dump fields
-        $fieldsSQL = array();
+        $fieldsSQL = [];
 
         foreach ( $tableDefinition->fields as $fieldName => $fieldDefinition )
         {

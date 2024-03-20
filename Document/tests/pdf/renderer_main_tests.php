@@ -25,13 +25,13 @@ class ezcDocumentPdfMainRendererTests extends ezcDocumentPdfTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testRenderUnknownElements()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/unknown.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/unknown.xml' );
 
         try {
             $renderer  = new ezcDocumentPdfMainRenderer(
@@ -52,7 +52,7 @@ class ezcDocumentPdfMainRendererTests extends ezcDocumentPdfTestCase
     public function testRenderUnknownElementsSilence()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/unknown.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/unknown.xml' );
 
         $options  = new ezcDocumentPdfOptions();
         $options->errorReporting = E_PARSE;
@@ -78,44 +78,39 @@ class ezcDocumentPdfMainRendererTests extends ezcDocumentPdfTestCase
     public function testRenderMainSinglePage()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/long_text.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array()
+            __DIR__ . '/../files/pdf/long_text.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            []
         );
     }
 
     public function testRenderMainSinglePageNotNamespaced()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/paragraph_nons.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array()
+            __DIR__ . '/../files/pdf/paragraph_nons.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            []
         );
     }
 
     public function testRenderMainMulticolumnLayout()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/long_text.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-                new ezcDocumentPcssLayoutDirective(
-                    array( 'article' ),
-                    array(
-                        'text-columns' => '3',
-                        'line-height'  => '1',
-                    )
-                ),
-            )
+            __DIR__ . '/../files/pdf/long_text.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            [new ezcDocumentPcssLayoutDirective(
+                ['article'],
+                ['text-columns' => '3', 'line-height'  => '1']
+            )]
         );
     }
 
     public function testRenderLongTextParagraphConflict()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/test_long_wrapping.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array()
+            __DIR__ . '/../files/pdf/test_long_wrapping.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            []
         );
     }
 
@@ -127,17 +122,13 @@ class ezcDocumentPdfMainRendererTests extends ezcDocumentPdfTestCase
         }
 
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/internal_links.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/internal_links.xml' );
 
         $style = new ezcDocumentPcssStyleInferencer();
-        $style->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'page' ),
-                array(
-                    'page-size' => 'A6',
-                )
-            ),
-        ) );
+        $style->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['page'],
+            ['page-size' => 'A6']
+        )] );
 
         $renderer  = new ezcDocumentPdfMainRenderer(
             new ezcDocumentPdfHaruDriver(),
@@ -148,23 +139,19 @@ class ezcDocumentPdfMainRendererTests extends ezcDocumentPdfTestCase
             new ezcDocumentPdfDefaultHyphenator()
         );
 
-        $this->assertPdfDocumentsSimilar( $pdf, __CLASS__ . '_' . __FUNCTION__ );
+        $this->assertPdfDocumentsSimilar( $pdf, self::class . '_' . __FUNCTION__ );
     }
 
     public function testRenderUnavailableCustomFont()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/wrapping.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/wrapping.xml' );
 
         $style = new ezcDocumentPcssStyleInferencer();
-        $style->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-family' => 'my-font',
-                )
-            ),
-        ) );
+        $style->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-family' => 'my-font']
+        )] );
 
         $renderer  = new ezcDocumentPdfMainRenderer(
             new ezcDocumentPdfSvgDriver(),
@@ -175,30 +162,22 @@ class ezcDocumentPdfMainRendererTests extends ezcDocumentPdfTestCase
             new ezcDocumentPdfDefaultHyphenator()
         );
 
-        $this->assertPdfDocumentsSimilar( $pdf, __CLASS__ . '_' . __FUNCTION__ );
+        $this->assertPdfDocumentsSimilar( $pdf, self::class . '_' . __FUNCTION__ );
     }
 
     public function testRenderCustomFont()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/wrapping.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/wrapping.xml' );
 
         $style = new ezcDocumentPcssStyleInferencer();
-        $style->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-family' => 'my-font',
-                )
-            ),
-            new ezcDocumentPcssDeclarationDirective(
-                '@font-face',
-                array(
-                    'font-family' => 'my-font',
-                    'src'         => 'url( ' . dirname( __FILE__ ) . '/../files/fonts/font.ttf )',
-                )
-            ),
-        ) );
+        $style->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-family' => 'my-font']
+        ), new ezcDocumentPcssDeclarationDirective(
+            '@font-face',
+            ['font-family' => 'my-font', 'src'         => 'url( ' . __DIR__ . '/../files/fonts/font.ttf )']
+        )] );
 
         $renderer  = new ezcDocumentPdfMainRenderer(
             new ezcDocumentPdfSvgDriver(),
@@ -209,7 +188,7 @@ class ezcDocumentPdfMainRendererTests extends ezcDocumentPdfTestCase
             new ezcDocumentPdfDefaultHyphenator()
         );
 
-        $this->assertPdfDocumentsSimilar( $pdf, __CLASS__ . '_' . __FUNCTION__ );
+        $this->assertPdfDocumentsSimilar( $pdf, self::class . '_' . __FUNCTION__ );
     }
 }
 

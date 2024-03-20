@@ -38,14 +38,14 @@ class ezcTemplateCompiledCode
      * The unique number for the template engine, this will be increased each time
      * the compiled code needs to be recompiled at the client.
      */
-    const ENGINE_ID = 1;
+    public const ENGINE_ID = 1;
 
     /**
      * An array containing the properties of this object.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * @var ezcTemplateVariableCollection
@@ -160,9 +160,9 @@ class ezcTemplateCompiledCode
     public function execute()
     {
         if ( $this->template === null )
-            throw new ezcTemplateNoManagerException( __CLASS__, 'template' );
+            throw new ezcTemplateNoManagerException( self::class, 'template' );
         if ( $this->context === null )
-            throw new ezcTemplateNoOutputContextException( __CLASS__, 'context' );
+            throw new ezcTemplateNoOutputContextException( self::class, 'context' );
 
         if ( !$this->isValid() )
             throw new ezcTemplateInvalidCompiledFileException( $this->identifier, $this->path );
@@ -186,7 +186,7 @@ class ezcTemplateCompiledCode
      * @throws ezcTemplateOutdatedCompilationException when the template should be recompiled. 
      * @return void
      */
-    protected function checkRequirements( $engineID, $compileFlags = array() )
+    protected function checkRequirements( $engineID, $compileFlags = [] )
     {
         if ( $this->template->configuration->checkModifiedTemplates &&
              // Do not recompile when the modification times are the same. This messes up the caching tests.

@@ -57,18 +57,7 @@ class ezcConsoleTableOptionsTest extends ezcTestCase
     public function testConstructorNew()
     {
         $fake = new ezcConsoleTableOptions( 
-            array(
-                "colWidth" => "auto",
-                "colWrap" => ezcConsoleTable::WRAP_AUTO,
-                "defaultAlign" => ezcConsoleTable::ALIGN_LEFT,
-                "colPadding" => " ",
-                "widthType" => ezcConsoleTable::WIDTH_MAX,
-                "lineVertical" => "-",
-                "lineHorizontal" => "|",
-                "corner" => "+",
-                "defaultFormat" => "default",
-                "defaultBorderFormat" => "default"
-            )
+            ["colWidth" => "auto", "colWrap" => ezcConsoleTable::WRAP_AUTO, "defaultAlign" => ezcConsoleTable::ALIGN_LEFT, "colPadding" => " ", "widthType" => ezcConsoleTable::WIDTH_MAX, "lineVertical" => "-", "lineHorizontal" => "|", "corner" => "+", "defaultFormat" => "default", "defaultBorderFormat" => "default"]
         );
         $this->assertEquals( 
             $fake,
@@ -80,7 +69,7 @@ class ezcConsoleTableOptionsTest extends ezcTestCase
     public function testCompatibility()
     {
         $old = new ezcConsoleTableOptions( 
-            array( 10, 20, 10 ),
+            [10, 20, 10],
             ezcConsoleTable::WRAP_CUT,
             ezcConsoleTable::ALIGN_CENTER,
             "-",
@@ -92,18 +81,7 @@ class ezcConsoleTableOptionsTest extends ezcTestCase
             "blue"
         );
         $new = new ezcConsoleTableOptions( 
-            array(
-                "colWidth" => array( 10, 20, 10 ),
-                "colWrap" => ezcConsoleTable::WRAP_CUT,
-                "defaultAlign" => ezcConsoleTable::ALIGN_CENTER,
-                "colPadding" => "-",
-                "widthType" => ezcConsoleTable::WIDTH_FIXED,
-                "lineVertical" => "_",
-                "lineHorizontal" => "I",
-                "corner" => "x",
-                "defaultFormat" => "red",
-                "defaultBorderFormat" => "blue"
-            )
+            ["colWidth" => [10, 20, 10], "colWrap" => ezcConsoleTable::WRAP_CUT, "defaultAlign" => ezcConsoleTable::ALIGN_CENTER, "colPadding" => "-", "widthType" => ezcConsoleTable::WIDTH_FIXED, "lineVertical" => "_", "lineHorizontal" => "I", "corner" => "x", "defaultFormat" => "red", "defaultBorderFormat" => "blue"]
         );
         $this->assertEquals( $old, $new, "Old construction method did not produce same result as old one." );
     }
@@ -138,13 +116,11 @@ class ezcConsoleTableOptionsTest extends ezcTestCase
     public function testConstructorFirstParameter()
     {
         $colWidthArray = new ezcConsoleTableOptions(
-            array( 1, 2, 3 )
+            [1, 2, 3]
         );
 
         $optionsArray = new ezcConsoleTableOptions(
-            array(
-                "colWidth" => array( 1, 2, 3 ),
-            )
+            ["colWidth" => [1, 2, 3]]
         );
 
         $this->assertEquals( $colWidthArray, $optionsArray, "Did not detect options array correctly." );
@@ -157,15 +133,13 @@ class ezcConsoleTableOptionsTest extends ezcTestCase
             $out,
             100,
             new ezcConsoleTableOptions(
-                array( 1, 2, 3 )
+                [1, 2, 3]
             )
         );
         $new = new ezcConsoleTable(
             $out,
             100,
-            array(
-                "colWidth" => array( 1, 2, 3 ),
-            )
+            ["colWidth" => [1, 2, 3]]
         );
         $this->assertEquals( $old, $new, "Constructor calls did not produce same table objects." );
     }

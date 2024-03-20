@@ -7,7 +7,7 @@ $credentials2 = new ezcAuthenticationPasswordCredentials( 'john.doe', 'wpeE20wyW
 $options = new ezcAuthenticationGroupOptions();
 $options->multipleCredentials = true;
 $options->mode = ezcAuthenticationGroupFilter::MODE_AND;
-$group = new ezcAuthenticationGroupFilter( array(), $options );
+$group = new ezcAuthenticationGroupFilter( [], $options );
 
 $group->addFilter( new ezcAuthenticationHtpasswdFilter( '../../tests/filters/htpasswd/data/htpasswd' ), $credentials1 );
 $group->addFilter( new ezcAuthenticationHtpasswdFilter( '../../tests/filters/htpasswd/data/htpasswd' ), $credentials2 );
@@ -21,23 +21,13 @@ if ( !$authentication->run() )
     // authentication did not succeed, so inform the user
     $status = $authentication->getStatus();
 
-    $err = array(
-                array( 'ezcAuthenticationHtpasswdFilter' => array(
-                        ezcAuthenticationHtpasswdFilter::STATUS_OK => '',
-                        ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect username ' . $credentials1->id,
-                        ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect password for ' . $credentials1->id
-                        ) ),
-
-                array( 'ezcAuthenticationHtpasswdFilter' => array(
-                        ezcAuthenticationHtpasswdFilter::STATUS_OK => '',
-                        ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect username ' . $credentials2->id,
-                        ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect password for ' . $credentials2->id
-                        ) )
-                );
+    $err = [['ezcAuthenticationHtpasswdFilter' => [ezcAuthenticationHtpasswdFilter::STATUS_OK => '', ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect username ' . $credentials1->id, ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect password for ' . $credentials1->id]], ['ezcAuthenticationHtpasswdFilter' => [ezcAuthenticationHtpasswdFilter::STATUS_OK => '', ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect username ' . $credentials2->id, ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect password for ' . $credentials2->id]]];
 
     foreach ( $status as $line => $error )
     {
-        list( $key, $value ) = each( $error );
+        $key = key($error);
+        $value = current($error);
+        next($error);
         echo $err[$line][$key][$value] . "\n";
     }
 }

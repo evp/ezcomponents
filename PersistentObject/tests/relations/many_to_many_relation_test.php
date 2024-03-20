@@ -8,9 +8,9 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . "/../data/relation_test_address.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_person.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_second_person.php";
+require_once __DIR__ . "/../data/relation_test_address.php";
+require_once __DIR__ . "/../data/relation_test_person.php";
+require_once __DIR__ . "/../data/relation_test_second_person.php";
 
 /**
  * Tests ezcPersistentManyToManyRelation class.
@@ -42,7 +42,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         RelationTestPerson::insertData();
         $this->session = new ezcPersistentSession(
             ezcDbInstance::get(),
-            new ezcPersistentCodeManager( dirname( __FILE__ ) . "/../data/" )
+            new ezcPersistentCodeManager( __DIR__ . "/../data/" )
         );
     }
 
@@ -60,7 +60,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $this->assertEquals( "PO_persons", $relation->sourceTable );
         $this->assertEquals( "PO_addresses", $relation->destinationTable );
         $this->assertEquals( "PO_persons_addresses", $relation->relationTable );
-        $this->assertEquals( array(), $relation->columnMap );
+        $this->assertEquals( [], $relation->columnMap );
         $this->assertEquals( false, $relation->reverse );
     }
 
@@ -97,13 +97,13 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $relation->sourceTable = "PO_other_persons";
         $relation->destinationTable = "PO_other_addresses";
         $relation->relationTable = "PO_other_persons_other_addresses";
-        $relation->columnMap = array( $tableMap );
+        $relation->columnMap = [$tableMap];
         $relation->reverse = true;
 
         $this->assertEquals( $relation->sourceTable, "PO_other_persons" );
         $this->assertEquals( $relation->destinationTable, "PO_other_addresses" );
         $this->assertEquals( $relation->relationTable, "PO_other_persons_other_addresses" );
-        $this->assertEquals( $relation->columnMap, array( $tableMap ) );
+        $this->assertEquals( $relation->columnMap, [$tableMap] );
         $this->assertEquals( $relation->reverse, true );
     }
 
@@ -141,7 +141,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
 
         try
         {
-            $relation->columnMap = array( $tableMap );
+            $relation->columnMap = [$tableMap];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentManyToManyRelation->columnMap." );
         }
         catch ( ezcBaseValueException $e )
@@ -150,7 +150,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         
         try
         {
-            $relation->columnMap = array();
+            $relation->columnMap = [];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentManyToManyRelation->columnMap." );
         }
         catch ( ezcBaseValueException $e )
@@ -159,7 +159,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
 
         try
         {
-            $relation->reverse = array();
+            $relation->reverse = [];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentManyToManyRelation->reverse." );
         }
         catch ( ezcBaseValueException $e )
@@ -181,32 +181,10 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectsPerson1()
     {
         $person = $this->session->load( "RelationTestPerson", 1 );
-        $res = array (
-            1 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '1',
-                'street' => 'Httproad 23',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'work',
-            )),
-            2 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '2',
-                'street' => 'Ftpstreet 42',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'work',
-            )),
-            4 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '4',
-                'street' => 'Pythonstreet 13',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'private',
-            )),
-        );
+        $res = [1 => 
+        RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']), 2 => 
+        RelationTestAddress::__set_state(['id' => '2', 'street' => 'Ftpstreet 42', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']), 4 => 
+        RelationTestAddress::__set_state(['id' => '4', 'street' => 'Pythonstreet 13', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'private'])];
 
         $this->assertEquals(
             $res,
@@ -218,32 +196,10 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectsPerson2()
     {
         $person = $this->session->load( "RelationTestPerson", 2 );
-        $res = array (
-            1 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '1',
-                'street' => 'Httproad 23',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'work',
-            )),
-            3 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '3',
-                'street' => 'Phpavenue 21',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'private',
-            )),
-            4 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '4',
-                'street' => 'Pythonstreet 13',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'private',
-            )),
-        );
+        $res = [1 => 
+        RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']), 3 => 
+        RelationTestAddress::__set_state(['id' => '3', 'street' => 'Phpavenue 21', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'private']), 4 => 
+        RelationTestAddress::__set_state(['id' => '4', 'street' => 'Pythonstreet 13', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'private'])];
 
         $this->assertEquals(
             $res,
@@ -255,13 +211,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectFromPerson1()
     {
         $person = $this->session->load( "RelationTestPerson", 1 );
-        $res = RelationTestAddress::__set_state(array(
-            'id' => '1',
-            'street' => 'Httproad 23',
-            'zip' => '12345',
-            'city' => 'Internettown',
-            'type' => 'work',
-        ));
+        $res = RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']);
 
         $this->assertEquals(
             $res,
@@ -273,13 +223,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectFromPerson2()
     {
         $person = $this->session->load( "RelationTestPerson", 2 );
-        $res =  RelationTestAddress::__set_state(array(
-            'id' => '1',
-            'street' => 'Httproad 23',
-            'zip' => '12345',
-            'city' => 'Internettown',
-            'type' => 'work',
-        ));
+        $res =  RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']);
 
         $this->assertEquals(
             $res,
@@ -291,13 +235,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectFromSecondPerson()
     {
         $person = $this->session->load( "RelationTestSecondPerson", 1 );
-        $res =  RelationTestAddress::__set_state(array(
-            'id' => '1',
-            'street' => 'Httproad 23',
-            'zip' => '12345',
-            'city' => 'Internettown',
-            'type' => 'work',
-        ));
+        $res =  RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']);
 
         $this->assertEquals(
             $res,
@@ -310,22 +248,9 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     {
         $address = $this->session->load( "RelationTestAddress", 1 );
 
-        $res = array (
-            1 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '1',
-             'firstname' => 'Theodor',
-             'surname' => 'Gopher',
-             'employer' => '2',
-            )),
-            2 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '2',
-             'firstname' => 'Frederick',
-             'surname' => 'Ajax',
-             'employer' => '1',
-            )),
-        );
+        $res = [1 => 
+        RelationTestPerson::__set_state(['id' => '1', 'firstname' => 'Theodor', 'surname' => 'Gopher', 'employer' => '2']), 2 => 
+        RelationTestPerson::__set_state(['id' => '2', 'firstname' => 'Frederick', 'surname' => 'Ajax', 'employer' => '1'])];
 
         $this->assertEquals(
             $res,
@@ -352,12 +277,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $stmt = $q->prepare();
         $stmt->execute();
 
-        $res =array (
-            'address_id' => '2',
-            0 => '2',
-            'person_id' => '2',
-            1 => '2',
-        );
+        $res =['address_id' => '2', 0 => '2', 'person_id' => '2', 1 => '2'];
 
         $this->assertEquals(
             $res,
@@ -385,14 +305,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $stmt = $q->prepare();
         $stmt->execute();
 
-        $res =array (
-            'address_id' => '2',
-            0 => '2',
-            'person_firstname' => 'Frederick',
-            1 => 'Frederick',
-            'person_surname' => 'Ajax',
-            2 => 'Ajax',
-        );
+        $res =['address_id' => '2', 0 => '2', 'person_firstname' => 'Frederick', 1 => 'Frederick', 'person_surname' => 'Ajax', 2 => 'Ajax'];
 
         $this->assertEquals(
             $res,
@@ -432,7 +345,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
             $this->session->removeRelatedObject( $person, $address );
         }
 
-        $res = array();
+        $res = [];
 
         $this->assertEquals(
             $res,
@@ -448,24 +361,9 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
 
         $this->session->removeRelatedObject( $person, $address );
 
-        $res = array (
-            3 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '3',
-                'street' => 'Phpavenue 21',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'private',
-            )),
-            4 => 
-            RelationTestAddress::__set_state(array(
-                'id' => '4',
-                'street' => 'Pythonstreet 13',
-                'zip' => '12345',
-                'city' => 'Internettown',
-                'type' => 'private',
-            )),
-        );
+        $res = [3 => 
+        RelationTestAddress::__set_state(['id' => '3', 'street' => 'Phpavenue 21', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'private']), 4 => 
+        RelationTestAddress::__set_state(['id' => '4', 'street' => 'Pythonstreet 13', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'private'])];
 
         $this->assertEquals(
             $res,
@@ -477,18 +375,12 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testRemoveRelatedObjectFromSecondPerson()
     {
         $person = $this->session->load( "RelationTestSecondPerson", 1 );
-        $address =  RelationTestAddress::__set_state(array(
-            'id' => '1',
-            'street' => 'Httproad 23',
-            'zip' => '12345',
-            'city' => 'Internettown',
-            'type' => 'work',
-        ));
+        $address =  RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']);
 
         $this->session->removeRelatedObject( $person, $address );
 
         $this->assertEquals(
-            array(),
+            [],
             $this->session->getRelatedObjects( $person, "RelationTestAddress" ),
             "Related RelationTestSecondPerson object not removed correctly."
         );
@@ -507,7 +399,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $this->session->delete( $address );
 
         $this->assertEquals(
-            array(),
+            [],
             $this->session->getRelatedObjects( $address, "RelationTestPerson" ),
             "Address relation records not deleted correctly on Person delete."
         );
@@ -516,13 +408,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectWithAmbigiousColumn()
     {
         $person = $this->session->load( "RelationTestPerson", 1 );
-        $res =  RelationTestAddress::__set_state(array(
-            'id' => '1',
-            'street' => 'Httproad 23',
-            'zip' => '12345',
-            'city' => 'Internettown',
-            'type' => 'work',
-        ));
+        $res =  RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']);
 
         $this->assertEquals(
             $res,
@@ -531,22 +417,9 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         );
 
         $friends = $this->session->getRelatedObjects( $person, 'RelationTestPerson' );
-        $res = array (
-            2 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '2',
-             'firstname' => 'Frederick',
-             'surname' => 'Ajax',
-             'employer' => '1',
-            )),
-            3 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '3',
-             'firstname' => 'Raymond',
-             'surname' => 'Socialweb',
-             'employer' => '1',
-            )),
-        );
+        $res = [2 => 
+        RelationTestPerson::__set_state(['id' => '2', 'firstname' => 'Frederick', 'surname' => 'Ajax', 'employer' => '1']), 3 => 
+        RelationTestPerson::__set_state(['id' => '3', 'firstname' => 'Raymond', 'surname' => 'Socialweb', 'employer' => '1'])];
 
         $this->assertEquals(
             $res,
@@ -557,13 +430,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
     public function testRemoveRelatedObjectWithAmbigiousColumn()
     {
         $person = $this->session->load( "RelationTestPerson", 1 );
-        $res =  RelationTestAddress::__set_state(array(
-            'id' => '1',
-            'street' => 'Httproad 23',
-            'zip' => '12345',
-            'city' => 'Internettown',
-            'type' => 'work',
-        ));
+        $res =  RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']);
 
         $this->assertEquals(
             $res,
@@ -572,22 +439,9 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         );
 
         $friends = $this->session->getRelatedObjects( $person, 'RelationTestPerson' );
-        $res = array (
-            2 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '2',
-             'firstname' => 'Frederick',
-             'surname' => 'Ajax',
-             'employer' => '1',
-            )),
-            3 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '3',
-             'firstname' => 'Raymond',
-             'surname' => 'Socialweb',
-             'employer' => '1',
-            )),
-        );
+        $res = [2 => 
+        RelationTestPerson::__set_state(['id' => '2', 'firstname' => 'Frederick', 'surname' => 'Ajax', 'employer' => '1']), 3 => 
+        RelationTestPerson::__set_state(['id' => '3', 'firstname' => 'Raymond', 'surname' => 'Socialweb', 'employer' => '1'])];
 
         $this->assertEquals(
             $res,
@@ -597,15 +451,8 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $this->session->removeRelatedObject( $person, $friends[2] );
 
         $friends = $this->session->getRelatedObjects( $person, 'RelationTestPerson' );
-        $res = array (
-            3 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '3',
-             'firstname' => 'Raymond',
-             'surname' => 'Socialweb',
-             'employer' => '1',
-            )),
-        );
+        $res = [3 => 
+        RelationTestPerson::__set_state(['id' => '3', 'firstname' => 'Raymond', 'surname' => 'Socialweb', 'employer' => '1'])];
 
         $this->assertEquals(
             $res,
@@ -619,7 +466,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $friends = $this->session->getRelatedObjects( $person, 'RelationTestPerson' );
 
         $this->assertEquals(
-            array(),
+            [],
             $friends
         );
         
@@ -628,27 +475,14 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $this->session->addRelatedObject( $person, $otherPerson );
 
         $friends = $this->session->getRelatedObjects( $person, 'RelationTestPerson' );
-        $res = array (
-            0 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '3',
-             'firstname' => 'Raymond',
-             'surname' => 'Socialweb',
-             'employer' => '1',
-            )),
-        );
+        $res = [0 => 
+        RelationTestPerson::__set_state(['id' => '3', 'firstname' => 'Raymond', 'surname' => 'Socialweb', 'employer' => '1'])];
     }
 
     public function testDeleteRelatedObjectWithAmbigiousColumn()
     {
         $person = $this->session->load( "RelationTestPerson", 1 );
-        $res =  RelationTestAddress::__set_state(array(
-            'id' => '1',
-            'street' => 'Httproad 23',
-            'zip' => '12345',
-            'city' => 'Internettown',
-            'type' => 'work',
-        ));
+        $res =  RelationTestAddress::__set_state(['id' => '1', 'street' => 'Httproad 23', 'zip' => '12345', 'city' => 'Internettown', 'type' => 'work']);
 
         $this->assertEquals(
             $res,
@@ -657,22 +491,9 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         );
 
         $friends = $this->session->getRelatedObjects( $person, 'RelationTestPerson' );
-        $res = array (
-            2 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '2',
-             'firstname' => 'Frederick',
-             'surname' => 'Ajax',
-             'employer' => '1',
-            )),
-            3 => 
-            RelationTestPerson::__set_state(array(
-             'id' => '3',
-             'firstname' => 'Raymond',
-             'surname' => 'Socialweb',
-             'employer' => '1',
-            )),
-        );
+        $res = [2 => 
+        RelationTestPerson::__set_state(['id' => '2', 'firstname' => 'Frederick', 'surname' => 'Ajax', 'employer' => '1']), 3 => 
+        RelationTestPerson::__set_state(['id' => '3', 'firstname' => 'Raymond', 'surname' => 'Socialweb', 'employer' => '1'])];
 
         $this->assertEquals(
             $res,
@@ -685,7 +506,7 @@ class ezcPersistentManyToManyRelationTest extends ezcTestCase
         $friends = $this->session->getRelatedObjects( $person, 'RelationTestPerson' );
 
         $this->assertEquals(
-            array(),
+            [],
             $this->session->getRelatedObjects( $person, 'RelationTestPerson' )
         );
     }

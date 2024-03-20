@@ -21,13 +21,13 @@ class ezcDocumentRstStackTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testUnShift()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -38,7 +38,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testDoubleUnShift()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -54,7 +54,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testEmptyShift()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_shift( $array ),
@@ -65,7 +65,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testShift()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -81,7 +81,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testDoubleShift()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -107,7 +107,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testCountEmpty()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             count( $array ),
@@ -118,7 +118,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testCountSingle()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -134,7 +134,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testCountDouble()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -155,7 +155,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testCountDoubleReduced()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -181,7 +181,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testCountDoubleReducedTwice()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -212,7 +212,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testCountDoubleReducedTriple()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             array_unshift( $array, 1 ),
@@ -249,9 +249,9 @@ class ezcDocumentRstStackTests extends ezcTestCase
     {
         $stack = new ezcDocumentRstStack();
         $stack->unshift( 1 );
-        $array = array( 1 );
+        $array = [1];
 
-        $stack->prepend( $prepend = array( 23, 42 ) );
+        $stack->prepend( $prepend = [23, 42] );
         $array = array_merge( $prepend, $array );
 
         $this->assertSame(
@@ -289,9 +289,9 @@ class ezcDocumentRstStackTests extends ezcTestCase
     {
         $stack = new ezcDocumentRstStack();
         $stack->unshift( 1 );
-        $array = array( 1 );
+        $array = [1];
 
-        $stack->prepend( $prepend = array( 23, 42 ) );
+        $stack->prepend( $prepend = [23, 42] );
         $array = array_merge( $prepend, $array );
 
         $this->assertSame(
@@ -314,9 +314,9 @@ class ezcDocumentRstStackTests extends ezcTestCase
     {
         $stack = new ezcDocumentRstStack();
         $stack->unshift( 1 );
-        $array = array( 1 );
+        $array = [1];
 
-        $stack->prepend( $prepend = array( 23, 42 ) );
+        $stack->prepend( $prepend = [23, 42] );
         $array = array_merge( $prepend, $array );
 
         $this->assertSame(
@@ -348,7 +348,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testRewindEmpty()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         $this->assertSame(
             reset( $array ),
@@ -360,7 +360,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     {
         $stack = new ezcDocumentRstStack();
         $stack->unshift( 1 );
-        $array = array( 1 );
+        $array = [1];
 
         $this->assertSame(
             reset( $array ),
@@ -371,7 +371,7 @@ class ezcDocumentRstStackTests extends ezcTestCase
     public function testRewindDouble()
     {
         $stack = new ezcDocumentRstStack();
-        $array = array();
+        $array = [];
 
         array_unshift( $array, 1 );
         array_unshift( $array, 23 );

@@ -43,7 +43,7 @@ abstract class ezcWebdavProperty extends ezcWebdavInfrastructureBase
     public function __construct( $namespace, $name )
     {
         $this->properties['hasError'] = false;
-        $this->properties['errors']   = array();
+        $this->properties['errors']   = [];
 
         $this->namespace = $namespace;
         $this->name      = $name;
@@ -170,7 +170,7 @@ abstract class ezcWebdavProperty extends ezcWebdavInfrastructureBase
     {
         foreach ( $this->properties as $name => $value )
         {
-            if ( !in_array( $name, array( 'name', 'namespace', 'errors', 'hasError' ), true ) )
+            if ( !in_array( $name, ['name', 'namespace', 'errors', 'hasError'], true ) )
             {
                 $this->properties[$name] = null;
             }

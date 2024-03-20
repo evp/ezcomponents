@@ -29,16 +29,16 @@ if ( ezcInputForm::hasPostData() )
             <pre>
 <?php
     echo "Valid properties:\n";
-    var_dump( array( 'test1', 'test3' ) );
+    var_dump( ['test1', 'test3'] );
 
     echo "Invalid properties:\n";
-    var_dump( array( 'test2', 'test4' ) );
+    var_dump( ['test2', 'test4'] );
 
     echo "Required properties:\n";
-    var_dump( array( 'test1') );
+    var_dump( ['test1'] );
 
     echo "Optional properties:\n";
-    var_dump( array( 'test2', 'test3', 'test4' ) );
+    var_dump( ['test2', 'test3', 'test4'] );
 
     echo "Values:\n";
     var_dump( 3.14 );
@@ -58,10 +58,7 @@ if ( ezcInputForm::hasPostData() )
         <td>
             <pre>
 <?php
-    $def = array(
-        'test1' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::REQUIRED, 'boolean' ),
-        'test2' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'boolean' ),
-    );
+    $def = ['test1' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::REQUIRED, 'boolean' ), 'test2' => new ezcInputFormDefinitionElement( ezcInputFormDefinitionElement::OPTIONAL, 'boolean' )];
     $form = new ezcInputForm( INPUT_POST, $def );
 
     echo "Valid properties:\n";

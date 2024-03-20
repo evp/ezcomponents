@@ -119,7 +119,7 @@ class ezcWorkflowExecutionListenerTest extends ezcWorkflowTestCase
         $this->setUpExpectations( 'ExclusiveChoiceSimpleMerge' );
         $this->setUpExclusiveChoiceSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
     }
 
@@ -128,7 +128,7 @@ class ezcWorkflowExecutionListenerTest extends ezcWorkflowTestCase
         $this->setUpExpectations( 'ExclusiveChoiceWithUnconditionalOutNodeSimpleMerge' );
         $this->setUpExclusiveChoiceWithUnconditionalOutNodeSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
     }
 
@@ -183,7 +183,7 @@ class ezcWorkflowExecutionListenerTest extends ezcWorkflowTestCase
     protected function setUpExpectations( $log )
     {
         $lines = file(
-          dirname( dirname( dirname( __FILE__ ) ) ) . DIRECTORY_SEPARATOR .
+          dirname(__FILE__, 3) . DIRECTORY_SEPARATOR .
           'WorkflowEventLogTiein' . DIRECTORY_SEPARATOR . 'tests' .
           DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . $log . '.log'
         );

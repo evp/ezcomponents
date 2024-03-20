@@ -15,7 +15,7 @@ class Where
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['like'] = $this->like;
         $result['update'] = $this->update;
         return $result;

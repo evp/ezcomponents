@@ -24,21 +24,11 @@ class ezcDocumentPdfDriverHaruTests extends ezcDocumentPdfDriverTests
      * 
      * @var array
      */
-    protected $expectedWidths = array(
-        'testEstimateDefaultWordWidthWithoutPageCreation' => 22.9,
-        'testEstimateDefaultWordWidth'                    => 22.9,
-        'testEstimateWordWidthDifferentSize'              => 31.9,
-        'testEstimateWordWidthDifferentSizeAndUnit'       => 11.3,
-        'testEstimateBoldWordWidth'                       => 24.6,
-        'testEstimateMonospaceWordWidth'                  => 36,
-        'testFontStyleFallback'                           => 38.8,
-        'testUtf8FontWidth'                               => 29.6,
-        'testCustomFontWidthEstimation'                   => 59.1,
-    );
+    protected $expectedWidths = ['testEstimateDefaultWordWidthWithoutPageCreation' => 22.9, 'testEstimateDefaultWordWidth'                    => 22.9, 'testEstimateWordWidthDifferentSize'              => 31.9, 'testEstimateWordWidthDifferentSizeAndUnit'       => 11.3, 'testEstimateBoldWordWidth'                       => 24.6, 'testEstimateMonospaceWordWidth'                  => 36, 'testFontStyleFallback'                           => 38.8, 'testUtf8FontWidth'                               => 29.6, 'testCustomFontWidthEstimation'                   => 59.1];
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     /**

@@ -25,7 +25,7 @@ class ezcDocumentPdfTransactionalDriverWrapperTests extends ezcDocumentPdfTestCa
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
@@ -34,16 +34,7 @@ class ezcDocumentPdfTransactionalDriverWrapperTests extends ezcDocumentPdfTestCa
 
         $this->driver = new ezcDocumentPdfTransactionalDriverWrapper();
         $this->driver->setDriver(
-            $this->mock = $this->getMock( 'ezcDocumentPdfDriver', array(
-                'createPage',
-                'getCurrentLineHeight',
-                'calculateWordWidth',
-                'setTextFormatting',
-                'drawWord',
-                'drawImage',
-                'drawRectangle',
-                'save',
-            ) )
+            $this->mock = $this->getMock( 'ezcDocumentPdfDriver', ['createPage', 'getCurrentLineHeight', 'calculateWordWidth', 'setTextFormatting', 'drawWord', 'drawImage', 'drawRectangle', 'save'] )
         );
     }
 

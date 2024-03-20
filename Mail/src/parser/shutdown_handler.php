@@ -39,7 +39,7 @@ class ezcMailParserShutdownHandler
      *
      * @var array(string)
      */
-    private static $directories = array();
+    private static $directories = [];
 
     /**
      * Registers the directory $dir for removal when PHP shuts down.
@@ -52,7 +52,7 @@ class ezcMailParserShutdownHandler
     {
         if ( self::$isRegistered === false )
         {
-            register_shutdown_function( array( "ezcMailParserShutdownHandler", "shutdownCallback" ) );
+            register_shutdown_function( ["ezcMailParserShutdownHandler", "shutdownCallback"] );
             self::$isRegistered = true;
         }
         self::$directories[] = $dir;

@@ -78,54 +78,54 @@ class ezcPhpGenerator
     /**
      * Normal assignment '='.
      */
-    const ASSIGN_NORMAL = 1;
+    public const ASSIGN_NORMAL = 1;
 
     /**
      * Text append assignment '.='.
      */
-    const ASSIGN_APPEND_TEXT = 2;
+    public const ASSIGN_APPEND_TEXT = 2;
 
     /**
      * Assignment with add '+='.
      */
-    const ASSIGN_ADD = 3;
+    public const ASSIGN_ADD = 3;
 
     /**
      * Assignment with subtraction '-='.
      */
-    const ASSIGN_SUBTRACT = 4;
+    public const ASSIGN_SUBTRACT = 4;
 
     /**
      * Assignment with array append $var[] ='.
      */
-    const ASSIGN_ARRAY_APPEND = 5;
+    public const ASSIGN_ARRAY_APPEND = 5;
 
 
     // method control structures
     /**
      * 'if' program flow structure.
      */
-    const FLOW_IF = 'if';
+    public const FLOW_IF = 'if';
 
     /**
      * 'foreach' program flow structure.
      */
-    const FLOW_FOREACH = 'foreach';
+    public const FLOW_FOREACH = 'foreach';
 
     /**
      * 'for' program flow structure.
      */
-    const FLOW_FOR = 'for';
+    public const FLOW_FOR = 'for';
 
     /**
      * 'do' program flow structure.
      */
-    const FLOW_DO = 'do';
+    public const FLOW_DO = 'do';
 
     /**
      * 'while' program flow structure.
      */
-    const FLOW_WHILE = 'while';
+    public const FLOW_WHILE = 'while';
 
 
    /**
@@ -164,13 +164,13 @@ class ezcPhpGenerator
      *
      * @var array
      */
-    private $flowStack = array();
+    private $flowStack = [];
 
     /**
      * Holds the properties of this class.
      * @var array
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Constructs a new ezcPhpGenerator.
@@ -626,7 +626,7 @@ class ezcPhpGenerator
      * @param ezcPhpGeneratorReturnData $returnData
      * @return void
      */
-    public function appendMethodCall( $objectName, $methodName, array $parameters = array(), ezcPhpGeneratorReturnData $returnData = null )
+    public function appendMethodCall( $objectName, $methodName, array $parameters = [], ezcPhpGeneratorReturnData $returnData = null )
     {
         $this->appendMethodOrFunctionCall( $methodName, $parameters, $returnData, $objectName );
     }
@@ -861,7 +861,7 @@ class ezcPhpGenerator
         else
         {
             $this->abort();
-            $current = $pop ? $pop : 'no control structure';
+            $current = $pop ?: 'no control structure';
             throw new ezcPhpGeneratorFlowException( $current, 'else' );
         }
     }
@@ -1033,7 +1033,7 @@ class ezcPhpGenerator
         else
         {
             $this->abort();
-            $current = $pop ? $pop : 'no control structure';
+            $current = $pop ?: 'no control structure';
             throw new ezcPhpGeneratorFlowException( $current, $type );
         }
     }
@@ -1073,7 +1073,7 @@ class ezcPhpGenerator
             return $text;
 
         $textArray = explode( $this->lineBreak, $text );
-        $newTextArray = array();
+        $newTextArray = [];
         foreach ( $textArray as $text )
         {
             if ( trim( $text ) != ''  )

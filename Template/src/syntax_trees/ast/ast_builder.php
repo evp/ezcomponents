@@ -107,7 +107,7 @@ class ezcTemplateAstBuilder
     {
         if ( !is_array( $parameters ) )
         {
-            $parameters = array( $parameters );
+            $parameters = [$parameters];
         }
 
         foreach ( $parameters as $i => $parameter )

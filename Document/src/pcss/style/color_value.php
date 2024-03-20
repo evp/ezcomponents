@@ -61,52 +61,27 @@ class ezcDocumentPcssStyleColorValue extends ezcDocumentPcssStyleValue
             // Sepcial values
             case ( trim( $value ) === 'transparent' ) ||
                  ( trim( $value ) === 'none' ):
-                $this->value = array(
-                    'red'   => 0.,
-                    'green' => 0.,
-                    'blue'  => 0.,
-                    'alpha' => 1.,
-                );
+                $this->value = ['red'   => 0., 'green' => 0., 'blue'  => 0., 'alpha' => 1.];
                 break;
 
             // Match 12 and 16bit hex value color definitions
             case preg_match( '(^' . $this->shortHexNotation . '$)USi', $value, $match ):
-                $this->value = array(
-                    'red'   => hexdec( $match[1] ) / 15,
-                    'green' => hexdec( $match[2] ) / 15,
-                    'blue'  => hexdec( $match[3] ) / 15,
-                    'alpha' => isset( $match[4] ) ? hexdec( $match[4] ) / 15 : 0.,
-                );
+                $this->value = ['red'   => hexdec( $match[1] ) / 15, 'green' => hexdec( $match[2] ) / 15, 'blue'  => hexdec( $match[3] ) / 15, 'alpha' => isset( $match[4] ) ? hexdec( $match[4] ) / 15 : 0.];
                 break;
 
             // Match 24 and 32bit hex value color definitions
             case preg_match( '(^' . $this->longHexNotation . '$)Ui', $value, $match ):
-                $this->value = array(
-                    'red'   => hexdec( $match[1] ) / 255,
-                    'green' => hexdec( $match[2] ) / 255,
-                    'blue'  => hexdec( $match[3] ) / 255,
-                    'alpha' => isset( $match[4] ) ? hexdec( $match[4] ) / 255 : 0.,
-                );
+                $this->value = ['red'   => hexdec( $match[1] ) / 255, 'green' => hexdec( $match[2] ) / 255, 'blue'  => hexdec( $match[3] ) / 255, 'alpha' => isset( $match[4] ) ? hexdec( $match[4] ) / 255 : 0.];
                 break;
 
             // Match RGB array specification
             case preg_match( '(^' . $this->rgbSpec . '$)Si', $value, $match ):
-                $this->value = array(
-                    'red'   => $match[1] % 256 / 255,
-                    'green' => $match[2] % 256 / 255,
-                    'blue'  => $match[3] % 256 / 255,
-                    'alpha' => 0,
-                );
+                $this->value = ['red'   => $match[1] % 256 / 255, 'green' => $match[2] % 256 / 255, 'blue'  => $match[3] % 256 / 255, 'alpha' => 0];
                 break;
 
             // Match RGBA array specification
             case preg_match( '(^' . $this->rgbaSpec . '$)Si', $value, $match ):
-                $this->value = array(
-                    'red'   => $match[1] % 256 / 255,
-                    'green' => $match[2] % 256 / 255,
-                    'blue'  => $match[3] % 256 / 255,
-                    'alpha' => $match[4] % 256 / 255,
-                );
+                $this->value = ['red'   => $match[1] % 256 / 255, 'green' => $match[2] % 256 / 255, 'blue'  => $match[3] % 256 / 255, 'alpha' => $match[4] % 256 / 255];
                 break;
 
             default:

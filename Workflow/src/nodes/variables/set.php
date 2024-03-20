@@ -77,7 +77,7 @@ class ezcWorkflowNodeVariableSet extends ezcWorkflowNode
      */
     public static function configurationFromXML( DOMElement $element )
     {
-        $configuration = array();
+        $configuration = [];
 
         foreach ( $element->getElementsByTagName( 'variable' ) as $variable )
         {
@@ -121,7 +121,7 @@ class ezcWorkflowNodeVariableSet extends ezcWorkflowNode
      */
     public function __toString()
     {
-        $buffer = array();
+        $buffer = [];
 
         foreach ( $this->configuration as $variable => $value )
         {

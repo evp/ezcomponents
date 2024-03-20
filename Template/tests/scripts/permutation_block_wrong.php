@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/blocks/incorrect/non_matching_block_*.in
 
@@ -55,7 +55,7 @@ $alt = alt( $blocksStartEnd,
 $list = perm( $alt
               );
 
-$dir = dirname( __FILE__ ) . "/../regression_tests/blocks/incorrect/";
+$dir = __DIR__ . "/../regression_tests/blocks/incorrect/";
 
 $a = app( "", $argv, $dir );
 

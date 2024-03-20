@@ -21,7 +21,7 @@ class ezcDocumentConverterDocbookToHtmlTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testHtmlConverterOptionsFormatOutput()
@@ -55,7 +55,7 @@ class ezcDocumentConverterDocbookToHtmlTests extends ezcTestCase
     public function testHtmlConverterOptionsStyleSheets()
     {
         $options = new ezcDocumentHtmlConverterOptions();
-        $options->styleSheets = array( 'url' );
+        $options->styleSheets = ['url'];
         $options->styleSheets = null;
 
         try
@@ -100,15 +100,12 @@ class ezcDocumentConverterDocbookToHtmlTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/docbook/xhtml/s_*.xml' );
+            $testFiles = glob( __DIR__ . '/files/docbook/xhtml/s_*.xml' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'html'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'html'];
             }
         }
 
@@ -157,8 +154,8 @@ class ezcDocumentConverterDocbookToHtmlTests extends ezcTestCase
 
     public function testDublinCoreMetadata()
     {
-        $from = dirname( __FILE__ ) . '/files/docbook/xhtml/s_021_field_list.xml';
-        $to   = dirname( __FILE__ ) . '/files/docbook/xhtml/s_021_field_list_dc.html';
+        $from = __DIR__ . '/files/docbook/xhtml/s_021_field_list.xml';
+        $to   = __DIR__ . '/files/docbook/xhtml/s_021_field_list_dc.html';
 
         $doc = new ezcDocumentDocbook();
         $doc->loadFile( $from );
@@ -192,8 +189,8 @@ class ezcDocumentConverterDocbookToHtmlTests extends ezcTestCase
 
     public function testWithStylesheets()
     {
-        $from = dirname( __FILE__ ) . '/files/docbook/xhtml/s_021_field_list.xml';
-        $to   = dirname( __FILE__ ) . '/files/docbook/xhtml/s_021_field_list_stylesheets.html';
+        $from = __DIR__ . '/files/docbook/xhtml/s_021_field_list.xml';
+        $to   = __DIR__ . '/files/docbook/xhtml/s_021_field_list_stylesheets.html';
 
         $doc = new ezcDocumentDocbook();
         $doc->loadFile( $from );
@@ -201,10 +198,7 @@ class ezcDocumentConverterDocbookToHtmlTests extends ezcTestCase
         $converter = new ezcDocumentDocbookToHtmlConverter();
         $converter->options->formatOutput       = true;
         $converter->options->dublinCoreMetadata = true;
-        $converter->options->styleSheets = array( 
-            'foo.css',
-            'http://example.org/bar.css',
-        );
+        $converter->options->styleSheets = ['foo.css', 'http://example.org/bar.css'];
         $created = $converter->convert( $doc );
 
         $this->assertTrue(

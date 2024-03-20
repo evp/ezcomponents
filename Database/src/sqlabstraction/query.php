@@ -58,14 +58,14 @@ abstract class ezcQuery
      * Format: array( ':name' => &mixed )
      * @var array(string=>&mixed)
      */
-    private $boundParameters = array();
+    private $boundParameters = [];
 
     /**
      * Stores the type of a value which will we used when the value is bound.
      * 
      * @var array(string=>int)
      */
-    private $boundParametersType = array();
+    private $boundParametersType = [];
 
     /**
      * Stores the list of values that will be bound with doBind().
@@ -73,14 +73,14 @@ abstract class ezcQuery
      * Format: array( ':name' => mixed )
      * @var array(string=>mixed)
      */
-    private $boundValues = array();
+    private $boundValues = [];
 
     /**
      * Stores the type of a value which will we used when the value is bound.
      * 
      * @var array(string=>int)
      */
-    private $boundValuesType = array();
+    private $boundValuesType = [];
 
     /**
      * The expression object for this class.
@@ -99,7 +99,7 @@ abstract class ezcQuery
      * @param PDO $db
      * @param array(string=>string) $aliases
      */
-    public function __construct( PDO $db, array $aliases = array() )
+    public function __construct( PDO $db, array $aliases = [] )
     {
         $this->db = $db;
         if ( $this->expr == null )
@@ -221,7 +221,7 @@ abstract class ezcQuery
     protected function getIdentifier( $alias )
     {
         $aliasParts = explode( '.', $alias );
-        $identifiers = array();
+        $identifiers = [];
         // If the alias consists of one part, then we just look it up in the
         // array. If we find it, we use it, otherwise we return the name as-is
         // and assume it's just a column name. The alias target can be a fully
@@ -372,8 +372,8 @@ abstract class ezcQuery
     protected function resetBinds()
     {
         $this->boundCounter = 0;
-        $this->boundParameters = array();
-        $this->boundValues = array();
+        $this->boundParameters = [];
+        $this->boundValues = [];
     }
 
     /**
@@ -444,7 +444,7 @@ abstract class ezcQuery
      */
     static public function arrayFlatten( array $array )
     {
-        $flat = array();
+        $flat = [];
         foreach ( $array as $arg )
         {
             switch ( gettype( $arg ) )

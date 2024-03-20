@@ -53,8 +53,8 @@ class ezcMvcRequestAccept extends ezcBaseStruct
      * @param array $languages
      * @param array $encodings
      */
-    public function __construct( $types = array(),
-        $charsets = array(), $languages = array(), $encodings = array() )
+    public function __construct( $types = [],
+        $charsets = [], $languages = [], $encodings = [] )
     {
         $this->types = $types;
         $this->charsets = $charsets;

@@ -58,7 +58,7 @@ class ezcSearchDeleteQuerySolr implements ezcSearchDeleteQuery
      */
     public function reset()
     {
-        $this->whereClauses = array();
+        $this->whereClauses = [];
     }
 
     /**

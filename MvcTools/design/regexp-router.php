@@ -1,7 +1,7 @@
 <?php
 abstract class ezcMvcRouter
 {
-    protected $routes = array();
+    protected $routes = [];
 
     public function __construct( ezcMvcRequest $request )
     {
@@ -63,7 +63,7 @@ interface ezcMvcRoute
 
 class ezcMvcRegexpRoute implements ezcMvcRoute
 {
-    public function __construct( $pattern, $controllerClass, array $defaultValues = array() )
+    public function __construct( $pattern, $controllerClass, array $defaultValues = [] )
     {
         $this->pattern = $pattern;
         $this->controllerClass = $controllerClass;
@@ -126,7 +126,7 @@ class myGlobalRouter extends ezcMvcRouter
     {
         $routes[] = new ezcMvcRegexpRouteStruct( 
             '@^/styles/(?P<slug>.+)/$@',
-            'yourStyleController', array( 'defaultValue1' => 42 ) 
+            'yourStyleController', ['defaultValue1' => 42] 
         );
         // Add routes from an application
         $appRouterOne = new myApplicationDecoupledRouterOne;

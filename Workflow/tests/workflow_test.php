@@ -40,7 +40,7 @@ class ezcWorkflowTest extends ezcWorkflowTestCase
 
         try
         {
-            $workflow->name = array();
+            $workflow->name = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -160,7 +160,7 @@ class ezcWorkflowTest extends ezcWorkflowTestCase
         $this->assertFalse( $this->workflow->removeVariableHandler( 'foo' ) );
 
         $this->workflow->setVariableHandlers(
-          array( 'foo' => 'ezcWorkflowTestVariableHandler' )
+          ['foo' => 'ezcWorkflowTestVariableHandler']
         );
 
         $this->assertTrue( $this->workflow->removeVariableHandler( 'foo' ) );
@@ -348,7 +348,7 @@ class ezcWorkflowTest extends ezcWorkflowTestCase
         $this->assertEquals( 1, count( $this->workflow ) );
         $this->assertEquals( 1, count( $this->workflow->nodes ) );
 
-        $input = new ezcWorkflowNodeInput( array( 'value' => new ezcWorkflowConditionIsInteger ) );
+        $input = new ezcWorkflowNodeInput( ['value' => new ezcWorkflowConditionIsInteger] );
         $this->workflow->startNode->addOutNode( $input );
 
         $this->assertEquals( 2, count( $this->workflow ) );
@@ -360,8 +360,8 @@ class ezcWorkflowTest extends ezcWorkflowTestCase
         $this->assertEquals( 3, count( $this->workflow ) );
         $this->assertEquals( 3, count( $this->workflow->nodes ) );
 
-        $branch1 = new ezcWorkflowNodeInput( array( 'value' => new ezcWorkflowConditionIsAnything ) );
-        $branch2 = new ezcWorkflowNodeInput( array( 'value' => new ezcWorkflowConditionIsAnything ) );
+        $branch1 = new ezcWorkflowNodeInput( ['value' => new ezcWorkflowConditionIsAnything] );
+        $branch2 = new ezcWorkflowNodeInput( ['value' => new ezcWorkflowConditionIsAnything] );
 
         $choice->addConditionalOutNode( new ezcWorkflowConditionIsAnything , $branch1 );
 

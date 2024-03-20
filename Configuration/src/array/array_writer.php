@@ -68,10 +68,10 @@ class ezcConfigurationArrayWriter extends ezcConfigurationFileWriter
      * @param array $comments The structure containing the comments for the
      *                        settings
      */
-    protected static function writeSettings( $fp, $settings, $comments = array() )
+    protected static function writeSettings( $fp, $settings, $comments = [] )
     {
         fwrite( $fp, "<?php\n" );
-        $serializedSettings = var_export( array( 'settings' => $settings, 'comments' => $comments ), true );
+        $serializedSettings = var_export( ['settings' => $settings, 'comments' => $comments], true );
         fwrite( $fp, 'return ' . $serializedSettings . ";\n" );
         fwrite( $fp, "?>\n" );
     }

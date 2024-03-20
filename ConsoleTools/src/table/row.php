@@ -70,7 +70,7 @@ class ezcConsoleTableRow implements Countable, Iterator, ArrayAccess
      * 
      * @var array(ezcConsoleTableCell)
      */
-    protected $cells = array();
+    protected $cells = [];
 
     /**
      * Create a new ezcConsoleProgressbarRow. 

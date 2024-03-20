@@ -31,21 +31,11 @@ class ezcDocumentPdfDriverSvgTests extends ezcDocumentPdfDriverTests
      * 
      * @var array
      */
-    protected $expectedWidths = array(
-        'testEstimateDefaultWordWidthWithoutPageCreation' => 21.6,
-        'testEstimateDefaultWordWidth'                    => 21.6,
-        'testEstimateWordWidthDifferentSize'              => 30.1,
-        'testEstimateWordWidthDifferentSizeAndUnit'       => 10.6,
-        'testEstimateBoldWordWidth'                       => 21.6,
-        'testEstimateMonospaceWordWidth'                  => 25.8,
-        'testFontStyleFallback'                           => 21.6,
-        'testUtf8FontWidth'                               => 21.6,
-        'testCustomFontWidthEstimation'                   => 51.6,
-    );
+    protected $expectedWidths = ['testEstimateDefaultWordWidthWithoutPageCreation' => 21.6, 'testEstimateDefaultWordWidth'                    => 21.6, 'testEstimateWordWidthDifferentSize'              => 30.1, 'testEstimateWordWidthDifferentSizeAndUnit'       => 10.6, 'testEstimateBoldWordWidth'                       => 21.6, 'testEstimateMonospaceWordWidth'                  => 25.8, 'testFontStyleFallback'                           => 21.6, 'testUtf8FontWidth'                               => 21.6, 'testCustomFontWidthEstimation'                   => 51.6];
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     /**

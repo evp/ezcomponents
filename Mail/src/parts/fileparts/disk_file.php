@@ -43,7 +43,7 @@ class ezcMailFile extends ezcMailFilePart
             $mimeParts = finfo_file( $fileInfo, $fileName );
             if ( $mimeParts !== false && strpos( $mimeParts, '/' ) !== false )
             {
-                list( $this->contentType, $this->mimeType ) = explode( '/', $mimeParts );
+                [$this->contentType, $this->mimeType] = explode( '/', $mimeParts );
             }
             else
             {

@@ -29,9 +29,7 @@ class ezcDocumentOdtStyleTableRowPropertyGenerator extends ezcDocumentOdtStylePr
     {
         parent::__construct(
             $styleConverters,
-            array(
-                'background-color',
-            )
+            ['background-color']
         );
     }
 

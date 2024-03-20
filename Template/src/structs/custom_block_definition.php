@@ -102,14 +102,14 @@ class ezcTemplateCustomBlockDefinition extends ezcTemplateCustomExtension
      *
      * @var array(string)
      */
-    public $optionalParameters = array();
+    public $optionalParameters = [];
 
     /**
      * Holds the required named parameters for this custom block.
      *
      * @var array(string)
      */
-    public $requiredParameters = array();
+    public $requiredParameters = [];
 
 
     public $isStatic = false;

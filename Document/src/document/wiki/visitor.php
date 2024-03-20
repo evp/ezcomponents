@@ -35,7 +35,7 @@ abstract class ezcDocumentWikiVisitor implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $footnotes = array();
+    protected $footnotes = [];
 
     /**
      * Label dependant foot note counters for footnote auto enumeration.
@@ -49,7 +49,7 @@ abstract class ezcDocumentWikiVisitor implements ezcDocumentErrorReporting
      *
      * @var array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Create visitor from Wiki document handler.
@@ -182,12 +182,7 @@ abstract class ezcDocumentWikiVisitor implements ezcDocumentErrorReporting
      */
     public function hasFootnoteTarget( $number, ezcDocumentWikiNode $node )
     {
-        if ( isset( $this->footnotes[$number] ) )
-        {
-            return $this->footnotes[$number];
-        }
-
-        return $this->triggerError(
+        return $this->footnotes[$number] ?? $this->triggerError(
             E_WARNING, "Unknown footnote reference target '{$number}'.", null,
             ( $node !== null ? $node->token->line : null ),
             ( $node !== null ? $node->token->position : null )

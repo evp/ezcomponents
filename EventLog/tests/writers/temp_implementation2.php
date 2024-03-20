@@ -26,9 +26,9 @@ class TempImplementation2 extends ezcLogFileWriter
         }
     }
 
-    public function writeLogMessage( $message, $type, $source, $category, $extraInfo = array() )
+    public function writeLogMessage( $message, $type, $source, $category, $extraInfo = [] )
     {
-        $res = print_r( array( "message" => $message, "type" => $type, "source" => $source, "category" => $category ), true );
+        $res = print_r( ["message" => $message, "type" => $type, "source" => $source, "category" => $category], true );
         @$this->write( $type, $source, $category, $res );
     }
 

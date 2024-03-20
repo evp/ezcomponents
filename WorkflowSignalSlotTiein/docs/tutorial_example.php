@@ -3,21 +3,21 @@
 $signals  = new ezcSignalCollection;
 $receiver = new MyReceiver;
 
-$signals->connect( 'afterExecutionStarted', array( $receiver, 'afterExecutionStarted' ) );
-$signals->connect( 'afterExecutionSuspended', array( $receiver, 'afterExecutionSuspended' ) );
-$signals->connect( 'afterExecutionResumed', array( $receiver, 'afterExecutionResumed' ) );
-$signals->connect( 'afterExecutionCancelled', array( $receiver, 'afterExecutionCancelled' ) );
-$signals->connect( 'afterExecutionEnded', array( $receiver, 'afterExecutionEnded' ) );
-$signals->connect( 'beforeNodeActivated', array( $receiver, 'beforeNodeActivated' ) );
-$signals->connect( 'afterNodeActivated', array( $receiver, 'afterNodeActivated' ) );
-$signals->connect( 'afterNodeExecuted', array( $receiver, 'afterNodeExecuted' ) );
-$signals->connect( 'afterRolledBackServiceObject', array( $receiver, 'afterRolledBackServiceObject' ) );
-$signals->connect( 'afterThreadStarted', array( $receiver, 'afterThreadStarted' ) );
-$signals->connect( 'afterThreadEnded', array( $receiver, 'afterThreadEnded' ) );
-$signals->connect( 'beforeVariableSet', array( $receiver, 'beforeVariableSet' ) );
-$signals->connect( 'afterVariableSet', array( $receiver, 'afterVariableSet' ) );
-$signals->connect( 'beforeVariableUnset', array( $receiver, 'beforeVariableUnset' ) );
-$signals->connect( 'afterVariableUnset', array( $receiver, 'afterVariableUnset' ) );
+$signals->connect( 'afterExecutionStarted', [$receiver, 'afterExecutionStarted'] );
+$signals->connect( 'afterExecutionSuspended', [$receiver, 'afterExecutionSuspended'] );
+$signals->connect( 'afterExecutionResumed', [$receiver, 'afterExecutionResumed'] );
+$signals->connect( 'afterExecutionCancelled', [$receiver, 'afterExecutionCancelled'] );
+$signals->connect( 'afterExecutionEnded', [$receiver, 'afterExecutionEnded'] );
+$signals->connect( 'beforeNodeActivated', [$receiver, 'beforeNodeActivated'] );
+$signals->connect( 'afterNodeActivated', [$receiver, 'afterNodeActivated'] );
+$signals->connect( 'afterNodeExecuted', [$receiver, 'afterNodeExecuted'] );
+$signals->connect( 'afterRolledBackServiceObject', [$receiver, 'afterRolledBackServiceObject'] );
+$signals->connect( 'afterThreadStarted', [$receiver, 'afterThreadStarted'] );
+$signals->connect( 'afterThreadEnded', [$receiver, 'afterThreadEnded'] );
+$signals->connect( 'beforeVariableSet', [$receiver, 'beforeVariableSet'] );
+$signals->connect( 'afterVariableSet', [$receiver, 'afterVariableSet'] );
+$signals->connect( 'beforeVariableUnset', [$receiver, 'beforeVariableUnset'] );
+$signals->connect( 'afterVariableUnset', [$receiver, 'afterVariableUnset'] );
 
 // Set up database connection.
 $db = ezcDbFactory::create( 'mysql://test@localhost/test' );

@@ -31,14 +31,14 @@ class ezcTreeVisitorGraphViz implements ezcTreeVisitor
      *
      * @var array(string=>string)
      */
-    protected $nodes = array();
+    protected $nodes = [];
 
     /**
      * Holds all the edges of the graph.
      *
      * @var array(id=>array(ezcTreeNode))
      */
-    protected $edges = array();
+    protected $edges = [];
 
     /**
      * Creates a graphviz compliant ID out of the ID identifying $node.

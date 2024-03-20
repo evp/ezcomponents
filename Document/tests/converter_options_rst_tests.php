@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/options_test_case.php';
+require_once __DIR__ . '/options_test_case.php';
 
 /**
  * Test suite for class.
@@ -21,7 +21,7 @@ class ezcConverterRstOptionsTests extends ezcDocumentOptionsTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function getOptionsClassName()
@@ -31,53 +31,17 @@ class ezcConverterRstOptionsTests extends ezcDocumentOptionsTestCase
 
     public static function provideDefaultValues()
     {
-        return array(
-            array(
-                'headerTypes', array( '==', '--', '=', '-', '^', '~', '`', '*', ':', '+', '/', '.', ),
-            ),
-            array(
-                'wordWrap', 78,
-            ),
-            array(
-                'itemListCharacter', '-',
-            ),
-        );
+        return [['headerTypes', ['==', '--', '=', '-', '^', '~', '`', '*', ':', '+', '/', '.']], ['wordWrap', 78], ['itemListCharacter', '-']];
     }
 
     public static function provideValidData()
     {
-        return array(
-            array(
-                'headerTypes',
-                array( array( '--' ), array( '--', '=', '"' ) ),
-            ),
-            array(
-                'wordWrap',
-                array( 20, 1023 ),
-            ),
-            array(
-                'itemListCharacter',
-                array( '*', "\xe2\x80\xa2" ),
-            ),
-        );
+        return [['headerTypes', [['--'], ['--', '=', '"']]], ['wordWrap', [20, 1023]], ['itemListCharacter', ['*', "\xe2\x80\xa2"]]];
     }
 
     public static function provideInvalidData()
     {
-        return array(
-            array(
-                'headerTypes',
-                array( '--', 23 ),
-            ),
-            array(
-                'wordWrap',
-                array( 'foo', new StdClass() ),
-            ),
-            array(
-                'itemListCharacter',
-                array( '>', 23 ),
-            ),
-        );
+        return [['headerTypes', ['--', 23]], ['wordWrap', ['foo', new StdClass()]], ['itemListCharacter', ['>', 23]]];
     }
 }
 

@@ -50,10 +50,7 @@ abstract class ezcWorkflowNodeConditionalBranch extends ezcWorkflowNodeBranch
      *
      * @var array( 'condition' => array( 'int' => ezcWorkflowCondtion ) )
      */
-    protected $configuration = array(
-      'condition' => array(),
-      'else' => array()
-    );
+    protected $configuration = ['condition' => [], 'else' => []];
 
     /**
      * Adds the conditional outgoing node $outNode to this node with the
@@ -139,7 +136,7 @@ abstract class ezcWorkflowNodeConditionalBranch extends ezcWorkflowNodeBranch
     {
         $keys                            = array_keys( $this->outNodes );
         $numKeys                         = count( $keys );
-        $nodesToStart                    = array();
+        $nodesToStart                    = [];
         $numActivatedConditionalOutNodes = 0;
 
         if ( $this->maxActivatedConditionalOutNodes !== false )

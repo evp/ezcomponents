@@ -21,18 +21,20 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
      *
      * @var array
      */
-    static private $typeMap = array(
-        'NUMBER'    => 'integer', // or 'decimal' in case precision and scale available
+    static private $typeMap = [
+        'NUMBER'    => 'integer',
+        // or 'decimal' in case precision and scale available
         'FLOAT'     => 'float',
-        'CHAR'      => 'text', // or 'boolean' for char(1)
+        'CHAR'      => 'text',
+        // or 'boolean' for char(1)
         'VARCHAR'   => 'text',
         'VARCHAR2'  => 'text',
-        'DATE'      => 'date',        
+        'DATE'      => 'date',
         'BLOB'      => 'blob',
-        'CLOB'      => 'clob',       
+        'CLOB'      => 'clob',
         'TIMESTAMP' => 'timestamp',
-        'TIMESTAMP(6)' => 'timestamp'
-    );
+        'TIMESTAMP(6)' => 'timestamp',
+    ];
 
     /**
      * Loops over all the tables in the database and extracts schema information.
@@ -60,12 +62,12 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     protected function fetchTableFields( $tableName )
     {
-        $fields = array();
+        $fields = [];
 
         // will detect autoincrement field by presence of sequence tableName_fieldPos_seq
         $sequencesQuery = $this->db->query( "SELECT * FROM user_sequences" );   
         $sequencesQuery->setFetchMode( PDO::FETCH_ASSOC );
-        $sequences = array();
+        $sequences = [];
         foreach ( $sequencesQuery as $seq )
         {
             $sequences[] = $seq['sequence_name'];
@@ -92,7 +94,7 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
             $fieldLength = $row['length'];
             $fieldPrecision = null;
             $fieldType = self::convertToGenericType( $row['type'], $fieldLength, $fieldPrecision );
-            if ( in_array( $fieldType, array( 'clob', 'blob', 'date', 'float', 'timestamp' ) ) )
+            if ( in_array( $fieldType, ['clob', 'blob', 'date', 'float', 'timestamp'] ) )
             {
                     $fieldLength = false;
             }
@@ -194,7 +196,7 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     private function isNumericType( $type )
     {
-        $types = array( 'float', 'int', 'NUMBER' );
+        $types = ['float', 'int', 'NUMBER'];
         return in_array( $type, $types );
     }
 
@@ -206,7 +208,7 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     private function isStringType( $type )
     {
-        $types = array( 'VARCHAR', 'VARCHAR2', 'text', 'CHAR' );
+        $types = ['VARCHAR', 'VARCHAR2', 'text', 'CHAR'];
         return in_array( $type, $types );
     }
 
@@ -218,7 +220,7 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     private function isBlobType( $type )
     {
-        $types = array( 'blob' );
+        $types = ['blob'];
         return in_array( $type, $types );
     }
 
@@ -235,8 +237,8 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     protected function fetchTableIndexes( $tableName )
     {
-        $indexBuffer = array();
-        $indexesArray = array();
+        $indexBuffer = [];
+        $indexesArray = [];
 
         // fetching index info from Oracle
         $getIndexSQL = "SELECT uind.index_name AS name, " .
@@ -272,7 +274,7 @@ class ezcDbSchemaOracleReader extends ezcDbSchemaCommonSqlReader implements ezcD
 
         }
 
-        $indexes = array();
+        $indexes = [];
 
         foreach ( $indexBuffer as $indexName => $indexInfo )
         {

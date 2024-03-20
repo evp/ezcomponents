@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/expressions/correct/modifying_property_operators_*.in
 
@@ -52,7 +52,7 @@ $list = perm( "%num%:",
 // $a == $b == $c (should produce proper PHP code ) => ($a == $b) == $c
 // $a = $b = $c (should produce proper PHP code) $a = ($b = $c)
 
-$dir = dirname( __FILE__ ) . "/../regression_tests/";
+$dir = __DIR__ . "/../regression_tests/";
 
 $a = app( "expressions/correct/modifying_property_operators.in", $argv );
 

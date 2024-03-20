@@ -80,7 +80,7 @@ class ezcTemplateControlStructureSourceToTstParser extends ezcTemplateSourceToTs
         $cursor->advance( strlen( $matches[1][0] ) );
 
         // control structure map
-        $csMap = array();
+        $csMap = [];
         $csMap['foreach'] = 'ForeachLoop';
         $csMap['for'] = 'ForLoop';
         $csMap['while'] = 'WhileLoop';

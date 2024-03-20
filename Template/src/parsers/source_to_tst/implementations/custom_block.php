@@ -41,7 +41,7 @@ class ezcTemplateCustomBlockSourceToTstParser extends ezcTemplateSourceToTstPars
     {
         foreach ( $this->parser->template->configuration->customBlocks as $class )
         {
-            $def = call_user_func( array( $class, "getCustomBlockDefinition" ),  $name );
+            $def = call_user_func( [$class, "getCustomBlockDefinition"],  $name );
 
             if ( $def instanceof ezcTemplateCustomBlockDefinition )
             {
@@ -78,7 +78,7 @@ class ezcTemplateCustomBlockSourceToTstParser extends ezcTemplateSourceToTstPars
             }
 
             $cursor->advance( strlen( $name ) );
-            $this->findNextElement( $cursor );
+            $this->findNextElement();
 
             if ( !$cursor->match( "}" ) )
             {
@@ -106,7 +106,7 @@ class ezcTemplateCustomBlockSourceToTstParser extends ezcTemplateSourceToTstPars
         $name = $matches[1][0];
 
         $cursor->advance( strlen( $name ) );
-        $this->findNextElement( $cursor );
+        $this->findNextElement();
 
         // $def = ezcTemplateCustomBlockManager::getInstance()->getDefinition( $name );
 
@@ -147,7 +147,7 @@ class ezcTemplateCustomBlockSourceToTstParser extends ezcTemplateSourceToTstPars
                 }
 
                 $cb->namedParameters[ $def->startExpressionName ] = $this->lastParser->rootOperator;
-                $this->findNextElement( $cursor );
+                $this->findNextElement();
             }
         }
 
@@ -173,11 +173,11 @@ class ezcTemplateCustomBlockSourceToTstParser extends ezcTemplateSourceToTstPars
                     sprintf( ezcTemplateSourceToTstErrorMessages::MSG_REASSIGNMENT_CUSTOM_BLOCK_PARAMETER, $match ) );
             }
 
-            $this->findNextElement( $cursor );
+            $this->findNextElement();
             // The '=' is optional.
             if ( $cursor->match( "=" ) )
             {
-                $this->findNextElement( $cursor );
+                $this->findNextElement();
             }
 
             // The parameter has an expression.

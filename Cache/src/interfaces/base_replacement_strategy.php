@@ -66,7 +66,7 @@ abstract class ezcCacheStackBaseReplacementStrategy implements ezcCacheStackRepl
         ezcCacheStackMetaData $metaData,
         $itemId,
         $itemData,
-        $itemAttributes = array()
+        $itemAttributes = []
     )
     {
         if ( !$metaData->hasItem( $conf->id, $itemId )
@@ -164,7 +164,7 @@ abstract class ezcCacheStackBaseReplacementStrategy implements ezcCacheStackRepl
         ezcCacheStackStorageConfiguration $conf,
         ezcCacheStackMetaData $metaData,
         $itemId,
-        $itemAttributes = array(),
+        $itemAttributes = [],
         $search = false
     )
     {
@@ -213,7 +213,7 @@ abstract class ezcCacheStackBaseReplacementStrategy implements ezcCacheStackRepl
         ezcCacheStackStorageConfiguration $conf,
         ezcCacheStackMetaData $metaData,
         $itemId,
-        $itemAttributes = array(),
+        $itemAttributes = [],
         $search = false
     )
     {

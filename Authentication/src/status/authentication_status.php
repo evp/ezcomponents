@@ -22,7 +22,7 @@ class ezcAuthenticationStatus
      *
      * var array(string=>mixed)
      */
-    private $statuses = array();
+    private $statuses = [];
 
     /**
      * Adds a new status to the list of statuses.
@@ -38,7 +38,7 @@ class ezcAuthenticationStatus
         }
         else
         {
-            $this->statuses[] = array( $class => $status );
+            $this->statuses[] = [$class => $status];
         }
     }
 

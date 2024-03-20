@@ -270,8 +270,8 @@ class ezcGraphPaletteTest extends ezcTestCase
     public function testDataSetAutomaticColorization()
     {
         $chart = new ezcGraphLineChart();
-        $chart->data['income'] = new ezcGraphArrayDataSet( array( 2000 => 2345.2, 2456.3, 2567.4 ) );
-        $chart->data['spending'] = new ezcGraphArrayDataSet( array( 2000 => 2347.2, 2458.3, 2569.4 ) );
+        $chart->data['income'] = new ezcGraphArrayDataSet( [2000 => 2345.2, 2456.3, 2567.4] );
+        $chart->data['spending'] = new ezcGraphArrayDataSet( [2000 => 2347.2, 2458.3, 2569.4] );
 
         $this->assertEquals(
             ezcGraphColor::fromHex( '#3465A4' ),
@@ -289,8 +289,8 @@ class ezcGraphPaletteTest extends ezcTestCase
     public function testChartBackground()
     {
         $chart = new ezcGraphLineChart();
-        $chart->data['income'] = new ezcGraphArrayDataSet( array( 2000 => 2345.2, 2456.3, 2567.4 ) );
-        $chart->data['spending'] = new ezcGraphArrayDataSet( array( 2000 => 2347.2, 2458.3, 2569.4 ) );
+        $chart->data['income'] = new ezcGraphArrayDataSet( [2000 => 2345.2, 2456.3, 2567.4] );
+        $chart->data['spending'] = new ezcGraphArrayDataSet( [2000 => 2347.2, 2458.3, 2569.4] );
 
         $this->assertEquals(
             ezcGraphColor::fromHex( '#EEEEEC' ),
@@ -302,8 +302,8 @@ class ezcGraphPaletteTest extends ezcTestCase
     public function testChartElementBorder()
     {
         $chart = new ezcGraphLineChart();
-        $chart->data['income'] = new ezcGraphArrayDataSet( array( 2000 => 2345.2, 2456.3, 2567.4 ) );
-        $chart->data['spending'] = new ezcGraphArrayDataSet( array( 2000 => 2347.2, 2458.3, 2569.4 ) );
+        $chart->data['income'] = new ezcGraphArrayDataSet( [2000 => 2345.2, 2456.3, 2567.4] );
+        $chart->data['spending'] = new ezcGraphArrayDataSet( [2000 => 2347.2, 2458.3, 2569.4] );
 
         $this->assertEquals(
             ezcGraphColor::fromHex( '#000000FF' ),
@@ -315,8 +315,8 @@ class ezcGraphPaletteTest extends ezcTestCase
     public function testChartElementBorderWidth()
     {
         $chart = new ezcGraphLineChart();
-        $chart->data['income'] = new ezcGraphArrayDataSet( array( 2000 => 2345.2, 2456.3, 2567.4 ) );
-        $chart->data['spending'] = new ezcGraphArrayDataSet( array( 2000 => 2347.2, 2458.3, 2569.4 ) );
+        $chart->data['income'] = new ezcGraphArrayDataSet( [2000 => 2345.2, 2456.3, 2567.4] );
+        $chart->data['spending'] = new ezcGraphArrayDataSet( [2000 => 2347.2, 2458.3, 2569.4] );
 
         $this->assertEquals(
             0,
@@ -328,8 +328,8 @@ class ezcGraphPaletteTest extends ezcTestCase
     public function testChartElementAxisColor()
     {
         $chart = new ezcGraphLineChart();
-        $chart->data['income'] = new ezcGraphArrayDataSet( array( 2000 => 2345.2, 2456.3, 2567.4 ) );
-        $chart->data['spending'] = new ezcGraphArrayDataSet( array( 2000 => 2347.2, 2458.3, 2569.4 ) );
+        $chart->data['income'] = new ezcGraphArrayDataSet( [2000 => 2345.2, 2456.3, 2567.4] );
+        $chart->data['spending'] = new ezcGraphArrayDataSet( [2000 => 2347.2, 2458.3, 2569.4] );
 
         $this->assertEquals(
             ezcGraphColor::fromHex( '#2E3436' ),
@@ -343,7 +343,7 @@ class ezcGraphPaletteTest extends ezcTestCase
         $palette = new ezcGraphPaletteTango();
 
         $palette->axisColor = '#FFFFFF';
-        $palette->majorGridColor = array( 255, 255, 255, 255 );
+        $palette->majorGridColor = [255, 255, 255, 255];
         $palette->minorGridColor = ezcGraphColor::fromHex( '#00000000' );
 
         $this->assertEquals(
@@ -367,10 +367,7 @@ class ezcGraphPaletteTest extends ezcTestCase
     {
         $palette = new ezcGraphPaletteTango();
 
-        $palette->dataSetColor = array(
-            '#ABCDEF',
-            array( 255, 255, 255 ),
-        );
+        $palette->dataSetColor = ['#ABCDEF', [255, 255, 255]];
 
         $this->assertEquals(
             $palette->dataSetColor,
@@ -393,10 +390,7 @@ class ezcGraphPaletteTest extends ezcTestCase
     {
         $palette = new ezcGraphPaletteTango();
 
-        $palette->dataSetSymbol = array(
-            ezcGraph::BULLET,
-            ezcGraph::CIRCLE
-        );
+        $palette->dataSetSymbol = [ezcGraph::BULLET, ezcGraph::CIRCLE];
 
         $this->assertSame(
             $palette->dataSetSymbol,

@@ -44,7 +44,7 @@ class ezcPersistentSessionInstanceTest extends ezcTestCase
 
     public function testGetWithIdentifierValid()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session1 = new ezcPersistentSession( ezcDbInstance::get(), $manager );
         $manager2 = clone( $manager );
         $manager2->a = "something";
@@ -59,7 +59,7 @@ class ezcPersistentSessionInstanceTest extends ezcTestCase
     public function testChooseDefault()
     {
 
-        $manager1 = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager1 = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session1 = new ezcPersistentSession( ezcDbInstance::get(), $manager1 );
         $manager2 = clone( $manager1 );
         $session2 = new ezcPersistentSession( ezcDbInstance::get(), $manager2 );
@@ -82,7 +82,7 @@ class ezcPersistentSessionInstanceTest extends ezcTestCase
 
     public function testWith2IdentifiersInvalid()
     {
-        $manager1 = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager1 = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session1 = new ezcPersistentSession( ezcDbInstance::get(), $manager1 );
         
         $manager2 = clone( $manager1 );
@@ -101,7 +101,7 @@ class ezcPersistentSessionInstanceTest extends ezcTestCase
 
     public function testResetWithoutIdentifier()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session = new ezcPersistentSession( ezcDbInstance::get(), $manager );
 
         ezcPersistentSessionInstance::set( $session );
@@ -123,7 +123,7 @@ class ezcPersistentSessionInstanceTest extends ezcTestCase
 
     public function testResetWithIdentifiers()
     {
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session1 = new ezcPersistentSession( ezcDbInstance::get(), $manager );
         $session2 = new ezcPersistentSession( ezcDbInstance::get(), $manager );
 

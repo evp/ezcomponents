@@ -21,42 +21,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      *
      * @var array
      */
-    static private $typeMap = array(
-        'bit' => 'integer',
-        'tinyint' => 'integer',
-        'smallint' => 'integer',
-        'mediumint' => 'integer',
-        'int' =>  'integer',
-        'bigint' => 'integer',
-        'integer' => 'integer',
-        'bool' => 'boolean',
-        'boolean' => 'boolean',
-        'float' => 'float',
-        'double' => 'float',
-        'dec' => 'decimal',
-        'decimal' => 'decimal',
-        'numeric' => 'decimal',
-        'fixed' => 'decimal',
-        
-        'date' => 'date',
-        'datetime' => 'timestamp',
-        'timestamp' => 'timestamp',
-        'time' => 'time',
-        'year' => 'integer',
-       
-        'char' => 'text',
-        'varchar' => 'text',
-        'binary' => 'blob',
-        'varbinary' => 'blob',
-        'tinyblob' => 'blob',
-        'blob' => 'blob',
-        'mediumblob' => 'blob',
-        'longblob' => 'blob',
-        'tinytext' => 'clob',
-        'text' => 'clob',
-        'mediumtext' => 'clob',
-        'longtext' => 'clob',
-    );
+    static private $typeMap = ['bit' => 'integer', 'tinyint' => 'integer', 'smallint' => 'integer', 'mediumint' => 'integer', 'int' =>  'integer', 'bigint' => 'integer', 'integer' => 'integer', 'bool' => 'boolean', 'boolean' => 'boolean', 'float' => 'float', 'double' => 'float', 'dec' => 'decimal', 'decimal' => 'decimal', 'numeric' => 'decimal', 'fixed' => 'decimal', 'date' => 'date', 'datetime' => 'timestamp', 'timestamp' => 'timestamp', 'time' => 'time', 'year' => 'integer', 'char' => 'text', 'varchar' => 'text', 'binary' => 'blob', 'varbinary' => 'blob', 'tinyblob' => 'blob', 'blob' => 'blob', 'mediumblob' => 'blob', 'longblob' => 'blob', 'tinytext' => 'clob', 'text' => 'clob', 'mediumtext' => 'clob', 'longtext' => 'clob'];
 
     /**
      * Loops over all the tables in the database and extracts schema information.
@@ -84,7 +49,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     protected function fetchTableFields( $tableName )
     {
-        $fields = array();
+        $fields = [];
 
         $resultArray = $this->db->query( "DESCRIBE `$tableName`" );
         $resultArray->setFetchMode( PDO::FETCH_ASSOC );
@@ -167,7 +132,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
         }
         $genericType = self::$typeMap[$matches[1]];
 
-        if ( in_array( $genericType, array( 'text', 'decimal', 'float', 'integer' ) ) && isset( $matches[3] ) && $typeString != 'bigint(20)' )
+        if ( in_array( $genericType, ['text', 'decimal', 'float', 'integer'] ) && isset( $matches[3] ) && $typeString != 'bigint(20)' )
         {
             $typeLength = $matches[3];
             if ( is_numeric( $typeLength ) )
@@ -175,7 +140,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
                 $typeLength = (int) $typeLength;
             }
         }
-        if ( in_array( $genericType, array( 'decimal', 'float' ) ) && isset( $matches[5] ) )
+        if ( in_array( $genericType, ['decimal', 'float'] ) && isset( $matches[5] ) )
         {
             $typePrecision = $matches[5];
         }
@@ -191,7 +156,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     private function isNumericType( $type )
     {
-        $types = array( 'float', 'int' );
+        $types = ['float', 'int'];
         return in_array( $type, $types );
     }
 
@@ -203,7 +168,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     private function isStringType( $type )
     {
-        $types = array( 'tinytext', 'text', 'mediumtext', 'longtext' );
+        $types = ['tinytext', 'text', 'mediumtext', 'longtext'];
         return in_array( $type, $types );
     }
 
@@ -215,7 +180,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     private function isBlobType( $type )
     {
-        $types = array( 'varchar', 'char' );
+        $types = ['varchar', 'char'];
         return in_array( $type, $types );
     }
 
@@ -232,7 +197,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
      */
     protected function fetchTableIndexes( $tableName )
     {
-        $indexBuffer = array();
+        $indexBuffer = [];
 
         $resultArray = $this->db->query( "SHOW INDEX FROM `$tableName`" );
         
@@ -265,7 +230,7 @@ class ezcDbSchemaMysqlReader extends ezcDbSchemaCommonSqlReader implements ezcDb
 //            }
         }
 
-        $indexes = array();
+        $indexes = [];
 
         foreach ( $indexBuffer as $indexName => $indexInfo )
         {

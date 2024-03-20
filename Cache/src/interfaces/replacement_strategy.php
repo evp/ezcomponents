@@ -63,7 +63,7 @@ interface ezcCacheStackReplacementStrategy
         ezcCacheStackMetaData $metaData,
         $itemId,
         $itemData,
-        $itemAttributes = array()
+        $itemAttributes = []
     );
 
     /**
@@ -94,7 +94,7 @@ interface ezcCacheStackReplacementStrategy
         ezcCacheStackStorageConfiguration $conf,
         ezcCacheStackMetaData $metaData,
         $itemId,
-        $itemAttributes = array(),
+        $itemAttributes = [],
         $search = false
     );
 
@@ -123,7 +123,7 @@ interface ezcCacheStackReplacementStrategy
         ezcCacheStackStorageConfiguration $conf,
         ezcCacheStackMetaData $metaData,
         $itemId,
-        $itemAttributes = array(),
+        $itemAttributes = [],
         $search = false
     );
 

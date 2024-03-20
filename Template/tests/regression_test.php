@@ -30,7 +30,7 @@ class ezcTemplateRegressionTest extends ezcTestCase
 
     static $skipMissingTests = false;
 
-    public $directories = array();
+    public $directories = [];
 
     public $currentFile = false;
 
@@ -42,9 +42,9 @@ class ezcTemplateRegressionTest extends ezcTestCase
     {
         parent::__construct();
 
-        $this->regressionDir = dirname(__FILE__) . "/regression_tests";
+        $this->regressionDir = __DIR__ . "/regression_tests";
 
-        $directories = array();
+        $directories = [];
         $this->readDirRecursively( $this->regressionDir, $directories, "in" );
 
         if ( isset( $_ENV['EZC_TEST_TEMPLATE_SORT'] ) &&
@@ -52,13 +52,13 @@ class ezcTemplateRegressionTest extends ezcTestCase
         {
             // Sort by modification time to get updated tests first
             usort( $directories,
-                   array( $this, 'sortTestsByMtime' ) );
+                   [$this, 'sortTestsByMtime'] );
         }
         else
         {
             // Sort it, then the file a.in will be processed first. Handy for development.
             usort( $directories,
-                   array( $this, 'sortTestsByName' ) );
+                   [$this, 'sortTestsByName'] );
         }
 
         $this->directories = $directories;
@@ -109,7 +109,7 @@ class ezcTemplateRegressionTest extends ezcTestCase
     {
         if ( $this->currentFile === false )
         {
-            throw new PHPUnit_Framework_ExpectationFailedException( "No currentFile set for test " . __CLASS__ );
+            throw new PHPUnit_Framework_ExpectationFailedException( "No currentFile set for test " . self::class );
         }
 
         $exception = null;
@@ -146,7 +146,7 @@ class ezcTemplateRegressionTest extends ezcTestCase
 
     public static function suite()
     {
-         return new ezcTestRegressionSuite( __CLASS__ );
+         return new ezcTestRegressionSuite( self::class );
     }
 
     private function removeTags( $str )
@@ -172,8 +172,7 @@ class ezcTemplateRegressionTest extends ezcTestCase
                     if ( !$onlyWithExtension ||
                          substr( $file,  -$extensionLength - 1 ) == ".$onlyWithExtension" )
                     {
-                        $total[] = array( 'file' => $new,
-                                          'mtime' => filemtime( $new ) );
+                        $total[] = ['file' => $new, 'mtime' => filemtime( $new )];
                     }
                 }
                 elseif ( is_dir( $new ) )
@@ -468,8 +467,8 @@ class ezcTemplateRegressionTest extends ezcTestCase
         $template->configuration->translation = ezcTemplateTranslationConfiguration::getInstance();
         $template->configuration->translation->locale = 'en_us';
 
-        $backend = new ezcTranslationTsBackend( dirname( __FILE__ ). '/translations' );
-        $backend->setOptions( array( 'format' => '[LOCALE].xml' ) );
+        $backend = new ezcTranslationTsBackend( __DIR__. '/translations' );
+        $backend->setOptions( ['format' => '[LOCALE].xml'] );
         $manager = new ezcTranslationManager( $backend );
         $template->configuration->translation->manager = $manager;
 

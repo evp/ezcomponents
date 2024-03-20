@@ -42,7 +42,7 @@ class ezcDbSchemaPersistentWriter implements ezcDbSchemaFileWriter
     public function __construct( $overwrite = false, $classPrefix = null )
     {
         $this->overwrite = $overwrite;
-        $this->prefix    = ( $classPrefix === null ) ? "" : $classPrefix;
+        $this->prefix    = $classPrefix ?? "";
     }
     
     /**
@@ -255,7 +255,7 @@ class ezcDbSchemaPersistentWriter implements ezcDbSchemaFileWriter
      */
     private function determinePrimaries( $indexes )
     {
-        $primaries = array();
+        $primaries = [];
         foreach ( $indexes as $index )
         {
             if ( $index->primary )

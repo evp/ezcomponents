@@ -270,7 +270,7 @@ class ezcWebdavLockPropertyHandler
      */
     protected function serializeActiveLockContent( ArrayObject $activeLocks = null, DOMDocument $dom, ezcWebdavXmlTool $xmlTool )
     {
-        $activeLockElements = array();
+        $activeLockElements = [];
         foreach ( $activeLocks as $activeLock )
         {
             $activeLockElement = $xmlTool->createDomElement( $dom, 'activelock' );
@@ -374,7 +374,7 @@ class ezcWebdavLockPropertyHandler
      */
     protected function serializeLockEntryContent( ArrayObject $lockEntries = null, DOMDocument $dom, ezcWebdavXmlTool $xmlTool )
     {
-        $lockEntryContentElements = array();
+        $lockEntryContentElements = [];
 
         foreach ( $lockEntries as $lockEntry )
         {

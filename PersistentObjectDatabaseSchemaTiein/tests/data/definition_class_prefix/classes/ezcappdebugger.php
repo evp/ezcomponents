@@ -35,9 +35,7 @@ class ezcappdebugger
      */
      public function getState()
      {
-         return array(
-             'session_id' => $this->session_id,
-         );
+         return ['session_id' => $this->session_id];
      }
 }
 ?>

@@ -23,7 +23,7 @@ class ezcDebugMemoryWriterTest extends ezcTestCase
     public function testSingleMessage()
     {
         $this->writer->reset();
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
         $data = $this->writer->getStructure();
 
         $this->assertEquals($data[0]->message, "msg");
@@ -37,8 +37,8 @@ class ezcDebugMemoryWriterTest extends ezcTestCase
     public function testTwoMessages()
     {
         $this->writer->reset();
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
-        $this->writer->writeLogMessage( "msg2", 12, "src2", "cat2", array("verbosity" => 22) );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
+        $this->writer->writeLogMessage( "msg2", 12, "src2", "cat2", ["verbosity" => 22] );
         $data = $this->writer->getStructure();
 
         $this->assertEquals($data[0]->message, "msg");
@@ -61,12 +61,12 @@ class ezcDebugMemoryWriterTest extends ezcTestCase
     public function testMultipleMessages()
     {
         $this->writer->reset();
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
-        $this->writer->writeLogMessage( "msg", 1, "src", "cat", array("verbosity" => 2) );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
+        $this->writer->writeLogMessage( "msg", 1, "src", "cat", ["verbosity" => 2] );
         $data = $this->writer->getStructure();
 
         $this->assertEquals(count( $data ), 6);

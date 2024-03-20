@@ -37,7 +37,7 @@ class ezcTemplateEmptyBlockTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array();
+        return [];
     }
 
     /**

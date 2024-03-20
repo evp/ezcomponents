@@ -28,7 +28,7 @@ class ezcWebdavFlaggedPropertyStorage extends ezcWebdavBasicPropertyStorage
      * 
      * @var array
      */
-    protected $flags = array();
+    protected $flags = [];
 
     /**
      * Attaches a property to the storage.
@@ -67,7 +67,7 @@ class ezcWebdavFlaggedPropertyStorage extends ezcWebdavBasicPropertyStorage
         if ( !isset( $this->properties[$namespace] ) ||
              !isset( $this->properties[$namespace][$name] ) )
         {
-            $this->propertyOrder[$this->propertyOrderNextId++] = array( $namespace, $name );
+            $this->propertyOrder[$this->propertyOrderNextId++] = [$namespace, $name];
         }
 
         // Add property

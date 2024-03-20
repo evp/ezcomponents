@@ -23,7 +23,7 @@ class ezcTreeVisitorYUIOptionsTest extends ezcTestCase
 
         self::assertSame( '', $options->basePath );
         self::assertSame( false, $options->displayRootNode );
-        self::assertSame( array(), $options->highlightNodeIds );
+        self::assertSame( [], $options->highlightNodeIds );
         self::assertSame( false, $options->selectedNodeLink );
     }
 
@@ -47,28 +47,28 @@ class ezcTreeVisitorYUIOptionsTest extends ezcTestCase
 
         $options->basePath = '/view';
         $options->displayRootNode = true;
-        $options->highlightNodeIds = array( 'root' );
+        $options->highlightNodeIds = ['root'];
         $options->selectedNodeLink = true;
 
         self::assertSame( '/view', $options->basePath );
         self::assertSame( true, $options->displayRootNode );
-        self::assertSame( array( 'root' ), $options->highlightNodeIds );
+        self::assertSame( ['root'], $options->highlightNodeIds );
         self::assertSame( true, $options->selectedNodeLink );
     }
 
     public function testSetValidOptionValues2()
     {
-        $optionsArray = array();
+        $optionsArray = [];
         $optionsArray['basePath'] = '/view';
         $optionsArray['displayRootNode'] = true;
-        $optionsArray['highlightNodeIds'] = array( 'root' );
+        $optionsArray['highlightNodeIds'] = ['root'];
         $optionsArray['selectedNodeLink'] = true;
 
         $options = new ezcTreeVisitorYUIOptions( $optionsArray );
 
         self::assertSame( '/view', $options->basePath );
         self::assertSame( true, $options->displayRootNode );
-        self::assertSame( array( 'root' ), $options->highlightNodeIds );
+        self::assertSame( ['root'], $options->highlightNodeIds );
         self::assertSame( true, $options->selectedNodeLink );
     }
 

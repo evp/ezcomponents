@@ -205,7 +205,7 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
      * 
      * @var array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Maps document elements to handler functions
@@ -215,38 +215,14 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
      *
      * @var array
      */
-    protected $handlerMapping = array(
-        'http://docbook.org/ns/docbook' => array(
-            'article'       => 'initializeDocument',
-            'section'       => 'renderBlock',
-            'sectioninfo'   => 'appendMetaData',
-
-            'para'          => 'renderParagraph',
-            'title'         => 'renderTitle',
-
-            'mediaobject'   => 'renderMediaObject',
-
-            'literallayout' => 'renderLiteralLayout',
-
-            'blockquote'    => 'renderBlockquote',
-
-            'table'         => 'renderTable',
-
-            'itemizedlist'  => 'renderList',
-            'orderedlist'   => 'renderList',
-            'variablelist'  => 'renderBlock',
-            'varlistentry'  => 'renderBlock',
-            'listitem'      => 'renderListItem',
-            'term'          => 'renderTitle',
-        ),
-    );
+    protected $handlerMapping = ['http://docbook.org/ns/docbook' => ['article'       => 'initializeDocument', 'section'       => 'renderBlock', 'sectioninfo'   => 'appendMetaData', 'para'          => 'renderParagraph', 'title'         => 'renderTitle', 'mediaobject'   => 'renderMediaObject', 'literallayout' => 'renderLiteralLayout', 'blockquote'    => 'renderBlockquote', 'table'         => 'renderTable', 'itemizedlist'  => 'renderList', 'orderedlist'   => 'renderList', 'variablelist'  => 'renderBlock', 'varlistentry'  => 'renderBlock', 'listitem'      => 'renderListItem', 'term'          => 'renderTitle']];
 
     /**
      * Additional PDF parts.
      *
      * @var array
      */
-    protected $parts = array();
+    protected $parts = [];
 
     /**
      * Error reporting level
@@ -369,8 +345,8 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
      */
     public function render( ezcDocumentDocbook $document, ezcDocumentPdfHyphenator $hyphenator = null, ezcDocumentPdfTokenizer $tokenizer = null )
     {
-        $this->hyphenator = $hyphenator !== null ? $hyphenator : new ezcDocumentPdfDefaultHyphenator();
-        $this->tokenizer  = $tokenizer !== null ? $tokenizer : new ezcDocumentPdfDefaultTokenizer();
+        $this->hyphenator = $hyphenator ?? new ezcDocumentPdfDefaultHyphenator();
+        $this->tokenizer  = $tokenizer ?? new ezcDocumentPdfDefaultTokenizer();
         $this->document   = $document;
 
         // Register custom fonts in driver
@@ -547,7 +523,7 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
     public function processNode( DOMElement $element, $number = 0 )
     {
         // Default to docbook namespace, if no namespace is defined
-        $namespace = $element->namespaceURI === null ? 'http://docbook.org/ns/docbook' : $element->namespaceURI;
+        $namespace = $element->namespaceURI ?? 'http://docbook.org/ns/docbook';
 
         if ( !isset( $this->handlerMapping[$namespace] ) ||
              !isset( $this->handlerMapping[$namespace][$element->tagName] ) )
@@ -651,22 +627,10 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
         $nodeCount  = $childNodes->length;
 
         // Default metadata values
-        $metadata = array(
-            'created'  => date( 'r' ),
-            'modified' => date( 'r' ),
-        );
+        $metadata = ['created'  => date( 'r' ), 'modified' => date( 'r' )];
 
         // Fields mapped to metadata identifiers
-        $fields = array(
-            'http://docbook.org/ns/docbook' => array(
-                'title'    => 'title',
-                'author'   => 'author',
-                'authors'  => 'author',
-                'subtitle' => 'subject',
-                'pubdate'  => 'created',
-                'date'     => 'modified',
-            ),
-        );
+        $fields = ['http://docbook.org/ns/docbook' => ['title'    => 'title', 'author'   => 'author', 'authors'  => 'author', 'subtitle' => 'subject', 'pubdate'  => 'created', 'date'     => 'modified']];
 
         for ( $i = 0; $i < $nodeCount; ++$i )
         {
@@ -676,7 +640,7 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
                 continue;
             }
 
-            $namespace = $element->namespaceURI === null ? 'http://docbook.org/ns/docbook' : $element->namespaceURI;
+            $namespace = $element->namespaceURI ?? 'http://docbook.org/ns/docbook';
             if ( isset( $fields[$namespace] ) &&
                  isset( $fields[$namespace][$child->tagName] ) )
             {
@@ -812,12 +776,7 @@ class ezcDocumentPdfMainRenderer extends ezcDocumentPdfRenderer implements ezcDo
         $page     = $this->driver->currentPage();
 
         // Just try to render at current position first
-        $this->titleTransaction = array(
-            'transaction' => $this->driver->startTransaction(),
-            'page'        => $page,
-            'xPos'        => $page->x,
-            'position'    => $position,
-        );
+        $this->titleTransaction = ['transaction' => $this->driver->startTransaction(), 'page'        => $page, 'xPos'        => $page->x, 'position'    => $position];
         if ( $renderer->renderNode( $page, $this->hyphenator, $this->tokenizer, $element, $this ) )
         {
             $this->handleAnchors( $element );

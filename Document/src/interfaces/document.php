@@ -35,7 +35,7 @@ abstract class ezcDocument implements ezcDocumentErrorReporting
      * 
      * @var array
      */
-    protected $errors = array();
+    protected $errors = [];
 
     /**
      * Construct new document
@@ -44,9 +44,7 @@ abstract class ezcDocument implements ezcDocumentErrorReporting
      */
     public function __construct( ezcDocumentOptions $options = null )
     {
-        $this->options = ( $options === null ?
-            new ezcDocumentOptions() :
-            $options );
+        $this->options = ( $options ?? new ezcDocumentOptions() );
     }
 
     /**

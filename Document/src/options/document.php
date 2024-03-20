@@ -28,10 +28,11 @@ class ezcDocumentOptions extends ezcBaseOptions
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'errorReporting' => 15, // E_PARSE | E_ERROR | E_WARNING | E_NOTICE
+    protected $properties = [
+        'errorReporting' => 15,
+        // E_PARSE | E_ERROR | E_WARNING | E_NOTICE
         'validate'       => true,
-    );
+    ];
 
     /**
      * Sets the option $name to $value.

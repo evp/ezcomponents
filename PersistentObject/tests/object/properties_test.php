@@ -61,17 +61,13 @@ class ezcPersistentObjectPropertiesTest extends ezcTestCase
         $this->genericArrayAccessFailure(
             $properties,
             'foo',
-            array(
-                23, 23.42, true, "test", array(), new stdClass(),
-            ),
+            [23, 23.42, true, "test", [], new stdClass()],
             'ezcBaseValueException'
         );
         $this->genericArrayAccessFailure(
             $properties,
             23,
-            array(
-                new ezcPersistentObjectProperty(),
-            ),
+            [new ezcPersistentObjectProperty()],
             'ezcBaseValueException'
         );
     }
@@ -86,17 +82,14 @@ class ezcPersistentObjectPropertiesTest extends ezcTestCase
             count( $properties )
         );
 
-        $properties->exchangeArray( array() );
+        $properties->exchangeArray( [] );
         $this->assertEquals(
             0,
             count( $properties )
         );
 
         $properties->exchangeArray(
-            array(
-                'foo' => new ezcPersistentObjectProperty(),
-                'bar' => new ezcPersistentObjectProperty(),
-            )
+            ['foo' => new ezcPersistentObjectProperty(), 'bar' => new ezcPersistentObjectProperty()]
         );
         $this->assertEquals(
             2,
@@ -117,7 +110,7 @@ class ezcPersistentObjectPropertiesTest extends ezcTestCase
         try
         {
             $properties->exchangeArray(
-                array( 'foo' => 23 )
+                ['foo' => 23]
             );
             $this->fail( 'ezcBaseValueException not thrown on invalid value in exchange array.' );
         }
@@ -126,7 +119,7 @@ class ezcPersistentObjectPropertiesTest extends ezcTestCase
         try
         {
             $properties->exchangeArray(
-                array( 23 => new ezcPersistentObjectProperty )
+                [23 => new ezcPersistentObjectProperty]
             );
             $this->fail( 'ezcBaseValueException not thrown on invalid offset in exchange array.' );
         }

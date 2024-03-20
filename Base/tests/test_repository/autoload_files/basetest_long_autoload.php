@@ -1,5 +1,3 @@
 <?php
-return array(
-	'trBasetestLongClass' => 'TestClasses/base_test_long_class.php',
-);
+return ['trBasetestLongClass' => 'TestClasses/base_test_long_class.php'];
 ?>

@@ -23,13 +23,13 @@ class ezcPhpGeneratorParameter extends ezcBaseStruct
      * Specifies that $variable contains the name of a variable which exists in
      * the generated code.
      */
-    const VARIABLE = 1;
+    public const VARIABLE = 1;
 
     /**
      * Specifies that $variable contains data that should be inserted directly
      * into the generated code using var_export.
      */
-    const VALUE = 2;
+    public const VALUE = 2;
 
     /**
      * The type of the parameter. Use either VARIABLE or VALUE.

@@ -39,12 +39,12 @@ class ezcDocumentHtmlConverterOptions extends ezcDocumentConverterOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->dublinCoreMetadata = false;
         $this->formatOutput       = false;
         $this->styleSheets        = null;
-        $this->styleSheet         = file_get_contents( dirname( __FILE__ ) . '/data/html_style.css' );
+        $this->styleSheet         = file_get_contents( __DIR__ . '/data/html_style.css' );
         $this->headerLevel        = 1;
 
         parent::__construct( $options );

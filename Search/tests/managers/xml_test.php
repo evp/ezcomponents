@@ -18,7 +18,7 @@ class ezcSearchXmlDefinitionManager extends ezcTestCase
 {
     public function setUp()
     {
-        $this->testFilesDir = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'testfiles' . DIRECTORY_SEPARATOR;
+        $this->testFilesDir = __DIR__ . DIRECTORY_SEPARATOR . 'testfiles' . DIRECTORY_SEPARATOR;
     }
 
     public function testCanNotFindDefinitionFile()
@@ -37,7 +37,7 @@ class ezcSearchXmlDefinitionManager extends ezcTestCase
 
     public function testCanNotFindDefinitionFileWithoutDirSlash()
     {
-        $m = new ezcSearchXmlManager( dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'testfiles' );
+        $m = new ezcSearchXmlManager( __DIR__ . DIRECTORY_SEPARATOR . 'testfiles' );
         try
         {
             $d = $m->fetchDefinition( 'doesNotExist' );
@@ -111,7 +111,7 @@ class ezcSearchXmlDefinitionManager extends ezcTestCase
         $d = $m->fetchDefinition( 'Article' );
 
         self::assertEquals( 'id', $d->idProperty );
-        self::assertEquals( array( 'id', 'title', 'summary', 'body', 'published', 'author' ), $d->getFieldNames() );
+        self::assertEquals( ['id', 'title', 'summary', 'body', 'published', 'author'], $d->getFieldNames() );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['id']->type );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['title']->type );
         self::assertEquals( ezcSearchDocumentDefinition::TEXT, $d->fields['summary']->type );
@@ -137,7 +137,7 @@ class ezcSearchXmlDefinitionManager extends ezcTestCase
         $d = $m->fetchDefinition( 'Article' );
 
         self::assertEquals( 'id', $d->idProperty );
-        self::assertEquals( array( 'id', 'title', 'summary', 'body', 'published', 'author' ), $d->getFieldNames() );
+        self::assertEquals( ['id', 'title', 'summary', 'body', 'published', 'author'], $d->getFieldNames() );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['id']->type );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['title']->type );
         self::assertEquals( ezcSearchDocumentDefinition::TEXT, $d->fields['summary']->type );

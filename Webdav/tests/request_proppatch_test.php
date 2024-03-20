@@ -25,32 +25,16 @@ class ezcWebdavPropPatchRequestTest extends ezcWebdavRequestTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavPropPatchRequest';
-        $this->constructorArguments = array(
-            '/foo', '/bar'
-        );
-        $this->defaultValues = array(
-            'updates' => new ezcWebdavFlaggedPropertyStorage(),
-        );
-        $this->workingValues = array(
-            'updates' => array(
-                new ezcWebdavFlaggedPropertyStorage(),
-            ),
-        );
-        $this->failingValues = array(
-            'updates' => array(
-                23,
-                23.34,
-                'foo bar',
-                array( 23, 42 ),
-                new stdClass(),
-            ),
-        );
+        $this->constructorArguments = ['/foo', '/bar'];
+        $this->defaultValues = ['updates' => new ezcWebdavFlaggedPropertyStorage()];
+        $this->workingValues = ['updates' => [new ezcWebdavFlaggedPropertyStorage()]];
+        $this->failingValues = ['updates' => [23, 23.34, 'foo bar', [23, 42], new stdClass()]];
     }
 }
 

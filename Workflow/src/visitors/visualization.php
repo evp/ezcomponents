@@ -32,14 +32,14 @@ class ezcWorkflowVisitorVisualization extends ezcWorkflowVisitor
      *
      * @var array(string => string)
      */
-    protected $nodes = array();
+    protected $nodes = [];
 
     /**
      * Holds all the edges of the graph.
      *
      * @var array( id => array( ezcWorkflowNode ) )
      */
-    protected $edges = array();
+    protected $edges = [];
 
     /**
      * Holds the name of the workflow.
@@ -53,7 +53,7 @@ class ezcWorkflowVisitorVisualization extends ezcWorkflowVisitor
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Constructor.
@@ -153,13 +153,10 @@ class ezcWorkflowVisitorVisualization extends ezcWorkflowVisitor
 
             if ( !isset( $this->nodes[$id] ) )
             {
-                $this->nodes[$id] = array(
-                  'label' => (string)$visitable,
-                  'color' => $color
-                );
+                $this->nodes[$id] = ['label' => (string)$visitable, 'color' => $color];
             }
 
-            $outNodes = array();
+            $outNodes = [];
 
             foreach ( $visitable->getOutNodes() as $outNode )
             {
@@ -175,7 +172,7 @@ class ezcWorkflowVisitorVisualization extends ezcWorkflowVisitor
                     }
                 }
 
-                $outNodes[] = array( $outNode->getId(), $label );
+                $outNodes[] = [$outNode->getId(), $label];
             }
 
             $this->edges[$id] = $outNodes;

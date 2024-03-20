@@ -33,7 +33,7 @@ class ezcTemplateCaseTstNode extends ezcTemplateBlockTstNode
     public function __construct( ezcTemplateSourceCode $source, /*ezcTemplateCursor*/ $start, /*ezcTemplateCursor*/ $end )
     {
         parent::__construct( $source, $start, $end );
-        $this->conditions = array();
+        $this->conditions = [];
         $this->name = "case";
 
         $this->isNestingBlock = true;
@@ -41,8 +41,7 @@ class ezcTemplateCaseTstNode extends ezcTemplateBlockTstNode
 
     public function getTreeProperties()
     {
-        return array( 'conditions' => $this->conditions,
-                      'children'  => $this->children );
+        return ['conditions' => $this->conditions, 'children'  => $this->children];
     }
 
     public function handleElement( ezcTemplateTstNode $element )

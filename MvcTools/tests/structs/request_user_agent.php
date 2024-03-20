@@ -31,9 +31,7 @@ class ezcMvcRequestUserAgentTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'agent' => 'php',
-        );
+        $state = ['agent' => 'php'];
         $struct = ezcMvcRequestUserAgent::__set_state( $state );
         $this->assertEquals( 'php', $struct->agent, 'Property agent does not have the expected value' );
     }

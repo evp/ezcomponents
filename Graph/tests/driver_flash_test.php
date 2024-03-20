@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -25,11 +25,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
     protected $basePath;
 
-    protected $testFiles = array(
-        'jpeg'           => 'jpeg.jpg',
-        'png'            => 'png.png',
-        'gif'            => 'gif.gif',
-    );
+    protected $testFiles = ['jpeg'           => 'jpeg.jpg', 'png'            => 'png.png', 'gif'            => 'gif.gif'];
 
 	public static function suite()
 	{
@@ -44,8 +40,8 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         }
 
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
 
         $this->driver = new ezcGraphFlashDriver();
         $this->driver->options->width = 200;
@@ -77,7 +73,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -105,11 +101,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $return = $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             true
         );
@@ -118,7 +110,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
 
         $this->assertEquals(
@@ -133,11 +125,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             false
         );
@@ -146,7 +134,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -155,13 +143,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-                new ezcGraphCoordinate( 3, 45 ),
-                new ezcGraphCoordinate( 60, 32 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 ), new ezcGraphCoordinate( 3, 45 ), new ezcGraphCoordinate( 60, 32 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             true
         );
@@ -170,7 +152,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -191,7 +173,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -218,7 +200,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -232,7 +214,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
     {
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
-        $angles = array( 10, 25, 45, 75, 110, 55 );
+        $angles = [10, 25, 45, 75, 110, 55];
 
         $startAngle = 0;
         foreach ( $angles as $angle )
@@ -252,7 +234,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -260,7 +242,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
     {
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
-        $angles = array( 10, 25, 45, 90, 125, 180, 235, 340 );
+        $angles = [10, 25, 45, 90, 125, 180, 235, 340];
 
         $position = 0;
         $radius = 80;
@@ -289,7 +271,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -297,7 +279,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
     {
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
-        $angles = array( 135, 250 );
+        $angles = [135, 250];
 
         $startAngle = 5;
         foreach ( $angles as $angle )
@@ -317,7 +299,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -339,7 +321,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -360,7 +342,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -381,7 +363,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -403,7 +385,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -432,7 +414,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -454,7 +436,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -476,7 +458,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -495,7 +477,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -521,7 +503,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -561,7 +543,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -579,7 +561,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -588,12 +570,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -609,7 +586,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -636,7 +613,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -657,7 +634,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -678,7 +655,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -687,12 +664,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -708,7 +680,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -717,12 +689,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -738,7 +705,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -747,12 +714,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -768,7 +730,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -777,12 +739,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 20, 20 ),
-                new ezcGraphCoordinate( 110, 20 ),
-                new ezcGraphCoordinate( 110, 30 ),
-                new ezcGraphCoordinate( 20, 30 ),
-            ),
+            [new ezcGraphCoordinate( 20, 20 ), new ezcGraphCoordinate( 110, 20 ), new ezcGraphCoordinate( 110, 30 ), new ezcGraphCoordinate( 20, 30 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -798,7 +755,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -807,12 +764,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -828,7 +780,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -837,12 +789,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -858,7 +805,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -867,12 +814,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -888,7 +830,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -897,12 +839,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -918,7 +855,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -927,12 +864,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -948,7 +880,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -957,12 +889,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -978,7 +905,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -987,12 +914,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1008,7 +930,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1017,12 +939,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1038,7 +955,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1047,12 +964,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array(
-                new ezcGraphCoordinate( 47, 54 ),
-                new ezcGraphCoordinate( 47, 84 ),
-                new ezcGraphCoordinate( 99, 84 ),
-                new ezcGraphCoordinate( 99, 54 ),
-            ),
+            [new ezcGraphCoordinate( 47, 54 ), new ezcGraphCoordinate( 47, 84 ), new ezcGraphCoordinate( 99, 84 ), new ezcGraphCoordinate( 99, 54 )],
             ezcGraphColor::fromHex( '#DDDDDD' ),
             true
         );
@@ -1068,7 +980,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1091,7 +1003,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1115,7 +1027,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1138,7 +1050,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1161,7 +1073,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1186,7 +1098,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1212,7 +1124,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1237,7 +1149,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1262,7 +1174,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1306,7 +1218,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1331,7 +1243,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -1370,7 +1282,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -1402,7 +1314,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -1442,7 +1354,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
         
         $this->assertEquals(
@@ -1457,16 +1369,10 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $chart = new ezcGraphPieChart();
-        $chart->options->font->path = dirname( __FILE__ ) . '/data/fdb_font.fdb';
+        $chart->options->font->path = __DIR__ . '/data/fdb_font.fdb';
 
         $chart->palette = new ezcGraphPaletteEz();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -1483,7 +1389,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1492,29 +1398,17 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A4DD' ),
             true
         );
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 150, 13 ),
-                new ezcGraphCoordinate( 90, 60 ),
-                new ezcGraphCoordinate( 120, 5 ),
-            ),
+            [new ezcGraphCoordinate( 150, 13 ), new ezcGraphCoordinate( 90, 60 ), new ezcGraphCoordinate( 120, 5 )],
             ezcGraphColor::fromHex( '#A40000DD' ),
             true
         );
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 170, 78 ),
-                new ezcGraphCoordinate( 60, 24 ),
-                new ezcGraphCoordinate( 140, 50 ),
-            ),
+            [new ezcGraphCoordinate( 170, 78 ), new ezcGraphCoordinate( 60, 24 ), new ezcGraphCoordinate( 140, 50 )],
             ezcGraphColor::fromHex( '#EDD400DD' ),
             true
         );
@@ -1523,7 +1417,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1531,7 +1425,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
     {
         $filename = $this->tempDir . __FUNCTION__ . '.swf';
 
-        $angles = array( 10, 25, 45, 75, 110, 55 );
+        $angles = [10, 25, 45, 75, 110, 55];
 
         $startAngle = 0;
         foreach ( $angles as $angle )
@@ -1553,7 +1447,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 
@@ -1638,7 +1532,7 @@ class ezcGraphFlashDriverTest extends ezcGraphTestCase
 
         $this->swfCompare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.swf'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.swf'
         );
     }
 }

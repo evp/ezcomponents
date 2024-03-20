@@ -58,7 +58,7 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
         $this->execution->workflow = $this->workflow;
         $id = $this->execution->start();
         $this->setUpExecution( $id );
-        $this->execution->resume( array( 'variable' => 'value' ) );
+        $this->execution->resume( ['variable' => 'value'] );
 
         $this->assertEquals(
           $this->readExpected( 'StartInputEnd' ),
@@ -150,8 +150,8 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
         $this->definition->save( $this->workflow );
         $this->execution->workflow = $this->workflow;
         $this->execution->start();
-        $this->execution->resume( array( 'foo' => 'bar' ) );
-        $this->execution->resume( array( 'bar' => 'foo' ) );
+        $this->execution->resume( ['foo' => 'bar'] );
+        $this->execution->resume( ['bar' => 'foo'] );
 
         $this->assertEquals(
           $this->readExpected( 'ParallelSplitSynchronization2' ),
@@ -164,7 +164,7 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
         $this->setUpExclusiveChoiceSimpleMerge();
         $this->definition->save( $this->workflow );
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
 
         $this->assertEquals(
@@ -178,7 +178,7 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
         $this->setUpExclusiveChoiceSimpleMerge();
         $this->definition->save( $this->workflow );
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
 
         $this->assertEquals(
@@ -192,7 +192,7 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
         $this->setUpExclusiveChoiceWithUnconditionalOutNodeSimpleMerge();
         $this->definition->save( $this->workflow );
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
 
         $this->assertEquals(
@@ -206,7 +206,7 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
         $this->setUpExclusiveChoiceWithUnconditionalOutNodeSimpleMerge();
         $this->definition->save( $this->workflow );
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
 
         $this->assertEquals(
@@ -304,7 +304,7 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
         $this->execution->workflow = $this->workflow;
         $id = $this->execution->start();
         $this->setUpExecution( $id );
-        $this->execution->resume( array( 'variable' => 'value' ) );
+        $this->execution->resume( ['variable' => 'value'] );
 
         $this->assertEquals(
           $this->readExpected( 'InteractiveSubWorkflow' ),
@@ -315,7 +315,7 @@ class ezcWorkflowEventLogTieinListenerTest extends WorkflowEventLogTieinTestCase
     public function testLoadWorkflowWithSubWorkflowAndVariablePassing()
     {
         $definition = new ezcWorkflowDefinitionStorageXml(
-          dirname( dirname( dirname( __FILE__ ) ) ) . '/Workflow/tests/data/'
+          dirname(__FILE__, 3) . '/Workflow/tests/data/'
         );
 
         $workflow = $definition->loadByName( 'IncrementVariable' );

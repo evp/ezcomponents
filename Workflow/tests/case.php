@@ -29,12 +29,12 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         parent::setUp();
 
         $this->xmlStorage = new ezcWorkflowDefinitionStorageXml(
-          dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR
+          __DIR__ . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR
         );
 
         if ( !class_exists( 'ServiceObject', false ) )
         {
-            $this->getMock( 'ezcWorkflowServiceObject', array(), array(), 'ServiceObject' );
+            $this->getMock( 'ezcWorkflowServiceObject', [], [], 'ServiceObject' );
         }
     }
 
@@ -59,7 +59,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
     protected function setUpStartInputEnd()
     {
         $this->workflow = new ezcWorkflow( 'StartInputEnd' );
-        $inputNode = new ezcWorkflowNodeInput( array( 'variable' => new ezcWorkflowConditionIsString ) );
+        $inputNode = new ezcWorkflowNodeInput( ['variable' => new ezcWorkflowConditionIsString] );
 
         $this->workflow->startNode->addOutNode( $inputNode );
         $this->workflow->endNode->addInNode( $inputNode );
@@ -70,7 +70,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
     protected function setUpStartInputEnd2()
     {
         $this->workflow = new ezcWorkflow( 'StartInputEnd2' );
-        $inputNode = new ezcWorkflowNodeInput( array( 'variable' => new ezcWorkflowConditionInArray( array( '1', 2, 3 ) ) ) );
+        $inputNode = new ezcWorkflowNodeInput( ['variable' => new ezcWorkflowConditionInArray( ['1', 2, 3] )] );
 
         $this->workflow->startNode->addOutNode( $inputNode );
         $this->workflow->endNode->addInNode( $inputNode );
@@ -81,16 +81,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'StartSetEnd' );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array(
-            'null' => null,
-            'true' => true,
-            'false' => false,
-            'array' => array( 22, 4, 1978 ),
-            'object' => new StdClass,
-            'string' => 'string',
-            'integer' => 2241978,
-            'float' => 22.04
-          )
+          ['null' => null, 'true' => true, 'false' => false, 'array' => [22, 4, 1978], 'object' => new StdClass, 'string' => 'string', 'integer' => 2241978, 'float' => 22.04]
         );
 
         $this->workflow->startNode->addOutNode( $set );
@@ -102,7 +93,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'StartSetUnsetEnd' );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'x' => 1 )
+          ['x' => 1]
         );
 
         $unset = new ezcWorkflowNodeVariableUnset( 'x' );
@@ -144,7 +135,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         }
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'i' => $start )
+          ['i' => $start]
         );
 
         $this->workflow->startNode->addOutNode( $set );
@@ -161,23 +152,23 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'SetAddSubMulDiv' );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'x' => 1 )
+          ['x' => 1]
         );
 
         $add = new ezcWorkflowNodeVariableAdd(
-          array( 'name' => 'x', 'operand' => 1 )
+          ['name' => 'x', 'operand' => 1]
         );
 
         $sub = new ezcWorkflowNodeVariableSub(
-          array( 'name' => 'x', 'operand' => 1 )
+          ['name' => 'x', 'operand' => 1]
         );
 
         $mul = new ezcWorkflowNodeVariableMul(
-          array( 'name' => 'x', 'operand' => 2 )
+          ['name' => 'x', 'operand' => 2]
         );
 
         $div = new ezcWorkflowNodeVariableDiv(
-          array( 'name' => 'x', 'operand' => 2 )
+          ['name' => 'x', 'operand' => 2]
         );
 
         $this->workflow->startNode->addOutNode( $set );
@@ -193,11 +184,11 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'AddVariables' );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'a' => 1, 'b' => 1 )
+          ['a' => 1, 'b' => 1]
         );
 
         $add = new ezcWorkflowNodeVariableAdd(
-          array( 'name' => 'b', 'operand' => 'a' )
+          ['name' => 'b', 'operand' => 'a']
         );
 
         $this->workflow->startNode->addOutNode( $set );
@@ -210,11 +201,11 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'AddVariables2' );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'a' => 'a', 'b' => 1 )
+          ['a' => 'a', 'b' => 1]
         );
 
         $add = new ezcWorkflowNodeVariableAdd(
-          array( 'name' => 'b', 'operand' => 'a' )
+          ['name' => 'b', 'operand' => 'a']
         );
 
         $this->workflow->startNode->addOutNode( $set );
@@ -227,11 +218,11 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'AddVariables3' );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'a' => 1, 'b' => 'b' )
+          ['a' => 1, 'b' => 'b']
         );
 
         $add = new ezcWorkflowNodeVariableAdd(
-          array( 'name' => 'b', 'operand' => 'a' )
+          ['name' => 'b', 'operand' => 'a']
         );
 
         $this->workflow->startNode->addOutNode( $set );
@@ -244,15 +235,15 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'VariableEqualsVariable' );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'a' => 1, 'b' => 1 )
+          ['a' => 1, 'b' => 1]
         );
 
         $set2 = new ezcWorkflowNodeVariableSet(
-          array( 'c' => 1 )
+          ['c' => 1]
         );
 
         $set3 = new ezcWorkflowNodeVariableSet(
-          array( 'c' => 0 )
+          ['c' => 0]
         );
 
         $this->branchNode = new ezcWorkflowNodeExclusiveChoice;
@@ -309,8 +300,8 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow   = new ezcWorkflow( 'ParallelSplitSynchronization2' );
         $this->branchNode = new ezcWorkflowNodeParallelSplit;
 
-        $foo = new ezcWorkflowNodeInput( array( 'foo' => new ezcWorkflowConditionIsString ) );
-        $bar = new ezcWorkflowNodeInput( array( 'bar' => new ezcWorkflowConditionIsString ) );
+        $foo = new ezcWorkflowNodeInput( ['foo' => new ezcWorkflowConditionIsString] );
+        $bar = new ezcWorkflowNodeInput( ['bar' => new ezcWorkflowConditionIsString] );
 
         $this->branchNode->addOutNode( $foo );
         $this->branchNode->addOutNode( $bar );
@@ -386,11 +377,11 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->branchNode = new ezcWorkflowNodeExclusiveChoice;
 
         $setX = new ezcWorkflowNodeVariableSet(
-          array( 'x' => true )
+          ['x' => true]
         );
 
         $setY = new ezcWorkflowNodeVariableSet(
-          array( 'y' => true )
+          ['y' => true]
         );
 
         $this->branchNode->addConditionalOutNode(
@@ -416,15 +407,15 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'ExclusiveChoiceWithUnconditionalOutNodeSimpleMerge' );
 
         $setX = new ezcWorkflowNodeVariableSet(
-          array( 'x' => true )
+          ['x' => true]
         );
 
         $setY = new ezcWorkflowNodeVariableSet(
-          array( 'y' => true )
+          ['y' => true]
         );
 
         $setZ = new ezcWorkflowNodeVariableSet(
-          array( 'z' => true )
+          ['z' => true]
         );
 
         $this->branchNode = new ezcWorkflowNodeExclusiveChoice;
@@ -462,23 +453,23 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'NestedExclusiveChoiceSimpleMerge' );
 
         $setX = new ezcWorkflowNodeVariableSet(
-          array( 'x' => $x )
+          ['x' => $x]
         );
 
         $setY = new ezcWorkflowNodeVariableSet(
-          array( 'y' => $y )
+          ['y' => $y]
         );
 
         $setZ1 = new ezcWorkflowNodeVariableSet(
-          array( 'z' => true )
+          ['z' => true]
         );
 
         $setZ2 = new ezcWorkflowNodeVariableSet(
-          array( 'z' => false )
+          ['z' => false]
         );
 
         $setZ3 = new ezcWorkflowNodeVariableSet(
-          array( 'z' => false )
+          ['z' => false]
         );
 
         $this->workflow->startNode->addOutNode( $setX );
@@ -546,9 +537,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'MultiChoice' . $mergeType );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array(
-            'x' => 1, 'y' => 2
-          )
+          ['x' => 1, 'y' => 2]
         );
 
         $multiChoice  = new ezcWorkflowNodeMultiChoice;
@@ -558,50 +547,41 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
 
         $multiChoice->addConditionalOutNode(
           new ezcWorkflowConditionAnd(
-            array(
+            [new ezcWorkflowConditionVariable(
+              'x',
+              new ezcWorkflowConditionIsEqual( 1 )
+            ), new ezcWorkflowConditionNot(
               new ezcWorkflowConditionVariable(
-                'x',
-                new ezcWorkflowConditionIsEqual( 1 )
-              ),
-              new ezcWorkflowConditionNot(
-                new ezcWorkflowConditionVariable(
-                  'y',
-                  new ezcWorkflowConditionIsEqual( 3 )
-                )
+                'y',
+                new ezcWorkflowConditionIsEqual( 3 )
               )
-            )
+            )]
           ),
           $actionNodeA
         );
 
         $multiChoice->addConditionalOutNode(
           new ezcWorkflowConditionOr(
-            array(
-              new ezcWorkflowConditionVariable(
-                'x',
-                new ezcWorkflowConditionIsEqual( 1 )
-              ),
-              new ezcWorkflowConditionVariable(
-                'y',
-                new ezcWorkflowConditionIsEqual( 2 )
-              )
-            )
+            [new ezcWorkflowConditionVariable(
+              'x',
+              new ezcWorkflowConditionIsEqual( 1 )
+            ), new ezcWorkflowConditionVariable(
+              'y',
+              new ezcWorkflowConditionIsEqual( 2 )
+            )]
           ),
           $actionNodeB
         );
 
         $multiChoice->addConditionalOutNode(
           new ezcWorkflowConditionXor(
-            array(
-              new ezcWorkflowConditionVariable(
-                'x',
-                new ezcWorkflowConditionIsEqual( 1 )
-              ),
-              new ezcWorkflowConditionVariable(
-                'y',
-                new ezcWorkflowConditionIsEqual( 1 )
-              )
-            )
+            [new ezcWorkflowConditionVariable(
+              'x',
+              new ezcWorkflowConditionIsEqual( 1 )
+            ), new ezcWorkflowConditionVariable(
+              'y',
+              new ezcWorkflowConditionIsEqual( 1 )
+            )]
           ),
           $actionNodeC
         );
@@ -646,20 +626,10 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
     protected function setUpWorkflowWithSubWorkflowAndVariablePassing()
     {
         $this->workflow = new ezcWorkflow( 'WorkflowWithSubWorkflowAndVariablePassing' );
-        $set            = new ezcWorkflowNodeVariableSet( array( 'x' => 1 ) );
+        $set            = new ezcWorkflowNodeVariableSet( ['x' => 1] );
 
         $subWorkflow = new ezcWorkflowNodeSubWorkflow(
-          array(
-            'workflow'  => 'IncrementVariable',
-            'variables' => array(
-              'in' => array(
-                'x' => 'y'
-              ),
-              'out' => array(
-                'y' => 'z'
-              )
-            )
-          )
+          ['workflow'  => 'IncrementVariable', 'variables' => ['in' => ['x' => 'y'], 'out' => ['y' => 'z']]]
         );
 
         $subWorkflow->addInNode( $set );
@@ -672,7 +642,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
     {
         $this->workflow = new ezcWorkflow( 'NestedLoops' );
 
-        $innerSet      = new ezcWorkflowNodeVariableSet( array( 'j' => 1 ) );
+        $innerSet      = new ezcWorkflowNodeVariableSet( ['j' => 1] );
         $innerStep     = new ezcWorkflowNodeVariableIncrement( 'j' );
         $innerBreak    = new ezcWorkflowConditionVariable( 'j', new ezcWorkflowConditionIsEqual( 2 ) );
         $innerContinue = new ezcWorkflowConditionVariable( 'j', new ezcWorkflowConditionIsLessThan( 2 ) );
@@ -681,7 +651,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $innerLoop->addInNode( $innerSet )
                   ->addInNode( $innerStep );
 
-        $outerSet      = new ezcWorkflowNodeVariableSet( array( 'i' => 1 ) );
+        $outerSet      = new ezcWorkflowNodeVariableSet( ['i' => 1] );
         $outerStep     = new ezcWorkflowNodeVariableIncrement( 'i' );
         $outerBreak    = new ezcWorkflowConditionVariable( 'i', new ezcWorkflowConditionIsEqual( 2 ) );
         $outerContinue = new ezcWorkflowConditionVariable( 'i', new ezcWorkflowConditionIsLessThan( 2 ) );
@@ -764,7 +734,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow->endNode->addInNode( $cancelNode );
 
         $set = new ezcWorkflowNodeVariableSet(
-          array( 'finalActivityExecuted' => true )
+          ['finalActivityExecuted' => true]
         );
 
         $set->addOutNode( new ezcWorkflowNodeEnd );
@@ -777,12 +747,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->setUpEmptyWorkflow( 'ServiceObjectWithArguments' );
 
         $action = new ezcWorkflowNodeAction(
-          array(
-            'class' => 'ServiceObjectWithConstructor',
-            'arguments' => array(
-              array( 'Sebastian' ), 22, 'April', 19.78, null, new StdClass
-            )
-          )
+          ['class' => 'ServiceObjectWithConstructor', 'arguments' => [['Sebastian'], 22, 'April', 19.78, null, new StdClass]]
         );
 
         $this->workflow->startNode->addOutNode( $action );
@@ -794,11 +759,11 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         $this->workflow = new ezcWorkflow( 'ApprovalProcess' );
 
         $init = new ezcWorkflowNodeVariableSet(
-          array( 'approved_by_a' => false, 'approved_by_b' => false )
+          ['approved_by_a' => false, 'approved_by_b' => false]
         );
 
         $approveA = new ezcWorkflowNodeVariableSet(
-          array( 'approved_by_a' => true )
+          ['approved_by_a' => true]
         );
 
         $approvedByA = new ezcWorkflowConditionVariable(
@@ -810,7 +775,7 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
         );
 
         $approveB = new ezcWorkflowNodeVariableSet(
-          array( 'approved_by_b' => true )
+          ['approved_by_b' => true]
         );
 
         $approvedByB = new ezcWorkflowConditionVariable(
@@ -827,43 +792,14 @@ abstract class ezcWorkflowTestCase extends ezcTestCase
              ->addInNode( $approveB )
              ->addConditionalOutNode( $notApprovedByA, $approveA )
              ->addConditionalOutNode( $notApprovedByB, $approveB )
-             ->addConditionalOutNode( new ezcWorkflowConditionAnd( array( $approvedByA, $approvedByB ) ), $this->workflow->endNode );
+             ->addConditionalOutNode( new ezcWorkflowConditionAnd( [$approvedByA, $approvedByB] ), $this->workflow->endNode );
 
         $this->workflow->startNode->addOutNode( $init );
     }
 
     public static function workflowNameProvider()
     {
-        return array(
-          array( 'AddVariables', 4 ),
-          array( 'ApprovalProcess', 6 ),
-          array( 'DecrementingLoop', 5 ),
-          array( 'ExclusiveChoiceSimpleMerge', 6 ),
-          array( 'ExclusiveChoiceWithElseSimpleMerge', 6 ),
-          array( 'ExclusiveChoiceWithUnconditionalOutNodeSimpleMerge', 7 ),
-          array( 'IncrementingLoop', 5 ),
-          array( 'MultiChoiceDiscriminator', 8 ),
-          array( 'MultiChoiceSynchronizingMerge', 8 ),
-          array( 'NestedExclusiveChoiceSimpleMerge', 11 ),
-          array( 'NestedLoops', 8 ),
-          array( 'ParallelSplitSynchronization', 7 ),
-          array( 'ParallelSplitSynchronization2', 6 ),
-          array( 'ParallelSplitActionActionCancelCaseSynchronization', 8 ),
-          array( 'ParallelSplitCancelCaseActionActionSynchronization', 8 ),
-          array( 'ServiceObjectWithArguments', 3 ),
-          array( 'SetAddSubMulDiv', 7 ),
-          array( 'StartEnd', 2 ),
-          array( 'StartInputEnd', 3 ),
-          array( 'StartInputEnd2', 3 ),
-          array( 'StartEndVariableHandler', 2 ),
-          array( 'StartSetEnd', 3 ),
-          array( 'StartSetUnsetEnd', 4 ),
-          array( 'VariableEqualsVariable', 7 ),
-          array( 'WorkflowWithFinalActivitiesAfterCancellation', 3 ),
-          array( 'WorkflowWithSubWorkflowStartEnd', 3 ),
-          array( 'WorkflowWithSubWorkflowAndVariablePassing', 4 ),
-          array( 'WorkflowWithSubWorkflowParallelSplitActionActionCancelCaseSynchronization', 3 )
-        );
+        return [['AddVariables', 4], ['ApprovalProcess', 6], ['DecrementingLoop', 5], ['ExclusiveChoiceSimpleMerge', 6], ['ExclusiveChoiceWithElseSimpleMerge', 6], ['ExclusiveChoiceWithUnconditionalOutNodeSimpleMerge', 7], ['IncrementingLoop', 5], ['MultiChoiceDiscriminator', 8], ['MultiChoiceSynchronizingMerge', 8], ['NestedExclusiveChoiceSimpleMerge', 11], ['NestedLoops', 8], ['ParallelSplitSynchronization', 7], ['ParallelSplitSynchronization2', 6], ['ParallelSplitActionActionCancelCaseSynchronization', 8], ['ParallelSplitCancelCaseActionActionSynchronization', 8], ['ServiceObjectWithArguments', 3], ['SetAddSubMulDiv', 7], ['StartEnd', 2], ['StartInputEnd', 3], ['StartInputEnd2', 3], ['StartEndVariableHandler', 2], ['StartSetEnd', 3], ['StartSetUnsetEnd', 4], ['VariableEqualsVariable', 7], ['WorkflowWithFinalActivitiesAfterCancellation', 3], ['WorkflowWithSubWorkflowStartEnd', 3], ['WorkflowWithSubWorkflowAndVariablePassing', 4], ['WorkflowWithSubWorkflowParallelSplitActionActionCancelCaseSynchronization', 3]];
     }
 }
 ?>

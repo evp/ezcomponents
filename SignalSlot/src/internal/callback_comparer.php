@@ -31,7 +31,7 @@ class ezcSignalCallbackComparer
         {
             return $a === $b;
         }
-        return ( count( array_udiff( $a, $b, array( 'ezcSignalCallbackComparer', 'comp_func') ) ) == 0 );
+        return ( count( array_udiff( $a, $b, ['ezcSignalCallbackComparer', 'comp_func'] ) ) == 0 );
     }
 
     /**

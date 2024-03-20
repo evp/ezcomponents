@@ -35,7 +35,7 @@ class ezcPersistentMultiManager extends ezcPersistentDefinitionManager
      *
      * @param array(ezcPersistentDefinitionManager) $managers
      */
-    public function __construct( array $managers = array() )
+    public function __construct( array $managers = [] )
     {
         $this->managers = $managers;
     }

@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/switch/correct/switch_nested.in
 
@@ -14,8 +14,8 @@ $empty = alt( '' );
 function makeCase( $nums )
 {
     if ( !is_array( $nums ) )
-        $nums = array( $nums );
-    $list = array();
+        $nums = [$nums];
+    $list = [];
     return alt( "{case " . implode( ",", $nums ) . "}\n    {\"{case " . var_export( implode( ",", $nums ), true ) . "}\"}\n{/case}\n" );
 }
 
@@ -24,20 +24,20 @@ $switch = perm( "{switch \$_num_1}\n",
                 );
 
 $switch1 = perm( "{switch \$_num_1}\n",
-                 alt( makeCase( '1' ), makeCase( array( '1', '2' ) ) ),
+                 alt( makeCase( '1' ), makeCase( ['1', '2'] ) ),
                  "{/switch}\n"
                  );
 
 $switch2 = perm( "{switch \$_num_2}\n",
-                 alt( makeCase( '1' ), makeCase( array( '1', '3' ) ) ),
-                 alt( makeCase( '2' ), makeCase( array( '2', '3' ) ) ),
+                 alt( makeCase( '1' ), makeCase( ['1', '3'] ) ),
+                 alt( makeCase( '2' ), makeCase( ['2', '3'] ) ),
                  "{/switch}\n"
                  );
 
 
 $switchDef = perm( "{switch \$_num_4}\n",
-                   alt( makeCase( '1' ), makeCase( array( '1', '3' ) ) ),
-                   alt( makeCase( '2' ), makeCase( array( '2', '3' ) ) ),
+                   alt( makeCase( '1' ), makeCase( ['1', '3'] ) ),
+                   alt( makeCase( '2' ), makeCase( ['2', '3'] ) ),
                    "{default}\n    {\"{default}\"}\n{/default}\n",
                    "{/switch}\n"
                    );

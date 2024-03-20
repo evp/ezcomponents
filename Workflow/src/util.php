@@ -71,7 +71,7 @@ abstract class ezcWorkflowUtil
      */
     public static function getChildNodes( DOMNode $node )
     {
-        $childNodes = array();
+        $childNodes = [];
 
         foreach ( $node->childNodes as $childNode )
         {

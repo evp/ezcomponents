@@ -32,8 +32,7 @@ class ezcTemplateIfConditionTstNode extends ezcTemplateBlockTstNode
 
     public function getTreeProperties()
     {
-        return array( 'name'      => $this->name,
-                      'children'  => $this->children );
+        return ['name'      => $this->name, 'children'  => $this->children];
     }
 
     public function canHandleElement( ezcTemplateTstNode $element )

@@ -27,7 +27,7 @@ class ezcPersistentSaveHandler extends ezcPersistentSessionHandler
      * 
      * @var array(string=>ezcPersistentIdentifierGenerator)
      */
-    private $idGeneratorRegistry = array();
+    private $idGeneratorRegistry = [];
 
     /**
      * Saves a new persistent $object to the database using an INSERT query.
@@ -511,7 +511,7 @@ class ezcPersistentSaveHandler extends ezcPersistentSessionHandler
      */
     private function filterAndCastState( array $state, ezcPersistentObjectDefinition $def )
     {
-        $typedState = array();
+        $typedState = [];
         foreach ( $state as $name => $value )
         {
             $type = null;
@@ -584,7 +584,7 @@ class ezcPersistentSaveHandler extends ezcPersistentSessionHandler
         $q->insertInto(
             $this->database->quoteIdentifier( $relation->relationTable )
         );
-        $insertColumns = array();
+        $insertColumns = [];
         foreach ( $relation->columnMap as $map )
         {
             if ( !in_array( $map->relationSourceColumn, $insertColumns ) )

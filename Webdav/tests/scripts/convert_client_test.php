@@ -18,15 +18,9 @@ if ( !is_dir( $inDir ) || !is_readable( $inDir ) )
     die( "Could not open '$inDir'." );
 }
 
-$fileMap = array(
-    '_request_body.xml'     => array( 'request', 'body' ),
-    '_request_server.php'   => array( 'request', 'server' ),
-    '_response_body.xml'    => array( 'response', 'body' ),
-    '_response_headers.php' => array( 'response', 'headers' ),
-    '_response_status.txt'  => array( 'response', 'status' ),
-);
+$fileMap = ['_request_body.xml'     => ['request', 'body'], '_request_server.php'   => ['request', 'server'], '_response_body.xml'    => ['response', 'body'], '_response_headers.php' => ['response', 'headers'], '_response_status.txt'  => ['response', 'status']];
 
-$data = array();
+$data = [];
 
 foreach ( glob( "$inDir/*_request_body.xml" ) as $file )
 {
@@ -39,7 +33,7 @@ foreach ( glob( "$inDir/*_request_body.xml" ) as $file )
     $prefix = $matches[1];
     $no     = (int) $matches[2];
 
-    $data[$no] = array();
+    $data[$no] = [];
     
     foreach ( $fileMap as $fileTemplate => $keys )
     {

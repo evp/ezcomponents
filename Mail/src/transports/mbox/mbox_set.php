@@ -49,7 +49,7 @@ class ezcMailMboxSet implements ezcMailParserSet
      *
      * @var array(int=>int)
      */
-    private $messagePositions = array();
+    private $messagePositions = [];
 
     /**
      * Holds the current message position in array $messagePositions.

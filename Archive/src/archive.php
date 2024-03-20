@@ -62,42 +62,42 @@ abstract class ezcArchive implements Iterator
     /**
      * Normal tar archive.
      */
-    const TAR        = 0;
+    public const TAR        = 0;
 
     /**
      * Tar version 7 archive.
      */
-    const TAR_V7     = 1;
+    public const TAR_V7     = 1;
 
     /**
      * USTAR tar archive.
      */
-    const TAR_USTAR  = 2;
+    public const TAR_USTAR  = 2;
 
     /**
      * PAX tar archive.
      */
-    const TAR_PAX    = 3;
+    public const TAR_PAX    = 3;
 
     /**
      * GNU tar archive.
      */
-    const TAR_GNU    = 4;
+    public const TAR_GNU    = 4;
 
     /**
      * ZIP archive.
      */
-    const ZIP        = 10;
+    public const ZIP        = 10;
 
     /**
      * Gnu ZIP compression format.
      */
-    const GZIP       = 20;
+    public const GZIP       = 20;
 
     /**
      * BZIP2 compression format.
      */
-    const BZIP2      = 30;
+    public const BZIP2      = 30;
 
     /**
      * The entry or file number to which the iterator points.
@@ -835,7 +835,7 @@ abstract class ezcArchive implements Iterator
             throw new ezcArchiveException( "The archive is closed" );
         }
 
-        $result = array();
+        $result = [];
         $this->rewind();
 
         do
@@ -932,7 +932,7 @@ abstract class ezcArchive implements Iterator
     {
         if ( !is_array( $files ) )
         {
-            $files = array( $files );
+            $files = [$files];
         }
 
         // Check whether the files are correct.

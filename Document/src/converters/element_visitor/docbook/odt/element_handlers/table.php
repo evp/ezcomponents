@@ -26,7 +26,7 @@ class ezcDocumentDocbookToOdtTableHandler extends ezcDocumentDocbookToOdtBaseHan
      * 
      * @var array(string=>string)
      */
-    protected $methodMap = array(
+    protected $methodMap = [
         'table'   => 'handleTable',
         'caption' => 'handleCaption',
         'thead'   => 'handleThead',
@@ -35,8 +35,8 @@ class ezcDocumentDocbookToOdtTableHandler extends ezcDocumentDocbookToOdtBaseHan
         'td'      => 'handleTd',
         // Old style DocBook tables
         'row'     => 'handleTr',
-        'entry'   => 'handleTd'
-    );
+        'entry'   => 'handleTd',
+    ];
 
     /**
      * Handle a node

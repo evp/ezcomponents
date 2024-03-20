@@ -45,7 +45,7 @@ class ezcPersistentStateTransformer
             );
         }
 
-        $result = array();
+        $result = [];
         foreach ( $row as $key => $value )
         {
             if ( $key === $def->idProperty->resultColumnName )

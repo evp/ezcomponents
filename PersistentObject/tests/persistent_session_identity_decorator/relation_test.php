@@ -8,9 +8,9 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . "/../data/relation_test_employer.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_person.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_address.php";
+require_once __DIR__ . "/../data/relation_test_employer.php";
+require_once __DIR__ . "/../data/relation_test_person.php";
+require_once __DIR__ . "/../data/relation_test_address.php";
 
 /**
  * Tests ezcPersistentManyToOneRelation class.
@@ -28,7 +28,7 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setup()
@@ -46,7 +46,7 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
 
         $this->session = new ezcPersistentSession(
             ezcDbInstance::get(),
-            new ezcPersistentCodeManager( dirname( __FILE__ ) . "/../data/" )
+            new ezcPersistentCodeManager( __DIR__ . "/../data/" )
         );
 
         $this->idMap = new ezcPersistentBasicIdentityMap(
@@ -315,9 +315,7 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
         $person = $this->idSession->load( 'RelationTestPerson', 1 );
         $addressesBefore = $this->idSession->getRelatedObjects( $person, 'RelationTestAddress' );
 
-        reset( $addressesBefore );
-
-        $firstKey = key( $addressesBefore );
+        $firstKey = array_key_first( $addressesBefore );
         $firstObj = current( $addressesBefore );
 
         $this->idSession->removeRelatedObject( $person, $firstObj );
@@ -340,14 +338,11 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
         $person = $this->idSession->loadWithRelatedObjects(
             'RelationTestPerson',
             2,
-            array(
-                new ezcPersistentRelationFindDefinition(
-                    'RelationTestEmployer'
-                ),
-                new ezcPersistentRelationFindDefinition(
-                    'RelationTestAddress'
-                ),
-            )
+            [new ezcPersistentRelationFindDefinition(
+                'RelationTestEmployer'
+            ), new ezcPersistentRelationFindDefinition(
+                'RelationTestAddress'
+            )]
         );
 
         $this->assertEquals(
@@ -379,14 +374,11 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
         $firstPerson = $this->idSession->loadWithRelatedObjects(
             'RelationTestPerson',
             2,
-            array(
-                new ezcPersistentRelationFindDefinition(
-                    'RelationTestEmployer'
-                ),
-                new ezcPersistentRelationFindDefinition(
-                    'RelationTestAddress'
-                ),
-            )
+            [new ezcPersistentRelationFindDefinition(
+                'RelationTestEmployer'
+            ), new ezcPersistentRelationFindDefinition(
+                'RelationTestAddress'
+            )]
         );
 
         $firstEmployers = $this->idSession->getRelatedObjects( $firstPerson, 'RelationTestEmployer' );
@@ -395,14 +387,11 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
         $secondPerson = $this->idSession->loadWithRelatedObjects(
             'RelationTestPerson',
             2,
-            array(
-                new ezcPersistentRelationFindDefinition(
-                    'RelationTestEmployer'
-                ),
-                new ezcPersistentRelationFindDefinition(
-                    'RelationTestAddress'
-                ),
-            )
+            [new ezcPersistentRelationFindDefinition(
+                'RelationTestEmployer'
+            ), new ezcPersistentRelationFindDefinition(
+                'RelationTestAddress'
+            )]
         );
 
         $secondEmployers = $this->idSession->getRelatedObjects( $secondPerson, 'RelationTestEmployer' );
@@ -573,11 +562,9 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
        
         $q = $this->idSession->createFindQueryWithRelations(
             'RelationTestPerson',
-            array(
-                'addresses' => new ezcPersistentRelationFindDefinition(
-                    'RelationTestAddress'
-                ),
-            )
+            ['addresses' => new ezcPersistentRelationFindDefinition(
+                'RelationTestAddress'
+            )]
         );
 
         $persons = $this->idSession->find( $q );
@@ -598,11 +585,9 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
        
         $q = $this->idSession->createFindQueryWithRelations(
             'RelationTestPerson',
-            array(
-                'addresses' => new ezcPersistentRelationFindDefinition(
-                    'RelationTestAddress'
-                ),
-            )
+            ['addresses' => new ezcPersistentRelationFindDefinition(
+                'RelationTestAddress'
+            )]
         );
         $q->where(
             $q->expr->gt(
@@ -641,8 +626,8 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
 
         $idMap = $this->getMock(
             'ezcPersistentBasicIdentityMap',
-            array( 'getRelatedObjects' ),
-            array(),
+            ['getRelatedObjects'],
+            [],
             '',
             false,
             false
@@ -650,12 +635,12 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
         $idMap->expects( $this->once() )
               ->method( 'getRelatedObjects' )
               ->with( $srcObject, 'RelationTestAddress', null )
-              ->will( $this->returnValue( array( 42 => $relObject ) ) );
+              ->will( $this->returnValue( [42 => $relObject] ) );
 
         $session = $this->getMock(
             'ezcPersistentSession',
-            array( 'isRelated' ),
-            array(),
+            ['isRelated'],
+            [],
             '',
             false,
             false
@@ -681,8 +666,8 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
 
         $idMap = $this->getMock(
             'ezcPersistentBasicIdentityMap',
-            array( 'getRelatedObjects' ),
-            array(),
+            ['getRelatedObjects'],
+            [],
             '',
             false,
             false
@@ -694,8 +679,8 @@ class ezcPersistentSessionIdentityDecoratorRelationTest extends ezcTestCase
 
         $session = $this->getMock(
             'ezcPersistentSession',
-            array( 'isRelated' ),
-            array(),
+            ['isRelated'],
+            [],
             '',
             false,
             false

@@ -16,25 +16,25 @@
  */
 class ezcDocumentOdt extends ezcDocumentXmlBase /* implements ezcDocumentValidation */
 {
-    const NS_ODT_CONFIG  = 'urn:oasis:names:tc:opendocument:xmlns:config:1.0';
-    const NS_ODT_DRAWING = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
-    const NS_ODT_FO      = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
-    const NS_ODT_META    = 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0';
-    const NS_ODT_NUMBER  = 'urn:oasis:names:tc:opendocument:xmlns:data style:1.0';
-    const NS_ODT_OFFICE  = 'urn:oasis:names:tc:opendocument:xmlns:office:1.0';
-    const NS_ODT_SCRIPT  = 'urn:oasis:names:tc:opendocument:xmlns:script:1.0';
-    const NS_ODT_STYLE   = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
-    const NS_ODT_SVG     = 'urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0';
-    const NS_ODT_TABLE   = 'urn:oasis:names:tc:opendocument:xmlns:table:1.0';
-    const NS_ODT_TEXT    = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
+    public const NS_ODT_CONFIG  = 'urn:oasis:names:tc:opendocument:xmlns:config:1.0';
+    public const NS_ODT_DRAWING = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
+    public const NS_ODT_FO      = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
+    public const NS_ODT_META    = 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0';
+    public const NS_ODT_NUMBER  = 'urn:oasis:names:tc:opendocument:xmlns:data style:1.0';
+    public const NS_ODT_OFFICE  = 'urn:oasis:names:tc:opendocument:xmlns:office:1.0';
+    public const NS_ODT_SCRIPT  = 'urn:oasis:names:tc:opendocument:xmlns:script:1.0';
+    public const NS_ODT_STYLE   = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
+    public const NS_ODT_SVG     = 'urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0';
+    public const NS_ODT_TABLE   = 'urn:oasis:names:tc:opendocument:xmlns:table:1.0';
+    public const NS_ODT_TEXT    = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
 
-    const NS_XLINK = 'http://www.w3.org/1999/xlink';
+    public const NS_XLINK = 'http://www.w3.org/1999/xlink';
 
-    const NS_EZC = 'http://ezcomponents.org/Document/Odt';
+    public const NS_EZC = 'http://ezcomponents.org/Document/Odt';
 
-    const NS_XML = 'http://www.w3.org/XML/1998/namespace';
+    public const NS_XML = 'http://www.w3.org/XML/1998/namespace';
 
-    const NS_DC = 'http://purl.org/dc/elements/1.1/';
+    public const NS_DC = 'http://purl.org/dc/elements/1.1/';
 
     /**
      * Array with filter objects for the input ODT document.
@@ -52,15 +52,9 @@ class ezcDocumentOdt extends ezcDocumentXmlBase /* implements ezcDocumentValidat
      */
     public function __construct( ezcDocumentOdtOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentOdtOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentOdtOptions() );
 
-        $this->filters = array(
-            new ezcDocumentOdtImageFilter( $this->options ),
-            new ezcDocumentOdtElementFilter(),
-            new ezcDocumentOdtStyleFilter(),
-        );
+        $this->filters = [new ezcDocumentOdtImageFilter( $this->options ), new ezcDocumentOdtElementFilter(), new ezcDocumentOdtStyleFilter()];
     }
 
     /**
@@ -321,12 +315,12 @@ class ezcDocumentOdt extends ezcDocumentXmlBase /* implements ezcDocumentValidat
     private function performValidation( DOMDocument $document )
     {
         $document->relaxNGValidate(
-            dirname( __FILE__ ) . '/odt/data/odf_1.2.rng'
+            __DIR__ . '/odt/data/odf_1.2.rng'
         );
 
         // Get all errors
         $xmlErrors = libxml_get_errors();
-        $errors = array();
+        $errors = [];
         foreach ( $xmlErrors as $error )
         {
             $errors[] = ezcDocumentValidationError::createFromLibXmlError(

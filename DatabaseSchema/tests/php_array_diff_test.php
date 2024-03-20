@@ -16,7 +16,7 @@ class ezcDatabaseSchemaPhpArrayDiffTest extends ezcTestCase
 {
     protected function setUp()
     {
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
+        $this->testFilesDir = __DIR__ . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabasePhpArrayTest' );
     }
 
@@ -27,70 +27,34 @@ class ezcDatabaseSchemaPhpArrayDiffTest extends ezcTestCase
 
     private static function getSchemaDiff()
     {
-        $schema1 = new ezcDbSchema( array(
-            'bugdb' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_deleted' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_change' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                    'integerfield3' => new ezcDbSchemaField( 'integer' ),
-                ),
-                array (
-                    'primary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield1' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    ),
-                    'tertiary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield3' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    )
-                )
-            ),
-        ) );
-        $schema2 = new ezcDbSchema( array(
-            'bugdb' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_added' => new ezcDbSchemaTable(
-                array (
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                )
-            ),
-            'bugdb_change' => new ezcDbSchemaTable(
-                array (
-                    'integerfield2' => new ezcDbSchemaField( 'integer' ),
-                    'integerfield3' => new ezcDbSchemaField( 'char', 64 ),
-                ),
-                array (
-                    'secondary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield3' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    ),
-                    'tertiary' => new ezcDbSchemaIndex(
-                        array(
-                            'integerfield2' => new ezcDbSchemaIndexField()
-                        ),
-                        true
-                    )
-                )
-            ),
-        ) );
+        $schema1 = new ezcDbSchema( ['bugdb' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_deleted' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_change' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' ), 'integerfield3' => new ezcDbSchemaField( 'integer' )],
+            ['primary' => new ezcDbSchemaIndex(
+                ['integerfield1' => new ezcDbSchemaIndexField()],
+                true
+            ), 'tertiary' => new ezcDbSchemaIndex(
+                ['integerfield3' => new ezcDbSchemaIndexField()],
+                true
+            )]
+        )] );
+        $schema2 = new ezcDbSchema( ['bugdb' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_added' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' )]
+        ), 'bugdb_change' => new ezcDbSchemaTable(
+            ['integerfield2' => new ezcDbSchemaField( 'integer' ), 'integerfield3' => new ezcDbSchemaField( 'char', 64 )],
+            ['secondary' => new ezcDbSchemaIndex(
+                ['integerfield3' => new ezcDbSchemaIndexField()],
+                true
+            ), 'tertiary' => new ezcDbSchemaIndex(
+                ['integerfield2' => new ezcDbSchemaIndexField()],
+                true
+            )]
+        )] );
         return ezcDbSchemaComparator::compareSchemas( $schema1, $schema2 );
     }
 

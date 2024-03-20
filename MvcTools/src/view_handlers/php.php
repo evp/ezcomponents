@@ -37,7 +37,7 @@ class ezcMvcPhpViewHandler implements ezcMvcViewHandler
      *
      * @var array(mixed)
      */
-    protected $variables = array();
+    protected $variables = [];
 
     /**
      * Contains the path to the template file.

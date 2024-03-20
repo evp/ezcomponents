@@ -97,7 +97,7 @@ class ezcTreePersistentObjectDataStore implements ezcTreeXmlDataStore, ezcTreeDb
     {
         $session = $this->session;
 
-        $nodeIdsToDelete = array();
+        $nodeIdsToDelete = [];
         foreach ( array_keys( $nodeList->nodes ) as $id )
         {
             $nodeIdsToDelete[] = (string) $id;
@@ -152,7 +152,7 @@ class ezcTreePersistentObjectDataStore implements ezcTreeXmlDataStore, ezcTreeDb
     {
         $session = $this->session;
 
-        $nodeIdsToFetch = array();
+        $nodeIdsToFetch = [];
         foreach ( $nodeList->nodes as $node )
         {
             if ( $node->dataFetched === false )
@@ -187,7 +187,7 @@ class ezcTreePersistentObjectDataStore implements ezcTreeXmlDataStore, ezcTreeDb
         $currentState = $node->data->getState();
         if ( $currentState[$idProperty] === null )
         {
-            $node->data->setState( array( $idProperty => $node->id ) );
+            $node->data->setState( [$idProperty => $node->id] );
         }
         $session->saveOrUpdate( $node->data );
 

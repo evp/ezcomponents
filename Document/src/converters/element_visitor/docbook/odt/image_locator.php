@@ -23,7 +23,7 @@ class ezcDocumentOdtImageLocator
      * 
      * @var array(string)
      */
-    protected $paths = array();
+    protected $paths = [];
 
     /**
      * Creates a new image locator for the given $document.

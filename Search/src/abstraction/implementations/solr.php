@@ -104,12 +104,12 @@ class ezcSearchQuerySolr implements ezcSearchFindQuery
      */
     public function reset()
     {
-        $this->resultFields = array();
-        $this->highlightFields = array();
-        $this->whereClauses = array();
+        $this->resultFields = [];
+        $this->highlightFields = [];
+        $this->whereClauses = [];
         $this->limit = null;
         $this->offset = 0;
-        $this->facets = array();
+        $this->facets = [];
     }
 
     /**

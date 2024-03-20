@@ -27,17 +27,17 @@ abstract class ezcDocumentPdfDriver
     /**
      * Normal text
      */
-    const FONT_PLAIN     = 0;
+    public const FONT_PLAIN     = 0;
 
     /**
      * Bold text
      */
-    const FONT_BOLD      = 1;
+    public const FONT_BOLD      = 1;
 
     /**
      * Italic text
      */
-    const FONT_OBLIQUE   = 2;
+    public const FONT_OBLIQUE   = 2;
 
     /**
      * PDF options

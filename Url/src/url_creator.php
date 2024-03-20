@@ -39,7 +39,7 @@ class ezcUrlCreator
      *
      * @var array(string=>string)
      */
-    private static $urls = array();
+    private static $urls = [];
 
     /**
      * Registers $url as $name in the URLs list.

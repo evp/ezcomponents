@@ -1,7 +1,7 @@
 <?php
 require_once 'tutorial_autoload.php';
 
-$cacheObj = new ezcCacheStorageFileArray( dirname( __FILE__ ). '/translations-cache' );
+$cacheObj = new ezcCacheStorageFileArray( __DIR__. '/translations-cache' );
 $backend = new ezcTranslationCacheBackend( $cacheObj );
 
 $manager = new ezcTranslationManager( $backend );

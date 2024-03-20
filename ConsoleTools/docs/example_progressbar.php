@@ -25,7 +25,7 @@ $out = new ezcConsoleOutput();
 $out->formats->red->color = "red";
 
 // Create progress bar itself
-$progress = new ezcConsoleProgressbar( $out, 100, array( 'step' => 5 ) );
+$progress = new ezcConsoleProgressbar( $out, 100, ['step' => 5] );
 
 $progress->options->emptyChar = '-';
 $progress->options->progressChar = $out->formatText('>', "red");

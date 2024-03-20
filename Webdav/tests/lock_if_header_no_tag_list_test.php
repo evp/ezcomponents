@@ -9,7 +9,7 @@
  * @subpackage Test
  */
 
-require_once dirname( __FILE__ ) . '/property_test.php';
+require_once __DIR__ . '/property_test.php';
 
 /**
  * Test case for the ezcWebdavFileBackendOptions class.
@@ -22,12 +22,12 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testConstructor()
     {
-        $item = array( new ezcWebdavLockIfHeaderListItem() );
+        $item = [new ezcWebdavLockIfHeaderListItem()];
         $list = new ezcWebdavLockIfHeaderNoTagList( $item );
 
         $this->assertAttributeEquals(
@@ -39,7 +39,7 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
 
     public function testOffsetSetFailure()
     {
-        $item = array( new ezcWebdavLockIfHeaderListItem() );
+        $item = [new ezcWebdavLockIfHeaderListItem()];
         $list = new ezcWebdavLockIfHeaderNoTagList( $item );
 
         try
@@ -58,7 +58,7 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
 
     public function testOffsetGetSuccess()
     {
-        $item = array( new ezcWebdavLockIfHeaderListItem() );
+        $item = [new ezcWebdavLockIfHeaderListItem()];
         $list = new ezcWebdavLockIfHeaderNoTagList( $item );
         
         $this->assertEquals(
@@ -73,7 +73,7 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
 
     public function testOffsetGetFailure()
     {
-        $item = array( new ezcWebdavLockIfHeaderListItem() );
+        $item = [new ezcWebdavLockIfHeaderListItem()];
         $list = new ezcWebdavLockIfHeaderNoTagList( $item );
 
         try
@@ -93,7 +93,7 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
 
     public function testOffsetIssetSuccess()
     {
-        $item = array( new ezcWebdavLockIfHeaderListItem() );
+        $item = [new ezcWebdavLockIfHeaderListItem()];
         $list = new ezcWebdavLockIfHeaderNoTagList( $item );
 
         $this->assertTrue(
@@ -109,7 +109,7 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
 
     public function testOffsetIssetFailure()
     {
-        $item = array( new ezcWebdavLockIfHeaderListItem() );
+        $item = [new ezcWebdavLockIfHeaderListItem()];
         $list = new ezcWebdavLockIfHeaderNoTagList( $item );
 
         try
@@ -129,7 +129,7 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
 
     public function testOffsetUnsetFailure()
     {
-        $item = array( new ezcWebdavLockIfHeaderListItem() );
+        $item = [new ezcWebdavLockIfHeaderListItem()];
         $list = new ezcWebdavLockIfHeaderNoTagList( $item );
 
         try
@@ -149,49 +149,24 @@ class ezcWebdavLockIfHeaderNoTagListTest extends ezcTestCase
     public function testGetLockTokens()
     {
         $item1 = new ezcWebdavLockIfHeaderListItem(
-            array(
-                new ezcWebdavLockIfHeaderCondition( 'lock-token-1' ),
-                new ezcWebdavLockIfHeaderCondition( 'lock-token-2', true ),
-                new ezcWebdavLockIfHeaderCondition( 'lock-token-3' ),
-            ),
-            array(
-                new ezcWebdavLockIfHeaderCondition( 'etag-1', true ),
-                new ezcWebdavLockIfHeaderCondition( 'etag-2', true ),
-                new ezcWebdavLockIfHeaderCondition( 'etag-3' ),
-            )
+            [new ezcWebdavLockIfHeaderCondition( 'lock-token-1' ), new ezcWebdavLockIfHeaderCondition( 'lock-token-2', true ), new ezcWebdavLockIfHeaderCondition( 'lock-token-3' )],
+            [new ezcWebdavLockIfHeaderCondition( 'etag-1', true ), new ezcWebdavLockIfHeaderCondition( 'etag-2', true ), new ezcWebdavLockIfHeaderCondition( 'etag-3' )]
         );
         $item2 = new ezcWebdavLockIfHeaderListItem(
-            array(
-                new ezcWebdavLockIfHeaderCondition( 'lock-token-1' ),
-                new ezcWebdavLockIfHeaderCondition( 'lock-token-4' ),
-            ),
-            array(
-                new ezcWebdavLockIfHeaderCondition( 'etag-1' ),
-                new ezcWebdavLockIfHeaderCondition( 'etag-4', true ),
-                new ezcWebdavLockIfHeaderCondition( 'etag-5' ),
-            )
+            [new ezcWebdavLockIfHeaderCondition( 'lock-token-1' ), new ezcWebdavLockIfHeaderCondition( 'lock-token-4' )],
+            [new ezcWebdavLockIfHeaderCondition( 'etag-1' ), new ezcWebdavLockIfHeaderCondition( 'etag-4', true ), new ezcWebdavLockIfHeaderCondition( 'etag-5' )]
         );
         $item3 = new ezcWebdavLockIfHeaderListItem(
-            array(
-                new ezcWebdavLockIfHeaderCondition( 'lock-token-5', true ),
-                new ezcWebdavLockIfHeaderCondition( 'lock-token-6', true ),
-            ),
-            array()
+            [new ezcWebdavLockIfHeaderCondition( 'lock-token-5', true ), new ezcWebdavLockIfHeaderCondition( 'lock-token-6', true )],
+            []
         );
 
         $list = new ezcWebdavLockIfHeaderNoTagList(
-            array( $item1, $item2, $item3 )
+            [$item1, $item2, $item3]
         );
 
         $this->assertEquals(
-            array(
-                0 => 'lock-token-1',
-                1 => 'lock-token-2',
-                2 => 'lock-token-3',
-                4 => 'lock-token-4',
-                5 => 'lock-token-5',
-                6 => 'lock-token-6',
-            ),
+            [0 => 'lock-token-1', 1 => 'lock-token-2', 2 => 'lock-token-3', 4 => 'lock-token-4', 5 => 'lock-token-5', 6 => 'lock-token-6'],
             $list->getLockTokens()
         );
     }

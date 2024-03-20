@@ -35,7 +35,7 @@ class ezcTemplateLoopTstNode extends ezcTemplateBlockTstNode
 
     public function getTreeProperties()
     {
-        return array( 'name' => $this->name );
+        return ['name' => $this->name];
     }
 
 }

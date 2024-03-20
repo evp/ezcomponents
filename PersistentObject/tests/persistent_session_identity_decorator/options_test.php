@@ -18,7 +18,7 @@ class ezcPersistentSessionIdentityDecoratorOptionsTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCtorNoArgs()
@@ -33,7 +33,7 @@ class ezcPersistentSessionIdentityDecoratorOptionsTest extends ezcTestCase
     public function testCtorArgs()
     {
         $opts = new ezcPersistentSessionIdentityDecoratorOptions(
-            array( 'refetch' => true )
+            ['refetch' => true]
         );
 
         $this->assertTrue(
@@ -76,7 +76,7 @@ class ezcPersistentSessionIdentityDecoratorOptionsTest extends ezcTestCase
         $this->assertSetProperty(
             $opts,
             'refetch',
-            array( true, false )
+            [true, false]
         );
     }
     
@@ -87,7 +87,7 @@ class ezcPersistentSessionIdentityDecoratorOptionsTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $opts,
             'refetch',
-            array( null, 23, 42.23, 'foo', array(), new stdClass() )
+            [null, 23, 42.23, 'foo', [], new stdClass()]
         );
     }
 }

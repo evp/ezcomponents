@@ -73,12 +73,12 @@ class ezcAuthenticationDatabaseFilter extends ezcAuthenticationFilter implements
     /**
      * Username is not found in the database.
      */
-    const STATUS_USERNAME_INCORRECT = 1;
+    public const STATUS_USERNAME_INCORRECT = 1;
 
     /**
      * Password is incorrect.
      */
-    const STATUS_PASSWORD_INCORRECT = 2;
+    public const STATUS_PASSWORD_INCORRECT = 2;
 
     /**
      * Holds the attributes which will be requested during the authentication
@@ -91,7 +91,7 @@ class ezcAuthenticationDatabaseFilter extends ezcAuthenticationFilter implements
      *
      * @var array(string)
      */
-    protected $requestedData = array();
+    protected $requestedData = [];
 
     /**
      * Holds the extra data fetched during the authentication process.
@@ -105,14 +105,14 @@ class ezcAuthenticationDatabaseFilter extends ezcAuthenticationFilter implements
      *
      * @var array(string=>mixed)
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -122,7 +122,7 @@ class ezcAuthenticationDatabaseFilter extends ezcAuthenticationFilter implements
      */
     public function __construct( ezcAuthenticationDatabaseInfo $database, ezcAuthenticationDatabaseOptions $options = null )
     {
-        $this->options = ( $options === null ) ? new ezcAuthenticationDatabaseOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationDatabaseOptions();
         $this->database = $database;
     }
 
@@ -247,7 +247,7 @@ class ezcAuthenticationDatabaseFilter extends ezcAuthenticationFilter implements
             // fetch extra data from the database
             $query = new ezcQuerySelect( $db->instance );
             $e = $query->expr;
-            $params = array();
+            $params = [];
             foreach ( $this->requestedData as $param )
             {
                 $params[] = $db->instance->quoteIdentifier( $param );
@@ -265,7 +265,7 @@ class ezcAuthenticationDatabaseFilter extends ezcAuthenticationFilter implements
 
             foreach ( $this->requestedData as $attribute )
             {
-                $this->data[$attribute] = array( $data[$attribute] );
+                $this->data[$attribute] = [$data[$attribute]];
             }
         }
 
@@ -283,7 +283,7 @@ class ezcAuthenticationDatabaseFilter extends ezcAuthenticationFilter implements
      *
      * @param array(string) $data The extra data to fetch during authentication
      */
-    public function registerFetchData( array $data = array() )
+    public function registerFetchData( array $data = [] )
     {
         $this->requestedData = $data;
     }

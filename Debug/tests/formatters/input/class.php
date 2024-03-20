@@ -7,29 +7,7 @@ class DebugTestFormatterClass
         $test = 23;
         $this->fooBaz(
             $test,
-            array(
-                23.0,
-                fopen( __FILE__, 'r' ),
-                1,
-                2,
-                array(
-                    'a',
-                    'b',
-                    true,
-                    new DebugTestFormatterContainerClass()
-                ),
-                array(
-                    23.42,
-                    false,
-                    null,
-                    'test',
-                    array(
-                        'deep',
-                        'deeper',
-                        'deepest'
-                    )
-                )
-            )
+            [23.0, fopen( __FILE__, 'r' ), 1, 2, ['a', 'b', true, new DebugTestFormatterContainerClass()], [23.42, false, null, 'test', ['deep', 'deeper', 'deepest']]]
         );
     }
 

@@ -32,7 +32,7 @@ class ezcWebdavMultistatusResponse extends ezcWebdavResponse
         parent::__construct( ezcWebdavResponse::STATUS_207 );
 
         $params = func_get_args();
-        $responses = array();
+        $responses = [];
 
         foreach ( $params as $param )
         {   

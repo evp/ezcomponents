@@ -79,7 +79,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      *         options depend on the ezcCacheStorage implementation and may
      *         vary.
      */
-    public function __construct( $location, $options = array() )
+    public function __construct( $location, $options = [] )
     {
         // Sanity check location
         if ( !file_exists( $location ) || !is_dir( $location ) )
@@ -180,7 +180,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      *         of {@link ezcCacheStorageFile}. Most implementations can not
      *         handle objects and resources.
      */
-    public function store( $id, $data, $attributes = array() )
+    public function store( $id, $data, $attributes = [] )
     {
         $filename = $this->properties['location']
                   . $this->generateIdentifier( $id, $attributes );
@@ -271,7 +271,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      *         has been corrupted by external influences (file permission
      *         change).
      */
-    public function restore( $id, $attributes = array(), $search = false )
+    public function restore( $id, $attributes = [], $search = false )
     {
         $filename = $this->properties['location']
                   . $this->generateIdentifier( $id, $attributes );
@@ -327,12 +327,12 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      *         has been corrupted by external influences (file permission
      *         change).
      */
-    public function delete( $id = null, $attributes = array(), $search = false )
+    public function delete( $id = null, $attributes = [], $search = false )
     {
         $filename = $this->properties['location']
                   . $this->generateIdentifier( $id, $attributes );
 
-        $filesToDelete = array();
+        $filesToDelete = [];
         if ( file_exists( $filename ) )
         {
             $filesToDelete[] = $filename;
@@ -342,7 +342,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
             $filesToDelete = $this->search( $id, $attributes );
         }
 
-        $deletedIds = array();
+        $deletedIds = [];
         foreach ( $filesToDelete as $filename )
         {
             if ( unlink( $filename ) === false )
@@ -369,7 +369,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      *                                           data to restore.
      * @return int Number of data items matching the criteria.
      */
-    public function countDataItems( $id = null, $attributes = array() )
+    public function countDataItems( $id = null, $attributes = [] )
     {
         return count( $this->search( $id, $attributes ) );
     }
@@ -385,7 +385,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      * @access public
      * @return int The remaining lifetime (0 if nonexists or oudated).
      */
-    public function getRemainingLifetime( $id, $attributes = array() )
+    public function getRemainingLifetime( $id, $attributes = [] )
     {
         if ( count( $objects = $this->search( $id, $attributes ) ) > 0 )
         {
@@ -422,7 +422,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      */
     private function purgeRecursive( $dir, $limit, &$purgeCount )
     {
-        $purgedIds = array();
+        $purgedIds = [];
 
         // Deal with files in the directory
         if ( ( $files = glob( "{$dir}*{$this->properties['options']->extension}" ) ) === false )
@@ -521,16 +521,16 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      *                                           data to restore.
      * @return array(int=>string) Found cache items.
      */
-    protected function search( $id = null, $attributes = array() )
+    protected function search( $id = null, $attributes = [] )
     {
         $globArr = explode( "-", $this->generateIdentifier( $id, $attributes ), 2 );
         if ( sizeof( $globArr ) > 1 )
         {
-            $glob = $globArr[0]  . "-" . strtr( $globArr[1], array( '-' => '*', '.' => '*' ) );
+            $glob = $globArr[0]  . "-" . strtr( $globArr[1], ['-' => '*', '.' => '*'] );
         }
         else
         {
-            $glob = strtr( $globArr[0], array( '-' => '*', '.' => '*' ) );
+            $glob = strtr( $globArr[0], ['-' => '*', '.' => '*'] );
         }
         $glob = ( $id === null ? '*' : '' ) . $glob;
         return $this->searchRecursive( $glob, $this->properties['location'] );
@@ -622,20 +622,11 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
     public function generateIdentifier( $id, $attributes = null )
     {
         $filename = (string) $id;
-        $illegalFileNameChars = array(
-            ' '  => '_',
-            '/'  => DIRECTORY_SEPARATOR,
-            '\\' => DIRECTORY_SEPARATOR,
-        );
+        $illegalFileNameChars = [' '  => '_', '/'  => DIRECTORY_SEPARATOR, '\\' => DIRECTORY_SEPARATOR];
         $filename = strtr( $filename, $illegalFileNameChars );
 
         // Chars used for filename concatination
-        $illegalChars = array(
-            '-' => '#',
-            ' ' => '%',
-            '=' => '+',
-            '.' => '+',
-        );
+        $illegalChars = ['-' => '#', ' ' => '%', '=' => '+', '.' => '+'];
         if ( is_array( $attributes ) && count( $attributes ) > 0 )
         {
             ksort( $attributes );
@@ -697,10 +688,7 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
      */
     public function storeMetaData( ezcCacheStackMetaData $metaData )
     {
-        $dataArr = array(
-            'class' => get_class( $metaData ),
-            'data'  => $metaData->getState(),
-        );
+        $dataArr = ['class' => get_class( $metaData ), 'data'  => $metaData->getState()];
         $this->storeRawData(
             $this->properties['location'] . $this->properties['options']->metaDataFile,
             $this->prepareData( $dataArr )
@@ -907,20 +895,12 @@ abstract class ezcCacheStorageFile extends ezcCacheStorage implements ezcCacheSt
         if ( preg_match( $regex, $filename, $matches ) !== 1 )
         {
             // @TODO: Should this be an exception?
-            return array(
-                'id'         => '',
-                'attributes' => '',
-                'extension'  => $this->options->extension,
-            );
+            return ['id'         => '', 'attributes' => '', 'extension'  => $this->options->extension];
         }
         else
         {
             // Successfully split
-            return array(
-                'id'         => $matches['id'],
-                'attributes' => $matches['attr'],
-                'extension'  => $matches['ext'],
-            );
+            return ['id'         => $matches['id'], 'attributes' => $matches['attr'], 'extension'  => $matches['ext']];
         }
     }
 }

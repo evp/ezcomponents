@@ -48,7 +48,7 @@ class ezcCacheComplexCacheTest extends ezcTestCase
             // Start cleanly
             $memoryStorage->reset();
 
-            $tmpDir = $this->createTempDir( __CLASS__ );
+            $tmpDir = $this->createTempDir( self::class );
             $tmpDirEvalArray = "$tmpDir/plain";
             $tmpDirArray = "$tmpDir/array";
 
@@ -60,61 +60,48 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
             ezcCacheStackTestConfigurator::reset();
 
-            ezcCacheStackTestConfigurator::$storages = array(
-                new ezcCacheStackStorageConfiguration(
-                    'eval_array_storage',
-                    $fileStorageEvalArray,
-                    10,
-                    .8
-                ),
-                new ezcCacheStackStorageConfiguration(
-                    'array_storage',
-                    $fileStorageArray,
-                    8,
-                    .5
-                ),
-                new ezcCacheStackStorageConfiguration(
-                    'memory_storage',
-                    $memoryStorage,
-                    5,
-                    .5
-                ),
-            );
+            ezcCacheStackTestConfigurator::$storages = [new ezcCacheStackStorageConfiguration(
+                'eval_array_storage',
+                $fileStorageEvalArray,
+                10,
+                .8
+            ), new ezcCacheStackStorageConfiguration(
+                'array_storage',
+                $fileStorageArray,
+                8,
+                .5
+            ), new ezcCacheStackStorageConfiguration(
+                'memory_storage',
+                $memoryStorage,
+                5,
+                .5
+            )];
 
             ezcCacheStackTestConfigurator::$metaStorage = $fileStorageArray;
             
             ezcCacheManager::createCache(
-                __CLASS__,
+                self::class,
                 null,
                 'ezcCacheStack',
                 new ezcCacheStackOptions(
-                    array(
-                        'configurator' => 'ezcCacheStackTestConfigurator',
-                        'replacementStrategy' => 'ezcCacheStackLfuReplacementStrategy',
-                    )
+                    ['configurator' => 'ezcCacheStackTestConfigurator', 'replacementStrategy' => 'ezcCacheStackLfuReplacementStrategy']
                 )
             );
 
             self::$stackInitialized = true;
         }
 
-        $this->testDataArray = array(
-             array( 'id_1', 'id_1_content', array( 'lang' => 'en', 'area' => 'news' ) ),
-             array( 'id_2', 'id_2_content', array( 'lang' => 'en', 'area' => 'news' ) ),
-             array( 'id_3', 'id_3_content', array( 'lang' => 'de', 'area' => 'news' ) ),
-             array( 'id_4', 'id_4_content', array( 'lang' => 'no', 'area' => 'news' ) ),
-             array( 'id_5', 'id_5_content', array( 'lang' => 'de', 'area' => 'news' ) ),
-        );
+        $this->testDataArray = [['id_1', 'id_1_content', ['lang' => 'en', 'area' => 'news']], ['id_2', 'id_2_content', ['lang' => 'en', 'area' => 'news']], ['id_3', 'id_3_content', ['lang' => 'de', 'area' => 'news']], ['id_4', 'id_4_content', ['lang' => 'no', 'area' => 'news']], ['id_5', 'id_5_content', ['lang' => 'de', 'area' => 'news']]];
     }
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testEnvSetup()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Assert basic config
@@ -125,19 +112,14 @@ class ezcCacheComplexCacheTest extends ezcTestCase
         $this->assertEquals(
             $stack->options,
             new ezcCacheStackOptions(
-                array(
-                    'configurator'        => 'ezcCacheStackTestConfigurator',
-                    'replacementStrategy' => 'ezcCacheStackLfuReplacementStrategy',
-                    'metaStorage'         => ezcCacheStackTestConfigurator::$metaStorage,
-                    'bubbleUpOnRestore'   => false,
-                )
+                ['configurator'        => 'ezcCacheStackTestConfigurator', 'replacementStrategy' => 'ezcCacheStackLfuReplacementStrategy', 'metaStorage'         => ezcCacheStackTestConfigurator::$metaStorage, 'bubbleUpOnRestore'   => false]
             )
         );
     }
 
     public function testBasicStore()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Basic store
@@ -162,7 +144,7 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
     public function testBasicDelete()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Basic delete
@@ -179,11 +161,11 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
     public function testAdvancedDelete()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Advanced delete
-        $stack->delete( null, array( 'lang' => 'en' ), true );
+        $stack->delete( null, ['lang' => 'en'], true );
 
         // Assert advanced delete
         foreach ( $stack->getStorages() as $storageConf )
@@ -211,7 +193,7 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
     public function testStoreSecondTime()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Store all data again
@@ -221,43 +203,12 @@ class ezcCacheComplexCacheTest extends ezcTestCase
         }
 
         $this->assertEquals(
-            array(
-                'replacementData' => 
-                array (
-                    'id_4' => 6,
-                    'id_5' => 6,
-                    'id_1' => 3,
-                    'id_2' => 3,
-                    'id_3' => 3,
-                ),
-                'storageData' => 
-                array (
-                    'memory_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                    ),
-                    'array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                    ),
-                    'eval_array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                    ),
-                )
-            ),
+            ['replacementData' => 
+            ['id_4' => 6, 'id_5' => 6, 'id_1' => 3, 'id_2' => 3, 'id_3' => 3], 'storageData' => 
+            ['memory_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true], 'array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true], 'eval_array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true]]],
             ezcCacheStackTestConfigurator::$metaStorage->restoreMetaData()->getState(),
             'Assertion of current meta data failed'
         );
@@ -265,7 +216,7 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
     public function testRestores()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Change some accesses
@@ -278,20 +229,14 @@ class ezcCacheComplexCacheTest extends ezcTestCase
         $metaData = ezcCacheStackTestConfigurator::$metaStorage->restoreMetaData()->getState();
 
         $this->assertEquals(
-            array (
-                'id_4' => 6,
-                'id_5' => 6,
-                'id_1' => 7,
-                'id_2' => 3,
-                'id_3' => 4,
-            ),
+            ['id_4' => 6, 'id_5' => 6, 'id_1' => 7, 'id_2' => 3, 'id_3' => 4],
             $metaData['replacementData']
         );
     }
 
     public function testFreeInMemoryStorage()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Free in 'memory_storage'
@@ -299,51 +244,19 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
         $metaData = ezcCacheStackTestConfigurator::$metaStorage->restoreMetaData()->getState();
         $this->assertEquals(
-            array (
-                'replacementData' => 
-                array (
-                    'id_2' => 3,
-                    'id_3' => 4,
-                    'id_5' => 6,
-                    'id_4' => 6,
-                    'id_1' => 7,
-                    'id_6' => 3,
-                ),
-                'storageData' => 
-                array (
-                    'memory_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_1' => true,
-                        'id_6' => true,
-                    ),
-                    'array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                        'id_6' => true,
-                    ),
-                    'eval_array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                        'id_6' => true,
-                    ),
-                ),
-            ),
+            ['replacementData' => 
+            ['id_2' => 3, 'id_3' => 4, 'id_5' => 6, 'id_4' => 6, 'id_1' => 7, 'id_6' => 3], 'storageData' => 
+            ['memory_storage' => 
+            ['id_4' => true, 'id_1' => true, 'id_6' => true], 'array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true, 'id_6' => true], 'eval_array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true, 'id_6' => true]]],
             $metaData
         );
     }
 
     public function testRestores2()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
         
         // Change some usage stats
@@ -359,52 +272,19 @@ class ezcCacheComplexCacheTest extends ezcTestCase
                     
         $metaData = ezcCacheStackTestConfigurator::$metaStorage->restoreMetaData()->getState();
         $this->assertEquals(
-            array (
-                'replacementData' => 
-                array (
-                    'id_2' => 6,
-                    'id_3' => 4,
-                    'id_5' => 6,
-                    'id_4' => 6,
-                    'id_1' => 7,
-                    'id_6' => 9,
-                ),
-                'storageData' => 
-                array (
-                    'memory_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_1' => true,
-                        'id_6' => true,
-                        // 'id_2' => true,
-                    ),
-                    'array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                        'id_6' => true,
-                    ),
-                    'eval_array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                        'id_6' => true,
-                    ),
-                ),
-            ),
+            ['replacementData' => 
+            ['id_2' => 6, 'id_3' => 4, 'id_5' => 6, 'id_4' => 6, 'id_1' => 7, 'id_6' => 9], 'storageData' => 
+            ['memory_storage' => 
+            ['id_4' => true, 'id_1' => true, 'id_6' => true], 'array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true, 'id_6' => true], 'eval_array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true, 'id_6' => true]]],
             $metaData
         );
     }
 
     public function testFreeInArrayStorage()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Free 'array_storage'
@@ -425,7 +305,7 @@ class ezcCacheComplexCacheTest extends ezcTestCase
         $stack->restore( 'id_8' );
         $stack->restore( 'id_8' );
 
-        $stack->store( 'id_9', 'id_9_content', array( 'lang' => 'no', 'section' => 'articles' ) );
+        $stack->store( 'id_9', 'id_9_content', ['lang' => 'no', 'section' => 'articles'] );
         // Should net get purged directly again
         $stack->restore( 'id_9', null, true );
         $stack->restore( 'id_9', null, true );
@@ -434,56 +314,30 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
         $metaData = ezcCacheStackTestConfigurator::$metaStorage->restoreMetaData()->getState();
         $this->assertEquals(
-            array (
-                'replacementData' => 
-                array (
-                    'id_9' => 7, // Was 3 before got restored
-                    'id_3' => 4,
-                    'id_5' => 6,
-                    'id_4' => 6,
-                    'id_2' => 6,
-                    'id_1' => 7,
-                    'id_8' => 8,
-                    'id_7' => 8,
-                    'id_6' => 9,
-                ),
-                'storageData' => 
-                array (
-                    'memory_storage' => 
-                    array (
-                        'id_6' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                    ),
-                    'array_storage' => 
-                    array (
-                        'id_1' => true,
-                        'id_6' => true,
-                        'id_7' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                    ),
-                    'eval_array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                        'id_6' => true,
-                        'id_7' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                    ),
-                ),
-            ),
+            ['replacementData' => 
+            [
+                'id_9' => 7,
+                // Was 3 before got restored
+                'id_3' => 4,
+                'id_5' => 6,
+                'id_4' => 6,
+                'id_2' => 6,
+                'id_1' => 7,
+                'id_8' => 8,
+                'id_7' => 8,
+                'id_6' => 9,
+            ], 'storageData' => 
+            ['memory_storage' => 
+            ['id_6' => true, 'id_8' => true, 'id_9' => true], 'array_storage' => 
+            ['id_1' => true, 'id_6' => true, 'id_7' => true, 'id_8' => true, 'id_9' => true], 'eval_array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true, 'id_6' => true, 'id_7' => true, 'id_8' => true, 'id_9' => true]]],
             $metaData
         );
     }
 
     public function testBubbleUp()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
         
         // Bubble up now
@@ -525,59 +379,19 @@ class ezcCacheComplexCacheTest extends ezcTestCase
 
         $metaData = ezcCacheStackTestConfigurator::$metaStorage->restoreMetaData()->getState();
         $this->assertEquals(
-            array (
-                'replacementData' => 
-                array (
-                    'id_9' => 7,
-                    'id_3' => 7,
-                    'id_5' => 6,
-                    'id_4' => 6,
-                    'id_2' => 6,
-                    'id_1' => 9,
-                    'id_8' => 8,
-                    'id_7' => 8,
-                    'id_6' => 9,
-                ),
-                'storageData' => 
-                array (
-                    'memory_storage' => 
-                    array (
-                        'id_6' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                        'id_1' => true,
-                        'id_3' => true,
-                    ),
-                    'array_storage' => 
-                    array (
-                        'id_1' => true,
-                        'id_6' => true,
-                        'id_7' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                        'id_3' => true,
-                    ),
-                    'eval_array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                        'id_6' => true,
-                        'id_7' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                    ),
-                ),
-            ),
+            ['replacementData' => 
+            ['id_9' => 7, 'id_3' => 7, 'id_5' => 6, 'id_4' => 6, 'id_2' => 6, 'id_1' => 9, 'id_8' => 8, 'id_7' => 8, 'id_6' => 9], 'storageData' => 
+            ['memory_storage' => 
+            ['id_6' => true, 'id_8' => true, 'id_9' => true, 'id_1' => true, 'id_3' => true], 'array_storage' => 
+            ['id_1' => true, 'id_6' => true, 'id_7' => true, 'id_8' => true, 'id_9' => true, 'id_3' => true], 'eval_array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true, 'id_6' => true, 'id_7' => true, 'id_8' => true, 'id_9' => true]]],
             $metaData
         );
     }
 
     public function testNoBubbleUpAgain()
     {
-        $stack = ezcCacheManager::getCache( __CLASS__ );
+        $stack = ezcCacheManager::getCache( self::class );
         $data  = $this->testDataArray;
 
         // Stop bubbling up again
@@ -596,52 +410,12 @@ class ezcCacheComplexCacheTest extends ezcTestCase
         
         $metaData = ezcCacheStackTestConfigurator::$metaStorage->restoreMetaData()->getState();
         $this->assertEquals(
-            array (
-                'replacementData' => 
-                array (
-                    'id_9' => 7,
-                    'id_3' => 7,
-                    'id_5' => 6,
-                    'id_4' => 6,
-                    'id_2' => 7,
-                    'id_1' => 9,
-                    'id_8' => 8,
-                    'id_7' => 9,
-                    'id_6' => 9,
-                ),
-                'storageData' => 
-                array (
-                    'memory_storage' => 
-                    array (
-                        'id_6' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                        'id_1' => true,
-                        'id_3' => true,
-                    ),
-                    'array_storage' => 
-                    array (
-                        'id_1' => true,
-                        'id_6' => true,
-                        'id_7' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                        'id_3' => true,
-                    ),
-                    'eval_array_storage' => 
-                    array (
-                        'id_4' => true,
-                        'id_5' => true,
-                        'id_1' => true,
-                        'id_2' => true,
-                        'id_3' => true,
-                        'id_6' => true,
-                        'id_7' => true,
-                        'id_8' => true,
-                        'id_9' => true,
-                    ),
-                ),
-            ),
+            ['replacementData' => 
+            ['id_9' => 7, 'id_3' => 7, 'id_5' => 6, 'id_4' => 6, 'id_2' => 7, 'id_1' => 9, 'id_8' => 8, 'id_7' => 9, 'id_6' => 9], 'storageData' => 
+            ['memory_storage' => 
+            ['id_6' => true, 'id_8' => true, 'id_9' => true, 'id_1' => true, 'id_3' => true], 'array_storage' => 
+            ['id_1' => true, 'id_6' => true, 'id_7' => true, 'id_8' => true, 'id_9' => true, 'id_3' => true], 'eval_array_storage' => 
+            ['id_4' => true, 'id_5' => true, 'id_1' => true, 'id_2' => true, 'id_3' => true, 'id_6' => true, 'id_7' => true, 'id_8' => true, 'id_9' => true]]],
             $metaData
         );
     }

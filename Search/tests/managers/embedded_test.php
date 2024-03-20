@@ -20,7 +20,7 @@ class ezcSearchEmbeddedDefinitionManager extends ezcTestCase
 {
     public function setUp()
     {
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
+        $this->testFilesDir = __DIR__ . '/testfiles/';
     }
 
     public function testMissingIdProperty()
@@ -57,7 +57,7 @@ class ezcSearchEmbeddedDefinitionManager extends ezcTestCase
         $d = $m->fetchDefinition( 'EmbeddedArticle' );
 
         self::assertEquals( 'id', $d->idProperty );
-        self::assertEquals( array( 'id', 'title', 'summary', 'body', 'published' ), $d->getFieldNames() );
+        self::assertEquals( ['id', 'title', 'summary', 'body', 'published'], $d->getFieldNames() );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['id']->type );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['title']->type );
         self::assertEquals( ezcSearchDocumentDefinition::TEXT, $d->fields['summary']->type );
@@ -77,7 +77,7 @@ class ezcSearchEmbeddedDefinitionManager extends ezcTestCase
         $d = $m->fetchDefinition( 'EmbeddedArticle' );
 
         self::assertEquals( 'id', $d->idProperty );
-        self::assertEquals( array( 'id', 'title', 'summary', 'body', 'published' ), $d->getFieldNames() );
+        self::assertEquals( ['id', 'title', 'summary', 'body', 'published'], $d->getFieldNames() );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['id']->type );
         self::assertEquals( ezcSearchDocumentDefinition::STRING, $d->fields['title']->type );
         self::assertEquals( ezcSearchDocumentDefinition::TEXT, $d->fields['summary']->type );

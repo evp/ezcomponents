@@ -37,7 +37,7 @@ class ezcPersistentManualGeneratorTest extends ezcTestCase
         ManualGeneratorTest::insertCleanData();
 //        PersistentTestObject::saveSqlSchemas();
         $this->session = new ezcPersistentSession( ezcDbInstance::get(),
-                                                   new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" ) );
+                                                   new ezcPersistentCodeManager( __DIR__ . "/data/" ) );
     }
 
     protected function tearDown()
@@ -184,13 +184,8 @@ class ezcPersistentManualGeneratorTest extends ezcTestCase
     // test struct
     public function testGeneratorDefinitionStruct()
     {
-        $generator = new ezcPersistentGeneratorDefinition( "TestClass", array( "param" => true ) );
-        $res = ezcPersistentGeneratorDefinition::__set_state(array(
-            'class' => 'TestClass',
-            'params' => array(
-                'param' => true,
-            ),
-        ));
+        $generator = new ezcPersistentGeneratorDefinition( "TestClass", ["param" => true] );
+        $res = ezcPersistentGeneratorDefinition::__set_state(['class' => 'TestClass', 'params' => ['param' => true]]);
 
         $this->assertEquals( $res, $generator );
     }

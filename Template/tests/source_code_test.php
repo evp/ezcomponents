@@ -21,7 +21,7 @@ class ezcTemplateSourceCodeTest extends ezcTestCase
 
     protected function setUp()
     {
-        $this->basePath = realpath( dirname( __FILE__ ) ) . '/';
+        $this->basePath = realpath( __DIR__ ) . '/';
         $this->templatePath = $this->basePath . 'templates/';
         $this->templateStorePath = $this->basePath . 'stored_templates/';
         // remove temporarily stored file if possible

@@ -36,42 +36,42 @@ class ezcArchiveEntry
     /**
      * Is a regular file.
      */
-    const IS_FILE = 0;
+    public const IS_FILE = 0;
 
     /**
      * Is a hard link.
      */
-    const IS_LINK = 1;
+    public const IS_LINK = 1;
 
     /**
      * Is a symbolic link.
      */
-    const IS_SYMBOLIC_LINK = 2;
+    public const IS_SYMBOLIC_LINK = 2;
 
     /**
      * Is a character device.
      */
-    const IS_CHARACTER_DEVICE = 3;
+    public const IS_CHARACTER_DEVICE = 3;
 
     /**
      * Is a block device.
      */
-    const IS_BLOCK_DEVICE = 4;
+    public const IS_BLOCK_DEVICE = 4;
 
     /**
      * Is a directory.
      */
-    const IS_DIRECTORY = 5;
+    public const IS_DIRECTORY = 5;
 
     /**
      * Is a FIFO.
      */
-    const IS_FIFO = 6;
+    public const IS_FIFO = 6;
 
     /**
      * Not used, is Tar specific?
      */
-    const IS_RESERVED = 7;
+    public const IS_RESERVED = 7;
 
     /**
      * Contains the file information.
@@ -557,10 +557,10 @@ class ezcArchiveEntry
         if ( !is_array( $files ) )
         {
             $isArray = false;
-            $files = array( $files );
+            $files = [$files];
         }
 
-        $inodes = array();
+        $inodes = [];
         $i = 0;
         foreach ( $files as $file )
         {

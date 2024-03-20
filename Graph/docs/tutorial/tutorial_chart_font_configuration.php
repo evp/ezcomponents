@@ -16,13 +16,7 @@ $graph->title->font->maxFontSize = 14;
 // which now has its own font configuration.
 $graph->options->font->name = 'serif';
 
-$graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
-    'Mozilla' => 19113,
-    'Explorer' => 10917,
-    'Opera' => 1464,
-    'Safari' => 652,
-    'Konqueror' => 474,
-) );
+$graph->data['Access statistics'] = new ezcGraphArrayDataSet( ['Mozilla' => 19113, 'Explorer' => 10917, 'Opera' => 1464, 'Safari' => 652, 'Konqueror' => 474] );
 
 $graph->render( 400, 150, 'tutorial_chart_font_configuration.svg' );
 

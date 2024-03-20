@@ -3,9 +3,7 @@
 class myCustomAuth extends ezcWebdavDigestAuthenticatorBase
                    implements ezcWebdavAuthorizer
 {
-    protected $credentials = array(
-        'some' => 'thing',
-    );
+    protected $credentials = ['some' => 'thing'];
 
     public function authenticateAnonymous( ezcWebdavAnonymousAuth $data )
     {

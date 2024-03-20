@@ -44,7 +44,7 @@ class ezcWebdavNamespaceRegistry implements ArrayAccess
      *
      * @var array(string=>string)
      */
-    protected $namespaceMap = array();
+    protected $namespaceMap = [];
 
     /**
      * Stores shortcuts that are already in use.
@@ -58,7 +58,7 @@ class ezcWebdavNamespaceRegistry implements ArrayAccess
      * 
      * @var array(string=>bool)
      */
-    protected $usedShortcuts = array();
+    protected $usedShortcuts = [];
 
     /**
      * Create a new namespace registry.

@@ -81,7 +81,7 @@ class ezcGraphPolynom
      * @param array $values Array with values
      * @return ezcGraphPolynom
      */
-    public function __construct( array $values = array() )
+    public function __construct( array $values = [] )
     {
         foreach ( $values as $exponent => $factor )
         {
@@ -181,7 +181,7 @@ class ezcGraphPolynom
         $value = 0;
         foreach ( $this->values as $exponent => $factor )
         {
-            $value += $factor * pow( $x, $exponent );
+            $value += $factor * $x ** $exponent;
         }
 
         return $value;

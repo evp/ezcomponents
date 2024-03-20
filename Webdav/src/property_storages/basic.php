@@ -39,7 +39,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
      * 
      * @var array
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Stores a list of the assigned properties in the order they were
@@ -47,7 +47,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
      * 
      * @var array
      */
-    protected $propertyOrder = array();
+    protected $propertyOrder = [];
 
     /**
      * Current position of the iterator in the ordered property list.
@@ -87,7 +87,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
         if ( !isset( $this->properties[$namespace] ) ||
              !isset( $this->properties[$namespace][$name] ) )
         {
-            $this->propertyOrder[$this->propertyOrderNextId++] = array( $namespace, $name );
+            $this->propertyOrder[$this->propertyOrderNextId++] = [$namespace, $name];
         }
 
         // Add property
@@ -145,11 +145,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
      */
     public function get( $name, $namespace = 'DAV:' )
     {
-        if ( isset( $this->properties[$namespace][$name] ) )
-        {
-            return $this->properties[$namespace][$name];
-        }
-        return null;
+        return $this->properties[$namespace][$name] ?? null;
     }
 
     /**
@@ -166,7 +162,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
     {
         if ( !isset( $this->properties[$namespace] ) )
         {
-            return array();
+            return [];
         }
         return $this->properties[$namespace];
     }
@@ -283,7 +279,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
      */
     public function current()
     {
-        list( $namespace, $name ) = $this->propertyOrder[$this->propertyOrderPosition];
+        [$namespace, $name] = $this->propertyOrder[$this->propertyOrderPosition];
 
         // Skip detached properties
         while ( !isset( $this->properties[$namespace][$name] ) )
@@ -294,7 +290,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
                 return false;
             }
 
-            list( $namespace, $name ) = $this->propertyOrder[$this->propertyOrderPosition];
+            [$namespace, $name] = $this->propertyOrder[$this->propertyOrderPosition];
         }
 
         return $this->properties[$namespace][$name];
@@ -357,7 +353,7 @@ class ezcWebdavBasicPropertyStorage implements ezcWebdavPropertyStorage
                 return false;
             }
 
-            list( $namespace, $name ) = $this->propertyOrder[$this->propertyOrderPosition];
+            [$namespace, $name] = $this->propertyOrder[$this->propertyOrderPosition];
 
             if ( isset( $this->properties[$namespace][$name] ) )
             {

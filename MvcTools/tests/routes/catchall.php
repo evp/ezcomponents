@@ -63,7 +63,7 @@ class ezcMvcToolsCatchAllRouteTest extends ezcTestCase
         $request->uri = '/my/action/value1';
         $route = new ezcMvcCatchAllRoute();
         $routeInfo = $route->matches( $request );
-        self::assertSame( array( 'param1' => 'value1' ), $request->variables );
+        self::assertSame( ['param1' => 'value1'], $request->variables );
         self::assertSame( '/my/action/value1', $routeInfo->matchedRoute );
         self::assertSame( 'myController', $routeInfo->controllerClass );
         self::assertSame( 'action', $routeInfo->action );
@@ -75,7 +75,7 @@ class ezcMvcToolsCatchAllRouteTest extends ezcTestCase
         $request->uri = '/my/action/value1/value2';
         $route = new ezcMvcCatchAllRoute();
         $routeInfo = $route->matches( $request );
-        self::assertSame( array( 'param1' => 'value1', 'param2' => 'value2' ), $request->variables );
+        self::assertSame( ['param1' => 'value1', 'param2' => 'value2'], $request->variables );
         self::assertSame( '/my/action/value1/value2', $routeInfo->matchedRoute );
         self::assertSame( 'myController', $routeInfo->controllerClass );
         self::assertSame( 'action', $routeInfo->action );
@@ -87,7 +87,7 @@ class ezcMvcToolsCatchAllRouteTest extends ezcTestCase
         $request->uri = '/my/action/value1/value2';
         $route = new myCatchAllRoute();
         $routeInfo = $route->matches( $request );
-        self::assertSame( array( 'wibble' => 'value1', 'wobble' => 'value2' ), $request->variables );
+        self::assertSame( ['wibble' => 'value1', 'wobble' => 'value2'], $request->variables );
         self::assertSame( '/my/action/value1/value2', $routeInfo->matchedRoute );
         self::assertSame( 'myController', $routeInfo->controllerClass );
         self::assertSame( 'action', $routeInfo->action );
@@ -99,7 +99,7 @@ class ezcMvcToolsCatchAllRouteTest extends ezcTestCase
         $request->uri = '/mytwee/action/value1/value2';
         $route = new myCatchAllRoute();
         $routeInfo = $route->matches( $request );
-        self::assertSame( array( 'wibble' => 'value1', 'wobble' => 'value2' ), $request->variables );
+        self::assertSame( ['wibble' => 'value1', 'wobble' => 'value2'], $request->variables );
         self::assertSame( '/mytwee/action/value1/value2', $routeInfo->matchedRoute );
         self::assertSame( 'mytweeController', $routeInfo->controllerClass );
         self::assertSame( 'action', $routeInfo->action );
@@ -113,7 +113,7 @@ class ezcMvcToolsCatchAllRouteTest extends ezcTestCase
         $request->requestId = $request->host . $request->uri;
         $route = new myCatchAllRouteForFullUri();
         $routeInfo = $route->matches( $request );
-        self::assertSame( array( 'param1' => 'value1', 'param2' => 'value2' ), $request->variables );
+        self::assertSame( ['param1' => 'value1', 'param2' => 'value2'], $request->variables );
         self::assertSame( 'test.host/mytwee/action/value1/value2', $routeInfo->matchedRoute );
         self::assertSame( 'mytweeController', $routeInfo->controllerClass );
         self::assertSame( 'action', $routeInfo->action );

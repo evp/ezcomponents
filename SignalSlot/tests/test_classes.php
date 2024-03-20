@@ -28,7 +28,7 @@ class TheGiver
     {
         if ( $signalID === null )
         {
-            $this->signals = new ezcSignalCollection( __CLASS__ );
+            $this->signals = new ezcSignalCollection( self::class );
         }
         else
         {
@@ -42,7 +42,7 @@ class TheReceiver
 {
     public static $globalFunctionRun = false;
     public static $staticFunctionRun = false;
-    public $stack = array();
+    public $stack = [];
 
     public function slotNoParams1()
     {

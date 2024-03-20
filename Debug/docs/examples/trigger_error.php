@@ -29,7 +29,7 @@ function errorHandler( $code, $msg, $file, $line )
         if ( $dm->isLog()) 
         {
             ezcDebug::getInstance()->log( $dm->message, $dm->verbosity, $dm->source, 
-                                          $dm->category, array( "file" => $file, "line" => $line ) );
+                                          $dm->category );
         }
         else if ( $parsedMsg->isStartTimer() )
         {
@@ -47,8 +47,7 @@ function errorHandler( $code, $msg, $file, $line )
         $m->setDefaultSource( "Paynet" );
 
         // Severity is translated: E_USER_WARNING => WARNING, E_USER_ERROR => ERROR.
-        ezcLog::getInstance()->log( $m->message, $m->severity, $m->source, $m->category, 
-                                    array( "file" => $file, "line" => $line ) );
+        ezcLog::getInstance()->log( $m->message, $m->severity, $m->source );
     }
 }
 
@@ -100,9 +99,9 @@ trigger_error( "[template] Couldn't produce any output", E_USER_ERROR );
 
 ////////////// Audit trails: // ////////////////////////////////
 
-ezcLog::getInstance()->log( "Added new user: $user", ezcLog::SUCCES_AUDIT, "paynet", "users" );
+ezcLog::getInstance()->log( "Added new user: $user", ezcLog::SUCCES_AUDIT, "paynet" );
 
-ezcLog::getInstance()->log( "Couldn't delete user: $user", ezcLog::FAILED_AUDIT, "paynet", "users" );
+ezcLog::getInstance()->log( "Couldn't delete user: $user", ezcLog::FAILED_AUDIT, "paynet" );
 
 
 

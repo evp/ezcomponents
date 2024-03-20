@@ -21,21 +21,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
      *
      * @var array
      */
-    static private $typeMap = array(
-        'integer' => 'integer',
-        'integer unsigned' => 'integer',
-        'real' => 'float',
-        'float' => 'float',
-        'text' => 'text',
-        'varchar' => 'text',
-        'blob' => 'blob',
-        'clob' => 'clob',
-        'boolean' => 'boolean',
-        'numeric' => 'decimal',
-        'date' => 'date',
-        'datetime' => 'timestamp',
-        'timestamp' => 'timestamp'
-    );
+    static private $typeMap = ['integer' => 'integer', 'integer unsigned' => 'integer', 'real' => 'float', 'float' => 'float', 'text' => 'text', 'varchar' => 'text', 'blob' => 'blob', 'clob' => 'clob', 'boolean' => 'boolean', 'numeric' => 'decimal', 'date' => 'date', 'datetime' => 'timestamp', 'timestamp' => 'timestamp'];
 
     /**
      * Loops over all the tables in the database and extracts schema information.
@@ -63,7 +49,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     protected function fetchTableFields( $tableName )
     {
-        $fields = array();
+        $fields = [];
 
         $resultArray = $this->db->query( "PRAGMA TABLE_INFO( '$tableName' )" );
         $resultArray->setFetchMode( PDO::FETCH_NUM );
@@ -141,7 +127,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
         }
         $genericType = self::$typeMap[$matches[1]];
 
-        if ( in_array( $genericType, array( 'text', 'decimal', 'float', 'integer' ) ) && isset( $matches[3] ) )
+        if ( in_array( $genericType, ['text', 'decimal', 'float', 'integer'] ) && isset( $matches[3] ) )
         {
             $typeLength = $matches[3];
             if ( is_numeric( $typeLength ) )
@@ -149,7 +135,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
                 $typeLength = (int) $typeLength;
             }
         }
-        if ( in_array( $genericType, array( 'decimal', 'float' ) ) && isset( $matches[5] ) )
+        if ( in_array( $genericType, ['decimal', 'float'] ) && isset( $matches[5] ) )
         {
             $typePrecision = $matches[5];
         }
@@ -170,7 +156,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     private function isNumericType( $type )
     {
-        $types = array( 'real', 'integer' );
+        $types = ['real', 'integer'];
         return in_array( $type, $types );
     }
 
@@ -182,7 +168,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     private function isStringType( $type )
     {
-        $types = array( 'text' );
+        $types = ['text'];
         return in_array( $type, $types );
     }
 
@@ -194,7 +180,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     private function isBlobType( $type )
     {
-        $types = array( 'blob' );
+        $types = ['blob'];
         return in_array( $type, $types );
     }
 
@@ -211,7 +197,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
      */
     protected function fetchTableIndexes( $tableName )
     {
-        $indexBuffer = array();
+        $indexBuffer = [];
 
         $indexNamesArray = $this->db->query( "PRAGMA INDEX_LIST ('$tableName')" );
 
@@ -254,7 +240,7 @@ class ezcDbSchemaSqliteReader extends ezcDbSchemaCommonSqlReader implements ezcD
             }
         }
 
-        $indexes = array();
+        $indexes = [];
 
         foreach ( $indexBuffer as $indexName => $indexInfo )
         {

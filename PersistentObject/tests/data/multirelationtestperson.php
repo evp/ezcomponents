@@ -14,7 +14,7 @@ $def->idProperty->columnName = 'id';
 $def->idProperty->propertyName = 'id';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(
     'ezcPersistentSequenceGenerator',
-    array( 'sequence' => 'PO_person_id_seq' )
+    ['sequence' => 'PO_person_id_seq']
 );
 
 $def->properties['name'] = new ezcPersistentObjectProperty;
@@ -40,18 +40,14 @@ $relations['mothers_children'] = new ezcPersistentOneToManyRelation(
     'PO_person',
     'PO_person'
 );
-$relations['mothers_children']->columnMap = array(
-    new ezcPersistentSingleTableMap( 'id', 'mother' )
-);
+$relations['mothers_children']->columnMap = [new ezcPersistentSingleTableMap( 'id', 'mother' )];
 $relations['mothers_children']->cascade = true;
 
 $relations['mother'] = new ezcPersistentManyToOneRelation(
     'PO_person',
     'PO_person'
 );
-$relations['mother']->columnMap = array(
-    new ezcPersistentSingleTableMap( 'mother', 'id' )
-);
+$relations['mother']->columnMap = [new ezcPersistentSingleTableMap( 'mother', 'id' )];
 
 // Father relation
 
@@ -59,17 +55,13 @@ $relations['fathers_children'] = new ezcPersistentOneToManyRelation(
     'PO_person',
     'PO_person'
 );
-$relations['fathers_children']->columnMap = array(
-    new ezcPersistentSingleTableMap( 'id', 'father' )
-);
+$relations['fathers_children']->columnMap = [new ezcPersistentSingleTableMap( 'id', 'father' )];
 
 $relations['father'] = new ezcPersistentManyToOneRelation(
     'PO_person',
     'PO_person'
 );
-$relations['father']->columnMap = array(
-    new ezcPersistentSingleTableMap( 'father', 'id' )
-);
+$relations['father']->columnMap = [new ezcPersistentSingleTableMap( 'father', 'id' )];
 
 // Sibling relation
 
@@ -78,9 +70,7 @@ $relations['siblings'] = new ezcPersistentManyToManyRelation(
     "PO_person",
     "PO_sibling"
 );
-$relations['siblings']->columnMap = array(
-    new ezcPersistentDoubleTableMap( "id", "person", "sibling", "id" ),
-);
+$relations['siblings']->columnMap = [new ezcPersistentDoubleTableMap( "id", "person", "sibling", "id" )];
 
 $def->relations['MultiRelationTestPerson'] = $relations;
 

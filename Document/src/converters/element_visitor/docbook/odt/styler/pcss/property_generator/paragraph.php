@@ -29,7 +29,7 @@ class ezcDocumentOdtStyleParagraphPropertyGenerator extends ezcDocumentOdtStyleP
     {
         parent::__construct(
             $styleConverters,
-            array(
+            [
                 'text-align',
                 'widows',
                 'orphans',
@@ -38,7 +38,7 @@ class ezcDocumentOdtStyleParagraphPropertyGenerator extends ezcDocumentOdtStyleP
                 'border',
                 // Custom, @see ezcDocumentOdtPcssParagraphStylePreprocessor
                 'break-before',
-            )
+            ]
         );
     }
 

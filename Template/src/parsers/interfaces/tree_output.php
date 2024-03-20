@@ -220,7 +220,7 @@ abstract class ezcTemplateTreeOutput
             {
                 if ( $property instanceof $this->nodeClass )
                 {
-                    $textBlock = $this->outputNode( $property, true );
+                    $textBlock = $this->outputNode( $property );
                 }
                 else
                 {
@@ -292,8 +292,8 @@ abstract class ezcTemplateTreeOutput
      */
     protected static function outputString( $str )
     {
-        return str_replace( array( "\n",  "\r",  "\t",  "\b",  "\"",   "'" ),
-                            array( "\\n", "\\r", "\\t", "\\b", "\\\"", "\\'" ),
+        return str_replace( ["\n", "\r", "\t", "\b", "\"", "'"],
+                            ["\\n", "\\r", "\\t", "\\b", "\\\"", "\\'"],
                             $str );
     }
 }

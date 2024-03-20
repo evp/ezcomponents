@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/../../../Base/src/base.php';
+require_once __DIR__ . '/../../../Base/src/base.php';
 
 function __autoload( $className )
 {
@@ -9,7 +9,7 @@ function __autoload( $className )
 
 function loadFiles( array $files )
 {
-    $unorderedRes = array();
+    $unorderedRes = [];
     foreach ( $files as $file )
     {
         $info = pathinfo( $file );
@@ -29,7 +29,7 @@ function loadFiles( array $files )
         $unorderedRes[$info['filename']] = $value;
     }
     
-    $res = array();
+    $res = [];
     if ( isset( $unorderedRes['info'] ) )
     {
         $res['info'] = $unorderedRes['info'];
@@ -80,19 +80,19 @@ function loadFiles( array $files )
 $out = new ezcConsoleOutput();
 
 $out->formats->error->color  = 'red';
-$out->formats->error->style  = array( 'bold' );
+$out->formats->error->style  = ['bold'];
 $out->formats->error->target = ezcConsoleOutput::TARGET_STDERR;
 
 $out->formats->headline_1->color  = 'green';
-$out->formats->headline_1->style  = array( 'bold' );
+$out->formats->headline_1->style  = ['bold'];
 
 $out->formats->headline_2->color  = 'cyan';
-$out->formats->headline_2->style  = array( 'bold' );
+$out->formats->headline_2->style  = ['bold'];
 
 $out->formats->headline_3->color  = 'blue';
 
 $out->formats->border->color  = 'gray';
-$out->formats->border->style  = array( 'bold' );
+$out->formats->border->style  = ['bold'];
 
 
 $in = new ezcConsoleInput();
@@ -149,7 +149,7 @@ if ( $noColorOpt->value === true )
     $out->options->useFormats = false;
 }
 
-$suites = glob( dirname( __FILE__ ) . "/../clients/{$suiteOpt->value}", GLOB_ONLYDIR );
+$suites = glob( __DIR__ . "/../clients/{$suiteOpt->value}", GLOB_ONLYDIR );
 foreach ( $suites as $suite )
 {
     $tests = glob( "{$suite}/{$testOpt->value}", GLOB_ONLYDIR );

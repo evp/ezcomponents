@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -27,8 +27,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
     protected function setUp()
     {
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
         $this->setLocale( LC_NUMERIC, 'en_US', 'en_US.UTF-8', 'en_US.UTF8', 'en', 'english', 'en_US@euro' );
     }
 
@@ -46,13 +46,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $htmlFilename = $this->tempDir . __FUNCTION__ . '.html';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->url = 'http://example.org/browsers';
         $chart->data['sample']->url['Mozilla'] = 'http://example.org/browsers/mozilla';
@@ -67,7 +61,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare(
             $htmlFilename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.html'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.html'
         );
     }
 
@@ -77,13 +71,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $htmlFilename = $this->tempDir . __FUNCTION__ . '.html';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->url = 'http://example.org/browsers';
         $chart->data['sample']->url['Mozilla'] = 'http://example.org/browsers/mozilla';
@@ -98,7 +86,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare(
             $htmlFilename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.html'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.html'
         );
     }
 
@@ -111,8 +99,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->options->fillLines = 200;
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->data['Line 1']->url = 'http://example.org/line_1';
         $chart->data['Line 2']->url['sample 3'] = 'http://example.org/line_2/sample_3';
@@ -126,7 +114,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare(
             $htmlFilename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.html'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.html'
         );
     }
 
@@ -139,8 +127,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->options->fillLines = 200;
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->data['Line 2']->url['sample 3'] = 'http://example.org/line_2/sample_3';
 
@@ -153,7 +141,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare(
             $htmlFilename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.html'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.html'
         );
     }
 
@@ -167,8 +155,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->options->fillLines = 200;
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->data['Line 2']->url['sample 3'] = 'http://example.org/line_2/sample_3';
 
@@ -181,7 +169,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare(
             $htmlFilename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.html'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.html'
         );
     }
 
@@ -190,7 +178,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $chart = new ezcGraphLineChart();
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->render( 500, 200, $filename );
 
         try
@@ -210,7 +198,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $chart = new ezcGraphLineChart();
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->driver = new ezcGraphGdDriver();
 
         try
@@ -230,13 +218,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->url = 'http://example.org/browsers';
         $chart->data['sample']->url['Mozilla'] = 'http://example.org/browsers/mozilla';
@@ -248,7 +230,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -257,13 +239,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->url['Mozilla'] = 'http://example.org/browsers/mozilla';
 
@@ -273,7 +249,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -283,13 +259,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $chart = new ezcGraphPieChart();
         $chart->legend = false;
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->url['Mozilla'] = 'http://example.org/browsers/mozilla';
         $chart->data['sample']->highlight['Opera'] = true;
@@ -300,7 +270,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -309,13 +279,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->url = 'http://example.org/browsers';
         $chart->data['sample']->url['Mozilla'] = 'http://example.org/browsers/mozilla';
@@ -329,7 +293,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -341,8 +305,8 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->options->fillLines = 200;
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->data['Line 1']->url = 'http://example.org/line_1';
         $chart->data['Line 2']->url['sample 3'] = 'http://example.org/line_2/sample_3';
@@ -353,7 +317,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -366,9 +330,9 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $chart->options->fillLines = 200;
         $chart->renderer = new ezcGraphRenderer3d();
 
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['moreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['evenMoreData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['moreData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['evenMoreData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
 
         $chart->data['sampleData']->url = 'http://example.com/sampleData';
         $chart->data['sampleData']->symbol = ezcGraph::DIAMOND;
@@ -383,7 +347,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -392,7 +356,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphLineChart();
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->render( 500, 200, $filename );
 
         $chart->driver = new ezcGraphGdDriver();
@@ -415,7 +379,7 @@ class ezcGraphToolsTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphLineChart();
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
 
         try
         {
