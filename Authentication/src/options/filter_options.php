@@ -26,7 +26,7 @@ class ezcAuthenticationFilterOptions extends ezcBaseOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options The options for this class
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         parent::__construct( $options );
     }

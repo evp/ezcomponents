@@ -60,7 +60,7 @@ class ezcTemplateCharsetSourceToTstParser extends ezcTemplateSourceToTstParser
 
         return false;
     }
-                
+
         /*
                 if ( !$this->parseOptionalType( "Variable", null, false) )
                 {

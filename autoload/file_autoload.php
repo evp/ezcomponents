@@ -9,7 +9,5 @@
  * @package File
  */
 
-return array(
-    'ezcFile' => 'File/file.php',
-);
+return ['ezcFile' => 'File/file.php'];
 ?>

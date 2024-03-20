@@ -30,8 +30,8 @@ class Invariant_ezcTemplateCursor
         {
             if ( $key > 0 )
                 $parameterText .= ",";
-            $parameterText .= str_replace( array( "\r", "\n", "\t" ),
-                                           array( "\\r", "\\n", "\\t" ),
+            $parameterText .= str_replace( ["\r", "\n", "\t"],
+                                           ["\\r", "\\n", "\\t"],
                                            var_export( $parameter, true ) );
     }
         ezcTestCase::assertTrue( $this->receiver->line >= 1,
@@ -66,7 +66,7 @@ class Invariant_ezcTemplateCursor
     public function __call( $functionName, $parameters )
     {
         $this->_checkInvariant( $functionName, $parameters );
-        $retval = call_user_func_array( array( $this->receiver, $functionName ), $parameters );
+        $retval = call_user_func_array( [$this->receiver, $functionName], $parameters );
         $this->_checkInvariant( $functionName, $parameters );
         return $retval;
     }

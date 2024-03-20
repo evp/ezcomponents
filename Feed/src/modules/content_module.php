@@ -136,7 +136,7 @@ class ezcFeedContentModule extends ezcFeedModule
                 return false;
 
             case 'item':
-                if ( in_array( $name, array( 'encoded' ) ) )
+                if ( in_array( $name, ['encoded'] ) )
                 {
                     return true;
                 }
@@ -184,7 +184,7 @@ class ezcFeedContentModule extends ezcFeedModule
     {
         if ( isset( $this->encoded ) )
         {
-            $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . 'encoded' );
+            $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . 'encoded' );
             $root->appendChild( $elementTag );
             $elementTag->nodeValue = htmlspecialchars( $this->encoded->__toString(), ENT_NOQUOTES );
         }

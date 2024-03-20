@@ -32,7 +32,7 @@ class ezcMailRfc822DigestTest extends ezcTestCase
     {
         $digest = new ezcMailRfc822Digest( new DigestTestMail() );
 //        file_put_contents( dirname( __FILE__ ) . "/data/ezcMailRfc822DigestTest_testDefault.data", $digest->generate() );
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . "/data/ezcMailRfc822DigestTest_testDefault.data" ),
+        $this->assertEquals( file_get_contents( __DIR__ . "/data/ezcMailRfc822DigestTest_testDefault.data" ),
                              $digest->generate() );
     }
 

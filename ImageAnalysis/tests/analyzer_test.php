@@ -20,16 +20,7 @@ class ezcImageAnalysisAnalyzerTest extends ezcTestCase
 
     protected $basePath;
 
-    protected $testFiles = array( 
-        'exif_jpeg'       => 'jpeg_exif.jpg',
-        'noexif_jpeg'     => 'jpeg_noexif.jpg',
-        'exif_tiff'       => 'tiff_exif.tiff',
-        'noexif_tiff'     => 'tiff_noexif.tiff',
-        'animated_gif'    => 'gif_animated.gif',
-        'noanimated_gif'  => 'gif_nonanimated.gif',
-        'noanimated_png'  => 'png_nonanimated.png',
-        'svg'             => 'svg.svg',
-    );
+    protected $testFiles = ['exif_jpeg'       => 'jpeg_exif.jpg', 'noexif_jpeg'     => 'jpeg_noexif.jpg', 'exif_tiff'       => 'tiff_exif.tiff', 'noexif_tiff'     => 'tiff_noexif.tiff', 'animated_gif'    => 'gif_animated.gif', 'noanimated_gif'  => 'gif_nonanimated.gif', 'noanimated_png'  => 'png_nonanimated.png', 'svg'             => 'svg.svg'];
 
 	public static function suite()
 	{
@@ -43,7 +34,7 @@ class ezcImageAnalysisAnalyzerTest extends ezcTestCase
             $this->markTestSkipped( 'ext/exif is required to run this test.' );
         }
 
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     public function testPhpHandlerGetMimeJpegExif()
@@ -685,13 +676,13 @@ class ezcImageAnalysisAnalyzerTest extends ezcTestCase
 
     protected function getAnalyzerPhpHandler( $file )
     {
-        ezcImageAnalyzer::setHandlerClasses( array( 'ezcImageAnalyzerPhpHandler' => array() ) );
+        ezcImageAnalyzer::setHandlerClasses( ['ezcImageAnalyzerPhpHandler' => []] );
         return new ezcImageAnalyzer( $file );
     }
     
     protected function getAnalyzerImageMagickHandler( $file )
     {
-        ezcImageAnalyzer::setHandlerClasses( array( 'ezcImageAnalyzerImagemagickHandler' => array() ) );
+        ezcImageAnalyzer::setHandlerClasses( ['ezcImageAnalyzerImagemagickHandler' => []] );
         return new ezcImageAnalyzer( $file );
     }
 

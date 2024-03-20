@@ -24,7 +24,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $route = new ezcMvcRailsRoute( '', 'testController' );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array(), $request->variables );
+        self::assertSame( [], $request->variables );
     }
 
     public function testNoMatchEmpty()
@@ -40,21 +40,21 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
     {
         $request = new ezcMvcRequest;
         $request->uri = '';
-        $route = new ezcMvcRailsRoute( '', 'testController', 'action', array( 'default1' => 'Reality is merely an illusion, albeit a very persistent one.' ) );
+        $route = new ezcMvcRailsRoute( '', 'testController', 'action', ['default1' => 'Reality is merely an illusion, albeit a very persistent one.'] );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
         self::assertSame( 'action', $routeInfo->action );
-        self::assertSame( array( 'default1' => 'Reality is merely an illusion, albeit a very persistent one.' ), $request->variables );
+        self::assertSame( ['default1' => 'Reality is merely an illusion, albeit a very persistent one.'], $request->variables );
     }
 
     public function testsMatchNonEmptyDefaultVar()
     {
         $request = new ezcMvcRequest;
         $request->uri = 'people/einstein';
-        $route = new ezcMvcRailsRoute( 'people/:ignore', 'testController', 'action', array( 'name' => 'rethans' ) );
+        $route = new ezcMvcRailsRoute( 'people/:ignore', 'testController', 'action', ['name' => 'rethans'] );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'name' => 'rethans', 'ignore' => 'einstein' ), $request->variables );
+        self::assertSame( ['name' => 'rethans', 'ignore' => 'einstein'], $request->variables );
     }
 
     public function testsMatchNonEmptyOneVar()
@@ -64,17 +64,17 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $route = new ezcMvcRailsRoute( 'people/:name', 'testController' );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'name' => 'einstein' ), $request->variables );
+        self::assertSame( ['name' => 'einstein'], $request->variables );
     }
 
     public function testsMatchNonEmptyDefaultVarReused()
     {
         $request = new ezcMvcRequest;
         $request->uri = 'people/einstein';
-        $route = new ezcMvcRailsRoute( 'people/:name', 'testController', array( 'name' => 'rethans' ) );
+        $route = new ezcMvcRailsRoute( 'people/:name', 'testController', ['name' => 'rethans'] );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'name' => 'einstein' ), $request->variables );
+        self::assertSame( ['name' => 'einstein'], $request->variables );
     }
 
     public function testsMatchNonEmptyTwoVars()
@@ -84,23 +84,23 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $route = new ezcMvcRailsRoute( ':group/:name', 'testController' );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'group' => 'people', 'name' => 'hawking' ), $request->variables );
+        self::assertSame( ['group' => 'people', 'name' => 'hawking'], $request->variables );
     }
 
     public function testsMatchComplex()
     {
-        $route = new ezcMvcRailsRoute( 'people/:slug', 'testController', 'action', array( 'nr' => '', 'name' => '' ) );
+        $route = new ezcMvcRailsRoute( 'people/:slug', 'testController', 'action', ['nr' => '', 'name' => ''] );
         $request = new ezcMvcRequest;
 
         $request->uri = 'people/hawking';
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertEquals( array( 'nr' => '', 'name' => '', 'slug' => 'hawking' ), $request->variables );
+        self::assertEquals( ['nr' => '', 'name' => '', 'slug' => 'hawking'], $request->variables );
 
         $request->uri = 'people/42';
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertEquals( array( 'nr' => '', 'name' => '', 'slug' => 42 ), $request->variables );
+        self::assertEquals( ['nr' => '', 'name' => '', 'slug' => 42], $request->variables );
 
         $request->uri = 'people';
         $routeInfo = $route->matches( $request );
@@ -123,11 +123,11 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $request = new ezcMvcRequest;
         $request->uri = 'entry/get/89';
         $router = new testNamedRouter( $request );
-        self::assertEquals( 'entry/get/42', $router->generateUrl( 'get', array( 'id' => 42 ) ) );
-        self::assertEquals( 'entry/42/info', $router->generateUrl( 'info', array( 'id' => 42 ) ) );
-        self::assertEquals( 'e/derick/yes', $router->generateUrl( 'multiple1', array( 'person' => 'derick', 'relation' => 'yes' ) ) );
-        self::assertEquals( 'derick/e/yes', $router->generateUrl( 'multiple2', array( 'person' => 'derick', 'relation' => 'yes' ) ) );
-        self::assertEquals( 'derick/yes/e', $router->generateUrl( 'multiple3', array( 'person' => 'derick', 'relation' => 'yes' ) ) );
+        self::assertEquals( 'entry/get/42', $router->generateUrl( 'get', ['id' => 42] ) );
+        self::assertEquals( 'entry/42/info', $router->generateUrl( 'info', ['id' => 42] ) );
+        self::assertEquals( 'e/derick/yes', $router->generateUrl( 'multiple1', ['person' => 'derick', 'relation' => 'yes'] ) );
+        self::assertEquals( 'derick/e/yes', $router->generateUrl( 'multiple2', ['person' => 'derick', 'relation' => 'yes'] ) );
+        self::assertEquals( 'derick/yes/e', $router->generateUrl( 'multiple3', ['person' => 'derick', 'relation' => 'yes'] ) );
     }
 
     function testNamedRoutesMissingArgument()
@@ -137,7 +137,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $router = new testNamedRouter( $request );
         try
         {
-            $router->generateUrl( 'info', array() );
+            $router->generateUrl( 'info', [] );
             self::fail( "Expected exception not thrown." );
         }
         catch ( ezcMvcMissingRouteArgumentException $e )
@@ -146,7 +146,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         }
         try
         {
-            $router->generateUrl( 'multiple1', array( 'person' => 'derick' ) );
+            $router->generateUrl( 'multiple1', ['person' => 'derick'] );
         }
         catch ( ezcMvcMissingRouteArgumentException $e )
         {
@@ -165,7 +165,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $routeInfo = $route->matches( $request );
         self::assertSame( ':site.host/:group/:name', $routeInfo->matchedRoute );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'site' => 'test', 'group' => 'people', 'name' => 'hawking' ), $request->variables );
+        self::assertSame( ['site' => 'test', 'group' => 'people', 'name' => 'hawking'], $request->variables );
     }
 
     // tests for issue #15313
@@ -180,7 +180,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $routeInfo = $route->matches( $request );
         self::assertSame( 'test.host/topic/list/:newsgroup_name', $routeInfo->matchedRoute );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'newsgroup_name' => 'foo.bar.ezc.is.cool' ), $request->variables );
+        self::assertSame( ['newsgroup_name' => 'foo.bar.ezc.is.cool'], $request->variables );
     }
 
     public function testMatchWithDotInUrl2()
@@ -194,7 +194,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $routeInfo = $route->matches( $request );
         self::assertSame( 'test.:domain.com/topic/list/:newsgroup_name', $routeInfo->matchedRoute );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'domain' => 'example', 'newsgroup_name' => 'foo.bar.ezc.is.cool' ), $request->variables );
+        self::assertSame( ['domain' => 'example', 'newsgroup_name' => 'foo.bar.ezc.is.cool'], $request->variables );
     }
 
     public function testMatchWithDotInUrl3()
@@ -207,7 +207,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $routeInfo = $route->matches( $request );
         self::assertSame( '/topic/list/:newsgroup_name', $routeInfo->matchedRoute );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'newsgroup_name' => 'foo.bar.ezc.is.cool' ), $request->variables );
+        self::assertSame( ['newsgroup_name' => 'foo.bar.ezc.is.cool'], $request->variables );
     }
 
     public function testMatchWithDotInUrl3a()
@@ -219,7 +219,7 @@ class ezcMvcToolsRailsRouteTest extends ezcTestCase
         $routeInfo = $route->matches( $request );
         self::assertSame( '/topic/list/:newsgroup_name', $routeInfo->matchedRoute );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'newsgroup_name' => 'foo.bar.ezc.is.cool' ), $request->variables );
+        self::assertSame( ['newsgroup_name' => 'foo.bar.ezc.is.cool'], $request->variables );
     }
 
     public function testMatchWithDotInUrl4()

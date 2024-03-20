@@ -68,7 +68,7 @@ class ezcTemplateTranslationLanguageUpdateTest extends ezcTestCase
         $res = `php TemplateTranslationTiein/src/runextractor.php -f "tr-[LOCALE].xml" -l nl-nl -t TemplateTranslationTiein/tests/test_files/extractor/templates {$this->tmpDirTranslationFiles}`;
         self::assertEquals( true, file_exists( $this->tmpDirTranslationFiles . '/tr-nl-nl.xml' ) );
 
-        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, array ( 'format' => 'tr-[LOCALE].xml' ) );
+        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, ['format' => 'tr-[LOCALE].xml'] );
         $context = $backend->getContext( 'nl-nl', 'test5' );
         self::assertEquals( 'test2.ezt', $context[0]->filename );
         self::assertEquals( 'fourteen', $context[0]->original );
@@ -81,7 +81,7 @@ class ezcTemplateTranslationLanguageUpdateTest extends ezcTestCase
     {
         copy( 'TemplateTranslationTiein/tests/test_files/extractor/test-new-elements/original.xml', "{$this->tmpDirTranslationFiles}/en.xml" );
 
-        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, array( 'keepObsolete' => true ) );
+        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, ['keepObsolete' => true] );
         $manager = new ezcTranslationManager( $backend ); 
         $context = $manager->getContext( 'en', 'test' );
         try
@@ -110,7 +110,7 @@ class ezcTemplateTranslationLanguageUpdateTest extends ezcTestCase
     {
         copy( 'TemplateTranslationTiein/tests/test_files/extractor/test-new-elements/original.xml', "{$this->tmpDirTranslationFiles}/en.xml" );
 
-        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, array( 'keepObsolete' => true ) );
+        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, ['keepObsolete' => true] );
         try
         {
             $context = $backend->getContext( 'en', 'test3' );
@@ -135,7 +135,7 @@ class ezcTemplateTranslationLanguageUpdateTest extends ezcTestCase
     {
         copy( 'TemplateTranslationTiein/tests/test_files/extractor/test-new-elements/original.xml', "{$this->tmpDirTranslationFiles}/en.xml" );
 
-        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, array( 'keepObsolete' => true ) );
+        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, ['keepObsolete' => true] );
         $context = $backend->getContext( 'en', 'test' );
         self::assertEquals( 3, count( $context ) );
         self::assertEquals( 'gone', $context[2]->translation );
@@ -155,7 +155,7 @@ class ezcTemplateTranslationLanguageUpdateTest extends ezcTestCase
     {
         copy( 'TemplateTranslationTiein/tests/test_files/extractor/test-new-elements/original.xml', "{$this->tmpDirTranslationFiles}/en.xml" );
 
-        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, array( 'keepObsolete' => true ) );
+        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, ['keepObsolete' => true] );
         $context = $backend->getContext( 'en', 'test0' );
         self::assertEquals( 1, count( $context ) );
         self::assertEquals( 'not used at all', $context[0]->translation );
@@ -175,7 +175,7 @@ class ezcTemplateTranslationLanguageUpdateTest extends ezcTestCase
     {
         copy( 'TemplateTranslationTiein/tests/test_files/extractor/test-new-elements/original.xml', "{$this->tmpDirTranslationFiles}/en.xml" );
 
-        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, array( 'keepObsolete' => true ) );
+        $backend = new ezcTranslationTsBackend( $this->tmpDirTranslationFiles, ['keepObsolete' => true] );
         $context = $backend->getContext( 'en', 'test5' );
         self::assertEquals( 'test2.ezt', $context[0]->filename );
         self::assertEquals( 'fourteen', $context[0]->original );

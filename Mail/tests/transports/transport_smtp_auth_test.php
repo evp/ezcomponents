@@ -17,32 +17,32 @@ include_once( 'wrappers/smtp_wrapper.php' );
 class ezcMailTransportSmtpAuthTest extends ezcTestCase
 {
     // This server is not accessible for the outside world
-    const HOST_NO_AUTH = '10.0.2.35';
-    const PORT_NO_AUTH = 2525;
-    const USER_NO_AUTH = 'user';
-    const PASS_NO_AUTH = 'password';
+    public const HOST_NO_AUTH = '10.0.2.35';
+    public const PORT_NO_AUTH = 2525;
+    public const USER_NO_AUTH = 'user';
+    public const PASS_NO_AUTH = 'password';
 
     // This server is not accessible for the outside world
-    const HOST_SSL = 'ezctest.ez.no';
-    const PORT_SSL = 465;
-    const USER_SSL = '';
-    const PASS_SSL = '';
+    public const HOST_SSL = 'ezctest.ez.no';
+    public const PORT_SSL = 465;
+    public const USER_SSL = '';
+    public const PASS_SSL = '';
 
-    const HOST_PLAIN = 'mta1.ez.no';
-    const PORT_PLAIN = 25;
-    const USER_PLAIN = 'ezcomponents@mail.ez.no';
-    const PASS_PLAIN = 'ezcomponents';
+    public const HOST_PLAIN = 'mta1.ez.no';
+    public const PORT_PLAIN = 25;
+    public const USER_PLAIN = 'ezcomponents@mail.ez.no';
+    public const PASS_PLAIN = 'ezcomponents';
 
-    const HOST_CRYPT = 'smtp.ez.no';
-    const PORT_CRYPT = 25;
-    const USER_CRYPT = 'ezcomponents';
-    const PASS_CRYPT = 'ezcomponents';
+    public const HOST_CRYPT = 'smtp.ez.no';
+    public const PORT_CRYPT = 25;
+    public const USER_CRYPT = 'ezcomponents';
+    public const PASS_CRYPT = 'ezcomponents';
 
     private $mail;
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
@@ -57,7 +57,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     public function testAuthAuto()
     {
         $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN );
-        $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+        $this->mail->subject = self::class . ' - ' . __FUNCTION__;
         $smtp->send( $this->mail );
     }
 
@@ -70,7 +70,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
         $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT );
         $smtp->options->preferredAuthMethod = ezcMailSmtpTransport::AUTH_NTLM;
-        $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+        $this->mail->subject = self::class . ' - ' . __FUNCTION__;
         $smtp->send( $this->mail );
     }
 
@@ -85,7 +85,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
         {
             $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, 'this user could not possible exist', self::PASS_CRYPT, self::PORT_CRYPT );
             $smtp->options->preferredAuthMethod = ezcMailSmtpTransport::AUTH_NTLM;
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -105,7 +105,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
         {
             $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, 'wrong password', self::PORT_CRYPT );
             $smtp->options->preferredAuthMethod = ezcMailSmtpTransport::AUTH_NTLM;
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -121,7 +121,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
             $this->markTestSkipped( "PHP not compiled with --with-mcrypt." );
         }
 
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT] );
         $smtp->options->preferredAuthMethod = ezcMailSmtpTransport::AUTH_NTLM;
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
@@ -148,8 +148,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthDigestMd5()
     {
-        $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5 ) );
-        $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+        $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5] );
+        $this->mail->subject = self::class . ' - ' . __FUNCTION__;
         $smtp->send( $this->mail );
     }
 
@@ -157,8 +157,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, 'this user could not possible exist', self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5 ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, 'this user could not possible exist', self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -171,8 +171,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, 'wrong password', self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5 ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, 'wrong password', self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -183,7 +183,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthDigestMd5WrapperMockFail334()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5 ) ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5]] );
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
              ->will( $this->onConsecutiveCalls(
@@ -209,7 +209,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthDigestMd5WrapperMockFailRequiredParameters()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getData', 'sendData' ), array( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5 ) ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getData', 'sendData'], [self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5]] );
 
         $smtp->expects( $this->any() )
              ->method( 'getData' )
@@ -237,7 +237,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthDigestMd5WrapperMockFailRspauth()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getData', 'sendData' ), array( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5 ) ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getData', 'sendData'], [self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5]] );
 
         $smtp->expects( $this->any() )
              ->method( 'getData' )
@@ -266,7 +266,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthDigestMd5WrapperMockFail235()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getData', 'sendData', 'generateNonce' ), array( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5 ) ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getData', 'sendData', 'generateNonce'], [self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_DIGEST_MD5]] );
 
         $smtp->expects( $this->any() )
              ->method( 'getData' )
@@ -300,8 +300,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthCramMd5()
     {
-        $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5 ) );
-        $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+        $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5] );
+        $this->mail->subject = self::class . ' - ' . __FUNCTION__;
         $smtp->send( $this->mail );
     }
 
@@ -309,8 +309,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, 'this user could not possible exist', self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5 ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, 'this user could not possible exist', self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -323,8 +323,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, 'wrong password', self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5 ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_CRYPT, self::USER_CRYPT, 'wrong password', self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -335,7 +335,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthCramMd5WrapperMockFail334()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5 ) ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_CRYPT, self::USER_CRYPT, self::PASS_CRYPT, self::PORT_CRYPT, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_CRAM_MD5]] );
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
              ->will( $this->onConsecutiveCalls(
@@ -361,8 +361,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthLogin()
     {
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN ) );
-        $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN] );
+        $this->mail->subject = self::class . ' - ' . __FUNCTION__;
         $smtp->send( $this->mail );
     }
 
@@ -370,8 +370,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, 'this user could not possible exist', self::PASS_PLAIN, self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, 'this user could not possible exist', self::PASS_PLAIN, self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -384,8 +384,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, 'wrong password', self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, 'wrong password', self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -396,7 +396,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthLoginWrapperMockFail334()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN ) ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN]] );
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
              ->will( $this->onConsecutiveCalls(
@@ -422,7 +422,7 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthLoginWrapperMockFailUser334()
     {
-        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', array( 'getReplyCode', 'sendData' ), array( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN ) ) );
+        $smtp = $this->getMock( 'ezcMailSmtpTransportWrapper', ['getReplyCode', 'sendData'], [self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_LOGIN]] );
         $smtp->expects( $this->any() )
              ->method( 'getReplyCode' )
              ->will( $this->onConsecutiveCalls(
@@ -449,8 +449,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
 
     public function testAuthPlain()
     {
-        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_PLAIN ) );
-        $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+        $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, self::PASS_PLAIN, self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_PLAIN] );
+        $this->mail->subject = self::class . ' - ' . __FUNCTION__;
         $smtp->send( $this->mail );
     }
 
@@ -458,8 +458,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, 'this user could not possible exist', self::PASS_PLAIN, self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_PLAIN ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, 'this user could not possible exist', self::PASS_PLAIN, self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_PLAIN] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }
@@ -472,8 +472,8 @@ class ezcMailTransportSmtpAuthTest extends ezcTestCase
     {
         try
         {
-            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, 'wrong password', self::PORT_PLAIN, array( 'preferredAuthMethod' => ezcMailSmtpTransport::AUTH_PLAIN ) );
-            $this->mail->subject = __CLASS__ . ' - ' . __FUNCTION__;
+            $smtp = new ezcMailSmtpTransport( self::HOST_PLAIN, self::USER_PLAIN, 'wrong password', self::PORT_PLAIN, ['preferredAuthMethod' => ezcMailSmtpTransport::AUTH_PLAIN] );
+            $this->mail->subject = self::class . ' - ' . __FUNCTION__;
             $smtp->send( $this->mail );
             $this->fail( 'Expected message was not thrown.' );
         }

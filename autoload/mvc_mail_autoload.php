@@ -9,11 +9,5 @@
  * @package MvcMailTiein
  */
 
-return array(
-    'ezcMvcMailTieinException'        => 'MvcMailTiein/exceptions/exception.php',
-    'ezcMvcMailNoDataException'       => 'MvcMailTiein/exceptions/no_data.php',
-    'ezcMvcMailBugzillaRequestFilter' => 'MvcMailTiein/request_filters/bugzilla.php',
-    'ezcMvcMailRawRequest'            => 'MvcMailTiein/structs/request_raw_mail.php',
-    'ezcMvcMailRequestParser'         => 'MvcMailTiein/request_parsers/mail.php',
-);
+return ['ezcMvcMailTieinException'        => 'MvcMailTiein/exceptions/exception.php', 'ezcMvcMailNoDataException'       => 'MvcMailTiein/exceptions/no_data.php', 'ezcMvcMailBugzillaRequestFilter' => 'MvcMailTiein/request_filters/bugzilla.php', 'ezcMvcMailRawRequest'            => 'MvcMailTiein/structs/request_raw_mail.php', 'ezcMvcMailRequestParser'         => 'MvcMailTiein/request_parsers/mail.php'];
 ?>

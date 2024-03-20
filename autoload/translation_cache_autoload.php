@@ -9,7 +9,5 @@
  * @package TranslationCacheTiein
  */
 
-return array(
-    'ezcTranslationCacheBackend' => 'TranslationCacheTiein/backends/cache_backend.php',
-);
+return ['ezcTranslationCacheBackend' => 'TranslationCacheTiein/backends/cache_backend.php'];
 ?>

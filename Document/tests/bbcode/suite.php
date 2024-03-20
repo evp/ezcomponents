@@ -22,7 +22,7 @@ class ezcDocumentBBCodeSuite extends PHPUnit_Framework_TestSuite
 {
     public static function suite()
     {
-        return new ezcDocumentBBCodeSuite( __CLASS__ );
+        return new ezcDocumentBBCodeSuite( self::class );
     }
 
     public function __construct()

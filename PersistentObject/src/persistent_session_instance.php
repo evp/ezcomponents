@@ -51,7 +51,7 @@ class ezcPersistentSessionInstance
      *
      * @var array(string=>ezcPersistentSession)
      */
-    static private $instances = array();
+    static private $instances = [];
 
     /**
      * Returns the persistent session instance named $identifier.
@@ -142,7 +142,7 @@ class ezcPersistentSessionInstance
     public static function reset()
     {
         self::$defaultInstanceIdentifier = null;
-        self::$instances = array();
+        self::$instances = [];
     }
 }
 ?>

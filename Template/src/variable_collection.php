@@ -67,7 +67,7 @@ class ezcTemplateVariableCollection implements Iterator
      * @param array(string=>mixed) $variables An array of variables to initialise the collection
      * with. The default is an empty collection.
      */
-    public function __construct( $variables = array() )
+    public function __construct( $variables = [] )
     {
         $this->variables = $variables;
     }

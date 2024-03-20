@@ -44,28 +44,28 @@ class ezcGraphSvgFont
      *
      * @var array
      */
-    protected $usedGlyphs = array();
+    protected $usedGlyphs = [];
 
     /**
      * Cache for glyph size to save XPath lookups.
      * 
      * @var array
      */
-    protected $glyphCache = array();
+    protected $glyphCache = [];
 
     /**
      * Used kernings
      *
      * @var array
      */
-    protected $usedKerns = array();
+    protected $usedKerns = [];
 
     /**
      * Path to font
      *
      * @var string
      */
-    protected $fonts = array();
+    protected $fonts = [];
 
     /**
      * Initialize SVG font
@@ -136,8 +136,8 @@ class ezcGraphSvgFont
     protected static function xpathEscape( $char )
     {
         return "'" . str_replace( 
-            array( '\'', '\\' ),
-            array( '\\\'', '\\\\' ),
+            ['\'', '\\'],
+            ['\\\'', '\\\\'],
             $char ) . "'";
     }
 

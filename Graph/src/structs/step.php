@@ -48,7 +48,7 @@ class ezcGraphAxisStep
      * 
      * @var array(ezcGraphAxisStep)
      */
-    public $childs = array();
+    public $childs = [];
 
     /**
      * True if the step is at the same position as the other axis
@@ -75,7 +75,7 @@ class ezcGraphAxisStep
      * @param bool $isLast 
      * @ignore
      */
-    public function __construct( $position = .0, $width = .0, $label = null, array $childs = array(), $isZero = false, $isLast = false )
+    public function __construct( $position = .0, $width = .0, $label = null, array $childs = [], $isZero = false, $isLast = false )
     {
         $this->position = (float) $position;
         $this->width = (float) $width;

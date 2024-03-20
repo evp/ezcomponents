@@ -29,7 +29,7 @@ class ezcDocumentPcssStyleSrcValue extends ezcDocumentPcssStyleValue
      */
     public function parse( $value )
     {
-        $this->value = array();
+        $this->value = [];
         $values = preg_split( '(\s*,\s*)', $value );
         foreach( $values as $url )
         {
@@ -68,7 +68,7 @@ class ezcDocumentPcssStyleSrcValue extends ezcDocumentPcssStyleValue
      */
     public function __toString()
     {
-        $urls = array();
+        $urls = [];
         foreach ( $this->value as $url )
         {
             $urls[] = "url( $url )";

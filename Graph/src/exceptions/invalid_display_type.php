@@ -24,11 +24,7 @@ class ezcGraphInvalidDisplayTypeException extends ezcGraphException
      */
     public function __construct( $type )
     {
-        $chartTypeNames = array(
-            ezcGraph::PIE => 'Pie',
-            ezcGraph::LINE => 'Line',
-            ezcGraph::BAR => 'Bar',
-        );
+        $chartTypeNames = [ezcGraph::PIE => 'Pie', ezcGraph::LINE => 'Line', ezcGraph::BAR => 'Bar'];
 
         if ( isset( $chartTypeNames[$type] ) )
         {

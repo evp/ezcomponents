@@ -53,15 +53,7 @@ class ezcPersistentObjectIdProperty
      * Holds the properties for this class.
      * @var array
      */
-    private $properties = array(
-        'columnName'       => null,
-        'resultColumnName' => null,
-        'propertyName'     => null,
-        'propertyType'     => ezcPersistentObjectProperty::PHP_TYPE_INT,
-        'generator'        => null,
-        'visibility'       => null,
-        'databaseType'     => PDO::PARAM_STR,
-    );
+    private $properties = ['columnName'       => null, 'resultColumnName' => null, 'propertyName'     => null, 'propertyType'     => ezcPersistentObjectProperty::PHP_TYPE_INT, 'generator'        => null, 'visibility'       => null, 'databaseType'     => PDO::PARAM_STR];
 
     /**
      * Constructs a new PersistentObjectField
@@ -218,7 +210,7 @@ class ezcPersistentObjectIdProperty
                 $array['properties']['propertyName'],
                 $array['properties']['visibility'],
                 $array['properties']['generator'],
-                ( isset( $array['properties']['databaseType'] ) ? $array['properties']['databaseType'] : PDO::PARAM_STR )
+                ( $array['properties']['databaseType'] ?? PDO::PARAM_STR )
             );
         }
         else
@@ -228,7 +220,7 @@ class ezcPersistentObjectIdProperty
                 $array['propertyName'],
                 $array['visibility'],
                 $array['generator'],
-                ( isset( $array['databaseType'] ) ? $array['databaseType'] : PDO::PARAM_STR )
+                ( $array['databaseType'] ?? PDO::PARAM_STR )
             );
         }
     }

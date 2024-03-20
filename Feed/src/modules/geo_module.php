@@ -142,14 +142,14 @@ class ezcFeedGeoModule extends ezcFeedModule
         switch ( $this->level )
         {
             case 'feed':
-                if ( in_array( $name, array( 'alt', 'lat', 'long' ) ) )
+                if ( in_array( $name, ['alt', 'lat', 'long'] ) )
                 {
                     return true;
                 }
                 break;
 
             case 'item':
-                if ( in_array( $name, array( 'alt', 'lat', 'long' ) ) )
+                if ( in_array( $name, ['alt', 'lat', 'long'] ) )
                 {
                     return true;
                 }
@@ -198,12 +198,12 @@ class ezcFeedGeoModule extends ezcFeedModule
      */
     public function generate( DOMDocument $xml, DOMNode $root )
     {
-        $elements = array( 'alt', 'lat', 'long' );
+        $elements = ['alt', 'lat', 'long'];
         foreach ( $elements as $element )
         {
             if ( isset( $this->$element ) )
             {
-                $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . $element );
+                $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . $element );
                 $root->appendChild( $elementTag );
 
                 $elementTag->nodeValue = $this->$element->__toString();

@@ -14,15 +14,15 @@ require 'autoload.php';
 
 try
 {
-    $ini = new ezcConfigurationArrayReader( dirname( __FILE__ ) . '/settings.php' );
+    $ini = new ezcConfigurationArrayReader( __DIR__ . '/settings.php' );
     if ( !$ini->configExists() )
     {
         print "Cache does not exist, generating\n";
         // Cache is not present so we read the original file
-        $ini = new ezcConfigurationIniReader( dirname( __FILE__ ) . '/settings.ini' );
+        $ini = new ezcConfigurationIniReader( __DIR__ . '/settings.ini' );
         $conf = $ini->load();
         // Write back the cache
-        $cache = new ezcConfigurationArrayWriter( dirname( __FILE__ ) . '/settings.php', $conf );
+        $cache = new ezcConfigurationArrayWriter( __DIR__ . '/settings.php', $conf );
         $cache->save();
     }
     else

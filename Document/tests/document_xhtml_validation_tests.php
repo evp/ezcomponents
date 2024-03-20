@@ -19,7 +19,7 @@ class ezcDocumentXhtmlValidationTests extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testSuccessfulDocumentStringValidation()
@@ -28,7 +28,7 @@ class ezcDocumentXhtmlValidationTests extends ezcTestCase
 
         $this->assertSame(
             true,
-            $xhtml->validateString( file_get_contents( dirname( __FILE__ ) . '/files/xhtml/validation/valid_markup.html' ) ),
+            $xhtml->validateString( file_get_contents( __DIR__ . '/files/xhtml/validation/valid_markup.html' ) ),
             'Expected true as result of document validation'
         );
     }
@@ -39,7 +39,7 @@ class ezcDocumentXhtmlValidationTests extends ezcTestCase
 
         $this->assertSame(
             true,
-            $xhtml->validateFile( dirname( __FILE__ ) . '/files/xhtml/validation/valid_markup.html' ),
+            $xhtml->validateFile( __DIR__ . '/files/xhtml/validation/valid_markup.html' ),
             'Expected true as result of document validation'
         );
     }
@@ -48,7 +48,7 @@ class ezcDocumentXhtmlValidationTests extends ezcTestCase
     {
         $xhtml = new ezcDocumentXhtml();
 
-        $errors = $xhtml->validateString( file_get_contents( dirname( __FILE__ ) . '/files/xhtml/validation/invalid_markup.html' ) );
+        $errors = $xhtml->validateString( file_get_contents( __DIR__ . '/files/xhtml/validation/invalid_markup.html' ) );
 
         $this->assertTrue( 
             is_array( $errors ),

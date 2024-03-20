@@ -92,7 +92,7 @@ class ezcGraphRenderer3dOptions extends ezcGraphRendererOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['seperateLines'] = true;
         $this->properties['fillAxis'] = .8;

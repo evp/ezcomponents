@@ -14,7 +14,7 @@ class Rel1
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['id'] = $this->id;
         $result['fk'] = $this->fk;
         return $result;

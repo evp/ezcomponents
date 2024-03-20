@@ -27,7 +27,7 @@ class Cache
 
 $cache = new Cache();
 $data = new Data();
-$data->signals()->connect( "dataChanged", array( $cache, "deleteCache" ) );
+$data->signals()->connect( "dataChanged", [$cache, "deleteCache"] );
 
 $data->manipulate();
 ?>

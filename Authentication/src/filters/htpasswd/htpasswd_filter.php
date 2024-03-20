@@ -66,19 +66,19 @@ class ezcAuthenticationHtpasswdFilter extends ezcAuthenticationFilter
     /**
      * Username is not found in the htpasswd file.
      */
-    const STATUS_USERNAME_INCORRECT = 1;
+    public const STATUS_USERNAME_INCORRECT = 1;
 
     /**
      * Password is incorrect.
      */
-    const STATUS_PASSWORD_INCORRECT = 2;
+    public const STATUS_PASSWORD_INCORRECT = 2;
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -95,7 +95,7 @@ class ezcAuthenticationHtpasswdFilter extends ezcAuthenticationFilter
     public function __construct( $file, ezcAuthenticationHtpasswdOptions $options = null )
     {
         $this->file = $file;
-        $this->options = ( $options === null ) ? new ezcAuthenticationHtpasswdOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationHtpasswdOptions();
     }
 
     /**

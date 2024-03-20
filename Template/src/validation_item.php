@@ -28,14 +28,14 @@ class ezcTemplateValidationItem
      * The validation is an error which means the template execution failed.
      * @var int
      */
-    const TYPE_ERROR = 1;
+    public const TYPE_ERROR = 1;
 
     /**
      * The validation is a warning which means the template execution has some
      * problems but can continue.
      * @var int
      */
-    const TYPE_WARNING = 2;
+    public const TYPE_WARNING = 2;
 
     /**
      * The type of validation problem, one of the TYPE_ERROR or TYPE_WARNING values.

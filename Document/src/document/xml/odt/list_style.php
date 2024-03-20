@@ -27,10 +27,7 @@ class ezcDocumentOdtListStyle
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'name'       => null,
-        'listLevels' => null,
-    );
+    protected $properties = ['name'       => null, 'listLevels' => null];
 
     /**
      * Creates a new list style.

@@ -29,14 +29,14 @@ class ezcLogFilterSet implements ezcLogMapper
      *
      * var array(ezcLogFilterRule)
      */
-    private $rules = array();
+    private $rules = [];
 
     /**
      * Hash table that caches the {@link get()} queries to their results.
      *
      * var array(string=>mixed)
      */
-    private $cache = array();
+    private $cache = [];
 
     /**
      * Appends a rule to the end of the filter set.
@@ -86,7 +86,7 @@ class ezcLogFilterSet implements ezcLogMapper
         }
 
         // It is not cached, yet.
-        $total = array();
+        $total = [];
 
         foreach ( $this->rules as $rule )
         {
@@ -111,7 +111,7 @@ class ezcLogFilterSet implements ezcLogMapper
      */
     protected function clearCache()
     {
-        $this->cache = array();
+        $this->cache = [];
     }
 }
 ?>

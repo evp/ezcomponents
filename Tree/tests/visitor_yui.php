@@ -50,7 +50,7 @@ class ezcTreeVisitorYUITest extends ezcTreeVisitorTest
 
         $visitor = new ezcTreeVisitorYUI( 'productsandservices' );
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/yui-default.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/yui-default.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -63,7 +63,7 @@ class ezcTreeVisitorYUITest extends ezcTreeVisitorTest
         $visitor->options->displayRootNode = true;
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/yui-display-root-node.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/yui-display-root-node.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -76,7 +76,7 @@ class ezcTreeVisitorYUITest extends ezcTreeVisitorTest
         $visitor->options->selectedNodeLink = true;
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/yui-selected-node-link.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/yui-selected-node-link.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -90,7 +90,7 @@ class ezcTreeVisitorYUITest extends ezcTreeVisitorTest
         $visitor->options->selectedNodeLink = true;
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/yui-selected-node-link2.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/yui-selected-node-link2.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -105,7 +105,7 @@ class ezcTreeVisitorYUITest extends ezcTreeVisitorTest
         $visitor->options->basePath = 'testing';
 
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/yui-selected-node-link3.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/yui-selected-node-link3.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -117,7 +117,7 @@ class ezcTreeVisitorYUITest extends ezcTreeVisitorTest
         $visitor = new ezcTreeVisitorYUI( 'productsandservices' );
 
         $tree->fetchNodeById( 'Hylobatidae' )->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/yui-xml-id.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/yui-xml-id.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 
@@ -127,11 +127,11 @@ class ezcTreeVisitorYUITest extends ezcTreeVisitorTest
         $this->addTestData( $tree );
 
         $options = new ezcTreeVisitorYUIOptions;
-        $options->highlightNodeIds = array( 'Nomascus', 'Eastern Black Crested Gibbon', 'Hoolock' );
+        $options->highlightNodeIds = ['Nomascus', 'Eastern Black Crested Gibbon', 'Hoolock'];
         $visitor = new ezcTreeVisitorYUI( 'monkeys', $options );
 
         $tree->fetchNodeById( 'Hylobatidae' )->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/yui-highlight-nodes.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/yui-highlight-nodes.txt' );
         self::assertSame( $expected, $visitor->__toString() );
     }
 

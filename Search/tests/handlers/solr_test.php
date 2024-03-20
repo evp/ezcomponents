@@ -34,9 +34,9 @@ class ezcSearchHandlerSolrTest extends ezcTestCase
         {
             self::markTestSkipped( 'Solr is not running.' );
         }
-        $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ),
+        $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'],
                 '<delete><query>timestamp:[* TO *]</query></delete>' );
-        $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ),
+        $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'],
                 '<commit/>' );
     }
 
@@ -77,7 +77,7 @@ class ezcSearchHandlerSolrTest extends ezcTestCase
 
     function testSearchEmptyResultsSimple()
     {
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
     }
@@ -107,89 +107,89 @@ class ezcSearchHandlerSolrTest extends ezcTestCase
 
     function testSimpleIndex()
     {
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 1, $r->response->numFound );
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<delete><id>cfe5cc06-9b07-4e4b-930e-7e99f5202570</id></delete>' );
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<delete><id>cfe5cc06-9b07-4e4b-930e-7e99f5202570</id></delete>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
     }
 
     function testCommit()
     {
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 1, $r->response->numFound );
     }
 
     function testTransaction()
     {
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
         $r = $this->solr->beginTransaction();
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
         $r = $this->solr->commit();
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 1, $r->response->numFound );
     }
 
     function testNestedTransaction()
     {
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
         $r = $this->solr->beginTransaction();
         $r = $this->solr->beginTransaction();
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
         $r = $this->solr->commit();
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 0, $r->response->numFound );
 
         $r = $this->solr->commit();
 
-        $r = $this->solr->sendRawGetCommand( 'select', array( 'q' => 'solr', 'wt' => 'json', 'df' => 'name_s' ) );
+        $r = $this->solr->sendRawGetCommand( 'select', ['q' => 'solr', 'wt' => 'json', 'df' => 'name_s'] );
         $r = json_decode( $r );
         self::assertEquals( 1, $r->response->numFound );
     }
@@ -212,14 +212,14 @@ class ezcSearchHandlerSolrTest extends ezcTestCase
         $r = $this->solr->search( 'solr', 'name_s' );
         self::assertEquals( 0, $r->response->numFound );
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
-        $r = $this->solr->search( 'solr', 'name_s', array( 'id', 'name_s' ), array( 'id', 'name_s', 'score' ) );
+        $r = $this->solr->search( 'solr', 'name_s', ['id', 'name_s'], ['id', 'name_s', 'score'] );
         self::assertEquals( 1, $r->response->numFound );
 
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<delete><id>cfe5cc06-9b07-4e4b-930e-7e99f5202570</id></delete>' );
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<delete><id>cfe5cc06-9b07-4e4b-930e-7e99f5202570</id></delete>' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
         $r = $this->solr->search( 'solr', 'name_s' );
         self::assertEquals( 0, $r->response->numFound );
@@ -227,16 +227,16 @@ class ezcSearchHandlerSolrTest extends ezcTestCase
 
     function testSolrHttpStatusCodeOk()
     {
-        $this->solr = new testSolrFileWrapper( dirname( __FILE__ ) . '/../testfiles/solr-http-status.txt' );
-        $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
+        $this->solr = new testSolrFileWrapper( __DIR__ . '/../testfiles/solr-http-status.txt' );
+        $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
     }
 
     function testSolrHttpStatusCodeFail()
     {
-        $this->solr = new testSolrFileWrapper( dirname( __FILE__ ) . '/../testfiles/solr-http-status-fail.txt' );
+        $this->solr = new testSolrFileWrapper( __DIR__ . '/../testfiles/solr-http-status-fail.txt' );
         try
         {
-            $r = $this->solr->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
+            $r = $this->solr->sendRawPostCommand( 'update', ['wt' => 'json'], '<add><doc><field name="id">cfe5cc06-9b07-4e4b-930e-7e99f5202570</field><field name="name_s">solr</field></doc></add>' );
             self::fail( 'Expected exception not thrown.' );
         }
         catch ( ezcSearchNetworkException $e )

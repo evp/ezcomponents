@@ -18,7 +18,7 @@ class ezcPersistentRelationCollectionTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCtor()
@@ -27,7 +27,7 @@ class ezcPersistentRelationCollectionTest extends ezcTestCase
         $col = new ezcPersistentRelationCollection();
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             'relations',
             $col
         );
@@ -58,7 +58,7 @@ class ezcPersistentRelationCollectionTest extends ezcTestCase
         
         try
         {
-            $col['foo'] = array();
+            $col['foo'] = [];
             $this->fail( 'Exception not thrown on invalid offset.' );
         }
         catch ( ezcBaseValueException $e ) {}
@@ -100,7 +100,7 @@ class ezcPersistentRelationCollectionTest extends ezcTestCase
 
         $col['foo'] = $rel;
 
-        $col->exchangeArray( array( 'foo' => $secondRel ) );
+        $col->exchangeArray( ['foo' => $secondRel] );
 
         $this->assertNotSame(
             $rel,
@@ -119,14 +119,14 @@ class ezcPersistentRelationCollectionTest extends ezcTestCase
 
         try
         {
-            $col->exchangeArray( array( '' => $rel ) );
+            $col->exchangeArray( ['' => $rel] );
             $this->fail( 'Exception not thrown on invalid offset.' );
         }
         catch ( ezcBaseValueException $e ) {}
 
         try
         {
-            $col->exchangeArray( array( 23 => $rel ) );
+            $col->exchangeArray( [23 => $rel] );
             $this->fail( 'Exception not thrown on invalid offset.' );
         }
         catch ( ezcBaseValueException $e ) {}
@@ -138,14 +138,14 @@ class ezcPersistentRelationCollectionTest extends ezcTestCase
 
         try
         {
-            $col->exchangeArray( array( 'foo' => new stdClass() ) );
+            $col->exchangeArray( ['foo' => new stdClass()] );
             $this->fail( 'Exception not thrown on invalid value.' );
         }
         catch ( ezcBaseValueException $e ) {}
 
         try
         {
-            $col->exchangeArray( array( 'foo' => 23 ) );
+            $col->exchangeArray( ['foo' => 23] );
             $this->fail( 'Exception not thrown on invalid value.' );
         }
         catch ( ezcBaseValueException $e ) {}
@@ -210,7 +210,7 @@ class ezcPersistentRelationCollectionTest extends ezcTestCase
         $this->assertEquals(
             $expected,
             ezcPersistentRelationCollection::__set_state(
-                array( 'foo' => new ezcPersistentOneToManyRelation( 'src', 'dst' ) )
+                ['foo' => new ezcPersistentOneToManyRelation( 'src', 'dst' )]
             )
         );
     }

@@ -94,22 +94,22 @@ class ezcInputForm
      *            in a specific input variable contained valid data according
      *            to the filter.
      */
-    const VALID = 0;
+    public const VALID = 0;
 
     /**
      * @var INVALID is used in the $properties array to record whether the data
      *              in a specific input variable contained valid data according
      *              to the filter.
      */
-    const INVALID = 1;
+    public const INVALID = 1;
 
-    const DEF_NO_ARRAY                      = 1;
-    const DEF_EMPTY                         = 2;
-    const DEF_ELEMENT_NO_DEFINITION_ELEMENT = 3;
-    const DEF_NOT_REQUIRED_OR_OPTIONAL      = 5;
-    const DEF_WRONG_FLAGS_TYPE              = 6;
-    const DEF_UNSUPPORTED_FILTER            = 7;
-    const DEF_FIELD_NAME_BROKEN             = 8;
+    public const DEF_NO_ARRAY                      = 1;
+    public const DEF_EMPTY                         = 2;
+    public const DEF_ELEMENT_NO_DEFINITION_ELEMENT = 3;
+    public const DEF_NOT_REQUIRED_OR_OPTIONAL      = 5;
+    public const DEF_WRONG_FLAGS_TYPE              = 6;
+    public const DEF_UNSUPPORTED_FILTER            = 7;
+    public const DEF_FIELD_NAME_BROKEN             = 8;
 
     /**
      * Contains the definition for this form (as passed in the constructor).
@@ -209,7 +209,7 @@ class ezcInputForm
     {
         $this->allElementsValid = true;
 
-        if (  !in_array( $this->inputSource, array( INPUT_GET, INPUT_POST, INPUT_COOKIE ) ) )
+        if (  !in_array( $this->inputSource, [INPUT_GET, INPUT_POST, INPUT_COOKIE] ) )
         {
             throw new ezcInputFormWrongInputSourceException( $this->inputSource );
         }
@@ -232,7 +232,7 @@ class ezcInputForm
             }
 
             $flags = FILTER_NULL_ON_FAILURE | $inputElement->flags;
-            $value = filter_input( $this->inputSource, $elementName, filter_id( $inputElement->filterName ), array( 'options' => $inputElement->options, 'flags' => $flags ) );
+            $value = filter_input( $this->inputSource, $elementName, filter_id( $inputElement->filterName ), ['options' => $inputElement->options, 'flags' => $flags] );
 
             if ( $value !== null )
             {
@@ -279,13 +279,13 @@ class ezcInputForm
         // The definition parameter should be an array
         if ( !is_array( $definition ) )
         {
-            return array( ezcInputForm::DEF_NO_ARRAY, "The definition array is not an array" );
+            return [ezcInputForm::DEF_NO_ARRAY, "The definition array is not an array"];
         }
 
         // There should be atleast one element
         if ( count( $definition ) === 0 )
         {
-            return array( ezcInputForm::DEF_EMPTY, "The definition array is empty" );
+            return [ezcInputForm::DEF_EMPTY, "The definition array is empty"];
         }
 
         foreach ( $definition as $name => $element )
@@ -293,22 +293,22 @@ class ezcInputForm
             // Each element should be an ezcInputFormDefinitionElement
             if ( !$element instanceof ezcInputFormDefinitionElement )
             {
-                return array( ezcInputForm::DEF_ELEMENT_NO_DEFINITION_ELEMENT, "The definition for element '{$name}' is not an ezcInputFormDefinitionElement" );
+                return [ezcInputForm::DEF_ELEMENT_NO_DEFINITION_ELEMENT, "The definition for element '{$name}' is not an ezcInputFormDefinitionElement"];
             }
 
             // The first value in an element should be REQUIRED or OPTIONAL
-            if ( !in_array( $element->type, array( ezcInputFormDefinitionElement::OPTIONAL, ezcInputFormDefinitionElement::REQUIRED ), true ) )
+            if ( !in_array( $element->type, [ezcInputFormDefinitionElement::OPTIONAL, ezcInputFormDefinitionElement::REQUIRED], true ) )
             {
-                return array( ezcInputForm::DEF_NOT_REQUIRED_OR_OPTIONAL, "The first element definition for element '{$name}' is not ezcInputFormDefinitionElement::OPTIONAL or ezcInputFormDefinitionElement::REQUIRED" );
+                return [ezcInputForm::DEF_NOT_REQUIRED_OR_OPTIONAL, "The first element definition for element '{$name}' is not ezcInputFormDefinitionElement::OPTIONAL or ezcInputFormDefinitionElement::REQUIRED"];
             }
 
             // The options should either be an array, a string, or an int
             if ( $element->options !== null )
             {
                 $filterOptionsType = gettype( $element->options );
-                if ( !in_array( $filterOptionsType, array( 'integer', 'string', 'array' ) ) )
+                if ( !in_array( $filterOptionsType, ['integer', 'string', 'array'] ) )
                 {
-                    return array( ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The options to the definition for element '{$name}' is not of type integer, string or array" );
+                    return [ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The options to the definition for element '{$name}' is not of type integer, string or array"];
                 }
 
                 // A callback filter should have the form "string" or "array(string, string)"
@@ -316,17 +316,17 @@ class ezcInputForm
                 {
                     if ( $filterOptionsType == 'integer' )
                     {
-                        return array( ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The callback filter for element '{$name}' should not be an integer" );
+                        return [ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The callback filter for element '{$name}' should not be an integer"];
                     }
                     if ( $filterOptionsType == 'array' )
                     {
                         if ( count( $element->options ) != 2 )
                         {
-                            return array( ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The array parameter for the callback filter for element '{$name}' should have exactly two elements" );
+                            return [ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The array parameter for the callback filter for element '{$name}' should have exactly two elements"];
                         }
                         if ( gettype( $element->options[0] ) != 'string' || gettype( $element->options[1] ) != 'string' )
                         {
-                            return array( ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The array elements for the callback filter for element '{$name}' should both be a string" );
+                            return [ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The array elements for the callback filter for element '{$name}' should both be a string"];
                         }
                     }
                 }
@@ -337,7 +337,7 @@ class ezcInputForm
             {
                 if ( gettype( $element->flags ) !== 'integer' )
                 {
-                    return array( ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The flags to the definition for element '{$name}' is not of type integer, string or array" );
+                    return [ezcInputForm::DEF_WRONG_FLAGS_TYPE, "The flags to the definition for element '{$name}' is not of type integer, string or array"];
                 }
             }
 
@@ -345,17 +345,17 @@ class ezcInputForm
             if ( !in_array( $element->filterName, filter_list() ) )
             {
                 $filters = join( ', ', filter_list() );
-                return array( ezcInputForm::DEF_UNSUPPORTED_FILTER, "The filter '{$element->filterName}' for element '{$name}' does not exist. Pick one of: $filters" );
+                return [ezcInputForm::DEF_UNSUPPORTED_FILTER, "The filter '{$element->filterName}' for element '{$name}' does not exist. Pick one of: $filters"];
             }
 
             // The input field name should have a sane format
             if ( gettype( $name ) != 'string' )
             {
-                return array( ezcInputForm::DEF_FIELD_NAME_BROKEN, "The element name '{$name}' is not a string" );
+                return [ezcInputForm::DEF_FIELD_NAME_BROKEN, "The element name '{$name}' is not a string"];
             }
             if (! preg_match( '@^[a-z][a-z0-9_]*$@i', $name ) )
             {
-                return array( ezcInputForm::DEF_FIELD_NAME_BROKEN, "The element name '{$name}' has an unsupported format. It should start with an a-z and followed by a-z0-9_" );
+                return [ezcInputForm::DEF_FIELD_NAME_BROKEN, "The element name '{$name}' has an unsupported format. It should start with an a-z and followed by a-z0-9_"];
             }
 
         }
@@ -505,7 +505,7 @@ class ezcInputForm
      */
     public function getOptionalProperties()
     {
-        $properties = array();
+        $properties = [];
         foreach ( $this->definition as $fieldName => $fieldDefinition )
         {
             if ( $fieldDefinition->type === ezcInputFormDefinitionElement::OPTIONAL )
@@ -522,7 +522,7 @@ class ezcInputForm
      */
     public function getRequiredProperties()
     {
-        $properties = array();
+        $properties = [];
         foreach ( $this->definition as $fieldName => $fieldDefinition )
         {
             if ( $fieldDefinition->type === ezcInputFormDefinitionElement::REQUIRED )
@@ -539,7 +539,7 @@ class ezcInputForm
      */
     public function getValidProperties()
     {
-        $properties = array();
+        $properties = [];
         foreach ( $this->properties as $fieldName => $fieldStatus )
         {
             if ( $fieldStatus === ezcInputForm::VALID )
@@ -556,7 +556,7 @@ class ezcInputForm
      */
     public function getInvalidProperties()
     {
-        $properties = array();
+        $properties = [];
         foreach ( $this->properties as $fieldName => $fieldStatus )
         {
             if ( $fieldStatus === ezcInputForm::INVALID )

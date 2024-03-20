@@ -48,7 +48,7 @@ class ezcSystemInfoFreeBsdReader extends ezcSystemInfoReader
      *
      * @var array(string)
      */
-    private $validProperties = array();
+    private $validProperties = [];
 
     /**
      * Contains the amount of CPUs in system.

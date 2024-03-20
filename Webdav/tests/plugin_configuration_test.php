@@ -28,25 +28,14 @@ class ezcWebdavPluginConfigurationTest extends ezcTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     public function testGetHooks()
     {
         $cfg = new fooCustomWebdavPluginConfiguration();
         $this->assertEquals(
-            array(
-                'ezcWebdavTransport' => array(
-                    'beforeParseRequest' => array(
-                        array( 'ezcWebdavPluginRegistryTest', 'callbackBeforeTest' ),
-                        array(  $cfg, 'testCallback' ),
-                    ),
-                    'afterProcessResponse' => array(
-                        array( 'ezcWebdavPluginRegistryTest', 'callbackAfterTest' ),
-                        array( $cfg, 'testCallback' )
-                    ),
-                ),
-            ),
+            ['ezcWebdavTransport' => ['beforeParseRequest' => [['ezcWebdavPluginRegistryTest', 'callbackBeforeTest'], [$cfg, 'testCallback']], 'afterProcessResponse' => [['ezcWebdavPluginRegistryTest', 'callbackAfterTest'], [$cfg, 'testCallback']]]],
             $cfg->getHooks()
         );
     }

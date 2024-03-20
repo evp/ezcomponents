@@ -361,17 +361,17 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
         // No special handling for plain resources
         if ( !$this->isCollection( $source ) )
         {
-            return array( new ezcWebdavResource( $source ) );
+            return [new ezcWebdavResource( $source )];
         }
 
         // For zero depth just return the collection
         if ( $depth === ezcWebdavRequest::DEPTH_ZERO )
         {
-            return array( new ezcWebdavCollection( $source ) );
+            return [new ezcWebdavCollection( $source )];
         }
 
-        $nodes = array( new ezcWebdavCollection( $source ) );
-        $recurseCollections = array( $source );
+        $nodes = [new ezcWebdavCollection( $source )];
+        $recurseCollections = [$source];
 
         // Collect children for all collections listed in $recurseCollections.
         for ( $i = 0; $i < count( $recurseCollections ); ++$i )
@@ -416,18 +416,18 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
         $nodes = $this->getNodes( $source, $request->getHeader( 'Depth' ) );
 
         // Pathes which were already determined as unauthorized
-        $unauthorizedPaths = array();
+        $unauthorizedPaths = [];
 
         $server = ezcWebdavServer::getInstance();
         $performAuth = ( $server->auth !== null && $server->auth instanceof ezcWebdavAuthorizer );
 
         // Get requested properties for all files
-        $responses = array();
+        $responses = [];
 
         foreach ( $nodes as $node )
         {
             // Responses for the current node
-            $nodeResponses = array();
+            $nodeResponses = [];
 
             // Authorization
             $authorized = true;
@@ -438,7 +438,7 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
                 foreach ( $unauthorizedPaths as $unauthorizedPath )
                 {
                     // Check if a parent path was already determined as unauthorized
-                    if ( strpos( $nodePath, $unauthorizedPath ) === 0 )
+                    if ( strpos( $nodePath, (string) $unauthorizedPath ) === 0 )
                     {
                         // Skip this node completely, since we already have a
                         // parent node with 403
@@ -517,13 +517,13 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
         $nodes = $this->getNodes( $source, $request->getHeader( 'Depth' ) );
 
         // Pathes which were already determined as unauthorized
-        $unauthorizedPaths = array();
+        $unauthorizedPaths = [];
 
         $server = ezcWebdavServer::getInstance();
         $performAuth = ( $server->auth !== null && $server->auth instanceof ezcWebdavAuthorizer );
 
         // Get requested properties for all files
-        $responses = array();
+        $responses = [];
         foreach ( $nodes as $node )
         {
             if ( $performAuth )
@@ -602,13 +602,13 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
         $nodes = $this->getNodes( $source, $request->getHeader( 'Depth' ) );
         
         // Pathes which were already determined as unauthorized
-        $unauthorizedPaths = array();
+        $unauthorizedPaths = [];
 
         $server = ezcWebdavServer::getInstance();
         $performAuth = ( $server->auth !== null && $server->auth instanceof ezcWebdavAuthorizer );
 
         // Get requested properties for all files
-        $responses = array();
+        $responses = [];
         foreach ( $nodes as $node )
         {
             if ( $performAuth )
@@ -766,11 +766,7 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
         // Store proeprties, to be able to revert all changes later
         $propertyBackup = clone $this->getAllProperties( $source );
 
-        $errors = array(
-            ezcWebdavResponse::STATUS_403 => new ezcWebdavBasicPropertyStorage(),
-            ezcWebdavResponse::STATUS_409 => new ezcWebdavBasicPropertyStorage(),
-            ezcWebdavResponse::STATUS_424 => new ezcWebdavBasicPropertyStorage(),
-        );
+        $errors = [ezcWebdavResponse::STATUS_403 => new ezcWebdavBasicPropertyStorage(), ezcWebdavResponse::STATUS_409 => new ezcWebdavBasicPropertyStorage(), ezcWebdavResponse::STATUS_424 => new ezcWebdavBasicPropertyStorage()];
         $errnous = false;
 
         // Update properties, like requested
@@ -1162,8 +1158,8 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
             $this->performDelete( $dest );
         }
 
-        $errors    = array();
-        $copyPaths = array();
+        $errors    = [];
+        $copyPaths = [];
         
         if ( $request->getHeader( 'Depth' ) === ezcWebdavRequest::DEPTH_INFINITY )
         {
@@ -1175,7 +1171,7 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
         {
             // Non recursive auth check necessary, plain check on $source
             // already performed
-            $copyPaths = array( $source => ezcWebdavRequest::DEPTH_ZERO );
+            $copyPaths = [$source => ezcWebdavRequest::DEPTH_ZERO];
         }
 
         // Recursively copy paths that should be copied
@@ -1720,10 +1716,7 @@ abstract class ezcWebdavSimpleBackend extends ezcWebdavBackend implements ezcWeb
      */
     private function recursiveAuthCheck( ezcWebdavRequest $request, $path, $access = ezcWebdavAuthorizer::ACCESS_WRITE, $breakOnError = false )
     {
-        $result = array(
-            'errors' => array(),
-            'paths' => array(),
-        );
+        $result = ['errors' => [], 'paths' => []];
 
         // Check auth for collections and resources equally
         if ( !ezcWebdavServer::getInstance()->isAuthorized( $path, $request->getHeader( 'Authorization' ), $access ) )

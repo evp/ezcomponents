@@ -1,5 +1,5 @@
 <?php
-require dirname( __FILE__ ) . '/../../../../Base/src/base.php';
+require __DIR__ . '/../../../../Base/src/base.php';
 function __autoload( $className )
 {
     ezcBase::autoload( $className );
@@ -9,7 +9,7 @@ $writer = new ezcLogSyslogWriter( "ezctest", LOG_PERROR|LOG_PID|LOG_ODELAY );
 
 // extras
 $writer->writeLogMessage( "I was bowling.", ezcLog::DEBUG, "Donny", "quotes",
-                                array( "movie" => "The Big Lebowski" ) );
+                                ["movie" => "The Big Lebowski"] );
 
 // debug
 $writer->writeLogMessage( "The dude abides.", ezcLog::DEBUG, "Lebowski", "quotes" );

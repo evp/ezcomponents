@@ -26,12 +26,12 @@ abstract class ezcWorkflowNode implements ezcWorkflowVisitable
     /**
      * The node is waiting to be activated.
      */
-    const WAITING_FOR_ACTIVATION = 0;
+    public const WAITING_FOR_ACTIVATION = 0;
 
     /**
      * The node is activated and waiting to be executed.
      */
-    const WAITING_FOR_EXECUTION = 1;
+    public const WAITING_FOR_EXECUTION = 1;
 
     /**
      * Unique ID of this node.
@@ -48,14 +48,14 @@ abstract class ezcWorkflowNode implements ezcWorkflowVisitable
      *
      * @var array( int => ezcWorkflowNode )
      */
-    protected $inNodes = array();
+    protected $inNodes = [];
 
     /**
      * The outgoing nodes of this node.
      *
      * @var array( int => ezcWorkflowNode )
      */
-    protected $outNodes = array();
+    protected $outNodes = [];
 
     /**
      * Constraint: The minimum number of incoming nodes this node has to have
@@ -128,7 +128,7 @@ abstract class ezcWorkflowNode implements ezcWorkflowVisitable
      *
      * @var ezcWorkflowNode[]
      */
-    protected $activatedFrom = array();
+    protected $activatedFrom = [];
 
     /**
      * The state of this node.
@@ -589,7 +589,7 @@ abstract class ezcWorkflowNode implements ezcWorkflowVisitable
     public function execute( ezcWorkflowExecution $execution )
     {
         $this->activationState = self::WAITING_FOR_ACTIVATION;
-        $this->activatedFrom = array();
+        $this->activatedFrom = [];
         $this->threadId = null;
 
         return true;
@@ -647,7 +647,7 @@ abstract class ezcWorkflowNode implements ezcWorkflowVisitable
      */
     public function initState()
     {
-        $this->activatedFrom = array();
+        $this->activatedFrom = [];
         $this->state         = null;
         $this->threadId      = null;
 

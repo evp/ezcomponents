@@ -69,7 +69,7 @@ class ezcLogFileWriterTest extends ezcTestCase
 
     public function testWriteSimpleLogMessage()
     {
-        $m = array("message" => "Alien alert", "type" => "critical", "source" => "UFO report", "category" => "fake warning" );
+        $m = ["message" => "Alien alert", "type" => "critical", "source" => "UFO report", "category" => "fake warning"];
         $this->writer->writeLogMessage( $m["message"], $m["type"], $m["source"], $m["category"]);
         $this->assertEquals(print_r( $m, true ), file_get_contents( $this->getTempDir() ."/".$this->logFile ) ); 
     }
@@ -86,10 +86,7 @@ class ezcLogFileWriterTest extends ezcTestCase
         $filter->severity = 8 | 16;
         $this->writer->setFile ( $filter, "really-important.log" );
 
-        $msg = array("message" => "Power will shut down in 5 minutes.",
-                     "type" => 8,
-                     "source" => "System",
-                     "category" => "User mistake");
+        $msg = ["message" => "Power will shut down in 5 minutes.", "type" => 8, "source" => "System", "category" => "User mistake"];
 
 
         $this->writer->writeLogMessage($msg["message"], $msg["type"], $msg["source"], $msg["category"]);
@@ -150,20 +147,14 @@ class ezcLogFileWriterTest extends ezcTestCase
     {
         $this->writer = new TempImplementation($this->getTempDir(), $this->logFile, 20);
 
-        $msg = array("message" => "1234567890123456789012345",
-                     "type" => 1,
-                     "source" => "s",
-                     "category" => "c");
+        $msg = ["message" => "1234567890123456789012345", "type" => 1, "source" => "s", "category" => "c"];
 
         $this->writer->writeLogMessage( $msg["message"], $msg["type"], $msg["source"], $msg["category"]);
 
         unset($this->writer);
         $this->writer = new TempImplementation($this->getTempDir(), $this->logFile, 20);
         
-        $msg2 = array("message" => "abcdefghijklmnopqrstuvwxyz",
-                     "type" => 1,
-                     "source" => "s",
-                     "category" => "c");
+        $msg2 = ["message" => "abcdefghijklmnopqrstuvwxyz", "type" => 1, "source" => "s", "category" => "c"];
 
         $this->writer->writeLogMessage( $msg2["message"], $msg2["type"], $msg2["source"], $msg2["category"]);
 
@@ -176,10 +167,7 @@ class ezcLogFileWriterTest extends ezcTestCase
 
     public function testLogRotateDisabled()
     {
-        $msg = array("message" => "1234567890123456789012345",
-                     "type" => 1,
-                     "source" => "s",
-                     "category" => "c");
+        $msg = ["message" => "1234567890123456789012345", "type" => 1, "source" => "s", "category" => "c"];
 
         for ( $i = 0; $i < 50000; $i++ )
         {
@@ -194,10 +182,7 @@ class ezcLogFileWriterTest extends ezcTestCase
 
     public function testMaxLogFiles()
     {
-        $msg = array("message" => "1234567890",
-                     "type" => 1,
-                     "source" => "s",
-                     "category" => "c");
+        $msg = ["message" => "1234567890", "type" => 1, "source" => "s", "category" => "c"];
 
         // default.log 
         unset($this->writer);
@@ -253,8 +238,8 @@ class ezcLogFileWriterTest extends ezcTestCase
         $this->writer = new TempImplementation($this->getTempDir(), $this->logFile);
         $this->writer->writeLogMessage( "msg2", "c", "d", "");
 
-        $m = print_r( array( "message" => "msg1", "type" => "a", "source" => "b", "category" => "" ), true );
-        $m .= print_r( array( "message" => "msg2", "type" => "c", "source" => "d", "category" => "" ), true );
+        $m = print_r( ["message" => "msg1", "type" => "a", "source" => "b", "category" => ""], true );
+        $m .= print_r( ["message" => "msg2", "type" => "c", "source" => "d", "category" => ""], true );
         $this->assertEquals( $m, file_get_contents( $this->getTempDir() ."/". $this->logFile ) );
     }
 

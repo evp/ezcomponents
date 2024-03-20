@@ -35,7 +35,7 @@ class ezcPersistentStringIdentifierTest extends ezcTestCase
         MainTable::setupTable();
 //        MainTable::saveSchema();
         $this->session = new ezcPersistentSession( ezcDbInstance::get(),
-                                                   new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/string_identifier" ) );
+                                                   new ezcPersistentCodeManager( __DIR__ . "/data/string_identifier" ) );
     }
 
     protected function tearDown()

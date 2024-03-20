@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/options_test_case.php';
+require_once __DIR__ . '/options_test_case.php';
 
 /**
  * Test suite for class.
@@ -21,7 +21,7 @@ class ezcConverterXsltOptionsTests extends ezcDocumentOptionsTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function getOptionsClassName()
@@ -31,49 +31,17 @@ class ezcConverterXsltOptionsTests extends ezcDocumentOptionsTestCase
 
     public static function provideDefaultValues()
     {
-        return array(
-            array(
-                'xslt', null,
-            ),
-            array(
-                'parameters', array(),
-            ),
-            array(
-                'failOnError', false,
-            ),
-        );
+        return [['xslt', null], ['parameters', []], ['failOnError', false]];
     }
 
     public static function provideValidData()
     {
-        return array(
-            array(
-                'xslt',
-                array( 'http://example.org/' ),
-            ),
-            array(
-                'parameters',
-                array( array( 'foo' => 'bar' ) ),
-            ),
-            array(
-                'failOnError',
-                array( true ),
-            ),
-        );
+        return [['xslt', ['http://example.org/']], ['parameters', [['foo' => 'bar']]], ['failOnError', [true]]];
     }
 
     public static function provideInvalidData()
     {
-        return array(
-            array(
-                'parameters',
-                array( 'foo', new StdClass() ),
-            ),
-            array(
-                'failOnError',
-                array( 'foo', 23 ),
-            ),
-        );
+        return [['parameters', ['foo', new StdClass()]], ['failOnError', ['foo', 23]]];
     }
 }
 

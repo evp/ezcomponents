@@ -38,19 +38,11 @@ class ezcGraphTransformationTest extends ezcTestCase
     public function testCreateTransformation2()
     {
         $transformation = new ezcGraphTransformation(
-            array(
-                array( 2, 1, 0 ),
-                array( 2, 1, 0 ),
-                array( 2, 1, 0 ),
-            )
+            [[2, 1, 0], [2, 1, 0], [2, 1, 0]]
         );
 
         $matrix = new ezcGraphMatrix( 3, 3,
-            array(
-                array( 2, 1, 0 ),
-                array( 2, 1, 0 ),
-                array( 2, 1, 0 ),
-            )
+            [[2, 1, 0], [2, 1, 0], [2, 1, 0]]
         );
 
         $this->assertEquals(
@@ -66,11 +58,7 @@ class ezcGraphTransformationTest extends ezcTestCase
         $transformation = new ezcGraphTranslation( 5, 5 );
 
         $matrix = new ezcGraphMatrix( 3, 3,
-            array(
-                array( 1, 0, 5 ),
-                array( 0, 1, 5 ),
-                array( 0, 0, 1 ),
-            )
+            [[1, 0, 5], [0, 1, 5], [0, 0, 1]]
         );
 
         $this->assertEquals(
@@ -84,10 +72,7 @@ class ezcGraphTransformationTest extends ezcTestCase
     public function testTranslateMultiplicationInvalidDimension()
     {
         $a = new ezcGraphTranslation( 3, 2 );
-        $b = new ezcGraphMatrix( 4, 3, array(
-            array( 1, 2, 3 ),
-            array( 4, 5, 6 ),
-        ) );
+        $b = new ezcGraphMatrix( 4, 3, [[1, 2, 3], [4, 5, 6]] );
 
         try
         {
@@ -121,11 +106,7 @@ class ezcGraphTransformationTest extends ezcTestCase
         $transformation = new ezcGraphRotation( 90 );
 
         $matrix = new ezcGraphMatrix( 3, 3,
-            array(
-                array( 0, -1, 0 ),
-                array( 1, 0, 0 ),
-                array( 0, 0, 1 ),
-            )
+            [[0, -1, 0], [1, 0, 0], [0, 0, 1]]
         );
 
         $this->assertEquals(
@@ -161,11 +142,7 @@ class ezcGraphTransformationTest extends ezcTestCase
         $transformation = new ezcGraphRotation( 90, new ezcGraphCoordinate( 10, 10 ) );
 
         $matrix = new ezcGraphMatrix( 3, 3,
-            array(
-                array( 0, 1, 0 ),
-                array( -1, 0, 0 ),
-                array( 0, 0, 1 ),
-            )
+            [[0, 1, 0], [-1, 0, 0], [0, 0, 1]]
         );
 
         $testCoordinate = new ezcGraphCoordinate( 0, 0 );

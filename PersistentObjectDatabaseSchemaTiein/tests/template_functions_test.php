@@ -16,7 +16,7 @@ class ezcPersistentObjectSchemaTemplateFunctionsTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite(__CLASS__ );
+        return new PHPUnit_Framework_TestSuite(self::class );
     }
 
     public function testUnderScoreToCamelCaseFirstUpper()

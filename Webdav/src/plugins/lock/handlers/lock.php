@@ -245,7 +245,7 @@ class ezcWebdavLockLockRequestResponseHandler extends ezcWebdavLockRequestRespon
             $request->requestUri,
             ''
         );
-        ezcWebdavLockTools::cloneRequestHeaders( $request, $putReq, array( 'If' ) );
+        ezcWebdavLockTools::cloneRequestHeaders( $request, $putReq, ['If'] );
         $putReq->setHeader( 'Content-Length', '0' );
         $putReq->validateHeaders();
 

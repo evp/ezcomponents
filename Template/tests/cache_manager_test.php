@@ -23,12 +23,12 @@ class ezcTemplateCacheManagerTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
-        $tables = array( 'user', 'cache_templates', 'cache_values' );
+        $tables = ['user', 'cache_templates', 'cache_values'];
 
         // Get the DB instance
         try
@@ -39,7 +39,7 @@ class ezcTemplateCacheManagerTest extends ezcTestCase
         {
             $this->markTestSkipped( 'No database handler defined' );
         }
-        $this->basePath = realpath( dirname( __FILE__ ) ) . '/';
+        $this->basePath = realpath( __DIR__ ) . '/';
 
         // Setup the template engine
         $config = ezcTemplateConfiguration::getInstance();
@@ -61,7 +61,7 @@ class ezcTemplateCacheManagerTest extends ezcTestCase
             } // eat
         }
 
-        $schema = ezcDbSchema::createFromFile( 'xml', dirname( __FILE__ ) . '/cache-manager-schema.xml' );
+        $schema = ezcDbSchema::createFromFile( 'xml', __DIR__ . '/cache-manager-schema.xml' );
         $schema->writeToDb( $db );
 
         // insert some data
@@ -72,7 +72,7 @@ class ezcTemplateCacheManagerTest extends ezcTestCase
            ->set( $db->quoteIdentifier( 'nickname' ), $iq->bindValue( 'sunRay' ) )
            ->prepare();
         $s->execute();
-       
+
         $iq = $db->createInsertQuery();
         $s = $iq->insertInto( $db->quoteIdentifier( 'user' ) )
            ->set( $db->quoteIdentifier( 'id' ), 2 )
@@ -80,7 +80,7 @@ class ezcTemplateCacheManagerTest extends ezcTestCase
            ->set( $db->quoteIdentifier( 'nickname' ), $iq->bindValue( 'Tiger' ) )
            ->prepare();
         $s->execute();
-       
+
         $iq = $db->createInsertQuery();
         $s = $iq->insertInto( $db->quoteIdentifier( 'user' ) )
            ->set( $db->quoteIdentifier( 'id' ), 3 )
@@ -165,7 +165,7 @@ class ezcTemplateCacheManagerTest extends ezcTestCase
         $r = $t->process("cached_page_includes_show_users.ezt");
         $this->assertEquals( "\nCached:\n\n\n\n\n1 Raymond bla\n\n2 Derick Tiger\n\n3 Jan Amos\n", $r );
     }
- 
+
 
     public function testCleanExpired()
     {
@@ -190,7 +190,7 @@ class ezcTemplateCacheManagerTest extends ezcTestCase
         $r = $t->process("cached_page_includes_show_users.ezt");
         $this->assertEquals( "\nCached:\n\n\n\n\n1 Raymond sunRay\n\n2 Derick Tiger\n\n3 Jan Amos\n", $r );
     }
- 
+
     public function testCacheBlock()
     {
         $t = new ezcTemplate();

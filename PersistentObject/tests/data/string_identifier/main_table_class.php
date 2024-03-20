@@ -43,7 +43,7 @@ class MainTable
     {
         $db = ezcDbInstance::get();
         $schema = ezcDbSchema::createFromDb( $db );
-        $schema->writeToFile( 'array', dirname( __FILE__ ) . '/table.dba' );
+        $schema->writeToFile( 'array', __DIR__ . '/table.dba' );
     }
 
     /**
@@ -53,7 +53,7 @@ class MainTable
     {
         $db = ezcDbInstance::get();
         // Load schema
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . '/table.dba' );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . '/table.dba' );
         $schema->writeToDb( $db );
     }
 
@@ -89,7 +89,7 @@ class MainTable
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['id'] = $this->id;
         $result['data'] = $this->data;
         return $result;

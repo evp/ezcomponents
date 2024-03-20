@@ -10,15 +10,12 @@ if ( !$authentication->run() )
 {
     // authentication did not succeed, so inform the user
     $status = $authentication->getStatus();
-    $err = array(
-            'ezcAuthenticationHtpasswdFilter' => array(
-                ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect username',
-                ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect password'
-                )
-            );
+    $err = ['ezcAuthenticationHtpasswdFilter' => [ezcAuthenticationHtpasswdFilter::STATUS_USERNAME_INCORRECT => 'Incorrect username', ezcAuthenticationHtpasswdFilter::STATUS_PASSWORD_INCORRECT => 'Incorrect password']];
     foreach ( $status as $line )
     {
-        list( $key, $value ) = each( $line );
+        $key = key($line);
+        $value = current($line);
+        next($line);
         echo $err[$key][$value] . "\n";
     }
 }

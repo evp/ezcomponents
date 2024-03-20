@@ -27,11 +27,7 @@ class ezcGraphMatrixTest extends ezcTestCase
         $matrix = new ezcGraphMatrix();
 
         $this->assertEquals(
-            array(
-                array( 1, 0, 0 ),
-                array( 0, 1, 0 ),
-                array( 0, 0, 1 ),
-            ),
+            [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
             $this->readAttribute( $matrix, 'matrix' )
         );
     }
@@ -41,23 +37,17 @@ class ezcGraphMatrixTest extends ezcTestCase
         $matrix = new ezcGraphMatrix( 2, 4 );
 
         $this->assertEquals(
-            array(
-                array( 1, 0, 0, 0 ),
-                array( 0, 1, 0, 0 ),
-            ),
+            [[1, 0, 0, 0], [0, 1, 0, 0]],
             $this->readAttribute( $matrix, 'matrix' )
         );
     }
 
     public function testCreateCustomMatrix()
     {
-        $matrix = new ezcGraphMatrix( 2, 4, array( array( 1, 0, 5 ), array( 6, -1, -3, .5 ) ) );
+        $matrix = new ezcGraphMatrix( 2, 4, [[1, 0, 5], [6, -1, -3, .5]] );
 
         $this->assertEquals(
-            array(
-                array( 1, 0, 5, 0 ),
-                array( 6, -1, -3, .5 ),
-            ),
+            [[1, 0, 5, 0], [6, -1, -3, .5]],
             $this->readAttribute( $matrix, 'matrix' )
         );
     }
@@ -122,11 +112,7 @@ class ezcGraphMatrixTest extends ezcTestCase
         $matrix->add( new ezcGraphMatrix() );
 
         $this->assertEquals(
-            array(
-                array( 2, 0, 0 ),
-                array( 0, 2, 0 ),
-                array( 0, 0, 2 ),
-            ),
+            [[2, 0, 0], [0, 2, 0], [0, 0, 2]],
             $this->readAttribute( $matrix, 'matrix' )
         );
     }
@@ -137,11 +123,7 @@ class ezcGraphMatrixTest extends ezcTestCase
         $matrix->diff( new ezcGraphMatrix() );
 
         $this->assertEquals(
-            array(
-                array( 0, 0, 0 ),
-                array( 0, 0, 0 ),
-                array( 0, 0, 0 ),
-            ),
+            [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
             $this->readAttribute( $matrix, 'matrix' )
         );
     }
@@ -200,49 +182,28 @@ class ezcGraphMatrixTest extends ezcTestCase
         $matrix->scalar( -.5 );
 
         $this->assertEquals(
-            array(
-                array( -.5, 0, 0 ),
-                array( 0, -.5, 0 ),
-                array( 0, 0, -.5 ),
-            ),
+            [[-.5, 0, 0], [0, -.5, 0], [0, 0, -.5]],
             $this->readAttribute( $matrix, 'matrix' )
         );
     }
 
     public function testMatrixMultiplication()
     {
-        $a = new ezcGraphMatrix( 2, 3, array(
-            array( 1, 2, 3 ),
-            array( 4, 5, 6 ),
-        ) );
-        $b = new ezcGraphMatrix( 3, 2, array(
-            array( 6, -1 ),
-            array( 3, 2 ),
-            array( 0, -3 ),
-        ) );
+        $a = new ezcGraphMatrix( 2, 3, [[1, 2, 3], [4, 5, 6]] );
+        $b = new ezcGraphMatrix( 3, 2, [[6, -1], [3, 2], [0, -3]] );
 
         $c = $a->multiply( $b );
 
         $this->assertEquals(
-            array(
-                array( 12, -6 ),
-                array( 39, -12 ),
-            ),
+            [[12, -6], [39, -12]],
             $this->readAttribute( $c, 'matrix' )
         );
     }
 
     public function testMatrixMultiplicationInvalidDimensions()
     {
-        $a = new ezcGraphMatrix( 3, 3, array(
-            array( 6, -1 ),
-            array( 3, 2 ),
-            array( 0, -3 ),
-        ) );
-        $b = new ezcGraphMatrix( 2, 3, array(
-            array( 1, 2, 3 ),
-            array( 4, 5, 6 ),
-        ) );
+        $a = new ezcGraphMatrix( 3, 3, [[6, -1], [3, 2], [0, -3]] );
+        $b = new ezcGraphMatrix( 2, 3, [[1, 2, 3], [4, 5, 6]] );
 
         try
         {
@@ -258,15 +219,8 @@ class ezcGraphMatrixTest extends ezcTestCase
 
     public function testMatrixMultiplicationInvalidDimensions2()
     {
-        $a = new ezcGraphMatrix( 3, 2, array(
-            array( 6, -1 ),
-            array( 3, 2 ),
-            array( 0, -3 ),
-        ) );
-        $b = new ezcGraphMatrix( 3, 3, array(
-            array( 1, 2, 3 ),
-            array( 4, 5, 6 ),
-        ) );
+        $a = new ezcGraphMatrix( 3, 2, [[6, -1], [3, 2], [0, -3]] );
+        $b = new ezcGraphMatrix( 3, 3, [[1, 2, 3], [4, 5, 6]] );
 
         try
         {
@@ -282,45 +236,23 @@ class ezcGraphMatrixTest extends ezcTestCase
 
     public function testTransposeMatrix()
     {
-        $matrix = new ezcGraphMatrix( 2, 3, array(
-            array( 1, 2, 3 ),
-            array( 4, 5, 6 ),
-        ) );
+        $matrix = new ezcGraphMatrix( 2, 3, [[1, 2, 3], [4, 5, 6]] );
         $matrix->transpose();
 
         $this->assertEquals(
-            array(
-                array( 1, 4 ),
-                array( 2, 5 ),
-                array( 3, 6 ),
-            ),
+            [[1, 4], [2, 5], [3, 6]],
             $this->readAttribute( $matrix, 'matrix' )
         );
     }
 
     public function testLRdecomposition()
     {
-        $matrix = new ezcGraphMatrix( 3, 3, array(
-            array( 1, 2, 3 ),
-            array( 4, 5, 6 ),
-            array( 7, 8, 10 ),
-        ) );
+        $matrix = new ezcGraphMatrix( 3, 3, [[1, 2, 3], [4, 5, 6], [7, 8, 10]] );
 
         $dec = $matrix->LRdecomposition();
 
         $this->assertEquals(
-            array(
-                'l' => new ezcGraphMatrix( 3, 3, array( 
-                    array( 1, 0, 0 ),
-                    array( 4, 1, 0 ),
-                    array( 7, 2, 1 ),
-                ) ),
-                'r' => new ezcGraphMatrix( 3, 3, array( 
-                    array( 1, 2, 3 ),
-                    array( 0, -3, -6 ),
-                    array( 0, 0, 1 ),
-                ) ),
-            ),
+            ['l' => new ezcGraphMatrix( 3, 3, [[1, 0, 0], [4, 1, 0], [7, 2, 1]] ), 'r' => new ezcGraphMatrix( 3, 3, [[1, 2, 3], [0, -3, -6], [0, 0, 1]] )],
             $dec
         );
     }
@@ -332,14 +264,8 @@ class ezcGraphMatrixTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP prior 5.2.1. See PHP bug #40482." );
         }
 
-        $a = new ezcGraphMatrix( 3, 3, array(
-            array( 5, 4, 7 ),
-            array( 2, 12, 8 ),
-            array( 3, 6, 10 ),
-        ) );
-        $b = new ezcGraphMatrix( 3, 1, array( 
-            array( 1, 2, 3 ),
-        ) );
+        $a = new ezcGraphMatrix( 3, 3, [[5, 4, 7], [2, 12, 8], [3, 6, 10]] );
+        $b = new ezcGraphMatrix( 3, 1, [[1, 2, 3]] );
 
         $polynom = $a->solveNonlinearEquatation( $b );
 
@@ -356,14 +282,8 @@ class ezcGraphMatrixTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP after 5.2.1. See PHP bug #40482." );
         }
 
-        $a = new ezcGraphMatrix( 3, 3, array(
-            array( 5, 4, 7 ),
-            array( 2, 12, 8 ),
-            array( 3, 6, 10 ),
-        ) );
-        $b = new ezcGraphMatrix( 3, 1, array( 
-            array( 1, 2, 3 ),
-        ) );
+        $a = new ezcGraphMatrix( 3, 3, [[5, 4, 7], [2, 12, 8], [3, 6, 10]] );
+        $b = new ezcGraphMatrix( 3, 1, [[1, 2, 3]] );
 
         $polynom = $a->solveNonlinearEquatation( $b );
 

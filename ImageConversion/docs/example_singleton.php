@@ -26,14 +26,8 @@ function getImageConverterInstance()
         // Prepare settings for ezcImageConverter
         // Defines the handlers to utilize and auto conversions.
         $settings = new ezcImageConverterSettings(
-            array(
-                new ezcImageHandlerSettings( 'GD',          'ezcImageGdHandler' ),
-                new ezcImageHandlerSettings( 'ImageMagick', 'ezcImageImagemagickHandler' ),
-            ),
-            array(
-                'image/gif' => 'image/png',
-                'image/bmp' => 'image/jpeg',
-            )
+            [new ezcImageHandlerSettings( 'GD',          'ezcImageGdHandler' ), new ezcImageHandlerSettings( 'ImageMagick', 'ezcImageImagemagickHandler' )],
+            ['image/gif' => 'image/png', 'image/bmp' => 'image/jpeg']
         );
 
 
@@ -41,32 +35,19 @@ function getImageConverterInstance()
         $converter = new ezcImageConverter( $settings );
 
         // Define a transformation
-        $filters = array(
-            new ezcImageFilter(
-                'scale',
-                array(
-                    'width'     => 100,
-                    'height'    => 300,
-                    'direction' => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-            new ezcImageFilter(
-                'colorspace',
-                array(
-                    'space' => ezcImageColorspaceFilters::COLORSPACE_SEPIA,
-                )
-            ),
-            new ezcImageFilter(
-                'border',
-                array(
-                    'width' => 5,
-                    'color' => array( 255, 0, 0 ),
-                )
-            ),
-        );
+        $filters = [new ezcImageFilter(
+            'scale',
+            ['width'     => 100, 'height'    => 300, 'direction' => ezcImageGeometryFilters::SCALE_BOTH]
+        ), new ezcImageFilter(
+            'colorspace',
+            ['space' => ezcImageColorspaceFilters::COLORSPACE_SEPIA]
+        ), new ezcImageFilter(
+            'border',
+            ['width' => 5, 'color' => [255, 0, 0]]
+        )];
 
         // Which MIME types the conversion may output
-        $mimeTypes = array( 'image/jpeg', 'image/png' );
+        $mimeTypes = ['image/jpeg', 'image/png'];
 
         // Create the transformation inside the manager
         $converter->createTransformation( 'funny', $filters, $mimeTypes );
@@ -84,7 +65,7 @@ function getImageConverterInstance()
 // Somewhere else in the code...
 
 // Transform an image.
-getImageConverterInstance()->transform( 'funny', dirname( __FILE__ ).'/jpeg.jpg', dirname( __FILE__ ). '/jpeg_singleton.jpg' );
+getImageConverterInstance()->transform( 'funny', __DIR__.'/jpeg.jpg', __DIR__. '/jpeg_singleton.jpg' );
 
-echo 'Succesfully converted <'. dirname( __FILE__ ). '/jpeg.jpg> to <'. dirname( __FILE__ ). '/jpeg_singleton.jpg'.">\n";
+echo 'Succesfully converted <'. __DIR__. '/jpeg.jpg> to <'. __DIR__. '/jpeg_singleton.jpg'.">\n";
 ?>

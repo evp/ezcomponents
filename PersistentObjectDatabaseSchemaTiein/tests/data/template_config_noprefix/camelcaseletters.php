@@ -9,7 +9,7 @@ $def->idProperty->columnName = 'id';
 $def->idProperty->propertyName = 'id';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(
     'ezcPersistentSequenceGenerator',
-    array( 'sequence' => 'CamelCaseLetters_id_seq' )
+    ['sequence' => 'CamelCaseLetters_id_seq']
 );
 
 

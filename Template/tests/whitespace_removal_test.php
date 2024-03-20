@@ -28,17 +28,11 @@ class ezcTemplateWhitespaceRemovalTest extends ezcTestCase
         $ws = new ezcTemplateWhitespaceRemoval();
 
         // Contains all whitespace characters
-        $lines = array( array( "    ", "\n" ),
-                        array( "\t", "\r" ),
-                        array( "\x0B", false ) );
+        $lines = [["    ", "\n"], ["\t", "\r"], ["\x0B", false]];
 
-        $leading = array( array( "", false ),
-                          array( "", false ),
-                          array( "", false ) );
+        $leading = [["", false], ["", false], ["", false]];
 
-        $trailing = array( array( "", "\n" ),
-                           array( "", false ),
-                           array( "", false ) );
+        $trailing = [["", "\n"], ["", false], ["", false]];
 
         self::assertSame( $leading, $ws->trimLeading( $lines ), 'Trimming leading WS does not return an empty string.' );
         self::assertSame( $trailing, $ws->trimTrailing( $lines ), 'Trimming trailing WS does not return an empty string.' );
@@ -53,8 +47,8 @@ class ezcTemplateWhitespaceRemovalTest extends ezcTestCase
         $ws = new ezcTemplateWhitespaceRemoval();
 
         // Empty string
-        $lines = array( array( "", false ) );
-        $empty = array( array( "", false ) );
+        $lines = [["", false]];
+        $empty = [["", false]];
 
         self::assertSame( $empty, $ws->trimLeading( $lines ), 'Trimming leading WS does not return an empty string.' );
         self::assertSame( $empty, $ws->trimTrailing( $lines ), 'Trimming trailing WS does not return an empty string.' );
@@ -69,18 +63,12 @@ class ezcTemplateWhitespaceRemovalTest extends ezcTestCase
         $ws = new ezcTemplateWhitespaceRemoval();
 
         // Contains text with all whitespace characters at the end
-        $lines = array( array( "a simple line", "\n" ),
-                        array( "and a second one with whitespace to keep   ", "\n" ),
-                        array( "\t", "\r" ),
-                        array( "\x0B", false ) );
+        $lines = [["a simple line", "\n"], ["and a second one with whitespace to keep   ", "\n"], ["\t", "\r"], ["\x0B", false]];
 
         // No lines are changed so it should return false
         $leading = false;
 
-        $trailing = array( array( "a simple line", "\n" ),
-                           array( "and a second one with whitespace to keep   ", "\n" ),
-                           array( "", false ),
-                           array( "", false ) );
+        $trailing = [["a simple line", "\n"], ["and a second one with whitespace to keep   ", "\n"], ["", false], ["", false]];
 
         self::assertSame( $leading, $ws->trimLeading( $lines ), 'String without leading WS should not be trimmed.' );
         self::assertSame( $trailing, $ws->trimTrailing( $lines ), 'String with trailing WS should be trimmed.' );
@@ -95,17 +83,9 @@ class ezcTemplateWhitespaceRemovalTest extends ezcTestCase
         $ws = new ezcTemplateWhitespaceRemoval();
 
         // Contains text with all whitespace characters at the start
-        $lines = array( array( "", "\n" ),
-                        array( "\t", "\r" ),
-                        array( "\x0B", "\n" ),
-                        array( "a simple line", "\n" ),
-                        array( "and a second one with whitespace to keep   ", false ) );
+        $lines = [["", "\n"], ["\t", "\r"], ["\x0B", "\n"], ["a simple line", "\n"], ["and a second one with whitespace to keep   ", false]];
 
-        $leading = array( array( "", false ),
-                          array( "", false ),
-                          array( "", false ),
-                          array( "a simple line", "\n" ),
-                          array( "and a second one with whitespace to keep   ", false ) );
+        $leading = [["", false], ["", false], ["", false], ["a simple line", "\n"], ["and a second one with whitespace to keep   ", false]];
 
         // No lines are changed so it should return false
         $trailing = false;

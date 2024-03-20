@@ -60,13 +60,13 @@ class ezcDbSchema
      * Used by reader and writer classes to inform that it implements a file
      * based handler.
      */
-    const FILE = 1;
+    public const FILE = 1;
 
     /**
      * Used by reader and writer classes to inform that it implements a
      * database based handler.
      */
-    const DATABASE = 2;
+    public const DATABASE = 2;
 
     /**
      * Stores the schema information.
@@ -87,10 +87,7 @@ class ezcDbSchema
      *
      * @var array(string)
      */
-    static public $supportedTypes = array(
-        'integer', 'boolean', 'float', 'decimal', 'timestamp', 'time', 'date',
-        'text', 'blob', 'clob'
-    );
+    static public $supportedTypes = ['integer', 'boolean', 'float', 'decimal', 'timestamp', 'time', 'date', 'text', 'blob', 'clob'];
 
     /**
      * Contains the options that are used by creating new schemas.
@@ -105,7 +102,7 @@ class ezcDbSchema
      * @param array(ezcDbSchemaTable) $schema
      * @param array                   $data
      */
-    public function __construct( array $schema, $data = array() )
+    public function __construct( array $schema, $data = [] )
     {
         self::initOptions();
         $this->schema = $schema;

@@ -23,7 +23,7 @@ $result->cache->vary = '*';
 $result->cache->expire = new DateTime( 'Mon, 26 Jul 1997 05:00:00 GMT' );
 // = Expires: Mon, 26 Jul 1997 05:00:00 GMT
 
-$result->cache->controls = array( 'no-cache', 'must-validate' );
+$result->cache->controls = ['no-cache', 'must-validate'];
 // = Cache-Control: no-cache, must-revalidate
 
 $result->cache->pragma = 'no-cache';

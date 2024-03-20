@@ -40,6 +40,6 @@ interface ezcLogWriter
      * @param string $category
      * @param array(string=>string) $optional
      */
-    public function writeLogMessage( $message, $severity, $source, $category, $optional = array() );
+    public function writeLogMessage( $message, $severity, $source, $category, $optional = [] );
 }
 ?>

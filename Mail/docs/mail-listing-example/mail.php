@@ -18,16 +18,8 @@ $start = microtime( true );
 // Read configuration file app.ini with the Configuration component
 $iniFile = 'app';
 $config = ezcConfigurationManager::getInstance();
-$config->init( 'ezcConfigurationIniReader', dirname( __FILE__ ) );
-$options = array( 'templatePath' => dirname( __FILE__ ) . $config->getSetting( $iniFile, 'TemplateOptions', 'TemplatePath' ),
-                  'compilePath' => dirname( __FILE__ ) . $config->getSetting( $iniFile, 'TemplateOptions', 'CompilePath' ),
-                  'server' => $config->getSetting( $iniFile, 'MailOptions', 'Server' ),
-                  'user' => $config->getSetting( $iniFile, 'MailOptions', 'User' ),
-                  'password' => $config->getSetting( $iniFile, 'MailOptions', 'Password' ),
-                  'mailbox' => isset( $_GET['mailbox'] ) ? $_GET['mailbox'] : $config->getSetting( $iniFile, 'MailOptions', 'Mailbox' ),
-                  'pageSize' => $config->getSetting( $iniFile, 'MailOptions', 'PageSize' ),
-                  'currentPage' => isset( $_GET['page'] ) ? $_GET['page'] : null
-                  );
+$config->init( 'ezcConfigurationIniReader', __DIR__ );
+$options = ['templatePath' => __DIR__ . $config->getSetting( $iniFile, 'TemplateOptions', 'TemplatePath' ), 'compilePath' => __DIR__ . $config->getSetting( $iniFile, 'TemplateOptions', 'CompilePath' ), 'server' => $config->getSetting( $iniFile, 'MailOptions', 'Server' ), 'user' => $config->getSetting( $iniFile, 'MailOptions', 'User' ), 'password' => $config->getSetting( $iniFile, 'MailOptions', 'Password' ), 'mailbox' => $_GET['mailbox'] ?? $config->getSetting( $iniFile, 'MailOptions', 'Mailbox' ), 'pageSize' => $config->getSetting( $iniFile, 'MailOptions', 'PageSize' ), 'currentPage' => $_GET['page'] ?? null];
 
 // Create a mail IMAP transport object
 $transport = new ezcMailImapTransport( $options["server"] );
@@ -59,7 +51,7 @@ $mailIDs = array_slice( $mailIDs, ( $options["currentPage"] - 1 ) * $options["pa
 $messages = array_keys( $messages );
 
 // Read and parse the headers of the mails in the currentPage from the IMAP server
-$mails = array();
+$mails = [];
 $parser = new ezcMailParser();
 for ( $i = ( $options["currentPage"] - 1 ) * $options["pageSize"]; $i < min( $options["currentPage"] * $options["pageSize"], count( $messages ) ); $i++ )
 {
@@ -112,16 +104,10 @@ $template->send->numberOfPages = $numberOfPages;
 
 // Create an array to be passed to the template, which holds the headers the mails
 // in currentPage and other useful information like mail IDs
-$mailListing = array();
+$mailListing = [];
 for ( $i = 0; $i < count( $mails ); $i++ )
 {
-    $mailListing[$i] = array( 'number' => $messages[$i],
-                              'id' => $mailIDs[$i],
-                              'from' => $mails[$i]->from,
-                              'subject' => $mails[$i]->subject,
-                              'size' => $sizes[$i],
-                              'received' => $mails[$i]->timestamp
-                            );
+    $mailListing[$i] = ['number' => $messages[$i], 'id' => $mailIDs[$i], 'from' => $mails[$i]->from, 'subject' => $mails[$i]->subject, 'size' => $sizes[$i], 'received' => $mails[$i]->timestamp];
 }
 $template->send->mails = $mailListing;
 

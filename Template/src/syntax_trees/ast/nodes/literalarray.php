@@ -23,7 +23,7 @@ class ezcTemplateLiteralArrayAstNode extends ezcTemplateAstNode
      *
      * @var array(ezcTemplateAstNode)
      */
-    public $value = array();
+    public $value = [];
 
     /**
      * An array containing all the keys of the array. 
@@ -31,7 +31,7 @@ class ezcTemplateLiteralArrayAstNode extends ezcTemplateAstNode
      *
      * @var array(ezcTemplateAstNode)
      */
-    public $key = array();
+    public $key = [];
 
 
     /**

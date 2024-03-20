@@ -15,7 +15,7 @@ class SingleFileSetMP implements ezcMailParserSet
 
     public function __construct( $file )
     {
-        $fp = fopen( dirname( __FILE__ ).'/..' .'/data/' . $file, 'r' );
+        $fp = fopen( __DIR__.'/..' .'/data/' . $file, 'r' );
         if ( $fp == false )
         {
             throw new Exception( "Could not open file '{$file}' for testing." );

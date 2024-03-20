@@ -46,7 +46,7 @@ class ezcTemplateSwitchAstNode extends ezcTemplateStatementAstNode
     {
         parent::__construct();
         $this->expression = $expression;
-        $this->cases = array();
+        $this->cases = [];
         $this->hasDefaultCase = false;
 
         if ( $cases !== null )

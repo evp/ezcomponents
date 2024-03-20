@@ -44,7 +44,7 @@ class ezcFeedRegressionTest extends ezcTestRegressionTest
                                 }
                                 else if ( $subKey === 'MULTI' )
                                 {
-                                    $values = array();
+                                    $values = [];
                                     foreach ( $subValue as $multi )
                                     {
                                         foreach ( $multi as $subSubKey => $subSubValue )

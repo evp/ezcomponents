@@ -25,7 +25,7 @@ class ezcDbMssqlOptions extends ezcBaseOptions
      *
      * @access public
      */
-    const QUOTES_COMPLIANT = 0;
+    public const QUOTES_COMPLIANT = 0;
 
     /**
      * Constant represents mode of identifiers quoting that
@@ -35,7 +35,7 @@ class ezcDbMssqlOptions extends ezcBaseOptions
      *
      * @access public
      */
-    const QUOTES_LEGACY    = 1;
+    public const QUOTES_LEGACY    = 1;
 
     /**
      * Recommended ( and default ) mode for identifiers quoting.
@@ -46,7 +46,7 @@ class ezcDbMssqlOptions extends ezcBaseOptions
      *
      * @access public
      */
-    const QUOTES_GUESS     = 2;
+    public const QUOTES_GUESS     = 2;
 
 
     /**
@@ -58,7 +58,7 @@ class ezcDbMssqlOptions extends ezcBaseOptions
      *
      * @access public
      */
-    const QUOTES_UNTOUCHED = 3;
+    public const QUOTES_UNTOUCHED = 3;
 
 
     /**
@@ -66,7 +66,7 @@ class ezcDbMssqlOptions extends ezcBaseOptions
      *
      * @param array $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->quoteIdentifier = self::QUOTES_GUESS;
 

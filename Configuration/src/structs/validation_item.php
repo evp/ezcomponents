@@ -26,14 +26,14 @@ class ezcConfigurationValidationItem extends ezcBaseStruct
      * The validation is an error which means the configuration cannot be read,
      * if tried an exception will be thrown.
      */
-    const ERROR = 1;
+    public const ERROR = 1;
 
     /**
      * The validation is a warning which means the configuration can be read
      * but the configuration has some issues which the user could fix.  Will
      * only used when strict validation is enabled.
      */
-    const WARNING = 2;
+    public const WARNING = 2;
 
     /**
      * The type of validation problem, one of the TYPE_ERROR or TYPE_WARNING

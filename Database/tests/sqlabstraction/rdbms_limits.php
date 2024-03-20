@@ -146,7 +146,7 @@ class ezcRdbmsLimitTest extends ezcTestCase
             $db->quoteIdentifier( $table ) . 
             '( ' . $db->quoteIdentifier( $column = 'text' ) . ' ' . $type . ' )' );
 
-        for( $i = 512; $i <= pow( 2, 16 ); $i *= 2 )
+        for( $i = 512; $i <= 2 ** 16; $i *= 2 )
         {
             $text = str_pad( '', $i, 'test ' );
 
@@ -195,9 +195,9 @@ class ezcRdbmsLimitTest extends ezcTestCase
         }
 
         // Try some IN statements
-        for( $i = 512; $i <= pow( 2, 13 ); $i *= 2 )
+        for( $i = 512; $i <= 2 ** 13; $i *= 2 )
         {
-            $inValues = array();
+            $inValues = [];
             for ( $j = 0; $j < $i; ++$j )
             {
                 $inValues[] = $j;
@@ -260,9 +260,9 @@ class ezcRdbmsLimitTest extends ezcTestCase
         }
 
         // Try some IN statements
-        for( $i = 512; $i <= pow( 2, 13 ); $i *= 2 )
+        for( $i = 512; $i <= 2 ** 13; $i *= 2 )
         {
-            $inValues = array();
+            $inValues = [];
             for ( $j = 0; $j < $i; ++$j )
             {
                 $inValues[] = $j;

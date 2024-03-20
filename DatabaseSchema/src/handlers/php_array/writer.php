@@ -52,7 +52,7 @@ class ezcDbSchemaPhpArrayWriter implements ezcDbSchemaFileWriter, ezcDbSchemaDif
         $schema = $dbSchema->getSchema();
         $data = $dbSchema->getData();
         
-        $fileData = '<?php return '. var_export( array( $schema, $data ), true ) . '; ?>';
+        $fileData = '<?php return '. var_export( [$schema, $data], true ) . '; ?>';
         if ( ! @file_put_contents( $file, (string) $fileData ) )
         {
             throw new ezcBaseFilePermissionException( $file, ezcBaseFileException::WRITE );

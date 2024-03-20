@@ -30,7 +30,7 @@ class ezcDbSchemaIndexFieldsValidator
      */
     static public function validate( ezcDbSchema $schema )
     {
-        $errors = array();
+        $errors = [];
 
         /* For each table we first retrieve all the field names, and then check
          * per index whether the fields it references exist */

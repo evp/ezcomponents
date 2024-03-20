@@ -58,34 +58,34 @@ class ezcArchiveV7Header
     /**
      * Relative byte position that the header starts.
      */
-    const START_HEADER    = 0;
+    public const START_HEADER    = 0;
 
     /**
      * Relative byte position that the checksum starts.
      */
-    const CHECKSUM_OFFSET = 148;
+    public const CHECKSUM_OFFSET = 148;
 
     /**
      * Number of bytes that the checksum occupies.
      */
-    const CHECKSUM_SIZE   = 8;
+    public const CHECKSUM_SIZE   = 8;
 
     /**
      * Relative byte position that the checksum ends.
      */
-    const END_HEADER      = 512;
+    public const END_HEADER      = 512;
 
     /**
      * Number of bytes that a block occupies.
      */
-    const BLOCK_SIZE      = 512;
+    public const BLOCK_SIZE      = 512;
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Sets the property $name to $value.

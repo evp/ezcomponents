@@ -29,90 +29,86 @@ class ezcDocumentOdtStyle
     /**
      * Table column style. 
      */
-    const FAMILY_COLUMN       = 'column';
+    public const FAMILY_COLUMN       = 'column';
 
     /**
      * Graphic style. Only supported for graphic frames.
      */
-    const FAMILY_GRAPHIC      = 'graphic';
+    public const FAMILY_GRAPHIC      = 'graphic';
 
     /**
      * Paragraph style.
      */
-    const FAMILY_PARAGRAPH    = 'paragraph';
+    public const FAMILY_PARAGRAPH    = 'paragraph';
 
     /**
      * Section style.
      */
-    const FAMILY_SECTION      = 'section';
+    public const FAMILY_SECTION      = 'section';
 
     /**
      * Table cell style.
      */
-    const FAMILY_TABLE_CELL   = 'table-cell';
+    public const FAMILY_TABLE_CELL   = 'table-cell';
 
     /**
      * Table column style. 
      */
-    const FAMILY_TABLE_COLUMN = 'table-column';
+    public const FAMILY_TABLE_COLUMN = 'table-column';
     
     /**
      * Table row style. 
      */
-    const FAMILY_TABLE_ROW    = 'table-row';
+    public const FAMILY_TABLE_ROW    = 'table-row';
     
     /**
      * Tabke style. 
      */
-    const FAMILY_TABLE        = 'table';
+    public const FAMILY_TABLE        = 'table';
 
     /**
      * General text style 
      */
-    const FAMILY_TEXT         = 'text';
+    public const FAMILY_TEXT         = 'text';
 
     /**
      * Char style. Not supported 
      */
-    const FAMILY_CHART        = 'chart';
+    public const FAMILY_CHART        = 'chart';
 
     /**
      * Form control style. Not supported. 
      */
-    const FAMILY_CONTROL      = 'control';
+    public const FAMILY_CONTROL      = 'control';
 
     /**
      * Style for a drawing page. Not supported. 
      */
-    const FAMILY_DRAWING_PAGE = 'drawing-page';
+    public const FAMILY_DRAWING_PAGE = 'drawing-page';
 
     /**
      * Presentation style. Not supported. 
      */
-    const FAMILY_PRESENTATION = 'presentation';
+    public const FAMILY_PRESENTATION = 'presentation';
 
     /**
      * Ruby style.
      *
      * @todo: Do we need to support this? 
      */
-    const FAMILY_RUBY         = 'ruby';
+    public const FAMILY_RUBY         = 'ruby';
 
     /**
      * Table page style. Only for spreadsheets, therefore not supported.
      */
-    const FAMILY_TABLE_PAGE   = 'table-page';
+    public const FAMILY_TABLE_PAGE   = 'table-page';
 
     /**
      * Properties
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'name'                 => null,
-        'family'               => null,
-        'formattingProperties' => null,
-    );
+    protected $properties = ['name'                 => null, 'family'               => null, 'formattingProperties' => null];
 
     /**
      * Creates a new style.

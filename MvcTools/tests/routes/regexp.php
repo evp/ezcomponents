@@ -24,7 +24,7 @@ class ezcMvcToolsRegexpRouteTest extends ezcTestCase
         $route = new ezcMvcRegexpRoute( '@^$@', 'testController' );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array(), $request->variables );
+        self::assertSame( [], $request->variables );
     }
 
     public function testNoMatchEmpty()
@@ -40,11 +40,11 @@ class ezcMvcToolsRegexpRouteTest extends ezcTestCase
     {
         $request = new ezcMvcRequest;
         $request->uri = '';
-        $route = new ezcMvcRegexpRoute( '@^$@', 'testController', 'action', array( 'default1' => 'Reality is merely an illusion, albeit a very persistent one.' ) );
+        $route = new ezcMvcRegexpRoute( '@^$@', 'testController', 'action', ['default1' => 'Reality is merely an illusion, albeit a very persistent one.'] );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
         self::assertSame( 'action', $routeInfo->action );
-        self::assertSame( array( 'default1' => 'Reality is merely an illusion, albeit a very persistent one.' ), $request->variables );
+        self::assertSame( ['default1' => 'Reality is merely an illusion, albeit a very persistent one.'], $request->variables );
     }
 
     public function testsMatchNonEmptyNoVars()
@@ -54,17 +54,17 @@ class ezcMvcToolsRegexpRouteTest extends ezcTestCase
         $route = new ezcMvcRegexpRoute( '@^people/(.*)$@', 'testController' );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array(), $request->variables );
+        self::assertSame( [], $request->variables );
     }
 
     public function testsMatchNonEmptyDefaultVar()
     {
         $request = new ezcMvcRequest;
         $request->uri = 'people/einstein';
-        $route = new ezcMvcRegexpRoute( '@^people/(.*)$@', 'testController', 'action', array( 'name' => 'rethans' ) );
+        $route = new ezcMvcRegexpRoute( '@^people/(.*)$@', 'testController', 'action', ['name' => 'rethans'] );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'name' => 'rethans' ), $request->variables );
+        self::assertSame( ['name' => 'rethans'], $request->variables );
     }
 
     public function testsMatchNonEmptyOneVar()
@@ -74,17 +74,17 @@ class ezcMvcToolsRegexpRouteTest extends ezcTestCase
         $route = new ezcMvcRegexpRoute( '@^people/(?P<name>.*)$@', 'testController' );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'name' => 'einstein' ), $request->variables );
+        self::assertSame( ['name' => 'einstein'], $request->variables );
     }
 
     public function testsMatchNonEmptyDefaultVarReused()
     {
         $request = new ezcMvcRequest;
         $request->uri = 'people/einstein';
-        $route = new ezcMvcRegexpRoute( '@^people/(?P<name>.*)$@', 'testController', array( 'name' => 'rethans' ) );
+        $route = new ezcMvcRegexpRoute( '@^people/(?P<name>.*)$@', 'testController', ['name' => 'rethans'] );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'name' => 'einstein' ), $request->variables );
+        self::assertSame( ['name' => 'einstein'], $request->variables );
     }
 
     public function testsMatchNonEmptyTwoVars()
@@ -94,7 +94,7 @@ class ezcMvcToolsRegexpRouteTest extends ezcTestCase
         $route = new ezcMvcRegexpRoute( '@^(?P<group>people)/(?P<name>.*)$@', 'testController' );
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'group' => 'people', 'name' => 'hawking' ), $request->variables );
+        self::assertSame( ['group' => 'people', 'name' => 'hawking'], $request->variables );
     }
 
     public function testsNoMatchNonEmptyTwoVars()
@@ -108,25 +108,25 @@ class ezcMvcToolsRegexpRouteTest extends ezcTestCase
 
     public function testsMatchComplex()
     {
-        $route = new ezcMvcRegexpRoute( '@^people(/((?P<nr>[0-9]+)|(?P<name>.+)))?$@', 'testController', 'action', array( 'nr' => '', 'name' => '' ) );
+        $route = new ezcMvcRegexpRoute( '@^people(/((?P<nr>[0-9]+)|(?P<name>.+)))?$@', 'testController', 'action', ['nr' => '', 'name' => ''] );
 
 		$request = new ezcMvcRequest;
         $request->uri = 'people/hawking';
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertEquals( array( 'nr' => '', 'name' => 'hawking' ), $request->variables );
+        self::assertEquals( ['nr' => '', 'name' => 'hawking'], $request->variables );
 
 		$request = new ezcMvcRequest;
         $request->uri = 'people/42';
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertEquals( array( 'nr' => '42', 'name' => '' ), $request->variables );
+        self::assertEquals( ['nr' => '42', 'name' => ''], $request->variables );
 
 		$request = new ezcMvcRequest;
         $request->uri = 'people';
         $routeInfo = $route->matches( $request );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertEquals( array( 'nr' => '', 'name' => '' ), $request->variables );
+        self::assertEquals( ['nr' => '', 'name' => ''], $request->variables );
 
 		$request = new ezcMvcRequest;
         $request->uri = 'people/';
@@ -201,7 +201,7 @@ class ezcMvcToolsRegexpRouteTest extends ezcTestCase
         $routeInfo = $route->matches( $request );
         self::assertSame( '@^(?P<site>[a-z]+).host/(?P<group>[a-z]+)/(?P<name>[a-z]+)$@', $routeInfo->matchedRoute );
         self::assertSame( 'testController', $routeInfo->controllerClass );
-        self::assertSame( array( 'site' => 'test', 'group' => 'people', 'name' => 'hawking' ), $request->variables );
+        self::assertSame( ['site' => 'test', 'group' => 'people', 'name' => 'hawking'], $request->variables );
     }
 
     public static function suite()

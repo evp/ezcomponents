@@ -72,7 +72,7 @@ abstract class ezcWebdavDigestAuthenticatorBase implements ezcWebdavDigestAuthen
 
         return $digest === $data->response;
     }
-    
+
     /**
      * Checks authentication for the given $data.
      *

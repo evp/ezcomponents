@@ -12,12 +12,7 @@ $graph = new ezcGraphPieChart();
 $graph->palette = new ezcGraphPaletteEzRed();
 
 // Add the data and hilight norwegian data set
-$graph->data['articles'] = new ezcGraphArrayDataSet( array(
-    'English' => 1300000,
-    'Germany' => 452000,
-    'Netherlands' => 217000,
-    'Norway' => 70000,
-) );
+$graph->data['articles'] = new ezcGraphArrayDataSet( ['English' => 1300000, 'Germany' => 452000, 'Netherlands' => 217000, 'Norway' => 70000] );
 $graph->data['articles']->highlight['Germany'] = true;
 
 // Set graph title

@@ -64,7 +64,7 @@ class ezcWebdavTransportTest extends ezcTestCase
 {
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     protected function setUp()
@@ -304,10 +304,7 @@ EOT;
         );
 
         $this->assertEquals(
-            array(
-                'some property',
-                'another property',
-            ),
+            ['some property', 'another property'],
             $res->propertyBehaviour->keepAlive,
             'Omit property of response object not set correctly.'
         );
@@ -420,10 +417,7 @@ EOT;
         );
 
         $this->assertEquals(
-            array(
-                'some property',
-                'another property',
-            ),
+            ['some property', 'another property'],
             $res->propertyBehaviour->keepAlive,
             'Omit property of response object not set correctly.'
         );

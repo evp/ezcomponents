@@ -43,14 +43,14 @@ class ezcTreeVisitorXHTMLOptions extends ezcBaseOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->basePath = '';
         $this->addLinks = true;
         $this->displayRootNode = false;
         $this->xmlId = null;
-        $this->highlightNodeIds = array();
-        $this->subtreeHighlightNodeIds = array();
+        $this->highlightNodeIds = [];
+        $this->subtreeHighlightNodeIds = [];
         $this->selectedNodeLink = false;
 
         parent::__construct( $options );

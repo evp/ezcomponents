@@ -17,8 +17,8 @@ include_once( 'wrappers/imap_custom_wrapper.php' );
  */
 class ezcMailTransportImapTest extends ezcTestCase
 {
-    private static $ids = array();
-    private static $sizes = array();
+    private static $ids = [];
+    private static $sizes = [];
 
     private static $server = 'mta1.ez.no';
     private static $serverSSL = 'ezctest.ez.no';
@@ -31,10 +31,10 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public static function suite()
     {
-        self::$ids = array( 23, 24, 25, 26 );
-        self::$sizes = array( 1539, 64072, 1696, 1725 );
+        self::$ids = [23, 24, 25, 26];
+        self::$sizes = [1539, 64072, 1696, 1725];
 
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function tearDown()
@@ -73,18 +73,18 @@ class ezcMailTransportImapTest extends ezcTestCase
         $data = file_get_contents( $fileName );
         $dataArray = explode( "\r\n", $data );
 
-        $returns = array();
+        $returns = [];
         foreach ( $dataArray as $line )
         {
             $returns[] = $this->returnValue( $line . "\r\n" );
         }
 
-        return call_user_func_array( array( $this, 'onConsecutiveCalls' ), $returns );
+        return call_user_func_array( [$this, 'onConsecutiveCalls'], $returns );
     }
 
     public function testWrapperMockConnectionAuthenticateResponseNotOk()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -105,7 +105,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateHang()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( '* OK' ) );
@@ -122,13 +122,13 @@ class ezcMailTransportImapTest extends ezcTestCase
      */
     public function testWrapperMockConnectionHangFetchEnd()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
 
         // create a mock connection which responds to commands with answers from
         // a real conversation recorded with an IMAP server
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
-                   ->will( $this->customMockObjectConversation( dirname( __FILE__ ) . '/data/shark' ) );
+                   ->will( $this->customMockObjectConversation( __DIR__ . '/data/shark' ) );
 
         $options = new ezcMailImapTransportOptions();
         $options->uidReferencing = true;
@@ -148,13 +148,13 @@ class ezcMailTransportImapTest extends ezcTestCase
      */
     public function testWrapperMockConnectionHangFetchEndWrongBodyEnding()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
 
         // create a mock connection which responds to commands with answers from
         // a real conversation recorded with an IMAP server
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
-                   ->will( $this->customMockObjectConversation( dirname( __FILE__ ) . '/data/shark_wrong_body_ending' ) );
+                   ->will( $this->customMockObjectConversation( __DIR__ . '/data/shark_wrong_body_ending' ) );
 
         $options = new ezcMailImapTransportOptions();
         $options->uidReferencing = true;
@@ -185,13 +185,13 @@ class ezcMailTransportImapTest extends ezcTestCase
      */
     public function testWrapperMockConnectionAppend()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
 
         // create a mock connection which responds to commands with answers from
         // a real conversation recorded with an IMAP server
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
-                   ->will( $this->customMockObjectConversation( dirname( __FILE__ ) . '/data/shark_append' ) );
+                   ->will( $this->customMockObjectConversation( __DIR__ . '/data/shark_append' ) );
 
         $options = new ezcMailImapTransportOptions();
         $imap = new ezcMailImapTransportCustomWrapper( self::$server, self::$port, $options );
@@ -217,7 +217,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockListMessagesFail()
     {
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'responseType' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['responseType'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'responseType' )
              ->will( $this->onConsecutiveCalls(
@@ -242,7 +242,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockListMessagesNotEmptyFail()
     {
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -269,7 +269,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockListUniqueIdentifiersSingleFail()
     {
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -294,7 +294,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockSearchMailboxFail()
     {
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -319,7 +319,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockConnectionExpungeFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array( 'getLine', 'sendData' ), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', ['getLine', 'sendData'], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( "XXXX OK XXXX" ) );
@@ -327,7 +327,7 @@ class ezcMailTransportImapTest extends ezcTestCase
                    ->method( 'sendData' )
                    ->will( $this->returnValue( false ) );
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -354,7 +354,7 @@ class ezcMailTransportImapTest extends ezcTestCase
     public function testWrapperMockNoopFail()
     {
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -379,7 +379,7 @@ class ezcMailTransportImapTest extends ezcTestCase
     public function testWrapperMockGetHierarchyDelimiterFail()
     {
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -403,7 +403,7 @@ class ezcMailTransportImapTest extends ezcTestCase
     public function testWrapperMockGetHierarchyDelimiterWrongFail()
     {
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -425,7 +425,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockConnectionAppendFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array( 'getLine', 'sendData' ), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', ['getLine', 'sendData'], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( "+ XXXX" ) );
@@ -433,7 +433,7 @@ class ezcMailTransportImapTest extends ezcTestCase
                    ->method( 'sendData' )
                    ->will( $this->returnValue( false ) );
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -459,7 +459,7 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockConnectionCapabilityFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array( 'getLine', 'sendData' ), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', ['getLine', 'sendData'], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->onConsecutiveCalls(
@@ -470,7 +470,7 @@ class ezcMailTransportImapTest extends ezcTestCase
                    ->method( 'sendData' )
                    ->will( $this->returnValue( false ) );
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -496,12 +496,12 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockConnectionSearchByFlagFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array( 'sendData' ), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', ['sendData'], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'sendData' )
                    ->will( $this->returnValue( false ) );
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -528,12 +528,12 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockConnectionClearFlagFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array( 'sendData' ), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', ['sendData'], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'sendData' )
                    ->will( $this->returnValue( false ) );
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -559,12 +559,12 @@ class ezcMailTransportImapTest extends ezcTestCase
 
     public function testWrapperMockConnectionSetFlagFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array( 'sendData' ), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', ['sendData'], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'sendData' )
                    ->will( $this->returnValue( false ) );
         $imap = new ezcMailImapTransportWrapper( self::$server, self::$port );
-        $imap = $this->getMock( 'ezcMailImapTransportWrapper', array( 'getResponse' ), array( self::$server, self::$port ) );
+        $imap = $this->getMock( 'ezcMailImapTransportWrapper', ['getResponse'], [self::$server, self::$port] );
         $imap->expects( $this->any() )
              ->method( 'getResponse' )
              ->will( $this->onConsecutiveCalls(
@@ -821,7 +821,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $list = $imap->listMessages();
-        $this->assertEquals( array( 1 => self::$sizes[0], 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3] ), $list );
+        $this->assertEquals( [1 => self::$sizes[0], 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3]], $list );
     }
 
     public function testListMessagesWithAttachments()
@@ -830,7 +830,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $list = $imap->listMessages( "multipart/mixed" );
-        $this->assertEquals( array( 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3] ), $list );
+        $this->assertEquals( [2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3]], $list );
     }
 
     public function testFetchByMessageNr1()
@@ -874,7 +874,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $message );
         $this->assertEquals( 1, count( $mail ) );
-        $this->assertEquals( array( 0 => '1' ), $this->readAttribute( $message, 'messages' ) );
+        $this->assertEquals( [0 => '1'], $this->readAttribute( $message, 'messages' ) );
         $this->assertEquals( 'ezcMailImapSet', get_class( $message ) );
     }
 
@@ -1031,7 +1031,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $uids = $imap->listUniqueIdentifiers( 1 );
-        $this->assertEquals( array( 1 => self::$ids[0] ), $uids );
+        $this->assertEquals( [1 => self::$ids[0]], $uids );
     }
 
     public function testListUniqueIdentifiersMultiple()
@@ -1041,12 +1041,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->selectMailbox( 'inbox' );
         $uids = $imap->listUniqueIdentifiers();
         $this->assertEquals(
-            array(
-                1 => self::$ids[0],
-                2 => self::$ids[1],
-                3 => self::$ids[2],
-                4 => self::$ids[3],
-            ),
+            [1 => self::$ids[0], 2 => self::$ids[1], 3 => self::$ids[2], 4 => self::$ids[3]],
             $uids
         );
     }
@@ -1079,7 +1074,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox', true );
         $list = $imap->listMessages();
-        $this->assertEquals( array( 1 => self::$sizes[0], 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3] ), $list );
+        $this->assertEquals( [1 => self::$sizes[0], 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3]], $list );
     }
 
     public function testStatusReadOnly()
@@ -1123,7 +1118,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox', true );
         $uids = $imap->listUniqueIdentifiers( 1 );
-        $this->assertEquals( array( 1 => self::$ids[0] ), $uids );
+        $this->assertEquals( [1 => self::$ids[0]], $uids );
     }
 
     public function testCreateRenameDeleteMailbox()
@@ -1621,7 +1616,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap = new ezcMailImapTransport( self::$server, self::$port );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $set = $imap->sortMessages( array( 1, 2, 3, 4 ), 'subject' );
+        $set = $imap->sortMessages( [1, 2, 3, 4], 'subject' );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mail ) );
@@ -1636,7 +1631,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap = new ezcMailImapTransport( self::$server, self::$port );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $set = $imap->sortMessages( array( 1, 2, 3, 4 ), 'subject', true );
+        $set = $imap->sortMessages( [1, 2, 3, 4], 'subject', true );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mail ) );
@@ -1651,7 +1646,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap = new ezcMailImapTransport( self::$server, self::$port );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $set = $imap->sortMessages( array( 1 ), 'subject' );
+        $set = $imap->sortMessages( [1], 'subject' );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 1, count( $mail ) );
@@ -1665,7 +1660,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->selectMailbox( "Inbox" );
         try
         {
-            $imap->sortMessages( array(), 'subject' );
+            $imap->sortMessages( [], 'subject' );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -1679,7 +1674,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         try
         {
-            $imap->sortMessages( array( 1, 2, 3, 4 ), 'subject' );
+            $imap->sortMessages( [1, 2, 3, 4], 'subject' );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -1692,12 +1687,8 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap = new ezcMailImapTransport( self::$server, self::$port );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $flags = $imap->fetchFlags( array( 1, 2, 3, 4 ) );
-        $expected = array( 1 => array( '\Seen' ),
-                           2 => array( '\Seen' ),
-                           3 => array( '\Seen' ),
-                           4 => array( '\Seen' )
-                         );
+        $flags = $imap->fetchFlags( [1, 2, 3, 4] );
+        $expected = [1 => ['\Seen'], 2 => ['\Seen'], 3 => ['\Seen'], 4 => ['\Seen']];
         $this->assertEquals( $expected, $flags );
     }
 
@@ -1708,7 +1699,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->selectMailbox( "Inbox" );
         try
         {
-            $imap->fetchFlags( array() );
+            $imap->fetchFlags( [] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -1722,7 +1713,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         try
         {
-            $imap->fetchFlags( array( 1, 2, 3, 4 ) );
+            $imap->fetchFlags( [1, 2, 3, 4] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -1735,12 +1726,8 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap = new ezcMailImapTransport( self::$server, self::$port );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $flags = $imap->fetchSizes( array( 1, 2, 3, 4 ) );
-        $expected = array( 1 => self::$sizes[0],
-                           2 => self::$sizes[1],
-                           3 => self::$sizes[2],
-                           4 => self::$sizes[3]
-                         );
+        $flags = $imap->fetchSizes( [1, 2, 3, 4] );
+        $expected = [1 => self::$sizes[0], 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3]];
         $this->assertEquals( $expected, $flags );
     }
 
@@ -1751,7 +1738,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->selectMailbox( "Inbox" );
         try
         {
-            $imap->fetchSizes( array() );
+            $imap->fetchSizes( [] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -1765,7 +1752,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         try
         {
-            $imap->fetchSizes( array( 1, 2, 3, 4 ) );
+            $imap->fetchSizes( [1, 2, 3, 4] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -1780,7 +1767,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->selectMailbox( "Inbox" );
         $set = $imap->fetchAll();
         $messageNumbers = $set->getMessageNumbers();
-        $this->assertEquals( array( 1, 2, 3, 4 ), $messageNumbers );
+        $this->assertEquals( [1, 2, 3, 4], $messageNumbers );
     }
 
     public function testNoop()
@@ -1857,7 +1844,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $data = $mail->generate();
 
         $imap->append( "Guybrush", $data );
-        $imap->append( "Guybrush", $data, array( 'Answered' ) );
+        $imap->append( "Guybrush", $data, ['Answered'] );
 
         $imap->selectMailbox( "Guybrush" );
         $imap->status( $numMessages, $sizeMessages );
@@ -2056,7 +2043,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         {
             $this->markTestSkipped();
         }
-        $imap = new ezcMailImapTransport( self::$serverSSL, self::$portSSL, array( 'ssl' => true ) );
+        $imap = new ezcMailImapTransport( self::$serverSSL, self::$portSSL, ['ssl' => true] );
         $imap->authenticate( self::$userSSL, self::$passwordSSL );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->fetchAll();
@@ -2072,7 +2059,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         {
             $this->markTestSkipped();
         }
-        $imap = new ezcMailImapTransport( self::$serverSSL, null, array( 'ssl' => true ) );
+        $imap = new ezcMailImapTransport( self::$serverSSL, null, ['ssl' => true] );
         $imap->authenticate( self::$userSSL, self::$passwordSSL );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->fetchAll();
@@ -2090,7 +2077,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         }
         try
         {
-            $imap = new ezcMailImapTransport( self::$serverSSL, self::$port, array( 'ssl' => true ) );
+            $imap = new ezcMailImapTransport( self::$serverSSL, self::$port, ['ssl' => true] );
             $this->fail( "Didn't get exception when expected" );
         }
         catch ( ezcMailTransportException $e )
@@ -2137,7 +2124,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->selectMailbox( "Guybrush" );
         $imap->clearFlag( "1,2", "SEEN" );
         $this->assertEquals( 0, $imap->countByFlag( "SEEN" ) );
-        $src = $imap->sortMessages( array( 1, 2 ), "Subject" );
+        $src = $imap->sortMessages( [1, 2], "Subject" );
         $this->assertEquals( 0, $imap->countByFlag( "SEEN" ) );
         $imap->selectMailbox( "Inbox" );
         $imap->deleteMailbox( "Guybrush" );
@@ -2150,13 +2137,13 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->selectMailbox( 'inbox' );
 
         $set = $imap->searchMailbox();
-        $this->assertEquals( array( 1, 2, 3, 4 ), $set->getMessageNumbers() );
+        $this->assertEquals( [1, 2, 3, 4], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mails ) );
 
         $set = $imap->searchMailbox( ' ' );
-        $this->assertEquals( array( 1, 2, 3, 4 ), $set->getMessageNumbers() );
+        $this->assertEquals( [1, 2, 3, 4], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mails ) );
@@ -2168,7 +2155,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'FLAGGED' );
-        $this->assertEquals( array(), $set->getMessageNumbers() );
+        $this->assertEquals( [], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 0, count( $mails ) );
@@ -2180,7 +2167,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'SEEN' );
-        $this->assertEquals( array( 1, 2, 3, 4 ), $set->getMessageNumbers() );
+        $this->assertEquals( [1, 2, 3, 4], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mails ) );
@@ -2192,7 +2179,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'SUBJECT "norwegian"' );
-        $this->assertEquals( array( 1, 4 ), $set->getMessageNumbers() );
+        $this->assertEquals( [1, 4], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 2, count( $mails ) );
@@ -2204,7 +2191,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'SEEN SUBJECT "norwegian"' );
-        $this->assertEquals( array( 1, 4 ), $set->getMessageNumbers() );
+        $this->assertEquals( [1, 4], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 2, count( $mails ) );
@@ -2216,7 +2203,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'FLAGGED SUBJECT "norwegian"' );
-        $this->assertEquals( array(), $set->getMessageNumbers() );
+        $this->assertEquals( [], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 0, count( $mails ) );
@@ -2276,7 +2263,7 @@ class ezcMailTransportImapTest extends ezcTestCase
         $data = $mail->generate();
 
         $imap->append( "Guybrush", $data );
-        $imap->append( "Guybrush", $data, array( 'Answered' ) );
+        $imap->append( "Guybrush", $data, ['Answered'] );
 
         $imap->selectMailbox( "Guybrush" );
 
@@ -2386,17 +2373,17 @@ class ezcMailTransportImapTest extends ezcTestCase
         {
         }
 
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
 
         $options = new ezcMailImapSetOptions();
         $options->uidReferencing = true;
 
-        $set = new ezcMailImapSet( $connection, array(), false, $options );
+        $set = new ezcMailImapSet( $connection, [], false, $options );
 
         $options = new stdClass();
         try
         {
-            $set = new ezcMailImapSet( $connection, array(), false, $options );
+            $set = new ezcMailImapSet( $connection, [], false, $options );
             $this->fail( 'Expected exception was not thrown.' );
         }
         catch ( ezcBaseValueException $e )

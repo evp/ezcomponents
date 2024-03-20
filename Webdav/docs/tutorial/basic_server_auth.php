@@ -8,7 +8,7 @@ $server = ezcWebdavServer::getInstance();
 $server->auth = new myCustomAuthClass();
 
 $backend = new ezcWebdavFileBackend(
-   dirname( __FILE__ ) . '/backend'
+   __DIR__ . '/backend'
 );
 
 $server->handle( $backend ); 

@@ -13,7 +13,7 @@ $def->idProperty->columnName = 'like';
 $def->idProperty->propertyName = 'like';
 $def->idProperty->visibility = ezcPersistentObjectProperty::VISIBILITY_PRIVATE;
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition( 'ezcPersistentSequenceGenerator',
-                                                                    array( 'sequence' => 'where_like_seq' ) );
+                                                                    ['sequence' => 'where_like_seq'] );
 
 $def->properties['update'] = new ezcPersistentObjectProperty;
 $def->properties['update']->columnName = 'update';

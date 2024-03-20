@@ -25,31 +25,16 @@ class ezcWebdavCopyRequestTest extends ezcWebdavRequestTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavCopyRequest';
-        $this->constructorArguments = array(
-            '/foo', '/bar'
-        );
-        $this->defaultValues = array(
-            'propertyBehaviour' => null,
-        );
-        $this->workingValues = array(
-            'propertyBehaviour' => new ezcWebdavRequestPropertyBehaviourContent(),
-        );
-        $this->failingValues = array(
-            'propertyBehaviour' => array(
-                23,
-                23.34,
-                true,
-                false,
-                array( 23, 42 ),
-                new stdClass(),
-            ),
-        );
+        $this->constructorArguments = ['/foo', '/bar'];
+        $this->defaultValues = ['propertyBehaviour' => null];
+        $this->workingValues = ['propertyBehaviour' => new ezcWebdavRequestPropertyBehaviourContent()];
+        $this->failingValues = ['propertyBehaviour' => [23, 23.34, true, false, [23, 42], new stdClass()]];
     }
 
     public function testValidateHeadersSuccess()

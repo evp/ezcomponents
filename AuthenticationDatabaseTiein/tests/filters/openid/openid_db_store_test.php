@@ -29,45 +29,18 @@ class ezcAuthenticationOpenidDbStoreTest extends ezcAuthenticationDatabaseTieinT
 
     public static $provider = "http://www.myopenid.com/server";
 
-    public static $requestCheckAuthenticationGet = array(
-        'openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}',
-        'openid_signed' => 'return_to,mode,identity',
-        'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=',
-        'openid_return_to' => 'http://localhost',
-        'openid_identity' => 'http://ezc.myopenid.com',
-        'openid_op_endpoint' => 'http://www.myopenid.com/server',
-        'openid_mode' => 'check_authentication',
-        );
+    public static $requestCheckAuthenticationGet = ['openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}', 'openid_signed' => 'return_to,mode,identity', 'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=', 'openid_return_to' => 'http://localhost', 'openid_identity' => 'http://ezc.myopenid.com', 'openid_op_endpoint' => 'http://www.myopenid.com/server', 'openid_mode' => 'check_authentication'];
 
-    public static $requestSmartGet = array(
-       'nonce' => '770890',
-       'openid_assoc_handle' => '{HMAC-SHA1}{465d8eb9}{NQN84Q==}',
-       'openid_signed' => 'assoc_handle,identity,mode,op_endpoint,response_nonce,return_to,signed',
-       'openid_sig' => 'HkLMUymWy3/GmHWVuWYOs9IHkrs=',
-       'openid_mode' => 'id_res',
-       'openid_identity' => 'http://ezc.myopenid.com/',
-       'openid_op_endpoint' => 'http://www.myopenid.com/server',
-       'openid_response_nonce' => '2007-05-31T08:33:59ZLdyyJF',
-       'openid_return_to' => 'http://localhost/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com&nonce=770890',
-       );
+    public static $requestSmartGet = ['nonce' => '770890', 'openid_assoc_handle' => '{HMAC-SHA1}{465d8eb9}{NQN84Q==}', 'openid_signed' => 'assoc_handle,identity,mode,op_endpoint,response_nonce,return_to,signed', 'openid_sig' => 'HkLMUymWy3/GmHWVuWYOs9IHkrs=', 'openid_mode' => 'id_res', 'openid_identity' => 'http://ezc.myopenid.com/', 'openid_op_endpoint' => 'http://www.myopenid.com/server', 'openid_response_nonce' => '2007-05-31T08:33:59ZLdyyJF', 'openid_return_to' => 'http://localhost/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com&nonce=770890'];
 
     public static $association;
     public static $associationArray;
     
-    public static $server = array(
-        'HTTP_HOST' => 'localhost',
-        'REQUEST_URI' => '/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com',
-        );
+    public static $server = ['HTTP_HOST' => 'localhost', 'REQUEST_URI' => '/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com'];
 
     public static function suite()
     {
-        self::$associationArray = array(
-            'handle' => '{HMAC-SHA1}{465d66d3}{6K1aSw==}',
-            'secret' => 'W0ixM9SYQviSG9TF6HrnXaxHudQ=',
-            'issued' => time(),
-            'validity' => 1209600,
-            'type' => 'HMAC-SHA1',
-            );
+        self::$associationArray = ['handle' => '{HMAC-SHA1}{465d66d3}{6K1aSw==}', 'secret' => 'W0ixM9SYQviSG9TF6HrnXaxHudQ=', 'issued' => time(), 'validity' => 1209600, 'type' => 'HMAC-SHA1'];
 
         self::$association = new ezcAuthenticationOpenidAssociation( '{HMAC-SHA1}{465d8eb9}{NQN84Q==}',
                                                                      'foz3UXCxQJ5lKvau78Oqen9dTUc=',
@@ -75,7 +48,7 @@ class ezcAuthenticationOpenidDbStoreTest extends ezcAuthenticationDatabaseTieinT
                                                                      time() - 1180536597 + 604800, // valid 1 week from current time
                                                                      'HMAC-SHA1' );
 
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -89,7 +62,7 @@ class ezcAuthenticationOpenidDbStoreTest extends ezcAuthenticationDatabaseTieinT
 
             $schema = ezcDbSchema::createFromFile(
                                                    'array',
-                                                   dirname( __FILE__ ) . '/../../../docs/tutorial/openid_db_store_schema.dba'
+                                                   __DIR__ . '/../../../docs/tutorial/openid_db_store_schema.dba'
                                                  );
             $schema->writeToDb( $this->db );
         }
@@ -248,14 +221,11 @@ class ezcAuthenticationOpenidDbStoreTest extends ezcAuthenticationDatabaseTieinT
             $this->markTestSkipped( 'PHP must be compiled with --with-openssl.' );
         }
 
-        $params = array(
-            'openid.mode' => 'associate',
-            'openid.assoc_type' => 'HMAC-SHA1',
-            );
+        $params = ['openid.mode' => 'associate', 'openid.assoc_type' => 'HMAC-SHA1'];
 
         $filter = new ezcAuthenticationOpenidWrapper();
         $res = $filter->associate( self::$provider, $params );
-        $secret = isset( $res['enc_mac_key'] ) ? $res['enc_mac_key'] : $res['mac_key'];
+        $secret = $res['enc_mac_key'] ?? $res['mac_key'];
         $association = new ezcAuthenticationOpenidAssociation( $res['assoc_handle'],
                                                                $secret,
                                                                time(),

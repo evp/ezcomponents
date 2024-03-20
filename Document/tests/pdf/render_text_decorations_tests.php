@@ -13,7 +13,7 @@ require_once 'base.php';
 
 // Try to include TCPDF class from external/tcpdf.
 // @TODO: Maybe also search the include path...
-if ( file_exists( $path = dirname( __FILE__ ) . '/../external/tcpdf-4.8/tcpdf.php' ) )
+if ( file_exists( $path = __DIR__ . '/../external/tcpdf-4.8/tcpdf.php' ) )
 {
     include $path;
 }
@@ -40,7 +40,7 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -50,26 +50,19 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
         $this->document = new DOMDocument();
         $this->document->registerNodeClass( 'DOMElement', 'ezcDocumentLocateableDomElement' );
 
-        $this->document->load( dirname( __FILE__ ) . '/../files/pdf/paragraph.xml' );
+        $this->document->load( __DIR__ . '/../files/pdf/paragraph.xml' );
 
         $this->xpath = new DOMXPath( $this->document );
         $this->xpath->registerNamespace( 'doc', 'http://docbook.org/ns/docbook' );
 
         $this->styles = new ezcDocumentPcssStyleInferencer();
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-size' => '8mm',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'margin' => '0mm',
-                )
-            ),
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-size' => '8mm']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['margin' => '0mm']
+        )] );
 
         $this->page = new ezcDocumentPdfPage( 1, 108, 108, 100, 100 );
         $this->page->x = 0;
@@ -89,11 +82,7 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
      */
     public static function getDrivers()
     {
-        return array(
-            array( new ezcDocumentPdfSvgDriver() ),
-            array( new ezcDocumentPdfHaruDriver() ),
-            array( new ezcDocumentPdfTcpdfDriver() ),
-        );
+        return [[new ezcDocumentPdfSvgDriver()], [new ezcDocumentPdfHaruDriver()], [new ezcDocumentPdfTcpdfDriver()]];
     }
 
     /**
@@ -165,14 +154,10 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphColoredEmphasis( ezcDocumentPdfDriver $driver )
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'color' => '#ce5c00',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['color' => '#ce5c00']
+        )] );
 
         $pdf = $this->renderPdf( $driver );
         $this->assertPdfDocumentsSimilar( $pdf, get_class( $driver ) . '_' . __FUNCTION__ );
@@ -184,14 +169,10 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphBackgroundColor( ezcDocumentPdfDriver $driver )
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'background-color' => '#d3d7cf',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['background-color' => '#d3d7cf']
+        )] );
 
         $pdf = $this->renderPdf( $driver );
         $this->assertPdfDocumentsSimilar( $pdf, get_class( $driver ) . '_' . __FUNCTION__ );
@@ -203,14 +184,10 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphLineThrough( ezcDocumentPdfDriver $driver )
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'text-decoration' => 'line-through',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['text-decoration' => 'line-through']
+        )] );
 
         $pdf = $this->renderPdf( $driver );
         $this->assertPdfDocumentsSimilar( $pdf, get_class( $driver ) . '_' . __FUNCTION__ );
@@ -222,14 +199,10 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphOverline( ezcDocumentPdfDriver $driver )
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'text-decoration' => 'overline',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['text-decoration' => 'overline']
+        )] );
 
         $pdf = $this->renderPdf( $driver );
         $this->assertPdfDocumentsSimilar( $pdf, get_class( $driver ) . '_' . __FUNCTION__ );
@@ -241,14 +214,10 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphUnderline( ezcDocumentPdfDriver $driver )
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'text-decoration' => 'underline',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['text-decoration' => 'underline']
+        )] );
 
         $pdf = $this->renderPdf( $driver );
         $this->assertPdfDocumentsSimilar( $pdf, get_class( $driver ) . '_' . __FUNCTION__ );
@@ -260,15 +229,10 @@ class ezcDocumentPdfRendererTextDecorationsTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphAllDecorations( ezcDocumentPdfDriver $driver )
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'background-color' => '#d3d7cf',
-                    'text-decoration'  => 'overline underline line-through',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['background-color' => '#d3d7cf', 'text-decoration'  => 'overline underline line-through']
+        )] );
 
         $pdf = $this->renderPdf( $driver );
         $this->assertPdfDocumentsSimilar( $pdf, get_class( $driver ) . '_' . __FUNCTION__ );

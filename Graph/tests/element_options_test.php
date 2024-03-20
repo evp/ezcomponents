@@ -325,7 +325,7 @@ class ezcGraphElementOptionsTest extends ezcTestImageCase
         );
 
         $fontOptions = new ezcGraphFontOptions();
-        $fontOptions->path = dirname( __FILE__ ) . '/data/font2.ttf';
+        $fontOptions->path = __DIR__ . '/data/font2.ttf';
 
         $options->font = $fontOptions;
         $this->assertSame(
@@ -367,7 +367,7 @@ class ezcGraphElementOptionsTest extends ezcTestImageCase
             'Wrong default value for property image in class ezcGraphChartElementBackground'
         );
 
-        $options->image = $file = dirname( __FILE__ ) . '/data/gif.gif';
+        $options->image = $file = __DIR__ . '/data/gif.gif';
         $this->assertSame(
             $file,
             $options->image,
@@ -987,9 +987,9 @@ class ezcGraphElementOptionsTest extends ezcTestImageCase
             'Setting property value did not work for property labelCallback in class ezcGraphChartElementNumericAxis'
         );
 
-        $options->labelCallback = array( $this, __METHOD__ );
+        $options->labelCallback = [$this, __METHOD__];
         $this->assertSame(
-            array( $this, __METHOD__ ),
+            [$this, __METHOD__],
             $options->labelCallback,
             'Setting property value did not work for property labelCallback in class ezcGraphChartElementNumericAxis'
         );

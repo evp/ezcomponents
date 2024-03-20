@@ -30,9 +30,9 @@ class ezcDocumentDocbookOptions extends ezcDocumentXmlOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
-        $this->schema = dirname( __FILE__ ) . '/data/docbook.xsd';
+        $this->schema = __DIR__ . '/data/docbook.xsd';
 
         parent::__construct( $options );
     }

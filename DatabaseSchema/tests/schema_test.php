@@ -19,7 +19,7 @@ class ezcDatabaseSchemaTest extends ezcTestCase
 
     protected function setUp()
     {
-        $this->xmlSchema = ezcDbSchema::createFromFile( 'xml',  dirname( __FILE__ ) . '/testfiles/bug8900.xml' );
+        $this->xmlSchema = ezcDbSchema::createFromFile( 'xml',  __DIR__ . '/testfiles/bug8900.xml' );
 
         // get the tables schema from the database schema
         // BY REFERENCE! - otherwise new/deleted tables are NOT updated
@@ -31,12 +31,8 @@ class ezcDatabaseSchemaTest extends ezcTestCase
     {
         // add a new table (employees) to the database schema
         $this->schema['employees'] = new ezcDbSchemaTable(
-                array(
-                    'id' => new ezcDbSchemaField( 'integer', false, true, null, true ),
-                ),
-                array(
-                    'primary' => new ezcDbSchemaIndex( array( 'id' => new ezcDbSchemaIndexField() ), true ),
-                )
+                ['id' => new ezcDbSchemaField( 'integer', false, true, null, true )],
+                ['primary' => new ezcDbSchemaIndex( ['id' => new ezcDbSchemaIndexField()], true )]
           );
 
         // test if the table was added
@@ -45,21 +41,12 @@ class ezcDatabaseSchemaTest extends ezcTestCase
 
     public function testCreateIndexSql()
     {
-        $schema = new ezcDbSchema( array(
-            'bugdb' => new ezcDbSchemaTable(
-                array(
-                    'integerfield1' => new ezcDbSchemaField( 'integer' ),
-                    'integerfield2' => new ezcDbSchemaField( 'integer' ),
-                ),
-                array(
-                    'primary' => new ezcDbSchemaIndex( array(
-                        'integerfield2' => new ezcDbSchemaIndexField(),
-                        'integerfield1' => new ezcDbSchemaIndexField()
-                    ),
-                    true
-                ) )
-            ),
-        ) );
+        $schema = new ezcDbSchema( ['bugdb' => new ezcDbSchemaTable(
+            ['integerfield1' => new ezcDbSchemaField( 'integer' ), 'integerfield2' => new ezcDbSchemaField( 'integer' )],
+            ['primary' => new ezcDbSchemaIndex( ['integerfield2' => new ezcDbSchemaIndexField(), 'integerfield1' => new ezcDbSchemaIndexField()],
+            true
+        )]
+        )] );
 
         $writer = new ezcDbSchemaMysqlWriter();
         $ddl = $writer->convertToDDL( $schema );

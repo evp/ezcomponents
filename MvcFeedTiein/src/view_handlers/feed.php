@@ -42,7 +42,7 @@ class ezcMvcFeedViewHandler implements ezcMvcViewHandler
      *
      * @var array(mixed)
      */
-    protected $variables = array();
+    protected $variables = [];
 
     /**
      * Contains the embedded feed object.

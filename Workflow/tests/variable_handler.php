@@ -13,7 +13,7 @@
  */
 class ezcWorkflowTestVariableHandler implements ezcWorkflowVariableHandler
 {
-    protected $storage = array( 'foo' => 'bar' );
+    protected $storage = ['foo' => 'bar'];
 
     public function load( ezcWorkflowExecution $execution, $variableName )
     {

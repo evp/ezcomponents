@@ -37,22 +37,9 @@ class ezcDocumentDocbookToRstConverterOptions extends ezcDocumentConverterOption
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
-        $this->headerTypes = array(
-            '==',
-            '--',
-            '=',
-            '-',
-            '^',
-            '~',
-            '`',
-            '*',
-            ':',
-            '+',
-            '/',
-            '.',
-        );
+        $this->headerTypes = ['==', '--', '=', '-', '^', '~', '`', '*', ':', '+', '/', '.'];
         $this->wordWrap          = 78;
         $this->itemListCharacter = '-';
 
@@ -93,10 +80,7 @@ class ezcDocumentDocbookToRstConverterOptions extends ezcDocumentConverterOption
                 break;
 
             case 'itemListCharacter':
-                if ( !in_array( $value, $listCharacters = array(
-                        '*', '-', '+',
-                        "\xe2\x80\xa2", "\xe2\x80\xa3", "\xe2\x81\x83"
-                    ), true ) )
+                if ( !in_array( $value, $listCharacters = ['*', '-', '+', "\xe2\x80\xa2", "\xe2\x80\xa3", "\xe2\x81\x83"], true ) )
                 {
                     throw new ezcBaseValueException( $name, $value, 'Item list characters: ' . implode( ', ', $listCharacters ) );
                 }

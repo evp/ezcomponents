@@ -44,7 +44,7 @@ abstract class ezcWorkflowDatabaseUtil
      * @param  mixed  $defaultValue
      * @return mixed
      */
-    public static function unserialize( $serializedVar, $defaultValue = array() )
+    public static function unserialize( $serializedVar, $defaultValue = [] )
     {
         if ( !empty( $serializedVar ) )
         {

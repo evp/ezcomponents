@@ -19,7 +19,7 @@ class ezcFeedAtomRegressionParseTest extends ezcTestRegressionTest
 {
     public function __construct()
     {
-        $basePath = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'regression'
+        $basePath = __DIR__ . DIRECTORY_SEPARATOR . 'regression'
                                         . DIRECTORY_SEPARATOR . 'parse';
 
         $this->readDirRecursively( $basePath, $this->files, 'in' );
@@ -29,7 +29,7 @@ class ezcFeedAtomRegressionParseTest extends ezcTestRegressionTest
 
     public static function suite()
     {
-        return new ezcTestRegressionSuite( __CLASS__ );
+        return new ezcTestRegressionSuite( self::class );
     }
 
     protected function cleanForCompare( $expected, $parsed )
@@ -123,7 +123,7 @@ class ezcFeedAtomRegressionParseTest extends ezcTestRegressionTest
 
     public function testRunRegression( $file )
     {
-        $errors = array();
+        $errors = [];
 
         $outFile = $this->outFileName( $file, '.in', '.out' );
 

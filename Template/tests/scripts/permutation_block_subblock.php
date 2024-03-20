@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/foreach/correct/nested_with_delimiter_*.in
 
@@ -89,7 +89,7 @@ $outerBlocks = perm( "\{%num%\n",
 
 $list = perm( $outerBlocks );
 
-$dir = dirname( __FILE__ ) . "/../regression_tests/";
+$dir = __DIR__ . "/../regression_tests/";
 
 $a = app( "", $argv );
 

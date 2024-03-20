@@ -59,7 +59,7 @@ class DatabaseTypeTestObject
     {
         $db = ezcDbInstance::get();
         $schema = ezcDbSchema::createFromDb( $db );
-        $schema->writeToFile( 'array', dirname( __FILE__ ) . '/database_type.dba' );
+        $schema->writeToFile( 'array', __DIR__ . '/database_type.dba' );
     }
 
     /**
@@ -70,7 +70,7 @@ class DatabaseTypeTestObject
     public static function setupTables( $autoIncrement = true )
     {
         $db = ezcDbInstance::get();
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . '/database_type.dba' );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . '/database_type.dba' );
         $schema->writeToDb( $db );
     }
 
@@ -94,7 +94,7 @@ class DatabaseTypeTestObject
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['id']   = $this->id;
         $result['bool'] = $this->bool;
         $result['int']  = $this->int;

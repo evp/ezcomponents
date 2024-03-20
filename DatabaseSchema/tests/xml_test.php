@@ -16,7 +16,7 @@ class ezcDatabaseSchemaXmlTest extends ezcTestCase
 {
     protected function setUp()
     {
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
+        $this->testFilesDir = __DIR__ . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabaseXmlTest' );
     }
 
@@ -27,33 +27,13 @@ class ezcDatabaseSchemaXmlTest extends ezcTestCase
 
     private static function getSchema()
     {
-        $tables = array(
-            'bugdb' => new ezcDbSchemaTable(
-                array (
-                    'id' => new ezcDbSchemaField( 'integer', false, true, null, true ),
-                    'bug_type' => new ezcDbSchemaField( 'text', 32, true ),
-                    'severity' => new ezcDbSchemaField( 'integer', false, true ),
-                    'sdesc'    => new ezcDbSchemaField( 'text', 80, true ),
-                    'ldesc'    => new ezcDbSchemaField( 'clob', false, true ),
-                    'php_version' => new ezcDbSchemaField( 'text', 100, true ),
-                ),
-                array (
-                    'bug_type' => new ezcDbSchemaIndex( array ( 'bug_type' => new ezcDbSchemaIndexField() ), false, false ),
-                    'php_version' => new ezcDbSchemaIndex( array ( 'php_version' => new ezcDbSchemaIndexField() ) ),
-                    'primary'  => new ezcDbSchemaIndex( array ( 'id' => new ezcDbSchemaIndexField() ), true ),
-                )
-            ),
-            'bugdb_comments' => new ezcDbSchemaTable(
-                array (
-                    'bug_id' => new ezcDbSchemaField( 'integer', false, true ),
-                    'comment' => new ezcDbSchemaField( 'clob', false, true ),
-                    'email' => new ezcDbSchemaField( 'text', 32 ),
-                ),
-                array (
-                    'comment' => new ezcDbSchemaIndex( array ( 'comment' => new ezcDbSchemaIndexField() ) ),
-                )
-            ),
-        );
+        $tables = ['bugdb' => new ezcDbSchemaTable(
+            ['id' => new ezcDbSchemaField( 'integer', false, true, null, true ), 'bug_type' => new ezcDbSchemaField( 'text', 32, true ), 'severity' => new ezcDbSchemaField( 'integer', false, true ), 'sdesc'    => new ezcDbSchemaField( 'text', 80, true ), 'ldesc'    => new ezcDbSchemaField( 'clob', false, true ), 'php_version' => new ezcDbSchemaField( 'text', 100, true )],
+            ['bug_type' => new ezcDbSchemaIndex( ['bug_type' => new ezcDbSchemaIndexField()], false, false ), 'php_version' => new ezcDbSchemaIndex( ['php_version' => new ezcDbSchemaIndexField()] ), 'primary'  => new ezcDbSchemaIndex( ['id' => new ezcDbSchemaIndexField()], true )]
+        ), 'bugdb_comments' => new ezcDbSchemaTable(
+            ['bug_id' => new ezcDbSchemaField( 'integer', false, true ), 'comment' => new ezcDbSchemaField( 'clob', false, true ), 'email' => new ezcDbSchemaField( 'text', 32 )],
+            ['comment' => new ezcDbSchemaIndex( ['comment' => new ezcDbSchemaIndexField()] )]
+        )];
         return $tables;
     }
 

@@ -40,7 +40,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         // This is basically unset!
         $args[1] = null;
 
-        $refNames = array( 0 => "arg 0", 2 => "arg 2",  4 => "arg 4", 5 => "arg 5", 6 => "arg 6" );
+        $refNames = [0 => "arg 0", 2 => "arg 2", 4 => "arg 4", 5 => "arg 5", 6 => "arg 6"];
         reset( $refNames );
 
         foreach ( $args as $name => $arg )
@@ -69,7 +69,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         $exceptionThrown = false;
         try
         {
-            $args[0] = array();
+            $args[0] = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -207,13 +207,13 @@ class ezcConsoleArgumentsTest extends ezcTestCase
         unset( $args[0], $args[2], $args[4], $args[5], $args[6] );
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             "ordered",
             $args,
             "Unset on ordered array failed."
         );
         $this->assertAttributeEquals(
-            array(),
+            [],
             "named",
             $args,
             "Unset on named array failed."
@@ -292,13 +292,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
 
     public function testIterator()
     {
-        $refNames = array(
-            0  => "arg 0",
-            1  => "arg 1",
-            2  => "arg 2",
-            5  => "arg 5",
-            10 => "arg 10"
-        );
+        $refNames = [0  => "arg 0", 1  => "arg 1", 2  => "arg 2", 5  => "arg 5", 10 => "arg 10"];
 
         $args = new ezcConsoleArguments();
         foreach ( $refNames as $key => $name )
@@ -324,13 +318,7 @@ class ezcConsoleArgumentsTest extends ezcTestCase
 
     public function testCount()
     {
-        $refNames = array(
-            0  => "arg 0",
-            1  => "arg 1",
-            2  => "arg 2",
-            5  => "arg 5",
-            10 => "arg 10"
-        );
+        $refNames = [0  => "arg 0", 1  => "arg 1", 2  => "arg 2", 5  => "arg 5", 10 => "arg 10"];
 
         $args = new ezcConsoleArguments();
         foreach ( $refNames as $key => $name )

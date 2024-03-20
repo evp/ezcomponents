@@ -20,11 +20,11 @@ class ezcMailFileTest extends ezcTestCase
      */
     public function testGenerateBase64()
     {
-        $filePart = new ezcMailFile( dirname( __FILE__) . "/data/fly.jpg" );
+        $filePart = new ezcMailFile( __DIR__ . "/data/fly.jpg" );
         $filePart->contentType = ezcMailFile::CONTENT_TYPE_IMAGE;
         $filePart->mimeType = "jpeg";
         // file_put_contents( dirname( __FILE__ ) . "/data/ezcMailFileTest_testGenerateBase64.data" );
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . "/data/ezcMailFilePartTest_testGenerateBase64.data" ),
+        $this->assertEquals( file_get_contents( __DIR__ . "/data/ezcMailFilePartTest_testGenerateBase64.data" ),
                              $filePart->generate() );
     }
 
@@ -35,7 +35,7 @@ class ezcMailFileTest extends ezcTestCase
     {
         try
         {
-            $filePart = new ezcMailFile( dirname( __FILE__) . "/data/fly_not_exit.jpg" );
+            $filePart = new ezcMailFile( __DIR__ . "/data/fly_not_exit.jpg" );
         }
         catch ( ezcBaseFileNotFoundException $e )
         {
@@ -46,7 +46,7 @@ class ezcMailFileTest extends ezcTestCase
 
     public function testIsSet()
     {
-        $filePart = new ezcMailFile( dirname( __FILE__) . "/data/fly.jpg" );
+        $filePart = new ezcMailFile( __DIR__ . "/data/fly.jpg" );
         $this->assertEquals( true, isset( $filePart->fileName ) );
         $this->assertEquals( true, isset( $filePart->mimeType ) );
         $this->assertEquals( true, isset( $filePart->contentType ) );

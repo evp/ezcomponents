@@ -9,7 +9,7 @@
  */
 
 
-require_once dirname( __FILE__ ) . "/test_case.php";
+require_once __DIR__ . "/test_case.php";
 
 /**
  * Test suite for ImageTransformation class.
@@ -19,9 +19,9 @@ require_once dirname( __FILE__ ) . "/test_case.php";
  */
 class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 {
-    protected $testFiltersSuccess = array();
+    protected $testFiltersSuccess = [];
 
-    protected $testFiltersFailure = array();
+    protected $testFiltersFailure = [];
 
     protected $converter;
 
@@ -34,129 +34,67 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->testFiltersSuccess = array(
-                0 => array(
-                    0 => new ezcImageFilter(
-                        "scaleExact",
-                        array(
-                            "width"     => 50,
-                            "height"    => 50,
-                            "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                            )
-                        ),
-                    1 => new ezcImageFilter(
-                        "crop",
-                        array(
-                            "x"     => 10,
-                            "width" => 30,
-                            "y"     => 10,
-                            "height"=> 30,
-                            )
-                        ),
-                    2 => new ezcImageFilter(
-                        "colorspace",
-                        array(
-                            "space" => ezcImageColorspaceFilters::COLORSPACE_GREY,
-                            )
-                        ),
-                    ),
-                1 => array(
-                    0 => new ezcImageFilter(
-                        "scale",
-                        array(
-                            "width"     => 50,
-                            "height"    => 1000,
-                            "direction" => ezcImageGeometryFilters::SCALE_DOWN,
-                            )
-                        ),
-                    2 => new ezcImageFilter(
-                        "colorspace",
-                        array(
-                            "space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME,
-                            )
-                        ),
-                    ),
-                2 => array(
-                    0 => new ezcImageFilter(
-                        "scaleHeight",
-                        array(
-                            "height"    => 70,
-                            "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                            )
-                        ),
-                    2 => new ezcImageFilter(
-                        "colorspace",
-                        array(
-                            "space" => ezcImageColorspaceFilters::COLORSPACE_SEPIA,
-                            )
-                        ),
-                    ),
+            $this->testFiltersSuccess = [
+                0 => [0 => new ezcImageFilter(
+                    "scaleExact",
+                    ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+                    ), 1 => new ezcImageFilter(
+                    "crop",
+                    ["x"     => 10, "width" => 30, "y"     => 10, "height"=> 30]
+                    ), 2 => new ezcImageFilter(
+                    "colorspace",
+                    ["space" => ezcImageColorspaceFilters::COLORSPACE_GREY]
+                    )],
+                1 => [0 => new ezcImageFilter(
+                    "scale",
+                    ["width"     => 50, "height"    => 1000, "direction" => ezcImageGeometryFilters::SCALE_DOWN]
+                    ), 2 => new ezcImageFilter(
+                    "colorspace",
+                    ["space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME]
+                    )],
+                2 => [0 => new ezcImageFilter(
+                    "scaleHeight",
+                    ["height"    => 70, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+                    ), 2 => new ezcImageFilter(
+                    "colorspace",
+                    ["space" => ezcImageColorspaceFilters::COLORSPACE_SEPIA]
+                    )],
                 // Optional parameter dismissed
-                3 => array(
-                    0 => new ezcImageFilter(
-                        "scale",
-                        array(
-                            "width"     => 50,
-                            "height"    => 50,
-                            )
-                        ),
-                    ),
-                );
-            $this->testFiltersFailure = array(
+                3 => [0 => new ezcImageFilter(
+                    "scale",
+                    ["width"     => 50, "height"    => 50]
+                    )],
+            ];
+            $this->testFiltersFailure = [
                 // Nonexistant filter
-                0 => array(
-                    0 => new ezcImageFilter(
-                        "toby",
-                        array(
-                            "width"     => 50,
-                            "height"    => 50,
-                            "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                            )
-                        ),
-                    1 => new ezcImageFilter(
-                        "crop",
-                        array(
-                            "x"     => 10,
-                            "width" => 30,
-                            "y"     => 10,
-                            "height"=> 30,
-                            )
-                        ),
-                    2 => new ezcImageFilter(
-                        "colorspace",
-                        array(
-                            "space" => ezcImageColorspaceFilters::COLORSPACE_GREY,
-                            )
-                        ),
-                    ),
+                0 => [0 => new ezcImageFilter(
+                    "toby",
+                    ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+                    ), 1 => new ezcImageFilter(
+                    "crop",
+                    ["x"     => 10, "width" => 30, "y"     => 10, "height"=> 30]
+                    ), 2 => new ezcImageFilter(
+                    "colorspace",
+                    ["space" => ezcImageColorspaceFilters::COLORSPACE_GREY]
+                    )],
                 // Missing option
-                1 => array(
-                    0 => new ezcImageFilter(
-                        "scale",
-                        array(
-                    )
-                        ),
-                    2 => new ezcImageFilter(
-                        "colorspace",
-                        array(
-                            "space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME,
-                            )
-                        ),
-                    ),
-                );
+                1 => [0 => new ezcImageFilter(
+                    "scale",
+                    []
+                    ), 2 => new ezcImageFilter(
+                    "colorspace",
+                    ["space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME]
+                    )],
+            ];
 
-            $conversionsIn = array(
-                "image/gif"  => "image/png",
-                "image/xpm"  => "image/jpeg",
-                "image/wbmp" => "image/jpeg",
-            );
+            $conversionsIn = ["image/gif"  => "image/png", "image/xpm"  => "image/jpeg", "image/wbmp" => "image/jpeg"];
             if ( ezcBaseFeatures::os() === 'Windows' )
             {
                 unset( $conversionsIn["image/xpm"] );
             }
   
             $settings = new ezcImageConverterSettings(
-                array( new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" ) ),
+                [new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" )],
                 $conversionsIn
             );
             $this->converter = new ezcImageConverter( $settings );
@@ -174,34 +112,18 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testConstructSuccess()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "scale",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-            1 => new ezcImageFilter(
-                "scaleWidth",
-                array(
-                    "width"     => 40,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-            2 => new ezcImageFilter(
-                "crop",
-                array(
-                        "xStart"     => 10,
-                        "xEnd"       => 40,
-                        "yStart"     => 10,
-                        "yEnd"       => 40,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "scale",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        ), 1 => new ezcImageFilter(
+            "scaleWidth",
+            ["width"     => 40, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        ), 2 => new ezcImageFilter(
+            "crop",
+            ["xStart"     => 10, "xEnd"       => 40, "yStart"     => 10, "yEnd"       => 40]
+        )];
 
-        $mimeIn = array( "image/jpeg" );
+        $mimeIn = ["image/jpeg"];
 
         $trans = new ezcImageTransformation( $this->converter, "test", $filtersIn, $mimeIn );
 
@@ -221,18 +143,12 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testConstructFailureFilterNotAvailable()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "toby",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "toby",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        )];
 
-        $mimeIn = array( "image/jpeg" );
+        $mimeIn = ["image/jpeg"];
 
         try
         {
@@ -247,18 +163,12 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testConstructFailureInvalidMimeType()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "scale",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "scale",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        )];
 
-        $mimeIn = array( "application/toby" );
+        $mimeIn = ["application/toby"];
 
         try
         {
@@ -273,29 +183,20 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testAddFilterSuccess()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "scale",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "scale",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        )];
 
         $newFilter = new ezcImageFilter(
             "scaleWidth",
-            array(
-                "width"     => 40,
-                "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-            )
+            ["width"     => 40, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
         );
 
         $filtersOut = $filtersIn;
         $filtersOut[] = $newFilter;
 
-        $mimeIn = array( "image/jpeg" );
+        $mimeIn = ["image/jpeg"];
 
         $trans = new ezcImageTransformation( $this->converter, "test", $filtersIn, $mimeIn );
 
@@ -311,29 +212,20 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testAddFilterFailure()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "scale",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "scale",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        )];
 
         $newFilter = new ezcImageFilter(
             "toby",
-            array(
-                "width"     => 40,
-                "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-            )
+            ["width"     => 40, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
         );
 
         $filtersOut = $filtersIn;
         $filtersOut[] = $newFilter;
 
-        $mimeIn = array( "image/jpeg" );
+        $mimeIn = ["image/jpeg"];
 
         $trans = new ezcImageTransformation( $this->converter, "test", $filtersIn, $mimeIn );
 
@@ -350,18 +242,12 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testGetOutMimeSuccessNoTransform()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "scale",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "scale",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        )];
 
-        $mimeIn = array( "image/jpeg" );
+        $mimeIn = ["image/jpeg"];
 
         $trans = new ezcImageTransformation( $this->converter, "test", $filtersIn, $mimeIn );
 
@@ -374,18 +260,12 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testGetOutMimeSuccessExplicitTransform()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "scale",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "scale",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        )];
 
-        $mimeIn = array( "image/jpeg", "image/png" );
+        $mimeIn = ["image/jpeg", "image/png"];
 
         $trans = new ezcImageTransformation( $this->converter, "test", $filtersIn, $mimeIn );
 
@@ -398,18 +278,12 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testGetOutMimeSuccessImplicitTransform()
     {
-        $filtersIn = array(
-            0 => new ezcImageFilter(
-                "scale",
-                array(
-                    "width"     => 50,
-                    "height"    => 50,
-                    "direction" => ezcImageGeometryFilters::SCALE_BOTH,
-                )
-            ),
-        );
+        $filtersIn = [0 => new ezcImageFilter(
+            "scale",
+            ["width"     => 50, "height"    => 50, "direction" => ezcImageGeometryFilters::SCALE_BOTH]
+        )];
 
-        $mimeIn = array( "image/jpeg" );
+        $mimeIn = ["image/jpeg"];
 
         $trans = new ezcImageTransformation( $this->converter, "test", $filtersIn, $mimeIn );
 
@@ -426,7 +300,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[0],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["png"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -444,7 +318,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[0],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
 
         try
@@ -464,7 +338,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[1],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["png"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -481,7 +355,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[2],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["png"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -499,7 +373,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[3],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["png"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -517,7 +391,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[0],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["jpeg"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -534,7 +408,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[1],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["jpeg"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -551,7 +425,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[2],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["jpeg"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -568,7 +442,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[0],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["gif_nonanimated"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -585,7 +459,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[1],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["gif_nonanimated"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -602,7 +476,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[2],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["gif_nonanimated"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -619,7 +493,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersSuccess[2],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         $trans->transform( $this->testFiles["gif_animated"], $this->getTempPath() );
         $this->assertImageSimilar(
@@ -638,7 +512,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
                 $this->converter,
                 "test",
                 $this->testFiltersFailure[0],
-                array( "image/jpeg", "image/png" )
+                ["image/jpeg", "image/png"]
             );
             $trans->transform( $this->testFiles["jpeg"], $this->getTempPath() );
         }
@@ -656,7 +530,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersFailure[1],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         try
         {
@@ -676,7 +550,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
             $this->converter,
             "test",
             $this->testFiltersFailure[1],
-            array( "image/jpeg", "image/png" )
+            ["image/jpeg", "image/png"]
         );
         try
         {
@@ -693,7 +567,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
     // Test for bug #8137: ImageConversion - ezcImageTransformation fails on
     public function testMultiTransform()
     {
-        $mimeOut = array( "image/jpeg" );
+        $mimeOut = ["image/jpeg"];
         $trans = new ezcImageTransformation( $this->converter, "test", $this->testFiltersSuccess[0], $mimeOut );
 
         $trans->transform( $this->testFiles["jpeg"], $this->getTempPath( "jpeg" ) );
@@ -716,26 +590,26 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
     // Test for bug #10949: rename php error if file allread exists
     public function testDoubleTransform()
     {
-        $mimeOut = array( "image/jpeg" );
+        $mimeOut = ["image/jpeg"];
         $trans = new ezcImageTransformation( $this->converter, "test", $this->testFiltersSuccess[0], $mimeOut );
 
         $resFile = $this->getTempPath( "jpeg" );
         $trans->transform( $this->testFiles["jpeg"], $resFile );
         $trans->transform( $this->testFiles["jpeg"], $resFile );
-        
+
         // Should not fail or produce a notice
     }
 
     public function testTransformQualityLow()
     {
-        $mimeOut = array( "image/jpeg" );
+        $mimeOut = ["image/jpeg"];
         $opts = new ezcImageSaveOptions();
         $opts->quality     = 0;
         // irrelevant, but set!
         $opts->compression = 9;
         $dstPath =  $this->getTempPath( "jpeg" );
         
-        $trans = new ezcImageTransformation( $this->converter, "test", array(), $mimeOut, $opts );
+        $trans = new ezcImageTransformation( $this->converter, "test", [], $mimeOut, $opts );
         $trans->transform( $this->testFiles["png"], $dstPath );
 
         $this->assertThat(
@@ -747,14 +621,14 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testTransformQualityHigh()
     {
-        $mimeOut = array( "image/jpeg" );
+        $mimeOut = ["image/jpeg"];
         $opts = new ezcImageSaveOptions();
         $opts->quality     = 100;
         // irrelevant, but set!
         $opts->compression = 9;
         $dstPath =  $this->getTempPath( "jpeg" );
         
-        $trans = new ezcImageTransformation( $this->converter, "test", array(), $mimeOut, $opts );
+        $trans = new ezcImageTransformation( $this->converter, "test", [], $mimeOut, $opts );
         $trans->transform( $this->testFiles["png"], $dstPath );
 
         $this->assertThat(
@@ -766,14 +640,14 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testTransformCompressionLow()
     {
-        $mimeOut = array( "image/png" );
+        $mimeOut = ["image/png"];
         $opts = new ezcImageSaveOptions();
         $opts->compression = 0;
         // irrelevant, but set!
         $opts->quality     = 100;
         $dstPath =  $this->getTempPath( "png" );
         
-        $trans = new ezcImageTransformation( $this->converter, "test", array(), $mimeOut, $opts );
+        $trans = new ezcImageTransformation( $this->converter, "test", [], $mimeOut, $opts );
         $trans->transform( $this->testFiles["png"], $dstPath );
 
         $this->assertThat(
@@ -785,14 +659,14 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testTransformCompressionHigh()
     {
-        $mimeOut = array( "image/png" );
+        $mimeOut = ["image/png"];
         $opts = new ezcImageSaveOptions();
         $opts->compression = 9;
         // irrelevant, but set!
         $opts->quality     = 100;
         $dstPath =  $this->getTempPath( "png" );
         
-        $trans = new ezcImageTransformation( $this->converter, "test", array(), $mimeOut, $opts );
+        $trans = new ezcImageTransformation( $this->converter, "test", [], $mimeOut, $opts );
         $trans->transform( $this->testFiles["png"], $dstPath );
 
         $this->assertThat(
@@ -804,13 +678,13 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testApplyTransformationFailureFileNotReadable()
     {
-        $tmpDir  = $this->createTempDir( __CLASS__ );
+        $tmpDir  = $this->createTempDir( self::class );
         $srcFile = "$tmpDir/non_readable_png.png";
 
         copy( $this->testFiles['png'], $srcFile );
         chmod( $srcFile, 0000 );
 
-        $trans = new ezcImageTransformation( $this->converter, "test", array(), array( 'image/jpeg' ) );
+        $trans = new ezcImageTransformation( $this->converter, "test", [], ['image/jpeg'] );
         try
         {
             $trans->transform( $srcFile, $srcFile );
@@ -824,7 +698,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
     public function testApplyTransformationFailureDestinationNotOverwriteable()
     {
-        $tmpDir  = $this->createTempDir( __CLASS__ );
+        $tmpDir  = $this->createTempDir( self::class );
         $dstFile = "$tmpDir/non_writeable_png.png";
 
         touch( $dstFile );
@@ -832,7 +706,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
         chmod( dirname( $dstFile ), 0555 );
         clearstatcache();
 
-        $trans = new ezcImageTransformation( $this->converter, "test", array(), array( 'image/jpeg' ) );
+        $trans = new ezcImageTransformation( $this->converter, "test", [], ['image/jpeg'] );
         $exceptionThrown = false;
         try
         {
@@ -861,7 +735,7 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
         try
         {
-            $trans = new ezcImageTransformation( $this->converter, 'test', $filters, array( 'image/jpeg' ) );
+            $trans = new ezcImageTransformation( $this->converter, 'test', $filters, ['image/jpeg'] );
             $this->fail( 'Exception not throwen on invalid filter in initial filter array.' );
         }
         catch ( ezcBaseSettingValueException $e )
@@ -872,13 +746,13 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
     {
         $newFilter = new ezcImageFilter(
             'scale',
-            array( 'width' => 10, 'height' => 10 )
+            ['width' => 10, 'height' => 10]
         );
         $filtersBefore = $this->testFiltersSuccess[0];
         $filtersAfter  = $filtersBefore;
-        array_splice( $filtersAfter, 1, 0, array( $newFilter ) );
+        array_splice( $filtersAfter, 1, 0, [$newFilter] );
 
-        $trans = new ezcImageTransformation( $this->converter, 'test', $filtersBefore, array( 'image/jpeg' ) );
+        $trans = new ezcImageTransformation( $this->converter, 'test', $filtersBefore, ['image/jpeg'] );
 
         $trans->addFilter( $newFilter, 1 );            
 
@@ -905,24 +779,21 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
         $conv = new ezcImageConverter(
             new ezcImageConverterSettings(
-                array( $gdSettings, $imSettings )
+                [$gdSettings, $imSettings]
             )
         );
 
         $trans = new ezcImageTransformation(
             $conv,
             'test',
-            array(
-                new ezcImageFilter(
-                    'scale',
-                    array( 'width' => 100, 'height' => 100 )
-                ),
-                new ezcImageFilter(
-                    'swirl',
-                    array( 'value' => 100 )
-                ),
-            ),
-            array( 'image/png' )
+            [new ezcImageFilter(
+                'scale',
+                ['width' => 100, 'height' => 100]
+            ), new ezcImageFilter(
+                'swirl',
+                ['value' => 100]
+            )],
+            ['image/png']
         );
 
 
@@ -952,20 +823,18 @@ class ezcImageConversionTransformationTest extends ezcImageConversionTestCase
 
         $conv = new ezcImageConverter(
             new ezcImageConverterSettings(
-                array( $gdSettings, $imSettings )
+                [$gdSettings, $imSettings]
             )
         );
 
         $trans = new ezcImageTransformation(
             $conv,
             'test',
-            array(
-                new ezcImageFilter(
-                    'scale',
-                    array( 'width' => 100, 'height' => 100 )
-                ),
-            ),
-            array( 'image/g3fax' )
+            [new ezcImageFilter(
+                'scale',
+                ['width' => 100, 'height' => 100]
+            )],
+            ['image/g3fax']
         );
 
 

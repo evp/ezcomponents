@@ -48,7 +48,7 @@ class ezcGraphDatabaseDataSet extends ezcGraphDataSet
     {
         parent::__construct();
 
-        $this->data = array();
+        $this->data = [];
         $this->createFromPdo( $statement, $definition );
     }
 

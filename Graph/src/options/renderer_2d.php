@@ -66,7 +66,7 @@ class ezcGraphRenderer2dOptions extends ezcGraphRendererOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['pieChartShadowSize'] = 0;
         $this->properties['pieChartShadowTransparency'] = .3;

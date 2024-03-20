@@ -88,27 +88,27 @@ class ezcMail extends ezcMailPart
     /**
      * 7 bit encoding.
      */
-    const SEVEN_BIT = "7bit";
+    public const SEVEN_BIT = "7bit";
 
     /**
      * 8 bit encoding.
      */
-    const EIGHT_BIT = "8bit";
+    public const EIGHT_BIT = "8bit";
 
     /**
      * Binary encoding.
      */
-    const BINARY = "binary";
+    public const BINARY = "binary";
 
     /**
      * Quoted printable encoding.
      */
-    const QUOTED_PRINTABLE = "quoted-printable";
+    public const QUOTED_PRINTABLE = "quoted-printable";
 
     /**
      * Base 64 encoding.
      */
-    const BASE64 = "base64";
+    public const BASE64 = "base64";
 
     /**
      * Holds the options for this class.
@@ -125,9 +125,9 @@ class ezcMail extends ezcMailPart
         parent::__construct();
 
         $this->properties['from'] = null;
-        $this->properties['to'] = array();
-        $this->properties['cc'] = array();
-        $this->properties['bcc'] = array();
+        $this->properties['to'] = [];
+        $this->properties['cc'] = [];
+        $this->properties['bcc'] = [];
         $this->properties['subject'] = null;
         $this->properties['subjectCharset'] = 'us-ascii';
         $this->properties['body'] = null;
@@ -419,7 +419,7 @@ class ezcMail extends ezcMailPart
      */
     public function fetchParts( $filter = null, $includeDigests = false )
     {
-        $context = new ezcMailPartWalkContext( array( __CLASS__, 'collectPart' ) );
+        $context = new ezcMailPartWalkContext( [self::class, 'collectPart'] );
         $context->includeDigests = $includeDigests;
         $context->filter = $filter;
         $context->level = 0;

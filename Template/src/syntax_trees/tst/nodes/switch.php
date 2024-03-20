@@ -36,9 +36,7 @@ class ezcTemplateSwitchTstNode extends ezcTemplateBlockTstNode
 
     public function getTreeProperties()
     {
-        return array( 'name'      => $this->name,
-                      'condition' => $this->condition,
-                      'children'  => $this->children );
+        return ['name'      => $this->name, 'condition' => $this->condition, 'children'  => $this->children];
     }
 
     public function handleElement( ezcTemplateTstNode $element )

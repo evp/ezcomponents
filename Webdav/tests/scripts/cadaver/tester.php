@@ -30,7 +30,7 @@ class ezcWebdavTestCadaverTester
 
     public function generate( array $commands )
     {
-        $results = array();
+        $results = [];
         foreach ( $commands as $section => $comms )
         {
             foreach ( $comms as $id => $command )
@@ -78,7 +78,7 @@ class ezcWebdavTestCadaverTester
         mkdir( $targetDir = "{$testDir}/up" );
 
         self::copyRecursive(
-            dirname( __FILE__ ) . '/../../data/put_test',
+            __DIR__ . '/../../data/put_test',
             $targetDir
         );
 

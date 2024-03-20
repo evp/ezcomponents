@@ -33,7 +33,7 @@ class ezcLogTest extends ezcTestCase
 
     protected function setUp()
     {
-        set_error_handler(array( $this, "TestErrorHandler"));
+        set_error_handler([$this, "TestErrorHandler"]);
         $this->log = ezcLog::getInstance();
         $this->log->reset();
         $this->createTempDir( "ezcLogTest_" );
@@ -65,7 +65,7 @@ class ezcLogTest extends ezcTestCase
     {
         $this->log->getMapper()->appendRule( new ezcLogFilterRule( new ezcLogFilter(), $a = new ezcLogUnixFileWriter( $this->getTempDir(), "default.log" ), true ) );
 
-        $this->log->log("Writing a simple message.", ezcLog::DEBUG, array( "source" => "ezComponents Log", "category" => "Testing", "file" => "myFile", "line" => "myLine") );
+        $this->log->log("Writing a simple message.", ezcLog::DEBUG, ["source" => "ezComponents Log", "category" => "Testing", "file" => "myFile", "line" => "myLine"] );
 
         clearstatcache();
         $this->assertTrue( file_exists( $this->getTempDir()."/default.log"), "Expected the file: ".$this->getTempDir()."/default.log" );
@@ -87,7 +87,7 @@ class ezcLogTest extends ezcTestCase
         $filter->severity = ezcLog::SUCCESS_AUDIT | ezcLog::FAILED_AUDIT;
         $a->setFile( $filter, "auditing.log" );
 
-        $this->log->log("Bernard, float over here so I can punch you.", ezcLog::DEBUG, array( "source" => "ezComponents Log", "category" => "Testing", "file" => "myFile", "line" => "myLine") );
+        $this->log->log("Bernard, float over here so I can punch you.", ezcLog::DEBUG, ["source" => "ezComponents Log", "category" => "Testing", "file" => "myFile", "line" => "myLine"] );
 
         $this->assertFalse( filesize( $this->getTempDir() . "/default.log" )  > 0, "default.log should be empty." );
         $this->assertFalse( filesize( $this->getTempDir() . "/auditing.log" )  > 0, "auditing.log should be empty." );
@@ -96,7 +96,7 @@ class ezcLogTest extends ezcTestCase
 
         $this->assertRegExp($regExp, file_get_contents( $this->getTempDir() . "/logging.log") );
 
-        $this->log->log("To save the world, you have to push a few old ladies down the stairs", ezcLog::SUCCESS_AUDIT, array( "source" => "ezComponents Log", "category" => "Testing", "file" => "myFile", "line" => "myLine") );
+        $this->log->log("To save the world, you have to push a few old ladies down the stairs", ezcLog::SUCCESS_AUDIT, ["source" => "ezComponents Log", "category" => "Testing", "file" => "myFile", "line" => "myLine"] );
 
         $regExp2 = "/(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d+ \d+:\d+:\d+ \[Success audit\] \[ezComponents Log\] \[Testing\] To save the world, you have to push a few old ladies down the stairs \(file: myFile, line: myLine\)/";
         $this->assertNotRegExp($regExp2, file_get_contents( $this->getTempDir() . "/logging.log") ); // Not in this log.
@@ -111,14 +111,14 @@ class ezcLogTest extends ezcTestCase
         $filter->severity = ezcLog::WARNING | ezcLog::ERROR;
         $writer->setFile( $filter, "logging.log" );
 
-        $this->log->log( "HI", ezcLog::ERROR, array( "source" => "content", "category" => "templates") );
-        $this->log->log( "HI", ezcLog::ERROR, array( "source" => "content", "category" => "templates") );
+        $this->log->log( "HI", ezcLog::ERROR, ["source" => "content", "category" => "templates"] );
+        $this->log->log( "HI", ezcLog::ERROR, ["source" => "content", "category" => "templates"] );
         $this->assertEquals(2, sizeof(file($this->getTempDir() . "/logging.log"))); 
 
         $filter->severity = ezcLog::FATAL;
         $writer->setFile( $filter, "logging.log" );
 
-        $this->log->log( "HI", ezcLog::ERROR, array( "source" => "content", "category" => "templates") );
+        $this->log->log( "HI", ezcLog::ERROR, ["source" => "content", "category" => "templates"] );
         $this->assertEquals(3, sizeof(file($this->getTempDir() . "/logging.log"))); 
 
     }
@@ -358,7 +358,7 @@ class ezcLogTest extends ezcTestCase
 
         try
         {
-            $this->log->log( "msg", ezcLog::WARNING, array( "source" => "src", "category" => "cat" ) );
+            $this->log->log( "msg", ezcLog::WARNING, ["source" => "src", "category" => "cat"] );
         } 
         catch ( ezcLogWriterException $e )
         {
@@ -384,7 +384,7 @@ class ezcLogTest extends ezcTestCase
 
         try
         {
-            $this->log->log( "msg", ezcLog::WARNING, array( "source" => "src", "category" => "cat" ) );
+            $this->log->log( "msg", ezcLog::WARNING, ["source" => "src", "category" => "cat"] );
         } 
         catch ( ezcLogWriterException $e )
         {
@@ -487,18 +487,18 @@ class ezcLogTest extends ezcTestCase
         $service = "Paynet Terminal";
 
         // Add automatically the username to the log message, when the log message is either a SUCCESS_AUDIT or a FAILED_AUDIT.
-        $log->setSeverityAttributes( ezcLog::SUCCESS_AUDIT | ezcLog::FAILED_AUDIT, array( "username" => $username ) );
+        $log->setSeverityAttributes( ezcLog::SUCCESS_AUDIT | ezcLog::FAILED_AUDIT, ["username" => $username] );
 
         // Same can be done with the source of the log message.
-        $log->setSourceAttributes( array( "Payment" ), array( "service" => $service ) );
+        $log->setSourceAttributes( ["Payment"], ["service" => $service] );
 
         // Writing some log messages.
-        $log->log( "Authentication failed", ezcLog::FAILED_AUDIT, array( "source" => "security", "category" => "login/logoff" ) );
+        $log->log( "Authentication failed", ezcLog::FAILED_AUDIT, ["source" => "security", "category" => "login/logoff"] );
 
         $log->source = "Payment"; 
-        $log->log( "Connecting with the server.", ezcLog::DEBUG, array( "category" => "external connections" ) );
+        $log->log( "Connecting with the server.", ezcLog::DEBUG, ["category" => "external connections"] );
 
-        $log->log( "Payed with creditcard.", ezcLog::SUCCESS_AUDIT, array( "category" => "shop" ) );
+        $log->log( "Payed with creditcard.", ezcLog::SUCCESS_AUDIT, ["category" => "shop"] );
 
         $lines = file( "$dir/$file" );
 
@@ -522,9 +522,9 @@ class ezcLogTest extends ezcTestCase
         $username = "John Doe";
         $service = "Paynet Terminal";
         // Add automatically the username to the log message, when the log message is FATAL.
-        $log->setSeverityAttributes( ezcLog::FATAL, array( "username" => $username ) );
-        $log->log( "Hackers have breached the security!", ezcLog::FATAL, array( "source" => "security", "category" => "login" ) );
-        $log->log( "Something unknown happened...", false, array( "source" => "security", "category" => "login" ) );
+        $log->setSeverityAttributes( ezcLog::FATAL, ["username" => $username] );
+        $log->log( "Hackers have breached the security!", ezcLog::FATAL, ["source" => "security", "category" => "login"] );
+        $log->log( "Something unknown happened...", false, ["source" => "security", "category" => "login"] );
 
         $lines = file( "$dir/$file" );
         $this->assertRegExp("/username: John Doe/", $lines[0]);

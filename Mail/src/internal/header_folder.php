@@ -37,12 +37,12 @@ class ezcMailHeaderFolder
     /**
      * The soft limit of 76 characters per line.
      */
-    const SOFT_LIMIT = 76;
+    public const SOFT_LIMIT = 76;
 
     /**
      * The soft limit of 998 characters per line.
      */
-    const HARD_LIMIT = 998;
+    public const HARD_LIMIT = 998;
 
     /**
      * The default folding limit.

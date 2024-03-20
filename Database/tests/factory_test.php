@@ -18,7 +18,7 @@ class ezcDatabaseFactoryTest extends ezcTestCase
     {
         try
         {
-            $dbparams = array( 'host' => 'localhost', 'user' => 'root', 'database' => 'ezc' );
+            $dbparams = ['host' => 'localhost', 'user' => 'root', 'database' => 'ezc'];
             $db = ezcDbFactory::create( $dbparams );
 
             $this->fail( "Expected exception was not thrown" );
@@ -32,7 +32,7 @@ class ezcDatabaseFactoryTest extends ezcTestCase
     {
         try
         {
-            $dbparams = array( 'type' => 'unknown', 'host' => 'localhost', 'user' => 'root', 'database' => 'ezc' );
+            $dbparams = ['type' => 'unknown', 'host' => 'localhost', 'user' => 'root', 'database' => 'ezc'];
             $db = ezcDbFactory::create( $dbparams );
 
             $this->fail( "Expected exception was not thrown" );
@@ -59,14 +59,14 @@ class ezcDatabaseFactoryTest extends ezcTestCase
     public function testGetImplementations()
     {
         $array = ezcDbFactory::getImplementations();
-        $this->assertEquals( array( 'mysql', 'pgsql', 'oracle', 'sqlite', 'mssql' ), $array );
+        $this->assertEquals( ['mysql', 'pgsql', 'oracle', 'sqlite', 'mssql'], $array );
     }
 
     public function testGetImplementationsAfterAddingOne()
     {
         ezcDbFactory::addImplementation( 'test', 'ezcDbHandlerTest' );
         $array = ezcDbFactory::getImplementations();
-        $this->assertEquals( array( 'mysql', 'pgsql', 'oracle', 'sqlite', 'mssql', 'test' ), $array );
+        $this->assertEquals( ['mysql', 'pgsql', 'oracle', 'sqlite', 'mssql', 'test'], $array );
     }
 
     public function testSqliteDSN1()
@@ -140,7 +140,7 @@ class ezcDatabaseFactoryTest extends ezcTestCase
         }
         try
         {
-            $db = ezcDbFactory::create( array( 'handler' => 'sqlite' ) );
+            $db = ezcDbFactory::create( ['handler' => 'sqlite'] );
             $this->fail( "Expected exception not thrown." );
         }
         catch ( ezcDbMissingParameterException $e )
@@ -156,7 +156,7 @@ class ezcDatabaseFactoryTest extends ezcTestCase
             $this->markTestSkipped();
             return;
         }
-        $db = ezcDbFactory::create( array( 'handler' => 'sqlite', 'port' => 'memory' ) );
+        $db = ezcDbFactory::create( ['handler' => 'sqlite', 'port' => 'memory'] );
         $this->assertEquals( false, file_exists( 'memory' ) );
     }
 

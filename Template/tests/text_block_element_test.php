@@ -24,10 +24,7 @@ class ezcTemplateTextBlockElementTest extends ezcTestCase
      */
     public function testEscapedBracesAreStrippedAway()
     {
-        $textList = array( array( "simple text",
-                                  "simple text" ),
-                           array( "text with \\{ \\\\escaped// \\} braces",
-                                  "text with { \\escaped// } braces" ) );
+        $textList = [["simple text", "simple text"], ["text with \\{ \\\\escaped// \\} braces", "text with { \\escaped// } braces"]];
         foreach ( $textList as $text )
         {
             $source = new ezcTemplateSourceCode( '', '', $text[0] );

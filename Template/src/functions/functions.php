@@ -58,7 +58,7 @@ class ezcTemplateFunctions
      */
     protected static function functionCall( $name, $parameters )
     {
-        return array( "ezcTemplateFunctionCallAstNode", array( $name, array( "_array", $parameters ) ) );
+        return ["ezcTemplateFunctionCallAstNode", [$name, ["_array", $parameters]]];
     }
 
     /**
@@ -69,7 +69,7 @@ class ezcTemplateFunctions
      */
     protected static function value( $val )
     {
-        return array( "ezcTemplateLiteralAstNode", array( $val ) );
+        return ["ezcTemplateLiteralAstNode", [$val]];
     }
 
     /**
@@ -80,7 +80,7 @@ class ezcTemplateFunctions
      */
     protected static function constant( $val )
     {
-        return array( "ezcTemplateConstantAstNode", array( $val ) );
+        return ["ezcTemplateConstantAstNode", [$val]];
     }
 
     /**
@@ -92,7 +92,7 @@ class ezcTemplateFunctions
      */
     protected static function concat( $left, $right )
     {
-        return array( "ezcTemplateConcatOperatorAstNode", array( $left, $right ) );
+        return ["ezcTemplateConcatOperatorAstNode", [$left, $right]];
     }
     
     /**
@@ -207,7 +207,7 @@ class ezcTemplateFunctions
         }
 
         return call_user_func_array(
-            array( new ReflectionClass( $className ), 'newInstance' ), $functionParameters );
+            [new ReflectionClass( $className ), 'newInstance'], $functionParameters );
     }
  
 
@@ -223,7 +223,7 @@ class ezcTemplateFunctions
      */
     protected function processAst( $functionName, $struct, $parameterMap, &$usedRest )
     {
-        $pOut = array();
+        $pOut = [];
         foreach ( $struct[1] as $pIn )
         {
             if ( is_array( $pIn ) )
@@ -280,7 +280,7 @@ class ezcTemplateFunctions
         $definedParameters = self::countParameters( $functionDefinition[ $index ] );
 
         // Map the parameters from the function definition to the given (real) parameters.
-        $parameterMap = array();
+        $parameterMap = [];
         $i = 0;
         foreach ( $functionDefinition[ $index ] as $p )
         {
@@ -362,7 +362,7 @@ class ezcTemplateFunctions
     {
         foreach ( $this->parser->template->usedConfiguration->customFunctions as $class )
         {
-            $def = call_user_func( array( $class, "getCustomFunctionDefinition" ),  $name );
+            $def = call_user_func( [$class, "getCustomFunctionDefinition"],  $name );
 
             if ( $def instanceof ezcTemplateCustomFunctionDefinition )
             {
@@ -489,7 +489,7 @@ class ezcTemplateFunctions
     protected function orderParameters($reflectionParameters, $parameters, $functionName)
     {
         // First assign the named parameters, thereafter fill in the rest.
-        $newParameters = array();
+        $newParameters = [];
 
         // Process the named parameters.
         $maxNr = 0;
@@ -596,7 +596,7 @@ class ezcTemplateFunctions
 
         if ( $class !== null )
         {
-            $f = call_user_func( array( $class, "getFunctionSubstitution"), $functionName, $parameters );
+            $f = call_user_func( [$class, "getFunctionSubstitution"], $functionName, $parameters );
             if ( $f !== null ) return $this->createAstNodes( $functionName, $f, $parameters );
         }
 

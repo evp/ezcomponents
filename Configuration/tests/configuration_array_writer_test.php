@@ -33,8 +33,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
     public function testConfigSettingUseComments()
     {
         $backend = new ezcConfigurationArrayWriter();
-        $backend->setOptions( array ( 'useComments' => true ) );
-        $backend->setOptions( array ( 'useComments' => false ) );
+        $backend->setOptions( ['useComments' => true] );
+        $backend->setOptions( ['useComments' => false] );
     }
 
     public function testConfigSettingUseCommentsWrongType()
@@ -42,7 +42,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
         $backend = new ezcConfigurationArrayWriter();
         try
         {
-            $backend->setOptions( array ( 'useComments' => 'tests/translations' ) );
+            $backend->setOptions( ['useComments' => 'tests/translations'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcBaseSettingValueException $e )
@@ -54,7 +54,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
     public function testConfigSettingPermissions()
     {
         $backend = new ezcConfigurationArrayWriter();
-        $backend->setOptions( array ( 'permissions' => 0660 ) );
+        $backend->setOptions( ['permissions' => 0660] );
     }
 
     public function testConfigSettingPermissionsWrongType()
@@ -62,7 +62,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
         $backend = new ezcConfigurationArrayWriter();
         try
         {
-            $backend->setOptions( array ( 'permissions' => 'tests/translations' ) );
+            $backend->setOptions( ['permissions' => 'tests/translations'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcBaseSettingValueException $e )
@@ -76,7 +76,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
         $backend = new ezcConfigurationArrayWriter();
         try
         {
-            $backend->setOptions( array ( 'permissions' => -1 ) );
+            $backend->setOptions( ['permissions' => -1] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcBaseSettingValueException $e )
@@ -90,7 +90,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
         $backend = new ezcConfigurationArrayWriter();
         try
         {
-            $backend->setOptions( array ( 'permissions' => 01000 ) );
+            $backend->setOptions( ['permissions' => 01000] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcBaseSettingValueException $e )
@@ -102,8 +102,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
     public function testGetOptions()
     {
         $backend = new ezcConfigurationArrayWriter();
-        $backend->setOptions( array ( 'useComments' => true, 'permissions' => 0600 ) );
-        $this->assertEquals( array ( 'useComments' => true, 'permissions' => 0600 ), $backend->getOptions() );
+        $backend->setOptions( ['useComments' => true, 'permissions' => 0600] );
+        $this->assertEquals( ['useComments' => true, 'permissions' => 0600], $backend->getOptions() );
     }
 
     public function testConfigSettingBroken()
@@ -111,7 +111,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
         $backend = new ezcConfigurationArrayWriter();
         try
         {
-            $backend->setOptions( array ( 'lOcAtIOn' => 'tests/translations' ) );
+            $backend->setOptions( ['lOcAtIOn' => 'tests/translations'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcBaseSettingNotFoundException $e )
@@ -185,20 +185,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function testOneGroup()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                '#' => "Just one group",
-                'Setting1' => " This setting sucks",
-                'MultiRow' => " Multi\n row\n comment",
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = ['TheOnlyGroup' => ['#' => "Just one group", 'Setting1' => " This setting sucks", 'MultiRow' => " Multi\n row\n comment"]];
         $test = new ezcConfiguration( $settings, $comments );
 
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/one-group.php', $test );
@@ -211,20 +199,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function testOneGroupWithSetConfig()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                '#' => "Just one group",
-                'Setting1' => " This setting sucks",
-                'MultiRow' => " Multi\n row\n comment",
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = ['TheOnlyGroup' => ['#' => "Just one group", 'Setting1' => " This setting sucks", 'MultiRow' => " Multi\n row\n comment"]];
         $test = new ezcConfiguration( $settings, $comments );
 
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/one-group.php', new ezcConfiguration() );
@@ -238,25 +214,13 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function testOneGroupNoComments()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                '#' => "Just one group",
-                'Setting1' => " This setting sucks",
-                'MultiRow' => " Multi\n row\n comment",
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = ['TheOnlyGroup' => ['#' => "Just one group", 'Setting1' => " This setting sucks", 'MultiRow' => " Multi\n row\n comment"]];
         $test = new ezcConfiguration( $settings, $comments );
-        $expected = new ezcConfiguration( $settings, array() );
+        $expected = new ezcConfiguration( $settings, [] );
 
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/one-group-no-comments.php', $test );
-        $backend->setOptions( array ( 'useComments' => false ) );
+        $backend->setOptions( ['useComments' => false] );
         $backend->save();
 
         $backend = new ezcConfigurationArrayReader( $this->tempDir . '/one-group-no-comments.php' );
@@ -266,22 +230,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function testTwoGroups()
     {
-        $settings = array(
-            'NotTheOnlyGroup' => array(
-                'Setting1' => true,
-            ),
-            'TheSecond' => array(
-                'Setting1' => false,
-            ),
-        );
-        $comments = array(
-            'NotTheOnlyGroup' => array(
-                '#' => " Not just one group",
-            ),
-            'TheSecond' => array(
-                '#' => " The second group",
-            ),
-        );
+        $settings = ['NotTheOnlyGroup' => ['Setting1' => true], 'TheSecond' => ['Setting1' => false]];
+        $comments = ['NotTheOnlyGroup' => ['#' => " Not just one group"], 'TheSecond' => ['#' => " The second group"]];
         $test = new ezcConfiguration( $settings, $comments );
 
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/two-groups.php', $test );
@@ -294,34 +244,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function testFormats()
     {
-        $settings = array(
-            'FormatTest' => array(
-                'Decimal1' => 42,
-                'Decimal2' => 0,
-                'MaxSize' => 400,
-                'MinSize' => 0,
-                'Hex1' => 11189196,
-                'Hex2' => 11189196,
-                'Hex3' => 11189196,
-                'Hex4' => 11189196,
-                'TextColor' => 66302,
-                'Octal1' => 1,
-                'Octal2' => 458,
-                'Permission' => 438,
-                'Float1' => 0.2,
-                'Float2' => .8123,
-                'Float3' => 314e-2,
-                'Float4' => 3.141592654e1,
-                'Price' => 10.4,
-                'Seed' => 10e5,
-                'String1' => 'Blah blah blah',
-                'String2' => 'Derick "Tiger" Rethans',
-                'String3' => 'Foo \\ Bar',
-                'String4' => 'Foo \\',
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['FormatTest' => ['Decimal1' => 42, 'Decimal2' => 0, 'MaxSize' => 400, 'MinSize' => 0, 'Hex1' => 11189196, 'Hex2' => 11189196, 'Hex3' => 11189196, 'Hex4' => 11189196, 'TextColor' => 66302, 'Octal1' => 1, 'Octal2' => 458, 'Permission' => 438, 'Float1' => 0.2, 'Float2' => .8123, 'Float3' => 314e-2, 'Float4' => 3.141592654e1, 'Price' => 10.4, 'Seed' => 10e5, 'String1' => 'Blah blah blah', 'String2' => 'Derick "Tiger" Rethans', 'String3' => 'Foo \\ Bar', 'String4' => 'Foo \\']];
+        $comments = [];
         $test = new ezcConfiguration( $settings, $comments );
 
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/formats.php', $test );
@@ -334,18 +258,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function test2D()
     {
-        $settings = array(
-            '2D-numbered' => array(
-                'Decimal' => array( 42, 0 ),
-                'Mixed' => array( 42, 0.812, false, "Derick \"Tiger\" Rethans" ),
-            ),
-            '2D-associative' => array(
-                'Decimal' => array( 'a' => 42, 'b' => 0 ),
-                'Mixed' => array( 'a' => 42, 1 => 0.812, 'b' => false, 2 => "Derick \"Tiger\" Rethans" ),
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['2D-numbered' => ['Decimal' => [42, 0], 'Mixed' => [42, 0.812, false, "Derick \"Tiger\" Rethans"]], '2D-associative' => ['Decimal' => ['a' => 42, 'b' => 0], 'Mixed' => ['a' => 42, 1 => 0.812, 'b' => false, 2 => "Derick \"Tiger\" Rethans"]]];
+        $comments = [];
         $test = new ezcConfiguration( $settings, $comments );
 
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/multi-dim.php', $test );
@@ -358,23 +272,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function test3D()
     {
-        $settings = array(
-            '3D' => array(
-                'Decimal' => array( 42, 0 ),
-                'Array' =>  array(
-                    'Decimal' => array( 'a' => 42, 'b' => 0 ),
-                    'Mixed' => array( 'b' => false, 2 => "Derick \"Tiger\" Rethans" ),
-                ),
-            ),
-        );
-        $comments = array(
-            '3D' => array(
-                'Decimal' => array( " One with a comment", " Second one with a comment" ),
-                'Array' => array(
-                    'Mixed' => array( 2 => " One with a comment" ),
-                ),
-            ),
-        );
+        $settings = ['3D' => ['Decimal' => [42, 0], 'Array' =>  ['Decimal' => ['a' => 42, 'b' => 0], 'Mixed' => ['b' => false, 2 => "Derick \"Tiger\" Rethans"]]]];
+        $comments = ['3D' => ['Decimal' => [" One with a comment", " Second one with a comment"], 'Array' => ['Mixed' => [2 => " One with a comment"]]]];
         $test = new ezcConfiguration( $settings, $comments );
 
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/multi-dim2.php', $test );
@@ -399,7 +298,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
     {
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/empty.php', new ezcConfiguration() );
         $oldUmask = umask( 0 );
-        $backend->setOptions( array ( 'permissions' => 0660 ) );
+        $backend->setOptions( ['permissions' => 0660] );
         $backend->save();
         umask( $oldUmask );
         $stat = stat( $this->tempDir . '/empty.php' );
@@ -410,7 +309,7 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
     {
         $backend = new ezcConfigurationArrayWriter( $this->tempDir . '/empty.php', new ezcConfiguration() );
         $oldUmask = umask( 0 );
-        $backend->setOptions( array ( 'permissions' => 0640 ) );
+        $backend->setOptions( ['permissions' => 0640] );
         $backend->save();
         umask( $oldUmask );
         $stat = stat( $this->tempDir . '/empty.php' );
@@ -419,23 +318,8 @@ class ezcConfigurationArrayWriterTest extends ezcTestCase
 
     public function testValidationNonStrict()
     {
-        $settings = array(
-            '3D' => array(
-                'Decimal' => array( 42, 0 ),
-                'Array' =>  array(
-                    'Decimal' => array( 'a' => 42, 'b' => 0 ),
-                    'Mixed' => array( 'b' => false, 2 => "Derick \"Tiger\" Rethans" ),
-                ),
-            ),
-        );
-        $comments = array(
-            '3D' => array(
-                'Decimal' => array( " One with a comment", " Second one with a comment" ),
-                'Array' => array(
-                    'Mixed' => array( 2 => " One with a comment" ),
-                ),
-            ),
-        );
+        $settings = ['3D' => ['Decimal' => [42, 0], 'Array' =>  ['Decimal' => ['a' => 42, 'b' => 0], 'Mixed' => ['b' => false, 2 => "Derick \"Tiger\" Rethans"]]]];
+        $comments = ['3D' => ['Decimal' => [" One with a comment", " Second one with a comment"], 'Array' => ['Mixed' => [2 => " One with a comment"]]]];
         $test = new ezcConfiguration( $settings, $comments );
 
         $path = $this->tempDir . '/multi-dim2.php';

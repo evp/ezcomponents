@@ -8,10 +8,10 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . "/../data/relation_test_address.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_employer.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_person.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_birthday.php";
+require_once __DIR__ . "/../data/relation_test_address.php";
+require_once __DIR__ . "/../data/relation_test_employer.php";
+require_once __DIR__ . "/../data/relation_test_person.php";
+require_once __DIR__ . "/../data/relation_test_birthday.php";
 
 /**
  * Tests ezcPersistentOneToManyRelation class.
@@ -43,7 +43,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
         RelationTestEmployer::insertData();
         $this->session = new ezcPersistentSession(
             ezcDbInstance::get(),
-            new ezcPersistentCodeManager( dirname( __FILE__ ) . "/../data/" )
+            new ezcPersistentCodeManager( __DIR__ . "/../data/" )
         );
     }
 
@@ -60,7 +60,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
 
         $this->assertEquals( "PO_persons", $relation->sourceTable );
         $this->assertEquals( "PO_addresses", $relation->destinationTable );
-        $this->assertEquals( array(), $relation->columnMap );
+        $this->assertEquals( [], $relation->columnMap );
         $this->assertEquals( false, $relation->reverse );
         $this->assertEquals( false, $relation->cascade );
     }
@@ -97,13 +97,13 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
 
         $relation->sourceTable = "PO_other_persons";
         $relation->destinationTable = "PO_other_addresses";
-        $relation->columnMap = array( $tableMap );
+        $relation->columnMap = [$tableMap];
         $relation->reverse = true;
         $relation->cascade = true;
 
         $this->assertEquals( $relation->sourceTable, "PO_other_persons" );
         $this->assertEquals( $relation->destinationTable, "PO_other_addresses" );
-        $this->assertEquals( $relation->columnMap, array( $tableMap ) );
+        $this->assertEquals( $relation->columnMap, [$tableMap] );
         $this->assertEquals( $relation->reverse, true );
         $this->assertEquals( $relation->cascade, true );
     }
@@ -133,7 +133,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
 
         try
         {
-            $relation->columnMap = array( $tableMap );
+            $relation->columnMap = [$tableMap];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentOneToManyRelation->columnMap." );
         }
         catch ( ezcBaseValueException $e )
@@ -142,7 +142,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
         
         try
         {
-            $relation->columnMap = array();
+            $relation->columnMap = [];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentOneToManyRelation->columnMap." );
         }
         catch ( ezcBaseValueException $e )
@@ -151,7 +151,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
 
         try
         {
-            $relation->reverse = array();
+            $relation->reverse = [];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentOneToManyRelation->reverse." );
         }
         catch ( ezcBaseValueException $e )
@@ -160,7 +160,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
 
         try
         {
-            $relation->cascade = array();
+            $relation->cascade = [];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentOneToManyRelation->cascade." );
         }
         catch ( ezcBaseValueException $e )
@@ -183,22 +183,9 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     {
         $employer = $this->session->load( "RelationTestEmployer", 1 );
 
-        $res = array(
-          2 => 
-          RelationTestPerson::__set_state(array(
-             'id' => '2',
-             'firstname' => 'Frederick',
-             'surname' => 'Ajax',
-             'employer' => '1',
-          )),
-          3 => 
-          RelationTestPerson::__set_state(array(
-             'id' => '3',
-             'firstname' => 'Raymond',
-             'surname' => 'Socialweb',
-             'employer' => '1',
-          )),
-        );
+        $res = [2 => 
+        RelationTestPerson::__set_state(['id' => '2', 'firstname' => 'Frederick', 'surname' => 'Ajax', 'employer' => '1']), 3 => 
+        RelationTestPerson::__set_state(['id' => '3', 'firstname' => 'Raymond', 'surname' => 'Socialweb', 'employer' => '1'])];
 
         $this->assertEquals(
             $res,
@@ -210,15 +197,8 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectsFromEmployer2Success()
     {
         $employer = $this->session->load( "RelationTestEmployer", 2 );
-        $res = array(
-            1 => 
-            RelationTestPerson::__set_state(array(
-                'id' => '1',
-                'firstname' => 'Theodor',
-                'surname' => 'Gopher',
-                'employer' => '2',
-            )),
-        );
+        $res = [1 => 
+        RelationTestPerson::__set_state(['id' => '1', 'firstname' => 'Theodor', 'surname' => 'Gopher', 'employer' => '2'])];
         $this->assertEquals(
             $res,
             $this->session->getRelatedObjects( $employer, "RelationTestPerson" ),
@@ -231,15 +211,8 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
         $employer = $this->session->load( "RelationTestEmployer", 2 );
         $q = $this->session->createRelationFindQuery( $employer, 'RelationTestPerson' );
 
-        $res = array(
-            1 => 
-            RelationTestPerson::__set_state(array(
-                'id' => '1',
-                'firstname' => 'Theodor',
-                'surname' => 'Gopher',
-                'employer' => '2',
-            )),
-        );
+        $res = [1 => 
+        RelationTestPerson::__set_state(['id' => '1', 'firstname' => 'Theodor', 'surname' => 'Gopher', 'employer' => '2'])];
         $this->assertEquals(
             $res,
             $this->session->find( $q ),
@@ -251,12 +224,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     {
         $employer = $this->session->load( "RelationTestEmployer", 1 );
 
-        $res = RelationTestPerson::__set_state(array(
-             'id' => '2',
-             'firstname' => 'Frederick',
-             'surname' => 'Ajax',
-             'employer' => '1',
-        ));
+        $res = RelationTestPerson::__set_state(['id' => '2', 'firstname' => 'Frederick', 'surname' => 'Ajax', 'employer' => '1']);
 
         $this->assertEquals(
             $res,
@@ -268,12 +236,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     public function testGetRelatedObjectFromEmployer2Success()
     {
         $employer = $this->session->load( "RelationTestEmployer", 2 );
-        $res = RelationTestPerson::__set_state(array(
-                'id' => '1',
-                'firstname' => 'Theodor',
-                'surname' => 'Gopher',
-                'employer' => '2',
-        ));
+        $res = RelationTestPerson::__set_state(['id' => '1', 'firstname' => 'Theodor', 'surname' => 'Gopher', 'employer' => '2']);
         $this->assertEquals(
             $res,
             $this->session->getRelatedObject( $employer, "RelationTestPerson" ),
@@ -299,37 +262,18 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     {
         $employer = $this->session->load( "RelationTestEmployer", 2 );
         $persons[0] = new RelationTestPerson();
-        $persons[0]->setState( array(
-            "firstname" => "Tobias",
-            "surname"  => "Preprocess",
-        ) );
+        $persons[0]->setState( ["firstname" => "Tobias", "surname"  => "Preprocess"] );
         $persons[1] = new RelationTestPerson();
-        $persons[1]->setState( array(
-            "firstname" => "Jan",
-            "surname"  => "Soap",
-        ) );
+        $persons[1]->setState( ["firstname" => "Jan", "surname"  => "Soap"] );
 
         foreach ( $persons as $person )
         {
             $this->session->addRelatedObject( $employer, $person );
         }
 
-        $res = array (
-            0 => 
-            RelationTestPerson::__set_state(array(
-                'id' => null,
-                'firstname' => 'Tobias',
-                'surname' => 'Preprocess',
-                'employer' => 2,
-            )),
-            1 => 
-            RelationTestPerson::__set_state(array(
-                'id' => null,
-                'firstname' => 'Jan',
-                'surname' => 'Soap',
-                'employer' => 2,
-            )),
-        );
+        $res = [0 => 
+        RelationTestPerson::__set_state(['id' => null, 'firstname' => 'Tobias', 'surname' => 'Preprocess', 'employer' => 2]), 1 => 
+        RelationTestPerson::__set_state(['id' => null, 'firstname' => 'Jan', 'surname' => 'Soap', 'employer' => 2])];
 
         $this->assertEquals(
             $res,
@@ -342,19 +286,11 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     {
         $employer = $this->session->load( "RelationTestEmployer", 2 );
         $person = new RelationTestPerson();
-        $person->setState( array(
-            "firstname" => "Jan",
-            "surname"  => "Soap",
-        ) );
+        $person->setState( ["firstname" => "Jan", "surname"  => "Soap"] );
 
         $this->session->addRelatedObject( $employer, $person );
 
-        $res = RelationTestPerson::__set_state(array(
-            'id' => null,
-            'firstname' => 'Jan',
-            'surname' => 'Soap',
-            'employer' => 2,
-        ));
+        $res = RelationTestPerson::__set_state(['id' => null, 'firstname' => 'Jan', 'surname' => 'Soap', 'employer' => 2]);
 
         $this->assertEquals(
             $res,
@@ -367,20 +303,12 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     {
         $employer = $this->session->load( "RelationTestEmployer", 2 );
         $person = new RelationTestPerson();
-        $person->setState( array(
-            "firstname" => "Jan",
-            "surname"  => "Soap",
-        ) );
+        $person->setState( ["firstname" => "Jan", "surname"  => "Soap"] );
 
         $this->session->addRelatedObject( $employer, $person );
         $this->session->save( $person );
 
-        $res = RelationTestPerson::__set_state(array(
-            'id' => 4,
-            'firstname' => 'Jan',
-            'surname' => 'Soap',
-            'employer' => 2,
-        ));
+        $res = RelationTestPerson::__set_state(['id' => 4, 'firstname' => 'Jan', 'surname' => 'Soap', 'employer' => 2]);
 
         $this->assertEquals(
             $res,
@@ -394,12 +322,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
         $employer = $this->session->load( "RelationTestEmployer", 2 );
         $address = new RelationTestAddress();
         $address->setState(
-            array(
-                "street" => "Test road",
-                "zip"    => 12345,
-                "city"   => "Testing town",
-                "type"   => "private"
-            )
+            ["street" => "Test road", "zip"    => 12345, "city"   => "Testing town", "type"   => "private"]
         );
 
         try
@@ -417,15 +340,9 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
     {
         $employer = $this->session->load( "RelationTestEmployer", 2 );
         $persons[0] = new RelationTestPerson();
-        $persons[0]->setState( array(
-            "firstname" => "Tobias",
-            "surname"  => "Preprocess",
-        ) );
+        $persons[0]->setState( ["firstname" => "Tobias", "surname"  => "Preprocess"] );
         $persons[1] = new RelationTestPerson();
-        $persons[1]->setState( array(
-            "firstname" => "Jan",
-            "surname"  => "Soap",
-        ) );
+        $persons[1]->setState( ["firstname" => "Jan", "surname"  => "Soap"] );
 
         foreach ( $persons as $person )
         {
@@ -437,22 +354,9 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
             $this->session->save( $person );
         }
 
-        $res = array(
-          0 => 
-          RelationTestPerson::__set_state(array(
-             'id' => 4,
-             'firstname' => 'Tobias',
-             'surname' => 'Preprocess',
-             'employer' => 2,
-          )),
-          1 => 
-          RelationTestPerson::__set_state(array(
-             'id' => 5,
-             'firstname' => 'Jan',
-             'surname' => 'Soap',
-             'employer' => 2,
-          )),
-        );
+        $res = [0 => 
+        RelationTestPerson::__set_state(['id' => 4, 'firstname' => 'Tobias', 'surname' => 'Preprocess', 'employer' => 2]), 1 => 
+        RelationTestPerson::__set_state(['id' => 5, 'firstname' => 'Jan', 'surname' => 'Soap', 'employer' => 2])];
 
         $this->assertEquals(
             $res,
@@ -468,12 +372,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
 
         $this->session->removeRelatedObject( $employer, $person );
 
-        $res = RelationTestPerson::__set_state(array(
-            'id' => '1',
-            'firstname' => 'Theodor',
-            'surname' => 'Gopher',
-            'employer' => null,
-        ));
+        $res = RelationTestPerson::__set_state(['id' => '1', 'firstname' => 'Theodor', 'surname' => 'Gopher', 'employer' => null]);
         $this->assertEquals(
             $res,
             $person,
@@ -492,7 +391,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
             $this->session->update( $person );
         }
 
-        $res = array();
+        $res = [];
 
         $this->assertEquals(
             $res,
@@ -520,7 +419,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
             );
 
             $this->assertEquals(
-                array(),
+                [],
                 $this->session->find( $q, "RelationTestPerson" ),
                 "Cascade not performed correctly to RelationTestPerson on delete."
             );
@@ -535,7 +434,7 @@ class ezcPersistentOneToManyRelationTest extends ezcTestCase
             );
 
             $this->assertEquals(
-                array(),
+                [],
                 $this->session->find( $q, "RelationTestBirthday" ),
                 "Cascade not performed correctly to RelationTestBirthday on delete."
             );

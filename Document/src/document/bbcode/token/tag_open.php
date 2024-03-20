@@ -36,7 +36,7 @@ class ezcDocumentBBCodeTagOpenToken extends ezcDocumentBBCodeToken
     {
         if ( strpos( $content, '=' ) )
         {
-            list( $content, $parameters ) = explode( '=', $content, 2 );
+            [$content, $parameters] = explode( '=', $content, 2 );
             $this->parameters = $parameters;
         }
 
@@ -52,7 +52,7 @@ class ezcDocumentBBCodeTagOpenToken extends ezcDocumentBBCodeToken
      */
     public static function __set_state( $properties )
     {
-        $tokenClass = __CLASS__;
+        $tokenClass = self::class;
         $token = new $tokenClass(
             $properties['content'],
             $properties['line'],

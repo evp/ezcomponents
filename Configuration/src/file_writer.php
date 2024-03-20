@@ -58,7 +58,7 @@ abstract class ezcConfigurationFileWriter extends ezcConfigurationWriter
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Contains the configuration object to write with the save() method.
@@ -138,7 +138,7 @@ abstract class ezcConfigurationFileWriter extends ezcConfigurationWriter
      */
     public function getOptions()
     {
-        return array( 'useComments' => $this->useComments, 'permissions' => $this->permissions );
+        return ['useComments' => $this->useComments, 'permissions' => $this->permissions];
     }
 
     /**
@@ -168,7 +168,7 @@ abstract class ezcConfigurationFileWriter extends ezcConfigurationWriter
      *                       writer class.
      * @return void
      */
-    public function init( $location, $name, ezcConfiguration $config, $options = array() )
+    public function init( $location, $name, ezcConfiguration $config, $options = [] )
     {
         $this->path = $location . DIRECTORY_SEPARATOR . $name . '.' . $this->getSuffix();
         $this->location = $location;

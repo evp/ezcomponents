@@ -32,7 +32,7 @@ abstract class ezcWebdavPropertyTestCase extends ezcTestCase
      * 
      * @var array(string=>mixed)
      */
-    protected $defaultValues = array();
+    protected $defaultValues = [];
 
     /**
      * Array with working values.
@@ -49,7 +49,7 @@ abstract class ezcWebdavPropertyTestCase extends ezcTestCase
      * 
      * @var array(string=>array(int=>mixed))
      */
-    protected $workingValues = array();
+    protected $workingValues = [];
 
     /**
      * Array with failing values.
@@ -66,7 +66,7 @@ abstract class ezcWebdavPropertyTestCase extends ezcTestCase
      * 
      * @var array(string=>array(int=>mixed))
      */
-    protected $failingValues = array();
+    protected $failingValues = [];
 
     /**
      * Class name of the property class to test. 

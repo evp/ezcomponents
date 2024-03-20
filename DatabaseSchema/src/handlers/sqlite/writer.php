@@ -21,17 +21,7 @@ class ezcDbSchemaSqliteWriter extends ezcDbSchemaCommonSqlWriter
      *
      * @var array
      */
-    private $typeMap = array(
-        'integer' => 'integer',
-        'boolean' => 'integer',
-        'float' => 'real',
-        'decimal' => 'numeric',
-        'date' => 'date',
-        'timestamp' => 'timestamp',
-        'text' => 'text',
-        'blob' => 'blob',
-        'clob' => 'clob'
-    );
+    private $typeMap = ['integer' => 'integer', 'boolean' => 'integer', 'float' => 'real', 'decimal' => 'numeric', 'date' => 'date', 'timestamp' => 'timestamp', 'text' => 'text', 'blob' => 'blob', 'clob' => 'clob'];
 
     /**
      * Returns what type of schema writer this class implements.
@@ -188,12 +178,12 @@ class ezcDbSchemaSqliteWriter extends ezcDbSchemaCommonSqlWriter
         $resultArray = $db->query( "PRAGMA TABLE_INFO( '$tableName' )" );
         $resultArray->setFetchMode( PDO::FETCH_NUM );
 
-        $fieldsDefinitions = array();
-        $fieldsList = array();
+        $fieldsDefinitions = [];
+        $fieldsList = [];
 
         foreach ( $resultArray as $row )
         {
-            $fieldSql = array();
+            $fieldSql = [];
             $fieldSql[] = $row[1]; // name
             if ( $row[1] == $changeFieldName )
             {
@@ -267,12 +257,12 @@ class ezcDbSchemaSqliteWriter extends ezcDbSchemaCommonSqlWriter
         $resultArray = $db->query( "PRAGMA TABLE_INFO( $tableName )" );
         $resultArray->setFetchMode( PDO::FETCH_NUM );
 
-        $fieldsDefinitions = array();
-        $fieldsList = array();
+        $fieldsDefinitions = [];
+        $fieldsList = [];
 
         foreach ( $resultArray as $row )
         {
-            $fieldSql = array();
+            $fieldSql = [];
             $fieldSql[] = "'{$row[1]}'"; // name
             if ( $row[1] == $dropFieldName )
             {
@@ -336,8 +326,8 @@ class ezcDbSchemaSqliteWriter extends ezcDbSchemaCommonSqlWriter
         $this->diffSchema = $dbSchemaDiff;
 
         // reset queries
-        $this->queries = array();
-        $this->context = array();
+        $this->queries = [];
+        $this->context = [];
 
         $this->generateDiffSchemaAsSql();
         return $this->queries;
@@ -391,7 +381,7 @@ class ezcDbSchemaSqliteWriter extends ezcDbSchemaCommonSqlWriter
     protected function convertFromGenericType( ezcDbSchemaField $fieldDefinition )
     {
         $typeAddition = '';
-        if ( in_array( $fieldDefinition->type, array( 'decimal', 'text' ) ) )
+        if ( in_array( $fieldDefinition->type, ['decimal', 'text'] ) )
         {
             if ( $fieldDefinition->length !== false && $fieldDefinition->length !== 0 )
             {
@@ -509,7 +499,7 @@ class ezcDbSchemaSqliteWriter extends ezcDbSchemaCommonSqlWriter
     protected function generateFieldSql( $fieldName, ezcDbSchemaField $fieldDefinition )
     {
         $sqlDefinition = "'$fieldName' ";
-        $defList = array();
+        $defList = [];
 
         $type = $this->convertFromGenericType( $fieldDefinition );
         $defList[] = $type;
@@ -570,7 +560,7 @@ class ezcDbSchemaSqliteWriter extends ezcDbSchemaCommonSqlWriter
 
         $sql .= " ( ";
 
-        $indexFieldSql = array();
+        $indexFieldSql = [];
         foreach ( $indexDefinition->indexFields as $indexFieldName => $dummy )
         {
             $indexFieldSql[] = "'$indexFieldName'";

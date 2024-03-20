@@ -38,11 +38,7 @@ class ezcDocumentDocbookToHtmlMediaObjectHandler extends ezcDocumentDocbookToHtm
         $image = $root->ownerDocument->createElement( 'img' );
 
         // Transform attributes
-        $attributes = array(
-            'width'   => 'width',
-            'depth'   => 'height',
-            'fileref' => 'src',
-        );
+        $attributes = ['width'   => 'width', 'depth'   => 'height', 'fileref' => 'src'];
         foreach ( $attributes as $src => $dst )
         {
             if ( $resource->hasAttribute( $src ) )

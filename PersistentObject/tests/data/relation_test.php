@@ -6,7 +6,7 @@ class RelationTest
      */
     public static function insertData( $db = null )
     {
-        $db = ( $db === null ? ezcDbInstance::get() : $db );
+        $db ??= ezcDbInstance::get();
 
         $db->exec( "INSERT INTO " . $db->quoteIdentifier( "PO_addresses" ) . " (" . $db->quoteIdentifier( "street" ) . ", " . $db->quoteIdentifier( "zip" ) . ", " . $db->quoteIdentifier( "city" ) . ", " . $db->quoteIdentifier( "type" ) . ") VALUES (" . $db->quote( "Httproad 23" ) . ", " . $db->quote( "12345" ) . ", " . $db->quote( "Internettown" ) . ", " . $db->quote( "work" ) . ")" );
         $db->exec( "INSERT INTO " . $db->quoteIdentifier( "PO_addresses" ) . " (" . $db->quoteIdentifier( "street" ) . ", " . $db->quoteIdentifier( "zip" ) . ", " . $db->quoteIdentifier( "city" ) . ", " . $db->quoteIdentifier( "type" ) . ") VALUES (" . $db->quote( "Ftpstreet 42" ) . ", " . $db->quote( "12345" ) . ", " . $db->quote( "Internettown" ) . ", " . $db->quote( "work" ) . ")" );
@@ -49,7 +49,7 @@ class RelationTest
     {
         $db = ezcDbInstance::get();
         $schema = ezcDbSchema::createFromDb( $db );
-        $schema->writeToFile( "array", dirname( __FILE__ ) . "/relation.dba" );
+        $schema->writeToFile( "array", __DIR__ . "/relation.dba" );
     }
 
     /**
@@ -57,14 +57,14 @@ class RelationTest
      */
     public static function setupTables( $db = null )
     {
-        $db = ( $db === null ? ezcDbInstance::get() : $db );
-        $schema = ezcDbSchema::createFromFile( "array", dirname( __FILE__ ) . "/relation.dba" );
+        $db ??= ezcDbInstance::get();
+        $schema = ezcDbSchema::createFromFile( "array", __DIR__ . "/relation.dba" );
         $schema->writeToDb( $db );
     }
 
     public static function cleanup( $db = null )
     {
-        $db = ( $db === null ? ezcDbInstance::get() : $db );
+        $db ??= ezcDbInstance::get();
 
         $db->exec( "DROP TABLE " . $db->quoteIdentifier( "PO_addresses" ) );
         $db->exec( "DROP TABLE " . $db->quoteIdentifier( "PO_birthdays" ) );

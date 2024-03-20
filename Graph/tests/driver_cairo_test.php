@@ -23,9 +23,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
     protected $basePath;
 
-    protected $testFiles = array(
-        'png'           => 'png.png',
-    );
+    protected $testFiles = ['png'           => 'png.png'];
 
 	public static function suite()
 	{
@@ -40,8 +38,8 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         }
 
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
 
         $this->driver = new ezcGraphCairoDriver();
         $this->driver->options->width = 200;
@@ -81,7 +79,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -130,7 +128,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -162,7 +160,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -173,11 +171,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $return = $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             true
         );
@@ -191,18 +185,14 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
 
         $this->assertEquals(
             $return,
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             'Expected point array as return value.'
         );
     }
@@ -212,11 +202,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A47F' ),
             true
         );
@@ -230,7 +216,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -241,11 +227,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             false
         );
@@ -259,7 +241,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -270,13 +252,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-                new ezcGraphCoordinate( 3, 45 ),
-                new ezcGraphCoordinate( 60, 32 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 ), new ezcGraphCoordinate( 3, 45 ), new ezcGraphCoordinate( 60, 32 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             true
         );
@@ -290,7 +266,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -318,19 +294,14 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
 
         $this->assertEquals(
             $return,
-            array(
-                new ezcGraphCoordinate( 100., 50. ),
-                new ezcGraphCoordinate( 139., 54. ),
-                new ezcGraphCoordinate( 137., 58. ),
-                new ezcGraphCoordinate( 136., 58.5 ),
-            ),
+            [new ezcGraphCoordinate( 100., 50. ), new ezcGraphCoordinate( 139., 54. ), new ezcGraphCoordinate( 137., 58. ), new ezcGraphCoordinate( 136., 58.5 )],
             'Expected point array as return value.',
             1.
         );
@@ -359,7 +330,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -387,7 +358,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -415,7 +386,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
         $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -445,19 +416,14 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
 
         $this->assertEquals(
             $return,
-            array(
-                new ezcGraphCoordinate( 173., 59. ),
-                new ezcGraphCoordinate( 143., 83. ),
-                new ezcGraphCoordinate( 153., 83. ),
-                new ezcGraphCoordinate( 183., 59. ),
-            ),
+            [new ezcGraphCoordinate( 173., 59. ), new ezcGraphCoordinate( 143., 83. ), new ezcGraphCoordinate( 153., 83. ), new ezcGraphCoordinate( 183., 59. )],
             'Expected point array as return value.',
             1.
         );
@@ -486,7 +452,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -515,7 +481,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -545,7 +511,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             0
         );
@@ -572,19 +538,14 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
 
         $this->assertEquals(
             $return,
-            array(
-                new ezcGraphCoordinate( 140., 50. ),
-                new ezcGraphCoordinate( 100., 70. ),
-                new ezcGraphCoordinate( 60., 50. ),
-                new ezcGraphCoordinate( 100., 30. ),
-            ),
+            [new ezcGraphCoordinate( 140., 50. ), new ezcGraphCoordinate( 100., 70. ), new ezcGraphCoordinate( 60., 50. ), new ezcGraphCoordinate( 100., 30. )],
             'Expected point array as return value.',
             1.
         );
@@ -611,7 +572,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -637,7 +598,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -669,7 +630,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -709,7 +670,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -736,19 +697,14 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
 
         $this->assertEquals(
             $return,
-            array(
-                new ezcGraphCoordinate( 10., 10. ),
-                new ezcGraphCoordinate( 160., 10. ),
-                new ezcGraphCoordinate( 160., 80. ),
-                new ezcGraphCoordinate( 10., 80. ),
-            ),
+            [new ezcGraphCoordinate( 10., 10. ), new ezcGraphCoordinate( 160., 10. ), new ezcGraphCoordinate( 160., 80. ), new ezcGraphCoordinate( 10., 80. )],
             'Expected point array as return value.',
             1.
         );
@@ -781,7 +737,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -809,7 +765,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -837,7 +793,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -864,7 +820,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -891,7 +847,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -918,7 +874,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -929,12 +885,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 20, 20 ),
-                new ezcGraphCoordinate( 110, 20 ),
-                new ezcGraphCoordinate( 110, 30 ),
-                new ezcGraphCoordinate( 20, 30 ),
-            ),
+            [new ezcGraphCoordinate( 20, 20 ), new ezcGraphCoordinate( 110, 20 ), new ezcGraphCoordinate( 110, 30 ), new ezcGraphCoordinate( 20, 30 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -955,7 +906,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -982,7 +933,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1009,7 +960,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1036,7 +987,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1063,7 +1014,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1090,7 +1041,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1117,7 +1068,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1144,7 +1095,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1171,7 +1122,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1182,12 +1133,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $this->driver->drawPolygon(
-            array(
-                new ezcGraphCoordinate( 47, 54 ),
-                new ezcGraphCoordinate( 47, 84 ),
-                new ezcGraphCoordinate( 99, 84 ),
-                new ezcGraphCoordinate( 99, 54 ),
-            ),
+            [new ezcGraphCoordinate( 47, 54 ), new ezcGraphCoordinate( 47, 84 ), new ezcGraphCoordinate( 99, 84 ), new ezcGraphCoordinate( 99, 54 )],
             ezcGraphColor::fromHex( '#DDDDDD' ),
             true
         );
@@ -1208,7 +1154,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             10
         );
@@ -1262,7 +1208,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1293,7 +1239,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1323,7 +1269,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1353,7 +1299,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1385,7 +1331,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1413,7 +1359,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1445,7 +1391,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1477,7 +1423,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -1499,7 +1445,7 @@ class ezcGraphCairoDriverTest extends ezcTestImageCase
 
         $this->assertImageSimilar( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );

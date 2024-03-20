@@ -51,7 +51,7 @@ class ezcWebdavLockIfHeaderListItem
      * @param array(ezcWebdavIfHeaderCondition) $lockTokens 
      * @param array(ezcWebdavIfHeaderCondition) $eTags 
      */
-    public function __construct( array $lockTokens = array(), array $eTags = array() )
+    public function __construct( array $lockTokens = [], array $eTags = [] )
     {
         $this->lockTokens = $lockTokens;
         $this->eTags      = $eTags;

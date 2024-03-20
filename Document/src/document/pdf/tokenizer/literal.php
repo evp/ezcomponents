@@ -46,7 +46,7 @@ class ezcDocumentPdfLiteralTokenizer extends ezcDocumentPdfTokenizer
     public function tokenize( $string )
     {
         $lines  = preg_split( '(\r\n|\r|\n)', $string );
-        $tokens = array();
+        $tokens = [];
         foreach ( $lines as $nr => $line )
         {
             // @todo: Use a somehow configured tab-width instead of the default;
@@ -65,7 +65,7 @@ class ezcDocumentPdfLiteralTokenizer extends ezcDocumentPdfTokenizer
             $tokens = array_merge(
                 $tokens,
                 $words,
-                array( self::FORCED )
+                [self::FORCED]
             );
         }
 

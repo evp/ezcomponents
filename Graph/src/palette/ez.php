@@ -34,29 +34,14 @@ class ezcGraphPaletteEz extends ezcGraphPalette
      * 
      * @var array
      */
-    protected $dataSetColor = array(
-        '#C60C30',
-        '#C90062',
-        '#E05206',
-        '#F0AB00',
-        '#D4BA00',
-        '#9C9A00',
-        '#3C8A2E',
-        '#006983',
-        '#0098C3',
-        '#21578A',
-        '#55517B',
-        '#4E7D5B',
-    );
+    protected $dataSetColor = ['#C60C30', '#C90062', '#E05206', '#F0AB00', '#D4BA00', '#9C9A00', '#3C8A2E', '#006983', '#0098C3', '#21578A', '#55517B', '#4E7D5B'];
 
     /**
      * Array with symbols for datasets 
      * 
      * @var array
      */
-    protected $dataSetSymbol = array(
-        ezcGraph::BULLET,
-    );
+    protected $dataSetSymbol = [ezcGraph::BULLET];
 
     /**
      * Name of font to use

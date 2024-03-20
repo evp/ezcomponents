@@ -13,7 +13,7 @@ abstract class ezcMvcView
     protected function createResponseBody()
     {
         $zones = $this->createZones( true );
-        $processed = array();
+        $processed = [];
 
         foreach( $zones as $zone )
         {
@@ -79,7 +79,7 @@ class yourWebshopApplicationHtmlViewHandlerUsingTemplate extends ezcMvcView
     // Configure the view handler
     public function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         // Add a zone this way
         $zones[] = new ezcMvcTemplateViewHandler( 'yourShoppingCart', 'shopping_cart.ezt' );
 
@@ -96,7 +96,7 @@ class yourNewWebsiteUsingWebshopAndBlog extends ezcMvcView
 {
     public function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         // Include zones from another application (that is decoupled, and
         // ignore the page layout)
         $viewHandlerInstance = new yourWebshopApplicationHtmlViewHandlerUsingTemplate();
@@ -140,7 +140,7 @@ class ezcMvcTemplateViewHandler implements ezcMvcViewHandler
 
 class ezcMvcPhpViewHandler implements ezcMvcViewHandler
 {
-    protected $publicVariables = array();
+    protected $publicVariables = [];
 
     public function __construct( $name, $templateLocation )
     {

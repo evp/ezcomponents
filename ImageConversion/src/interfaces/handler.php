@@ -140,10 +140,7 @@ abstract class ezcImageHandler
      */
     protected function needsTransparencyConversion( $inMime, $outMime )
     {
-        $transparencyMimes = array(
-            'image/gif' => true,
-            'image/png' => true,
-        );
+        $transparencyMimes = ['image/gif' => true, 'image/png' => true];
         return (
                $outMime !== null
             && $inMime !== $outMime

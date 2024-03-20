@@ -67,7 +67,7 @@ class ezcGraphGdDriverOptions extends ezcGraphDriverOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['imageFormat'] = IMG_PNG;
         $this->properties['jpegQuality'] = 70;

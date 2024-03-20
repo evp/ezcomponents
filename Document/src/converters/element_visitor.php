@@ -32,7 +32,7 @@ abstract class ezcDocumentElementVisitorConverter extends ezcDocumentConverter
      *
      * @var array
      */
-    protected $visitorElementHandler = array();
+    protected $visitorElementHandler = [];
 
     /**
      * Deafult document namespace

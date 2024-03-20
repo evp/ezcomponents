@@ -28,8 +28,8 @@ class ezcConsoleOptionTest extends ezcTestCase
         $optionDependency = new ezcConsoleOption( "d", "depend" );
         $optionExclusion = new ezcConsoleOption( "e", "exclude" );
 
-        $ruleDependency = new ezcConsoleOptionRule( $optionDependency, array( "abc" ) );
-        $ruleExclusion = new ezcConsoleOptionRule( $optionExclusion, array( "abc" ) );
+        $ruleDependency = new ezcConsoleOptionRule( $optionDependency, ["abc"] );
+        $ruleExclusion = new ezcConsoleOptionRule( $optionExclusion, ["abc"] );
 
         $option = new ezcConsoleOption(
             "a",
@@ -39,8 +39,8 @@ class ezcConsoleOptionTest extends ezcTestCase
             true,
             "Shorthelp",
             "Longhelp",
-            array( $ruleDependency ),
-            array( $ruleExclusion ),
+            [$ruleDependency],
+            [$ruleExclusion],
             false,
             true,
             true
@@ -53,8 +53,8 @@ class ezcConsoleOptionTest extends ezcTestCase
         $this->assertTrue( $option->multiple );
         $this->assertEquals( "Shorthelp", $option->shorthelp );
         $this->assertEquals( "Longhelp", $option->longhelp );
-        $this->assertEquals( array( $ruleDependency ), $option->getDependencies() );
-        $this->assertEquals( array( $ruleExclusion ), $option->getExclusions() );
+        $this->assertEquals( [$ruleDependency], $option->getDependencies() );
+        $this->assertEquals( [$ruleExclusion], $option->getExclusions() );
         $this->assertFalse( $option->arguments );
         $this->assertTrue( $option->mandatory );
         $this->assertTrue( $option->isHelpOption );
@@ -99,14 +99,14 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addDependency( $rule );
         $option_1->addDependency( $rule );
 
         $this->assertAttributeEquals(
-            array( $rule ),
+            [$rule],
             "dependencies",
             $option_1
         );
@@ -124,14 +124,14 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addDependency( $rule );
         $option_1->removeDependency( $rule );
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             "dependencies",
             $option_1
         );
@@ -150,11 +150,11 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule_1 = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $rule_2 = new ezcConsoleOptionRule(
-            $option_2, array( "d" )
+            $option_2, ["d"]
         );
 
         $option_1->addDependency( $rule_1 );
@@ -162,7 +162,7 @@ class ezcConsoleOptionTest extends ezcTestCase
         $option_1->removeAllDependencies( $option_2 );
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             "dependencies",
             $option_1
         );
@@ -181,7 +181,7 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addDependency( $rule );
@@ -203,7 +203,7 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $this->assertFalse(
@@ -223,14 +223,14 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addDependency( $rule );
         $option_1->resetDependencies();
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             "dependencies",
             $option_1
         );
@@ -248,14 +248,14 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addExclusion( $rule );
         $option_1->addExclusion( $rule );
 
         $this->assertAttributeEquals(
-            array( $rule ),
+            [$rule],
             "exclusions",
             $option_1
         );
@@ -273,14 +273,14 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addExclusion( $rule );
         $option_1->removeExclusion( $rule );
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             "exclusions",
             $option_1
         );
@@ -299,11 +299,11 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule_1 = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $rule_2 = new ezcConsoleOptionRule(
-            $option_2, array( "d" )
+            $option_2, ["d"]
         );
 
         $option_1->addExclusion( $rule_1 );
@@ -311,7 +311,7 @@ class ezcConsoleOptionTest extends ezcTestCase
         $option_1->removeAllExclusions( $option_2 );
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             "exclusions",
             $option_1
         );
@@ -330,7 +330,7 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addExclusion( $rule );
@@ -352,7 +352,7 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $this->assertFalse(
@@ -372,14 +372,14 @@ class ezcConsoleOptionTest extends ezcTestCase
         );
 
         $rule = new ezcConsoleOptionRule(
-            $option_2, array( "c" )
+            $option_2, ["c"]
         );
 
         $option_1->addExclusion( $rule );
         $option_1->resetExclusions();
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             "exclusions",
             $option_1
         );
@@ -474,9 +474,9 @@ class ezcConsoleOptionTest extends ezcTestCase
     {
         $option = new ezcConsoleOption( "a", "aaa" );
         $option->multiple = true;
-        $option->default = array( "foo", "bar" );
+        $option->default = ["foo", "bar"];
 
-        $this->assertEquals( array( "foo", "bar" ), $option->default );
+        $this->assertEquals( ["foo", "bar"], $option->default );
     }
 
     public function testPropertySetAccessSuccessMultipleScalar()
@@ -494,7 +494,7 @@ class ezcConsoleOptionTest extends ezcTestCase
         $option->multiple = false;
         try
         {
-            $option->default = array( "foo", "bar" );
+            $option->default = ["foo", "bar"];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -554,7 +554,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->default = array();
+            $option->default = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -569,7 +569,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->multiple = array();
+            $option->multiple = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -584,7 +584,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->shorthelp = array();
+            $option->shorthelp = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -599,7 +599,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->longhelp = array();
+            $option->longhelp = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -614,7 +614,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->arguments = array();
+            $option->arguments = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -629,7 +629,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->mandatory = array();
+            $option->mandatory = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -644,7 +644,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->isHelpOption = array();
+            $option->isHelpOption = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -659,7 +659,7 @@ class ezcConsoleOptionTest extends ezcTestCase
 
         try
         {
-            $option->nonExistent = array();
+            $option->nonExistent = [];
         }
         catch ( ezcBasePropertyNotFoundException $e )
         {

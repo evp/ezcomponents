@@ -29,8 +29,8 @@ class ezcDocumentXhtmlTextToParagraphFilter extends ezcDocumentXhtmlElementBaseF
      */
     public function filterElement( DOMElement $element )
     {
-        $aggregated = array();
-        $processed  = array();
+        $aggregated = [];
+        $processed  = [];
         for ( $i = ( $element->childNodes->length - 1 ); $i >= 0; --$i )
         {
             // Get type of current row, or set row type to null, if it is no
@@ -75,7 +75,7 @@ class ezcDocumentXhtmlTextToParagraphFilter extends ezcDocumentXhtmlElementBaseF
                     }
 
                     // Clean up
-                    $aggregated = array();
+                    $aggregated = [];
 
                     // Maybe we need to handle the current element again.
                     ++$i;
@@ -110,26 +110,13 @@ class ezcDocumentXhtmlTextToParagraphFilter extends ezcDocumentXhtmlElementBaseF
      */
     public function handles( DOMElement $element )
     {
-        if ( in_array( $element->tagName, array( 
-                'div',
-                'del',
-                'ins',
-             ) ) &&
+        if ( in_array( $element->tagName, ['div', 'del', 'ins'] ) &&
              ( $element->parentNode instanceof DOMElement ) )
         {
             return $this->handles( $element->parentNode );
         }
 
-        return in_array( $element->tagName, array(
-            'body',
-            'dd',
-            'fieldset',
-            'form',
-            'li',
-            'menu',
-            'th',
-            'td',
-        ) );
+        return in_array( $element->tagName, ['body', 'dd', 'fieldset', 'form', 'li', 'menu', 'th', 'td'] );
     }
 }
 

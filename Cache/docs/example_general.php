@@ -11,7 +11,7 @@
 require_once 'Base/src/base.php';
 
 // Some pre-work, needed by the example
-$basePath = dirname( __FILE__ ).'/cache';
+$basePath = __DIR__.'/cache';
 function getUniqueId()
 {
     return 'This is a unique ID';
@@ -33,9 +33,7 @@ function __autoload( $className )
 // will be created on demand, when you use them for the first time
 
 // Configuration options for a cache {@link ezcCacheStorage}
-$options = array(
-    'ttl'   => 60*60*24*2,     // Default would be 1 day, here 2 days
-);
+$options = ['ttl'   => 60*60*24*2];
 
 // Create a cache named "content", that resides in /var/cache/content
 // The cache instance will use the {@link ezcCacheStorageFileArray} class
@@ -59,7 +57,7 @@ $cache = ezcCacheManager::getCache( 'content' );
 // Specify any number of attributes to identify the cache item you want
 // to store. This attributes can be used later to perform operations
 // on a set of cache items, that share a common attribute.
-$attributes = array( 'node' => 2, 'area' => 'admin', 'lang' => 'en-GB' );
+$attributes = ['node' => 2, 'area' => 'admin', 'lang' => 'en-GB'];
 // This function is not part of the Cache package. You have to define
 // unique IDs for your cache items yourself.
 $id = getUniqueId();
@@ -72,7 +70,7 @@ if ( ( $data = $cache->restore( $id, $attributes ) ) === false )
 {
    // The cache item we tried to restore does not exist, so we have to
    // generate the data.
-   $data = array( 'This is some data', 'and some more data.' );
+   $data = ['This is some data', 'and some more data.'];
    // For testing we echo something here...
    echo "No cache data found. Generated some.\n".var_export( $data, true )."\n";
    // Now we store the data in the cache. It will be available through 
@@ -92,5 +90,5 @@ $cache = ezcCacheManager::getCache( 'template' );
 // have meant to delete 1 specific cache item), but only an array of 
 // attributes. This will result in all cache items to be deleted, that
 // have this attribute assigned.
-$cache->delete( null, array( 'node' => 5 ) );
+$cache->delete( null, ['node' => 5] );
 ?>

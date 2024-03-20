@@ -13,7 +13,7 @@ $graph->rotationAxis->majorStep = 2;
 $graph->rotationAxis->minorStep = .5;
 
 mt_srand( 5 );
-$data = array();
+$data = [];
 for ( $i = 0; $i <= 10; $i++ )
 {
     $data[$i] = mt_rand( -5, 5 );

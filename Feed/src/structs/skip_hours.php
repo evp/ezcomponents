@@ -35,7 +35,7 @@ class ezcFeedSkipHoursElement extends ezcFeedElement
             case 'hours':
                 if ( !is_array( $value ) )
                 {
-                    $value = array( $value );
+                    $value = [$value];
                 }
 
                 $this->properties[$name] = $value;

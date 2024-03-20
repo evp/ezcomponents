@@ -30,8 +30,8 @@ class ezcDocumentXhtmlTableElementFilter extends ezcDocumentXhtmlElementBaseFilt
     public function filterElement( DOMElement $element )
     {
         $type       = false;
-        $aggregated = array();
-        $processed  = array();
+        $aggregated = [];
+        $processed  = [];
         for ( $i = ( $element->childNodes->length - 1 ); $i >= -1; --$i )
         {
             // Get type of current row, or set row type to null, if it is no
@@ -78,7 +78,7 @@ class ezcDocumentXhtmlTableElementFilter extends ezcDocumentXhtmlElementBaseFilt
                 }
 
                 // Clean up
-                $aggregated = array();
+                $aggregated = [];
                 $type = false;
 
                 // Maybe we need to handle the current element again.

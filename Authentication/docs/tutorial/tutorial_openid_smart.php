@@ -8,11 +8,11 @@ $session = new ezcAuthenticationSession( $options );
 $session->start();
 
 // URL after returning from OpenID authentication
-$url = isset( $_GET['openid_identity'] ) ? $_GET['openid_identity'] : $session->load();
+$url = $_GET['openid_identity'] ?? $session->load();
 if ( $url === null )
 {
     // URL at the start of authentication
-    $url = isset( $_GET['openid_identifier'] ) ? $_GET['openid_identifier'] : $session->load();
+    $url = $_GET['openid_identifier'] ?? $session->load();
 }
 
 $action = isset( $_GET['action'] ) ? strtolower( $_GET['action'] ) : null;
@@ -33,7 +33,7 @@ else
     $options->store = new ezcAuthenticationOpenidFileStore( '/tmp/store' );
 
     $filter = new ezcAuthenticationOpenidFilter( $options );
-    $filter->registerFetchData( array( 'fullname', 'gender', 'country', 'language' ) );
+    $filter->registerFetchData( ['fullname', 'gender', 'country', 'language'] );
     $authentication->addFilter( $filter );
 }
 
@@ -41,12 +41,14 @@ if ( !$authentication->run() )
 {
     // authentication did not succeed, so inform the user
     $status = $authentication->getStatus();
-    $err = array();
+    $err = [];
     $err["user"] = "";
     $err["session"] = "";
     for ( $i = 0; $i < count( $status ); $i++ )
     {
-        list( $key, $value ) = each( $status[$i] );
+        $key = key($status[$i]);
+        $value = current($status[$i]);
+        next($status[$i]);
         switch ( $key )
         {
             case 'ezcAuthenticationOpenidFilter':

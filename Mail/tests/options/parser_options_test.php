@@ -8,7 +8,7 @@
  * @subpackage Tests
  */
 
-require dirname( __FILE__ ) . '/classes/custom_classes.php';
+require __DIR__ . '/classes/custom_classes.php';
 
 /**
  * @package Mail
@@ -18,7 +18,7 @@ class ezcMailParserOptionsTest extends ezcTestCase
 {
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( __CLASS__ );
+         return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testParserOptionsMailClassDefault()

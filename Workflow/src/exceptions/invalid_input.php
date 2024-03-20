@@ -24,9 +24,7 @@ class ezcWorkflowInvalidInputException extends ezcWorkflowExecutionException
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-      'errors' => array(),
-    );
+    protected $properties = ['errors' => []];
 
     /**
      * Constructor.
@@ -37,7 +35,7 @@ class ezcWorkflowInvalidInputException extends ezcWorkflowExecutionException
     {
         $this->properties['errors'] = $message;
 
-        $messages = array();
+        $messages = [];
 
         foreach ( $message as $variable => $condition )
         {

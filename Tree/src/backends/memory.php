@@ -43,7 +43,7 @@ class ezcTreeMemory extends ezcTree
      *
      * @var array(string=>ezcTreeMemoryNode)
      */
-    private $nodeList = array();
+    private $nodeList = [];
 
     /**
      * Contains the root node.
@@ -181,7 +181,7 @@ class ezcTreeMemory extends ezcTree
         $list = new ezcTreeNodeList;
         $memoryNode = $this->getNodeById( $nodeId );
 
-        $nodes = array();
+        $nodes = [];
         $nodes[] = $memoryNode->node;
 
         $memoryNode = $memoryNode->parent;
@@ -426,11 +426,11 @@ class ezcTreeMemory extends ezcTree
     public function setRootNode( ezcTreeNode $node )
     {
         // wipe nodelist and data
-        $this->nodeList = array();
+        $this->nodeList = [];
         $this->store->deleteDataForAllNodes();
 
         // replace root node
-        $newObj = new ezcTreeMemoryNode( $node, array() );
+        $newObj = new ezcTreeMemoryNode( $node, [] );
         $this->rootNode = $newObj;
 
         // Add to node list
@@ -471,7 +471,7 @@ class ezcTreeMemory extends ezcTree
         $parentMemoryNode = $this->getNodeById( $parentId );
 
         // Create new node
-        $newObj = new ezcTreeMemoryNode( $childNode, array(), $parentMemoryNode );
+        $newObj = new ezcTreeMemoryNode( $childNode, [], $parentMemoryNode );
 
         // Append to parent node
         $parentMemoryNode->children[$childNode->id] = $newObj;

@@ -39,12 +39,7 @@ class ezcCacheStackStorageConfiguration
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'id'        => null,
-        'storage'   => null,
-        'itemLimit' => null,
-        'freeRate'  => null,
-    );
+    protected $properties = ['id'        => null, 'storage'   => null, 'itemLimit' => null, 'freeRate'  => null];
 
     /**
      * Creates a new storage configuration.

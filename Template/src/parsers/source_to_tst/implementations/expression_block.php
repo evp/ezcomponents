@@ -155,7 +155,7 @@ class ezcTemplateExpressionBlockSourceToTstParser extends ezcTemplateSourceToTst
         }
 
         $this->block->expressionRoot = $rootOperator;
-        $this->block->children = array( $rootOperator );
+        $this->block->children = [$rootOperator];
         $this->appendElement( $this->block );
 
         return true;

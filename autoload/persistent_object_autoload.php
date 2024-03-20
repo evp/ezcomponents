@@ -9,11 +9,5 @@
  * @package PersistentObjectDatabaseSchemaTiein
  */
 
-return array(
-    'ezcPersistentObjectSchemaOverwriteException'    => 'PersistentObjectDatabaseSchemaTiein/exceptions/file_overwrite.php',
-    'ezcPersistentObjectSchemaGenerator'             => 'PersistentObjectDatabaseSchemaTiein/generator.php',
-    'ezcPersistentObjectSchemaTemplateFunctions'     => 'PersistentObjectDatabaseSchemaTiein/template_writer/template_functions.php',
-    'ezcPersistentObjectTemplateSchemaWriter'        => 'PersistentObjectDatabaseSchemaTiein/template_writer.php',
-    'ezcPersistentObjectTemplateSchemaWriterOptions' => 'PersistentObjectDatabaseSchemaTiein/options/template_writer_options.php',
-);
+return ['ezcPersistentObjectSchemaOverwriteException'    => 'PersistentObjectDatabaseSchemaTiein/exceptions/file_overwrite.php', 'ezcPersistentObjectSchemaGenerator'             => 'PersistentObjectDatabaseSchemaTiein/generator.php', 'ezcPersistentObjectSchemaTemplateFunctions'     => 'PersistentObjectDatabaseSchemaTiein/template_writer/template_functions.php', 'ezcPersistentObjectTemplateSchemaWriter'        => 'PersistentObjectDatabaseSchemaTiein/template_writer.php', 'ezcPersistentObjectTemplateSchemaWriterOptions' => 'PersistentObjectDatabaseSchemaTiein/options/template_writer_options.php'];
 ?>

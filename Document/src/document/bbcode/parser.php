@@ -46,24 +46,15 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $shifts = array(
-        'ezcDocumentBBCodeTagOpenToken'
-            => 'shiftOpeningToken',
-        'ezcDocumentBBCodeTagCloseToken'
-            => 'shiftClosingToken',
-        'ezcDocumentBBCodeListItemToken'
-            => 'shiftListItemToken',
-        'ezcDocumentBBCodeWhitespaceToken'
-            => 'shiftWhitespaceToken',
-        'ezcDocumentBBCodeTextLineToken'
-            => 'shiftTextToken',
-        'ezcDocumentBBCodeLiteralBlockToken'
-            => 'shiftLiteralBlockToken',
-        'ezcDocumentBBCodeNewLineToken'
-            => 'shiftNewLineToken',
-        'ezcDocumentBBCodeEndOfFileToken'
-            => 'shiftEndOfFileToken',
-    );
+    protected $shifts = ['ezcDocumentBBCodeTagOpenToken'
+        => 'shiftOpeningToken', 'ezcDocumentBBCodeTagCloseToken'
+        => 'shiftClosingToken', 'ezcDocumentBBCodeListItemToken'
+        => 'shiftListItemToken', 'ezcDocumentBBCodeWhitespaceToken'
+        => 'shiftWhitespaceToken', 'ezcDocumentBBCodeTextLineToken'
+        => 'shiftTextToken', 'ezcDocumentBBCodeLiteralBlockToken'
+        => 'shiftLiteralBlockToken', 'ezcDocumentBBCodeNewLineToken'
+        => 'shiftNewLineToken', 'ezcDocumentBBCodeEndOfFileToken'
+        => 'shiftEndOfFileToken'];
 
     /**
      * Array containing simplified reduce ruleset.
@@ -82,23 +73,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $reductions = array(
-        'ezcDocumentBBCodeClosingTagNode' => array(
-            'reduceTags',
-        ),
-        'ezcDocumentBBCodeParagraphNode' => array(
-            'reduceParagraph',
-        ),
-        'ezcDocumentBBCodeDocumentNode' => array(
-            'reduceDocument',
-        ),
-        'ezcDocumentBBCodeListItemNode' => array(
-            'reduceListItem',
-        ),
-        'ezcDocumentBBCodeListEndNode' => array(
-            'reduceList',
-        ),
-    );
+    protected $reductions = ['ezcDocumentBBCodeClosingTagNode' => ['reduceTags'], 'ezcDocumentBBCodeParagraphNode' => ['reduceParagraph'], 'ezcDocumentBBCodeDocumentNode' => ['reduceDocument'], 'ezcDocumentBBCodeListItemNode' => ['reduceListItem'], 'ezcDocumentBBCodeListEndNode' => ['reduceList']];
 
     /**
      * Contains a list of detected syntax elements.
@@ -113,7 +88,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $documentStack = array();
+    protected $documentStack = [];
 
     /**
      * Parse token stream.
@@ -224,7 +199,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
         if ( ( count( $this->documentStack ) !== 1 ) ||
              ( !( $document = reset( $this->documentStack ) ) instanceof ezcDocumentBBCodeDocumentNode ) )
         {
-            $node = isset( $document ) ? $document : reset( $this->documentStack );
+            $node = $document ?? reset( $this->documentStack );
             $this->triggerError(
                 E_PARSE,
                 'Expected end of file, got: ' . get_class( $this->documentStack[1] ) . ".",
@@ -471,7 +446,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
      */
     protected function reduceTags( ezcDocumentBBCodeClosingTagNode $node )
     {
-        $nodes = array();
+        $nodes = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( ( !$this->documentStack[0] instanceof ezcDocumentBBCodeTagNode ) ||
                   ( $this->documentStack[0]->token->content !== $node->token->content ) ) )
@@ -520,7 +495,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
      */
     protected function reduceListItem( ezcDocumentBBCodeNode $node )
     {
-        $nodes = array();
+        $nodes = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( !$this->documentStack[0] instanceof ezcDocumentBBCodeListItemNode ) &&
                 ( ( !$this->documentStack[0] instanceof ezcDocumentBBCodeListNode ) ||
@@ -556,8 +531,8 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
         }
 
         // Wrap non-block-level nodes into paragraphs
-        $wrapped = array();
-        $temp    = array();
+        $wrapped = [];
+        $temp    = [];
         foreach ( $nodes as $child )
         {
             if ( !$child instanceof ezcDocumentBBCodeBlockLevelNode )
@@ -568,7 +543,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
             {
                 $wrapped[]   = $para = new ezcDocumentBBCodeParagraphNode( $temp[0]->token );
                 $para->nodes = array_reverse( $temp );
-                $temp        = array();
+                $temp        = [];
                 $wrapped[]   = $child;
             }
             else
@@ -603,7 +578,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
     {
         $this->reduceListItem( $node );
 
-        $nodes = array();
+        $nodes = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( $this->documentStack[0] instanceof ezcDocumentBBCodeListItemNode ) )
         {
@@ -635,7 +610,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
      */
     protected function reduceParagraph( ezcDocumentBBCodeParagraphNode $node )
     {
-        $nodes = array();
+        $nodes = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( !$this->documentStack[0] instanceof ezcDocumentBBCodeParagraphNode ) &&
                 ( !$this->documentStack[0] instanceof ezcDocumentBBCodeListNode ) &&
@@ -682,7 +657,7 @@ class ezcDocumentBBCodeParser extends ezcDocumentParser
      */
     protected function reduceDocument( ezcDocumentBBCodeDocumentNode $node )
     {
-        $nodes = array();
+        $nodes = [];
         while ( isset( $this->documentStack[0] ) &&
                 ( ( $this->documentStack[0] instanceof ezcDocumentBBCodeParagraphNode ) ||
                   ( $this->documentStack[0] instanceof ezcDocumentBBCodeListNode ) ||

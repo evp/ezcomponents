@@ -41,7 +41,7 @@ class ezcWebdavPropFindResponse extends ezcWebdavResponse
 
         // Add all ezcWebdavPropStatResponse
         $params = func_get_args();
-        $responses = array();
+        $responses = [];
 
         foreach ( $params as $nr => $param )
         {

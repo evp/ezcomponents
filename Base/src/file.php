@@ -110,13 +110,13 @@ class ezcBaseFile
      *         not be opened for reading.
      * @return array
      */
-    static public function walkRecursive( $sourceDir, array $includeFilters = array(), array $excludeFilters = array(), $callback, &$callbackContext )
+    static public function walkRecursive( $sourceDir, array $includeFilters = [], array $excludeFilters = [], $callback, &$callbackContext )
     {
         if ( !is_dir( $sourceDir ) )
         {
             throw new ezcBaseFileNotFoundException( $sourceDir, 'directory' );
         }
-        $elements = array();
+        $elements = [];
         $d = @dir( $sourceDir );
         if ( !$d )
         {
@@ -133,7 +133,7 @@ class ezcBaseFile
             $fileInfo = @stat( $sourceDir . DIRECTORY_SEPARATOR . $entry );
             if ( !$fileInfo )
             {
-                $fileInfo = array( 'size' => 0, 'mode' => 0 );
+                $fileInfo = ['size' => 0, 'mode' => 0];
             }
 
             if ( $fileInfo['mode'] & 0x4000 )
@@ -143,7 +143,7 @@ class ezcBaseFile
                 // the exception if the top directory could not be read.
                 try
                 {
-                    call_user_func_array( $callback, array( $callbackContext, $sourceDir, $entry, $fileInfo ) );
+                    call_user_func_array( $callback, [$callbackContext, $sourceDir, $entry, $fileInfo] );
                     $subList = self::walkRecursive( $sourceDir . DIRECTORY_SEPARATOR . $entry, $includeFilters, $excludeFilters, $callback, $callbackContext );
                     $elements = array_merge( $elements, $subList );
                 }
@@ -219,7 +219,7 @@ class ezcBaseFile
      *         not be opened for reading.
      * @return array
      */
-    static public function findRecursive( $sourceDir, array $includeFilters = array(), array $excludeFilters = array(), &$statistics = null )
+    static public function findRecursive( $sourceDir, array $includeFilters = [], array $excludeFilters = [], &$statistics = null )
     {
         // init statistics array
         if ( !is_array( $statistics ) || !array_key_exists( 'size', $statistics ) || !array_key_exists( 'count', $statistics ) )
@@ -230,7 +230,7 @@ class ezcBaseFile
 
         // create the context, and then start walking over the array
         $context = new ezcBaseFileFindContext;
-        self::walkRecursive( $sourceDir, $includeFilters, $excludeFilters, array( 'ezcBaseFile', 'findRecursiveCallback' ), $context );
+        self::walkRecursive( $sourceDir, $includeFilters, $excludeFilters, ['ezcBaseFile', 'findRecursiveCallback'], $context );
 
         // collect the statistics
         $statistics['size'] = $context->size;

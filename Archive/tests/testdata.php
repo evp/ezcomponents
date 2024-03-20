@@ -20,7 +20,7 @@ class ezcArchiveTestData
     protected $extension;
     protected $version;
 
-    protected $usedFiles = array();
+    protected $usedFiles = [];
     public function __construct( $dataDir, $tempDir, $extension, $version )
     {
         $this->tempDir = $tempDir;
@@ -31,7 +31,7 @@ class ezcArchiveTestData
 
     public function createTempFile( $file )
     {
-        $original = dirname(__FILE__) . "/../data/$file";
+        $original = __DIR__ . "/../data/$file";
 
         $tmpFile = $this->getTempDir() . "/$file";
         copy( $original, $tmpFile );

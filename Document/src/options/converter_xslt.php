@@ -36,7 +36,7 @@ class ezcDocumentXsltConverterOptions extends ezcDocumentConverterOptions
      *         if $options contains a property with a value not allowed
      * @param array(string=>mixed) $options
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         if ( !isset( $this->properties['xslt'] ) )
         {
@@ -45,7 +45,7 @@ class ezcDocumentXsltConverterOptions extends ezcDocumentConverterOptions
 
         if ( !isset( $this->properties['parameters'] ) )
         {
-            $this->parameters = array();
+            $this->parameters = [];
         }
 
         $this->properties['failOnError'] = false;

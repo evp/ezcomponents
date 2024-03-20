@@ -27,7 +27,7 @@ class ezcConsoleOutputFormatTest extends ezcTestCase
     {
         $fake = new ezcConsoleOutputFormat(
             'default',
-            array( 'default' ),
+            ['default'],
             'default',
             ezcConsoleOutput::TARGET_OUTPUT
         );
@@ -41,13 +41,13 @@ class ezcConsoleOutputFormatTest extends ezcTestCase
     public function testGetAccessSuccess()
     {
         $format = new ezcConsoleOutputFormat( 'blue',
-            array( 'bold' ),
+            ['bold'],
             'red',
             ezcConsoleOutput::TARGET_STDERR
         );
 
         $this->assertEquals( "blue", $format->color );
-        $this->assertEquals( array( "bold" ), $format->style );
+        $this->assertEquals( ["bold"], $format->style );
         $this->assertEquals( "red", $format->bgcolor );
         $this->assertEquals( "php://stderr", $format->target );
     }
@@ -72,18 +72,18 @@ class ezcConsoleOutputFormatTest extends ezcTestCase
         $format = new ezcConsoleOutputFormat();
 
         $format->color = "blue";
-        $format->style = array( "bold" );
+        $format->style = ["bold"];
         $format->bgcolor = "red";
         $format->target = ezcConsoleOutput::TARGET_STDERR;
 
         $this->assertEquals( "blue", $format->color );
-        $this->assertEquals( array( "bold" ), $format->style );
+        $this->assertEquals( ["bold"], $format->style );
         $this->assertEquals( "red", $format->bgcolor );
         $this->assertEquals( "php://stderr", $format->target );
         
         // Style can also be scalar
         $format->style = "bold";
-        $this->assertEquals( array( "bold" ), $format->style );
+        $this->assertEquals( ["bold"], $format->style );
     }
 
     public function testSetAccessFailureColor()
@@ -107,7 +107,7 @@ class ezcConsoleOutputFormatTest extends ezcTestCase
 
         try
         {
-            $format->style = array( "nonExistent" );
+            $format->style = ["nonExistent"];
         }
         catch ( ezcBaseValueException $e )
         {

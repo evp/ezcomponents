@@ -19,7 +19,7 @@ class ezcPersistentFindQueryTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -47,10 +47,7 @@ class ezcPersistentFindQueryTest extends ezcTestCase
         $findQuery = new ezcPersistentFindQuery( $q, $cn );
 
         $this->assertAttributeEquals(
-            array(
-                'className' => $cn,
-                'query'     => $q,
-            ),
+            ['className' => $cn, 'query'     => $q],
             'properties',
             $findQuery
         );
@@ -202,8 +199,8 @@ class ezcPersistentFindQueryTest extends ezcTestCase
     {
         $q = $this->getMock(
             'ezcQuerySelect',
-            array( 'reset', 'alias', 'select' ),
-            array(),
+            ['reset', 'alias', 'select'],
+            [],
             '',
             false,
             false

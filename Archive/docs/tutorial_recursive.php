@@ -16,7 +16,7 @@ function findRecursiveCallback( ezcBaseFileFindContext $context, $sourceDir, $fi
     {
         $path .= '/';
     }
-    $context->archive->append( array( $path ), $context->prefix );
+    $context->archive->append( [$path], $context->prefix );
 }
 
 function appendRecursive( $archive, $sourceDir, $prefix )
@@ -24,7 +24,7 @@ function appendRecursive( $archive, $sourceDir, $prefix )
     $context = new ArchiveContext();
     $context->archive = $archive;
     $context->prefix = $prefix;
-    ezcBaseFile::walkRecursive( $sourceDir, array(), array(), 'findRecursiveCallback', $context );
+    ezcBaseFile::walkRecursive( $sourceDir, [], [], 'findRecursiveCallback', $context );
 }
 
 $archive = ezcArchive::open( "my_archive.zip", ezcArchive::ZIP );

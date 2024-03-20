@@ -180,7 +180,7 @@ class ezcDocumentPdfMediaObjectRenderer extends ezcDocumentPdfRenderer
         $imageDimensions = $image->getDimensions();
 
         // Scale image down, if exceeds the maximum available width
-        $imageSize = array( $imageDimensions[0]->get(), $imageDimensions[1]->get() );
+        $imageSize = [$imageDimensions[0]->get(), $imageDimensions[1]->get()];
         if ( $imageSize[0] > $width->get() )
         {
             $imageSize[1] *= $width->get() / $imageSize[0];

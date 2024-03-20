@@ -23,7 +23,7 @@ class ezcTemplateCacheBlockTstNode extends ezcTemplateBlockTstNode
 
     public $isClosingBlock = false;
 
-    public $keys = array();
+    public $keys = [];
     public $ttl = null;
 
     /**
@@ -39,9 +39,7 @@ class ezcTemplateCacheBlockTstNode extends ezcTemplateBlockTstNode
 
     public function getTreeProperties()
     {
-        return array( 'keys'      => $this->keys,
-                      'ttl'       => $this->ttl,
-                      'children'  => $this->children );
+        return ['keys'      => $this->keys, 'ttl'       => $this->ttl, 'children'  => $this->children];
     }
 }
 ?>

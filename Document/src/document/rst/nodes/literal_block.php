@@ -24,7 +24,7 @@ class ezcDocumentRstLiteralBlockNode extends ezcDocumentRstBlockNode
      * @param ezcDocumentRstToken $token
      * @param array $nodes
      */
-    public function __construct( ezcDocumentRstToken $token, array $nodes = array() )
+    public function __construct( ezcDocumentRstToken $token, array $nodes = [] )
     {
         // Perhaps check, that only node of type section and metadata are
         // added.
@@ -56,7 +56,7 @@ class ezcDocumentRstLiteralBlockNode extends ezcDocumentRstBlockNode
             $properties['nodes']
         );
 
-        $node->indentation = isset( $properties['indentation'] ) ? $properties['indentation'] : 0;
+        $node->indentation = $properties['indentation'] ?? 0;
         return $node;
     }
 }

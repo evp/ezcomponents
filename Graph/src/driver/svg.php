@@ -83,14 +83,14 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      * 
      * @var array
      */
-    protected $strings = array();
+    protected $strings = [];
 
     /**
      * List of already created gradients
      * 
      * @var array
      */
-    protected $drawnGradients = array();
+    protected $drawnGradients = [];
 
     /**
      * Numeric unique element id
@@ -113,7 +113,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         ezcBase::checkDependency( 'Graph', ezcBase::DEP_PHP_EXTENSION, 'dom' );
         $this->options = new ezcGraphSvgDriverOptions( $options );
@@ -527,16 +527,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
         }
 
         $this->options->font->minimalUsedFont = $size;
-        $this->strings[] = array(
-            'text' => $result,
-            'id' => $id = ( $this->options->idPrefix . 'TextBox_' . ++$this->elementID ),
-            'position' => $textPosition,
-            'width' => $width,
-            'height' => $height,
-            'align' => $align,
-            'font' => $this->options->font,
-            'rotation' => $rotation,
-        );
+        $this->strings[] = ['text' => $result, 'id' => $id = ( $this->options->idPrefix . 'TextBox_' . ++$this->elementID ), 'position' => $textPosition, 'width' => $width, 'height' => $height, 'align' => $align, 'font' => $this->options->font, 'rotation' => $rotation];
 
         return $id;
     }
@@ -600,10 +591,7 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                 // Manual escaping of non ANSII characters, because ext/DOM fails here
                 return preg_replace_callback( 
                     '/[\\x80-\\xFF]/', 
-                    create_function(
-                        '$char',
-                        'return sprintf( \'&#x%02x;\', ord( $char[0] ) );'
-                    ),
+                    fn($char) => sprintf('&#x%02x;', ord($char[0])),
                     $string 
                 );
         }
@@ -694,45 +682,35 @@ class ezcGraphSvgDriver extends ezcGraphDriver
                         break;
                 }
 
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding + $xOffset,
-                        $text['position']->y - $padding + $yOffset
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $xOffset + $width,
-                        $text['position']->y - $padding + $yOffset
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $xOffset + $width,
-                        $text['position']->y + $padding * 2 + $yOffset + $completeHeight
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding + $xOffset,
-                        $text['position']->y + $padding * 2 + $yOffset + $completeHeight
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $text['position']->x - $padding + $xOffset,
+                    $text['position']->y - $padding + $yOffset
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $xOffset + $width,
+                    $text['position']->y - $padding + $yOffset
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $xOffset + $width,
+                    $text['position']->y + $padding * 2 + $yOffset + $completeHeight
+                ), new ezcGraphCoordinate(
+                    $text['position']->x - $padding + $xOffset,
+                    $text['position']->y + $padding * 2 + $yOffset + $completeHeight
+                )];
             }
             else
             {
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding,
-                        $text['position']->y - $padding
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $text['width'],
-                        $text['position']->y - $padding
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $text['width'],
-                        $text['position']->y + $padding * 2 + $text['height']
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding,
-                        $text['position']->y + $padding * 2 + $text['height']
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $text['position']->x - $padding,
+                    $text['position']->y - $padding
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $text['width'],
+                    $text['position']->y - $padding
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $text['width'],
+                    $text['position']->y + $padding * 2 + $text['height']
+                ), new ezcGraphCoordinate(
+                    $text['position']->x - $padding,
+                    $text['position']->y + $padding * 2 + $text['height']
+                )];
             }
 
             // Set elements root temporary to local text group to ensure 

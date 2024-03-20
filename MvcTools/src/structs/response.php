@@ -80,7 +80,7 @@ class ezcMvcResponse extends ezcBaseStruct
      * @param string $body
      */
     public function __construct( $status = null, $date = null,
-        $generator = '', $cache = null, $cookies = array(), $content = null, $body = '' )
+        $generator = '', $cache = null, $cookies = [], $content = null, $body = '' )
     {
         $this->status = $status;
         $this->date = $date;

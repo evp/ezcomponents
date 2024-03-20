@@ -25,73 +25,59 @@ class ezcDocumentPdfMediaObjectRendererTests extends ezcDocumentPdfTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testRenderMainSinglePage()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/image.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            __DIR__ . '/../files/pdf/image.xml',
+            self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
     public function testRenderInMultipleColumns()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/image.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-                new ezcDocumentPcssLayoutDirective(
-                    array( 'article' ),
-                    array(
-                        'text-columns' => '2',
-                        'font-size'    => '10pt',
-                    )
-                ),
-                new ezcDocumentPcssLayoutDirective(
-                    array( 'title' ),
-                    array(
-                        'text-columns' => '2',
-                    )
-                ),
-                new ezcDocumentPcssLayoutDirective(
-                    array( 'page' ),
-                    array(
-                        'page-size'    => 'A5',
-                    )
-                ),
-            )
+            __DIR__ . '/../files/pdf/image.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            [new ezcDocumentPcssLayoutDirective(
+                ['article'],
+                ['text-columns' => '2', 'font-size'    => '10pt']
+            ), new ezcDocumentPcssLayoutDirective(
+                ['title'],
+                ['text-columns' => '2']
+            ), new ezcDocumentPcssLayoutDirective(
+                ['page'],
+                ['page-size'    => 'A5']
+            )]
         );
     }
 
     public function testRenderLargeImage()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/image_large.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-            )
+            __DIR__ . '/../files/pdf/image_large.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            []
         );
     }
 
     public function testRenderHighImage()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/image_high.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-            )
+            __DIR__ . '/../files/pdf/image_high.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            []
         );
     }
 
     public function testRenderWrappedLargeImageAndWrappedText()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/image_wrapped.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-            )
+            __DIR__ . '/../files/pdf/image_wrapped.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            []
         );
     }
 }

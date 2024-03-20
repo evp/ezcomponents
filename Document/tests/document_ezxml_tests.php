@@ -23,7 +23,7 @@ class ezcDocumentEzXmlTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testValidateValidDocument()
@@ -31,14 +31,14 @@ class ezcDocumentEzXmlTests extends ezcTestCase
         $doc = new ezcDocumentEzXml();
 
         $this->assertSame(
-            $doc->validateFile( dirname( __FILE__ ) . '/files/ezxml/s_001_header.ezp' ),
+            $doc->validateFile( __DIR__ . '/files/ezxml/s_001_header.ezp' ),
             true
         );
     }
 
     public function testValidateInvalidDocument()
     {
-        $invalid = dirname( __FILE__ ) . '/files/ezxml/e_000_invalid.ezp';
+        $invalid = __DIR__ . '/files/ezxml/e_000_invalid.ezp';
         $doc = new ezcDocumentEzXml();
 
         $this->assertEquals(
@@ -54,7 +54,7 @@ class ezcDocumentEzXmlTests extends ezcTestCase
 
     public function testUnhandledLinkType()
     {
-        $invalid = dirname( __FILE__ ) . '/files/ezxml/e_001_unhandled_link.ezp';
+        $invalid = __DIR__ . '/files/ezxml/e_001_unhandled_link.ezp';
         $document = new ezcDocumentEzXml();
         $document->loadFile( $invalid );
 
@@ -74,8 +74,8 @@ class ezcDocumentEzXmlTests extends ezcTestCase
 
     public function testCreateFromDocbook()
     {
-        $from = dirname( __FILE__ ) . '/files/docbook/ezxml/s_001_empty.xml';
-        $to   = dirname( __FILE__ ) . '/files/docbook/ezxml/s_001_empty.ezp';
+        $from = __DIR__ . '/files/docbook/ezxml/s_001_empty.xml';
+        $to   = __DIR__ . '/files/docbook/ezxml/s_001_empty.ezp';
 
         $docbook = new ezcDocumentDocbook();
         $docbook->loadFile( $from );
@@ -102,15 +102,12 @@ class ezcDocumentEzXmlTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/ezxml/s_*.ezp' );
+            $testFiles = glob( __DIR__ . '/files/ezxml/s_*.ezp' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'xml'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'xml'];
             }
         }
 

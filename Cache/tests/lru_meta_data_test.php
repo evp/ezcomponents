@@ -21,7 +21,7 @@ class ezcCacheStackLruMetaDataTest extends ezcCacheStackBaseMetaDataTest
 {
     public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     public function setup()
@@ -34,7 +34,7 @@ class ezcCacheStackLruMetaDataTest extends ezcCacheStackBaseMetaDataTest
         $meta = new $this->metaDataClass();
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             'replacementData',
             $meta
         );

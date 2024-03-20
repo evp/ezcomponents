@@ -113,10 +113,10 @@ class ezcExecution
         }
 
         // Install shutdown handler and exception handler
-        set_exception_handler( array( 'ezcExecution', 'exceptionCallbackHandler' ) );
+        set_exception_handler( ['ezcExecution', 'exceptionCallbackHandler'] );
         if ( !self::$shutdownHandlerRegistered )
         {
-            register_shutdown_function( array( 'ezcExecution', 'shutdownCallbackHandler' ) );
+            register_shutdown_function( ['ezcExecution', 'shutdownCallbackHandler'] );
         }
         self::$callbackClassName = $callbackClassName;
         self::$isInitialized = true;
@@ -179,10 +179,10 @@ class ezcExecution
      * @param Exception $e
      * @return void
      */
-    static public function exceptionCallbackHandler( Exception $e )
+    static public function exceptionCallbackHandler( \Throwable $e )
     {
         self::$cleanExit = true;        
-        call_user_func( array( self::$callbackClassName, 'onError' ), $e );
+        call_user_func( [self::$callbackClassName, 'onError'], $e );
     }
 
     /**
@@ -199,7 +199,7 @@ class ezcExecution
         if ( !self::$cleanExit )
         {
             self::$cleanExit = true;        
-            call_user_func( array( self::$callbackClassName, 'onError' ) );
+            call_user_func( [self::$callbackClassName, 'onError'] );
         }
     }
 }

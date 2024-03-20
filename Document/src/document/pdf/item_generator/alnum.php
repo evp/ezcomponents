@@ -26,12 +26,12 @@ abstract class ezcDocumentAlnumListItemGenerator extends ezcDocumentListItemGene
     /**
      * Constant forcing uppercase alphanumeric list items
      */
-    const UPPER = 1;
+    public const UPPER = 1;
 
     /**
      * Constant forcing lowercase alphanumeric list items
      */
-    const LOWER = 2;
+    public const LOWER = 2;
 
     /**
      * Style defining if the alphanumeric list items should be

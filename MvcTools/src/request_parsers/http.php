@@ -106,13 +106,7 @@ class ezcMvcHttpRequestParser extends ezcMvcRequestParser
      */
     protected function processHost()
     {
-        $this->request->host = isset( $_SERVER['HTTP_HOST'] )
-            ? $_SERVER['HTTP_HOST']
-            : (
-                isset( $_SERVER['SERVER_NAME'] )
-                    ? $_SERVER['SERVER_NAME']
-                    : 'localhost.localdomain'
-            );
+        $this->request->host = $_SERVER['HTTP_HOST'] ?? $_SERVER['SERVER_NAME'] ?? 'localhost.localdomain';
     }
 
     /**
@@ -138,9 +132,7 @@ class ezcMvcHttpRequestParser extends ezcMvcRequestParser
      */
     protected function processReferrer()
     {
-        $this->request->referrer = isset( $_SERVER['HTTP_REFERER'] )
-            ? $_SERVER['HTTP_REFERER']
-            : null;
+        $this->request->referrer = $_SERVER['HTTP_REFERER'] ?? null;
     }
 
     /**
@@ -150,9 +142,7 @@ class ezcMvcHttpRequestParser extends ezcMvcRequestParser
     {
         $req = $this->request;
 
-        $req->uri = isset( $_SERVER['REQUEST_URI'] )
-            ? $_SERVER['REQUEST_URI']
-            : '';
+        $req->uri = $_SERVER['REQUEST_URI'] ?? '';
         // remove the query string from the URI
         $req->uri = preg_replace( '@\?.*$@', '', $req->uri );
         // url decode the uri
@@ -190,22 +180,17 @@ class ezcMvcHttpRequestParser extends ezcMvcRequestParser
         $this->request->accept = new ezcMvcRequestAccept;
         $accept = $this->request->accept;
 
-        $map = array(
-            'HTTP_ACCEPT' => 'types',
-            'HTTP_ACCEPT_CHARSET' => 'charsets',
-            'HTTP_ACCEPT_ENCODING' => 'encodings',
-            'HTTP_ACCEPT_LANGUAGE' => 'languages',
-        );
+        $map = ['HTTP_ACCEPT' => 'types', 'HTTP_ACCEPT_CHARSET' => 'charsets', 'HTTP_ACCEPT_ENCODING' => 'encodings', 'HTTP_ACCEPT_LANGUAGE' => 'languages'];
 
         foreach ( $map as $var => $property )
         {
             if ( !isset( $_SERVER[$var] ) )
             {
-                $accept->$property = array();
+                $accept->$property = [];
                 continue;
             }
             $parts = explode( ',', $_SERVER[$var] );
-            $tmpPriorities = array();
+            $tmpPriorities = [];
             foreach ( $parts as $part )
             {
                 $priPart = explode( ';q=', $part );
@@ -231,9 +216,7 @@ class ezcMvcHttpRequestParser extends ezcMvcRequestParser
         $this->request->agent = new ezcMvcRequestUserAgent;
         $agent = $this->request->agent;
 
-        $agent->agent = isset( $_SERVER['HTTP_USER_AGENT'] )
-            ? $_SERVER['HTTP_USER_AGENT']
-            : null;
+        $agent->agent = $_SERVER['HTTP_USER_AGENT'] ?? null;
     }
 
     /**

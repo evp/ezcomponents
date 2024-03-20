@@ -21,20 +21,20 @@ class ezcDocumentConverterDocbookToWikiTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCreateDocumentFromDocbook()
     {
         $doc = new ezcDocumentDocbook();
-        $doc->loadFile( dirname( __FILE__ ) . '/files/docbook/wiki/s_001_empty.xml' );
+        $doc->loadFile( __DIR__ . '/files/docbook/wiki/s_001_empty.xml' );
 
         $wiki = new ezcDocumentWiki();
         $wiki->createFromDocbook( $doc );
 
         $this->assertSame(
             $wiki->save(),
-            file_get_contents( dirname( __FILE__ ) . '/files/docbook/wiki/s_001_empty.txt' )
+            file_get_contents( __DIR__ . '/files/docbook/wiki/s_001_empty.txt' )
         );
     }
 
@@ -43,15 +43,12 @@ class ezcDocumentConverterDocbookToWikiTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/docbook/wiki/s_*.xml' );
+            $testFiles = glob( __DIR__ . '/files/docbook/wiki/s_*.xml' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'txt'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'txt'];
             }
         }
 

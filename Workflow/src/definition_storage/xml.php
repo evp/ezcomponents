@@ -116,7 +116,7 @@ class ezcWorkflowDefinitionStorageXml implements ezcWorkflowDefinitionStorage
         $workflowVersion = (int) $document->documentElement->getAttribute( 'version' );
 
         // Create node objects.
-        $nodes    = array();
+        $nodes    = [];
         $xmlNodes = $document->getElementsByTagName( 'node' );
 
         foreach ( $xmlNodes as $xmlNode )
@@ -127,7 +127,7 @@ class ezcWorkflowDefinitionStorageXml implements ezcWorkflowDefinitionStorage
             if ( class_exists( $className ) )
             {
                 $configuration = call_user_func_array(
-                  array( $className, 'configurationFromXML' ), array( $xmlNode )
+                  [$className, 'configurationFromXML'], [$xmlNode]
                 );
 
                 if ( is_null( $configuration ) )
@@ -384,7 +384,7 @@ class ezcWorkflowDefinitionStorageXml implements ezcWorkflowDefinitionStorage
             break;
 
             case 'ezcWorkflowConditionVariables': {
-                list( $variableNameA, $variableNameB ) = $condition->getVariableNames();
+                [$variableNameA, $variableNameB] = $condition->getVariableNames();
 
                 $xmlCondition->setAttribute( 'a', $variableNameA );
                 $xmlCondition->setAttribute( 'b', $variableNameB );
@@ -467,7 +467,7 @@ class ezcWorkflowDefinitionStorageXml implements ezcWorkflowDefinitionStorage
             case 'ezcWorkflowConditionAnd':
             case 'ezcWorkflowConditionOr':
             case 'ezcWorkflowConditionXor': {
-                $conditions = array();
+                $conditions = [];
 
                 foreach ( ezcWorkflowUtil::getChildNodes( $element ) as $childNode )
                 {
@@ -570,7 +570,7 @@ class ezcWorkflowDefinitionStorageXml implements ezcWorkflowDefinitionStorage
         switch ( $element->tagName )
         {
             case 'array': {
-                $variable = array();
+                $variable = [];
 
                 foreach ( $element->getElementsByTagName( 'element' ) as $element )
                 {
@@ -597,7 +597,7 @@ class ezcWorkflowDefinitionStorageXml implements ezcWorkflowDefinitionStorage
                       ezcWorkflowUtil::getChildNode( $element )
                     );
 
-                    $constructorArgs = array();
+                    $constructorArgs = [];
 
                     foreach ( $arguments as $argument )
                     {
@@ -648,10 +648,7 @@ class ezcWorkflowDefinitionStorageXml implements ezcWorkflowDefinitionStorage
         if ( !empty( $files ) )
         {
             return (int)str_replace(
-              array(
-                $this->directory . $workflowName . '_',
-                '.xml'
-              ),
+              [$this->directory . $workflowName . '_', '.xml'],
               '',
               $files[count( $files ) - 1]
             );

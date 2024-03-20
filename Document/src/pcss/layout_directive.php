@@ -56,7 +56,7 @@ class ezcDocumentPcssLayoutDirective extends ezcDocumentPcssDirective
             }
 
             // Append optional class and ID restrictions
-            $restrictions = array();
+            $restrictions = [];
             while ( isset( $address[0] ) &&
                     ( ( strpos( $address[0], '.' ) === 0 ) ||
                       ( strpos( $address[0], '#' ) === 0 ) ) )

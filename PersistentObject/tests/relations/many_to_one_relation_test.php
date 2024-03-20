@@ -8,8 +8,8 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . "/../data/relation_test_employer.php";
-require_once dirname( __FILE__ ) . "/../data/relation_test_person.php";
+require_once __DIR__ . "/../data/relation_test_employer.php";
+require_once __DIR__ . "/../data/relation_test_person.php";
 
 /**
  * Tests ezcPersistentManyToOneRelation class.
@@ -41,7 +41,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
         RelationTestPerson::insertData();
         $this->session = new ezcPersistentSession(
             ezcDbInstance::get(),
-            new ezcPersistentCodeManager( dirname( __FILE__ ) . "/../data/" )
+            new ezcPersistentCodeManager( __DIR__ . "/../data/" )
         );
     }
 
@@ -58,7 +58,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
 
         $this->assertEquals( "PO_persons", $relation->sourceTable );
         $this->assertEquals( "PO_addresses", $relation->destinationTable );
-        $this->assertEquals( array(), $relation->columnMap );
+        $this->assertEquals( [], $relation->columnMap );
         $this->assertEquals( true, $relation->reverse );
         $this->assertEquals( false, $relation->cascade );
     }
@@ -95,12 +95,12 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
 
         $relation->sourceTable = "PO_other_persons";
         $relation->destinationTable = "PO_other_addresses";
-        $relation->columnMap = array( $tableMap );
+        $relation->columnMap = [$tableMap];
         $relation->cascade = true;
 
         $this->assertEquals( $relation->sourceTable, "PO_other_persons" );
         $this->assertEquals( $relation->destinationTable, "PO_other_addresses" );
-        $this->assertEquals( $relation->columnMap, array( $tableMap ) );
+        $this->assertEquals( $relation->columnMap, [$tableMap] );
         $this->assertEquals( $relation->reverse, true );
         $this->assertEquals( $relation->cascade, true );
     }
@@ -130,7 +130,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
 
         try
         {
-            $relation->columnMap = array( $tableMap );
+            $relation->columnMap = [$tableMap];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentManyToOneRelation->columnMap." );
         }
         catch ( ezcBaseValueException $e )
@@ -139,7 +139,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
         
         try
         {
-            $relation->columnMap = array();
+            $relation->columnMap = [];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentManyToOneRelation->columnMap." );
         }
         catch ( ezcBaseValueException $e )
@@ -157,7 +157,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
 
         try
         {
-            $relation->reverse = array();
+            $relation->reverse = [];
             $this->fail( "Exception not thrown on set access to ezcPersistentManyToOneRelation->reverse." );
         }
         catch ( ezcBasePropertyPermissionException $e )
@@ -166,7 +166,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
 
         try
         {
-            $relation->cascade = array();
+            $relation->cascade = [];
             $this->fail( "Exception not thrown on invalid value for ezcPersistentManyToOneRelation->cascade." );
         }
         catch ( ezcBaseValueException $e )
@@ -188,13 +188,8 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
     public function testGetRelatedObjectsEmployer1()
     {
         $person = $this->session->load( "RelationTestPerson", 1 );
-        $res = array (
-        2 => 
-            RelationTestEmployer::__set_state(array(
-                'id' => '2',
-                'name' => 'Oldschool Web 1.x company',
-            )),
-        );
+        $res = [2 => 
+            RelationTestEmployer::__set_state(['id' => '2', 'name' => 'Oldschool Web 1.x company'])];
 
         $this->assertEquals(
             $res,
@@ -206,12 +201,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
     public function testGetRelatedObjectsEmployer2()
     {
         $person = $this->session->load( "RelationTestPerson", 2 );
-        $res = array (
-            1 => RelationTestEmployer::__set_state(array(
-                'id' => '1',
-                'name' => 'Great Web 2.0 company',
-            )),
-        );
+        $res = [1 => RelationTestEmployer::__set_state(['id' => '1', 'name' => 'Great Web 2.0 company'])];
 
         $this->assertEquals(
             $res,
@@ -223,10 +213,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
     public function testGetRelatedObjectEmployer1()
     {
         $person = $this->session->load( "RelationTestPerson", 1 );
-        $res = RelationTestEmployer::__set_state(array(
-                'id' => '2',
-                'name' => 'Oldschool Web 1.x company',
-        ));
+        $res = RelationTestEmployer::__set_state(['id' => '2', 'name' => 'Oldschool Web 1.x company']);
 
         $this->assertEquals(
             $res,
@@ -238,10 +225,7 @@ class ezcPersistentManyToOneRelationTest extends ezcTestCase
     public function testGetRelatedObjectEmployer2()
     {
         $person = $this->session->load( "RelationTestPerson", 2 );
-        $res = RelationTestEmployer::__set_state(array(
-                'id' => '1',
-                'name' => 'Great Web 2.0 company',
-        ));
+        $res = RelationTestEmployer::__set_state(['id' => '1', 'name' => 'Great Web 2.0 company']);
 
         $this->assertEquals(
             $res,

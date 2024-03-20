@@ -7,10 +7,10 @@ $output = new ezcConsoleOutput();
 $output->formats->info->color = 'blue';
 
 $output->formats->error->color = 'red';
-$output->formats->error->style = array( 'bold' );
+$output->formats->error->style = ['bold'];
 
 $output->formats->fatal->color = 'red';
-$output->formats->fatal->style = array( 'bold', 'underlined' );
+$output->formats->fatal->style = ['bold', 'underlined'];
 $output->formats->fatal->bgcolor = 'black';
 
 $output->outputText( 'This is some standard text ' );

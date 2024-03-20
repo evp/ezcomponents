@@ -104,18 +104,7 @@ class ezcTemplate
      *
      * @var array(string=>mixed)
      */
-    private $properties = array( 'configuration' => null,
-                                 'usedConfiguration' => null,
-                                 'send' => null,
-                                 'receive' => null, 
-                                 'compiledTemplatePath' => null,
-                                 'tstTree' => false,
-                                 'astTree' =>  false,
-                                 'stream'  => false,
-                                 'streamStack' => false,
-                                 'output' => "",
-                                 'trimWhitespace' => true,
-                               );
+    private $properties = ['configuration' => null, 'usedConfiguration' => null, 'send' => null, 'receive' => null, 'compiledTemplatePath' => null, 'tstTree' => false, 'astTree' =>  false, 'stream'  => false, 'streamStack' => false, 'output' => "", 'trimWhitespace' => true];
 
     /**
      * Returns the value of the property $name.

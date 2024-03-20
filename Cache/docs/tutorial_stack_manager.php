@@ -26,10 +26,7 @@ class myCustomConfigurator implements ezcCacheStackConfigurator
     }
 }
 
-$stackOptions = array(
-    'bubbleUpOnRestore' => true,
-    'configurator'      => 'myCustomConfigurator',
-);
+$stackOptions = ['bubbleUpOnRestore' => true, 'configurator'      => 'myCustomConfigurator'];
 
 $stack = new ezcCacheStack( 'stack' );
 ezcCacheManager::createCache(

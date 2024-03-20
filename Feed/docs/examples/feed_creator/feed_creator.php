@@ -88,7 +88,7 @@ function readDataFile( $fileName )
         throw new ezcBaseFilePermissionException( $fileName, ezcBaseFileException::READ );
     }
 
-    $data = array();
+    $data = [];
     $data['title'] = trim( fgets( $fh ) );
     $data['link'] = trim( fgets( $fh ) );
     $data['published'] = trim( fgets( $fh ) );
@@ -97,11 +97,11 @@ function readDataFile( $fileName )
     $data['description'] = trim( fgets( $fh ) );
     $empty = fgets( $fh );
 
-    $data['item'] = array();
+    $data['item'] = [];
     $i = 0;
     while ( !feof( $fh ) )
     {
-        $data['item'][$i] = array();
+        $data['item'][$i] = [];
         $data['item'][$i]['title'] = trim( fgets( $fh ) );
         $data['item'][$i]['link'] = trim( fgets( $fh ) );
         $data['item'][$i]['published'] = trim( fgets( $fh ) );

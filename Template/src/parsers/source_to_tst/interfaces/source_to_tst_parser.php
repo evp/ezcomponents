@@ -21,19 +21,19 @@ abstract class ezcTemplateSourceToTstParser
      * Status for the parser which means the parser has not been started.
      * This is the initial status of all parser objects.
      */
-    const PARSE_NOT_STARTED = 1;
+    public const PARSE_NOT_STARTED = 1;
 
     /**
      * Status for the parser which means the parser was able to find some
      * elements it recognized but in the end it failed.
      */
-    const PARSE_PARTIAL_SUCCESS = 2;
+    public const PARSE_PARTIAL_SUCCESS = 2;
 
     /**
      * Status for the parser which means the parser was able to parser all
      * known elements.
      */
-    const PARSE_SUCCESS = 3;
+    public const PARSE_SUCCESS = 3;
 
     /**
      * Status for the parser which means the parser was not able to find some
@@ -42,7 +42,7 @@ abstract class ezcTemplateSourceToTstParser
      * This usually means the parser cannot handle the current location and
      * another parser type should be tried.
      */
-    const PARSE_FAILURE = 4;
+    public const PARSE_FAILURE = 4;
 
     /**
      * The main parser object which instigated the total parser operation.
@@ -175,7 +175,7 @@ abstract class ezcTemplateSourceToTstParser
         {
             $this->programParser = $this;
         }
-        $this->elements = array();
+        $this->elements = [];
         $this->subParser = null;
         $this->lastParser = null;
         $this->status = self::PARSE_NOT_STARTED;
@@ -725,7 +725,7 @@ abstract class ezcTemplateSourceToTstParser
     protected function parseSequence( $sequence )
     {
         $cursor = $this->currentCursor;
-        $elements = array();
+        $elements = [];
 
         foreach ( $sequence as $item )
         {
@@ -742,7 +742,7 @@ abstract class ezcTemplateSourceToTstParser
                     $hasMatch = false;
                     foreach ( $item['compounds'] as $compound )
                     {
-                        $compoundElements = $this->parseSequence( array( $compound ) );
+                        $compoundElements = $this->parseSequence( [$compound] );
                         if ( $compoundElements !== false )
                         {
                             $elements += $compoundElements;

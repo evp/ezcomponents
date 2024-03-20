@@ -13,7 +13,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
 
     public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     public function testCtor()
@@ -21,12 +21,12 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta = new $this->metaDataClass();
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             'storageData',
             $meta
         );
         $this->assertAttributeEquals(
-            array(),
+            [],
             'replacementData',
             $meta
         );
@@ -37,7 +37,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta = new $this->metaDataClass();
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             'storageData',
             $meta
         );
@@ -46,11 +46,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->addItem( 'storage_id_1', 'item_id_1' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true]],
             'storageData',
             $meta
         );
@@ -59,14 +55,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->addItem( 'storage_id_2', 'item_id_1' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-                'storage_id_2' => array(
-                    'item_id_1' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true]],
             'storageData',
             $meta
         );
@@ -75,15 +64,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->addItem( 'storage_id_2', 'item_id_2' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-                'storage_id_2' => array(
-                    'item_id_1' => true,
-                    'item_id_2' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]],
             'storageData',
             $meta
         );
@@ -92,15 +73,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->addItem( 'storage_id_1', 'item_id_1' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-                'storage_id_2' => array(
-                    'item_id_1' => true,
-                    'item_id_2' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]],
             'storageData',
             $meta
         );
@@ -110,42 +83,17 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
     {
         $meta = new $this->metaDataClass();
         $meta->setState(
-            array(
-                'storageData' => array(
-                    'storage_id_1' => array(
-                        'item_id_1' => true,
-                    ),
-                    'storage_id_2' => array(
-                        'item_id_1' => true,
-                        'item_id_2' => true,
-                    ),
-                ),
-                'replacementData' => array(
-                    'item_id_1' => 1,
-                    'item_id_2' => 2,
-                )
-            )
+            ['storageData' => ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]], 'replacementData' => ['item_id_1' => 1, 'item_id_2' => 2]]
         );
 
         // Assert basis
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-                'storage_id_2' => array(
-                    'item_id_1' => true,
-                    'item_id_2' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]],
             'storageData',
             $meta
         );
         $this->assertAttributeEquals(
-            array(
-                'item_id_1' => 1,
-                'item_id_2' => 2,
-            ),
+            ['item_id_1' => 1, 'item_id_2' => 2],
             'replacementData',
             $meta
         );
@@ -154,22 +102,12 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->removeItem( 'storage_id_2', 'item_id_1' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-                'storage_id_2' => array(
-                    'item_id_2' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_2' => true]],
             'storageData',
             $meta
         );
         $this->assertAttributeEquals(
-            array(
-                'item_id_1' => 1,
-                'item_id_2' => 2,
-            ),
+            ['item_id_1' => 1, 'item_id_2' => 2],
             'replacementData',
             $meta
         );
@@ -178,18 +116,12 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->removeItem( 'storage_id_2', 'item_id_2' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true]],
             'storageData',
             $meta
         );
         $this->assertAttributeEquals(
-            array(
-                'item_id_1' => 1,
-            ),
+            ['item_id_1' => 1],
             'replacementData',
             $meta
         );
@@ -198,18 +130,12 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->removeItem( 'storage_id_1', 'item_id_2' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true]],
             'storageData',
             $meta
         );
         $this->assertAttributeEquals(
-            array(
-                'item_id_1' => 1,
-            ),
+            ['item_id_1' => 1],
             'replacementData',
             $meta
         );
@@ -218,18 +144,12 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
         $meta->removeItem( 'storage_id_2', 'item_id_1' );
 
         $this->assertAttributeEquals(
-            array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-            ),
+            ['storage_id_1' => ['item_id_1' => true]],
             'storageData',
             $meta
         );
         $this->assertAttributeEquals(
-            array(
-                'item_id_1' => 1,
-            ),
+            ['item_id_1' => 1],
             'replacementData',
             $meta
         );
@@ -239,21 +159,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
     {
         $meta = new $this->metaDataClass();
         $meta->setState(
-            array(
-                'storageData' => array(
-                    'storage_id_1' => array(
-                        'item_id_1' => true,
-                    ),
-                    'storage_id_2' => array(
-                        'item_id_1' => true,
-                        'item_id_2' => true,
-                    ),
-                ),
-                'replacementData' => array(
-                    'item_id_1' => 1,
-                    'item_id_2' => 2,
-                )
-            )
+            ['storageData' => ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]], 'replacementData' => ['item_id_1' => 1, 'item_id_2' => 2]]
         );
         
         // Known item in known storage
@@ -281,21 +187,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
     {
         $meta = new $this->metaDataClass();
         $meta->setState(
-            array(
-                'storageData' => array(
-                    'storage_id_1' => array(
-                        'item_id_1' => true,
-                    ),
-                    'storage_id_2' => array(
-                        'item_id_1' => true,
-                        'item_id_2' => true,
-                    ),
-                ),
-                'replacementData' => array(
-                    'item_id_1' => 1,
-                    'item_id_2' => 2,
-                )
-            )
+            ['storageData' => ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]], 'replacementData' => ['item_id_1' => 1, 'item_id_2' => 2]]
         );
 
         // Reached limit exactly
@@ -323,26 +215,10 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
     {
         $meta = new $this->metaDataClass();
         $meta->setState(
-            array(
-                'storageData' => array(
-                ),
-                'replacementData' => array(
-                    'item_id_1' => 4,
-                    'item_id_2' => 3,
-                    'item_id_5' => 2,
-                    'item_id_3' => 8,
-                    'item_id_4' => 5,
-                )
-            )
+            ['storageData' => [], 'replacementData' => ['item_id_1' => 4, 'item_id_2' => 3, 'item_id_5' => 2, 'item_id_3' => 8, 'item_id_4' => 5]]
         );
 
-        $sorted = array(
-            'item_id_5' => 2,
-            'item_id_2' => 3,
-            'item_id_1' => 4,
-            'item_id_4' => 5,
-            'item_id_3' => 8,
-        );
+        $sorted = ['item_id_5' => 2, 'item_id_2' => 3, 'item_id_1' => 4, 'item_id_4' => 5, 'item_id_3' => 8];
         
         // Returned array correctly sorted
         $this->assertEquals(
@@ -361,21 +237,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
     public function testGetData()
     {
         $meta = new $this->metaDataClass();
-        $data = array(
-            'storageData' => array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-                'storage_id_2' => array(
-                    'item_id_1' => true,
-                    'item_id_2' => true,
-                ),
-            ),
-            'replacementData' => array(
-                'item_id_1' => 1,
-                'item_id_2' => 2,
-            )
-        );
+        $data = ['storageData' => ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]], 'replacementData' => ['item_id_1' => 1, 'item_id_2' => 2]];
 
         $meta->setState(
             $data
@@ -396,21 +258,7 @@ abstract class ezcCacheStackBaseMetaDataTest extends ezcTestCase
     public function testSetData()
     {
         $meta = new $this->metaDataClass();
-        $data = array(
-            'storageData' => array(
-                'storage_id_1' => array(
-                    'item_id_1' => true,
-                ),
-                'storage_id_2' => array(
-                    'item_id_1' => true,
-                    'item_id_2' => true,
-                ),
-            ),
-            'replacementData' => array(
-                'item_id_1' => 1,
-                'item_id_2' => 2,
-            )
-        );
+        $data = ['storageData' => ['storage_id_1' => ['item_id_1' => true], 'storage_id_2' => ['item_id_1' => true, 'item_id_2' => true]], 'replacementData' => ['item_id_1' => 1, 'item_id_2' => 2]];
 
         $meta->setState(
             $data

@@ -26,7 +26,7 @@ class ezcTemplateXhtmlContext implements ezcTemplateOutputContext
      */
     public function transformOutput( ezcTemplateAstNode $node )
     {
-        return new ezcTemplateFunctionCallAstNode( "htmlspecialchars", array( $node ) );
+        return new ezcTemplateFunctionCallAstNode( "htmlspecialchars", [$node] );
     }
 
     /**

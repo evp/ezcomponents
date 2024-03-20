@@ -22,7 +22,7 @@ class XMLWriter
     
     public function __construct()
     {
-        $this->elementStack = array();
+        $this->elementStack = [];
     }
 
     public function openUri( $filename )

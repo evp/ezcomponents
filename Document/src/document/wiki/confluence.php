@@ -65,9 +65,7 @@ class ezcDocumentConfluenceWiki extends ezcDocumentWiki
      */
     public function __construct( ezcDocumentWikiOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentWikiOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentWikiOptions() );
 
         $this->options->tokenizer = new ezcDocumentWikiConfluenceTokenizer();
     }

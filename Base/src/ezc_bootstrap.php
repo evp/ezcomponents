@@ -9,7 +9,7 @@
  * @package Base
  * @access private
  */
-$dir = dirname( __FILE__ );
+$dir = __DIR__;
 $dirParts = explode( DIRECTORY_SEPARATOR, $dir );
 
 if ( $dirParts[count( $dirParts ) - 1] === 'src' )

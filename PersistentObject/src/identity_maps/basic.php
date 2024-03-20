@@ -44,7 +44,7 @@ class ezcPersistentBasicIdentityMap implements ezcPersistentIdentityMap
      * 
      * @var array(string=>array(mixed=>ezcPersistentIdentity))
      */
-    protected $identities = array();
+    protected $identities = [];
 
     /**
      * Definition manager used by {@link ezcPersistentSession}.
@@ -85,7 +85,7 @@ class ezcPersistentBasicIdentityMap implements ezcPersistentIdentityMap
         
         if ( !isset( $this->identities[$class] ) )
         {
-            $this->identities[$class] = array();
+            $this->identities[$class] = [];
         }
 
         $newIdentity = new ezcPersistentIdentity( $object );
@@ -319,7 +319,7 @@ class ezcPersistentBasicIdentityMap implements ezcPersistentIdentityMap
             $this->removeReferences( $srcIdentity->namedRelatedObjectSets[$setName] );
         }
 
-        $relDefs  = array();
+        $relDefs  = [];
         $relStore = new ArrayObject();
 
         foreach ( $relatedObjects as $relObj )
@@ -458,7 +458,7 @@ class ezcPersistentBasicIdentityMap implements ezcPersistentIdentityMap
         $this->removeAllReferences( 
             $srcIdentity->namedRelatedObjectSets
         );
-        $srcIdentity->namedRelatedObjectSets = array();
+        $srcIdentity->namedRelatedObjectSets = [];
     }
 
     /**
@@ -624,7 +624,7 @@ class ezcPersistentBasicIdentityMap implements ezcPersistentIdentityMap
      */
     public function reset()
     {
-        $this->identities = array();
+        $this->identities = [];
     }
 
     /**
@@ -700,7 +700,7 @@ class ezcPersistentBasicIdentityMap implements ezcPersistentIdentityMap
     {
         foreach( $oldIdentity->references as $refList )
         {
-            $replaceIds = array();
+            $replaceIds = [];
             // Needs iteration here, to determine key
             foreach ( $refList->getIterator() as $refId => $refItem )
             {
@@ -731,7 +731,7 @@ class ezcPersistentBasicIdentityMap implements ezcPersistentIdentityMap
     {
         foreach( $identity->references as $refList )
         {
-            $removeIds = array();
+            $removeIds = [];
             // Needs iteration here, to determine key
             foreach ( $refList->getIterator() as $refId => $refItem )
             {

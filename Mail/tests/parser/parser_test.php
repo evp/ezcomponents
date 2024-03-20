@@ -9,7 +9,7 @@ declare(encoding="latin1");
  * @subpackage Tests
  */
 
-require dirname( __FILE__ ) . '/data/classes/custom_classes.php';
+require __DIR__ . '/data/classes/custom_classes.php';
 
 /**
  * @package Mail
@@ -34,9 +34,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
         $this->assertEquals( true, $mail->body instanceof ezcMailText );
@@ -58,9 +58,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
         $this->assertEquals( true, $mail->body instanceof ezcMailText );
         $this->assertEquals( "This is the body: æøå\n", $mail->body->text );
@@ -78,9 +78,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Mail with attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -107,9 +107,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Mail with digest', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -122,9 +122,9 @@ class ezcMailParserTest extends ezcTestCase
         // continue checking the contents of the mail here.. it should be the same as for testKmail3()
         $mail = $parts[1]->mail;
         $this->assertEquals( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Mail with attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -151,9 +151,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'HTML mail', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartAlternative );
         $parts = $mail->body->getParts();
@@ -181,9 +181,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'xxx@ez.no', 'Ole Marius Smestad', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'HTML mail with inline image Mail.app', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartAlternative );
         $parts = $mail->body->getParts();
@@ -230,9 +230,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'sender@gmail.com', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Gmail: Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
         $this->assertEquals( true, $mail->body instanceof ezcMailText );
@@ -253,9 +253,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'sender@gmail.com', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
 //        var_dump( $mail->subject );
 //        $this->assertEquals( 'Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
@@ -276,9 +276,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'sender@gmail.com', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Gmail: Mail with attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -304,9 +304,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'sender@gmail.com', 'Frederik Holljen', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Gmail: HTML mail', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartAlternative );
         $parts = $mail->body->getParts();
@@ -333,9 +333,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'sender@example.com', 'Terje Gunrell-Kaste', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'fh@ez.no', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'fh@ez.no', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Opera: Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
         $this->assertEquals( true, $mail->body instanceof ezcMailText );
@@ -356,9 +356,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'sender@example.com', 'Terje Gunrell-Kaste', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'fh@ez.no', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'fh@ez.no', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
 //        var_dump( $mail->subject );
 //        $this->assertEquals( 'Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
@@ -377,9 +377,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'sender@example.com', 'Terje Gunrell-Kaste', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'fh@ez.no', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'fh@ez.no', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Opera: Mail with attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -407,9 +407,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'dr@ez.no', 'Derick Rethans', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'pine: Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
         $this->assertEquals( true, $mail->body instanceof ezcMailText );
@@ -430,9 +430,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'dr@ez.no', 'Derick Rethans', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
 //        var_dump( $mail->subject );
 //        $this->assertEquals( 'Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
@@ -453,9 +453,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'dr@ez.no', 'Derick Rethans', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'pine: Mail with attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -480,10 +480,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'dr@ez.no', 'Derick Rethans', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ),
-                                    new ezcMailAddress( 'dr@ez.no', 'Derick Rethans', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ), new ezcMailAddress( 'dr@ez.no', 'Derick Rethans', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'pine: 3 forwarded messages... + attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -513,9 +512,9 @@ class ezcMailParserTest extends ezcTestCase
         $mail = $parts[2]->mail;
 
         $this->assertEquals( new ezcMailAddress( 'dr@ez.no', 'Derick Rethans', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'pine: Mail with attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -536,9 +535,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'example@hotmail.com', 'Kristian Hole', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
         $this->assertEquals( true, $mail->body instanceof ezcMailText );
@@ -559,9 +558,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'example@hotmail.com', 'Kristian Hole', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
 //        var_dump( $mail->subject );
 //        $this->assertEquals( 'Simple mail with text subject and body', $mail->subject );
         $this->assertEquals( 'utf-8', $mail->subjectCharset );
@@ -580,9 +579,9 @@ class ezcMailParserTest extends ezcTestCase
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $this->assertEquals( new ezcMailAddress( 'example@hotmail.com', 'Kristian Hole', 'utf-8' ), $mail->from );
-        $this->assertEquals( array( new ezcMailAddress( 'fh@ez.no', '', 'utf-8' ) ), $mail->to );
-        $this->assertEquals( array(), $mail->cc );
-        $this->assertEquals( array(), $mail->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'fh@ez.no', '', 'utf-8' )], $mail->to );
+        $this->assertEquals( [], $mail->cc );
+        $this->assertEquals( [], $mail->bcc );
         $this->assertEquals( 'Mail with attachment', $mail->subject );
         $this->assertEquals( true, $mail->body instanceof ezcMailMultipartMixed );
         $parts = $mail->body->getParts();
@@ -601,12 +600,12 @@ class ezcMailParserTest extends ezcTestCase
 
     public function testDraft1Bcc()
     {
-        $mbox = new ezcMailMboxTransport( dirname( __FILE__ ) . "/data/drafts/postponed-msgs-pine.mbox" );
+        $mbox = new ezcMailMboxTransport( __DIR__ . "/data/drafts/postponed-msgs-pine.mbox" );
         $set = $mbox->fetchAll();
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 1, count( $mail ) );
-        $this->assertEquals( array( new ezcMailAddress( 'sb@example.com', 'Sebastian Bergmann', 'utf-8' ) ), $mail[0]->bcc );
+        $this->assertEquals( [new ezcMailAddress( 'sb@example.com', 'Sebastian Bergmann', 'utf-8' )], $mail[0]->bcc );
     }
 
     // Comment: The CC string is in iso-8859-1 not in UTF-8 as it says it is. Is this our
@@ -618,7 +617,7 @@ class ezcMailParserTest extends ezcTestCase
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
-        $this->assertEquals( array( new ezcMailAddress( 'xx@ez.no', 'Bård Farsted', 'utf-8' ) ), $mail->cc );
+        $this->assertEquals( [new ezcMailAddress( 'xx@ez.no', 'Bård Farsted', 'utf-8' )], $mail->cc );
 
         $this->assertEquals( 1101976145, $mail->timestamp );
         $this->assertEquals( 1101976145, strtotime( $mail->getHeader( 'Date' ) ) );
@@ -899,11 +898,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, false );
-        $expected = array( 'ezcMailText',
-                           'ezcMailText',
-                           'ezcMailFile',
-                           'ezcMailFile'
-                           );
+        $expected = ['ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile'];
         $this->assertEquals( 4, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -917,10 +912,8 @@ END;
         $set = new SingleFileSet( 'various/test-html-text-and-attachment' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
-        $parts = $mail->fetchParts( array( 'ezcMailText' ), false );
-        $expected = array( 'ezcMailText',
-                           'ezcMailText'
-                           );
+        $parts = $mail->fetchParts( ['ezcMailText'], false );
+        $expected = ['ezcMailText', 'ezcMailText'];
         $this->assertEquals( 2, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -934,10 +927,8 @@ END;
         $set = new SingleFileSet( 'various/test-html-text-and-attachment' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
-        $parts = $mail->fetchParts( array( 'ezcMailText' ), true );
-        $expected = array( 'ezcMailText',
-                           'ezcMailText'
-                           );
+        $parts = $mail->fetchParts( ['ezcMailText'], true );
+        $expected = ['ezcMailText', 'ezcMailText'];
         $this->assertEquals( 2, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -952,12 +943,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, false );
-        $expected = array( 'ezcMailText',
-                           'ezcMailRfc822Digest',
-                           'ezcMailRfc822Digest',
-                           'ezcMailRfc822Digest',
-                           'ezcMailFile'
-                         );
+        $expected = ['ezcMailText', 'ezcMailRfc822Digest', 'ezcMailRfc822Digest', 'ezcMailRfc822Digest', 'ezcMailFile'];
         $this->assertEquals( 5, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -972,13 +958,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, true );
-        $expected = array( 'ezcMailText',
-                           'ezcMailText',
-                           'ezcMailText',
-                           'ezcMailFile',
-                           'ezcMailText',
-                           'ezcMailFile'
-                         );
+        $expected = ['ezcMailText', 'ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailText', 'ezcMailFile'];
         $this->assertEquals( 6, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -992,9 +972,8 @@ END;
         $set = new SingleFileSet( 'pine/three_message_digest.mail' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
-        $parts = $mail->fetchParts( array( 'ezcMailFile' ), false );
-        $expected = array( 'ezcMailFile'
-                         );
+        $parts = $mail->fetchParts( ['ezcMailFile'], false );
+        $expected = ['ezcMailFile'];
         $this->assertEquals( 1, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -1008,10 +987,8 @@ END;
         $set = new SingleFileSet( 'pine/three_message_digest.mail' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
-        $parts = $mail->fetchParts( array( 'ezcMailFile' ), true );
-        $expected = array( 'ezcMailFile',
-                           'ezcMailFile'
-                         );
+        $parts = $mail->fetchParts( ['ezcMailFile'], true );
+        $expected = ['ezcMailFile', 'ezcMailFile'];
         $this->assertEquals( 2, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -1025,7 +1002,7 @@ END;
         $set = new SingleFileSet( 'pine/three_message_digest.mail' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
-        $parts = $mail->fetchParts( array( 'ezcMailRfc822Digest' ), true );
+        $parts = $mail->fetchParts( ['ezcMailRfc822Digest'], true );
         $this->assertEquals( 0, count( $parts ) );
     }
 
@@ -1036,13 +1013,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, true );
-        $expected = array( 'ezcMailText',
-                           'ezcMailText',
-                           'ezcMailText',
-                           'ezcMailFile',
-                           'ezcMailFile',
-                           'ezcMailFile'
-                         );
+        $expected = ['ezcMailText', 'ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile', 'ezcMailFile'];
         $this->assertEquals( 6, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -1057,10 +1028,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, true );
-        $expected = array( 'ezcMailText',
-                           'ezcMailDeliveryStatus',
-                           'ezcMailText'
-                         );
+        $expected = ['ezcMailText', 'ezcMailDeliveryStatus', 'ezcMailText'];
         $this->assertEquals( 3, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -1077,10 +1045,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, true );
-        $expected = array( 'ezcMailText',
-                           'ezcMailDeliveryStatus',
-                           'ezcMailText'
-                         );
+        $expected = ['ezcMailText', 'ezcMailDeliveryStatus', 'ezcMailText'];
         $this->assertEquals( 3, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -1116,7 +1081,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $this->assertEquals( 7646, $mail->size );
-        $expected = array( 93, 115, 2313, 822 );
+        $expected = [93, 115, 2313, 822];
         $parts = $mail->fetchParts();
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -1126,7 +1091,7 @@ END;
 
     public function testParserOptionsExtendedMail()
     {
-        $parser = new ezcMailParser( array( 'mailClass' => 'ExtendedMail' ) );
+        $parser = new ezcMailParser( ['mailClass' => 'ExtendedMail'] );
         $set = new SingleFileSet( 'various/test-html-text-and-attachment' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
@@ -1291,7 +1256,7 @@ END;
     public function testMultipartRelated()
     {
         $parser = new ezcMailParser();
-        $fh = fopen( dirname( __FILE__ ) . '/data/various/test-broken-multipart-related', 'r' );
+        $fh = fopen( __DIR__ . '/data/various/test-broken-multipart-related', 'r' );
         $src = '';
         do
         {
@@ -1307,82 +1272,82 @@ END;
 
     public function testIconvCharsetConverterIconv1()
     {
-        ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8Iconv'] );
         $parser = new ezcMailParser();
         $set = new SingleFileSet( 'various/test-broken-iconv-1' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $this->assertEquals( 63, strlen( $mail->body->text ) );
-        ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
     }
 
     public function testIconvCharsetConverterIconv2()
     {
-        ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8Iconv'] );
         $parser = new ezcMailParser();
         $set = new SingleFileSet( 'various/test-broken-iconv-2' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $this->assertEquals( 38, strlen( $mail->body->text ) );
-        ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
     }
 
     public function testIconvCharsetConverterIconvIgnore1()
     {
-        ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8IconvIgnore' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8IconvIgnore'] );
         $parser = new ezcMailParser();
         $set = new SingleFileSet( 'various/test-broken-iconv-1' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $this->assertEquals( 450, strlen( $mail->body->text ) );
-        ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
     }
 
     public function testIconvCharsetConverterIconvIgnore2()
     {
-        ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8IconvIgnore' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8IconvIgnore'] );
         $parser = new ezcMailParser();
         $set = new SingleFileSet( 'various/test-broken-iconv-2' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $this->assertEquals( 97, strlen( $mail->body->text ) );
-        ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
     }
     
 
     public function testIconvCharsetConverterIconvTranslit1()
     {
-        ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8IconvTranslit' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8IconvTranslit'] );
         $parser = new ezcMailParser();
         $set = new SingleFileSet( 'various/test-broken-iconv-1' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $this->assertEquals( 63, strlen( $mail->body->text ) );
-        ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
     }
 
     public function testIconvCharsetConverterIconvTranslit2()
     {
-        ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8IconvTranslit' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8IconvTranslit'] );
         $parser = new ezcMailParser();
         $set = new SingleFileSet( 'various/test-broken-iconv-2' );
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $this->assertEquals( 38, strlen( $mail->body->text ) );
-        ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+        ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
     }
 
     public function testMbstringCharsetConverter1()
     {
         if ( ezcBaseFeatures::hasExtensionSupport( 'mbstring' ) )
         {
-            ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8Mbstring' ) );
+            ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8Mbstring'] );
             $parser = new ezcMailParser();
             $set = new SingleFileSet( 'various/test-broken-iconv-1' );
             $mail = $parser->parseMail( $set );
             $mail = $mail[0];
             $this->assertEquals( 468, strlen( $mail->body->text ) );
-            ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+            ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
         }
         else
         {
@@ -1395,13 +1360,13 @@ END;
     {
         if ( ezcBaseFeatures::hasExtensionSupport( 'mbstring' ) )
         {
-            ezcMailCharsetConverter::setConvertMethod( array( 'myConverter', 'convertToUTF8Mbstring' ) );
+            ezcMailCharsetConverter::setConvertMethod( ['myConverter', 'convertToUTF8Mbstring'] );
             $parser = new ezcMailParser();
             $set = new SingleFileSet( 'various/test-broken-iconv-2' );
             $mail = $parser->parseMail( $set );
             $mail = $mail[0];
             $this->assertEquals( 99, strlen( $mail->body->text ) );
-            ezcMailCharsetConverter::setConvertMethod( array( 'ezcMailCharsetConverter', 'convertToUTF8Iconv' ) );
+            ezcMailCharsetConverter::setConvertMethod( ['ezcMailCharsetConverter', 'convertToUTF8Iconv'] );
         }
         else
         {
@@ -1512,19 +1477,13 @@ END;
     public function testUtf8InFileName2()
     {
         $parser = new ezcMailParser();
-        $messages = array(
-            array( "content-disposition: attachment;
-                    filename*=ISO-8859-1''CV%20Robert%20Dom%E9nie.doc",
-                   "CV Robert Doménie.doc" ),
-
-            array( 'Content-disposition: attachment;
-                    filename="=?iso-8859-1?Q?Val=E9rie_TEST_CV=2Epdf?="',
-                   "Valérie TEST CV.pdf" ),
-
-            array( 'Content-Disposition: attachment;
-                    filename="=?iso-8859-1?q?Lettre=20de=20motivation=20directeur=20de=20client=E8le.doc?="',
-                   "Lettre de motivation directeur de clientèle.doc" ),
-
+        $messages = [
+            ["content-disposition: attachment;
+                    filename*=ISO-8859-1''CV%20Robert%20Dom%E9nie.doc", "CV Robert Doménie.doc"],
+            ['Content-disposition: attachment;
+                    filename="=?iso-8859-1?Q?Val=E9rie_TEST_CV=2Epdf?="', "Valérie TEST CV.pdf"],
+            ['Content-Disposition: attachment;
+                    filename="=?iso-8859-1?q?Lettre=20de=20motivation=20directeur=20de=20client=E8le.doc?="', "Lettre de motivation directeur de clientèle.doc"],
             // broken header, not tested
             /*
             array( 'Content-Disposition: attachment;
@@ -1532,20 +1491,9 @@ END;
                     c?="',
                    "Lettre de motivation directeur de clientèle.doc" ),
             */
-
-            array( 'Content-Disposition: attachment;
-                    filename="=?ISO-8859-1?Q?Copie_de_im=E0ge=5Faccentu=E9.jpg?="',
-                    'Copie de imàge_accentué.jpg' ),
-
-            // not supported yet
-            /*
-            array( "Content-Type: application/x-stuff;
-                    title*1*=us-ascii'en'This%20is%20even%20more%20
-                    title*2*=%2A%2A%2Afun%2A%2A%2A%20
-                    title*3=\"isn't it!",
-                    "CV" ),
-            */
-        );
+            ['Content-Disposition: attachment;
+                    filename="=?ISO-8859-1?Q?Copie_de_im=E0ge=5Faccentu=E9.jpg?="', 'Copie de imàge_accentué.jpg'],
+        ];
 
         foreach ( $messages as $msg )
         {
@@ -1569,7 +1517,7 @@ END;
         $this->assertEquals( 1, count( $mail ) );
         $mail = $mail[0];
         $parts = $mail->fetchParts();
-        $this->assertEquals( array(), $mail->fetchParts() );
+        $this->assertEquals( [], $mail->fetchParts() );
     }
 
     /**
@@ -1601,11 +1549,7 @@ END;
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
         $parts = $mail->fetchParts( null, false );
-        $expected = array( 'ezcMailText',
-                           'ezcMailText',
-                           'myCustomFileClass',
-                           'myCustomFileClass'
-                           );
+        $expected = ['ezcMailText', 'ezcMailText', 'myCustomFileClass', 'myCustomFileClass'];
         $this->assertEquals( 4, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
         {
@@ -1632,13 +1576,7 @@ END;
 
         // get all values of the header Received as an array
         $received = $mail->getHeader( 'Received', true );
-        $expected = array(
-            "from punisher.example.com (punisher.example.com [66.33.206.109]) by fractured.example.com (Postfix) with ESMTP id B84ED80EBE for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:07 -0700 (PDT)",
-            "from localhost (localhost [127.0.0.1]) by punisher.example.com (Postfix) with ESMTP id 67FEC67392 for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:07 -0700 (PDT)",
-            "from punisher.example.com ([127.0.0.1]) by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024) with ESMTP id 18012-11 for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:07 -0700 (PDT)",
-            "from www.example.com (unknown [216.198.224.130]) by punisher.example.com (Postfix) with ESMTP id 0449E67401 for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:06 -0700 (PDT)",
-            "from localhost (localhost) by www.example.com (8.13.4/8.13.4) id k6HJpREA009057; Mon, 17 Jul 2006 14:51:27 -0500"
-            );
+        $expected = ["from punisher.example.com (punisher.example.com [66.33.206.109]) by fractured.example.com (Postfix) with ESMTP id B84ED80EBE for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:07 -0700 (PDT)", "from localhost (localhost [127.0.0.1]) by punisher.example.com (Postfix) with ESMTP id 67FEC67392 for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:07 -0700 (PDT)", "from punisher.example.com ([127.0.0.1]) by localhost (punisher [127.0.0.1]) (amavisd-new, port 10024) with ESMTP id 18012-11 for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:07 -0700 (PDT)", "from www.example.com (unknown [216.198.224.130]) by punisher.example.com (Postfix) with ESMTP id 0449E67401 for <helpdesk@example.org>; Mon, 17 Jul 2006 12:35:06 -0700 (PDT)", "from localhost (localhost) by www.example.com (8.13.4/8.13.4) id k6HJpREA009057; Mon, 17 Jul 2006 14:51:27 -0500"];
         $this->assertEquals( $expected, $received );
     }
 
@@ -1654,8 +1592,7 @@ END;
         $mail = $mail[0];
 
         $parts = $mail->fetchParts();
-        $expected = array( 'ezcMailFile',
-                           );
+        $expected = ['ezcMailFile'];
 
         $this->assertEquals( 1, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )
@@ -1675,8 +1612,7 @@ END;
         $mail = $mail[0];
 
         $parts = $mail->fetchParts();
-        $expected = array( 'ezcMailText',
-                           );
+        $expected = ['ezcMailText'];
 
         $this->assertEquals( 1, count( $parts ) );
         for ( $i = 0; $i < count( $parts ); $i++ )

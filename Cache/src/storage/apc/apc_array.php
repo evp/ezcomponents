@@ -38,9 +38,9 @@ class ezcCacheStorageFileApcArray extends ezcCacheStorageApc
      * @param string $location Path to the cache location. Must be a valid path
      * @param array(string=>string) $options Options for the cache storage
      */
-    public function __construct( $location, array $options = array() )
+    public function __construct( $location, array $options = [] )
     {
-        parent::__construct( $location, array() );
+        parent::__construct( $location, [] );
 
         // Overwrite parent set options with new ezcCacheStorageFileApcArrayOptions
         $this->properties['options'] = new ezcCacheStorageFileApcArrayOptions( $options );
@@ -96,7 +96,7 @@ class ezcCacheStorageFileApcArray extends ezcCacheStorageApc
         {
             if ( is_resource( $data ) )
             {
-                throw new ezcCacheInvalidDataException( gettype( $data ), array( 'simple', 'array', 'object' ) );
+                throw new ezcCacheInvalidDataException( gettype( $data ), ['simple', 'array', 'object'] );
             }
             return new ezcCacheStorageFileApcArrayDataStruct( $data, $this->properties['location'] );
         }
@@ -105,7 +105,7 @@ class ezcCacheStorageFileApcArray extends ezcCacheStorageApc
             if ( is_object( $data )
                  || is_resource( $data ) )
             {
-                throw new ezcCacheInvalidDataException( gettype( $data ), array( 'simple', 'array' ) );
+                throw new ezcCacheInvalidDataException( gettype( $data ), ['simple', 'array'] );
             }
             return "<?php\nreturn " . var_export( $data, true ) . ";\n?>\n";
         }
@@ -136,7 +136,7 @@ class ezcCacheStorageFileApcArray extends ezcCacheStorageApc
      * @param array(string=>string) $attributes Attributes describing the cached data
      * @return string The ID string of the newly cached data
      */
-    public function store( $id, $data, $attributes = array() )
+    public function store( $id, $data, $attributes = [] )
     {
         // Generates the identifier
         $filename = $this->properties['location'] . $this->generateIdentifier( $id, $attributes );
@@ -206,7 +206,7 @@ class ezcCacheStorageFileApcArray extends ezcCacheStorageApc
      * @param bool $search Whether to search for items if not found directly
      * @return mixed The cached data on success, otherwise false
      */
-    public function restore( $id, $attributes = array(), $search = false )
+    public function restore( $id, $attributes = [], $search = false )
     {
         // Generates the identifier
         $filename = $this->properties['location'] . $this->generateIdentifier( $id, $attributes );
@@ -345,28 +345,28 @@ class ezcCacheStorageFileApcArray extends ezcCacheStorageApc
      * @param array(string=>string) $attributes Attributes describing the data to restore
      * @param bool $search Whether to search for items if not found directly
      */
-    public function delete( $id = null, $attributes = array(), $search = false )
+    public function delete( $id = null, $attributes = [], $search = false )
     {
         $location = $this->properties['location'];
         // Generates the identifier
         $filename = $location . $this->generateIdentifier( $id, $attributes );
 
         // Initializes the array
-        $delFiles = array();
+        $delFiles = [];
 
         clearstatcache();
 
         // Checks if the file exists on the filesystem
         if ( file_exists( $filename ) )
         {
-            $delFiles[] = array( $id, $attributes, $filename );
+            $delFiles[] = [$id, $attributes, $filename];
         }
         else if ( $search === true )
         {
             $delFiles = $this->search( $id, $attributes );
         }
 
-        $deletedIds = array();
+        $deletedIds = [];
         // Deletes the files
         foreach ( $delFiles as $count => $filename )
         {

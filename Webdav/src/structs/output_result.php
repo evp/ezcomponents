@@ -44,7 +44,7 @@ class ezcWebdavOutputResult
      * @param string $body 
      * @return void
      */
-    public function __construct( $status = '', array $header = array(), $body = '' )
+    public function __construct( $status = '', array $header = [], $body = '' )
     {
         $this->status = $status;
         $this->header = $header;

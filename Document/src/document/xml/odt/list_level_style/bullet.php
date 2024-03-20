@@ -34,11 +34,7 @@ class ezcDocumentOdtListLevelStyleBullet extends ezcDocumentOdtListLevelStyle
      * 
      * @var array(string=>mixed)
      */
-    private $properties = array(
-        'bulletChar' => '',
-        'numPrefix'  => '',
-        'numSuffix'  => '',
-    );
+    private $properties = ['bulletChar' => '', 'numPrefix'  => '', 'numSuffix'  => ''];
 
     /**
      * Sets the property $name to $value.

@@ -43,17 +43,17 @@ abstract class ezcTemplateOperatorAstNode extends ezcTemplateParameterizedAstNod
     /**
      * Constant for the number of parameters of unary operators, ie. 1.
      */
-    const OPERATOR_TYPE_UNARY = 1;
+    public const OPERATOR_TYPE_UNARY = 1;
 
     /**
      * Constant for the number of parameters of binary operators, ie. 2.
      */
-    const OPERATOR_TYPE_BINARY = 2;
+    public const OPERATOR_TYPE_BINARY = 2;
 
     /**
      * Constant for the number of parameters of ternary operators, ie. 3.
      */
-    const OPERATOR_TYPE_TERNARY = 3;
+    public const OPERATOR_TYPE_TERNARY = 3;
 
     /**
      * Controls how unary operators are handled.

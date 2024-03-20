@@ -26,17 +26,17 @@ class ezcConsoleOptionRuleTest extends ezcTestCase
     public function testGetAccessSuccess()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a", "b", "c" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a", "b", "c"] );
 
         $this->assertSame( $option, $rule->option );
-        $this->assertEquals( array( "a", "b", "c" ), $rule->values );
+        $this->assertEquals( ["a", "b", "c"], $rule->values );
         $this->assertTrue( $rule->ifSet );
     }
 
     public function testGetAccessFailure()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a", "b", "c" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a", "b", "c"] );
 
         try
         {
@@ -52,25 +52,25 @@ class ezcConsoleOptionRuleTest extends ezcTestCase
     public function testSetAccessSuccess()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a"] );
 
         $rule->option = $option;
-        $rule->values = array( "a", "b", "c" );
+        $rule->values = ["a", "b", "c"];
         $rule->ifSet  = false;
 
         $this->assertSame( $option, $rule->option );
-        $this->assertEquals( array( "a", "b", "c" ), $rule->values );
+        $this->assertEquals( ["a", "b", "c"], $rule->values );
         $this->assertFalse( $rule->ifSet );
     }
 
     public function testSetAccessFailureOption()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a"] );
 
         try
         {
-            $rule->option = array();
+            $rule->option = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -82,7 +82,7 @@ class ezcConsoleOptionRuleTest extends ezcTestCase
     public function testSetAccessFailureValues()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a"] );
 
         try
         {
@@ -98,7 +98,7 @@ class ezcConsoleOptionRuleTest extends ezcTestCase
     public function testSetAccessFailureIfSet()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a"] );
 
         try
         {
@@ -114,7 +114,7 @@ class ezcConsoleOptionRuleTest extends ezcTestCase
     public function testSetAccessFailureNonExsitent()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a"] );
 
         try
         {
@@ -130,7 +130,7 @@ class ezcConsoleOptionRuleTest extends ezcTestCase
     public function testIssetAccessSuccess()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a"] );
 
         $this->assertTrue( isset( $rule->option ) );
         $this->assertTrue( isset( $rule->values ) );
@@ -140,7 +140,7 @@ class ezcConsoleOptionRuleTest extends ezcTestCase
     public function testIssetAccessFailure()
     {
         $option = new ezcConsoleOption( "a", "aaa" );
-        $rule = new ezcConsoleOptionRule( $option, array( "a" ) );
+        $rule = new ezcConsoleOptionRule( $option, ["a"] );
 
         $this->assertFalse( isset( $rule->nonExsistent ) );
     }

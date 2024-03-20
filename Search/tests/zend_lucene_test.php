@@ -39,7 +39,7 @@ class ezcSearchSessionZendLuceneTest extends ezcTestCase
         {
             self::markTestSkipped( 'Couldn\'t open Zend Lucene.' );
         }
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
+        $this->testFilesDir = __DIR__ . '/testfiles/';
     }
 
     public function tearDown()
@@ -55,9 +55,9 @@ class ezcSearchSessionZendLuceneTest extends ezcTestCase
     public function testSetProperties()
     {
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
-        self::assertSetPropertyFails( $session, 'definitionManager', array( 'foo' ) );
-        self::assertSetPropertyFails( $session, 'handler', array( 'foo' ) );
-        self::assertSetPropertyFails( $session, 'doesNotExist', array( 'foo' ) );
+        self::assertSetPropertyFails( $session, 'definitionManager', ['foo'] );
+        self::assertSetPropertyFails( $session, 'handler', ['foo'] );
+        self::assertSetPropertyFails( $session, 'doesNotExist', ['foo'] );
     }
 
     public function testGetProperties()
@@ -108,7 +108,7 @@ class ezcSearchSessionZendLuceneTest extends ezcTestCase
 
     public function testIndexDocument2()
     {
-        $content = file_get_contents( dirname( __FILE__ ) . '/testfiles/coding_standards.xml' );
+        $content = file_get_contents( __DIR__ . '/testfiles/coding_standards.xml' );
         $a = new Article( null, 'Test Article', 'This is an article to test', $content, time() );
 
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
@@ -127,8 +127,8 @@ class ezcSearchSessionZendLuceneTest extends ezcTestCase
 
     public function testIndexDocument3()
     {
-        $d = file_get_contents( dirname( __FILE__ ) . '/../../../docs/guidelines/implementation.txt' );
-        $a = new Article( null, 'Test Article', 'This is Rethans an article to test', $d, time(), array( 'Derick Rethans', 'Legolas Rethans' ) );
+        $d = file_get_contents( __DIR__ . '/../../../docs/guidelines/implementation.txt' );
+        $a = new Article( null, 'Test Article', 'This is Rethans an article to test', $d, time(), ['Derick Rethans', 'Legolas Rethans'] );
 
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
         $session->index( $a );
@@ -177,7 +177,7 @@ class ezcSearchSessionZendLuceneTest extends ezcTestCase
 
         $queryBuilder = new ezcSearchQueryBuilder();
         $query = $session->createFindQuery( 'Document' );
-        $queryBuilder->parseSearchQuery( $query, 'Test', array( 'title', 'body' ) );
+        $queryBuilder->parseSearchQuery( $query, 'Test', ['title', 'body'] );
         $r = $session->find( $query );
 
         self::assertEquals( 2, $r->documents[2]->document->id );
@@ -661,7 +661,7 @@ class ezcSearchSessionZendLuceneTest extends ezcTestCase
     {
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
 
-        $a = new Article( null, 'Test Article Eén', 'This is the first article to test', 'the body of the article', time(), array( "Me", "You", "Everybody" ) );
+        $a = new Article( null, 'Test Article Eén', 'This is the first article to test', 'the body of the article', time(), ["Me", "You", "Everybody"] );
         $session->index( $a );
 
         $q = $session->createFindQuery( 'Article' );
@@ -672,25 +672,7 @@ class ezcSearchSessionZendLuceneTest extends ezcTestCase
 
     public static function datatypes()
     {
-        return array(
-            array( 'testId', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId' ),
-            array( 'testId', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId' ),
-            array( 'test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'test' ),
-            array( 'test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'test' ),
-            array( 'test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'tes*' ),
-            array( 'test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'tes*' ),
-            array( 'test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<b>test</b>' ),
-            array( 'test', '<b>test</b>', true, -42, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'bool', true ),
-            array( 'test', '<b>test</b>', false, -42, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false ),
-            array( 'test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'int', -51 ),
-            array( 'test', '<b>test</b>', false, 0, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 0 ),
-            array( 'test', '<b>test</b>', false, 913123, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 913123 ),
-            array( 'test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'float', -12831e4 ),
-            array( 'test', '<b>test</b>', false, 0, 0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'float', 0.42e-9 ),
-            array( 'test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'float', 0 ),
-            array( 'test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 14:35 GMT" ),
-            array( 'test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 16:35 Europe/Oslo" ),
-        );
+        return [['testId', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId'], ['testId', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId'], ['test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'test'], ['test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'test'], ['test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'tes*'], ['test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'tes*'], ['test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<b>test</b>'], ['test', '<b>test</b>', true, -42, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'bool', true], ['test', '<b>test</b>', false, -42, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false], ['test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'int', -51], ['test', '<b>test</b>', false, 0, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 0], ['test', '<b>test</b>', false, 913123, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 913123], ['test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'float', -12831e4], ['test', '<b>test</b>', false, 0, 0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'float', 0.42e-9], ['test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'float', 0], ['test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 14:35 GMT"], ['test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 16:35 Europe/Oslo"]];
     }
 
     /**

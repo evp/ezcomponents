@@ -27,7 +27,7 @@ abstract class ezcDocumentOdtStylePropertyGenerator
      * 
      * @var array(string)
      */
-    protected $styleAttributes = array();
+    protected $styleAttributes = [];
 
     /**
      * Style converters to be used. 

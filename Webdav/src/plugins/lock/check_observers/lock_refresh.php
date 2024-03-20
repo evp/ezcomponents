@@ -34,21 +34,21 @@ class ezcWebdavLockRefreshRequestGenerator implements ezcWebdavLockCheckObserver
      * 
      * @var array(string=>bool)
      */
-    protected $notFoundLockBases = array();
+    protected $notFoundLockBases = [];
 
     /**
      * Contains <lockdiscovery> properties that need to ba updates.
      * 
      * @var array(string=>ezcWebdavLockDiscoveryProperty)
      */
-    protected $lockDiscoveryProperties = array();
+    protected $lockDiscoveryProperties = [];
 
     /**
      * All paths that require a property update. 
      * 
      * @var array(string=>bool)
      */
-    protected $pathsToUpdate = array();
+    protected $pathsToUpdate = [];
 
     /**
      * The If header containing the tokens to refresh. 
@@ -89,7 +89,7 @@ class ezcWebdavLockRefreshRequestGenerator implements ezcWebdavLockCheckObserver
     {
         $this->issuingRequest = $request;
         $this->ifHeader       = $request->getHeader( 'If' );
-        $this->affectedTokens = ( $this->ifHeader === null ? array() : $this->ifHeader->getLockTokens() );
+        $this->affectedTokens = ( $this->ifHeader === null ? [] : $this->ifHeader->getLockTokens() );
         $this->timeout        = $timeout;
     }
 
@@ -105,7 +105,7 @@ class ezcWebdavLockRefreshRequestGenerator implements ezcWebdavLockCheckObserver
         $origLockDiscovery = $this->extractLockDiscovery( $response );
         $lockDiscovery     = clone $origLockDiscovery;
 
-        if ( $this->affectedTokens === array() || count( $lockDiscovery->activeLock ) === 0 )
+        if ( $this->affectedTokens === [] || count( $lockDiscovery->activeLock ) === 0 )
         {
             // Nothing to do
             return null;
@@ -189,11 +189,7 @@ class ezcWebdavLockRefreshRequestGenerator implements ezcWebdavLockCheckObserver
      */
     public function getLockDiscoveryProperty( $path )
     {
-        if ( isset( $this->lockDiscoveryProperties[$path] ) )
-        {
-            return $this->lockDiscoveryProperties[$path];
-        }
-        return null;
+        return $this->lockDiscoveryProperties[$path] ?? null;
     }
 
     /**
@@ -269,7 +265,7 @@ class ezcWebdavLockRefreshRequestGenerator implements ezcWebdavLockCheckObserver
      */
     protected function generateRequests()
     {
-        $requests = array();
+        $requests = [];
         foreach ( $this->pathsToUpdate as $path => $dummy )
         {
             $propPatch = new ezcWebdavPropPatchRequest( $path );

@@ -50,7 +50,7 @@ class ezcGraphCairoDriverOptions extends ezcGraphDriverOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['imageMapResolution'] = 10;
         $this->properties['circleResolution'] = 2.;

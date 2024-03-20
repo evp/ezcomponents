@@ -60,9 +60,7 @@ class ezcTemplateDeclarationTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'type'       => $this->type,
-                      'variable'   => $this->variable,
-                      'expression' => $this->expression );
+        return ['type'       => $this->type, 'variable'   => $this->variable, 'expression' => $this->expression];
     }
 }
 ?>

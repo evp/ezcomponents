@@ -121,7 +121,7 @@ class ezcConfiguration
      *
      * @var array(string=>mixed)
      */
-    private $settings = array();
+    private $settings = [];
 
     /**
      * Contains all the comments that exist for the configuration.
@@ -149,7 +149,7 @@ class ezcConfiguration
      *
      * @var array(string=>array)
      */
-    private $comments = array();
+    private $comments = [];
 
     /**
      * Whether the original data passed to the constructor has been modified.
@@ -172,7 +172,7 @@ class ezcConfiguration
      * @param array $settings
      * @param array $comments
      */
-    public function __construct( $settings = array(), $comments = array() )
+    public function __construct( $settings = [], $comments = [] )
     {
         $this->settings = $settings;
         $this->comments = $comments;
@@ -258,11 +258,7 @@ class ezcConfiguration
     public function getComment( $group, $setting )
     {
         $this->assertGroupSetting( $group, $setting );
-        if ( isset( $this->comments[$group][$setting] ) )
-        {
-            return $this->comments[$group][$setting];
-        }
-        return false;
+        return $this->comments[$group][$setting] ?? false;
     }
 
     /**
@@ -467,7 +463,7 @@ class ezcConfiguration
      */
     public function getSettings( $group, array $settings )
     {
-        $return = array();
+        $return = [];
 
         if ( !$this->hasGroup( $group ) )
         {
@@ -503,7 +499,7 @@ class ezcConfiguration
      */
     public function getComments( $group, array $settings )
     {
-        $return = array();
+        $return = [];
 
         if ( !$this->hasGroup( $group ) )
         {
@@ -591,7 +587,7 @@ class ezcConfiguration
      */
     public function getGroupNames()
     {
-        $groups = array();
+        $groups = [];
 
         foreach ( $this->settings as $groupName => $dummy )
         {
@@ -625,7 +621,7 @@ class ezcConfiguration
      */
     public function getSettingNames( $group )
     {
-        $return = array();
+        $return = [];
         if ( !$this->hasGroup( $group ) )
         {
             throw new ezcConfigurationUnknownGroupException( $group );
@@ -668,7 +664,7 @@ class ezcConfiguration
         {
             throw new ezcConfigurationGroupExistsAlreadyException( $group );
         }
-        $this->settings[$group] = array();
+        $this->settings[$group] = [];
         if ( $comment !== null )
         {
             $this->comments[$group]['#'] = $comment;
@@ -740,8 +736,8 @@ class ezcConfiguration
      */
     public function removeAllSettings()
     {
-        $this->settings = array();
-        $this->comments = array();
+        $this->settings = [];
+        $this->comments = [];
         $this->isModified = true;
     }
 

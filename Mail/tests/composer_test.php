@@ -49,15 +49,15 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testProperties()
     {
-        $this->assertSetPropertyFails( $this->mail, "this_does_not_exist", array( 42 ) );
+        $this->assertSetPropertyFails( $this->mail, "this_does_not_exist", [42] );
         $this->assertSetProperty( $this->mail, 'plainText',
-                                  array( 'Doesn\'t look as if it\'s ever used.' ) );
+                                  ['Doesn\'t look as if it\'s ever used.'] );
         $this->assertSetProperty( $this->mail, 'htmlText',
-                                  array( "That thing's WATCHING me... Good thing I'm naturally PHOTOGENIC!" ) );
+                                  ["That thing's WATCHING me... Good thing I'm naturally PHOTOGENIC!"] );
         $this->assertSetProperty( $this->mail, 'charset',
-                                  array( "us-ascii" ) );
-        $this->assertSetPropertyFails( $this->mail, 'options', array( "wrong value" ) );
-        $this->assertSetProperty( $this->mail, 'options', array( new ezcMailComposerOptions() ) );
+                                  ["us-ascii"] );
+        $this->assertSetPropertyFails( $this->mail, 'options', ["wrong value"] );
+        $this->assertSetProperty( $this->mail, 'options', [new ezcMailComposerOptions()] );
         $this->assertEquals( true, isset( $this->mail->options ) );
     }
 
@@ -66,7 +66,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testInheritedProperties()
     {
-        $this->assertSetProperty( $this->mail, "to", array( array( new ezcMailAddress( 'fh@ez.no' ) ) ) );
+        $this->assertSetProperty( $this->mail, "to", [[new ezcMailAddress( 'fh@ez.no' )]] );
     }
 
     /**
@@ -78,10 +78,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->plainText = "Naked people with extra parts! The things folk do for fashion!!";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -93,10 +93,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->plainText = "Naked people with extra parts! The things folk do for fashion!!";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg", null, "image", "jpeg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg", null, "image", "jpeg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -139,7 +139,7 @@ class ezcMailComposerTest extends ezcTestCase
             $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
             $this->mail->subject = "Message with invalid files..";
             $this->mail->plainText = "Naked people with extra parts! The things folk do for fashion!!";
-            $this->mail->addAttachment( dirname( __FILE__) . "/does_not_exist.jpg" );
+            $this->mail->addAttachment( __DIR__ . "/does_not_exist.jpg" );
             $this->mail->build();
         }
         catch ( ezcBaseFileNotFoundException $e )
@@ -160,9 +160,9 @@ class ezcMailComposerTest extends ezcTestCase
             $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
             $this->mail->subject = "HTML with invalid local files..";
             $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://"
-                . dirname( __FILE__  )
+                . __DIR__
                 . "/no_such_file.jpg\" /></html>";
-            $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+            $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
             $this->mail->build();
         }
         catch ( ezcBaseFileNotFoundException $e )
@@ -183,7 +183,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->plainText = "Text only. Should not have a multipart body.";
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText'] );
     }
 
     /**
@@ -197,7 +197,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->htmlText = "<html><i><b>HTML only. Should not have a multipart body.</b></i></html>";
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText'] );
     }
 
     /**
@@ -208,10 +208,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "One attachments only.";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailFile'] );
     }
 
     /**
@@ -222,11 +222,11 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "Many attachments only.";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailFile', 'ezcMailFile'] );
     }
 
     /**
@@ -241,7 +241,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->htmlText = "<html><i><b>HTML message. Your client should show this if it supports HTML.</b></i></html>";
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailText' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailText'] );
     }
 
     /**
@@ -257,7 +257,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->charset = 'iso-8859-1';
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailText' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailText'] );
     }
 
     /**
@@ -270,11 +270,11 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->subject = "Alternative HTML/Text message and attachments.";
         $this->mail->plainText = "Plain text message. Your client should show the HTML message if it supports HTML mail.";
         $this->mail->htmlText = "<html><i><b>HTML message. Your client should show this if it supports HTML.</b></i></html>";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile'] );
     }
 
     /**
@@ -287,14 +287,14 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\" />Here is some text after the image. Here is the <a href=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\">file.</a></html>";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile', 'ezcMailFile'] );
     }
 
     public function testMailHtmlWithImagesAndFilesOutsideImg()
@@ -302,13 +302,13 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'as@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
-        $this->mail->htmlText = "<html>Some text before the image: file://" . dirname( __FILE__  ) . "/parts/data/fly.jpg </html>";
+        $this->mail->htmlText = "<html>Some text before the image: file://" . __DIR__ . "/parts/data/fly.jpg </html>";
         $this->mail->build();
         $set = new ezcMailVariableSet( $this->mail->generate() );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $mail = $mail[0];
-        $this->assertEquals( "<html>Some text before the image: file://" . dirname( __FILE__ ) . "/parts/data/fly.jpg </html>", $mail->body->text );
+        $this->assertEquals( "<html>Some text before the image: file://" . __DIR__ . "/parts/data/fly.jpg </html>", $mail->body->text );
     }
 
     public function testMailHtmlWithImagesBug16347()
@@ -317,10 +317,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'as@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->htmlText = "<html>Some text before the image: <img class=\"foo\" src=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\" />Here is some text after the image.";
         $this->mail->build();
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     public function testMailHtmlWithImagesBug16348_1()
@@ -329,10 +329,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'as@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->htmlText = "<html>Some text before the image: <img class=\"foo\" src='file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly with whitespace.jpg' />Here is some text after the image.";
         $this->mail->build();
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     public function testMailHtmlWithImagesBug16348_2()
@@ -341,10 +341,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'as@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->htmlText = "<html>Some text before the image: <img class=\"foo\" src=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly with whitespace.jpg\" />Here is some text after the image.";
         $this->mail->build();
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     public function testMailHtmlWithImagesBug16348_3()
@@ -353,10 +353,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'as@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->htmlText = "<html>Some text before the image: <img class=\"foo\" src=file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg />Here is some text after the image.";
         $this->mail->build();
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -377,11 +377,11 @@ class ezcMailComposerTest extends ezcTestCase
             $this->mail->subject = "HTML message with embeded files and images.";
             $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://"
                                        . realpath( $fileName ) . " />Here is some text after the image. Here is the <a href=\"file://"
-                                       . dirname( __FILE__  )
+                                       . __DIR__
                                        . "/parts/data/fly.jpg\">file.</a></html>";
-            $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+            $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
             $this->mail->build();
-            $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailText', 'ezcMailFile' ) );
+            $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailText', 'ezcMailFile'] );
 
             $this->removeTempDir();
         }
@@ -409,11 +409,11 @@ class ezcMailComposerTest extends ezcTestCase
             $this->mail->subject = "HTML message with embeded files and images.";
             $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://"
                                        . realpath( $fileName ) . "\" />Here is some text after the image. Here is the <a href=\"file://"
-                                       . dirname( __FILE__  )
+                                       . __DIR__
                                        . "/parts/data/fly.jpg\">file.</a></html>";
-            $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+            $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
             $this->mail->build();
-            $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile', 'ezcMailFile' ) );
+            $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile', 'ezcMailFile'] );
 
             $this->removeTempDir();
         }
@@ -457,7 +457,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testAddVirtualAttachmentValid()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
@@ -465,7 +465,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addAttachment( "fly.jpg", $contents );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -473,7 +473,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testAddVirtualAttachmentValidSetMime()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
@@ -481,7 +481,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addAttachment( "fly.jpg", $contents, "image", "jpeg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -489,14 +489,14 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailOneVirtualAttachmentNoText()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "One attachments only.";
         $this->mail->addAttachment( "fly.jpg", $contents );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailFile'] );
     }
 
     /**
@@ -504,7 +504,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailManyVirtualAttachmentsNoText()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "Many attachments only.";
@@ -512,7 +512,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addAttachment( "fly.jpg", $contents );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailFile', 'ezcMailFile'] );
     }
 
     /**
@@ -520,17 +520,17 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailTextHtmlAndVirtualAttachments()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "Alternative HTML/Text message and attachments.";
         $this->mail->plainText = "Plain text message. Your client should show the HTML message if it supports HTML mail.";
         $this->mail->htmlText = "<html><i><b>HTML message. Your client should show this if it supports HTML.</b></i></html>";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg", $contents );
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg", $contents );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile'] );
     }
 
     /**
@@ -539,19 +539,19 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailHtmlWithImagesAndVirtualFiles()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\" />Here is some text after the image. Here is the <a href=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\">file.</a></html>";
         $this->mail->addAttachment( "fly.jpg", $contents );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile', 'ezcMailFile'] );
     }
 
     /**
@@ -559,7 +559,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testAddStreamAttachmentValid()
     {
-        $file = fopen( dirname( __FILE__) . "/parts/data/fly.jpg", "r" );
+        $file = fopen( __DIR__ . "/parts/data/fly.jpg", "r" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
@@ -567,7 +567,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addAttachment( "fly.jpg", $file );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -575,7 +575,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testAddStreamAttachmentValidSetMime()
     {
-        $file = fopen( dirname( __FILE__) . "/parts/data/fly.jpg", "r" );
+        $file = fopen( __DIR__ . "/parts/data/fly.jpg", "r" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
@@ -583,7 +583,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addAttachment( "fly.jpg", $file, "image", "jpeg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -591,14 +591,14 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailOneStreamAttachmentNoText()
     {
-        $file = fopen( dirname( __FILE__) . "/parts/data/fly.jpg", "r" );
+        $file = fopen( __DIR__ . "/parts/data/fly.jpg", "r" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "One attachments only.";
         $this->mail->addAttachment( "fly.jpg", $file );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailFile'] );
     }
 
     /**
@@ -606,7 +606,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailManyStreamAttachmentsNoText()
     {
-        $file = fopen( dirname( __FILE__) . "/parts/data/fly.jpg", "r" );
+        $file = fopen( __DIR__ . "/parts/data/fly.jpg", "r" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "Many attachments only.";
@@ -614,7 +614,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addAttachment( "fly.jpg", $file );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailFile', 'ezcMailFile'] );
     }
 
     /**
@@ -622,19 +622,19 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailTextHtmlAndStreamAttachments()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
-        $file = fopen( dirname( __FILE__) . "/parts/data/fly.jpg", "r" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
+        $file = fopen( __DIR__ . "/parts/data/fly.jpg", "r" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "Alternative HTML/Text message and attachments.";
         $this->mail->plainText = "Plain text message. Your client should show the HTML message if it supports HTML mail.";
         $this->mail->htmlText = "<html><i><b>HTML message. Your client should show this if it supports HTML.</b></i></html>";
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg", $contents );
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg", $file );
-        $this->mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg", $contents );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg", $file );
+        $this->mail->addAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailText', 'ezcMailFile', 'ezcMailFile', 'ezcMailFile'] );
     }
 
     /**
@@ -643,19 +643,19 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testMailHtmlWithImagesAndStreamFiles()
     {
-        $file = fopen( dirname( __FILE__) . "/parts/data/fly.jpg", "r" );
+        $file = fopen( __DIR__ . "/parts/data/fly.jpg", "r" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\" />Here is some text after the image. Here is the <a href=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\">file.</a></html>";
         $this->mail->addAttachment( "fly.jpg", $file );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile', 'ezcMailFile'] );
     }
 
     public function testIsSet()
@@ -677,7 +677,7 @@ class ezcMailComposerTest extends ezcTestCase
         $mail->from = new ezcMailAddress( 'john.doe@example.com' );
         $mail->subject = "Subject";
         $mail->addTo( new ezcMailAddress( 'john.doe@example.com' ) );
-        $file = new ezcMailFile( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $file = new ezcMailFile( __DIR__ . "/parts/data/fly.jpg" );
         $file->contentDisposition = new ezcMailContentDispositionHeader(
             'attachment',
             'custom_attachment_name.jpg' );
@@ -709,7 +709,7 @@ class ezcMailComposerTest extends ezcTestCase
         $mail->from = new ezcMailAddress( 'john.doe@example.com' );
         $mail->subject = "яверасфăîţâşåæøåöä";
         $mail->addTo( new ezcMailAddress( 'john.doe@example.com' ) );
-        $file = new ezcMailFile( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $file = new ezcMailFile( __DIR__ . "/parts/data/fly.jpg" );
         $file->contentDisposition = new ezcMailContentDispositionHeader(
             'attachment',
             'яверасфăîţâşåæøåöä.jpg',
@@ -717,7 +717,7 @@ class ezcMailComposerTest extends ezcTestCase
             null,
             null,
             null,
-            array(),
+            [],
             'no',
             'utf-8' );
         $mail->body = new ezcMailMultipartMixed(
@@ -740,7 +740,7 @@ class ezcMailComposerTest extends ezcTestCase
         $mail->from = new ezcMailAddress( 'john.doe@example.com' );
         $mail->subject = "яверасфăîţâşåæøåöä";
         $mail->addTo( new ezcMailAddress( 'john.doe@example.com' ) );
-        $file = new ezcMailFile( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $file = new ezcMailFile( __DIR__ . "/parts/data/fly.jpg" );
         $file->contentDisposition = new ezcMailContentDispositionHeader(
             'attachment',
             'яверасфăîţâşåæøåöä.jpg' );
@@ -771,11 +771,11 @@ class ezcMailComposerTest extends ezcTestCase
             null,
             null,
             null,
-            array(),
+            [],
             'no',
             'utf-8' );
         $mail->plainText = 'xxx';
-        $mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg", null, null, null, $contentDisposition );
+        $mail->addAttachment( __DIR__ . "/parts/data/fly.jpg", null, null, null, $contentDisposition );
         $mail->build();
         $msg = $mail->generate();
         $set = new ezcMailVariableSet( $msg );
@@ -798,7 +798,7 @@ class ezcMailComposerTest extends ezcTestCase
             'attachment',
             'яверасфăîţâşåæøåöä.jpg' );
         $mail->plainText = 'xxx';
-        $mail->addAttachment( dirname( __FILE__) . "/parts/data/fly.jpg", null, null, null, $contentDisposition );
+        $mail->addAttachment( __DIR__ . "/parts/data/fly.jpg", null, null, null, $contentDisposition );
         $mail->build();
         $msg = $mail->generate();
         $set = new ezcMailVariableSet( $msg );
@@ -817,7 +817,7 @@ class ezcMailComposerTest extends ezcTestCase
         $mail->from = new ezcMailAddress( 'john.doe@example.com' );
         $mail->subject = "яверасфăîţâşåæøåöä";
         $mail->addTo( new ezcMailAddress( 'john.doe@example.com' ) );
-        $file = new ezcMailFile( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $file = new ezcMailFile( __DIR__ . "/parts/data/fly.jpg" );
         $file->contentDisposition = new ezcMailContentDispositionHeader(
             'attachment',
             'яверасфăîţâşåæøåöäabcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz.jpg' );
@@ -841,7 +841,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML only..";
         $this->mail->htmlText = "<html><i><b>HTML only. Should not have a multipart body.</b></i><img src=\"file://"
-                                   . dirname( __FILE__  )
+                                   . __DIR__
                                    . "/parts/data/fly.jpg\" /></html>";
         $this->mail->build();
 
@@ -859,7 +859,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'nospam@ez.no', 'No Spam' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
-        $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://" . dirname( __FILE__  ) . "/parts/data/fly.jpg\" /> Here is the picture.";
+        $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://" . __DIR__ . "/parts/data/fly.jpg\" /> Here is the picture.";
         $this->mail->build();
         $this->assertEquals( true, 445 <= strlen( $this->mail->generate() ) && strlen( $this->mail->generate() ) <= 489 );
     }
@@ -872,7 +872,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'nospam@ez.no', 'No Spam' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
-        $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://" . dirname( __FILE__  ) . "/parts/data/fly.jpg\" /> Here is the picture.";
+        $this->mail->htmlText = "<html>Some text before the simage: <img src=\"file://" . __DIR__ . "/parts/data/fly.jpg\" /> Here is the picture.";
         $this->mail->build();
         $this->assertEquals( true, 62701 <= strlen( $this->mail->generate() ) && strlen( $this->mail->generate() ) <= 62733 );
     }
@@ -939,10 +939,10 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
         $this->mail->plainText = "Naked people with extra parts! The things folk do for fashion!!";
-        $this->mail->addFileAttachment( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $this->mail->addFileAttachment( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -950,7 +950,7 @@ class ezcMailComposerTest extends ezcTestCase
      */
     public function testAddStringAttachment()
     {
-        $contents = file_get_contents( dirname( __FILE__) . "/parts/data/fly.jpg" );
+        $contents = file_get_contents( __DIR__ . "/parts/data/fly.jpg" );
         $this->mail->from = new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' );
         $this->mail->addTo( new ezcMailAddress( 'fh@ez.no', 'Frederik Holljen' ) );
         $this->mail->subject = "HTML message with embeded files and images.";
@@ -958,7 +958,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->addStringAttachment( "fly.jpg", $contents );
         $this->mail->build();
 
-        $this->parseAndCheckParts( $this->mail->generate(), array( 'ezcMailText', 'ezcMailFile' ) );
+        $this->parseAndCheckParts( $this->mail->generate(), ['ezcMailText', 'ezcMailFile'] );
     }
 
     /**
@@ -975,7 +975,7 @@ class ezcMailComposerTest extends ezcTestCase
         $this->mail->build();
 
         $message = $this->mail->generate();
-        $this->parseAndCheckParts( $message, array( 'ezcMailText', 'ezcMailText' ) );
+        $this->parseAndCheckParts( $message, ['ezcMailText', 'ezcMailText'] );
 
         $expected = "PGh0bWw+PGk+PGI+SFRNTCBtZXNzYWdlLiBZb3VyIGNsaWVudCBzaG91bGQgc2hvdyB0aGlzIGlm" . ezcMailTools::lineBreak() .
                     "IGl0IHN1cHBvcnRzIEhUTUwuPC9iPjwvaT48L2h0bWw+";

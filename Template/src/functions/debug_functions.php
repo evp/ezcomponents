@@ -33,8 +33,7 @@ class ezcTemplateDebugFunctions extends ezcTemplateFunctions
         switch ( $functionName )
         {
             // TODO improve the output for objects.
-            case "debug_dump": return array( array( "%val" ), 
-                self::functionCall( "ezcTemplateDebug::debug_dump", array( "%val" ) ) );
+            case "debug_dump": return [["%val"], self::functionCall( "ezcTemplateDebug::debug_dump", ["%val"] )];
         }
 
         return null;

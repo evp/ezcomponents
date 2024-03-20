@@ -10,12 +10,7 @@ function __autoload( $className )
 $graph = new ezcGraphPieChart();
 
 // Add the data and hilight norwegian data set
-$graph->data['articles'] = new ezcGraphArrayDataSet( array(
-    'English' => 1300000,
-    'Germany' => 452000,
-    'Netherlands' => 217000,
-    'Norway' => 70000,
-) );
+$graph->data['articles'] = new ezcGraphArrayDataSet( ['English' => 1300000, 'Germany' => 452000, 'Netherlands' => 217000, 'Norway' => 70000] );
 $graph->data['articles']->highlight['Norway'] = true;
 
 // Set graph title

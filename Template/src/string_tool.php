@@ -44,7 +44,7 @@ class ezcTemplateStringTool
     {
 
         $text = preg_replace_callback( '#(?:\\\\([nrt"\\\\]))#',
-                                       array( __CLASS__, "doubleQuotedEscape" ),
+                                       [self::class, "doubleQuotedEscape"],
                                        $text );
         return $text;
     }
@@ -63,7 +63,7 @@ class ezcTemplateStringTool
     public static function processSingleQuotedEscapes( $text )
     {
         $text = preg_replace_callback( '#(?:\\\\([\'\\\\]))#',
-                                       array( __CLASS__, "singleQuotedEscape" ),
+                                       [self::class, "singleQuotedEscape"],
                                        $text );
         return $text;
     }

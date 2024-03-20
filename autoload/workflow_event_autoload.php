@@ -10,7 +10,5 @@
  * @package WorkflowEventLogTiein
  */
 
-return array(
-    'ezcWorkflowEventLogListener' => 'WorkflowEventLogTiein/listener.php',
-);
+return ['ezcWorkflowEventLogListener' => 'WorkflowEventLogTiein/listener.php'];
 ?>

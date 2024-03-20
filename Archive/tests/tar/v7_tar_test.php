@@ -8,7 +8,7 @@
  * @subpackage Tests
  */
 
-require_once( dirname( __FILE__ ) . "/../archive_test_case.php" );
+require_once( __DIR__ . "/../archive_test_case.php" );
 
 /**
  * @package Archive
@@ -30,7 +30,7 @@ class ezcArchiveV7TarTest extends ezcArchiveTestCase
 
     public function createTempFile( $file )
     {
-        $original = dirname(__FILE__) . "/../data/$file";
+        $original = __DIR__ . "/../data/$file";
 
         $tmpFile = $this->getTempDir() . "/$file";
         copy( $original, $tmpFile );
@@ -345,13 +345,13 @@ class ezcArchiveV7TarTest extends ezcArchiveTestCase
     public function testInvalidChecksum()
     {
         // Correct checksum.
-        $ustarFile = new ezcArchiveBlockFile( dirname( __FILE__) . "/../data/tar_v7_2_textfiles.tar" );
+        $ustarFile = new ezcArchiveBlockFile( __DIR__ . "/../data/tar_v7_2_textfiles.tar" );
         $tar = new ezcArchiveV7Tar( $ustarFile );
 
         // Incorrect checksum.
         try
         {
-            $ustarFile = new ezcArchiveBlockFile( dirname( __FILE__) . "/../data/tar_v7_invalid_checksum.tar" );
+            $ustarFile = new ezcArchiveBlockFile( __DIR__ . "/../data/tar_v7_invalid_checksum.tar" );
             $tar = new ezcArchiveV7Tar( $ustarFile );
             $tar->current();
 
@@ -1046,7 +1046,7 @@ class ezcArchiveV7TarTest extends ezcArchiveTestCase
         $bf = new ezcArchiveBlockFile( $emptyTar, true );
 
         $archive = ezcArchive::getTarInstance( $bf, $this->tarMimeFormat );
-        $archive->appendToCurrent( array ( "$dir/files/bla/file3.txt", "$dir/files/file4.txt" ), $dir );
+        $archive->appendToCurrent( ["$dir/files/bla/file3.txt", "$dir/files/file4.txt"], $dir );
         $archive->close();
 
         $this->assertEquals( file_get_contents( "$dir/gnutar.tar" ), file_get_contents( $emptyTar ) );
@@ -1074,7 +1074,7 @@ class ezcArchiveV7TarTest extends ezcArchiveTestCase
         $src = $dir . "/src";
         mkdir ( $src );
 
-        $files = array();
+        $files = [];
         do
         {
             $this->complexArchive->extractCurrent( $src );
@@ -1095,7 +1095,7 @@ class ezcArchiveV7TarTest extends ezcArchiveTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

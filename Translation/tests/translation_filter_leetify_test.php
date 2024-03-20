@@ -18,10 +18,10 @@ class ezcTranslationFilterLeetifyTest extends ezcTestCase
     {
         $leet = ezcTranslationLeetFilter::getInstance();
         
-        $context = array();
+        $context = [];
         $context[] = new ezcTranslationData( "Group list for you", "Group list for you", false, ezcTranslationData::TRANSLATED );
 
-        $expected = array();
+        $expected = [];
         $expected[] = new ezcTranslationData( "Group list for you", "Gr0up 1is7 4 u", false, ezcTranslationData::TRANSLATED );
 
         $leet->runFilter( $context );
@@ -32,10 +32,10 @@ class ezcTranslationFilterLeetifyTest extends ezcTestCase
     {
         $leet = ezcTranslationLeetFilter::getInstance();
         
-        $context = array();
+        $context = [];
         $context[] = new ezcTranslationData( 'No items to group.', "No items to group.", false, ezcTranslationData::TRANSLATED );
 
-        $expected = array();
+        $expected = [];
         $expected[] = new ezcTranslationData( 'No items to group.', 'N0 i73ms 2 gr0up.', false, ezcTranslationData::TRANSLATED );
 
         $leet->runFilter( $context );
@@ -46,10 +46,10 @@ class ezcTranslationFilterLeetifyTest extends ezcTestCase
     {
         $leet = ezcTranslationLeetFilter::getInstance();
         
-        $context = array();
+        $context = [];
         $context[] = new ezcTranslationData( "You ate a cookie", "You ate a cookie", false, ezcTranslationData::TRANSLATED );
 
-        $expected = array();
+        $expected = [];
         $expected[] = new ezcTranslationData( "You ate a cookie", "u 8 4 c00ki3", false, ezcTranslationData::TRANSLATED );
 
         $leet->runFilter( $context );
@@ -60,10 +60,10 @@ class ezcTranslationFilterLeetifyTest extends ezcTestCase
     {
         $leet = ezcTranslationLeetFilter::getInstance();
         
-        $context = array();
+        $context = [];
         $context[] = new ezcTranslationData( "The %fruit is round.", "%Fruit er rund.", false, ezcTranslationData::TRANSLATED );
 
-        $expected = array();
+        $expected = [];
         $expected[] = new ezcTranslationData( "The %fruit is round.", "%Fruit 3r rund.", false, ezcTranslationData::TRANSLATED );
 
         $leet->runFilter( $context );

@@ -50,10 +50,7 @@ class ezcDocumentWikiImageStartToken extends ezcDocumentWikiInlineMarkupToken
     public function getImageParameterOrder( $count )
     {
         return array_slice(
-            array(
-                'resource',
-                'title',
-            ),
+            ['resource', 'title'],
             0, $count
         );
     }
@@ -67,7 +64,7 @@ class ezcDocumentWikiImageStartToken extends ezcDocumentWikiInlineMarkupToken
      */
     public static function __set_state( $properties )
     {
-        $tokenClass = __CLASS__;
+        $tokenClass = self::class;
         $token = new $tokenClass(
             $properties['content'],
             $properties['line'],

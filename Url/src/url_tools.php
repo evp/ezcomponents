@@ -52,7 +52,7 @@ class ezcUrlTools
      */
     public static function parseQueryString( $str )
     {
-        $result = array();
+        $result = [];
 
         // $params will be returned, but first we have to ensure that the dots
         // are not converted to underscores
@@ -89,7 +89,7 @@ class ezcUrlTools
                 $newKey = '';
                 for ( $i = 0; $i < strlen( $paramKey ); $i++ )
                 {
-                    $newKey .= ( $paramKey{$i} === '_' && $key{$i} === '.' ) ? '.' : $paramKey{$i};
+                    $newKey .= ( $paramKey[$i] === '_' && $key[$i] === '.' ) ? '.' : $paramKey[$i];
                 }
 
                 $keys = array_keys( $params );
@@ -161,12 +161,12 @@ class ezcUrlTools
             $url .= 'http://';
         }
 
-        $url .= isset( $source['SERVER_NAME'] ) ? $source['SERVER_NAME'] : null;
+        $url .= $source['SERVER_NAME'] ?? null;
         if ( isset( $source['SERVER_PORT'] ) && $source['SERVER_PORT'] != 80 )
         {
             $url .= ":{$source['SERVER_PORT']}";
         }
-        $url .= isset( $source['REQUEST_URI'] ) ? $source['REQUEST_URI'] : null;
+        $url .= $source['REQUEST_URI'] ?? null;
         return $url;
     }
 }

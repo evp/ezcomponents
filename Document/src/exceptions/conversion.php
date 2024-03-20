@@ -21,12 +21,7 @@ class ezcDocumentConversionException extends ezcDocumentException
      *
      * @var array
      */
-    protected $levelMapping = array(
-        E_NOTICE  => 'Notice',
-        E_WARNING => 'Warning',
-        E_ERROR   => 'Error',
-        E_PARSE   => 'Fatal error',
-    );
+    protected $levelMapping = [E_NOTICE  => 'Notice', E_WARNING => 'Warning', E_ERROR   => 'Error', E_PARSE   => 'Fatal error'];
 
     /**
      * Error string

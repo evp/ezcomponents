@@ -64,7 +64,7 @@ abstract class ezcConfigurationReader
      *              class.
      * @return void
      */
-    abstract public function init( $location, $name, array $options = array() );
+    abstract public function init( $location, $name, array $options = [] );
 
     /**
      * Loads the current config object.

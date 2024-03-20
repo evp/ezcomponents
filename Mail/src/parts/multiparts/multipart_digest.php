@@ -37,7 +37,7 @@ class ezcMailMultipartDigest extends ezcMailMultipart
     public function __construct()
     {
         $args = func_get_args();
-        parent::__construct( array() );
+        parent::__construct( [] );
         foreach ( $args as $part )
         {
             if ( $part instanceof ezcMail  )

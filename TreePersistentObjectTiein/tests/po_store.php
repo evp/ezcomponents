@@ -19,7 +19,7 @@ class ezcTreePersistentObjectStore extends ezcTestCase
 {
     private $tempDir;
 
-    protected $tables  = array( 'nested_set', 'fileentry' );
+    protected $tables  = ['nested_set', 'fileentry'];
     protected $schemaName = 'persistent_store.dba';
 
     private $session;
@@ -51,11 +51,11 @@ class ezcTreePersistentObjectStore extends ezcTestCase
 
     protected function setUp()
     {
-        $this->tempDir = $this->createTempDir( __CLASS__ ) . '/';
+        $this->tempDir = $this->createTempDir( self::class ) . '/';
 
         $this->session = new ezcPersistentSession(
             ezcDbInstance::get(),
-            new ezcPersistentCacheManager( new ezcPersistentCodeManager( dirname( __FILE__ ) . '/files/defs' ) )
+            new ezcPersistentCacheManager( new ezcPersistentCodeManager( __DIR__ . '/files/defs' ) )
         );
         try
         {
@@ -79,7 +79,7 @@ class ezcTreePersistentObjectStore extends ezcTestCase
         // create the parent_child table
         $schema = ezcDbSchema::createFromFile(
             'array',
-            dirname( __FILE__ ) . '/files/' . $this->schemaName
+            __DIR__ . '/files/' . $this->schemaName
         );
         $schema->writeToDb( $this->dbh );
     }

@@ -35,11 +35,7 @@ class ezcConsoleMenuDialogDefaultValidator implements ezcConsoleMenuDialogValida
      * 
      * @var array
      */
-    protected $properties = array(
-        "elements"      => array(),
-        "default"       => null,
-        "conversion"    => self::CONVERT_NONE,
-    );
+    protected $properties = ["elements"      => [], "default"       => null, "conversion"    => self::CONVERT_NONE];
 
     /**
      * Creates a new menu default validator. 
@@ -56,7 +52,7 @@ class ezcConsoleMenuDialogDefaultValidator implements ezcConsoleMenuDialogValida
      * @param int $conversion The conversion to apply.
      * @return void
      */
-    public function __construct( array $elements = array(), $default = null, $conversion = self::CONVERT_NONE )
+    public function __construct( array $elements = [], $default = null, $conversion = self::CONVERT_NONE )
     {
         $this->elements     = $elements;
         $this->default      = $default;

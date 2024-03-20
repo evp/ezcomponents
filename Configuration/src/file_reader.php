@@ -50,7 +50,7 @@ abstract class ezcConfigurationFileReader extends ezcConfigurationReader
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Contains the configuration object that was read from the file with
@@ -103,7 +103,7 @@ abstract class ezcConfigurationFileReader extends ezcConfigurationReader
      *              class.
      * @return void
      */
-    public function init( $location, $name, array $options = array() )
+    public function init( $location, $name, array $options = [] )
     {
         $this->path = $location . DIRECTORY_SEPARATOR . $name . '.' . $this->getSuffix();
         $this->location = $location;
@@ -147,7 +147,7 @@ abstract class ezcConfigurationFileReader extends ezcConfigurationReader
      */
     public function getOptions()
     {
-        return array( 'useComments' => $this->useComments );
+        return ['useComments' => $this->useComments];
     }
     /**
      * Returns the current configuration object.

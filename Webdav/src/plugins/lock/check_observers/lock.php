@@ -28,7 +28,7 @@ class ezcWebdavLockLockRequestGenerator implements ezcWebdavLockCheckObserver
      * 
      * @var array(ezcWebdavPropPatchRequest)
      */
-    protected $requests = array();
+    protected $requests = [];
 
     /**
      * Request that issued the lock. 

@@ -211,7 +211,7 @@ class ezcGraphDriverOptionsTest extends ezcTestImageCase
         );
 
         $fontOptions = new ezcGraphFontOptions();
-        $fontOptions->path = dirname( __FILE__ ) . '/data/font2.ttf';
+        $fontOptions->path = __DIR__ . '/data/font2.ttf';
 
         $options->font = $fontOptions;
         $this->assertSame(

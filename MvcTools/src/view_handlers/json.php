@@ -37,7 +37,7 @@ class ezcMvcJsonViewHandler implements ezcMvcViewHandler
      *
      * @var array(mixed)
      */
-    protected $variables = array();
+    protected $variables = [];
 
     /**
      * Creates a new view handler, where $zoneName is the name of the block and

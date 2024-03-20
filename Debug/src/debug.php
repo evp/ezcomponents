@@ -79,7 +79,7 @@ class ezcDebug
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Instance of the singleton ezcDebug object.
@@ -322,10 +322,10 @@ class ezcDebug
      * @param array(string=>string) $extraInfo
      * @param bool $stackTrace
      */
-    public function log( $message, $verbosity, array $extraInfo = array(), $stackTrace = false )
+    public function log( $message, $verbosity, array $extraInfo = [], $stackTrace = false )
     {
         // Add the verbosity
-        $extraInfo = array_merge( array( "verbosity" => $verbosity ), $extraInfo );
+        $extraInfo = array_merge( ["verbosity" => $verbosity], $extraInfo );
         if ( $this->options->stackTrace === true || $stackTrace === true )
         {
             $extraInfo['stackTrace'] = $this->getStackTrace();
@@ -438,13 +438,7 @@ class ezcDebug
         $debug->log(
             $message,
             $severity,
-            array(
-                'source'    => $source,
-                'category'  => $category,
-                'verbosity' => $verbosity,
-                'file'      => $errfile,
-                'line'      => $errline
-            )
+            ['source'    => $source, 'category'  => $category, 'verbosity' => $verbosity, 'file'      => $errfile, 'line'      => $errline]
         );
     }
 }

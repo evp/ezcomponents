@@ -2,11 +2,7 @@
 
 require_once 'tutorial_autoload.php';
 
-$options = array(
-    'ttl'   => 30,
-    'host'  => 'localhost',
-    'port'  => 11211
-);
+$options = ['ttl'   => 30, 'host'  => 'localhost', 'port'  => 11211];
 
 ezcCacheManager::createCache( 'memcache', 'memcache', 'ezcCacheStorageMemcachePlain', $options );
 

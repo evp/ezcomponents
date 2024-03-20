@@ -42,7 +42,7 @@ class ezcWorkflowNodeVariableUnset extends ezcWorkflowNode
     {
         if ( is_string( $configuration ) )
         {
-            $configuration = array( $configuration );
+            $configuration = [$configuration];
         }
 
         if ( !is_array( $configuration ) )
@@ -84,7 +84,7 @@ class ezcWorkflowNodeVariableUnset extends ezcWorkflowNode
      */
     public static function configurationFromXML( DOMElement $element )
     {
-        $configuration = array();
+        $configuration = [];
 
         foreach ( $element->getElementsByTagName( 'variable' ) as $variable )
         {

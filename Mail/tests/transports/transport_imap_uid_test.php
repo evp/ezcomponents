@@ -16,8 +16,8 @@ include_once( 'wrappers/imap_wrapper.php' );
  */
 class ezcMailTransportImapUidTest extends ezcTestCase
 {
-    private static $ids = array();
-    private static $sizes = array();
+    private static $ids = [];
+    private static $sizes = [];
 
     private static $server = 'mta1.ez.no';
     private static $serverSSL = 'ezctest.ez.no';
@@ -30,10 +30,10 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public static function suite()
     {
-        self::$ids = array( 23, 24, 25, 26 );
-        self::$sizes = array( 1539, 64072, 1696, 1725 );
+        self::$ids = [23, 24, 25, 26];
+        self::$sizes = [1539, 64072, 1696, 1725];
 
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function tearDown()
@@ -59,7 +59,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidGetMessageNumbersFromSet()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->fetchAll();
@@ -69,11 +69,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCommandsFetchAll()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->fetchAll();
-        $this->assertEquals( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mails ) );
@@ -81,11 +81,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCommandsFetchByMessageNr()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->fetchByMessageNr( self::$ids[0] );
-        $this->assertEquals( array( self::$ids[0] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 1, count( $mails ) );
@@ -93,7 +93,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testFetchByMessageNrNotFound()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         try
@@ -109,11 +109,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCommandsFetchFromOffsetAll()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->fetchFromOffset( self::$ids[1] );
-        $this->assertEquals( array( self::$ids[1], self::$ids[2], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[1], self::$ids[2], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 3, count( $mails ) );
@@ -121,11 +121,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCommandsFetchFromOffsetCount()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->fetchFromOffset( self::$ids[0], 2 );
-        $this->assertEquals( array( self::$ids[0], self::$ids[1] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[1]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 2, count( $mails ) );
@@ -133,7 +133,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCommandsFetchFromOffsetStartOutside()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         try
@@ -149,7 +149,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidTop()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $list = $imap->top( self::$ids[0], 1 );
@@ -159,7 +159,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidTopOnlyHeaders()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $list = $imap->top( self::$ids[0] );
@@ -169,7 +169,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidInvalidTop()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         try
@@ -185,18 +185,18 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSearchMailboxEmpty()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
 
         $set = $imap->searchMailbox();
-        $this->assertEquals( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mails ) );
 
         $set = $imap->searchMailbox( ' ' );
-        $this->assertEquals( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mails ) );
@@ -204,11 +204,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSearchMailboxFlagged()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'FLAGGED' );
-        $this->assertEquals( array(), $set->getMessageNumbers() );
+        $this->assertEquals( [], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 0, count( $mails ) );
@@ -216,11 +216,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSearchMailboxSeen()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'SEEN' );
-        $this->assertEquals( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mails ) );
@@ -228,11 +228,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSearchMailboxSubject()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'SUBJECT "norwegian"' );
-        $this->assertEquals( array( self::$ids[0], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 2, count( $mails ) );
@@ -240,11 +240,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSearchMailboxCombineSeenSubject()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'SEEN SUBJECT "norwegian"' );
-        $this->assertEquals( array( self::$ids[0], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 2, count( $mails ) );
@@ -252,11 +252,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSearchMailboxCombineFlaggedSubject()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( 'inbox' );
         $set = $imap->searchMailbox( 'FLAGGED SUBJECT "norwegian"' );
-        $this->assertEquals( array(), $set->getMessageNumbers() );
+        $this->assertEquals( [], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mails = $parser->parseMail( $set );
         $this->assertEquals( 0, count( $mails ) );
@@ -264,7 +264,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSearchMailboxFail()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
 
         try
@@ -280,7 +280,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetInvalidCriteria()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->sortFromOffset( self::$ids[0], 4, 'invalid criteria' );
@@ -292,10 +292,10 @@ class ezcMailTransportImapUidTest extends ezcTestCase
     // Test for fixing sortFromOffset() undefined $range variable
     public function testUidSortFromOffsetInvalidCriteriaCountZero()
     {
-        $imap = $this->getMock( 'ezcMailImapTransport', array( 'sort' ), array( self::$server, self::$port, array( 'uidReferencing' => true ) ) );
+        $imap = $this->getMock( 'ezcMailImapTransport', ['sort'], [self::$server, self::$port, ['uidReferencing' => true]] );
         $imap->expects( $this->any() )
              ->method( 'sort' )
-             ->will( $this->returnValue( array() ) );
+             ->will( $this->returnValue( [] ) );
 
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
@@ -307,7 +307,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetDefaultCriteria()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->sortFromOffset( self::$ids[0], 4, 'received' );
@@ -318,7 +318,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetInvalidOffset()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         try
@@ -333,7 +333,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetInvalidCount()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         try
@@ -348,7 +348,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetCountZero()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->sortFromOffset( self::$ids[0], 0, 'subject' );
@@ -363,7 +363,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
@@ -377,7 +377,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetBySubject()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->sortFromOffset( self::$ids[0], 4, 'subject' );
@@ -392,7 +392,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetBySubjectReverse()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->sortFromOffset( self::$ids[0], 4, 'subject', true );
@@ -407,7 +407,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetByDate()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->sortFromOffset( self::$ids[0], 4, 'date' );
@@ -422,7 +422,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortFromOffsetByDateReverse()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $set = $imap->sortFromOffset( self::$ids[0], 4, 'date', true );
@@ -437,10 +437,10 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortMessagesBySubject()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $set = $imap->sortMessages( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), 'subject' );
+        $set = $imap->sortMessages( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], 'subject' );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mail ) );
@@ -452,10 +452,10 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortMessagesBySubjectReverse()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $set = $imap->sortMessages( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), 'subject', true );
+        $set = $imap->sortMessages( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], 'subject', true );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mail ) );
@@ -467,10 +467,10 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortMessagesOneElement()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
-        $set = $imap->sortMessages( array( self::$ids[0] ), 'subject' );
+        $set = $imap->sortMessages( [self::$ids[0]], 'subject' );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 1, count( $mail ) );
@@ -479,12 +479,12 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortMessagesEmpty()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         try
         {
-            $imap->sortMessages( array(), 'subject' );
+            $imap->sortMessages( [], 'subject' );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -494,11 +494,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSortMessagesNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
-            $imap->sortMessages( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), 'subject' );
+            $imap->sortMessages( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], 'subject' );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -508,11 +508,11 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidFetchByFlag()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "inbox" );
         $set = $imap->fetchByFlag( "undeleted" );
-        $this->assertEquals( array( self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3] ), $set->getMessageNumbers() );
+        $this->assertEquals( [self::$ids[0], self::$ids[1], self::$ids[2], self::$ids[3]], $set->getMessageNumbers() );
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $set );
         $this->assertEquals( 4, count( $mail ) );
@@ -520,7 +520,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidFetchByFlagInvalidFlag()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "inbox" );
         try
@@ -535,7 +535,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidFetchByFlagNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
@@ -557,7 +557,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCountByFlagInvalidFlag()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "inbox" );
         try
@@ -572,7 +572,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCountByFlagNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
@@ -586,26 +586,22 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidFetchFlags()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $flags = $imap->fetchFlags( self::$ids );
-        $expected = array( self::$ids[0] => array( '\Seen' ),
-                           self::$ids[1] => array( '\Seen' ),
-                           self::$ids[2] => array( '\Seen' ),
-                           self::$ids[3] => array( '\Seen' )
-                         );
+        $expected = [self::$ids[0] => ['\Seen'], self::$ids[1] => ['\Seen'], self::$ids[2] => ['\Seen'], self::$ids[3] => ['\Seen']];
         $this->assertEquals( $expected, $flags );
     }
 
     public function testUidFetchFlagsEmpty()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         try
         {
-            $imap->fetchFlags( array() );
+            $imap->fetchFlags( [] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -615,7 +611,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidFetchFlagsNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
@@ -629,26 +625,22 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidFetchSizes()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $flags = $imap->fetchSizes( self::$ids );
-        $expected = array( self::$ids[0] => self::$sizes[0],
-                           self::$ids[1] => self::$sizes[1],
-                           self::$ids[2] => self::$sizes[2],
-                           self::$ids[3] => self::$sizes[3]
-                         );
+        $expected = [self::$ids[0] => self::$sizes[0], self::$ids[1] => self::$sizes[1], self::$ids[2] => self::$sizes[2], self::$ids[3] => self::$sizes[3]];
         $this->assertEquals( $expected, $flags );
     }
 
     public function testUidFetchSizesEmpty()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         try
         {
-            $imap->fetchSizes( array() );
+            $imap->fetchSizes( [] );
             $this->fail( "Expected exception was not thrown." );
         }
         catch ( ezcMailTransportException $e )
@@ -658,7 +650,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidFetchSizesNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
@@ -672,7 +664,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSetFlag()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->createMailbox( "Guybrush" );
         $imap->selectMailbox( "Inbox" );
@@ -690,7 +682,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSetFlagInvalidFlag()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         try
@@ -705,7 +697,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidSetFlagNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
@@ -719,7 +711,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidClearFlag()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->createMailbox( "Guybrush" );
         $imap->selectMailbox( "Inbox" );
@@ -735,7 +727,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidClearFlagInvalidFlag()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         try
@@ -750,7 +742,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidClearFlagNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         try
         {
@@ -764,7 +756,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCopyMessages()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->createMailbox( "Guybrush" );
         $imap->selectMailbox( "Inbox" );
@@ -774,7 +766,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCopyMessagesInvalidDestination()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
 
@@ -790,7 +782,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCopyMessagesInvalidMessage()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->selectMailbox( "Inbox" );
         $imap->createMailbox( "Guybrush" );
@@ -809,7 +801,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidCopyMessagesMailboxNotSelected()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->createMailbox( "Guybrush" );
 
@@ -827,7 +819,7 @@ class ezcMailTransportImapUidTest extends ezcTestCase
 
     public function testUidDelete()
     {
-        $imap = new ezcMailImapTransport( self::$server, self::$port, array( 'uidReferencing' => true ) );
+        $imap = new ezcMailImapTransport( self::$server, self::$port, ['uidReferencing' => true] );
         $imap->authenticate( self::$user, self::$password );
         $imap->createMailbox( "Guybrush" );
         $imap->selectMailbox( 'inbox' );

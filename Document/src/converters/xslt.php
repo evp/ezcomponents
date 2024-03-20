@@ -40,9 +40,7 @@ abstract class ezcDocumentXsltConverter extends ezcDocumentConverter
         }
 
         parent::__construct(
-            $options === null ?
-                new ezcDocumentXsltConverterOptions() :
-                $options
+            $options ?? new ezcDocumentXsltConverterOptions()
         );
     }
 

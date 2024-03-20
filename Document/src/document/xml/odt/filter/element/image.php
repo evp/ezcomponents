@@ -38,12 +38,10 @@ class ezcDocumentOdtElementImageFilter extends ezcDocumentOdtElementBaseFilter
         $this->insertImageData( $element, $imageData );
         $imageData->setProperty( 'type', 'imagedata' );
         
-        $attributes = array(
-            'fileref' => $element->getAttributeNS(
-                ezcDocumentOdt::NS_XLINK,
-                'href'
-            )
-        );
+        $attributes = ['fileref' => $element->getAttributeNS(
+            ezcDocumentOdt::NS_XLINK,
+            'href'
+        )];
         if ( $frame->hasAttributeNS( ezcDocumentOdt::NS_ODT_SVG, 'width' ) )
         {
             $attributes['width'] = $frame->getAttributeNS( ezcDocumentOdt::NS_ODT_SVG, 'width' );

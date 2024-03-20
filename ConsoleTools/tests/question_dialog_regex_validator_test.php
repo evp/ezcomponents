@@ -83,7 +83,7 @@ class ezcConsoleQuestionDialogRegexValidatorTest extends ezcTestCase
         $exceptionCaught = false;
         try
         {
-            $validator->default = array();
+            $validator->default = [];
         }
         catch ( ezcBaseValueException $e )
         {

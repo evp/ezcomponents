@@ -30,10 +30,7 @@ class ezcWebdavLockTransport
      *
      * @var array(string=>string)
      */
-    protected static $parsingMap = array(
-        'LOCK'   => 'parseLockRequest',
-        'UNLOCK' => 'parseUnlockRequest',
-    );
+    protected static $parsingMap = ['LOCK'   => 'parseLockRequest', 'UNLOCK' => 'parseUnlockRequest'];
 
     /**
      * Map for response handling.
@@ -42,10 +39,7 @@ class ezcWebdavLockTransport
      *
      * @var array(string=>string)
      */
-    protected static $processingMap = array(
-        'ezcWebdavLockResponse'   => 'processLockResponse',
-        'ezcWebdavUnlockResponse' => 'processUnlockResponse',
-    );
+    protected static $processingMap = ['ezcWebdavLockResponse'   => 'processLockResponse', 'ezcWebdavUnlockResponse' => 'processUnlockResponse'];
 
 
     /**
@@ -89,7 +83,7 @@ class ezcWebdavLockTransport
         if ( isset( self::$parsingMap[$method] ) )
         {
             $req = call_user_func(
-                array( $this, self::$parsingMap[$method] ),
+                [$this, self::$parsingMap[$method]],
                 $path,
                 $body
             );
@@ -135,7 +129,7 @@ class ezcWebdavLockTransport
 
         $request->setHeaders(
             ezcWebdavServer::getInstance()->headerHandler->parseHeaders(
-                array( 'Depth' )
+                ['Depth']
             )
         );
 

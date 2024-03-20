@@ -26,15 +26,7 @@ class ezcCacheStorageFileOptionsTest extends ezcTestCase
     public function testConstructor()
     {
         $fake = new ezcCacheStorageFileOptions(
-            array( 
-                'ttl'          => 86400,
-                'extension'    => '.cache',
-                'permissions'  => 0644, 
-                'lockFile'     => '.ezcLock',
-                'lockWaitTime' => 200000,
-                'maxLockTime'  => 5,
-                'metaDataFile' => '.ezcMetaData',
-            )
+            ['ttl'          => 86400, 'extension'    => '.cache', 'permissions'  => 0644, 'lockFile'     => '.ezcLock', 'lockWaitTime' => 200000, 'maxLockTime'  => 5, 'metaDataFile' => '.ezcMetaData']
         );
         $this->assertEquals( 
             $fake,
@@ -89,43 +81,43 @@ class ezcCacheStorageFileOptionsTest extends ezcTestCase
         $this->assertSetProperty(
             $opt,
             'ttl',
-            array( 0, 23, false )
+            [0, 23, false]
         );
 
         $this->assertSetProperty(
             $opt,
             'permissions',
-            array( 0, 0777 )
+            [0, 0777]
         );
 
         $this->assertSetProperty(
             $opt,
             'extension',
-            array( '.foo' )
+            ['.foo']
         );
 
         $this->assertSetProperty(
             $opt,
             'lockFile',
-            array( '.foo' )
+            ['.foo']
         );
 
         $this->assertSetProperty(
             $opt,
             'lockWaitTime',
-            array( 100000 )
+            [100000]
         );
 
         $this->assertSetProperty(
             $opt,
             'maxLockTime',
-            array( 10 )
+            [10]
         );
 
         $this->assertSetProperty(
             $opt,
             'metaDataFile',
-            array( '.foo' )
+            ['.foo']
         );
     }
 
@@ -136,43 +128,43 @@ class ezcCacheStorageFileOptionsTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $opt,
             'ttl',
-            array( true, 23.42, 'foo', array(), new stdClass() )
+            [true, 23.42, 'foo', [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'permissions',
-            array( true, 23.42, 'foo', array(), new stdClass() )
+            [true, 23.42, 'foo', [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'extension',
-            array( true, false, 23.42, array(), new stdClass() )
+            [true, false, 23.42, [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'lockFile',
-            array( true, false, 23.42, array(), new stdClass() )
+            [true, false, 23.42, [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'lockWaitTime',
-            array( true, false, 23.42, array(), new stdClass() )
+            [true, false, 23.42, [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'maxLockTime',
-            array( true, false, 23.42, array(), new stdClass() )
+            [true, false, 23.42, [], new stdClass()]
         );
 
         $this->assertSetPropertyFails(
             $opt,
             'metaDataFile',
-            array( true, false, 23.42, array(), new stdClass() )
+            [true, false, 23.42, [], new stdClass()]
         );
 
         try
@@ -212,7 +204,7 @@ class ezcCacheStorageFileOptionsTest extends ezcTestCase
 
     public function testOptions()
     {
-        $obj = new ezcCacheStorageFileArray( $this->createTempDir( __CLASS__ ) );
+        $obj = new ezcCacheStorageFileArray( $this->createTempDir( self::class ) );
         $options = new ezcCacheStorageFileOptions();
         $optionsGeneral = new ezcCacheStorageOptions();
         
@@ -249,7 +241,7 @@ class ezcCacheStorageFileOptionsTest extends ezcTestCase
 
     public function testProperties()
     {
-        $obj = new ezcCacheStorageFileArray( $this->createTempDir( __CLASS__ ) );
+        $obj = new ezcCacheStorageFileArray( $this->createTempDir( self::class ) );
         $options = new ezcCacheStorageFileOptions();
 
         $this->assertTrue(
@@ -265,7 +257,7 @@ class ezcCacheStorageFileOptionsTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $obj,
             'options',
-            array( true, false, 23, 42.23, 'foo', new stdClass() )
+            [true, false, 23, 42.23, 'foo', new stdClass()]
         );
     }
 

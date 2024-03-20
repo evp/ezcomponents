@@ -48,8 +48,8 @@ $dir = new ezcConsoleOption(
  true,
  'Process a directory.',
  'Processes a complete directory.',
- array( new ezcConsoleOptionRule( $optionHandler->getOption( 'f' ) ) ),
- array( new ezcConsoleOptionRule( $optionHandler->getOption( 'h' ) ) )
+ [new ezcConsoleOptionRule( $optionHandler->getOption( 'f' ) )],
+ [new ezcConsoleOptionRule( $optionHandler->getOption( 'h' ) )]
 );
 $optionHandler->registerOption( $dir );
 
@@ -59,7 +59,7 @@ $optionHandler->registerAlias( 'e', 'extended-dir', $dir );
 // Process registered parameters and handle errors
 try
 {
-     $optionHandler->process( array( 'example_input.php', '-h' ) );
+     $optionHandler->process( ['example_input.php', '-h'] );
 }
 catch ( ezcConsoleOptionException $e )
 {

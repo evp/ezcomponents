@@ -19,7 +19,7 @@ class ezcArchiveEntryTest extends ezcTestCase
     {
         date_default_timezone_set( "UTC" );
 
-        $tar = ezcArchiveTar::getInstance( dirname( __FILE__) . "/data/tar_ustar_complex.tar" );
+        $tar = ezcArchiveTar::getInstance( __DIR__ . "/data/tar_ustar_complex.tar" );
         $entry = $tar->getEntry();
 
         $this->assertEquals("files/bla/", $entry->getPath() );
@@ -33,7 +33,7 @@ class ezcArchiveEntryTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

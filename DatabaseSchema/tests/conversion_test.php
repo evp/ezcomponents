@@ -24,9 +24,9 @@ class ezcDatabaseSchemaConversionTest extends ezcTestCase
      */
     protected function setUp()
     {
-        $this->referenceFile = dirname( __FILE__ ) . '/data/schema.dba';
-        $this->generatedFile = dirname( __FILE__ ) . '/data/schema-generated.dba';
-        $this->deltaFile     = dirname( __FILE__ ) . '/data/schema-delta.sql';
+        $this->referenceFile = __DIR__ . '/data/schema.dba';
+        $this->generatedFile = __DIR__ . '/data/schema-generated.dba';
+        $this->deltaFile     = __DIR__ . '/data/schema-delta.sql';
     }
 
     /**
@@ -65,7 +65,7 @@ class ezcDatabaseSchemaConversionTest extends ezcTestCase
 
         $diff = $schema->compare( $schema2 );
         $schema->saveDelta( $diff, $this->deltaFile, ( $db->getName() . '-file' ) );
-        $this->assertEquals( array(), $diff, 'Found differences in the schemas.' );
+        $this->assertEquals( [], $diff, 'Found differences in the schemas.' );
     }
 
     public static function suite()

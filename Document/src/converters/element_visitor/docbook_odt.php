@@ -64,9 +64,7 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
     public function __construct( ezcDocumentDocbookToOdtConverterOptions $options = null )
     {
         parent::__construct(
-            $options === null ?
-                new ezcDocumentDocbookToOdtConverterOptions() :
-                $options
+            $options ?? new ezcDocumentDocbookToOdtConverterOptions()
         );
 
         $this->textProcessor = new ezcDocumentOdtTextProcessor();
@@ -75,50 +73,48 @@ class ezcDocumentDocbookToOdtConverter extends ezcDocumentElementVisitorConverte
         $styler = $this->options->styler;
 
         // Initlize common element handlers
-        $this->visitorElementHandler = array(
-            'docbook' => array(
-                'article'           => $ignore = new ezcDocumentDocbookToOdtIgnoreHandler( $styler ),
-                'book'              => $ignore,
-                'section'           => $section = new ezcDocumentDocbookToOdtSectionHandler( $styler ),
-                // @todo: Need to find a way to handle the meta data.
-                'sectioninfo'       => $section,
-                'title'             => $section,
-                'para'              => $paragraph = new ezcDocumentDocbookToOdtParagraphHandler( $styler ),
-                'emphasis'          => $inline = new ezcDocumentDocbookToOdtInlineHandler( $styler ),
-                'literal'           => $inline,
-                'ulink'             => new ezcDocumentDocbookToOdtUlinkHandler( $styler ),
-                'link'              => new ezcDocumentDocbookToOdtLinkHandler( $styler ),
-                'anchor'            => new ezcDocumentDocbookToOdtAnchorHandler( $styler ),
-                'inlinemediaobject' => $media = new ezcDocumentDocbookToOdtMediaObjectHandler( $styler ),
-                'mediaobject'       => $media,
-                'itemizedlist'      => $list = new ezcDocumentDocbookToOdtListHandler( $styler ),
-                'orderedlist'       => $list,
-                'listitem'          => $mapper = new ezcDocumentDocbookToOdtMappingHandler( $styler ),
-                'note'              => $paragraph,
-                'tip'               => $paragraph,
-                'warning'           => $paragraph,
-                'important'         => $paragraph,
-                'caution'           => $paragraph,
-                'literallayout'     => new ezcDocumentDocbookToOdtLiteralLayoutHandler( $styler ),
-                'footnote'          => new ezcDocumentDocbookToOdtFootnoteHandler( $styler ),
-                'comment'           => new ezcDocumentDocbookToOdtCommentHandler( $styler ),
-                'beginpage'         => new ezcDocumentDocbookToOdtPageBreakHandler( $styler ),
-                'entry'             => $table = new ezcDocumentDocbookToOdtTableHandler( $styler ),
-                'table'             => $table,
-                'tbody'             => $table,
-                'thead'             => $table,
-                'caption'           => $table,
-                'tr'                => $table,
-                'td'                => $table,
-                'row'               => $table,
-                'tgroup'            => $ignore,
-                // @todo: Need to handle these in a way
-                'blockquote'        => $ignore,
-                'attribution'       => $ignore,
-                'variablelist'      => $deepIgnore = new ezcDocumentDocbookToOdtIgnoreHandler( $styler, true ),
-                'varlistentry'      => $deepIgnore,
-            )
-        );
+        $this->visitorElementHandler = ['docbook' => [
+            'article'           => $ignore = new ezcDocumentDocbookToOdtIgnoreHandler( $styler ),
+            'book'              => $ignore,
+            'section'           => $section = new ezcDocumentDocbookToOdtSectionHandler( $styler ),
+            // @todo: Need to find a way to handle the meta data.
+            'sectioninfo'       => $section,
+            'title'             => $section,
+            'para'              => $paragraph = new ezcDocumentDocbookToOdtParagraphHandler( $styler ),
+            'emphasis'          => $inline = new ezcDocumentDocbookToOdtInlineHandler( $styler ),
+            'literal'           => $inline,
+            'ulink'             => new ezcDocumentDocbookToOdtUlinkHandler( $styler ),
+            'link'              => new ezcDocumentDocbookToOdtLinkHandler( $styler ),
+            'anchor'            => new ezcDocumentDocbookToOdtAnchorHandler( $styler ),
+            'inlinemediaobject' => $media = new ezcDocumentDocbookToOdtMediaObjectHandler( $styler ),
+            'mediaobject'       => $media,
+            'itemizedlist'      => $list = new ezcDocumentDocbookToOdtListHandler( $styler ),
+            'orderedlist'       => $list,
+            'listitem'          => $mapper = new ezcDocumentDocbookToOdtMappingHandler( $styler ),
+            'note'              => $paragraph,
+            'tip'               => $paragraph,
+            'warning'           => $paragraph,
+            'important'         => $paragraph,
+            'caution'           => $paragraph,
+            'literallayout'     => new ezcDocumentDocbookToOdtLiteralLayoutHandler( $styler ),
+            'footnote'          => new ezcDocumentDocbookToOdtFootnoteHandler( $styler ),
+            'comment'           => new ezcDocumentDocbookToOdtCommentHandler( $styler ),
+            'beginpage'         => new ezcDocumentDocbookToOdtPageBreakHandler( $styler ),
+            'entry'             => $table = new ezcDocumentDocbookToOdtTableHandler( $styler ),
+            'table'             => $table,
+            'tbody'             => $table,
+            'thead'             => $table,
+            'caption'           => $table,
+            'tr'                => $table,
+            'td'                => $table,
+            'row'               => $table,
+            'tgroup'            => $ignore,
+            // @todo: Need to handle these in a way
+            'blockquote'        => $ignore,
+            'attribution'       => $ignore,
+            'variablelist'      => $deepIgnore = new ezcDocumentDocbookToOdtIgnoreHandler( $styler, true ),
+            'varlistentry'      => $deepIgnore,
+        ]];
     }
 
     /**

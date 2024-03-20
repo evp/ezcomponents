@@ -36,11 +36,7 @@ class ezcGraphTranslation extends ezcGraphTransformation
      */
     public function __construct( $x = 0., $y = 0. )
     {
-        parent::__construct( array( 
-            array( 1, 0, $x ),
-            array( 0, 1, $y ),
-            array( 0, 0, 1 ),
-        ) );
+        parent::__construct( [[1, 0, $x], [0, 1, $y], [0, 0, 1]] );
     }
 }
 

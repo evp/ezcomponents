@@ -48,22 +48,22 @@ abstract class ezcMailMultipartParser extends ezcMailPartParser
     /**
      * This state is used prior to hitting the first part.
      */
-    const PARSE_STATE_PRE_FIRST = 1;
+    public const PARSE_STATE_PRE_FIRST = 1;
 
     /**
      * This state is used when the parser is parsing headers.
      */
-    const PARSE_STATE_HEADERS = 2;
+    public const PARSE_STATE_HEADERS = 2;
 
     /**
      * This state is used when the parser is parsing the body.
      */
-    const PARSE_STATE_BODY = 3;
+    public const PARSE_STATE_BODY = 3;
 
     /**
      * This state is set after the last of the parts is closed.
      */
-    const PARSE_STATE_POST_LAST = 4;
+    public const PARSE_STATE_POST_LAST = 4;
 
     /**
      * Stores the state of the parser.

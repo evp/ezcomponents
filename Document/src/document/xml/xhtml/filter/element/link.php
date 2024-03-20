@@ -33,9 +33,7 @@ class ezcDocumentXhtmlLinkElementFilter extends ezcDocumentXhtmlElementBaseFilte
 
             // The a element is an anchor
             $span->setProperty( 'type', 'anchor' );
-            $span->setProperty( 'attributes', array(
-                'ID' => $element->getAttribute( 'name' ),
-            ) );
+            $span->setProperty( 'attributes', ['ID' => $element->getAttribute( 'name' )] );
         }
         elseif ( $element->hasAttribute( 'href' ) &&
                  $element->getAttribute( 'href' ) )
@@ -47,17 +45,13 @@ class ezcDocumentXhtmlLinkElementFilter extends ezcDocumentXhtmlElementBaseFilte
             {
                 // Internal target
                 $element->setProperty( 'type', 'link' );
-                $element->setProperty( 'attributes', array(
-                    'linked' => substr( $target, 1 ),
-                ) );
+                $element->setProperty( 'attributes', ['linked' => substr( $target, 1 )] );
             }
             else
             {
                 // External target
                 $element->setProperty( 'type', 'ulink' );
-                $element->setProperty( 'attributes', array(
-                    'url' => $target,
-                ) );
+                $element->setProperty( 'attributes', ['url' => $target] );
             }
         }
     }

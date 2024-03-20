@@ -27,13 +27,7 @@ class ezcDocumentDocbookToRstSpecialParagraphHandler extends ezcDocumentDocbookT
      *
      * @var array
      */
-    protected $types = array(
-        'note'      => 'note',
-        'tip'       => 'notice',
-        'warning'   => 'warning',
-        'important' => 'attention',
-        'caution'   => 'danger',
-    );
+    protected $types = ['note'      => 'note', 'tip'       => 'notice', 'warning'   => 'warning', 'important' => 'attention', 'caution'   => 'danger'];
 
     /**
      * Handle a node
@@ -50,7 +44,7 @@ class ezcDocumentDocbookToRstSpecialParagraphHandler extends ezcDocumentDocbookT
     {
         $type = $this->types[$node->tagName];
         $content = $converter->visitChildren( $node, '' );
-        $root .= $this->renderDirective( $type, '', array(), $content );
+        $root .= $this->renderDirective( $type, '', [], $content );
         return $root;
     }
 }

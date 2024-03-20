@@ -71,7 +71,7 @@ class ezcGraphPieChartOptions extends ezcGraphChartOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['label'] = '%1$s: %2$d (%3$.1f%%)';
         $this->properties['labelCallback'] = null;

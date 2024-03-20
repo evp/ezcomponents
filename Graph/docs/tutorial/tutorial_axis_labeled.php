@@ -17,13 +17,7 @@ $graph->xAxis->label = 'Error level';
 
 // Add data
 $graph->data['colors'] = new ezcGraphArrayDataSet(
-    array(
-        'info' => 'blue',
-        'notice' => 'green',
-        'warning' => 'orange',
-        'error' => 'red',
-        'fatal' => 'red',
-    )
+    ['info' => 'blue', 'notice' => 'green', 'warning' => 'orange', 'error' => 'red', 'fatal' => 'red']
 );
 
 $graph->render( 400, 150, 'tutorial_axis_labeled.svg' );

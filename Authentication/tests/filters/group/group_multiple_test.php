@@ -23,33 +23,33 @@ class ezcAuthenticationGroupMultipleTest extends ezcAuthenticationTest
 
     public static function suite()
     {
-        self::$data1 = array( // id_credentials, encrypted_token, token_method
-            array( 'qwerty', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'sha1' ),
-            array( 'wrong value', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'sha1' ),
-            );
+        self::$data1 = [
+            // id_credentials, encrypted_token, token_method
+            ['qwerty', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'sha1'],
+            ['wrong value', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e', 'sha1'],
+        ];
 
-        self::$data2 = array( // id_credentials, encrypted_token, token_method
-            array( 'asdfgh', 'a152e841783914146e4bcd4f39100686', 'md5' ),
-            array( 'wrong value', 'a152e841783914146e4bcd4f39100686', 'md5' ),
-            );
+        self::$data2 = [
+            // id_credentials, encrypted_token, token_method
+            ['asdfgh', 'a152e841783914146e4bcd4f39100686', 'md5'],
+            ['wrong value', 'a152e841783914146e4bcd4f39100686', 'md5'],
+        ];
 
-        self::$results = array( // the first 2 values are keys in $data1 and $data2
-                                // the 3rd value is the mode for the Group filter
-                                // the 4th value is the expected result for assertEquals()
-            array( 0, 0, ezcAuthenticationGroupFilter::MODE_AND, true ),
-            array( 0, 1, ezcAuthenticationGroupFilter::MODE_AND, false ),
+        self::$results = [
+            // the first 2 values are keys in $data1 and $data2
+            // the 3rd value is the mode for the Group filter
+            // the 4th value is the expected result for assertEquals()
+            [0, 0, ezcAuthenticationGroupFilter::MODE_AND, true],
+            [0, 1, ezcAuthenticationGroupFilter::MODE_AND, false],
+            [0, 0, ezcAuthenticationGroupFilter::MODE_OR, true],
+            [0, 1, ezcAuthenticationGroupFilter::MODE_OR, true],
+            [1, 0, ezcAuthenticationGroupFilter::MODE_AND, false],
+            [1, 1, ezcAuthenticationGroupFilter::MODE_AND, false],
+            [1, 0, ezcAuthenticationGroupFilter::MODE_OR, true],
+            [1, 1, ezcAuthenticationGroupFilter::MODE_OR, false],
+        ];
 
-            array( 0, 0, ezcAuthenticationGroupFilter::MODE_OR, true ),
-            array( 0, 1, ezcAuthenticationGroupFilter::MODE_OR, true ),
-
-            array( 1, 0, ezcAuthenticationGroupFilter::MODE_AND, false ),
-            array( 1, 1, ezcAuthenticationGroupFilter::MODE_AND, false ),
-
-            array( 1, 0, ezcAuthenticationGroupFilter::MODE_OR, true ),
-            array( 1, 1, ezcAuthenticationGroupFilter::MODE_OR, false ),
-            );
-
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testGroupMultipleCredentialsAddFilter()
@@ -68,7 +68,7 @@ class ezcAuthenticationGroupMultipleTest extends ezcAuthenticationTest
             $options->multipleCredentials = true;
             $options->mode = $result[2];
 
-            $group = new ezcAuthenticationGroupFilter( array(), $options );
+            $group = new ezcAuthenticationGroupFilter( [], $options );
             $group->addFilter( $filter1, $credentials1 );
             $group->addFilter( $filter2, $credentials2 );
 
@@ -94,7 +94,7 @@ class ezcAuthenticationGroupMultipleTest extends ezcAuthenticationTest
             $options->multipleCredentials = true;
             $options->mode = $result[2];
 
-            $group = new ezcAuthenticationGroupFilter( array( array( $filter1, $credentials1 ), array( $filter2, $credentials2 ) ), $options );
+            $group = new ezcAuthenticationGroupFilter( [[$filter1, $credentials1], [$filter2, $credentials2]], $options );
 
             $authentication->addFilter( $group );
 
@@ -110,7 +110,7 @@ class ezcAuthenticationGroupMultipleTest extends ezcAuthenticationTest
         $options = new ezcAuthenticationGroupOptions();
         $options->multipleCredentials = true;
 
-        $group = new ezcAuthenticationGroupFilter( array(), $options );
+        $group = new ezcAuthenticationGroupFilter( [], $options );
 
         try
         {
@@ -133,7 +133,7 @@ class ezcAuthenticationGroupMultipleTest extends ezcAuthenticationTest
 
         try
         {
-            $group = new ezcAuthenticationGroupFilter( array( $filter1, $filter2 ), $options );
+            $group = new ezcAuthenticationGroupFilter( [$filter1, $filter2], $options );
             $this->fail( 'Expected exception was not thrown.' );
         }
         catch ( ezcAuthenticationException $e )

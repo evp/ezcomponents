@@ -40,7 +40,7 @@ $tree = new ezcTreeDbNestedSet( $dbh, 'nested_set', $store );
 $metal = new data();
 $tree->setRootNode( $root = $tree->createNode( 'Metals', $metal ) );
 $iron = new data();
-$iron->setState( array( 'melting_temp_k' => 1811, 'boiling_temp_k' => 3134 ) );
+$iron->setState( ['melting_temp_k' => 1811, 'boiling_temp_k' => 3134] );
 $root->addChild( $tree->createNode( 'Fe', $iron ) );
 
 // Fetch data

@@ -2,36 +2,21 @@
 
 require_once 'tutorial_autoload.php';
 
-$tutorialPath = dirname( __FILE__ );
+$tutorialPath = __DIR__;
 
 $settings = new ezcImageConverterSettings(
-    array(
-        new ezcImageHandlerSettings( 'GD',          'ezcImageGdHandler' ),
-        new ezcImageHandlerSettings( 'ImageMagick', 'ezcImageImagemagickHandler' ),
-    ),
-    array( 
-        'image/gif' => 'image/png',
-    )
+    [new ezcImageHandlerSettings( 'GD',          'ezcImageGdHandler' ), new ezcImageHandlerSettings( 'ImageMagick', 'ezcImageImagemagickHandler' )],
+    ['image/gif' => 'image/png']
 );
 
 $converter = new ezcImageConverter( $settings );
 
-$filters = array(
-    new ezcImageFilter(
-        'filledThumbnail',
-        array(
-            'width'  => 100,
-            'height' => 100,
-            'color'  => array(
-                200,
-                200,
-                200,
-            ),
-        )
-    )
-);
+$filters = [new ezcImageFilter(
+    'filledThumbnail',
+    ['width'  => 100, 'height' => 100, 'color'  => [200, 200, 200]]
+)];
 
-$converter->createTransformation( 'thumbnail', $filters, array( 'image/jpeg', 'image/png' ) );
+$converter->createTransformation( 'thumbnail', $filters, ['image/jpeg', 'image/png'] );
 
 try
 {

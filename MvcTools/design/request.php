@@ -75,7 +75,7 @@ class ezcMvcRequest extends ezcBaseStruct
      * 
      * @var array
      */
-    public $variables = array();
+    public $variables = [];
 
     /**
      * Request body.

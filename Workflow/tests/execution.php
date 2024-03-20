@@ -27,12 +27,12 @@ class ezcWorkflowTestExecution extends ezcWorkflowExecutionNonInteractive
     /**
      * @var array
      */
-    protected $inputVariables = array();
+    protected $inputVariables = [];
 
     /**
      * @var array
      */
-    protected $inputVariablesForSubWorkflow = array();
+    protected $inputVariablesForSubWorkflow = [];
 
     /**
      * Property write access.
@@ -100,7 +100,7 @@ class ezcWorkflowTestExecution extends ezcWorkflowExecutionNonInteractive
         PHPUnit_Framework_Assert::assertFalse( $this->isResumed() );
         PHPUnit_Framework_Assert::assertTrue( $this->isSuspended() );
 
-        $inputData  = array();
+        $inputData  = [];
         $waitingFor = $this->getWaitingFor();
 
         foreach ( $this->inputVariables as $name => $value )

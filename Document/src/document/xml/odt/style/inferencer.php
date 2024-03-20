@@ -47,25 +47,14 @@ class ezcDocumentOdtStyleInferencer
      * 
      * @var array(string=>array(string=>const))
      */
-    protected $styleFamilyMap = array(
-        ezcDocumentOdt::NS_ODT_TEXT => array(
-            'h'    => ezcDocumentOdtStyle::FAMILY_PARAGRAPH,
-            'p'    => ezcDocumentOdtStyle::FAMILY_PARAGRAPH,
-            'span' => ezcDocumentOdtStyle::FAMILY_TEXT,
-        )
-    );
+    protected $styleFamilyMap = [ezcDocumentOdt::NS_ODT_TEXT => ['h'    => ezcDocumentOdtStyle::FAMILY_PARAGRAPH, 'p'    => ezcDocumentOdtStyle::FAMILY_PARAGRAPH, 'span' => ezcDocumentOdtStyle::FAMILY_TEXT]];
 
     /**
      * Maps ODT namespaces to style name attributes 
      * 
      * @var array(const=>array(const,string))
      */
-    protected $styleNameAttributeMap = array(
-        ezcDocumentOdt::NS_ODT_TEXT => array(
-            'namespace' => ezcDocumentOdt::NS_ODT_TEXT,
-            'attribute' => 'style-name'
-        ),
-    );
+    protected $styleNameAttributeMap = [ezcDocumentOdt::NS_ODT_TEXT => ['namespace' => ezcDocumentOdt::NS_ODT_TEXT, 'attribute' => 'style-name']];
 
     /**
      * Create a new style inferencer for the given document.

@@ -325,7 +325,7 @@ class ezcQuerySelectTestImpl extends ezcTestCase
 
     public function testSelectMultiWithAliasInOne()
     {
-        $this->q->setAliases( array( 'identifier' => 'id', 'text' => 'company' ) );
+        $this->q->setAliases( ['identifier' => 'id', 'text' => 'company'] );
         $this->q->select( 'identifier', 'text' )->from( 'query_test' );
         $stmt = $this->db->query( $this->q->getQuery() );
         $this->assertEquals( 2, $stmt->columnCount() );
@@ -333,7 +333,7 @@ class ezcQuerySelectTestImpl extends ezcTestCase
 
     public function testSelectMultiWithAliasInMulti()
     {
-        $this->q->setAliases( array( 'identifier' => 'id', 'text' => 'company' ) );
+        $this->q->setAliases( ['identifier' => 'id', 'text' => 'company'] );
         $this->q->select( 'identifier')->select( 'text' )->from( 'query_test' );
         $stmt = $this->db->query( $this->q->getQuery() );
         $this->assertEquals( 2, $stmt->columnCount() );
@@ -353,7 +353,7 @@ class ezcQuerySelectTestImpl extends ezcTestCase
 
     public function testAliAsWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id', 'text' => 'company' ) );
+        $this->q->setAliases( ['identifier' => 'id', 'text' => 'company'] );
         $this->q->select( $this->q->aliAs( 'identifier', 'other' ) )->from( 'query_test' );
         $stmt = $this->db->query( $this->q->getQuery() );
         $result = $stmt->fetchAll();

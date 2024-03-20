@@ -12,13 +12,7 @@ $out = new ezcConsoleOutput();
 $opts = new ezcConsoleMenuDialogOptions();
 $opts->text = "Please choose a possibility:\n";
 $opts->validator = new ezcConsoleMenuDialogDefaultValidator(
-    array(
-        "A" => "Selection A",
-        "B" => "Selection B",
-        "C" => "Selection C",
-        "D" => "Selection D",
-        "Z" => "Selection Z",
-    ),
+    ["A" => "Selection A", "B" => "Selection B", "C" => "Selection C", "D" => "Selection D", "Z" => "Selection Z"],
     "Z"
 );
 

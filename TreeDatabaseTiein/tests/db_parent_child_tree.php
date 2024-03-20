@@ -19,13 +19,13 @@ class ezcTreeDbParentChildTest extends ezcDbTreeTest
 {
     private $tempDir;
 
-    protected $tables  = array( 'parent_child', 'data', 'datam' );
+    protected $tables  = ['parent_child', 'data', 'datam'];
     protected $schemaName = 'parent_child.dba';
 
     public function insertData()
     {
         // insert test data
-        $data = array(
+        $data = [
             // child -> parent
             1 => 'null',
             2 => 1,
@@ -35,8 +35,8 @@ class ezcTreeDbParentChildTest extends ezcDbTreeTest
             7 => 6,
             8 => 6,
             5 => 1,
-            9 => 5
-        );
+            9 => 5,
+        ];
         foreach( $data as $childId => $parentId )
         {
             $this->dbh->exec( "INSERT INTO parent_child(id, parent_id) VALUES( $childId, $parentId )" );

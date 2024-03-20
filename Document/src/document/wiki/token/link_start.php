@@ -29,11 +29,7 @@ class ezcDocumentWikiLinkStartToken extends ezcDocumentWikiInlineMarkupToken
     public function getLinkParameterOrder( $count )
     {
         return array_slice(
-            array(
-                'link',
-                'nodes',
-                'description',
-            ),
+            ['link', 'nodes', 'description'],
             0, $count
         );
     }
@@ -47,7 +43,7 @@ class ezcDocumentWikiLinkStartToken extends ezcDocumentWikiInlineMarkupToken
      */
     public static function __set_state( $properties )
     {
-        $tokenClass = __CLASS__;
+        $tokenClass = self::class;
         $token = new $tokenClass(
             $properties['content'],
             $properties['line'],

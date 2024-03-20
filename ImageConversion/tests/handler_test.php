@@ -8,7 +8,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . "/test_case.php";
+require_once __DIR__ . "/test_case.php";
 
 /**
  * Test suite for ImageHandler class.
@@ -36,7 +36,7 @@ class ezcImageConversionHandlerTest extends ezcImageConversionTestCase
 
     protected function setUp()
     {
-        $this->handler  = new $this->handlerClass( call_user_func( array( $this->handlerClass, "defaultSettings" ) ) );
+        $this->handler  = new $this->handlerClass( call_user_func( [$this->handlerClass, "defaultSettings"] ) );
     }
 
     protected function getReferences()
@@ -202,11 +202,11 @@ class ezcImageConversionHandlerTest extends ezcImageConversionTestCase
     public function testGetFilterNamesFailure()
     {
         $availFilters = $this->handler->getFilterNames();
-        $unavailFilters = array( "toby", "derick", "frederick", "ray", "__construct", "__destruct", "_whatever" );
+        $unavailFilters = ["toby", "derick", "frederick", "ray", "__construct", "__destruct", "_whatever"];
 
         $this->assertEquals(
             array_intersect( $unavailFilters, $availFilters  ),
-            array(),
+            [],
             "Weird filters seem not to be available in the filters for <{$this->handlerClass}>."
         );
     }

@@ -39,13 +39,7 @@ class ezcMvcRequestFileTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'mimeType' => 'php',
-        'name' => 'ezc',
-        'size' => 'ezp',
-        'status' => 'buddymiles',
-        'tmpPath' => 'buddyguy',
-        );
+        $state = ['mimeType' => 'php', 'name' => 'ezc', 'size' => 'ezp', 'status' => 'buddymiles', 'tmpPath' => 'buddyguy'];
         $struct = ezcMvcRequestFile::__set_state( $state );
         $this->assertEquals( 'php', $struct->mimeType, 'Property mimeType does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->name, 'Property name does not have the expected value' );

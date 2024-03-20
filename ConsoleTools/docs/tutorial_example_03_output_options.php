@@ -5,13 +5,10 @@ require_once 'tutorial_autoload.php';
 $output = new ezcConsoleOutput();
 
 $output->formats->info->color = 'blue';
-$output->formats->info->style = array( 'bold' );
+$output->formats->info->style = ['bold'];
 
 $output->setOptions( 
-    array( 
-        'autobreak'      => 78,
-        'verbosityLevel' => 3
-    )
+    ['autobreak'      => 78, 'verbosityLevel' => 3]
 );
 
 $output->outputLine( 'This is a very very long info text. It has so much information in '.

@@ -81,7 +81,7 @@ class ezcArchiveCentralDirectoryHeader extends ezcArchiveLocalFileHeader
     /**
      * Defines the signature of this header.
      */
-    const magic = 0x02014b50;
+    public const magic = 0x02014b50;
 
     /**
      * Creates and initializes a new header.

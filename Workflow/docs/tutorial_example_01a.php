@@ -27,10 +27,8 @@ class MyServiceObject implements ezcWorkflowServiceObject
     }
 }
 
-$trueNode = new ezcWorkflowNodeAction( array( 'class' => 'MyServiceObject',
-                                              'arguments' => array( 'message: TRUE' ) )
+$trueNode = new ezcWorkflowNodeAction( ['class' => 'MyServiceObject', 'arguments' => ['message: TRUE']]
                                        );
-$falseNode  = new ezcWorkflowNodeAction( array( 'class' => 'MyServiceObject',
-                                                'arguments' => array( 'message: FALSE' ) )
+$falseNode  = new ezcWorkflowNodeAction( ['class' => 'MyServiceObject', 'arguments' => ['message: FALSE']]
                                          );
 ?>

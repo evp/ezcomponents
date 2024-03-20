@@ -64,7 +64,7 @@ class ezcTemplateSourceToTstParserException extends ezcTemplateException
     {
         
             // TODO fix this. 
-        $this->elements = array( $parser );
+        $this->elements = [$parser];
         $this->parser = $parser;
         $this->source = $parser->parser->source;
         $this->elements[0]->startCursor = $cursor;
@@ -85,7 +85,7 @@ class ezcTemplateSourceToTstParserException extends ezcTemplateException
         if ( $this->parser !== null )
         {
             $parser = $this->parser;
-            $parsers = array();
+            $parsers = [];
             $currentParser = $parser->programParser;
             $parsers = get_class( $currentParser );
             $level = 0;

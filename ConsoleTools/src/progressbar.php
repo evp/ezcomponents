@@ -63,12 +63,7 @@ class ezcConsoleProgressbar
      * 
      * @var array(string=>string)
      */
-    protected $valueMap = array( 
-        'bar'       => '',
-        'fraction'  => '',
-        'act'       => '',
-        'max'       => '',
-    );
+    protected $valueMap = ['bar'       => '', 'fraction'  => '', 'act'       => '', 'max'       => ''];
 
     /**
      * Stores the bar utilization.
@@ -78,13 +73,7 @@ class ezcConsoleProgressbar
      * 
      * @var array(string=>int)
      */
-    protected $measures = array( 
-        'barSpace'          => 0,
-        'fractionSpace'     => 0,
-        'actSpace'          => 0,
-        'maxSpace'          => 0,
-        'fixedCharSpace'    => 0,
-    );
+    protected $measures = ['barSpace'          => 0, 'fractionSpace'     => 0, 'actSpace'          => 0, 'maxSpace'          => 0, 'fixedCharSpace'    => 0];
 
     /**
      * The current step the progress bar should show. 
@@ -134,7 +123,7 @@ class ezcConsoleProgressbar
      *
      * @see ezcConsoleProgressbar::$options
      */
-    public function __construct( ezcConsoleOutput $outHandler, $max, array $options = array() )
+    public function __construct( ezcConsoleOutput $outHandler, $max, array $options = [] )
     {
         $this->output     = $outHandler;
         $this->stringTool = new ezcConsoleStringTool();

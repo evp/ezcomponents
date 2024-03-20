@@ -47,11 +47,7 @@ class ce_bad_word
      */
      public function getState()
      {
-         return array(
-             'badword_id' => $this->badword_id,
-             'substitution' => $this->substitution,
-             'word' => $this->word,
-         );
+         return ['badword_id' => $this->badword_id, 'substitution' => $this->substitution, 'word' => $this->word];
      }
 }
 ?>

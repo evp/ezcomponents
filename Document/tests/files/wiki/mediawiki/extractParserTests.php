@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-$lines     = file( dirname( __FILE__ ) . '/parserTests.txt' );
+$lines     = file( __DIR__ . '/parserTests.txt' );
 $lineCount = count( $lines );
             
 $test      = null;

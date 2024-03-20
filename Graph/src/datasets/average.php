@@ -148,7 +148,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
      */
     protected function buildPolynom()
     {
-        $points = array();
+        $points = [];
 
         foreach ( $this->source as $key => $value )
         {
@@ -178,7 +178,7 @@ class ezcGraphDataSetAveragePolynom extends ezcGraphDataSet
         {
             foreach ( $points as $nr => $point )
             {
-                $a->set( $nr, $i, pow( $point->x, $i ) );
+                $a->set( $nr, $i, $point->x ** $i );
                 $b->set( $nr, 0, $point->y );
             }
         }

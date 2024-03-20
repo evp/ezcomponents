@@ -74,7 +74,7 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         parent::__construct();
 
@@ -108,8 +108,8 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
         $yAxisNullPosition = $this->elements['xAxis']->getCoordinate( false );
 
         // Initialize counters
-        $nr = array();
-        $count = array();
+        $nr = [];
+        $count = [];
 
         foreach ( $this->data as $data )
         {
@@ -131,8 +131,8 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
             --$nr[$data->displayType->default];
 
             // Check which axis should be used
-            $xAxis = ( $data->xAxis->default ? $data->xAxis->default: $this->elements['xAxis'] );
-            $yAxis = ( $data->yAxis->default ? $data->yAxis->default: $this->elements['yAxis'] );
+            $xAxis = ( $data->xAxis->default ?: $this->elements['xAxis'] );
+            $yAxis = ( $data->yAxis->default ?: $this->elements['yAxis'] );
 
             // Determine fill color for dataset
             if ( $this->options->fillLines !== false )
@@ -196,11 +196,11 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
                                 $nr[$data->displayType->default],
                                 $count[$data->displayType->default],
                                 $this->options->highlightFont,
-                                ( $data->highlightValue[$key] ? $data->highlightValue[$key] : $value ),
+                                ( $data->highlightValue[$key] ?: $value ),
                                 $this->options->highlightSize + $this->options->highlightFont->padding * 2,
                                 ( $this->options->highlightLines ? $data->color[$key] : null ),
-                                ( $this->options->highlightXOffset ? $this->options->highlightXOffset : 0 ),
-                                ( $this->options->highlightYOffset ? $this->options->highlightYOffset : 0 ),
+                                ( $this->options->highlightXOffset ?: 0 ),
+                                ( $this->options->highlightYOffset ?: 0 ),
                                 $height,
                                 $data->displayType->default
                             );
@@ -228,14 +228,14 @@ class ezcGraphHorizontalBarChart extends ezcGraphBarChart
     protected function setAxisValues()
     {
         // Virtual data set build for agrregated values sums for bar charts
-        $virtualBarSumDataSet = array( array(), array() );
+        $virtualBarSumDataSet = [[], []];
 
         // Calculate axis scaling and labeling
         foreach ( $this->data as $dataset )
         {
             $nr = 0;
-            $labels = array();
-            $values = array();
+            $labels = [];
+            $values = [];
             foreach ( $dataset as $label => $value )
             {
                 $labels[] = $label;

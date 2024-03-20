@@ -21,7 +21,7 @@ class ezcDbSchemaOracleHelper
      *
      * @var int
      */
-    const IDENTIFIER_MAX_LENGTH = 30;
+    public const IDENTIFIER_MAX_LENGTH = 30;
 
     /**
      * Generate composite identifier name for sequence or triggers and looking for oracle 30 chars ident restriction.
@@ -33,7 +33,7 @@ class ezcDbSchemaOracleHelper
      */
     public static function generateSuffixCompositeIdentName( $tableName, $fieldName, $suffix )
     {
-        return self::generateSuffixedIdentName( array( $tableName, $fieldName ), $suffix );
+        return self::generateSuffixedIdentName( [$tableName, $fieldName], $suffix );
     }
 
     /**

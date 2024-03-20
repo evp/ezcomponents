@@ -230,17 +230,17 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
     /**
      * The OpenID provider did not authorize the provided URL.
      */
-    const STATUS_SIGNATURE_INCORRECT = 1;
+    public const STATUS_SIGNATURE_INCORRECT = 1;
 
     /**
      * The OpenID provider did not return a valid nonce in the response.
      */
-    const STATUS_NONCE_INCORRECT = 2;
+    public const STATUS_NONCE_INCORRECT = 2;
 
     /**
      * User cancelled the OpenID authentication.
      */
-    const STATUS_CANCELLED = 3;
+    public const STATUS_CANCELLED = 3;
 
     /**
      * The URL provided by user was empty, or the required information could
@@ -248,13 +248,13 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      *
      * @todo remove and return STATUS_SIGNATURE_INCORRECT instead?
      */
-    const STATUS_URL_INCORRECT = 4;
+    public const STATUS_URL_INCORRECT = 4;
 
     /**
      * The OpenID server returned a setup URL after a checkid_immediate request,
      * which is available by calling the getSetupUrl() method.
      */
-    const STATUS_SETUP_URL = 5;
+    public const STATUS_SETUP_URL = 5;
 
     /**
      * OpenID authentication mode where the OpenID provider generates a secret
@@ -264,7 +264,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      * An extra check_authentication request to the provider is needed.
      * This is the default mode.
      */
-    const MODE_DUMB = 1;
+    public const MODE_DUMB = 1;
 
     /**
      * OpenID authentication mode where the server generates a secret which will
@@ -275,22 +275,22 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      * The shared secret must be established once in a while (defined by the
      * option secretValidity, default 1 day = 86400 seconds).
      */
-    const MODE_SMART = 2;
+    public const MODE_SMART = 2;
 
     /**
      * OpenID version 1.0.
      */
-    const VERSION_1_0 = '1.0';
+    public const VERSION_1_0 = '1.0';
 
     /**
      * OpenID version 1.1.
      */
-    const VERSION_1_1 = '1.1';
+    public const VERSION_1_1 = '1.1';
 
     /**
      * OpenID version 2.0.
      */
-    const VERSION_2_0 = '2.0';
+    public const VERSION_2_0 = '2.0';
 
     /**
      * The default value for p used in the Diffie-Hellman exchange.
@@ -299,14 +299,14 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      *
      * @ignore
      */
-    const DEFAULT_P = '155172898181473697471232257763715539915724801966915404479707795314057629378541917580651227423698188993727816152646631438561595825688188889951272158842675419950341258706556549803580104870537681476726513255747040765857479291291572334510643245094715007229621094194349783925984760375594985848253359305585439638443';
+    public const DEFAULT_P = '155172898181473697471232257763715539915724801966915404479707795314057629378541917580651227423698188993727816152646631438561595825688188889951272158842675419950341258706556549803580104870537681476726513255747040765857479291291572334510643245094715007229621094194349783925984760375594985848253359305585439638443';
 
     /**
      * The default value for q used in the Diffie-Hellman exchange.
      *
      * @ignore
      */
-    const DEFAULT_Q = '2';
+    public const DEFAULT_Q = '2';
 
     /**
      * Holds the setup URL retrieved during the checkid_immediate OpenID request.
@@ -329,7 +329,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      *
      * @var array(string)
      */
-    protected $requestedData = array();
+    protected $requestedData = [];
 
     /**
      * Holds the extra data fetched during the authentication process.
@@ -345,7 +345,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      *
      * @var array(string=>mixed)
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Creates a new object of this class.
@@ -354,7 +354,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      */
     public function __construct( ezcAuthenticationOpenidOptions $options = null )
     {
-        $this->options = ( $options === null ) ? new ezcAuthenticationOpenidOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationOpenidOptions();
     }
 
     /**
@@ -411,12 +411,12 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
                 break;
 
             case 'id_res':
-                $assocHandle = isset( $source['openid_assoc_handle'] ) ? $source['openid_assoc_handle'] : null;
-                $identity = isset( $source['openid_identity'] ) ? $source['openid_identity'] : null;
-                $sig = isset( $source['openid_sig'] ) ? $source['openid_sig'] : null;
-                $signed = isset( $source['openid_signed'] ) ? $source['openid_signed'] : null;
-                $returnTo = isset( $source['openid_return_to'] ) ? $source['openid_return_to'] : null;
-                $claimedId = isset( $source['openid_claimed_id'] ) ? $source['openid_claimed_id'] : null;
+                $assocHandle = $source['openid_assoc_handle'] ?? null;
+                $identity = $source['openid_identity'] ?? null;
+                $sig = $source['openid_sig'] ?? null;
+                $signed = $source['openid_signed'] ?? null;
+                $returnTo = $source['openid_return_to'] ?? null;
+                $claimedId = $source['openid_claimed_id'] ?? null;
 
                 // @todo add verification of openid_identity and openid_claimed_id to the initial openid_identifier
 
@@ -433,22 +433,17 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
                     }
                 }
 
-                $params = array(
-                    'openid.assoc_handle' => $assocHandle,
-                    'openid.signed' => $signed,
-                    'openid.sig' => $sig,
-                    'openid.mode' => 'id_res'
-                );
+                $params = ['openid.assoc_handle' => $assocHandle, 'openid.signed' => $signed, 'openid.sig' => $sig, 'openid.mode' => 'id_res'];
 
                 $signed = explode( ',', $signed );
                 for ( $i = 0; $i < count( $signed ); $i++ )
                 {
                     $s = str_replace( '.', '_', $signed[$i] );
                     $c = $source['openid_' . $s];
-                    $params['openid.' . $signed[$i]] = isset( $params['openid.' . $s] ) ? $params['openid.' . $s] : $c;
+                    $params['openid.' . $signed[$i]] = $params['openid.' . $s] ?? $c;
                     if ( strpos( $s, 'sreg_' ) !== false )
                     {
-                        $this->data[str_replace( 'sreg_', '', $s )] = array( $c );
+                        $this->data[str_replace( 'sreg_', '', $s )] = [$c];
                     }
                 }
 
@@ -536,11 +531,10 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
         $provider = $providers['openid.server'][0];
 
         // if a delegate is found, it is used instead of the credentials
-        $identity = isset( $providers['openid.delegate'][0] ) ? $providers['openid.delegate'][0] :
-                                                                $id;
+        $identity = $providers['openid.delegate'][0] ?? $id;
 
-        $host = isset( $_SERVER["HTTP_HOST"] ) ? $_SERVER["HTTP_HOST"] : null;
-        $path = isset( $_SERVER["REQUEST_URI"] ) ? $_SERVER["REQUEST_URI"] : null;
+        $host = $_SERVER["HTTP_HOST"] ?? null;
+        $path = $_SERVER["REQUEST_URI"] ?? null;
 
         if ( $this->options->mode === self::MODE_SMART )
         {
@@ -555,7 +549,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
                     $params = $this->createAssociateRequest();
                     $result = $this->associate( $provider, $params );
 
-                    $secret = isset( $result['enc_mac_key'] ) ? $result['enc_mac_key'] : $result['mac_key'];
+                    $secret = $result['enc_mac_key'] ?? $result['mac_key'];
                     $association = new ezcAuthenticationOpenidAssociation( $result['assoc_handle'],
                                                                            $secret,
                                                                            time(),
@@ -581,11 +575,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
             $store->storeNonce( $nonce );
         }
 
-        $params = array(
-            'openid.return_to' => urlencode( $returnTo ),
-            'openid.trust_root' => urlencode( $trustRoot ),
-            'openid.identity' => urlencode( $id ),
-            );
+        $params = ['openid.return_to' => urlencode( $returnTo ), 'openid.trust_root' => urlencode( $trustRoot ), 'openid.identity' => urlencode( $id )];
 
         if ( $this->options->openidVersion === self::VERSION_2_0 )
         {
@@ -628,16 +618,16 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
 
         $private = $lib->rand( $p );
         $public = $lib->powmod( $q, $private, $p );
-        $params = array(
+        $params = [
             'openid.mode' => 'associate',
             'openid.assoc_type' => 'HMAC-SHA1',
-
             // @todo add support for DH-SHA1 (is it needed if the connection is SSL?)
             // 'openid.session_type' => 'DH-SHA1', // not supported yet
             'openid.dh_modulus' => urlencode( base64_encode( $lib->btwoc( $p ) ) ),
-            'openid.dh_gen' => 2, urlencode( base64_encode( $lib->btwoc( $q ) ) ),
-            'openid.dh_consumer_public' => urlencode( base64_encode( $lib->btwoc( $public ) ) )
-            );
+            'openid.dh_gen' => 2,
+            urlencode( base64_encode( $lib->btwoc( $q ) ) ),
+            'openid.dh_consumer_public' => urlencode( base64_encode( $lib->btwoc( $public ) ) ),
+        ];
 
         return $params;
     }
@@ -664,7 +654,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      */
     protected function discover( $url )
     {
-        $providers = array();
+        $providers = [];
 
         if ( $this->options->openidVersion === self::VERSION_2_0 )
         {
@@ -731,7 +721,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
             // get the XRDS document from the original location (provided $url)
             $src = ezcAuthenticationUrl::getUrl( $url, 'GET', 'application/xrds+xml' );
         }
-        $result = array();
+        $result = [];
 
         // @todo check the regexp in this function, maybe they should be rewritten
 
@@ -767,7 +757,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
         $url = ezcAuthenticationUrl::normalize( $url );
 
         $src = ezcAuthenticationUrl::getUrl( $url, 'GET', 'application/xrds+xml' );
-        $result = array();
+        $result = [];
 
         // @todo check the regexp in this function, maybe they should be rewritten
 
@@ -813,7 +803,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
         $url = ezcAuthenticationUrl::normalize( $url );
 
         $src = ezcAuthenticationUrl::getUrl( $url, 'GET', 'text/html' );
-        $result = array();
+        $result = [];
 
         $pattern = "%<\w.*rel\=[\s\"'`]*([\w:?=@&\/#._;-]+)[\s\"'`]*[^>]*>%i";
         preg_match_all( $pattern, $src, $matches );
@@ -879,12 +869,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      */
     protected function getProvider( array $providers )
     {
-        if ( isset( $providers['openid.server'][0] ) )
-        {
-            return $providers['openid.server'][0];
-        }
-
-        return false;
+        return $providers['openid.server'][0] ?? false;
     }
 
     /**
@@ -911,8 +896,8 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
     protected function checkImmediate( $provider, array $params, $method = 'GET' )
     {
         $parts = parse_url( $provider );
-        $path = isset( $parts['path'] ) ? $parts['path'] : '/';
-        $host = isset( $parts['host'] ) ? $parts['host'] : null;
+        $path = $parts['path'] ?? '/';
+        $host = $parts['host'] ?? null;
         $port = 80;
 
         // suppress warnings caused by fsockopen() if $host is not a valid domain
@@ -925,7 +910,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
         {
             stream_set_timeout( $connection, $this->options->timeout );
             $url = $path . '?' . urldecode( http_build_query( $params ) );
-            $headers = array( "{$method} {$url} HTTP/1.0", "Host: {$host}", "Connection: close" );
+            $headers = ["{$method} {$url} HTTP/1.0", "Host: {$host}", "Connection: close"];
             fputs( $connection, implode( "\r\n", $headers ) . "\r\n\r\n" );
 
             $src = stream_get_contents( $connection );
@@ -941,7 +926,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
                 $vars = ezcAuthenticationUrl::parseQueryString( $query );
 
                 // get the openid.user_setup_url value from the response URL
-                $setupUrl = isset( $vars['openid.user_setup_url'] ) ? $vars['openid.user_setup_url'] : false;
+                $setupUrl = $vars['openid.user_setup_url'] ?? false;
 
                 if ( $setupUrl !== false )
                 {
@@ -951,7 +936,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
                     // get the query parameters from the openid.user_setup_url in $setupParams
                     // and the other parts of the URL in $parts
                     $parts = parse_url( $setupUrl );
-                    $query = isset( $parts['query'] ) ? $parts['query'] : false;
+                    $query = $parts['query'] ?? false;
                     $setupParams = ezcAuthenticationUrl::parseQueryString( $query );
 
                     // merge the setup_url query parameters with all the other query parameters
@@ -997,8 +982,8 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
     protected function checkSignature( $provider, array $params, $method = 'GET' )
     {
         $parts = parse_url( $provider );
-        $path = isset( $parts['path'] ) ? $parts['path'] : '/';
-        $host = isset( $parts['host'] ) ? $parts['host'] : null;
+        $path = $parts['path'] ?? '/';
+        $host = $parts['host'] ?? null;
         $port = 443;
 
         // suppress warnings caused by fsockopen() if $host is not a valid domain
@@ -1011,20 +996,20 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
         {
             stream_set_timeout( $connection, $this->options->timeout );
             $url = $path . '?' . urldecode( http_build_query( $params ) );
-            $headers = array( "{$method} {$url} HTTP/1.0", "Host: {$host}", "Connection: close" );
+            $headers = ["{$method} {$url} HTTP/1.0", "Host: {$host}", "Connection: close"];
             fputs( $connection, implode( "\r\n", $headers ) . "\r\n\r\n" );
 
             $src = stream_get_contents( $connection );
             fclose( $connection );
 
-            $r = array();
+            $r = [];
             $response = explode( "\n", $src );
             foreach ( $response as $line )
             {
                 $line = trim( $line );
                 if ( !empty( $line ) && strpos( $line, ':' ) !== false )
                 {
-                    list( $key, $value ) = explode( ':', $line, 2 );
+                    [$key, $value] = explode( ':', $line, 2 );
                     $r[trim( $key )] = trim( $value );
                 }
             }
@@ -1066,7 +1051,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
 
         for ( $i = 0; $i < count( $signed ); $i++ )
         {
-            $data[$signed[$i]] = isset( $params['openid.' . $signed[$i]] ) ? $params['openid.' . $signed[$i]] : null;
+            $data[$signed[$i]] = $params['openid.' . $signed[$i]] ?? null;
         }
 
         $serialized = '';
@@ -1112,8 +1097,8 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
     protected function associate( $provider, array $params, $method = 'GET' )
     {
         $parts = parse_url( $provider );
-        $path = isset( $parts['path'] ) ? $parts['path'] : '/';
-        $host = isset( $parts['host'] ) ? $parts['host'] : null;
+        $path = $parts['path'] ?? '/';
+        $host = $parts['host'] ?? null;
         $port = 443;
 
         // suppress warnings caused by fsockopen() if $host is not a valid domain
@@ -1127,31 +1112,27 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
             stream_set_timeout( $connection, $this->options->timeout );
             $url = $path . '?' . urldecode( http_build_query( $params ) );
 
-            $headers = array( "{$method} {$url} HTTP/1.0", "Host: {$host}", "Connection: close" );
+            $headers = ["{$method} {$url} HTTP/1.0", "Host: {$host}", "Connection: close"];
             fputs( $connection, implode( "\r\n", $headers ) . "\r\n\r\n" );
 
             $src = stream_get_contents( $connection );
             fclose( $connection );
 
-            $r = array();
+            $r = [];
             $response = explode( "\n", $src );
             foreach ( $response as $line )
             {
                 $line = trim( $line );
                 if ( !empty( $line ) && strpos( $line, ':' ) !== false )
                 {
-                    list( $key, $value ) = explode( ':', $line, 2 );
+                    [$key, $value] = explode( ':', $line, 2 );
                     $r[trim( $key )] = trim( $value );
                 }
             }
 
             if ( isset( $r['assoc_handle'] ) )
             {
-                $result = array(
-                    'assoc_handle' => $r['assoc_handle'],
-                    'assoc_type' => $r['assoc_type'],
-                    'expires_in' => $r['expires_in']
-                    );
+                $result = ['assoc_handle' => $r['assoc_handle'], 'assoc_type' => $r['assoc_type'], 'expires_in' => $r['expires_in']];
 
                 if ( isset( $r['mac_key'] ) )
                 {
@@ -1181,7 +1162,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
 
         for ( $i = 0; $i ^ $length; ++$i )
         {
-            $result .= rand( 0, 9 );
+            $result .= random_int( 0, 9 );
         }
 
         return $result;
@@ -1214,7 +1195,7 @@ class ezcAuthenticationOpenidFilter extends ezcAuthenticationFilter implements e
      *
      * @param array(string) $data A list of attributes to fetch during authentication
      */
-    public function registerFetchData( array $data = array() )
+    public function registerFetchData( array $data = [] )
     {
         $this->requestedData = $data;
     }

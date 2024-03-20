@@ -132,7 +132,7 @@ class ezcCacheStack extends ezcCacheStorage
      * 
      * @var array(int=>ezcCacheStackableStorage)
      */
-    private $storageStack = array();
+    private $storageStack = [];
 
     /**
      * Mapping if IDs to storages.
@@ -142,7 +142,7 @@ class ezcCacheStack extends ezcCacheStorage
      * 
      * @var array(string=>ezcCacheStackableStorage)
      */
-    private $storageIdMap = array();
+    private $storageIdMap = [];
 
     /**
      * Creates a new cache stack.
@@ -178,7 +178,7 @@ class ezcCacheStack extends ezcCacheStorage
         {
             // Configure this instance
             call_user_func(
-                array( $options->configurator, 'configure' ),
+                [$options->configurator, 'configure'],
                 $this
             );
         }
@@ -204,7 +204,7 @@ class ezcCacheStack extends ezcCacheStorage
      * @param mixed $data 
      * @param array $attributes 
      */
-    public function store( $id, $data, $attributes = array() )
+    public function store( $id, $data, $attributes = [] )
     {
         $metaStorage = $this->getMetaDataStorage();
         $metaStorage->lock();
@@ -214,10 +214,7 @@ class ezcCacheStack extends ezcCacheStorage
         foreach( $this->storageStack as $storageConf )
         {
             call_user_func(
-                array(
-                    $this->properties['options']->replacementStrategy,
-                    'store'
-                ),
+                [$this->properties['options']->replacementStrategy, 'store'],
                 $storageConf,
                 $metaData,
                 $id,
@@ -246,10 +243,7 @@ class ezcCacheStack extends ezcCacheStorage
         if ( $metaData === null )
         {
             $metaData = call_user_func(
-                array(
-                    $this->properties['options']->replacementStrategy,
-                    'createMetaData'
-                )
+                [$this->properties['options']->replacementStrategy, 'createMetaData']
             );
         }
 
@@ -274,7 +268,7 @@ class ezcCacheStack extends ezcCacheStorage
      * @param bool $search 
      * @return mixed The restored data or false on failure.
      */
-    public function restore( $id, $attributes = array(), $search = false )
+    public function restore( $id, $attributes = [], $search = false )
     {
         $metaStorage = $this->getMetaDataStorage();
         $metaStorage->lock();
@@ -285,10 +279,7 @@ class ezcCacheStack extends ezcCacheStorage
         foreach ( $this->storageStack as $storageConf )
         {
             $item = call_user_func(
-                array(
-                    $this->properties['options']->replacementStrategy,
-                    'restore'
-                ),
+                [$this->properties['options']->replacementStrategy, 'restore'],
                 $storageConf,
                 $metaData,
                 $id,
@@ -331,10 +322,7 @@ class ezcCacheStack extends ezcCacheStorage
                 break;
             }
             call_user_func(
-                array(
-                    $this->properties['options']->replacementStrategy,
-                    'store'
-                ),
+                [$this->properties['options']->replacementStrategy, 'store'],
                 $storageConf,
                 $metaData,
                 $id,
@@ -369,23 +357,20 @@ class ezcCacheStack extends ezcCacheStorage
      * @param bool $search 
      * @return array(string)
      */
-    public function delete( $id = null, $attributes = array(), $search = false )
+    public function delete( $id = null, $attributes = [], $search = false )
     {
         $metaStorage = $this->getMetaDataStorage();
         $metaStorage->lock();
 
         $metaData = $metaStorage->restoreMetaData();
 
-        $deletedIds = array();
+        $deletedIds = [];
         foreach ( $this->storageStack as $storageConf )
         {
             $deletedIds = array_merge(
                 $deletedIds,
                 call_user_func(
-                    array(
-                        $this->properties['options']->replacementStrategy,
-                        'delete'
-                    ),
+                    [$this->properties['options']->replacementStrategy, 'delete'],
                     $storageConf,
                     $metaData,
                     $id,
@@ -438,7 +423,7 @@ class ezcCacheStack extends ezcCacheStorage
      * @param array $attributes 
      * @return int
      */
-    public function countDataItems( $id = null, $attributes = array() )
+    public function countDataItems( $id = null, $attributes = [] )
     {
         $sum = 0;
         foreach( $this->storageStack as $storageConf )
@@ -463,7 +448,7 @@ class ezcCacheStack extends ezcCacheStorage
      * @param array $attributes 
      * @return int
      */
-    public function getRemainingLifetime( $id, $attributes = array() )
+    public function getRemainingLifetime( $id, $attributes = [] )
     {
         foreach ( $this->storageStack as $storageConf )
         {

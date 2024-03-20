@@ -17,7 +17,7 @@
  */
 class ezcTemplateOutputVariableManager
 {
-    private $outputVariables = array();
+    private $outputVariables = [];
     private $stackSize = 0;
 
     public function __construct( $initialValue = null )
@@ -50,9 +50,7 @@ class ezcTemplateOutputVariableManager
                 $astNode->typeHint = $symbolTable->getTypeHint( $name );
             }
         }
-        array_push( $this->outputVariables, array( 'name'    => $name,
-                                                   'ast'     => $astNode,
-                                                   'is_used' => false ) );
+        array_push( $this->outputVariables, ['name'    => $name, 'ast'     => $astNode, 'is_used' => false] );
         ++$this->stackSize;
     }
 

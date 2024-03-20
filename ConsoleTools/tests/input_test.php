@@ -17,161 +17,13 @@
  */
 class ezcConsoleInputTest extends ezcTestCase
 {
-    private $testOptions = array( 
-        array( 
-            'short'     => 't',
-            'long'      => 'testing',
-            'options'   => array(),
-        ),
-        array( 
-            'short'     => 's',
-            'long'      => 'subway',
-            'options'   => array(),
-        ),
-        array( 
-            'short'     => '',
-            'long'      => 'carry',
-            'options'   => array(),
-        ),
-        array( 
-            'short'     => 'v',
-            'long'      => 'visual',
-            'options'   => array(
-                'multiple'  => true,
-                'arguments' => false,
-            ),
-        ),
-        array( 
-            'short'     => 'o',
-            'long'      => 'original',
-            'options'   => array(
-                'type'      => ezcConsoleInput::TYPE_STRING,
-            ),
-        ),
-        array( 
-            'short'     => 'b',
-            'long'      => 'build',
-            'options'   => array(
-                'type'      => ezcConsoleInput::TYPE_INT,
-                'default'   => 42,
-            ),
-        ),
-        array( 
-            'short'     => 'd',
-            'long'      => 'destroy',
-            'options'   => array(
-                'type'      => ezcConsoleInput::TYPE_STRING,
-                'default'   => 'world',
-            ),
-        ),
-        array( 
-            'short'     => 'y',
-            'long'      => 'yank',
-            'options'   => array(
-                'type'          => ezcConsoleInput::TYPE_STRING,
-                'multiple'      => true,
-                'shorthelp'     => 'Some stupid short text.',
-                'longhelp'      => 'Some even more stupid, but somewhat longer long describtion.',
-            ),
-        ),
-        array( 
-            'short'     => 'c',
-            'long'      => 'console',
-            'options'   => array(
-                'shorthelp'     => 'Some stupid short text.',
-                'longhelp'      => 'Some even more stupid, but somewhat longer long describtion.',
-                'depends'       => array( 't', 'o', 'b', 'y' ),
-            ),
-        ),
-        array( 
-            'short'     => 'e',
-            'long'      => 'edit',
-            'options'   => array(
-                'excludes'      => array( 't', 'y' ),
-                'arguments'     => false,
-            ),
-        ),
-        array( 
-            'short'     => 'n',
-            'long'      => 'new',
-            'options'   => array(
-                'depends'       => array( 't', 'o' ),
-                'excludes'      => array( 'b', 'y' ),
-                'arguments'     => false,
-            ),
-        ),
-    );
+    private $testOptions = [['short'     => 't', 'long'      => 'testing', 'options'   => []], ['short'     => 's', 'long'      => 'subway', 'options'   => []], ['short'     => '', 'long'      => 'carry', 'options'   => []], ['short'     => 'v', 'long'      => 'visual', 'options'   => ['multiple'  => true, 'arguments' => false]], ['short'     => 'o', 'long'      => 'original', 'options'   => ['type'      => ezcConsoleInput::TYPE_STRING]], ['short'     => 'b', 'long'      => 'build', 'options'   => ['type'      => ezcConsoleInput::TYPE_INT, 'default'   => 42]], ['short'     => 'd', 'long'      => 'destroy', 'options'   => ['type'      => ezcConsoleInput::TYPE_STRING, 'default'   => 'world']], ['short'     => 'y', 'long'      => 'yank', 'options'   => ['type'          => ezcConsoleInput::TYPE_STRING, 'multiple'      => true, 'shorthelp'     => 'Some stupid short text.', 'longhelp'      => 'Some even more stupid, but somewhat longer long describtion.']], ['short'     => 'c', 'long'      => 'console', 'options'   => ['shorthelp'     => 'Some stupid short text.', 'longhelp'      => 'Some even more stupid, but somewhat longer long describtion.', 'depends'       => ['t', 'o', 'b', 'y']]], ['short'     => 'e', 'long'      => 'edit', 'options'   => ['excludes'      => ['t', 'y'], 'arguments'     => false]], ['short'     => 'n', 'long'      => 'new', 'options'   => ['depends'       => ['t', 'o'], 'excludes'      => ['b', 'y'], 'arguments'     => false]]];
 
-    private $testAliasesSuccess = array( 
-        array(
-            'short' => 'k',
-            'long'  => 'kelvin',
-            'ref'   => 't',
-        ),
-        array(
-            'short' => 'f',
-            'long'  => 'foobar',
-            'ref'   => 'o',
-        ),
-    );
+    private $testAliasesSuccess = [['short' => 'k', 'long'  => 'kelvin', 'ref'   => 't'], ['short' => 'f', 'long'  => 'foobar', 'ref'   => 'o']];
 
-    private $testAliasesFailure = array( 
-        array(
-            'short' => 'l',
-            'long'  => 'lurking',
-            'ref'   => 'x',
-        ),
-        array(
-            'short' => 'e',
-            'long'  => 'elvis',
-            'ref'   => 'z',
-        ),
-        array(
-            'short' => 'd',
-            'long'  => 'destroy',
-            'ref'   => 'd',
-        ),
-    );
+    private $testAliasesFailure = [['short' => 'l', 'long'  => 'lurking', 'ref'   => 'x'], ['short' => 'e', 'long'  => 'elvis', 'ref'   => 'z'], ['short' => 'd', 'long'  => 'destroy', 'ref'   => 'd']];
 
-    private $testArgsSuccess = array( 
-        array(
-            'foo.php',
-            '-o',
-            '"Test string2"',
-            '--build',
-            '42',
-        ),
-        array(
-            'foo.php',
-            '-b',
-            '42',
-            '--yank',
-            '"a"',
-            '--yank',
-            '"b"',
-            '--yank',
-            '"c"',
-        ),
-        array(
-            'foo.php',
-            '--yank=a',
-            '--yank=b',
-            '--yank="c"',
-            '-y',
-            '1',
-            '-y',
-            '2'
-        ),
-        array(
-            'foo.php',
-            '--yank=a',
-            '--yank=b',
-            '-y',
-            '1',
-            'arg1',
-            'arg2',
-        ),
-    );
+    private $testArgsSuccess = [['foo.php', '-o', '"Test string2"', '--build', '42'], ['foo.php', '-b', '42', '--yank', '"a"', '--yank', '"b"', '--yank', '"c"'], ['foo.php', '--yank=a', '--yank=b', '--yank="c"', '-y', '1', '-y', '2'], ['foo.php', '--yank=a', '--yank=b', '-y', '1', 'arg1', 'arg2']];
 
 	public static function suite()
 	{
@@ -271,7 +123,7 @@ class ezcConsoleInputTest extends ezcTestCase
     public function testUnregisterOptionSuccess()
     {
         // register aliases for testing
-        $validParams = array();
+        $validParams = [];
         foreach ( $this->input->getOptions() as $param )
         {
             $validParams[$param->short] = $param;
@@ -288,7 +140,7 @@ class ezcConsoleInputTest extends ezcTestCase
             $exceptionThrown = false;
             try
             {
-                $this->input->getOption( isset( $option->short ) ? $option->short : $option->long );
+                $this->input->getOption( $option->short ?? $option->long );
             }
             catch ( ezcConsoleOptionNotExistsException $e )
             {
@@ -326,8 +178,8 @@ class ezcConsoleInputTest extends ezcTestCase
             false, 
             'No help available.', 
             'Sorry, there is no help text available for this parameter.', 
-            array(), 
-            array (), 
+            [], 
+            [], 
             true 
         );
         $res['u'] = new ezcConsoleOption(
@@ -338,8 +190,8 @@ class ezcConsoleInputTest extends ezcTestCase
             false,
             'No help available.',
             'Sorry, there is no help text available for this parameter.',
-            array (),
-            array (),
+            [],
+            [],
             true
         );
         $res['o'] = new ezcConsoleOption(
@@ -350,8 +202,8 @@ class ezcConsoleInputTest extends ezcTestCase
             true,
             'No help available.',
             'Sorry, there is no help text available for this parameter.',
-            array (),
-            array (),
+            [],
+            [],
             true
         );
         $res['d'] = new ezcConsoleOption(
@@ -362,8 +214,8 @@ class ezcConsoleInputTest extends ezcTestCase
             true,
             'No help available.',
             'Sorry, there is no help text available for this parameter.',
-            array (),
-            array (),
+            [],
+            [],
             true
         );
         $this->assertEquals( $res['a'], $param->getOption( 'a' ), 'Option -a not registered correctly.'  );
@@ -393,7 +245,7 @@ class ezcConsoleInputTest extends ezcTestCase
      */
     public function testRegisterAliasSuccess()
     {
-        $validParams = array();
+        $validParams = [];
         foreach ( $this->input->getOptions() as $param )
         {
             $validParams[$param->short] = $param;
@@ -445,7 +297,7 @@ class ezcConsoleInputTest extends ezcTestCase
     public function testUnregisterAliasSuccess()
     {
         // test preperation
-        $validParams = array();
+        $validParams = [];
         foreach ( $this->input->getOptions() as $param )
         {
             $validParams[$param->short] = $param;
@@ -503,7 +355,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->assertSetProperty(
             $this->input,
             "argumentDefinition",
-            array( new ezcConsoleArguments(), null )
+            [new ezcConsoleArguments(), null]
         );
     }
 
@@ -512,13 +364,13 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $this->input,
             "argumentDefinition",
-            array( "", "foo", 23, true, array(), new stdClass() ),
+            ["", "foo", 23, true, [], new stdClass()],
             "ezcBaseValueException"
         );
         $this->assertSetPropertyFails(
             $this->input,
             "foo",
-            array( "" ),
+            [""],
             "ezcBasePropertyNotFoundException"
         );
     }
@@ -532,85 +384,51 @@ class ezcConsoleInputTest extends ezcTestCase
     // Single parameter tests
     public function testProcessSuccessSingleShortNoValue()
     {
-        $args = array(
-            'foo.php',
-            '-t',
-        );
-        $res = array( 
-            't' => true,
-        );
+        $args = ['foo.php', '-t'];
+        $res = ['t' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessSingleShortValue()
     {
-        $args = array(
-            'foo.php',
-            '-o',
-            'bar'
-        );
-        $res = array( 
-            'o' => 'bar',
-        );
+        $args = ['foo.php', '-o', 'bar'];
+        $res = ['o' => 'bar'];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessSingleLongNoValue()
     {
-        $args = array(
-            'foo.php',
-            '--testing',
-        );
-        $res = array( 
-            't' => true,
-        );
+        $args = ['foo.php', '--testing'];
+        $res = ['t' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessSingleLongValue()
     {
-        $args = array(
-            'foo.php',
-            '--original',
-            'bar'
-        );
-        $res = array( 
-            'o' => 'bar',
-        );
+        $args = ['foo.php', '--original', 'bar'];
+        $res = ['o' => 'bar'];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessFailureSingleShortDefault()
     {
-        $args = array(
-            'foo.php',
-            '-b'
-        );
-        $res = array( 
-            'b' => 42,
-        );
+        $args = ['foo.php', '-b'];
+        $res = ['b' => 42];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionMissingValueException' );
     }
     
     public function testProcessFailureSingleLongDefault()
     {
-        $args = array(
-            'foo.php',
-            '--build'
-        );
+        $args = ['foo.php', '--build'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionMissingValueException' );
     }
     
     public function testProcessSuccessFromArgv()
     {
-        $_SERVER["argv"] = array(
-            'foo.php',
-            '--build',
-            '42'
-        );
+        $_SERVER["argv"] = ['foo.php', '--build', '42'];
         $this->input->process();
         $this->assertEquals(
-            array( "b" => 42, "d" => "world" ),
+            ["b" => 42, "d" => "world"],
             $this->input->getOptionValues(),
             "Processing from \$_SERVER['argv'] did not work."
         );
@@ -618,14 +436,10 @@ class ezcConsoleInputTest extends ezcTestCase
     
     public function testProcessSuccessGetOptionValuesLongnames()
     {
-        $_SERVER["argv"] = array(
-            'foo.php',
-            '--build',
-            '42'
-        );
+        $_SERVER["argv"] = ['foo.php', '--build', '42'];
         $this->input->process();
         $this->assertEquals(
-            array( "build" => 42, "destroy" => "world" ),
+            ["build" => 42, "destroy" => "world"],
             $this->input->getOptionValues( true ),
             "Processing from \$_SERVER['argv'] did not work."
         );
@@ -633,267 +447,121 @@ class ezcConsoleInputTest extends ezcTestCase
 
     public function testProcessSuccessSingleShortNoValueArguments()
     {
-        $args = array(
-            'foo.php',
-            '-s',
-            '--',
-            '-foo',
-            '--bar',
-            'baz',
-        );
-        $res = array( 
-            's' => true,
-        );
+        $args = ['foo.php', '-s', '--', '-foo', '--bar', 'baz'];
+        $res = ['s' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessSingleLongNoValueArguments()
     {
-        $args = array(
-            'foo.php',
-            '--subway',
-            '--',
-            '-foo',
-            '--bar',
-            'baz',
-        );
-        $res = array( 
-            's' => true,
-        );
+        $args = ['foo.php', '--subway', '--', '-foo', '--bar', 'baz'];
+        $res = ['s' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
 
     // Multiple parameter tests
     public function testProcessSuccessMultipleShortNoValue()
     {
-        $args = array(
-            'foo.php',
-            '-t',
-            '-s',
-        );
-        $res = array( 
-            't' => true,
-            's' => true,
-        );
+        $args = ['foo.php', '-t', '-s'];
+        $res = ['t' => true, 's' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessMultipleShortValue()
     {
-        $args = array(
-            'foo.php',
-            '-o',
-            'bar',
-            '-b',
-            '23'
-        );
-        $res = array( 
-            'o' => 'bar',
-            'b' => 23,
-        );
+        $args = ['foo.php', '-o', 'bar', '-b', '23'];
+        $res = ['o' => 'bar', 'b' => 23];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessMultipleLongNoValue()
     {
-        $args = array(
-            'foo.php',
-            '--testing',
-            '--subway',
-        );
-        $res = array( 
-            't' => true,
-            's' => true,
-        );
+        $args = ['foo.php', '--testing', '--subway'];
+        $res = ['t' => true, 's' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessMultipleLongValue()
     {
-        $args = array(
-            'foo.php',
-            '--original',
-            'bar',
-            '--build',
-            '23',
-        );
-        $res = array( 
-            'o' => 'bar',
-            'b' => 23,
-        );
+        $args = ['foo.php', '--original', 'bar', '--build', '23'];
+        $res = ['o' => 'bar', 'b' => 23];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessMultipleLongValueWithEquals()
     {
-        $args = array(
-            'foo.php',
-            '--original',
-            'bar',
-            '--build=23',
-        );
-        $res = array( 
-            'o' => 'bar',
-            'b' => 23,
-        );
+        $args = ['foo.php', '--original', 'bar', '--build=23'];
+        $res = ['o' => 'bar', 'b' => 23];
         $this->commonProcessTestSuccess( $args, $res );
     }
 
     public function testProcessFailureMultipleShortDefault()
     {
-        $args = array(
-            'foo.php',
-            '-b',
-            '-d',
-        );
-        $res = array( 
-            'b' => 42,
-            'd' => 'world',
-        );
+        $args = ['foo.php', '-b', '-d'];
+        $res = ['b' => 42, 'd' => 'world'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionMissingValueException' );
     }
 
     public function testProcessFailureMultipleLongDefault()
     {
-        $args = array(
-            'foo.php',
-            '--build',
-            '--destroy',
-        );
-        $res = array( 
-            'b' => 42,
-            'd' => 'world',
-        );
+        $args = ['foo.php', '--build', '--destroy'];
+        $res = ['b' => 42, 'd' => 'world'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionMissingValueException' );
     }
     
     // Bug #8645: Default values not set correctly in ezcConsoleInput
     public function testProcessSuccessDefault()
     {
-        $args = array(
-            'foo.php',
-        );
-        $res = array( 
-            'b' => 42,
-            'd' => 'world',
-        );
+        $args = ['foo.php'];
+        $res = ['b' => 42, 'd' => 'world'];
         $this->commonProcessTestSuccess( $args, $res );
     }
 
     public function testProcessSuccessMultipleLongSameNoValue()
     {
-        $args = array(
-            'foo.php',
-            '--visual',
-            '--visual',
-        );
-        $res = array( 
-            'v' => array( true, true ),
-        );
+        $args = ['foo.php', '--visual', '--visual'];
+        $res = ['v' => [true, true]];
         $this->commonProcessTestSuccess( $args, $res );
     }
 
     public function testProcessSuccessArguments_1()
     {
-        $args = array(
-            'foo.php',
-            '--original',
-            'bar',
-            '--build',
-            '23',
-            'argument',
-            '1',
-            '2',
-        );
-        $res = array( 
-            0 => 'argument',
-            1 => '1',
-            2 => '2',
-        );
+        $args = ['foo.php', '--original', 'bar', '--build', '23', 'argument', '1', '2'];
+        $res = [0 => 'argument', 1 => '1', 2 => '2'];
         $this->argumentsProcessTestSuccess( $args, $res );
     }
 
     public function testProcessSuccessDependencies()
     {
-        $args = array(
-            'foo.php',
-            '-t',
-            '-o',
-            'bar',
-            '--build',
-            23,
-            '-y',
-            'text',
-            '--yank',
-            'moretext',
-            '-c'            // This one depends on -t, -o, -b and -y
-        );
-        $res = array( 
-            't' => true,
-            'o' => 'bar',
-            'b' => 23,
-            'y' => array( 
-                'text',
-                'moretext'
-            ),
-            'c' => true,
-        );
+        $args = ['foo.php', '-t', '-o', 'bar', '--build', 23, '-y', 'text', '--yank', 'moretext', '-c'];
+        $res = ['t' => true, 'o' => 'bar', 'b' => 23, 'y' => ['text', 'moretext'], 'c' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessExclusions()
     {
-        $args = array(
-            'foo.php',
-            '-o',
-            'bar',
-            '--build',
-            23,
-            '--edit'            // This one exclude -t and -y
-        );
-        $res = array( 
-            'o' => 'bar',
-            'b' => 23,
-            'e' => true,
-        );
+        $args = ['foo.php', '-o', 'bar', '--build', 23, '--edit'];
+        $res = ['o' => 'bar', 'b' => 23, 'e' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
 
     public function testProcessSuccessDependenciesExclusions()
     {
-        $args = array(
-            'foo.php',
-            '-t',
-            '-o',
-            'bar',
-            '-n'            // This one depends on -t and -o, but excludes -b and -y
-        );
-        $res = array( 
-            't' => true,
-            'o' => 'bar',
-            'n' => true,
-        );
+        $args = ['foo.php', '-t', '-o', 'bar', '-n'];
+        $res = ['t' => true, 'o' => 'bar', 'n' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
 
     public function testProcessSuccessDependencieValues()
     {
-        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), array( "foo", "bar" ) );
+        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), ["foo", "bar"] );
         $option = new ezcConsoleOption( "x", "execute" );
         $option->addDependency( $rule );
         $this->input->registerOption( $option );
 
-        $args = array(
-            'foo.php',
-            '-x',
-            '-y',
-            'bar',
-        );
+        $args = ['foo.php', '-x', '-y', 'bar'];
 
-        $res = array(
-            'x' => true,
-            'y' => array( 'bar' ),
-        );
+        $res = ['x' => true, 'y' => ['bar']];
 
         $this->commonProcessTestSuccess( $args, $res );
     }
@@ -901,104 +569,56 @@ class ezcConsoleInputTest extends ezcTestCase
 
     public function testProcessSuccessExclusionValues()
     {
-        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), array( "foo", "bar" ) );
+        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), ["foo", "bar"] );
         $option = new ezcConsoleOption( "x", "execute" );
         $option->addExclusion( $rule );
         $this->input->registerOption( $option );
 
-        $args = array(
-            'foo.php',
-            '-x',
-            '-y',
-            'baz',
-        );
+        $args = ['foo.php', '-x', '-y', 'baz'];
 
-        $res = array(
-            'x' => true,
-            'y' => array( 'baz' ),
-        );
+        $res = ['x' => true, 'y' => ['baz']];
 
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessMandatory()
     {
-        $args = array(
-            'foo.php',
-            '-q',
-        );
+        $args = ['foo.php', '-q'];
         $this->input->registerOption(
             $this->createFakeOption(
-                array( 
-                    'short'     => 'q',
-                    'long'      => 'quite',
-                    'options'   => array(
-                        'mandatory' => true,
-                    ),
-                )
+                ['short'     => 'q', 'long'      => 'quite', 'options'   => ['mandatory' => true]]
             )
         );
-        $res = array( 
-            'q' => true,
-        );
+        $res = ['q' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessMandatoryDefault()
     {
-        $args = array(
-            'foo.php',
-            '-q',
-        );
+        $args = ['foo.php', '-q'];
         $this->input->registerOption(
             $this->createFakeOption(
-                array( 
-                    'short'     => 'q',
-                    'long'      => 'quite',
-                    'options'   => array(
-                        'default'   => 'test',
-                        'mandatory' => true,
-                    ),
-                )
+                ['short'     => 'q', 'long'      => 'quite', 'options'   => ['default'   => 'test', 'mandatory' => true]]
             )
         );
-        $res = array( 
-            'q' => true,
-        );
+        $res = ['q' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessSuccessHelp()
     {
-        $args = array(
-            'foo.php',
-            '-h',
-        );
+        $args = ['foo.php', '-h'];
         $this->input->registerOption(
             $this->createFakeOption(
-                array( 
-                    'short'     => 'q',
-                    'long'      => 'quite',
-                    'options'   => array(
-                        'mandatory' => true,
-                    ),
-                )
+                ['short'     => 'q', 'long'      => 'quite', 'options'   => ['mandatory' => true]]
             )
         );
         $this->input->registerOption(
             $this->createFakeOption(
-                array( 
-                    'short'     => 'h',
-                    'long'      => 'help',
-                    'options'   => array(
-                        'isHelpOption' => true,
-                    ),
-                )
+                ['short'     => 'h', 'long'      => 'help', 'options'   => ['isHelpOption' => true]]
             )
         );
-        $res = array( 
-            'h' => true,
-        );
+        $res = ['h' => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
 
@@ -1009,7 +629,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1] = new ezcConsoleArgument( "file2" );
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file" )
+            ["foo.php", "'some file'", "file"]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
@@ -1022,7 +642,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0] = new ezcConsoleArgument( "file1" );
         $this->input->argumentDefinition[1] = new ezcConsoleArgument( "file2" );
 
-        $args = array( "foo.php" );
+        $args = ["foo.php"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
@@ -1033,7 +653,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0] = new ezcConsoleArgument( "file1" );
         $this->input->argumentDefinition[1] = new ezcConsoleArgument( "file2" );
 
-        $args = array( "foo.php", "'test'", "'foo'", "'bar'" );
+        $args = ["foo.php", "'test'", "'foo'", "'bar'"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleTooManyArgumentsException' );
     }
@@ -1046,7 +666,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->mandatory = false;
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file" )
+            ["foo.php", "'some file'", "file"]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
@@ -1060,7 +680,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1] = new ezcConsoleArgument( "file2" );
         $this->input->argumentDefinition[1]->mandatory = false;
 
-        $args = array( "foo.php" );
+        $args = ["foo.php"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
@@ -1074,7 +694,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "file3" );
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file", "\"another file\"" )
+            ["foo.php", "'some file'", "file", "\"another file\""]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
@@ -1090,7 +710,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->mandatory = false;
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "file3" );
 
-        $args = array( "foo.php" );
+        $args = ["foo.php"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
@@ -1103,7 +723,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->mandatory = false;
 
         $this->input->process(
-            array( "foo.php", "'some file'" )
+            ["foo.php", "'some file'"]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
@@ -1120,7 +740,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->default   = "some other file";
 
         $this->input->process(
-            array( "foo.php", "'some file'" )
+            ["foo.php", "'some file'"]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
@@ -1134,7 +754,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1] = new ezcConsoleArgument( "file2" );
         $this->input->argumentDefinition[1]->mandatory = false;
 
-        $args = array( "foo.php" );
+        $args = ["foo.php"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
@@ -1148,7 +768,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "file3" );
 
         $this->input->process(
-            array( "foo.php", "'some file'" )
+            ["foo.php", "'some file'"]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
@@ -1164,7 +784,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->mandatory = false;
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "file3" );
 
-        $args = array( "foo.php" );
+        $args = ["foo.php"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
@@ -1176,10 +796,10 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0]->multiple = true;
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file", "\"another file\"" )
+            ["foo.php", "'some file'", "file", "\"another file\""]
         );
 
-        $this->assertEquals( array( "some file", "file", "another file" ), $this->input->argumentDefinition["file1"]->value );
+        $this->assertEquals( ["some file", "file", "another file"], $this->input->argumentDefinition["file1"]->value );
     }
 
     public function testProcessFailureNewArgumentsMultipleOne()
@@ -1188,7 +808,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0] = new ezcConsoleArgument( "file1" );
         $this->input->argumentDefinition[0]->multiple = true;
 
-        $args = array( "foo.php" );
+        $args = ["foo.php"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
@@ -1201,11 +821,11 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->multiple = true;
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file", "\"another file\"" )
+            ["foo.php", "'some file'", "file", "\"another file\""]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
-        $this->assertEquals( array( "file", "another file" ), $this->input->argumentDefinition["file2"]->value );
+        $this->assertEquals( ["file", "another file"], $this->input->argumentDefinition["file2"]->value );
     }
 
     public function testProcessFailureNewArgumentsMultipleMultiple()
@@ -1215,7 +835,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1] = new ezcConsoleArgument( "file2" );
         $this->input->argumentDefinition[1]->multiple = true;
 
-        $args = array( "foo.php", "'test'" );
+        $args = ["foo.php", "'test'"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
@@ -1229,14 +849,14 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->mandatory = false;
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file", "\"another file\"" )
+            ["foo.php", "'some file'", "file", "\"another file\""]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
-        $this->assertEquals( array( "file", "another file" ), $this->input->argumentDefinition["file2"]->value );
+        $this->assertEquals( ["file", "another file"], $this->input->argumentDefinition["file2"]->value );
         
         // Old handling
-        $this->assertEquals( array( "some file", "file", "another file" ), $this->input->getArguments() );
+        $this->assertEquals( ["some file", "file", "another file"], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsMultipleOptionalNotAvailable()
@@ -1248,14 +868,14 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->mandatory = false;
 
         $this->input->process(
-            array( "foo.php", "'some file'" )
+            ["foo.php", "'some file'"]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
         $this->assertEquals( null, $this->input->argumentDefinition["file2"]->value );
         
         // Old handling
-        $this->assertEquals( array( "some file" ), $this->input->getArguments() );
+        $this->assertEquals( ["some file"], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsMultipleAutoOptionalAvailable()
@@ -1267,14 +887,14 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->multiple  = true;
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file", "\"another file\"" )
+            ["foo.php", "'some file'", "file", "\"another file\""]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
-        $this->assertEquals( array( "file", "another file" ), $this->input->argumentDefinition["file2"]->value );
+        $this->assertEquals( ["file", "another file"], $this->input->argumentDefinition["file2"]->value );
         
         // Old handling
-        $this->assertEquals( array( "some file", "file", "another file" ), $this->input->getArguments() );
+        $this->assertEquals( ["some file", "file", "another file"], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsMultipleAutoOptionalNotAvailable()
@@ -1286,14 +906,14 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1]->multiple  = true;
 
         $this->input->process(
-            array( "foo.php", "'some file'" )
+            ["foo.php", "'some file'"]
         );
 
         $this->assertEquals( "some file", $this->input->argumentDefinition["file1"]->value );
         $this->assertEquals( null, $this->input->argumentDefinition["file2"]->value );
         
         // Old handling
-        $this->assertEquals( array( "some file" ), $this->input->getArguments() );
+        $this->assertEquals( ["some file"], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsMultipleIgnore()
@@ -1304,14 +924,14 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0]->multiple = true;
 
         $this->input->process(
-            array( "foo.php", "'some file'", "file", "\"another file\"" )
+            ["foo.php", "'some file'", "file", "\"another file\""]
         );
 
-        $this->assertEquals( array( "some file", "file", "another file" ), $this->input->argumentDefinition["file1"]->value );
+        $this->assertEquals( ["some file", "file", "another file"], $this->input->argumentDefinition["file1"]->value );
         $this->assertEquals( null, $this->input->argumentDefinition["file2"]->value );
         
         // Old handling
-        $this->assertEquals( array( "some file", "file", "another file" ), $this->input->getArguments() );
+        $this->assertEquals( ["some file", "file", "another file"], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsTypeInt()
@@ -1321,13 +941,13 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0]->type = ezcConsoleInput::TYPE_INT;
 
         $this->input->process(
-            array( "foo.php", 23 )
+            ["foo.php", 23]
         );
 
         $this->assertEquals( 23, $this->input->argumentDefinition["number"]->value );
         
         // Old handling
-        $this->assertEquals( array( 23 ), $this->input->getArguments() );
+        $this->assertEquals( [23], $this->input->getArguments() );
     }
 
     public function testProcessFailureNewArgumentsTypeInt()
@@ -1336,7 +956,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0] = new ezcConsoleArgument( "number" );
         $this->input->argumentDefinition[0]->type = ezcConsoleInput::TYPE_INT;
 
-        $args = array( "foo.php", "'test'" );
+        $args = ["foo.php", "'test'"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentTypeViolationException' );
     }
@@ -1349,13 +969,13 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0]->multiple = true;
 
         $this->input->process(
-            array( "foo.php", 23, 42 )
+            ["foo.php", 23, 42]
         );
 
-        $this->assertEquals( array( 23, 42 ), $this->input->argumentDefinition["number"]->value );
+        $this->assertEquals( [23, 42], $this->input->argumentDefinition["number"]->value );
         
         // Old handling
-        $this->assertEquals( array( 23, 42 ), $this->input->getArguments() );
+        $this->assertEquals( [23, 42], $this->input->getArguments() );
     }
 
     public function testProcessFailureNewArgumentsMultipleTypeInt()
@@ -1365,7 +985,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0]->type = ezcConsoleInput::TYPE_INT;
         $this->input->argumentDefinition[0]->multiple = true;
 
-        $args = array( "foo.php", 23, "test" );
+        $args = ["foo.php", 23, "test"];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentTypeViolationException' );
     }
@@ -1379,20 +999,17 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "array" );
         $this->input->argumentDefinition[2]->multiple = true;
 
-        $args = array( "foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'", "val1", "val2" );
+        $args = ["foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'", "val1", "val2"];
 
-        $res = array( 
-            'o' => "test file",
-            'b' => 23,
-        );
+        $res = ['o' => "test file", 'b' => 23];
         $this->commonProcessTestSuccess( $args, $res );
 
         $this->assertEquals( 42, $this->input->argumentDefinition["number"]->value );
         $this->assertEquals( "test string", $this->input->argumentDefinition["string"]->value );
-        $this->assertEquals( array( "val1", "val2" ), $this->input->argumentDefinition["array"]->value );
+        $this->assertEquals( ["val1", "val2"], $this->input->argumentDefinition["array"]->value );
         
         // Old handling
-        $this->assertEquals( array( 42, "test string", "val1", "val2"), $this->input->getArguments() );
+        $this->assertEquals( [42, "test string", "val1", "val2"], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsHelpOptionSet()
@@ -1406,11 +1023,9 @@ class ezcConsoleInputTest extends ezcTestCase
 
         $this->input->getOption( 't' )->isHelpOption = true;
 
-        $args = array( "foo.php", "-t" );
+        $args = ["foo.php", "-t"];
 
-        $res = array( 
-            't' => true,
-        );
+        $res = ['t' => true];
         $this->commonProcessTestSuccess( $args, $res );
 
         $this->assertNull( $this->input->argumentDefinition["number"]->value );
@@ -1420,7 +1035,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->assertTrue( $this->input->helpOptionSet() );
         
         // Old handling
-        $this->assertEquals( array(), $this->input->getArguments() );
+        $this->assertEquals( [], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsDisallowedSuccess()
@@ -1434,11 +1049,9 @@ class ezcConsoleInputTest extends ezcTestCase
 
         $this->input->getOption( 't' )->arguments = false;
 
-        $args = array( "foo.php", "-t" );
+        $args = ["foo.php", "-t"];
 
-        $res = array( 
-            't' => true,
-        );
+        $res = ['t' => true];
         $this->commonProcessTestSuccess( $args, $res );
 
         $this->assertNull( $this->input->argumentDefinition["number"]->value );
@@ -1446,7 +1059,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->assertNull( $this->input->argumentDefinition["array"]->value );
 
         // Old handling
-        $this->assertEquals( array(), $this->input->getArguments() );
+        $this->assertEquals( [], $this->input->getArguments() );
     }
 
     public function testProcessSuccessNewArgumentsDisallowedFailure()
@@ -1460,11 +1073,9 @@ class ezcConsoleInputTest extends ezcTestCase
 
         $this->input->getOption( 't' )->arguments = false;
 
-        $args = array( "foo.php", "-t", "--", "23" );
+        $args = ["foo.php", "-t", "--", "23"];
 
-        $res = array( 
-            't' => true,
-        );
+        $res = ['t' => true];
         $this->commonProcessTestFailure( $args, "ezcConsoleOptionArgumentsViolationException" );
     }
 
@@ -1477,29 +1088,26 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "array" );
         $this->input->argumentDefinition[2]->multiple = true;
 
-        $args = array( "foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'", "val1", "val2" );
+        $args = ["foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'", "val1", "val2"];
 
-        $res = array( 
-            'o' => "test file",
-            'b' => 23,
-        );
+        $res = ['o' => "test file", 'b' => 23];
         $this->commonProcessTestSuccess( $args, $res );
 
         $this->assertEquals( 42, $this->input->argumentDefinition["number"]->value );
         $this->assertEquals( "test string", $this->input->argumentDefinition["string"]->value );
-        $this->assertEquals( array( "val1", "val2" ), $this->input->argumentDefinition["array"]->value );
+        $this->assertEquals( ["val1", "val2"], $this->input->argumentDefinition["array"]->value );
         
         // Old handling
-        $this->assertEquals( array( 42, "test string", "val1", "val2"), $this->input->getArguments() );
+        $this->assertEquals( [42, "test string", "val1", "val2"], $this->input->getArguments() );
 
         $this->input->reset();
 
-        $this->assertEquals( array(), $this->input->getOptionValues() );
+        $this->assertEquals( [], $this->input->getOptionValues() );
         foreach ( $this->input->argumentDefinition as $argument )
         {
             $this->assertNull( $argument->value );
         }
-        $this->assertEquals( array(), $this->input->getArguments() );
+        $this->assertEquals( [], $this->input->getArguments() );
     }
 
     public function testProcessTwice()
@@ -1510,34 +1118,29 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[1] = new ezcConsoleArgument( "string" );
         $this->input->argumentDefinition[1]->mandatory = false;
 
-        $args = array( "foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'" );
+        $args = ["foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'"];
 
-        $res = array( 
-            'o' => "test file",
-            'b' => 23,
-        );
+        $res = ['o' => "test file", 'b' => 23];
         $this->commonProcessTestSuccess( $args, $res );
 
         $this->assertEquals( 42, $this->input->argumentDefinition["number"]->value );
         $this->assertEquals( "test string", $this->input->argumentDefinition["string"]->value );
         
         // Old handling
-        $this->assertEquals( array( 42, "test string" ), $this->input->getArguments() );
+        $this->assertEquals( [42, "test string"], $this->input->getArguments() );
 
         // Second run
 
-        $args = array( "foo.php", "-t", '23' );
+        $args = ["foo.php", "-t", '23'];
 
-        $res = array( 
-            't' => true
-        );
+        $res = ['t' => true];
         $this->commonProcessTestSuccess( $args, $res );
 
         $this->assertEquals( 23, $this->input->argumentDefinition["number"]->value );
         $this->assertEquals( null, $this->input->argumentDefinition["string"]->value );
         
         // Old handling
-        $this->assertEquals( array( '23' ), $this->input->getArguments() );
+        $this->assertEquals( ['23'], $this->input->getArguments() );
     }
 
     public function testProcessFailureNewArgumentsComplexType()
@@ -1549,12 +1152,9 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "array" );
         $this->input->argumentDefinition[2]->multiple = true;
 
-        $args = array( "foo.php", "-o", "'test file'", "-b", "23", "foo", "'test string'", "val1", "val2" );
+        $args = ["foo.php", "-o", "'test file'", "-b", "23", "foo", "'test string'", "val1", "val2"];
 
-        $res = array( 
-            'o' => "test file",
-            'b' => 23,
-        );
+        $res = ['o' => "test file", 'b' => 23];
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentTypeViolationException' );
     }
 
@@ -1567,12 +1167,9 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "array" );
         $this->input->argumentDefinition[2]->multiple = true;
 
-        $args = array( "foo.php", "-o", "'test file'", "-b", "23", "42" );
+        $args = ["foo.php", "-o", "'test file'", "-b", "23", "42"];
 
-        $res = array( 
-            'o' => "test file",
-            'b' => 23,
-        );
+        $res = ['o' => "test file", 'b' => 23];
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
 
@@ -1585,12 +1182,9 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2] = new ezcConsoleArgument( "array" );
         $this->input->argumentDefinition[2]->multiple = true;
 
-        $args = array( "foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'" );
+        $args = ["foo.php", "-o", "'test file'", "-b", "23", "42", "'test string'"];
 
-        $res = array( 
-            'o' => "test file",
-            'b' => 23,
-        );
+        $res = ['o' => "test file", 'b' => 23];
         $this->commonProcessTestFailure( $args, 'ezcConsoleArgumentMandatoryViolationException' );
     }
 
@@ -1600,108 +1194,76 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[0] = new ezcConsoleArgument( "number" );
         $this->input->argumentDefinition[0]->type = ezcConsoleInput::TYPE_INT;
 
-        $args = array( "foo.php", "-v", "--", 23 );
+        $args = ["foo.php", "-v", "--", 23];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionArgumentsViolationException' );
     }
 
     public function testProcessFailureExistance_1()
     {
-        $args = array(
-            'foo.php',
-            '-q',
-        );
+        $args = ['foo.php', '-q'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionNotExistsException' );
     }
     
     public function testProcessFailureExistance_2()
     {
-        $args = array(
-            'foo.php',
-            '-tools',
-        );
+        $args = ['foo.php', '-tools'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionNotExistsException' );
     }
     
     public function testProcessFailureExistance_3()
     {
-        $args = array(
-            'foo.php',
-            '-testingaeiou',
-        );
+        $args = ['foo.php', '-testingaeiou'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionNotExistsException' );
     }
     
     public function testProcessFailureTypeInt()
     {
-        $args = array(
-            'foo.php',
-            '-b',
-            'not_an_int'
-        );
+        $args = ['foo.php', '-b', 'not_an_int'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionTypeViolationException' );
     }
     
     // Bug #9046: New bug: [ConsoleTools] Last argument not treated invalid option value
     public function testProcessNoFailureTypeNone()
     {
-        $args = array(
-            'foo.php',
-            '-s',
-            'a_parameter'
-        );
-        $res = array( "s" => true );
+        $args = ['foo.php', '-s', 'a_parameter'];
+        $res = ["s" => true];
         $this->commonProcessTestSuccess( $args, $res );
     }
     
     public function testProcessFailureTypeNone()
     {
-        $args = array(
-            'foo.php',
-            '-s',
-            'a_parameter',
-            'another_parameter'
-        );
+        $args = ['foo.php', '-s', 'a_parameter', 'another_parameter'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionTypeViolationException' );
     }
     
     public function testProcessFailureNovalue()
     {
-        $args = array(
-            'foo.php',
-            '-o',
-        );
+        $args = ['foo.php', '-o'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionMissingValueException' );
     }
     
     public function testProcessFailureMultiple()
     {
-        $args = array(
-            'foo.php',
-            '-d',
-            'mars',
-            '--destroy',
-            'venus',
-            
-        );
+        $args = ['foo.php', '-d', 'mars', '--destroy', 'venus'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionTooManyValuesException' );
     }
     
     public function testProcessFailureDependencies()
     {
-        $args = array(
+        $args = [
             'foo.php',
             '-t',
-//            '-o',
-//            'bar',
+            //            '-o',
+            //            'bar',
             '--build',
             23,
             '-y',
             'text',
             '--yank',
             'moretext',
-            '-c'            // This one depends on -t, -o, -b and -y
-        );
+            '-c',
+        ];
         $this->commonProcessTestFailure(
             $args,
             'ezcConsoleOptionDependencyViolationException',
@@ -1711,17 +1273,12 @@ class ezcConsoleInputTest extends ezcTestCase
 
     public function testProcessFailureDependencieValues()
     {
-        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), array( "foo", "bar" ) );
+        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), ["foo", "bar"] );
         $option = new ezcConsoleOption( "x", "execute" );
         $option->addDependency( $rule );
         $this->input->registerOption( $option );
 
-        $args = array(
-            'foo.php',
-            '-y',
-            'baz',
-            '-x',
-        );
+        $args = ['foo.php', '-y', 'baz', '-x'];
 
         $this->commonProcessTestFailure(
             $args,
@@ -1732,63 +1289,42 @@ class ezcConsoleInputTest extends ezcTestCase
     
     public function testProcessFailureExclusions()
     {
-        $args = array(
-            'foo.php',
-            '-t',
-            '-o',
-            'bar',
-            '--build',
-            23,
-            '--edit'            // This one excludes -t and -y
-        );
+        $args = ['foo.php', '-t', '-o', 'bar', '--build', 23, '--edit'];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionExclusionViolationException' );
     }
 
     public function testProcessFailureExclusionValues()
     {
-        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), array( "foo", "bar" ) );
+        $rule = new ezcConsoleOptionRule( $this->input->getOption( "y" ), ["foo", "bar"] );
         $option = new ezcConsoleOption( "x", "execute" );
         $option->addExclusion( $rule );
         $this->input->registerOption( $option );
 
-        $args = array(
-            'foo.php',
-            '-y',
-            'bar',
-            '-x',
-        );
+        $args = ['foo.php', '-y', 'bar', '-x'];
 
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionExclusionViolationException' );
     }
     
     public function testProcessFailureArguments()
     {
-        $args = array(
+        $args = [
             'foo.php',
             '-t',
-            '--visual',         // This one forbids arguments
+            '--visual',
+            // This one forbids arguments
             '-o',
             'bar',
             'someargument',
-        );
+        ];
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionArgumentsViolationException' );
     }
     
     public function testProcessFailureMandatory()
     {
-        $args = array(
-            'foo.php',
-            '-s',
-        );
+        $args = ['foo.php', '-s'];
         $this->input->registerOption(
             $this->createFakeOption(
-                array( 
-                    'short'     => 'q',
-                    'long'      => 'quite',
-                    'options'   => array(
-                        'mandatory' => true,
-                    ),
-                )
+                ['short'     => 'q', 'long'      => 'quite', 'options'   => ['mandatory' => true]]
             )
         );
         $this->commonProcessTestFailure( $args, 'ezcConsoleOptionMandatoryViolationException' );
@@ -1796,52 +1332,7 @@ class ezcConsoleInputTest extends ezcTestCase
 
     public function testGetHelp1()
     {
-        $res = array( 
-            array( 
-                '-t / --testing',
-                'No help available.',
-            ),
-            array( 
-                '-s / --subway',
-                'No help available.',
-            ),
-            array( 
-                '--carry',
-                'No help available.',
-            ),
-            array( 
-                '-v / --visual',
-                'No help available.',
-            ),
-            array( 
-                '-o / --original',
-                'No help available.',
-            ),
-            array( 
-                '-b / --build',
-                'No help available.',
-            ),
-            array( 
-                '-d / --destroy',
-                'No help available.',
-            ),
-            array( 
-                '-y / --yank',
-                'Some stupid short text.',
-            ),
-            array( 
-                '-c / --console',
-                'Some stupid short text.',
-            ),
-            array( 
-                '-e / --edit',
-                'No help available.',
-            ),
-            array( 
-                '-n / --new',
-                'No help available.',
-            ),
-        );
+        $res = [['-t / --testing', 'No help available.'], ['-s / --subway', 'No help available.'], ['--carry', 'No help available.'], ['-v / --visual', 'No help available.'], ['-o / --original', 'No help available.'], ['-b / --build', 'No help available.'], ['-d / --destroy', 'No help available.'], ['-y / --yank', 'Some stupid short text.'], ['-c / --console', 'Some stupid short text.'], ['-e / --edit', 'No help available.'], ['-n / --new', 'No help available.']];
         $this->assertEquals( 
             $res,
             $this->input->getHelp(),
@@ -1851,78 +1342,13 @@ class ezcConsoleInputTest extends ezcTestCase
 
     public function testGetHelpWithGrouping()
     {
-        $res = array( 
-            array( 'Section 1', '' ),
-            array( 
-                '-t / --testing',
-                'No help available.',
-            ),
-            array( 
-                '--carry',
-                'No help available.',
-            ),
-            array( 
-                '-b / --build',
-                'No help available.',
-            ),
-            array( '', '' ),
-            array( 'Another section', '' ),
-            array( 
-                '-c / --console',
-                'Some stupid short text.',
-            ),
-            array( 
-                '-n / --new',
-                'No help available.',
-            ),
-            array( 
-                '-e / --edit',
-                'No help available.',
-            ),
-            array( '', '' ),
-            array( 'Third section', '' ),
-            array( 
-                '-s / --subway',
-                'No help available.',
-            ),
-            array( 
-                '-v / --visual',
-                'No help available.',
-            ),
-            array( 
-                '-o / --original',
-                'No help available.',
-            ),
-            array( 
-                '-d / --destroy',
-                'No help available.',
-            ),
-            array( '', '' ),
-            array( 'Last section', '' ),
-            array( 
-                '-y / --yank',
-                'Some stupid short text.',
-            ),
-        );
+        $res = [['Section 1', ''], ['-t / --testing', 'No help available.'], ['--carry', 'No help available.'], ['-b / --build', 'No help available.'], ['', ''], ['Another section', ''], ['-c / --console', 'Some stupid short text.'], ['-n / --new', 'No help available.'], ['-e / --edit', 'No help available.'], ['', ''], ['Third section', ''], ['-s / --subway', 'No help available.'], ['-v / --visual', 'No help available.'], ['-o / --original', 'No help available.'], ['-d / --destroy', 'No help available.'], ['', ''], ['Last section', ''], ['-y / --yank', 'Some stupid short text.']];
         $this->assertEquals( 
             $res,
             $this->input->getHelp(
                 false,
-                array(),
-                array(
-                    'Section 1' => array(
-                        't', 'carry', 'build'
-                    ),
-                    'Another section' => array(
-                        'c', 'new', 'edit'
-                    ),
-                    'Third section' => array(
-                        'subway', 'v', 'o', 'd',
-                    ),
-                    'Last section' => array(
-                        'y',
-                    ),
-                )
+                [],
+                ['Section 1' => ['t', 'carry', 'build'], 'Another section' => ['c', 'new', 'edit'], 'Third section' => ['subway', 'v', 'o', 'd'], 'Last section' => ['y']]
             ),
             'Help array was not generated correctly.'
         );
@@ -1930,64 +1356,7 @@ class ezcConsoleInputTest extends ezcTestCase
 
     public function testGetHelpNewArgs()
     {
-        $res = array( 
-            array( 
-                '-t / --testing',
-                'No help available.',
-            ),
-            array( 
-                '-s / --subway',
-                'No help available.',
-            ),
-            array( 
-                '--carry',
-                'No help available.',
-            ),
-            array( 
-                '-v / --visual',
-                'No help available.',
-            ),
-            array( 
-                '-o / --original',
-                'No help available.',
-            ),
-            array( 
-                '-b / --build',
-                'No help available.',
-            ),
-            array( 
-                '-d / --destroy',
-                'No help available.',
-            ),
-            array( 
-                '-y / --yank',
-                'Some stupid short text.',
-            ),
-            array( 
-                '-c / --console',
-                'Some stupid short text.',
-            ),
-            array( 
-                '-e / --edit',
-                'No help available.',
-            ),
-            array( 
-                '-n / --new',
-                'No help available.',
-            ),
-            array(
-                "Arguments:",
-                "",
-            ),
-            array(
-                '<string:text>',
-                'A text.',
-            ),
-            array(
-                '<int:number>',
-                'A number.',
-            ),
-        );
+        $res = [['-t / --testing', 'No help available.'], ['-s / --subway', 'No help available.'], ['--carry', 'No help available.'], ['-v / --visual', 'No help available.'], ['-o / --original', 'No help available.'], ['-b / --build', 'No help available.'], ['-d / --destroy', 'No help available.'], ['-y / --yank', 'Some stupid short text.'], ['-c / --console', 'Some stupid short text.'], ['-e / --edit', 'No help available.'], ['-n / --new', 'No help available.'], ["Arguments:", ""], ['<string:text>', 'A text.'], ['<int:number>', 'A number.']];
 
         $this->input->argumentDefinition = new ezcConsoleArguments();
         
@@ -2009,52 +1378,7 @@ class ezcConsoleInputTest extends ezcTestCase
     
     public function testGetHelp2()
     {
-        $res = array( 
-            array( 
-                '-t / --testing',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-s / --subway',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '--carry',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-v / --visual',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-o / --original',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-b / --build',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-d / --destroy',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-y / --yank',
-                'Some even more stupid, but somewhat longer long describtion.',
-            ),
-            array( 
-                '-c / --console',
-                'Some even more stupid, but somewhat longer long describtion.',
-            ),
-            array( 
-                '-e / --edit',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-n / --new',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-        );
+        $res = [['-t / --testing', 'Sorry, there is no help text available for this parameter.'], ['-s / --subway', 'Sorry, there is no help text available for this parameter.'], ['--carry', 'Sorry, there is no help text available for this parameter.'], ['-v / --visual', 'Sorry, there is no help text available for this parameter.'], ['-o / --original', 'Sorry, there is no help text available for this parameter.'], ['-b / --build', 'Sorry, there is no help text available for this parameter.'], ['-d / --destroy', 'Sorry, there is no help text available for this parameter.'], ['-y / --yank', 'Some even more stupid, but somewhat longer long describtion.'], ['-c / --console', 'Some even more stupid, but somewhat longer long describtion.'], ['-e / --edit', 'Sorry, there is no help text available for this parameter.'], ['-n / --new', 'Sorry, there is no help text available for this parameter.']];
         $this->assertEquals( 
             $res,
             $this->input->getHelp( true ),
@@ -2065,64 +1389,7 @@ class ezcConsoleInputTest extends ezcTestCase
     
     public function testGetHelp2NewArgs()
     {
-        $res = array( 
-            array( 
-                '-t / --testing',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-s / --subway',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '--carry',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-v / --visual',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-o / --original',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-b / --build',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-d / --destroy',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-y / --yank',
-                'Some even more stupid, but somewhat longer long describtion.',
-            ),
-            array( 
-                '-c / --console',
-                'Some even more stupid, but somewhat longer long describtion.',
-            ),
-            array( 
-                '-e / --edit',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-n / --new',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array(
-                "Arguments:",
-                "",
-            ),
-            array(
-                '<string:text>',
-                'This argument is a simple text.',
-            ),
-            array(
-                '<int:number>',
-                'This argument is a number.',
-            ),
-        );
+        $res = [['-t / --testing', 'Sorry, there is no help text available for this parameter.'], ['-s / --subway', 'Sorry, there is no help text available for this parameter.'], ['--carry', 'Sorry, there is no help text available for this parameter.'], ['-v / --visual', 'Sorry, there is no help text available for this parameter.'], ['-o / --original', 'Sorry, there is no help text available for this parameter.'], ['-b / --build', 'Sorry, there is no help text available for this parameter.'], ['-d / --destroy', 'Sorry, there is no help text available for this parameter.'], ['-y / --yank', 'Some even more stupid, but somewhat longer long describtion.'], ['-c / --console', 'Some even more stupid, but somewhat longer long describtion.'], ['-e / --edit', 'Sorry, there is no help text available for this parameter.'], ['-n / --new', 'Sorry, there is no help text available for this parameter.'], ["Arguments:", ""], ['<string:text>', 'This argument is a simple text.'], ['<int:number>', 'This argument is a number.']];
 
         $this->input->argumentDefinition = new ezcConsoleArguments();
         
@@ -2145,68 +1412,7 @@ class ezcConsoleInputTest extends ezcTestCase
     
     public function testGetHelp2NewArgsOptional()
     {
-        $res = array( 
-            array( 
-                '-t / --testing',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-s / --subway',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '--carry',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-v / --visual',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-o / --original',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-b / --build',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-d / --destroy',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-y / --yank',
-                'Some even more stupid, but somewhat longer long describtion.',
-            ),
-            array( 
-                '-c / --console',
-                'Some even more stupid, but somewhat longer long describtion.',
-            ),
-            array( 
-                '-e / --edit',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-n / --new',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array(
-                "Arguments:",
-                "",
-            ),
-            array(
-                '<string:text>',
-                'This argument is a simple text. (optional)',
-            ),
-            array(
-                '<int:number>',
-                "This argument is a number. (optional, default = '23')",
-            ),
-            array(
-                '<string:misc>',
-                "Testing multiple values. (optional, default = 'foo' 'bar' 'baz')",
-            ),
-        );
+        $res = [['-t / --testing', 'Sorry, there is no help text available for this parameter.'], ['-s / --subway', 'Sorry, there is no help text available for this parameter.'], ['--carry', 'Sorry, there is no help text available for this parameter.'], ['-v / --visual', 'Sorry, there is no help text available for this parameter.'], ['-o / --original', 'Sorry, there is no help text available for this parameter.'], ['-b / --build', 'Sorry, there is no help text available for this parameter.'], ['-d / --destroy', 'Sorry, there is no help text available for this parameter.'], ['-y / --yank', 'Some even more stupid, but somewhat longer long describtion.'], ['-c / --console', 'Some even more stupid, but somewhat longer long describtion.'], ['-e / --edit', 'Sorry, there is no help text available for this parameter.'], ['-n / --new', 'Sorry, there is no help text available for this parameter.'], ["Arguments:", ""], ['<string:text>', 'This argument is a simple text. (optional)'], ['<int:number>', "This argument is a number. (optional, default = '23')"], ['<string:misc>', "Testing multiple values. (optional, default = 'foo' 'bar' 'baz')"]];
 
         $this->input->argumentDefinition = new ezcConsoleArguments();
         
@@ -2227,7 +1433,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $this->input->argumentDefinition[2]->longhelp  = 'Testing multiple values.';
         $this->input->argumentDefinition[2]->multiple  = true;
         $this->input->argumentDefinition[2]->mandatory = false;
-        $this->input->argumentDefinition[2]->default   = array( "foo", "bar", "baz" );
+        $this->input->argumentDefinition[2]->default   = ["foo", "bar", "baz"];
 
         $this->assertEquals( 
             $res,
@@ -2239,54 +1445,20 @@ class ezcConsoleInputTest extends ezcTestCase
     
     public function testGetHelp3()
     {
-        $res = array( 
-            array( 
-                '-t / --testing',
-                'No help available.',
-            ),
-            array( 
-                '-s / --subway',
-                'No help available.',
-            ),
-            array( 
-                '-v / --visual',
-                'No help available.',
-            ),
-        );
+        $res = [['-t / --testing', 'No help available.'], ['-s / --subway', 'No help available.'], ['-v / --visual', 'No help available.']];
         $this->assertEquals( 
             $res,
-            $this->input->getHelp(false, array( 't', 's', 'v' ) ),
+            $this->input->getHelp(false, ['t', 's', 'v'] ),
             'Help array was not generated correctly.'
         );
     }
     
     public function testGetHelp4()
     {
-        $res = array( 
-            array( 
-                '-t / --testing',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-s / --subway',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-y / --yank',
-                'Some even more stupid, but somewhat longer long describtion.',
-            ),
-            array( 
-                '-e / --edit',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-            array( 
-                '-n / --new',
-                'Sorry, there is no help text available for this parameter.',
-            ),
-        );
+        $res = [['-t / --testing', 'Sorry, there is no help text available for this parameter.'], ['-s / --subway', 'Sorry, there is no help text available for this parameter.'], ['-y / --yank', 'Some even more stupid, but somewhat longer long describtion.'], ['-e / --edit', 'Sorry, there is no help text available for this parameter.'], ['-n / --new', 'Sorry, there is no help text available for this parameter.']];
         $this->assertEquals( 
             $res,
-            $this->input->getHelp( true, array( 't', 'subway', 'yank', 'e', 'n' ) ),
+            $this->input->getHelp( true, ['t', 'subway', 'yank', 'e', 'n'] ),
             'Help array was not generated correctly.'
         );
         
@@ -2406,7 +1578,7 @@ class ezcConsoleInputTest extends ezcTestCase
         $res[3][1]->content = 'Sorry, there is no help text available for this parameter.';
                 
         $table = new ezcConsoleTable( $output, 80 );
-        $table = $this->input->getHelpTable( $table, true, array( 't', 'subway', 'yank', 'e' ) );
+        $table = $this->input->getHelpTable( $table, true, ['t', 'subway', 'yank', 'e'] );
         $this->assertEquals(
             $res,
             $table,
@@ -2451,18 +1623,8 @@ class ezcConsoleInputTest extends ezcTestCase
         $table = $this->input->getHelpTable(
             $table,
             true,
-            array( 't', 'subway', 'yank', 'e' ),
-            array(
-                'Section uno' => array(
-                    't'
-                ),
-                'Section 2' => array(
-                    'e', 'subway'
-                ),
-                'Final section' => array(
-                    'y',
-                ),
-            )
+            ['t', 'subway', 'yank', 'e'],
+            ['Section uno' => ['t'], 'Section 2' => ['e', 'subway'], 'Final section' => ['y']]
         );
         $this->assertEquals(
             $res,
@@ -2553,7 +1715,7 @@ class ezcConsoleInputTest extends ezcTestCase
 
         $this->assertEquals(
             $res,
-            $this->input->getHelpText( 'Lala', 20, true, array( 'e', 'y' ) ),
+            $this->input->getHelpText( 'Lala', 20, true, ['e', 'y'] ),
             'Help text not generated correctly.'
         );
     }
@@ -2562,7 +1724,7 @@ class ezcConsoleInputTest extends ezcTestCase
     {
         $this->assertEquals( 
             '$ '.$_SERVER['argv'][0].' [-t] [-s] [-o <string>]  [[--] <args>]',
-            $this->input->getSynopsis( array( 't', 's', 'o' ) ),
+            $this->input->getSynopsis( ['t', 's', 'o'] ),
             'Program synopsis not generated correctly.'
         );
     }
@@ -2576,7 +1738,7 @@ class ezcConsoleInputTest extends ezcTestCase
     {
         $this->assertEquals( 
             '$ '.$_SERVER['argv'][0].' [-t] [-s] [-v]  [[--] <args>]',
-            $this->input->getSynopsis( array( 't', 's', 'v' ) ),
+            $this->input->getSynopsis( ['t', 's', 'v'] ),
             'Program synopsis not generated correctly.'
         );
     }
@@ -2585,7 +1747,7 @@ class ezcConsoleInputTest extends ezcTestCase
     {
         $this->assertEquals( 
             '$ ' . $_SERVER['argv'][0] . ' [-s] [-b 42]  [[--] <args>]',
-            $this->input->getSynopsis( array( 'b', 's' ) ),
+            $this->input->getSynopsis( ['b', 's'] ),
             'Program synopsis not generated correctly.'
         );
     }
@@ -2601,42 +1763,25 @@ class ezcConsoleInputTest extends ezcTestCase
         );
         $this->assertEquals( 
             '$ ' . $_SERVER['argv'][0] . ' [-s] [-x <int>]  [[--] <args>]',
-            $this->input->getSynopsis( array( 'x', 's' ) ),
+            $this->input->getSynopsis( ['x', 's'] ),
             'Program synopsis not generated correctly.'
         );
     }
 
     public function testHelpOptionSet()
     {
-        $args = array(
-            'foo.php',
-            '-h',
-        );
+        $args = ['foo.php', '-h'];
         $this->input->registerOption(
             $this->createFakeOption(
-                array( 
-                    'short'     => 'q',
-                    'long'      => 'quite',
-                    'options'   => array(
-                        'mandatory' => true,
-                    ),
-                )
+                ['short'     => 'q', 'long'      => 'quite', 'options'   => ['mandatory' => true]]
             )
         );
         $this->input->registerOption(
             $this->createFakeOption(
-                array( 
-                    'short'     => 'h',
-                    'long'      => 'help',
-                    'options'   => array(
-                        'isHelpOption' => true,
-                    ),
-                )
+                ['short'     => 'h', 'long'      => 'help', 'options'   => ['isHelpOption' => true]]
             )
         );
-        $res = array( 
-            'h' => true,
-        );
+        $res = ['h' => true];
 
         $this->assertFalse( $this->input->helpOptionSet(), "Help option seems to be set, algthough nothing was processed." );
         $this->commonProcessTestSuccess( $args, $res );
@@ -2659,7 +1804,7 @@ class ezcConsoleInputTest extends ezcTestCase
             new ezcConsoleOptionRule( $inputOpt )
         );
         
-        $args = array( 'somescript', '--input' );
+        $args = ['somescript', '--input'];
 
         try
         {
@@ -2667,7 +1812,7 @@ class ezcConsoleInputTest extends ezcTestCase
             $this->fail( 'Processing did not throw an exception on violated dependency.' );
         } catch ( ezcConsoleOptionDependencyViolationException $e ) {}
         
-        $args = array( 'somescript', '--output' );
+        $args = ['somescript', '--output'];
 
         try
         {
@@ -2693,12 +1838,12 @@ class ezcConsoleInputTest extends ezcTestCase
             new ezcConsoleOptionRule( $inputOpt )
         );
         
-        $args = array( 'somescript', '--input' );
+        $args = ['somescript', '--input'];
 
         // Should not throw an exception
         $this->input->process( $args );
         
-        $args = array( 'somescript', '--output' );
+        $args = ['somescript', '--output'];
 
         // Should not throw an exception
         $this->input->process( $args );
@@ -2714,13 +1859,13 @@ class ezcConsoleInputTest extends ezcTestCase
         );
 
         $inputOpt->addDependency(
-            new ezcConsoleOptionRule( $outputOpt, array( 'foo', 'bar' ) )
+            new ezcConsoleOptionRule( $outputOpt, ['foo', 'bar'] )
         );
         $outputOpt->addDependency(
-            new ezcConsoleOptionRule( $inputOpt, array( 'foo', 'bar' ) )
+            new ezcConsoleOptionRule( $inputOpt, ['foo', 'bar'] )
         );
         
-        $args = array( 'somescript', '--input' );
+        $args = ['somescript', '--input'];
 
         try
         {
@@ -2728,7 +1873,7 @@ class ezcConsoleInputTest extends ezcTestCase
             $this->fail( 'Processing did not throw an exception on violated dependency.' );
         } catch ( ezcConsoleOptionDependencyViolationException $e ) {}
         
-        $args = array( 'somescript', '--output' );
+        $args = ['somescript', '--output'];
 
         try
         {
@@ -2748,13 +1893,13 @@ class ezcConsoleInputTest extends ezcTestCase
         );
 
         $inputOpt->addDependency(
-            new ezcConsoleOptionRule( $outputOpt, array( 'foo', 'bar' ) )
+            new ezcConsoleOptionRule( $outputOpt, ['foo', 'bar'] )
         );
         $outputOpt->addDependency(
-            new ezcConsoleOptionRule( $inputOpt, array( 'foo', 'bar' ) )
+            new ezcConsoleOptionRule( $inputOpt, ['foo', 'bar'] )
         );
         
-        $args = array( 'somescript', '--output=lala', '--input=lala' );
+        $args = ['somescript', '--output=lala', '--input=lala'];
 
         try
         {
@@ -2762,7 +1907,7 @@ class ezcConsoleInputTest extends ezcTestCase
             $this->fail( 'Processing did not throw an exception on violated dependency.' );
         } catch ( ezcConsoleOptionDependencyViolationException $e ) {}
         
-        $args = array( 'somescript', '--input=lala', '--output=lala' );
+        $args = ['somescript', '--input=lala', '--output=lala'];
 
         try
         {
@@ -2782,13 +1927,13 @@ class ezcConsoleInputTest extends ezcTestCase
         );
 
         $inputOpt->addExclusion(
-            new ezcConsoleOptionRule( $outputOpt, array( 'foo', 'bar' ) )
+            new ezcConsoleOptionRule( $outputOpt, ['foo', 'bar'] )
         );
         $outputOpt->addExclusion(
-            new ezcConsoleOptionRule( $inputOpt, array( 'foo', 'bar' ) )
+            new ezcConsoleOptionRule( $inputOpt, ['foo', 'bar'] )
         );
         
-        $args = array( 'somescript', '--output=foo', '--input=lala' );
+        $args = ['somescript', '--output=foo', '--input=lala'];
 
         try
         {
@@ -2803,7 +1948,7 @@ class ezcConsoleInputTest extends ezcTestCase
             );
         }
         
-        $args = array( 'somescript', '--output=lala', '--input=bar' );
+        $args = ['somescript', '--output=lala', '--input=bar'];
 
         try
         {
@@ -2826,13 +1971,11 @@ class ezcConsoleInputTest extends ezcTestCase
             new ezcConsoleOption( 'a', 'abbrev', ezcConsoleInput::TYPE_NONE )
         );
         $aOpt->addDependency(
-            new ezcConsoleOptionRule( $this->input->getOption( 't' ), array(), false )
+            new ezcConsoleOptionRule( $this->input->getOption( 't' ), [], false )
         );
 
         $this->commonProcessTestFailure(
-            array(
-                'foo.php'
-            ),
+            ['foo.php'],
             'ezcConsoleOptionDependencyViolationException'
         );
     }
@@ -2843,14 +1986,11 @@ class ezcConsoleInputTest extends ezcTestCase
             new ezcConsoleOption( 'a', 'abbrev', ezcConsoleInput::TYPE_NONE )
         );
         $aOpt->addExclusion(
-            new ezcConsoleOptionRule( $this->input->getOption( 't' ), array(), false )
+            new ezcConsoleOptionRule( $this->input->getOption( 't' ), [], false )
         );
 
         $this->commonProcessTestFailure(
-            array(
-                'foo.php',
-                '-t'
-            ),
+            ['foo.php', '-t'],
             'ezcConsoleOptionExclusionViolationException'
         );
     }

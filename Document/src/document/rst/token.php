@@ -17,16 +17,16 @@
 class ezcDocumentRstToken extends ezcBaseStruct
 {
     // Token type constants
-    const WHITESPACE    = 1;
-    const NEWLINE       = 2;
+    public const WHITESPACE    = 1;
+    public const NEWLINE       = 2;
 
-    const BACKSLASH     = 3;
+    public const BACKSLASH     = 3;
 
-    const SPECIAL_CHARS = 4;
+    public const SPECIAL_CHARS = 4;
 
-    const TEXT_LINE     = 5;
+    public const TEXT_LINE     = 5;
 
-    const EOF           = 6;
+    public const EOF           = 6;
 
     /**
      * Token type
@@ -95,14 +95,7 @@ class ezcDocumentRstToken extends ezcBaseStruct
      */
     public static function getTokenName( $type )
     {
-        $names = array(
-            self::WHITESPACE    => 'Whitespace',
-            self::NEWLINE       => 'Newline',
-            self::BACKSLASH     => 'Backslash',
-            self::SPECIAL_CHARS => 'Special character group',
-            self::TEXT_LINE     => 'Text',
-            self::EOF           => 'End Of File',
-        );
+        $names = [self::WHITESPACE    => 'Whitespace', self::NEWLINE       => 'Newline', self::BACKSLASH     => 'Backslash', self::SPECIAL_CHARS => 'Special character group', self::TEXT_LINE     => 'Text', self::EOF           => 'End Of File'];
 
         if ( !isset( $names[$type] ) )
         {
@@ -126,7 +119,7 @@ class ezcDocumentRstToken extends ezcBaseStruct
             $properties['content'],
             $properties['line'],
             $properties['position'],
-            isset( $properties['escaped'] ) ? $properties['escaped'] : false
+            $properties['escaped'] ?? false
         );
     }
 }

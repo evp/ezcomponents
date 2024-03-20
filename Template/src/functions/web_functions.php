@@ -34,23 +34,23 @@ class ezcTemplateWebFunctions extends ezcTemplateFunctions
         {
             // url_encode( $s )
             case "url_encode":
-                return array( array( "%string" ), self::functionCall( "urlencode", array( "%string" ) ) );
+                return [["%string"], self::functionCall( "urlencode", ["%string"] )];
             
             // url_decode( $s )
             case "url_decode":
-                return array( array( "%string" ), self::functionCall( "urldecode", array( "%string" ) ) );
+                return [["%string"], self::functionCall( "urldecode", ["%string"] )];
             
             // url_parameters_build( $params, [$prefix] )
             case "url_parameters_build":
-                return array( array( "%params", "[%prefix]" ), self::functionCall( "http_build_query", array( "%params", "[%prefix]" ) ) );
+                return [["%params", "[%prefix]"], self::functionCall( "http_build_query", ["%params", "[%prefix]"] )];
 
             // url_build( $data )
             case "url_build":
-                return array( array( "%data" ), self::functionCall( "ezcTemplateWeb::url_build", array( "%data" ) ) );
+                return [["%data"], self::functionCall( "ezcTemplateWeb::url_build", ["%data"] )];
             
             // url_parse( $s )
             case "url_parse":
-                return array( array( "%string" ), self::functionCall( "parse_url", array( "%string" ) ) );
+                return [["%string"], self::functionCall( "parse_url", ["%string"] )];
 
         }
 

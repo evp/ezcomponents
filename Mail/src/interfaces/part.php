@@ -50,21 +50,21 @@ abstract class ezcMailPart
      *
      * @var array(string=>string)
      */
-    private $headerCharsets = array();
+    private $headerCharsets = [];
 
     /**
      * An array of headers to exclude when generating the headers.
      *
      * @var array(string)
      */
-    private $excludeHeaders = array();
+    private $excludeHeaders = [];
 
     /**
      * Holds the properties of this class.
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Constructs a new mail part.
@@ -117,7 +117,7 @@ abstract class ezcMailPart
         {
             case 'contentDisposition':
             case 'size':
-                return isset( $this->properties[$name] ) ? $this->properties[$name] : null;
+                return $this->properties[$name] ?? null;
 
             case "headers":
                 return $this->headers;
@@ -245,7 +245,7 @@ abstract class ezcMailPart
             if ( is_array( $value ) )
             {
                 $this->headers[$key] = $value[0];
-                $charset = isset( $value[1] ) ? $value[1] : 'us-ascii';
+                $charset = $value[1] ?? 'us-ascii';
                 $this->setHeaderCharset( $key, $charset );
             }
             else
@@ -371,13 +371,7 @@ abstract class ezcMailPart
                     // break intentionally missing
 
                 default:
-                    $preferences = array(
-                        'input-charset' => $charset,
-                        'output-charset' => $charset,
-                        'line-length' => ezcMailHeaderFolder::getLimit(),
-                        'scheme' => 'Q',
-                        'line-break-chars' => ezcMailTools::lineBreak()
-                    );
+                    $preferences = ['input-charset' => $charset, 'output-charset' => $charset, 'line-length' => ezcMailHeaderFolder::getLimit(), 'scheme' => 'Q', 'line-break-chars' => ezcMailTools::lineBreak()];
                     $value = iconv_mime_encode( 'dummy', $value, $preferences );
                     $value = substr( $value, 7 ); // "dummy: " + 1
 
@@ -405,7 +399,7 @@ abstract class ezcMailPart
      */
     public function appendExcludeHeaders( array $headers )
     {
-        $lowerCaseHeaders = array();
+        $lowerCaseHeaders = [];
         foreach ( $headers as $header )
         {
             $lowerCaseHeaders[] = strtolower( $header );
@@ -442,13 +436,8 @@ abstract class ezcMailPart
      */
     protected function getHeaderCharset( $name )
     {
-        if ( isset( $this->headerCharsets[$name] ) )
-        {
-            return $this->headerCharsets[$name];
-        }
-
         // if no charset is set then return 'us-ascii'
-        return 'us-ascii';
+        return $this->headerCharsets[$name] ?? 'us-ascii';
     }
 
     /**

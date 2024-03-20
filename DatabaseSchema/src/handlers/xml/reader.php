@@ -68,7 +68,7 @@ class ezcDbSchemaXmlReader implements ezcDbSchemaFileReader, ezcDbSchemaDiffFile
      */
     private function parseIndex( SimpleXMLElement $index )
     {
-        $indexFields = array();
+        $indexFields = [];
 
         foreach ( $index->field as $indexField )
         {
@@ -95,8 +95,8 @@ class ezcDbSchemaXmlReader implements ezcDbSchemaFileReader, ezcDbSchemaDiffFile
      */
     private function parseTable( SimpleXMLElement $table )
     {
-        $fields = array();
-        $indexes = array();
+        $fields = [];
+        $indexes = [];
 
         foreach ( $table->declaration->field as $field )
         {
@@ -122,21 +122,21 @@ class ezcDbSchemaXmlReader implements ezcDbSchemaFileReader, ezcDbSchemaDiffFile
      */
     private function parseChangedTable( SimpleXMLElement $table )
     {
-        $addedFields = array();
+        $addedFields = [];
         foreach ( $table->{'added-fields'}->field as $field )
         {
             $fieldName = (string) $field->name;
             $addedFields[$fieldName] = $this->parseField( $field ); 
         }
 
-        $changedFields = array();
+        $changedFields = [];
         foreach ( $table->{'changed-fields'}->field as $field )
         {
             $fieldName = (string) $field->name;
             $changedFields[$fieldName] = $this->parseField( $field ); 
         }
 
-        $removedFields = array();
+        $removedFields = [];
         foreach ( $table->{'removed-fields'}->field as $field )
         {
             $fieldName = (string) $field->name;
@@ -146,21 +146,21 @@ class ezcDbSchemaXmlReader implements ezcDbSchemaFileReader, ezcDbSchemaDiffFile
             }
         }
 
-        $addedIndexes = array();
+        $addedIndexes = [];
         foreach ( $table->{'added-indexes'}->index as $index )
         {
             $indexName = (string) $index->name;
             $addedIndexes[$indexName] = $this->parseIndex( $index ); 
         }
 
-        $changedIndexes = array();
+        $changedIndexes = [];
         foreach ( $table->{'changed-indexes'}->index as $index )
         {
             $indexName = (string) $index->name;
             $changedIndexes[$indexName] = $this->parseIndex( $index ); 
         }
 
-        $removedIndexes = array();
+        $removedIndexes = [];
         foreach ( $table->{'removed-indexes'}->index as $index )
         {
             $indexName = (string) $index->name;
@@ -185,7 +185,7 @@ class ezcDbSchemaXmlReader implements ezcDbSchemaFileReader, ezcDbSchemaDiffFile
      */
     private function parseXml( SimpleXMLElement $xml )
     {
-        $schema = array();
+        $schema = [];
 
         foreach ( $xml->table as $table )
         {
@@ -205,21 +205,21 @@ class ezcDbSchemaXmlReader implements ezcDbSchemaFileReader, ezcDbSchemaDiffFile
      */
     private function parseDiffXml( SimpleXMLElement $xml )
     {
-        $newTables = array();
+        $newTables = [];
         foreach ( $xml->{'new-tables'}->table as $table )
         {
             $tableName = (string) $table->name;
             $newTables[$tableName] = $this->parseTable( $table );
         }
 
-        $changedTables = array();
+        $changedTables = [];
         foreach ( $xml->{'changed-tables'}->table as $table )
         {
             $tableName = (string) $table->name;
             $changedTables[$tableName] = $this->parseChangedTable( $table );
         }
 
-        $removedTables = array();
+        $removedTables = [];
         foreach ( $xml->{'removed-tables'}->table as $table )
         {
             $tableName = (string) $table->name;

@@ -37,12 +37,7 @@ class ezcMvcRequestAcceptTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'types' => 'php',
-        'charsets' => 'ezc',
-        'languages' => 'ezp',
-        'encodings' => 'buddymiles',
-        );
+        $state = ['types' => 'php', 'charsets' => 'ezc', 'languages' => 'ezp', 'encodings' => 'buddymiles'];
         $struct = ezcMvcRequestAccept::__set_state( $state );
         $this->assertEquals( 'php', $struct->types, 'Property types does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->charsets, 'Property charsets does not have the expected value' );

@@ -40,7 +40,7 @@ class ezcDocumentPcssStyleInferencer
      *
      * @var array
      */
-    protected $styleCache = array();
+    protected $styleCache = [];
 
     /**
      * Ordered list of style directives
@@ -51,7 +51,7 @@ class ezcDocumentPcssStyleInferencer
      *
      * @var array
      */
-    protected $styleDirectives = array();
+    protected $styleDirectives = [];
 
     /**
      * Special classes for style directive values
@@ -60,61 +60,22 @@ class ezcDocumentPcssStyleInferencer
      *
      * @var array
      */
-    protected $valueParserClasses = array(
-        'font-size'            => 'ezcDocumentPcssStyleMeasureValue',
-        'line-height'          => 'ezcDocumentPcssStyleMeasureValue',
-        'margin'               => 'ezcDocumentPcssStyleMeasureBoxValue',
-        'margin-top'           => 'ezcDocumentPcssStyleMeasureValue',
-        'margin-right'         => 'ezcDocumentPcssStyleMeasureValue',
-        'margin-bottom'        => 'ezcDocumentPcssStyleMeasureValue',
-        'margin-left'          => 'ezcDocumentPcssStyleMeasureValue',
-        'padding'              => 'ezcDocumentPcssStyleMeasureBoxValue',
-        'padding-top'          => 'ezcDocumentPcssStyleMeasureValue',
-        'padding-right'        => 'ezcDocumentPcssStyleMeasureValue',
-        'padding-bottom'       => 'ezcDocumentPcssStyleMeasureValue',
-        'padding-left'         => 'ezcDocumentPcssStyleMeasureValue',
-        'text-columns'         => 'ezcDocumentPcssStyleIntValue',
-        'text-columns-spacing' => 'ezcDocumentPcssStyleMeasureValue',
-        'text-decoration'      => 'ezcDocumentPcssStyleListValue',
-        'color'                => 'ezcDocumentPcssStyleColorValue',
-        'background-color'     => 'ezcDocumentPcssStyleColorValue',
-        'border'               => 'ezcDocumentPcssStyleBorderBoxValue',
-        'border-top'           => 'ezcDocumentPcssStyleBorderValue',
-        'border-right'         => 'ezcDocumentPcssStyleBorderValue',
-        'border-bottom'        => 'ezcDocumentPcssStyleBorderValue',
-        'border-left'          => 'ezcDocumentPcssStyleBorderValue',
-        'border-style'         => 'ezcDocumentPcssStyleLineBoxValue',
-        'border-style-top'     => 'ezcDocumentPcssStyleLineValue',
-        'border-style-right'   => 'ezcDocumentPcssStyleLineValue',
-        'border-style-bottom'  => 'ezcDocumentPcssStyleLineValue',
-        'border-style-left'    => 'ezcDocumentPcssStyleLineValue',
-        'border-color'         => 'ezcDocumentPcssStyleColorBoxValue',
-        'border-color-top'     => 'ezcDocumentPcssStyleColorValue',
-        'border-color-right'   => 'ezcDocumentPcssStyleColorValue',
-        'border-color-bottom'  => 'ezcDocumentPcssStyleColorValue',
-        'border-color-left'    => 'ezcDocumentPcssStyleColorValue',
-        'border-width'         => 'ezcDocumentPcssStyleMeasureBoxValue',
-        'border-width-top'     => 'ezcDocumentPcssStyleMeasureValue',
-        'border-width-right'   => 'ezcDocumentPcssStyleMeasureValue',
-        'border-width-bottom'  => 'ezcDocumentPcssStyleMeasureValue',
-        'border-width-left'    => 'ezcDocumentPcssStyleMeasureValue',
-        'src'                  => 'ezcDocumentPcssStyleSrcValue',
-    );
+    protected $valueParserClasses = ['font-size'            => 'ezcDocumentPcssStyleMeasureValue', 'line-height'          => 'ezcDocumentPcssStyleMeasureValue', 'margin'               => 'ezcDocumentPcssStyleMeasureBoxValue', 'margin-top'           => 'ezcDocumentPcssStyleMeasureValue', 'margin-right'         => 'ezcDocumentPcssStyleMeasureValue', 'margin-bottom'        => 'ezcDocumentPcssStyleMeasureValue', 'margin-left'          => 'ezcDocumentPcssStyleMeasureValue', 'padding'              => 'ezcDocumentPcssStyleMeasureBoxValue', 'padding-top'          => 'ezcDocumentPcssStyleMeasureValue', 'padding-right'        => 'ezcDocumentPcssStyleMeasureValue', 'padding-bottom'       => 'ezcDocumentPcssStyleMeasureValue', 'padding-left'         => 'ezcDocumentPcssStyleMeasureValue', 'text-columns'         => 'ezcDocumentPcssStyleIntValue', 'text-columns-spacing' => 'ezcDocumentPcssStyleMeasureValue', 'text-decoration'      => 'ezcDocumentPcssStyleListValue', 'color'                => 'ezcDocumentPcssStyleColorValue', 'background-color'     => 'ezcDocumentPcssStyleColorValue', 'border'               => 'ezcDocumentPcssStyleBorderBoxValue', 'border-top'           => 'ezcDocumentPcssStyleBorderValue', 'border-right'         => 'ezcDocumentPcssStyleBorderValue', 'border-bottom'        => 'ezcDocumentPcssStyleBorderValue', 'border-left'          => 'ezcDocumentPcssStyleBorderValue', 'border-style'         => 'ezcDocumentPcssStyleLineBoxValue', 'border-style-top'     => 'ezcDocumentPcssStyleLineValue', 'border-style-right'   => 'ezcDocumentPcssStyleLineValue', 'border-style-bottom'  => 'ezcDocumentPcssStyleLineValue', 'border-style-left'    => 'ezcDocumentPcssStyleLineValue', 'border-color'         => 'ezcDocumentPcssStyleColorBoxValue', 'border-color-top'     => 'ezcDocumentPcssStyleColorValue', 'border-color-right'   => 'ezcDocumentPcssStyleColorValue', 'border-color-bottom'  => 'ezcDocumentPcssStyleColorValue', 'border-color-left'    => 'ezcDocumentPcssStyleColorValue', 'border-width'         => 'ezcDocumentPcssStyleMeasureBoxValue', 'border-width-top'     => 'ezcDocumentPcssStyleMeasureValue', 'border-width-right'   => 'ezcDocumentPcssStyleMeasureValue', 'border-width-bottom'  => 'ezcDocumentPcssStyleMeasureValue', 'border-width-left'    => 'ezcDocumentPcssStyleMeasureValue', 'src'                  => 'ezcDocumentPcssStyleSrcValue'];
 
     /**
      * Text category of style directives
      */
-    const TEXT   = 1;
+    public const TEXT   = 1;
 
     /**
      * Layout category of style directives
      */
-    const LAYOUT = 2;
+    public const LAYOUT = 2;
 
     /**
      * Page category of style directives
      */
-    const PAGE   = 4;
+    public const PAGE   = 4;
 
     /**
      * CSS property categories, used to minimize the amount of returned
@@ -122,35 +83,7 @@ class ezcDocumentPcssStyleInferencer
      *
      * @var array
      */
-    protected $categories = array(
-        self::TEXT => array(
-            'direction',
-            'text-decoration',
-            'text-align',
-            'font-size',
-            'font-family',
-            'font-weight',
-            'font-style',
-            'background-color',
-            'line-height',
-            'color',
-        ),
-        self::LAYOUT => array(
-            'line-height',
-            'text-columns',
-            'text-column-spacing',
-            'margin',
-            'padding',
-            'orphans',
-            'widows',
-        ),
-        self::PAGE => array(
-            'page-size',
-            'page-orientation',
-            'margin',
-            'padding',
-        ),
-    );
+    protected $categories = [self::TEXT => ['direction', 'text-decoration', 'text-align', 'font-size', 'font-family', 'font-weight', 'font-style', 'background-color', 'line-height', 'color'], self::LAYOUT => ['line-height', 'text-columns', 'text-column-spacing', 'margin', 'padding', 'orphans', 'widows'], self::PAGE => ['page-size', 'page-orientation', 'margin', 'padding']];
 
     /**
      * Construct style inference with default styles
@@ -175,7 +108,7 @@ class ezcDocumentPcssStyleInferencer
      */
     protected function loadDefaultStyles()
     {
-        if ( file_exists( $file = dirname( __FILE__ ) . '/style/default.php' ) )
+        if ( file_exists( $file = __DIR__ . '/style/default.php' ) )
         {
             $this->appendStyleDirectives( include $file );
             return;
@@ -183,10 +116,10 @@ class ezcDocumentPcssStyleInferencer
 
         // If the file does not exist parse the PCSS style file
         $parser     = new ezcDocumentPcssParser();
-        $directives = $parser->parseFile( dirname( __FILE__ ) . '/style/default.css' );
+        $directives = $parser->parseFile( __DIR__ . '/style/default.css' );
 
         // Write parsed object tree back to file
-        file_put_contents( $file, "<?php\n\nreturn " . str_replace( dirname( __FILE__ ) . '/', '', var_export( $directives, true ) ) . ";\n\n?>" ); // */
+        file_put_contents( $file, "<?php\n\nreturn " . str_replace( __DIR__ . '/', '', var_export( $directives, true ) ) . ";\n\n?>" ); // */
 
         $this->appendStyleDirectives( $directives );
     }
@@ -210,7 +143,7 @@ class ezcDocumentPcssStyleInferencer
             {
                 try
                 {
-                    $valueHandler = isset( $this->valueParserClasses[$name] ) ? $this->valueParserClasses[$name] : 'ezcDocumentPcssStyleStringValue';
+                    $valueHandler = $this->valueParserClasses[$name] ?? 'ezcDocumentPcssStyleStringValue';
                     $styleDirectives[$nr]->formats[$name] = new $valueHandler();
                     $styleDirectives[$nr]->formats[$name]->parse( $value );
                 }
@@ -233,7 +166,7 @@ class ezcDocumentPcssStyleInferencer
         );
 
         // Clear styl cache, since new styles may leed to different results
-        $this->styleCache = array();
+        $this->styleCache = [];
     }
 
     /**
@@ -247,7 +180,7 @@ class ezcDocumentPcssStyleInferencer
      */
     protected function mergeBoxValues( array $values )
     {
-        $merged = array();
+        $merged = [];
 
         foreach ( $values as $name => $value )
         {
@@ -293,7 +226,7 @@ class ezcDocumentPcssStyleInferencer
      */
     protected function mergeBorderValues( array $values )
     {
-        $merged = array();
+        $merged = [];
 
         foreach ( $values as $name => $value )
         {
@@ -370,7 +303,7 @@ class ezcDocumentPcssStyleInferencer
         }
 
         // Filter formats to only include formats matching the given category
-        $filtered = array();
+        $filtered = [];
         foreach ( $this->categories as $type => $properties )
         {
             if ( !( $type & $types ) )
@@ -415,7 +348,7 @@ class ezcDocumentPcssStyleInferencer
         }
 
         // Check if we are at the root node, otherwise inherit style directives
-        $formats = array();
+        $formats = [];
         if ( ( $element instanceof DOMElement ) &&
              !$element->parentNode instanceof DOMDocument )
         {
@@ -423,9 +356,7 @@ class ezcDocumentPcssStyleInferencer
 
             // Some styles do not make sense to be inherited like background
             // properties.
-            $formats = array_diff_key( $formats, array(
-                'background-color' => true,
-            ) );
+            $formats = array_diff_key( $formats, ['background-color' => true] );
         }
 
 
@@ -461,7 +392,7 @@ class ezcDocumentPcssStyleInferencer
      */
     public function getDefinitions( $type )
     {
-        $directives = array();
+        $directives = [];
         foreach ( $this->styleDirectives as $directive )
         {
             if ( ( $directive instanceof ezcDocumentPcssDeclarationDirective ) &&

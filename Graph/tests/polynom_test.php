@@ -24,7 +24,7 @@ class ezcGraphPolynomTest extends ezcTestCase
 
     public function testCreatePolynom()
     {
-        $polynom = new ezcGraphPolynom( array( 2 => 1 ) );
+        $polynom = new ezcGraphPolynom( [2 => 1] );
 
         $this->assertEquals(
             'x^2',
@@ -38,7 +38,7 @@ class ezcGraphPolynomTest extends ezcTestCase
         $polynom->init( 4 );
 
         $this->assertEquals(
-            array( 0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0 ),
+            [0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0],
             $this->readAttribute( $polynom, 'values' ),
             'Values array not properly initialized.'
         );
@@ -51,7 +51,7 @@ class ezcGraphPolynomTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP prior 5.2.1. See PHP bug #40482." );
         }
 
-        $polynom = new ezcGraphPolynom( array( 2 => .5, 1 => 3, 0 => -4.5 ) );
+        $polynom = new ezcGraphPolynom( [2 => .5, 1 => 3, 0 => -4.5] );
 
         $this->assertEquals(
             '5.0e-1 x^2 + 3.00 x - 4.50',
@@ -66,7 +66,7 @@ class ezcGraphPolynomTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP after 5.2.1. See PHP bug #40482." );
         }
 
-        $polynom = new ezcGraphPolynom( array( 2 => .5, 1 => 3, 0 => -4.5 ) );
+        $polynom = new ezcGraphPolynom( [2 => .5, 1 => 3, 0 => -4.5] );
 
         $this->assertEquals(
             '5.00e-1 x^2 + 3.00 x - 4.50',
@@ -76,7 +76,7 @@ class ezcGraphPolynomTest extends ezcTestCase
 
     public function testPolynomGetOrder()
     {
-        $polynom = new ezcGraphPolynom( array( 2 => .5, 1 => 3, 0 => -4.5 ) );
+        $polynom = new ezcGraphPolynom( [2 => .5, 1 => 3, 0 => -4.5] );
 
         $this->assertEquals(
             2,
@@ -86,8 +86,8 @@ class ezcGraphPolynomTest extends ezcTestCase
 
     public function testAddPolynom()
     {
-        $polynom = new ezcGraphPolynom( array( 2 => .5, 1 => 3, 0 => -4.5 ) );
-        $polynom->add( new ezcGraphPolynom( array( 2 => 1 ) ) );
+        $polynom = new ezcGraphPolynom( [2 => .5, 1 => 3, 0 => -4.5] );
+        $polynom->add( new ezcGraphPolynom( [2 => 1] ) );
 
         $this->assertEquals(
             '1.50 x^2 + 3.00 x - 4.50',
@@ -97,7 +97,7 @@ class ezcGraphPolynomTest extends ezcTestCase
 
     public function testEvaluatePolynom()
     {
-        $polynom = new ezcGraphPolynom( array( 2 => 1 ) );
+        $polynom = new ezcGraphPolynom( [2 => 1] );
 
         $this->assertEquals(
             4.,
@@ -109,7 +109,7 @@ class ezcGraphPolynomTest extends ezcTestCase
 
     public function testEvaluatePolynomNegativeValue()
     {
-        $polynom = new ezcGraphPolynom( array( 2 => 1 ) );
+        $polynom = new ezcGraphPolynom( [2 => 1] );
 
         $this->assertEquals(
             4.,
@@ -121,7 +121,7 @@ class ezcGraphPolynomTest extends ezcTestCase
 
     public function testEvaluateComplexPolynom()
     {
-        $polynom = new ezcGraphPolynom( array( 2 => .5, 1 => 3, 0 => -4.5 ) );
+        $polynom = new ezcGraphPolynom( [2 => .5, 1 => 3, 0 => -4.5] );
 
         $this->assertEquals(
             9.,
@@ -138,22 +138,7 @@ class ezcGraphPolynomTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP prior 5.2.1. See PHP bug #40482." );
         }
 
-        $polynom = new ezcGraphPolynom( array( 
-            -109384,
-            -19322,
-            -9032,
-            -984.2,
-            -32.65,
-            -5.613,
-            -1,
-            -.9345,
-            -.0,
-            -.03245,
-            -.002346,
-            -.0001326,
-            -.00008327,
-            -.000008437,
-        ) );
+        $polynom = new ezcGraphPolynom( [-109384, -19322, -9032, -984.2, -32.65, -5.613, -1, -.9345, -.0, -.03245, -.002346, -.0001326, -.00008327, -.000008437] );
 
         $this->assertEquals(
             '-8.4e-6 x^13 - 8.3e-5 x^12 - 1.3e-4 x^11 - 2.3e-3 x^10 - 3.2e-2 x^9 - 9.3e-1 x^7 - x^6 - 5.61 x^5 - 32.6 x^4 - 984 x^3 - 9.0e+3 x^2 - 1.9e+4 x - 1.1e+5',
@@ -168,22 +153,7 @@ class ezcGraphPolynomTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP after 5.2.1. See PHP bug #40482." );
         }
 
-        $polynom = new ezcGraphPolynom( array( 
-            -109384,
-            -19322,
-            -9032,
-            -984.2,
-            -32.65,
-            -5.613,
-            -1,
-            -.9345,
-            -.0,
-            -.03245,
-            -.002346,
-            -.0001326,
-            -.00008327,
-            -.000008437,
-        ) );
+        $polynom = new ezcGraphPolynom( [-109384, -19322, -9032, -984.2, -32.65, -5.613, -1, -.9345, -.0, -.03245, -.002346, -.0001326, -.00008327, -.000008437] );
 
         $this->assertEquals(
             '-8.44e-6 x^13 - 8.33e-5 x^12 - 1.33e-4 x^11 - 2.35e-3 x^10 - 3.24e-2 x^9 - 9.34e-1 x^7 - x^6 - 5.61 x^5 - 32.6 x^4 - 984 x^3 - 9.03e+3 x^2 - 1.93e+4 x - 1.09e+5',
@@ -198,22 +168,7 @@ class ezcGraphPolynomTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP prior 5.2.1. See PHP bug #40482." );
         }
 
-        $polynom = new ezcGraphPolynom( array( 
-            109384,
-            19322,
-            9032,
-            984.2,
-            32.65,
-            5.613,
-            1,
-            .9345,
-            .0,
-            .03245,
-            .002346,
-            .0001326,
-            .00008327,
-            .000008437,
-        ) );
+        $polynom = new ezcGraphPolynom( [109384, 19322, 9032, 984.2, 32.65, 5.613, 1, .9345, .0, .03245, .002346, .0001326, .00008327, .000008437] );
 
         $this->assertEquals(
             '8.4e-6 x^13 + 8.3e-5 x^12 + 1.3e-4 x^11 + 2.3e-3 x^10 + 3.2e-2 x^9 + 9.3e-1 x^7 + x^6 + 5.61 x^5 + 32.6 x^4 + 984 x^3 + 9.0e+3 x^2 + 1.9e+4 x + 1.1e+5',
@@ -228,22 +183,7 @@ class ezcGraphPolynomTest extends ezcTestCase
             $this->markTestSkipped( "This test is only for PHP after 5.2.1. See PHP bug #40482." );
         }
 
-        $polynom = new ezcGraphPolynom( array( 
-            109384,
-            19322,
-            9032,
-            984.2,
-            32.65,
-            5.613,
-            1,
-            .9345,
-            .0,
-            .03245,
-            .002346,
-            .0001326,
-            .00008327,
-            .000008437,
-        ) );
+        $polynom = new ezcGraphPolynom( [109384, 19322, 9032, 984.2, 32.65, 5.613, 1, .9345, .0, .03245, .002346, .0001326, .00008327, .000008437] );
 
         $this->assertEquals(
             '8.44e-6 x^13 + 8.33e-5 x^12 + 1.33e-4 x^11 + 2.35e-3 x^10 + 3.24e-2 x^9 + 9.34e-1 x^7 + x^6 + 5.61 x^5 + 32.6 x^4 + 984 x^3 + 9.03e+3 x^2 + 1.93e+4 x + 1.09e+5',

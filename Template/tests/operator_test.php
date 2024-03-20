@@ -25,7 +25,7 @@ class ezcTemplateOperatorTest extends ezcTestCase
         $start = new ezcTemplateCursor( '', 0, 1, 0 );
         $end = new ezcTemplateCursor( '', 0, 1, 0 );
 
-        $this->operators = array();
+        $this->operators = [];
         $this->operators[] = new ezcTemplateArrayFetchOperatorTstNode( $source, $start, $end );
 
         $this->operators[] = new ezcTemplatePropertyFetchOperatorTstNode( $source, $start, $end );
@@ -96,7 +96,7 @@ class ezcTemplateOperatorTest extends ezcTestCase
      */
     public function testAllPrecedencesHasNoGaps()
     {
-        $levels = array();
+        $levels = [];
         $min = false;
         $max = false;
         foreach ( $this->operators as $operator )

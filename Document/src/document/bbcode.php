@@ -33,8 +33,7 @@ class ezcDocumentBBCode extends ezcDocument implements ezcDocumentValidation
      *
      * @var array
      */
-    protected $plugins = array(
-    );
+    protected $plugins = [];
 
     /**
      * Asbtract syntax tree.
@@ -61,9 +60,7 @@ class ezcDocumentBBCode extends ezcDocument implements ezcDocumentValidation
      */
     public function __construct( ezcDocumentBBCodeOptions $options = null )
     {
-        parent::__construct( $options === null ?
-            new ezcDocumentBBCodeOptions() :
-            $options );
+        parent::__construct( $options ?? new ezcDocumentBBCodeOptions() );
     }
 
     /**
@@ -142,7 +139,7 @@ class ezcDocumentBBCode extends ezcDocument implements ezcDocumentValidation
 
         $visitor = new ezcDocumentBBCodeDocbookVisitor( $this, $this->path );
         $document->setDomDocument(
-            $visitor->visit( $this->ast, $this->path )
+            $visitor->visit( $this->ast )
         );
         $document->setPath( $this->path );
 
@@ -222,7 +219,7 @@ class ezcDocumentBBCode extends ezcDocument implements ezcDocumentValidation
         // Only halt on parse errors, and collect all other errors.
         $parser->options->errorReporting = E_PARSE;
 
-        $errors = array();
+        $errors = [];
         $ast    = null;
         try
         {
@@ -247,7 +244,7 @@ class ezcDocumentBBCode extends ezcDocument implements ezcDocumentValidation
             try
             {
                 $visitor = new ezcDocumentBBCodeDocbookVisitor( $this, $this->path );
-                $visitor->visit( $ast, $this->path );
+                $visitor->visit( $ast );
 
                 // Get errors and notices from parsed document
                 $errors = array_merge( $errors, $visitor->getErrors() );

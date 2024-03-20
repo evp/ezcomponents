@@ -113,11 +113,11 @@ class ezcQuerySelectTest extends ezcTestCase
     public function testSelectMulti()
     {
         $reference = 'SELECT column1, column2, column3, column4';
-        $this->q->select( 'column1', array( 'column2', 'column3' ), 'column4' );
+        $this->q->select( 'column1', ['column2', 'column3'], 'column4' );
         $this->assertEquals( $reference, $this->q->buildSelect() );
         $this->q->reset();
 
-        $this->q->select( 'column1' )->select( array( 'column2', 'column3' ) )->select( 'column4' );
+        $this->q->select( 'column1' )->select( ['column2', 'column3'] )->select( 'column4' );
         $this->assertEquals( $reference, $this->q->buildSelect() );
     }
 
@@ -138,11 +138,11 @@ class ezcQuerySelectTest extends ezcTestCase
     public function testFromMulti()
     {
         $reference = 'FROM table1, table2, table3, table4';
-        $this->q->from( 'table1', array( 'table2', 'table3' ), 'table4' );
+        $this->q->from( 'table1', ['table2', 'table3'], 'table4' );
         $this->assertEquals( $reference, $this->q->buildFrom() );
         $this->q->reset();
         
-        $this->q->from( 'table1' )->from( array( 'table2', 'table3' ), 'table4' );
+        $this->q->from( 'table1' )->from( ['table2', 'table3'], 'table4' );
         $this->assertEquals( $reference, $this->q->buildFrom() );
         $this->q->reset();
         
@@ -245,7 +245,7 @@ class ezcQuerySelectTest extends ezcTestCase
         try
         {
             $this->q->select( '*' )->from( 'table1' )
-                 ->innerJoin( 'table1', 'table2', 'table1.id', array( 'table2.id' ) );
+                 ->innerJoin( 'table1', 'table2', 'table1.id', ['table2.id'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcQueryInvalidException $e )
@@ -288,7 +288,7 @@ class ezcQuerySelectTest extends ezcTestCase
         try
         {
             $this->q->select( '*' )->from( 'table1' )
-                 ->rightJoin( 'table1', 'table2', 'table1.id', array( 'table2.id' ) );
+                 ->rightJoin( 'table1', 'table2', 'table1.id', ['table2.id'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcQueryInvalidException $e )
@@ -331,7 +331,7 @@ class ezcQuerySelectTest extends ezcTestCase
         try
         {
             $this->q->select( '*' )->from( 'table1' )
-                 ->leftJoin( 'table1', 'table2', 'table1.id', array( 'table2.id' ) );
+                 ->leftJoin( 'table1', 'table2', 'table1.id', ['table2.id'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcQueryInvalidException $e )

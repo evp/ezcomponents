@@ -30,12 +30,12 @@ class ezcDebugPhpStacktraceIteratorTest extends ezcTestCase
     
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testIterateTrace()
     {
-        $stackTrace = $this->getStackTrace( 'some string', array( true, 23, null ) );
+        $stackTrace = $this->getStackTrace( 'some string', [true, 23, null] );
         array_splice( $stackTrace, 3 );
 
         $opts = new ezcDebugOptions();
@@ -69,7 +69,7 @@ class ezcDebugPhpStacktraceIteratorTest extends ezcTestCase
     {
         $opts = new ezcDebugOptions();
         $itr = new ezcDebugPhpStacktraceIterator(
-            $this->getStackTrace( 'some string', array( true, 23, null ) ),
+            $this->getStackTrace( 'some string', [true, 23, null] ),
             0,
             $opts
         );
@@ -84,7 +84,7 @@ class ezcDebugPhpStacktraceIteratorTest extends ezcTestCase
     {
         $opts = new ezcDebugOptions();
         $itr = new ezcDebugPhpStacktraceIterator(
-            $this->getStackTrace( 'some string', array( true, 23, null ) ),
+            $this->getStackTrace( 'some string', [true, 23, null] ),
             0,
             $opts
         );

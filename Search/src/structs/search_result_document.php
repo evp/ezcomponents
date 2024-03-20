@@ -47,7 +47,7 @@ class ezcSearchResultDocument
      * @param object(mixed) $document
      * @param array(string=>string) $highlight
      */
-    public function __construct( $score = 0, $document = null, $highlight = array() )
+    public function __construct( $score = 0, $document = null, $highlight = [] )
     {
         $this->score = $score;
         $this->document = $document;

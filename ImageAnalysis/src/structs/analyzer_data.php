@@ -53,7 +53,7 @@ class ezcImageAnalyzerData extends ezcBaseStruct
      *
      * @var array(string=>string)
      */
-    public $exif = array();
+    public $exif = [];
 
     /**
      * Width of image in pixels.
@@ -128,7 +128,7 @@ class ezcImageAnalyzerData extends ezcBaseStruct
      *
      * @var array(string)
      */
-    public $commentList = array();
+    public $commentList = [];
 
     /**
      * Copyright text for the image.
@@ -185,7 +185,7 @@ class ezcImageAnalyzerData extends ezcBaseStruct
      */
     public function __construct(
         $mime = null,
-        $exif = array(),
+        $exif = [],
         $width = 0,
         $height = 0,
         $size = 0,
@@ -194,7 +194,7 @@ class ezcImageAnalyzerData extends ezcBaseStruct
         $isColor = true,
         $colorCount = 0,
         $comment = null,
-        $commentList = array(),
+        $commentList = [],
         $copyright = null,
         $date = null,
         $hasThumbnail = false,

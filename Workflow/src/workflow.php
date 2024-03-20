@@ -41,22 +41,14 @@ class ezcWorkflow implements Countable, ezcWorkflowVisitable
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-      'definitionStorage' => null,
-      'id'                => false,
-      'name'              => '',
-      'startNode'         => null,
-      'endNode'           => null,
-      'finallyNode'       => null,
-      'version'           => 1
-    );
+    protected $properties = ['definitionStorage' => null, 'id'                => false, 'name'              => '', 'startNode'         => null, 'endNode'           => null, 'finallyNode'       => null, 'version'           => 1];
 
     /**
      * The variable handlers of this workflow.
      *
      * @var array
      */
-    protected $variableHandlers = array();
+    protected $variableHandlers = [];
 
     /**
      * Constructs a new workflow object with the name $name.
@@ -401,7 +393,7 @@ class ezcWorkflow implements Countable, ezcWorkflowVisitable
      */
     public function setVariableHandlers( array $variableHandlers )
     {
-        $this->variableHandlers = array();
+        $this->variableHandlers = [];
 
         foreach ( $variableHandlers as $variableName => $className )
         {

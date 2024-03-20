@@ -28,25 +28,14 @@ class ezcGraphPaletteTango extends ezcGraphPalette
      * 
      * @var array
      */
-    protected $dataSetColor = array(
-        '#3465A4',
-        '#4E9A06',
-        '#CC0000',
-        '#EDD400',
-        '#75505B',
-        '#F57900',
-        '#204A87',
-        '#C17D11',
-    );
+    protected $dataSetColor = ['#3465A4', '#4E9A06', '#CC0000', '#EDD400', '#75505B', '#F57900', '#204A87', '#C17D11'];
 
     /**
      * Array with symbols for datasets 
      * 
      * @var array
      */
-    protected $dataSetSymbol = array(
-        ezcGraph::NO_SYMBOL,
-    );
+    protected $dataSetSymbol = [ezcGraph::NO_SYMBOL];
 
     /**
      * Name of font to use

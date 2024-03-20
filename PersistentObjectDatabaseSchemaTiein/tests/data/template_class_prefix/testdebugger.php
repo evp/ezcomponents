@@ -14,7 +14,7 @@ class testDebugger implements ezcPersistentObject
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new testDebugger

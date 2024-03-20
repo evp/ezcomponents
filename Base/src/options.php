@@ -35,7 +35,7 @@ abstract class ezcBaseOptions implements ArrayAccess
      *         If the value for a property is out of range.
      * @param array(string=>mixed) $options The initial options to set.
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         foreach ( $options as $option => $value )
         {

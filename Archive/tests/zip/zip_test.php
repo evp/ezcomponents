@@ -8,8 +8,8 @@
  * @subpackage Tests
  */
 
-require_once( dirname( __FILE__ ) . "/../testdata.php" );
-require_once(dirname(__FILE__) . "/../archive_test_case.php");
+require_once( __DIR__ . "/../testdata.php" );
+require_once(__DIR__ . "/../archive_test_case.php");
 
 /**
  * @package Archive
@@ -26,7 +26,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
         date_default_timezone_set( "UTC" );
 
         $this->tempDir = $this->createTempDir( "ezcArchive_" );
-        $dataDir = dirname( __FILE__ ) . "/../data/";
+        $dataDir = __DIR__ . "/../data/";
 
         $this->td = new ezcArchiveTestData( $dataDir, $this->tempDir, "zip", "infozip" );
     }
@@ -50,7 +50,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOttExtract()
     {
-        $original = dirname(__FILE__) . "/../data/ezpublish.ott";
+        $original = __DIR__ . "/../data/ezpublish.ott";
         $odtFile = $this->tempDir . "/ezpublish.ott";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -75,7 +75,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOttExtract2()
     {
-        $original = dirname(__FILE__) . "/../data/ezpublish2.zip";
+        $original = __DIR__ . "/../data/ezpublish2.zip";
         $odtFile = $this->tempDir . "/ezpublish.ott";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -100,7 +100,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOdtExtract()
     {
-        $original = dirname(__FILE__) . "/../data/files_and_dirs.odt";
+        $original = __DIR__ . "/../data/files_and_dirs.odt";
         $odtFile = $this->tempDir . "/files_and_dirs.odt";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -119,7 +119,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOdtSeekAndExtract()
     {
-        $original = dirname(__FILE__) . "/../data/files_and_dirs.odt";
+        $original = __DIR__ . "/../data/files_and_dirs.odt";
         $odtFile = $this->tempDir . "/files_and_dirs.odt";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -134,7 +134,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOdtAppend()
     {
-        $original = dirname(__FILE__) . "/../data/files_and_dirs.odt";
+        $original = __DIR__ . "/../data/files_and_dirs.odt";
         $odtFile = $this->tempDir . "/files_and_dirs.odt";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -154,7 +154,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOdtMac()
     {
-        $original = dirname(__FILE__) . "/../data/mac_odt.odt";
+        $original = __DIR__ . "/../data/mac_odt.odt";
         $odtFile = $this->tempDir . "/mac_odt.odt";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -172,7 +172,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOdtMacImg()
     {
-        $original = dirname(__FILE__) . "/../data/mac_odt_with_img.odt";
+        $original = __DIR__ . "/../data/mac_odt_with_img.odt";
         $odtFile = $this->tempDir . "/mac_odt_with_img.odt";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -191,7 +191,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOdtWin()
     {
-        $original = dirname(__FILE__) . "/../data/win_odt.odt";
+        $original = __DIR__ . "/../data/win_odt.odt";
         $odtFile = $this->tempDir . "/win_odt.odt";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -209,7 +209,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testOdtWinImg()
     {
-        $original = dirname(__FILE__) . "/../data/win_odt_with_img.odt";
+        $original = __DIR__ . "/../data/win_odt_with_img.odt";
         $odtFile = $this->tempDir . "/win_odt_with_img.odt";
         copy( $original, $odtFile );
         $target = $this->tempDir . "/unzipped/";
@@ -229,7 +229,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public function testComments()
     {
-        $original = dirname(__FILE__) . "/../data/infozip_comment.zip";
+        $original = __DIR__ . "/../data/infozip_comment.zip";
         $file = $this->tempDir . "/infozip_comment.zip";
         copy( $original, $file );
         $target = $this->tempDir . "/unzipped/";
@@ -728,7 +728,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
         // Unzip all the files, and place them in the original directory.
         // Store the filepath of the extracted files.
-        $files = array();
+        $files = [];
         do
         {
             $archive->extractCurrent( "$dir/original" );
@@ -757,14 +757,9 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
         {
             $name = $this->getTempDir() . DIRECTORY_SEPARATOR . 'my_archive.zip';
             $archive = ezcArchive::open( $name, ezcArchive::ZIP );
-            $dir = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'testfiles';
+            $dir = __DIR__ . DIRECTORY_SEPARATOR . 'testfiles';
 
-            $files = array(
-                "$dir/test2.php",
-                "$dir/test1.php",
-                "$dir/test7.php",
-                "$dir/unicode.php"
-            );
+            $files = ["$dir/test2.php", "$dir/test1.php", "$dir/test7.php", "$dir/unicode.php"];
 
             $archive->append( $files, '' );
             $archive->close();
@@ -804,7 +799,7 @@ class ezcArchiveZipTest extends ezcArchiveTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

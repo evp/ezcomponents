@@ -104,14 +104,7 @@ class ezcSearchSimpleImage implements ezcSearchDefinitionProvider
      */
     public function getState()
     {
-        return array(
-            'id' => $this->id,
-            'title' => $this->title,
-            'url' => $this->url,
-            'width' => $this->width,
-            'height' => $this->height,
-            'mime' => $this->mime,
-        );
+        return ['id' => $this->id, 'title' => $this->title, 'url' => $this->url, 'width' => $this->width, 'height' => $this->height, 'mime' => $this->mime];
     }
 
     /**

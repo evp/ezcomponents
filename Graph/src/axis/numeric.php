@@ -93,13 +93,13 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
      * Constant used for calculation of automatic definition of major scaling 
      * steps
      */
-    const MIN_MAJOR_COUNT = 5;
+    public const MIN_MAJOR_COUNT = 5;
 
     /**
      * Constant used for automatic calculation of minor steps from given major 
      * steps 
      */
-    const MIN_MINOR_COUNT = 8;
+    public const MIN_MINOR_COUNT = 8;
 
     /**
      * Constructor
@@ -108,7 +108,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['min'] = null;
         $this->properties['max'] = null;
@@ -175,7 +175,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
 
         // Normalize number to a range between 1 and 10
         $log = (int) round( log10( $abs ), 0 );
-        $abs /= pow( 10, $log );
+        $abs /= 10 ** $log;
 
 
         // find next nice number
@@ -197,7 +197,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
         }
 
         // unnormalize number to original values
-        return $abs * pow( 10, $log ) * $sign;
+        return $abs * 10 ** $log * $sign;
     }
 
     /**
@@ -472,10 +472,7 @@ class ezcGraphChartElementNumericAxis extends ezcGraphChartElementAxis
         {
             return call_user_func_array(
                 $this->properties['labelCallback'],
-                array(
-                    $this->properties['min'] + ( $step * $this->properties['majorStep'] ),
-                    $step,
-                )
+                [$this->properties['min'] + ( $step * $this->properties['majorStep'] ), $step]
             );
         }
         elseif ( $this->properties['formatString'] !== null )

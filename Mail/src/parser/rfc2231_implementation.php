@@ -33,7 +33,7 @@ class ezcMailRfc2231Implementation
      */
     public static function parseHeader( $header )
     {
-        $result = array();
+        $result = [];
         // argument
         if ( preg_match( '/^\s*([^;]*);?/i', $header, $matches ) )
         {
@@ -43,7 +43,7 @@ class ezcMailRfc2231Implementation
         // We must go through all parameters and store this data because
         // parameters can be unordered. We will store them in this buffer
         // array( paramName => array( array( value => string, encoding ) ) )
-        $parameterBuffer = array();
+        $parameterBuffer = [];
 
         // parameters
         if ( preg_match_all( '/\s*(\S*?)="?([^;"]*);?/i', $header, $matches, PREG_SET_ORDER ) )
@@ -53,7 +53,7 @@ class ezcMailRfc2231Implementation
                 // if normal parameter, simply add it
                 if ( !preg_match( '/([^\*]+)\*(\d+)?(\*)?/', $parameter[1], $metaData ) )
                 {
-                    $result[1][$parameter[1]] = array( 'value' => $parameter[2] );
+                    $result[1][$parameter[1]] = ['value' => $parameter[2]];
                 }
                 else // coded and/or folded
                 {
@@ -88,10 +88,10 @@ class ezcMailRfc2231Implementation
                     $charset = $matches[1];
                     $language = $matches[2];
                     $parts[0]['value'] = urldecode( $matches[3] ); // rewrite value: todo: decoding
-                    $result[1][$paramName] = array( 'value' => $parts[0]['value'] );
+                    $result[1][$paramName] = ['value' => $parts[0]['value']];
                 }
 
-                $result[1][$paramName] = array( 'value' => $parts[0]['value'] );
+                $result[1][$paramName] = ['value' => $parts[0]['value']];
                 if ( strlen( $charset ) > 0 )
                 {
                     $result[1][$paramName]['charset'] = $charset;

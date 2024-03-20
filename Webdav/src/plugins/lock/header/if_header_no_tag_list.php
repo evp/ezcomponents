@@ -132,7 +132,7 @@ class ezcWebdavLockIfHeaderNoTagList extends ezcWebdavLockIfHeaderList
      */
     public function getLockTokens()
     {
-        $tokens = array();
+        $tokens = [];
         foreach ( $this->items as $item )
         {
             $tokens = array_merge( $tokens, $item->lockTokens );

@@ -40,7 +40,7 @@ class ezcMvcHttpResponseWriter extends ezcMvcResponseWriter
     public function __construct( ezcMvcResponse $response )
     {
         $this->response = $response;
-        $this->headers = array();
+        $this->headers = [];
     }
 
     /**
@@ -90,7 +90,7 @@ class ezcMvcHttpResponseWriter extends ezcMvcResponseWriter
      */
     private function processCookie( ezcMvcResultCookie $cookie )
     {
-        $args = array();
+        $args = [];
         $args[] = $cookie->name;
         $args[] = $cookie->value;
         if ( $cookie->expire instanceof DateTime )
@@ -185,7 +185,7 @@ class ezcMvcHttpResponseWriter extends ezcMvcResponseWriter
         }
         if ( $content->type || $content->charset )
         {
-            $contentType = $content->type ? $content->type : $defaultContentType;
+            $contentType = $content->type ?: $defaultContentType;
             if ( $content->charset )
             {
                 $contentType .= '; charset=' . $content->charset;

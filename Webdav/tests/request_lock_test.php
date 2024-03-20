@@ -25,48 +25,27 @@ class ezcWebdavLockRequestTest extends ezcWebdavRequestTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavLockRequest';
-        $this->constructorArguments = array(
-            '/foo', '/bar'
-        );
-        $this->defaultValues = array(
-            'lockInfo'     => null,
-        );
-        $this->workingValues = array(
-            'lockInfo' => array(
-                new ezcWebdavRequestLockInfoContent(
-                    ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                    ezcWebdavLockRequest::TYPE_WRITE
-                ),
-                new ezcWebdavRequestLockInfoContent(
-                    ezcWebdavLockRequest::SCOPE_SHARED,
-                    ezcWebdavLockRequest::TYPE_WRITE,
-                    new ezcWebdavPotentialUriContent( 'Foo Bar' )
-                ),
-                new ezcWebdavRequestLockInfoContent(
-                    ezcWebdavLockRequest::SCOPE_SHARED,
-                    ezcWebdavLockRequest::TYPE_WRITE,
-                    new ezcWebdavPotentialUriContent( 'http://example.com/foo/bar', true )
-                ),
-                null,
-            ),
-        );
-        $this->failingValues = array(
-            'lockInfo' => array(
-                23,
-                23.34,
-                'foo bar',
-                array( 23, 42 ),
-                new stdClass(),
-                true,
-                false,
-            ),
-        );
+        $this->constructorArguments = ['/foo', '/bar'];
+        $this->defaultValues = ['lockInfo'     => null];
+        $this->workingValues = ['lockInfo' => [new ezcWebdavRequestLockInfoContent(
+            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+            ezcWebdavLockRequest::TYPE_WRITE
+        ), new ezcWebdavRequestLockInfoContent(
+            ezcWebdavLockRequest::SCOPE_SHARED,
+            ezcWebdavLockRequest::TYPE_WRITE,
+            new ezcWebdavPotentialUriContent( 'Foo Bar' )
+        ), new ezcWebdavRequestLockInfoContent(
+            ezcWebdavLockRequest::SCOPE_SHARED,
+            ezcWebdavLockRequest::TYPE_WRITE,
+            new ezcWebdavPotentialUriContent( 'http://example.com/foo/bar', true )
+        ), null]];
+        $this->failingValues = ['lockInfo' => [23, 23.34, 'foo bar', [23, 42], new stdClass(), true, false]];
     }
 
     public function testValidateHeadersSuccess()

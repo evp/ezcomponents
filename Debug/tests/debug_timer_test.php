@@ -18,7 +18,7 @@ class ezcDebugTimerTest extends ezcTestCase
 {
     public static function suite( )
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testStartStop( )
@@ -59,7 +59,7 @@ class ezcDebugTimerTest extends ezcTestCase
         $timer = new ezcDebugTimer( );
 
         $this->assertTrue(
-            $timer->startTimer( "Ray", "Local", "host" )
+            $timer->startTimer( "Ray", "Local" )
         );
         $this->assertTrue(
             $timer->stopTimer()
@@ -113,7 +113,7 @@ class ezcDebugTimerTest extends ezcTestCase
     {
         $timer = new ezcDebugTimer( );
         $this->assertTrue(
-            $timer->startTimer( "Ray", "Local", "host" )
+            $timer->startTimer( "Ray", "Local" )
         );
         $this->assertTrue(
             $timer->switchTimer( "Blaap", "Ray" )
@@ -143,9 +143,9 @@ class ezcDebugTimerTest extends ezcTestCase
     public function testMultipleRunningTimers( )
     {
         $timer = new ezcDebugTimer( );
-        $timer->startTimer( "Ray", "Local", "host" );
-        $timer->startTimer( "Ray2", "Local", "host" );
-        $timer->startTimer( "Ray3", "Local", "bla" );
+        $timer->startTimer( "Ray", "Local" );
+        $timer->startTimer( "Ray2", "Local" );
+        $timer->startTimer( "Ray3", "Local" );
 
         $this->assertEquals( false, $timer->stopTimer( "hehe" ));
 
@@ -170,12 +170,12 @@ class ezcDebugTimerTest extends ezcTestCase
     protected function getTimeData( )
     {
         $time = new ezcDebugTimer( );
-        $time->startTimer( "Script", "html_reporter_test", "script" );
+        $time->startTimer( "Script", "html_reporter_test" );
 
 
         if ( true != false ) $i_do_something = false;
 
-        $time->startTimer( "Timing module", "content", "module" );
+        $time->startTimer( "Timing module", "content" );
 
         if ( true != false ) $i_do_something = true;
 

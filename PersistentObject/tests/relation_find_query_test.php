@@ -19,7 +19,7 @@ class ezcPersistentRelationFindQueryTest extends ezcPersistentFindQueryTest
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testRelationSetNameInCtor()
@@ -50,8 +50,8 @@ class ezcPersistentRelationFindQueryTest extends ezcPersistentFindQueryTest
     {
         $findQuery = $this->createFindQuery();
         
-        $this->assertSetProperty( $findQuery, 'relationSetName', array( 'mySetName' ) );
-        $this->assertSetProperty( $findQuery, 'relationSource', array( new stdClass() ) );
+        $this->assertSetProperty( $findQuery, 'relationSetName', ['mySetName'] );
+        $this->assertSetProperty( $findQuery, 'relationSource', [new stdClass()] );
     }
 
     public function testSetOwnPropertiesFailure()
@@ -62,12 +62,12 @@ class ezcPersistentRelationFindQueryTest extends ezcPersistentFindQueryTest
         $this->assertSetPropertyFails(
             $findQuery,
             'relationSetName',
-            array( 23, 42.23, true, array(), new stdClass() )
+            [23, 42.23, true, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $findQuery,
             'relationSource',
-            array( 23, 42.23, true, array(), 'foo' )
+            [23, 42.23, true, [], 'foo']
         );
     }
 

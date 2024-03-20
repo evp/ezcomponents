@@ -8,7 +8,7 @@ $question = new ezcConsoleQuestionDialog( $output );
 $question->options->text = "Do you want to proceed?";
 $question->options->showResults = true;
 $question->options->validator = new ezcConsoleQuestionDialogCollectionValidator(
-    array( "y", "n" ),
+    ["y", "n"],
     "y",
     ezcConsoleQuestionDialogCollectionValidator::CONVERT_LOWER
 );

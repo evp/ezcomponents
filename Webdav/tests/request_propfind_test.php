@@ -25,59 +25,16 @@ class ezcWebdavPropFindRequestTest extends ezcWebdavRequestTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->className = 'ezcWebdavPropFindRequest';
-        $this->constructorArguments = array(
-            '/foo', '/bar'
-        );
-        $this->defaultValues = array(
-            'allProp'  => false,
-            'propName' => false,
-            'prop'     => null,
-        );
-        $this->workingValues = array(
-            'allProp' => array(
-                true,
-                false,
-            ),
-            'propName' => array(
-                true,
-                false,
-            ),
-            'prop' => array(
-                new ezcWebdavBasicPropertyStorage(),
-                null
-            ),
-        );
-        $this->failingValues = array(
-            'allProp' => array(
-                23,
-                23.34,
-                'foo bar',
-                array( 23, 42 ),
-                new stdClass(),
-            ),
-            'propName' => array(
-                23,
-                23.34,
-                'foo bar',
-                array( 23, 42 ),
-                new stdClass(),
-            ),
-            'prop' => array(
-                23,
-                23.34,
-                'foo bar',
-                true,
-                false,
-                new stdClass(),
-                array( 23, 42),
-            ),
-        );
+        $this->constructorArguments = ['/foo', '/bar'];
+        $this->defaultValues = ['allProp'  => false, 'propName' => false, 'prop'     => null];
+        $this->workingValues = ['allProp' => [true, false], 'propName' => [true, false], 'prop' => [new ezcWebdavBasicPropertyStorage(), null]];
+        $this->failingValues = ['allProp' => [23, 23.34, 'foo bar', [23, 42], new stdClass()], 'propName' => [23, 23.34, 'foo bar', [23, 42], new stdClass()], 'prop' => [23, 23.34, 'foo bar', true, false, new stdClass(), [23, 42]]];
     }
 
     public function testValidateHeadersSuccess()

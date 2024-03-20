@@ -25,7 +25,7 @@ class ezcMvcToolsRouterTest extends ezcTestCase
         $routeInfo = $router->getRoutingInformation();
         $controllerClass = $routeInfo->controllerClass;
         $controller = new $controllerClass( $routeInfo->action, $request );
-        self::assertEquals( array( 'method' => 'list' ), $controller->getVars() );
+        self::assertEquals( ['method' => 'list'], $controller->getVars() );
 
         $request = new ezcMvcRequest;
         $request->uri = 'entry/get/89';
@@ -33,7 +33,7 @@ class ezcMvcToolsRouterTest extends ezcTestCase
         $routeInfo = $router->getRoutingInformation();
         $controllerClass = $routeInfo->controllerClass;
         $controller = new $controllerClass( $routeInfo->action, $request );
-        self::assertEquals( array( 'method' => 'show', 'id' => 89 ), $controller->getVars() );
+        self::assertEquals( ['method' => 'show', 'id' => 89], $controller->getVars() );
 
         $request = new ezcMvcRequest;
         $request->uri = 'entry/89';
@@ -41,7 +41,7 @@ class ezcMvcToolsRouterTest extends ezcTestCase
         $routeInfo = $router->getRoutingInformation();
         $controllerClass = $routeInfo->controllerClass;
         $controller = new $controllerClass( $routeInfo->action, $request );
-        self::assertEquals( array( 'method' => 'show', 'id' => 89 ), $controller->getVars() );
+        self::assertEquals( ['method' => 'show', 'id' => 89], $controller->getVars() );
     }
 
     public function testInvalidAction()
@@ -138,7 +138,7 @@ class ezcMvcToolsRouterTest extends ezcTestCase
         $routeInfo = $router->getRoutingInformation();
         $controllerClass = $routeInfo->controllerClass;
         $controller = new $controllerClass( $routeInfo->action, $request );
-        self::assertEquals( array( 'method' => 'list' ), $controller->getVars() );
+        self::assertEquals( ['method' => 'list'], $controller->getVars() );
 
         $request = new ezcMvcRequest;
         $request->uri = 'blog/entry/get/89';
@@ -146,7 +146,7 @@ class ezcMvcToolsRouterTest extends ezcTestCase
         $routeInfo = $router->getRoutingInformation();
         $controllerClass = $routeInfo->controllerClass;
         $controller = new $controllerClass( $routeInfo->action, $request );
-        self::assertEquals( array( 'method' => 'show', 'id' => 89 ), $controller->getVars() );
+        self::assertEquals( ['method' => 'show', 'id' => 89], $controller->getVars() );
 
         $request = new ezcMvcRequest;
         $request->uri = 'blog/entry/89';
@@ -154,7 +154,7 @@ class ezcMvcToolsRouterTest extends ezcTestCase
         $routeInfo = $router->getRoutingInformation();
         $controllerClass = $routeInfo->controllerClass;
         $controller = new $controllerClass( $routeInfo->action, $request );
-        self::assertEquals( array( 'method' => 'show', 'id' => 89 ), $controller->getVars() );
+        self::assertEquals( ['method' => 'show', 'id' => 89], $controller->getVars() );
         self::assertEquals( 'sample', $controller->action );
     }
 

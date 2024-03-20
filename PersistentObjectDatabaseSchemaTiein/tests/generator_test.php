@@ -21,7 +21,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     /**
@@ -31,12 +31,12 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
      */
     protected function setUp()
     {
-        $this->results = require dirname( __FILE__ ) . "/data.php";
+        $this->results = require __DIR__ . "/data.php";
     }
     
     public function testUnusualCall()
     {
-        $dir = realpath( dirname( __FILE__ ) . "/../../" );
+        $dir = realpath( __DIR__ . "/../../" );
         $oldDir = realpath( getcwd() );
         
         chdir( "/" );
@@ -119,7 +119,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testInvalidDestination()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $res = `php PersistentObjectDatabaseSchemaTiein/src/rungenerator.php -f xml -s $source test`;
         // file_put_contents( __FUNCTION__, $res );
         $this->assertEquals(
@@ -131,7 +131,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testValidFromFile()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchem" );
         $res = `php PersistentObjectDatabaseSchemaTiein/src/rungenerator.php -f xml -s $source $destination`;
         // file_put_contents( __FUNCTION__, $res );
@@ -142,7 +142,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/definition_only/definitions/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/definition_only/definitions/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -156,7 +156,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testValidFromFileWithClasses()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchem" );
 
         mkdir( "$destination/definitions" );
@@ -171,7 +171,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/definition_class/definitions/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/definition_class/definitions/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -180,7 +180,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             );
         }
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/definition_class/classes/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/definition_class/classes/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -194,7 +194,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testValidFromFileWithClassesAndPrefix()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchem" );
 
         mkdir( "$destination/definitions" );
@@ -209,7 +209,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/definition_class_prefix/definitions/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/definition_class_prefix/definitions/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -218,7 +218,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             );
         }
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/definition_class_prefix/classes/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/definition_class_prefix/classes/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -232,7 +232,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
     
     public function testDuplicateWriteFromFileFailure()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchem" );
         $res = `php PersistentObjectDatabaseSchemaTiein/src/rungenerator.php -f xml -s $source $destination`;
         $res = `php PersistentObjectDatabaseSchemaTiein/src/rungenerator.php -f xml -s $source $destination`;
@@ -249,7 +249,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
     
     public function testDuplicateWriteFromFileSuccess()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchem" );
         $res = `php PersistentObjectDatabaseSchemaTiein/src/rungenerator.php -f xml -s $source $destination`;
         // Note "-o"!
@@ -279,7 +279,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
         $destination = $this->createTempDir( "PersObjDatSchem" );
         
         $db = ezcDbFactory::create( $dsn );
-        $fileSource = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $fileSource = __DIR__ . "/data/webbuilder.schema.xml";
 
         $schema = ezcDbSchema::createFromFile( "xml", $fileSource );
         $schema->writeToDb( $db );
@@ -293,7 +293,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/definition_only/definitions/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/definition_only/definitions/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -338,7 +338,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testWriteDefinitionFromDefaultTemplateNoPrefix()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchemTemplate" );
         $res = `php PersistentObjectDatabaseSchemaTiein/src/rungenerator.php -f xml -s $source -t $destination`;
         // file_put_contents( __FUNCTION__, $res );
@@ -349,7 +349,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/template_config_noprefix/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/template_config_noprefix/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -363,7 +363,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testWriteDefinitionFromDefaultTemplatePrefix()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchemTemplate" );
         $res = `php PersistentObjectDatabaseSchemaTiein/src/rungenerator.php -f xml -s $source -t -p 'test' $destination`;
         // file_put_contents( __FUNCTION__, $res );
@@ -374,7 +374,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/template_config_prefix/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/template_config_prefix/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -388,7 +388,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testWriteDefinitionClassesFromDefaultTemplateNoPrefix()
     {
-        $source = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchemTemplate" );
 
         $classDest   = $destination . '/classes';
@@ -406,7 +406,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/template_config_noprefix/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/template_config_noprefix/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -415,7 +415,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             );
         }
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/template_class_noprefix/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/template_class_noprefix/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -429,7 +429,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
 
     public function testWriteDefinitionClassesFromDefaultTemplatePrefix()
     {
-        $source      = dirname( __FILE__ ) . "/data/webbuilder.schema.xml";
+        $source      = __DIR__ . "/data/webbuilder.schema.xml";
         $destination = $this->createTempDir( "PersObjDatSchemTemplate" );
         $classDest   = $destination . '/classes';
         $configDest  = $destination . '/config';
@@ -446,7 +446,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             'No success message found in generated output.'
         );
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/template_config_prefix/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/template_config_prefix/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),
@@ -455,7 +455,7 @@ class ezcPersistentObjectSchemaGeneratorTest extends ezcTestCase
             );
         }
 
-        foreach ( glob( dirname( __FILE__ ) . "/data/template_class_prefix/*.php" ) as $file )
+        foreach ( glob( __DIR__ . "/data/template_class_prefix/*.php" ) as $file )
         {
             $this->assertEquals(
                 file_get_contents( $file ),

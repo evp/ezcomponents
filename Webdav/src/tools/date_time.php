@@ -41,7 +41,7 @@ class ezcWebdavDateTime extends DateTime
     public function __sleep()
     {
         $this->backupTime = $this->format( 'r' );
-        return array( 'backupTime' );
+        return ['backupTime'];
     }
 
     /**

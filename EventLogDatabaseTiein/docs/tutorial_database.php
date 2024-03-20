@@ -15,9 +15,9 @@ $writer = new ezcLogDatabaseWriter( $db, "log" );
 $log->getMapper()->appendRule( new ezcLogFilterRule( new ezcLogFilter, $writer, true ) );
 
 // Write a log entry ( message, severity, source, category )
-$log->log( "File '/images/spacer.gif' does not exist.", ezcLog::WARNING, array( "source" => "Application", "category" => "Design" ) );
+$log->log( "File '/images/spacer.gif' does not exist.", ezcLog::WARNING, ["source" => "Application", "category" => "Design"] );
 
 // Write a log entry ( message, severity, source, category, file, line )
-$log->log( "File '/images/spacer.gif' does not exist.", ezcLog::WARNING, array( "source" => "Application", "category" => "Design" ), array( "file" => "/index.php", "line" => 123 ) );
+$log->log( "File '/images/spacer.gif' does not exist.", ezcLog::WARNING, ["source" => "Application", "category" => "Design"] );
 
 ?>

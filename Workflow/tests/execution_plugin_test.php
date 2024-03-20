@@ -281,7 +281,7 @@ class ezcWorkflowExecutionPluginTest extends ezcWorkflowTestCase
 
         $this->setUpParallelSplitSynchronization2();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'foo' => 'bar', 'bar' => 'foo' ) );
+        $this->execution->setVariables( ['foo' => 'bar', 'bar' => 'foo'] );
         $this->execution->start();
     }
 
@@ -304,7 +304,7 @@ class ezcWorkflowExecutionPluginTest extends ezcWorkflowTestCase
 
         $this->setUpExclusiveChoiceSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
     }
 
@@ -327,7 +327,7 @@ class ezcWorkflowExecutionPluginTest extends ezcWorkflowTestCase
 
         $this->setUpExclusiveChoiceWithElseSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => true ) );
+        $this->execution->setVariables( ['condition' => true] );
         $this->execution->start();
     }
 
@@ -350,7 +350,7 @@ class ezcWorkflowExecutionPluginTest extends ezcWorkflowTestCase
 
         $this->setUpExclusiveChoiceWithUnconditionalOutNodeSimpleMerge();
         $this->execution->workflow = $this->workflow;
-        $this->execution->setVariables( array( 'condition' => false ) );
+        $this->execution->setVariables( ['condition' => false] );
         $this->execution->start();
     }
 

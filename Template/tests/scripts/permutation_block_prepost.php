@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/blocks/incorrect/block_mangled_pre_post_*.in
 
@@ -71,7 +71,7 @@ $list = perm( "{",
               "}\n"
               );
 
-$dir = dirname( __FILE__ ) . "/../regression_tests/";
+$dir = __DIR__ . "/../regression_tests/";
 
 $a = app( "", $argv );
 

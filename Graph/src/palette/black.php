@@ -42,24 +42,14 @@ class ezcGraphPaletteBlack extends ezcGraphPalette
      * 
      * @var array
      */
-    protected $dataSetColor = array(
-        '#729FCF',
-        '#EF2929',
-        '#FCE94F',
-        '#8AE234',
-        '#F57900',
-        '#AD7FA8',
-
-    );
+    protected $dataSetColor = ['#729FCF', '#EF2929', '#FCE94F', '#8AE234', '#F57900', '#AD7FA8'];
 
     /**
      * Array with symbols for datasets 
      * 
      * @var array
      */
-    protected $dataSetSymbol = array(
-        ezcGraph::BULLET,
-    );
+    protected $dataSetSymbol = [ezcGraph::BULLET];
 
     /**
      * Name of font to use

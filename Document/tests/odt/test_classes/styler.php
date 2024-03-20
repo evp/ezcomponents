@@ -4,7 +4,7 @@ class ezcDocumentOdtTestStyler implements ezcDocumentOdtStyler
 {
     public $odtDocument;
 
-    public $seenElements = array();
+    public $seenElements = [];
 
     public function init( DOMDocument $odtDocument )
     {
@@ -13,10 +13,7 @@ class ezcDocumentOdtTestStyler implements ezcDocumentOdtStyler
 
     public function applyStyles( ezcDocumentLocateable $docBookElement, DOMElement $odtElement )
     {
-        $this->seenElements[] = array(
-            $docBookElement->tagName,
-            $odtElement->tagName
-        );
+        $this->seenElements[] = [$docBookElement->tagName, $odtElement->tagName];
     }
 }
 

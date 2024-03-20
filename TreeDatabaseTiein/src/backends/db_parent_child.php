@@ -123,7 +123,7 @@ class ezcTreeDbParentChild extends ezcTreeDb
     {
         $className = $this->properties['nodeClassName'];
 
-        $nodes = array();
+        $nodes = [];
         $nodes[] = new $className( $this, $nodeId );
 
         $nodeId = $this->getParentId( $nodeId );
@@ -417,7 +417,7 @@ class ezcTreeDbParentChild extends ezcTreeDb
         $db = $this->dbh;
         $q = $db->createDeleteQuery();
 
-        $nodeIdList = array();
+        $nodeIdList = [];
         foreach ( array_keys( $list->nodes ) as $nodeId )
         {
             $nodeIdList[] = (string) $nodeId;

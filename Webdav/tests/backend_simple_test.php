@@ -31,24 +31,24 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     public function setUp()
     {
         static $i = 0;
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d', ++$i ) ) . '/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d', ++$i ) ) . '/';
         
         self::copyRecursive( 
-            dirname( __FILE__ ) . '/data/backend_file', 
+            __DIR__ . '/data/backend_file', 
             $this->tempDir . 'backend/'
         );
 
         // Remove SVN directories from temporary backend
         $svnDirs = ezcFile::findRecursive(
             $this->tempDir . 'backend/',
-            array( '(/\.svn/entries$)' )
+            ['(/\.svn/entries$)']
         );
 
         foreach ( $svnDirs as $dir )
@@ -194,7 +194,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
 
     protected function compareResponse( $test, ezcWebdavResponse $response )
     {
-        $dataDir = dirname( __FILE__ ) . '/data/responses/file';
+        $dataDir = __DIR__ . '/data/responses/file';
 
         if ( !is_file( $file = $dataDir . '/' . $test . '.ser' ) )
         {
@@ -293,7 +293,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( $etag ) );
+        $req->setHeader( 'If-Match', [$etag] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -326,7 +326,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'sometag', $etag, 'foobar' ) );
+        $req->setHeader( 'If-Match', ['sometag', $etag, 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -360,7 +360,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-None-Match', array( 'sometag', 'foobar' ) );
+        $req->setHeader( 'If-None-Match', ['sometag', 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -391,7 +391,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'someinvalidetag' ) );
+        $req->setHeader( 'If-Match', ['someinvalidetag'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -418,7 +418,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'sometag', 'some other tag', 'foobar' ) );
+        $req->setHeader( 'If-Match', ['sometag', 'some other tag', 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -447,7 +447,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-None-Match', array( 'sometag', $etag, 'foobar' ) );
+        $req->setHeader( 'If-None-Match', ['sometag', $etag, 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -501,7 +501,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'sometag', 'some other tag', 'foobar' ) );
+        $req->setHeader( 'If-Match', ['sometag', 'some other tag', 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -529,7 +529,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( $etag ) );
+        $req->setHeader( 'If-Match', [$etag] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -538,14 +538,11 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
             new ezcWebdavCollection(
                 $testPath,
                 $backend->getAllProperties( $testPath ),
-                array(
-                    new ezcWebdavCollection(
-                        '/collection/deep_collection'
-                    ),
-                    new ezcWebdavResource(
-                        '/collection/test.txt'
-                    ),
-                )
+                [new ezcWebdavCollection(
+                    '/collection/deep_collection'
+                ), new ezcWebdavResource(
+                    '/collection/test.txt'
+                )]
             )
         );
         $expectedRes->setHeader( 'ETag', $etag );
@@ -570,7 +567,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'sometag', $etag, 'foobar' ) );
+        $req->setHeader( 'If-Match', ['sometag', $etag, 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -579,14 +576,11 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
             new ezcWebdavCollection(
                 $testPath,
                 $backend->getAllProperties( $testPath ),
-                array(
-                    new ezcWebdavCollection(
-                        '/collection/deep_collection'
-                    ),
-                    new ezcWebdavResource(
-                        '/collection/test.txt'
-                    ),
-                )
+                [new ezcWebdavCollection(
+                    '/collection/deep_collection'
+                ), new ezcWebdavResource(
+                    '/collection/test.txt'
+                )]
             )
         );
         $expectedRes->setHeader( 'ETag', $etag );
@@ -609,7 +603,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'someinvalidetag' ) );
+        $req->setHeader( 'If-Match', ['someinvalidetag'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -637,7 +631,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavGetRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'sometag', 'some other tag', 'foobar' ) );
+        $req->setHeader( 'If-Match', ['sometag', 'some other tag', 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->get( $req );
@@ -684,7 +678,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
             'Generation of expected response failed.'
         );
         
-        $req->setHeader( 'If-Match', array( $etag ) );
+        $req->setHeader( 'If-Match', [$etag] );
         $req->validateHeaders();
 
         $res = $backend->propFind( $req );
@@ -708,7 +702,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
             $testPath
         );
         $req->allProp = true;
-        $req->setHeader( 'If-Match', array( 'sometag' ) );
+        $req->setHeader( 'If-Match', ['sometag'] );
         $req->validateHeaders();
 
         $res = $backend->propFind( $req );
@@ -757,7 +751,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
             $testPath
         );
         $req->updates = $newProperties;
-        $req->setHeader( 'If-Match', array( 'abc23', $etag, 'foobar' ) );
+        $req->setHeader( 'If-Match', ['abc23', $etag, 'foobar'] );
         $req->validateHeaders();
 
         $resProps = new ezcWebdavBasicPropertyStorage();
@@ -805,7 +799,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
             $testPath
         );
         $req->updates = $newProperties;
-        $req->setHeader( 'If-None-Match', array( 'abc23', $etag, 'foobar' ) );
+        $req->setHeader( 'If-None-Match', ['abc23', $etag, 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->propPatch( $req );
@@ -839,7 +833,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         );
         $req->setHeader( 'Content-Length', strlen( $req->body ) );
         $req->setHeader( 'Content-Type', 'text/plain; charset=utf8' );
-        $req->setHeader( 'If-None-Match', array( 'abc23', 'foobar' ) );
+        $req->setHeader( 'If-None-Match', ['abc23', 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->put( $req );
@@ -878,7 +872,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         );
         $req->setHeader( 'Content-Length', strlen( $req->body ) );
         $req->setHeader( 'Content-Type', 'text/plain; charset=utf8' );
-        $req->setHeader( 'If-Match', array( 'abc23', 'foobar' ) );
+        $req->setHeader( 'If-Match', ['abc23', 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->put( $req );
@@ -911,7 +905,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavDeleteRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'abc23', $etag, 'foobar' ) );
+        $req->setHeader( 'If-Match', ['abc23', $etag, 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->delete( $req );
@@ -936,7 +930,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavDeleteRequest(
             $testPath
         );
-        $req->setHeader( 'If-None-Match', array( 'abc23', $etag, 'foobar' ) );
+        $req->setHeader( 'If-None-Match', ['abc23', $etag, 'foobar'] );
         $req->validateHeaders();
 
         $res = $backend->delete( $req );
@@ -968,7 +962,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavDeleteRequest(
             $testPath
         );
-        $req->setHeader( 'If-Match', array( 'abc23', $collectionEtag, $resourceEtag ) );
+        $req->setHeader( 'If-Match', ['abc23', $collectionEtag, $resourceEtag] );
         $req->validateHeaders();
 
         $res = $backend->delete( $req );
@@ -994,7 +988,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavDeleteRequest(
             $testPath
         );
-        $req->setHeader( 'If-None-Match', array( 'abc23', $resourceEtag ) );
+        $req->setHeader( 'If-None-Match', ['abc23', $resourceEtag] );
         $req->validateHeaders();
 
         $res = $backend->delete( $req );
@@ -1031,7 +1025,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavCopyRequest(
             $testSource, $testDest
         );
-        $req->setHeader( 'If-Match', array( 'abc23', $sourceEtag, $destEtag ) );
+        $req->setHeader( 'If-Match', ['abc23', $sourceEtag, $destEtag] );
         $req->validateHeaders();
 
         $res = $backend->copy( $req );
@@ -1060,7 +1054,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavCopyRequest(
             $testSource, $testDest
         );
-        $req->setHeader( 'If-Match', array( 'abc23', $sourceEtag ) );
+        $req->setHeader( 'If-Match', ['abc23', $sourceEtag] );
         $req->validateHeaders();
 
         $res = $backend->copy( $req );
@@ -1094,7 +1088,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req->validateHeaders();
         $backend->propFind( $req );
 
-        $eTags = array();
+        $eTags = [];
        
         // Retrieve source etags
         $req = new ezcWebdavPropFindRequest( $testSource );
@@ -1148,7 +1142,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavCopyRequest(
             $testSource, $testDest
         );
-        $req->setHeader( 'If-None-Match', array( 'abc23', $eTag ) );
+        $req->setHeader( 'If-None-Match', ['abc23', $eTag] );
         $req->validateHeaders();
 
         $res = $backend->copy( $req );
@@ -1185,7 +1179,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavMoveRequest(
             $testSource, $testDest
         );
-        $req->setHeader( 'If-Match', array( 'abc23', $sourceEtag, $destEtag ) );
+        $req->setHeader( 'If-Match', ['abc23', $sourceEtag, $destEtag] );
         $req->validateHeaders();
 
         $res = $backend->move( $req );
@@ -1214,7 +1208,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavMoveRequest(
             $testSource, $testDest
         );
-        $req->setHeader( 'If-Match', array( 'abc23', $sourceEtag ) );
+        $req->setHeader( 'If-Match', ['abc23', $sourceEtag] );
         $req->validateHeaders();
 
         $res = $backend->move( $req );
@@ -1248,7 +1242,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req->validateHeaders();
         $backend->propFind( $req );
 
-        $eTags = array();
+        $eTags = [];
        
         // Retrieve source etags
         $req = new ezcWebdavPropFindRequest( $testSource );
@@ -1302,7 +1296,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavMoveRequest(
             $testSource, $testDest
         );
-        $req->setHeader( 'If-None-Match', array( 'abc23', $eTag ) );
+        $req->setHeader( 'If-None-Match', ['abc23', $eTag] );
         $req->validateHeaders();
 
         $res = $backend->move( $req );
@@ -1342,7 +1336,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavMakeCollectionRequest(
             $testDest
         );
-        $req->setHeader( 'If-Match', array( $eTag ) );
+        $req->setHeader( 'If-Match', [$eTag] );
         $req->validateHeaders();
 
         $res = $backend->makeCollection( $req );
@@ -1374,7 +1368,7 @@ class ezcWebdavSimpleBackendTest extends ezcTestCase
         $req = new ezcWebdavMakeCollectionRequest(
             $testDest
         );
-        $req->setHeader( 'If-None-Match', array( $eTag ) );
+        $req->setHeader( 'If-None-Match', [$eTag] );
         $req->validateHeaders();
 
         $res = $backend->makeCollection( $req );

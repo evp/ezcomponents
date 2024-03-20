@@ -5,7 +5,7 @@ class customLazyConfigurationConfiguration implements ezcBaseConfigurationInitia
 {
     public static function configureObject( $cfg )
     {
-        $cfg->init( 'ezcConfigurationIniReader', dirname( __FILE__ ) . '/examples' );
+        $cfg->init( 'ezcConfigurationIniReader', __DIR__ . '/examples' );
     }
 }
 

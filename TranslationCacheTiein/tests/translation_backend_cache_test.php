@@ -20,17 +20,15 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
     {
         $this->cacheObj = new ezcCacheStorageFileArray( $this->createTempDir( 'ezcTranslationCacheBackendTest' ) );
 
-        $expected = array(
-            new ezcTranslationData( 'Node ID: %node_id Visibility: %visibility', 'Knoop ID: %node_id Zichtbaar: %visibility', false, ezcTranslationData::TRANSLATED )
-        );
+        $expected = [new ezcTranslationData( 'Node ID: %node_id Visibility: %visibility', 'Knoop ID: %node_id Zichtbaar: %visibility', false, ezcTranslationData::TRANSLATED )];
         $this->cacheObj->store( 'nl-nl/contentstructuremenu/show_content_structure', $expected );
 
-        $expected = array();
+        $expected = [];
         $expected[] = new ezcTranslationData( 'Approval', 'Goedkeuring', false, ezcTranslationData::UNFINISHED );
         $expected[] = new ezcTranslationData( 'Approvals', false, false, ezcTranslationData::UNFINISHED );
         $this->cacheObj->store( 'nl-nl/design/admin/collaboration', $expected );
 
-        $expected = array();
+        $expected = [];
         $expected[] = new ezcTranslationData( 'Groups', 'Groepen', false, ezcTranslationData::OBSOLETE );
         $this->cacheObj->store( 'nl-nl/design/admin/collaboration/group_tree', $expected );
     }
@@ -53,7 +51,7 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
         try
         {
-            $backend->setOptions( array ( 'lOcAtIOn' => 'tests/translations' ) );
+            $backend->setOptions( ['lOcAtIOn' => 'tests/translations'] );
         }
         catch ( ezcBaseSettingNotFoundException $e )
         {
@@ -63,21 +61,21 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
 
     public function testGetContext1()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
         $context = $backend->getContext( 'nl-nl', 'contentstructuremenu/show_content_structure' );
 
-        $expected = array( new ezcTranslationData( 'Node ID: %node_id Visibility: %visibility', 'Knoop ID: %node_id Zichtbaar: %visibility', false, ezcTranslationData::TRANSLATED ) );
+        $expected = [new ezcTranslationData( 'Node ID: %node_id Visibility: %visibility', 'Knoop ID: %node_id Zichtbaar: %visibility', false, ezcTranslationData::TRANSLATED )];
         self::assertEquals( $expected, $context );
     }
 
     public function testGetContextUnfinishedData()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
         $context = $backend->getContext( 'nl-nl', 'design/admin/collaboration' );
 
-        $expected = array();
+        $expected = [];
         $expected[] = new ezcTranslationData( 'Approval', 'Goedkeuring', false, ezcTranslationData::UNFINISHED );
         $expected[] = new ezcTranslationData( 'Approvals', false, false, ezcTranslationData::UNFINISHED );
         self::assertEquals( $expected, $context );
@@ -85,17 +83,17 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
 
     public function testGetContextObsolete()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
         $context = $backend->getContext( 'nl-nl', 'design/admin/collaboration/group_tree' );
 
-        $expected = array();
+        $expected = [];
         self::assertEquals( $expected, $context );
     }
 
     public function testGetMissingContext()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
         try
         {
@@ -112,16 +110,12 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
      */
     public function testWriter1()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
         $backend->initWriter( 'nb-no' );
 
         $contextName = 'contentstructuremenu/show_content_structure';
-        $contextData = array(
-            new ezcTranslationData( 'Node ID: %node_id Visibility: %visibility', 'Node-ID: %node_id Synlig/skjult: %visibility', false, ezcTranslationData::TRANSLATED ),
-            new ezcTranslationData( 'Approvals', false, false, ezcTranslationData::UNFINISHED ),
-            new ezcTranslationData( 'Groups', 'Groepen', false, ezcTranslationData::OBSOLETE ),
-        );
+        $contextData = [new ezcTranslationData( 'Node ID: %node_id Visibility: %visibility', 'Node-ID: %node_id Synlig/skjult: %visibility', false, ezcTranslationData::TRANSLATED ), new ezcTranslationData( 'Approvals', false, false, ezcTranslationData::UNFINISHED ), new ezcTranslationData( 'Groups', 'Groepen', false, ezcTranslationData::OBSOLETE )];
         $backend->storeContext( $contextName, $contextData );
         /* Unsetting element 2, as that should not be in the returned context */
         unset( $contextData[2] );
@@ -132,12 +126,12 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
 
     public function testNonInitException1()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
 
         try
         {
-            $backend->storeContext( 'dummy', array() );
+            $backend->storeContext( 'dummy', [] );
         }
         catch ( ezcTranslationWriterNotInitializedException $e )
         {
@@ -147,7 +141,7 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
 
     public function testNonInitException2()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
 
         try
@@ -162,7 +156,7 @@ class ezcTranslationCacheBackendTest extends ezcTestCase
 
     public function testNonInitException3()
     {
-        $currentDir = dirname( __FILE__ );
+        $currentDir = __DIR__;
         $backend = new ezcTranslationCacheBackend( $this->cacheObj );
         $backend->initWriter( 'nb-no' );
         $backend->deinitWriter();

@@ -19,7 +19,7 @@ class ezcDocumentOdtStyleTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testConstructorSuccess()
@@ -30,11 +30,7 @@ class ezcDocumentOdtStyleTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'name'                 => 'testTableStyle',
-                'family'               => ezcDocumentOdtStyle::FAMILY_TABLE,
-                'formattingProperties' => new ezcDocumentOdtFormattingPropertyCollection()
-            ),
+            ['name'                 => 'testTableStyle', 'family'               => ezcDocumentOdtStyle::FAMILY_TABLE, 'formattingProperties' => new ezcDocumentOdtFormattingPropertyCollection()],
             'properties',
             $style
         );

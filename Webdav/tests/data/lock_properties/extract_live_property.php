@@ -27,16 +27,14 @@ EOT;
 
 $filledLockDiscoveryProperty = new ezcWebdavLockDiscoveryProperty(
     new ArrayObject(
-        array(
-            new ezcWebdavLockDiscoveryPropertyActiveLock(
-                ezcWebdavLockRequest::TYPE_WRITE,
-                ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                ezcWebdavRequest::DEPTH_ZERO,
-                new ezcWebdavPotentialUriContent( 'Jane Smith' ),
-                600,
-                new ezcWebdavPotentialUriContent( 'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76', true )
-            ),
-        )
+        [new ezcWebdavLockDiscoveryPropertyActiveLock(
+            ezcWebdavLockRequest::TYPE_WRITE,
+            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+            ezcWebdavRequest::DEPTH_ZERO,
+            new ezcWebdavPotentialUriContent( 'Jane Smith' ),
+            600,
+            new ezcWebdavPotentialUriContent( 'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76', true )
+        )]
     )
 );
 
@@ -61,18 +59,16 @@ EOT;
 
 $filledLockDiscoveryPropertyLastAccess = new ezcWebdavLockDiscoveryProperty(
     new ArrayObject(
-        array(
-            new ezcWebdavLockDiscoveryPropertyActiveLock(
-                ezcWebdavLockRequest::TYPE_WRITE,
-                ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                ezcWebdavRequest::DEPTH_ZERO,
-                new ezcWebdavPotentialUriContent( 'Jane Smith' ),
-                600,
-                new ezcWebdavPotentialUriContent( 'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76', true ),
-                null,
-                new ezcWebdavDateTime( '2008-11-12T22:12:15+01:00' )
-            ),
-        )
+        [new ezcWebdavLockDiscoveryPropertyActiveLock(
+            ezcWebdavLockRequest::TYPE_WRITE,
+            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+            ezcWebdavRequest::DEPTH_ZERO,
+            new ezcWebdavPotentialUriContent( 'Jane Smith' ),
+            600,
+            new ezcWebdavPotentialUriContent( 'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76', true ),
+            null,
+            new ezcWebdavDateTime( '2008-11-12T22:12:15+01:00' )
+        )]
     )
 );
 
@@ -97,17 +93,15 @@ EOT;
 
 $filledLockDiscoveryPropertyBaseUri = new ezcWebdavLockDiscoveryProperty(
     new ArrayObject(
-        array(
-            new ezcWebdavLockDiscoveryPropertyActiveLock(
-                ezcWebdavLockRequest::TYPE_WRITE,
-                ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                ezcWebdavRequest::DEPTH_ZERO,
-                new ezcWebdavPotentialUriContent( 'Jane Smith' ),
-                600,
-                new ezcWebdavPotentialUriContent( 'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76', true ),
-                '/some/path'
-            ),
-        )
+        [new ezcWebdavLockDiscoveryPropertyActiveLock(
+            ezcWebdavLockRequest::TYPE_WRITE,
+            ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+            ezcWebdavRequest::DEPTH_ZERO,
+            new ezcWebdavPotentialUriContent( 'Jane Smith' ),
+            600,
+            new ezcWebdavPotentialUriContent( 'opaquelocktoken:f81de2ad-7f3d-a1b2-4f3c-00a0c91a9d76', true ),
+            '/some/path'
+        )]
     )
 );
 
@@ -134,44 +128,16 @@ EOT;
 
 $filledSupportedLockProperty = new ezcWebdavSupportedLockProperty(
     new ArrayObject(
-        array(
-            new ezcWebdavSupportedLockPropertyLockentry(
-                ezcWebdavLockRequest::TYPE_WRITE,
-                ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-            ),
-            new ezcWebdavSupportedLockPropertyLockentry(
-                ezcWebdavLockRequest::TYPE_WRITE,
-                ezcWebdavLockRequest::SCOPE_SHARED
-            ),
-        )
+        [new ezcWebdavSupportedLockPropertyLockentry(
+            ezcWebdavLockRequest::TYPE_WRITE,
+            ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+        ), new ezcWebdavSupportedLockPropertyLockentry(
+            ezcWebdavLockRequest::TYPE_WRITE,
+            ezcWebdavLockRequest::SCOPE_SHARED
+        )]
     ) 
 );
 
-return array(
-    array(
-        $emptyLockDiscoveryXml,
-        $emptyLockDiscoveryProperty,
-    ),
-    array(
-        $filledLockDiscoveryXml,
-        $filledLockDiscoveryProperty,
-    ),
-    array(
-        $filledLockDiscoveryXmlLastAccess,
-        $filledLockDiscoveryPropertyLastAccess,
-    ),
-    array(
-        $filledLockDiscoveryXmlBaseUri,
-        $filledLockDiscoveryPropertyBaseUri,
-    ),
-    array(
-        $emptySupportedLockXml,
-        $emptySupportedLockProperty,
-    ),
-    array(
-        $filledSupportedLockXml,
-        $filledSupportedLockProperty,
-    )
-);
+return [[$emptyLockDiscoveryXml, $emptyLockDiscoveryProperty], [$filledLockDiscoveryXml, $filledLockDiscoveryProperty], [$filledLockDiscoveryXmlLastAccess, $filledLockDiscoveryPropertyLastAccess], [$filledLockDiscoveryXmlBaseUri, $filledLockDiscoveryPropertyBaseUri], [$emptySupportedLockXml, $emptySupportedLockProperty], [$filledSupportedLockXml, $filledSupportedLockProperty]];
 
 ?>

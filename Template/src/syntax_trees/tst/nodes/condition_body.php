@@ -46,8 +46,7 @@ class ezcTemplateConditionBodyTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'condition' => $this->condition,
-                      'children'  => $this->children );
+        return ['condition' => $this->condition, 'children'  => $this->children];
     }
 
     /**

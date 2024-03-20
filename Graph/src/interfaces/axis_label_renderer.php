@@ -51,7 +51,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['majorStepCount'] = false;
         $this->properties['minorStepCount'] = false;
@@ -326,25 +326,14 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
             - $direction->x
         );
 
-        $cuttingPoints = array();
-        foreach ( array( // Bounding lines
-                array(
-                    'start' => new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ),
-                    'dir' => new ezcGraphCoordinate( 0, $boundings->y1 - $boundings->y0 )
-                ),
-                array(
-                    'start' => new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ),
-                    'dir' => new ezcGraphCoordinate( $boundings->x1 - $boundings->x0, 0 )
-                ),
-                array(
-                    'start' => new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ),
-                    'dir' => new ezcGraphCoordinate( 0, $boundings->y0 - $boundings->y1 )
-                ),
-                array(
-                    'start' => new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ),
-                    'dir' => new ezcGraphCoordinate( $boundings->x0 - $boundings->x1, 0 )
-                ),
-            ) as $boundingLine )
+        $cuttingPoints = [];
+        foreach ( [
+            // Bounding lines
+            ['start' => new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ), 'dir' => new ezcGraphCoordinate( 0, $boundings->y1 - $boundings->y0 )],
+            ['start' => new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ), 'dir' => new ezcGraphCoordinate( $boundings->x1 - $boundings->x0, 0 )],
+            ['start' => new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ), 'dir' => new ezcGraphCoordinate( 0, $boundings->y0 - $boundings->y1 )],
+            ['start' => new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ), 'dir' => new ezcGraphCoordinate( $boundings->x0 - $boundings->x1, 0 )],
+        ] as $boundingLine )
         {
             // Test for cutting points with bounding lines, where cutting
             // position is between 0 and 1, which means, that the line is hit
@@ -530,7 +519,7 @@ abstract class ezcGraphAxisLabelRenderer extends ezcBaseOptions
             $gridBoundings = $boundings;
         }
 
-        return array( $xSpace, $ySpace );
+        return [$xSpace, $ySpace];
     }
 
     /**

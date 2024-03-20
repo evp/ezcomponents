@@ -10,6 +10,6 @@ class HelloClass
 }
 
 $signals = new ezcSignalCollection();
-$signals->connect( "sayHello", array( new HelloClass(), "hello" ) );
+$signals->connect( "sayHello", [new HelloClass(), "hello"] );
 $signals->emit( "sayHello" );
 ?>

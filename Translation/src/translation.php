@@ -42,7 +42,7 @@ class ezcTranslation
      */
     function __construct( array $data )
     {
-        $this->translationMap = array();
+        $this->translationMap = [];
         foreach ( $data as $translationElement )
         {
             $this->translationMap[$translationElement->original] = $translationElement;
@@ -96,7 +96,7 @@ class ezcTranslation
      * @param array(string=>string)  $params
      * @return string
      */
-    public function getTranslation( $key, array $params = array() )
+    public function getTranslation( $key, array $params = [] )
     {
         if ( !isset( $this->translationMap[$key] ) )
         {
@@ -113,7 +113,7 @@ class ezcTranslation
         // So we do have a possibility of a parameterized string, replace those
         // with the parameters. The callback function can actually throw an
         // exception to tell that there was a missing parameter.
-        return (string) preg_replace( '@%(([A-Za-z][a-z_]*[a-z])|[1-9])@e', '$this->parameterCallback("\\1", $params)', $translatedString );
+        return (string) preg_replace_callback( '@%(([A-Za-z][a-z_]*[a-z])|[1-9])@', fn($matches) => $this->parameterCallback("\x01", $params), $translatedString );
     }
 
     /**
@@ -174,7 +174,7 @@ class ezcTranslation
      * @param array(string=>string)  $params
      * @return string
      */
-    public function compileTranslation( $key, array $params = array() )
+    public function compileTranslation( $key, array $params = [] )
     {
         if ( !isset( $this->translationMap[$key] ) )
         {
@@ -191,7 +191,7 @@ class ezcTranslation
         // So we do have a possibility of a parameterized string, replace those
         // with the parameters. The callback function can actually throw an
         // exception to tell that there was a missing parameter.
-        return (string) preg_replace( '@%(([A-Za-z][a-z_]*[a-z])|[1-9])@e', '$this->parameterCallbackCompile("\\1", $params)', $translatedString );
+        return (string) preg_replace_callback( '@%(([A-Za-z][a-z_]*[a-z])|[1-9])@', fn($matches) => $this->parameterCallbackCompile("\x01", $params), $translatedString );
     }
 }
 ?>

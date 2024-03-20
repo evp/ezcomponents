@@ -29,7 +29,7 @@ class ezcTemplateRootAstNode extends ezcTemplateBodyAstNode
      *
      * @var array(ezcTemplateAstNode)
      */
-    public $cacheKeys = array();
+    public $cacheKeys = [];
 
     /**
      * The time to live of the cache.

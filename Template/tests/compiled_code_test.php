@@ -21,7 +21,7 @@ class ezcTemplateCompiledCodeTest extends ezcTestCase
 
     protected function setUp()
     {
-        $this->basePath = realpath( dirname( __FILE__ ) ) . '/';
+        $this->basePath = realpath( __DIR__ ) . '/';
         $this->templatePath = $this->basePath . 'templates/';
         $this->templateCompiledPath = $this->basePath . 'compiled/';
         $this->templateStorePath = $this->basePath . 'stored_templates/';
@@ -57,10 +57,7 @@ class ezcTemplateCompiledCodeTest extends ezcTestCase
      */
     public function testFindCompiled()
     {
-        $templates = array( array( 'zhadum.ezt',
-                                    $this->templateCompiledPath ."/compiled_templates" . '/xhtml-updqr0/zhadum-d282602de179f8e7b6a24c6d96eb525d.php' ),
-                            array( 'pagelayout.ezt',
-                                   $this->templateCompiledPath . "/compiled_templates" . '/xhtml-updqr0/pagelayout-ab7f51e3c7e7dab104986ad939256599.php' ) );
+        $templates = [['zhadum.ezt', $this->templateCompiledPath ."/compiled_templates" . '/xhtml-updqr0/zhadum-d282602de179f8e7b6a24c6d96eb525d.php'], ['pagelayout.ezt', $this->templateCompiledPath . "/compiled_templates" . '/xhtml-updqr0/pagelayout-ab7f51e3c7e7dab104986ad939256599.php']];
 
         foreach ( $templates as $templateData )
         {

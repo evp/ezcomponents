@@ -21,13 +21,13 @@ class ezcDocumentOdtStyleExtractorTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->domDocument = new DOMDocument();
-        $this->domDocument->load( dirname( __FILE__ ) . '/../files/odt/tests/s_000_simple.fodt' );
+        $this->domDocument->load( __DIR__ . '/../files/odt/tests/s_000_simple.fodt' );
     }
     
     public function testCtor()

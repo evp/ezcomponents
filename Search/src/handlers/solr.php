@@ -170,7 +170,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
      * @return string
      * @access private
      */
-    public function sendRawGetCommand( $type, $queryString = array() )
+    public function sendRawGetCommand( $type, $queryString = [] )
     {
         $statusCode = 0;
         $queryPart = '';
@@ -340,7 +340,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
      * @param array(string=>string) $order
      * @return array
      */
-    private function buildQuery( $queryWord, $defaultField, $searchFieldList = array(), $returnFieldList = array(), $highlightFieldList = array(), $facetFieldList = array(), $limit = null, $offset = false, $order = array() )
+    private function buildQuery( $queryWord, $defaultField, $searchFieldList = [], $returnFieldList = [], $highlightFieldList = [], $facetFieldList = [], $limit = null, $offset = false, $order = [] )
     {
         if ( count( $searchFieldList ) > 0 )
         {
@@ -354,7 +354,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         {
             $queryString = $queryWord;
         }
-        $queryFlags = array( 'q' => $queryString, 'wt' => 'json', 'df' => $defaultField );
+        $queryFlags = ['q' => $queryString, 'wt' => 'json', 'df' => $defaultField];
 
         $returnFieldList[] = 'score';
         $queryFlags['fl'] = join( ' ', $returnFieldList );
@@ -376,7 +376,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         }
         if ( count( $order ) )
         {
-            $sortFlags = array();
+            $sortFlags = [];
             foreach ( $order as $column => $type )
             {
                 if ( $type == ezcSearchQueryTools::ASC )
@@ -391,7 +391,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
             $queryFlags['sort'] = join( ', ', $sortFlags );
         }
         $queryFlags['start'] = $offset;
-        $queryFlags['rows'] = $limit === null ? 999999 : $limit;
+        $queryFlags['rows'] = $limit ?? 999999;
         return $queryFlags;
     }
 
@@ -400,7 +400,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $className = $def->documentType;
         $obj = new $className;
 
-        $attr = array();
+        $attr = [];
         foreach ( $def->fields as $field )
         {
             $fieldName = $this->mapFieldType( $field->field, $field->type );
@@ -457,7 +457,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         {
             foreach ( $s->documents as $id => $document )
             {
-                $document->highlight = array();
+                $document->highlight = [];
                 if ( isset( $response->highlighting->$id ) )
                 {
                     foreach ( $def->fields as $field )
@@ -482,7 +482,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
                 if ( isset( $facets->$fieldName ) )
                 {
                     // sigh, stupid array format needs fixing
-                    $facetValues = array();
+                    $facetValues = [];
                     $facet = $facets->$fieldName;
                     for ( $i = 0; $i < count( $facet ); $i += 2 )
                     {
@@ -510,7 +510,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
      * @param array(string=>string) $order
      * @return stdClass
      */
-    public function search( $queryWord, $defaultField, $searchFieldList = array(), $returnFieldList = array(), $highlightFieldList = array(), $facetFieldList = array(), $limit = null, $offset = 0, $order = array() )
+    public function search( $queryWord, $defaultField, $searchFieldList = [], $returnFieldList = [], $highlightFieldList = [], $facetFieldList = [], $limit = null, $offset = 0, $order = [] )
     {
         $result = $this->sendRawGetCommand( 'select', $this->buildQuery( $queryWord, $defaultField, $searchFieldList, $returnFieldList, $highlightFieldList, $facetFieldList, $limit, $offset, $order ) );
         if ( ( $data = json_decode( $result ) ) === null )
@@ -543,12 +543,12 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $query->select( 'score' );
         if ( $type )
         {
-            $selectFieldNames = array();
+            $selectFieldNames = [];
             foreach ( $definition->getSelectFieldNames() as $docProp )
             {
                 $selectFieldNames[] = $this->mapFieldType( $docProp, $definition->fields[$docProp]->type );
             }
-            $highlightFieldNames = array();
+            $highlightFieldNames = [];
             foreach ( $definition->getHighlightFieldNames() as $docProp )
             {
                 $highlightFieldNames[] = $this->mapFieldType( $docProp, $definition->fields[$docProp]->type );
@@ -576,7 +576,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $offset = $query->offset;
         $order = $query->orderByClauses;
 
-        $res = $this->search( $queryWord, '', array(), $resultFieldList, $highlightFieldList, $facetFieldList, $limit, $offset, $order );
+        $res = $this->search( $queryWord, '', [], $resultFieldList, $highlightFieldList, $facetFieldList, $limit, $offset, $order );
         return $this->createResponseFromData( $query->getDefinition(), $res );
     }
 
@@ -597,7 +597,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $offset = $query->offset;
         $order = $query->orderByClauses;
 
-        return http_build_query( $this->buildQuery( $queryWord, '', array(), $resultFieldList, $highlightFieldList, $facetFieldList, $limit, $offset, $order ) );
+        return http_build_query( $this->buildQuery( $queryWord, '', [], $resultFieldList, $highlightFieldList, $facetFieldList, $limit, $offset, $order ) );
     }
 
     /**
@@ -624,15 +624,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
      */
     public function mapFieldType( $name, $type )
     {
-        $map = array(
-            ezcSearchDocumentDefinition::STRING => '_s',
-            ezcSearchDocumentDefinition::TEXT => '_t',
-            ezcSearchDocumentDefinition::HTML => '_t',
-            ezcSearchDocumentDefinition::DATE => '_l',
-            ezcSearchDocumentDefinition::INT => '_l',
-            ezcSearchDocumentDefinition::FLOAT => '_d',
-            ezcSearchDocumentDefinition::BOOLEAN => '_b',
-        );
+        $map = [ezcSearchDocumentDefinition::STRING => '_s', ezcSearchDocumentDefinition::TEXT => '_t', ezcSearchDocumentDefinition::HTML => '_t', ezcSearchDocumentDefinition::DATE => '_l', ezcSearchDocumentDefinition::INT => '_l', ezcSearchDocumentDefinition::FLOAT => '_d', ezcSearchDocumentDefinition::BOOLEAN => '_b'];
         return $name . $map[$type];
     }
 
@@ -782,7 +774,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         }
         if ( !is_array( $values ) )
         {
-            $values = array( $values );
+            $values = [$values];
         }
         foreach ( $values as &$value )
         {
@@ -813,7 +805,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         }
         if ( !is_array( $values ) )
         {
-            $values = array( $values );
+            $values = [$values];
         }
         foreach ( $values as &$value )
         {
@@ -853,7 +845,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
      */
     protected function runCommit()
     {
-        $r = $this->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $r = $this->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
     }
 
     /**
@@ -894,7 +886,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $xml->endElement();
         $doc = $xml->outputMemory( true );
 
-        $r = $this->sendRawPostCommand( 'update', array( 'wt' => 'json' ), $doc );
+        $r = $this->sendRawPostCommand( 'update', ['wt' => 'json'], $doc );
         if ( $this->inTransaction == 0 )
         {
             $this->runCommit();
@@ -913,7 +905,7 @@ class ezcSearchSolrHandler implements ezcSearchHandler, ezcSearchIndexHandler
         $query = new ezcSearchDeleteQuerySolr( $this, $definition );
         if ( $type )
         {
-            $selectFieldNames = array();
+            $selectFieldNames = [];
             $query->where( $query->eq( 'ezcsearch_type', $type ) );
         }
         return $query;

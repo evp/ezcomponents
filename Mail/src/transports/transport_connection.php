@@ -25,7 +25,7 @@ class ezcMailTransportConnection
     /**
      * The line-break characters to send to the server.
      */
-    const CRLF = "\r\n";
+    public const CRLF = "\r\n";
 
     /**
      * The connection to the server or null if there is none.

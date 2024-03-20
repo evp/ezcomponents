@@ -129,7 +129,7 @@ class ezcMailImapTransport
      *
      * @access private
      */
-    const STATE_NOT_CONNECTED = 1;
+    public const STATE_NOT_CONNECTED = 1;
 
     /**
      * Internal state when the IMAP transport is connected to a server,
@@ -137,7 +137,7 @@ class ezcMailImapTransport
      *
      * @access private
      */
-    const STATE_NOT_AUTHENTICATED = 2;
+    public const STATE_NOT_AUTHENTICATED = 2;
 
     /**
      * Internal state when the IMAP transport is connected to a server
@@ -145,7 +145,7 @@ class ezcMailImapTransport
      *
      * @access private
      */
-    const STATE_AUTHENTICATED = 3;
+    public const STATE_AUTHENTICATED = 3;
 
     /**
      * Internal state when the IMAP transport is connected to a server,
@@ -153,7 +153,7 @@ class ezcMailImapTransport
      *
      * @access private
      */
-    const STATE_SELECTED = 4;
+    public const STATE_SELECTED = 4;
 
     /**
      * Internal state when the IMAP transport is connected to a server,
@@ -161,7 +161,7 @@ class ezcMailImapTransport
      *
      * @access private
      */
-    const STATE_SELECTED_READONLY = 5;
+    public const STATE_SELECTED_READONLY = 5;
 
     /**
      * Internal state when the LOGOUT command has been issued to the IMAP
@@ -169,35 +169,35 @@ class ezcMailImapTransport
      *
      * @access private
      */
-    const STATE_LOGOUT = 6;
+    public const STATE_LOGOUT = 6;
 
     /**
      * The response sent from the IMAP server is "OK".
      *
      * @access private
      */
-    const RESPONSE_OK = 1;
+    public const RESPONSE_OK = 1;
 
     /**
      * The response sent from the IMAP server is "NO".
      *
      * @access private
      */
-    const RESPONSE_NO = 2;
+    public const RESPONSE_NO = 2;
 
     /**
      * The response sent from the IMAP server is "BAD".
      *
      * @access private
      */
-    const RESPONSE_BAD = 3;
+    public const RESPONSE_BAD = 3;
 
     /**
      * The response sent from the IMAP server is untagged (starts with "*").
      *
      * @access private
      */
-    const RESPONSE_UNTAGGED = 4;
+    public const RESPONSE_UNTAGGED = 4;
 
     /**
      * The response sent from the IMAP server requires the client to send
@@ -205,28 +205,28 @@ class ezcMailImapTransport
      *
      * @access private
      */
-    const RESPONSE_FEEDBACK = 5;
+    public const RESPONSE_FEEDBACK = 5;
 
     /**
      * Use UID commands (access messages by their unique ID).
      *
      * @access private
      */
-    const UID = 'UID ';
+    public const UID = 'UID ';
 
     /**
      * Use message number commands (access messages by their message numbers).
      *
      * @access private
      */
-    const NO_UID = '';
+    public const NO_UID = '';
 
     /**
      * The string returned by Google IMAP servers when at connection time.
      *
      * @access private
      */
-    const SERVER_GIMAP = 'Gimap';
+    public const SERVER_GIMAP = 'Gimap';
 
     /**
      * Basic flags are used by {@link setFlag()} and {@link clearFlag()}
@@ -240,7 +240,7 @@ class ezcMailImapTransport
      *
      * @var array(string)
      */
-    protected static $basicFlags = array( 'ANSWERED', 'DELETED', 'DRAFT', 'FLAGGED', 'SEEN' );
+    protected static $basicFlags = ['ANSWERED', 'DELETED', 'DRAFT', 'FLAGGED', 'SEEN'];
 
     /**
      * Extended flags are used by {@link searchByFlag()}
@@ -267,7 +267,7 @@ class ezcMailImapTransport
      *
      * @var array(string)
      */
-    protected static $extendedFlags = array( 'ALL', 'ANSWERED', 'DELETED', 'DRAFT', 'FLAGGED', 'NEW', 'OLD', 'RECENT', 'SEEN', 'UNANSWERED', 'UNDELETED', 'UNDRAFT', 'UNFLAGGED', 'UNRECENT', 'UNSEEN' );
+    protected static $extendedFlags = ['ALL', 'ANSWERED', 'DELETED', 'DRAFT', 'FLAGGED', 'NEW', 'OLD', 'RECENT', 'SEEN', 'UNANSWERED', 'UNDELETED', 'UNDRAFT', 'UNFLAGGED', 'UNRECENT', 'UNSEEN'];
 
     /**
      * Used to generate a tag for sending commands to the IMAP server.
@@ -355,7 +355,7 @@ class ezcMailImapTransport
      * @param int $port
      * @param ezcMailImapTransportOptions|array(string=>mixed) $options
      */
-    public function __construct( $server, $port = null, $options = array() )
+    public function __construct( $server, $port = null, $options = [] )
     {
         if ( $options instanceof ezcMailImapTransportOptions )
         {
@@ -599,7 +599,7 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "Can't call listMailboxes() when not successfully logged in." );
         }
 
-        $result = array();
+        $result = [];
         $tag = $this->getNextTag();
         $this->connection->sendData( "{$tag} LIST \"{$reference}\" \"{$mailbox}\"" );
         $response = trim( $this->connection->getLine() );
@@ -963,8 +963,8 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "Can't call listMessages() on the IMAP transport when a mailbox is not selected." );
         }
 
-        $messageList = array();
-        $messages = array();
+        $messageList = [];
+        $messages = [];
  
         // get the numbers of the existing messages
         $tag = $this->getNextTag();
@@ -1072,7 +1072,7 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "Can't call fetchSizes() on the IMAP transport when a mailbox is not selected." );
         }
 
-        $sizes = array();
+        $sizes = [];
         $ids = implode( $messages, ',' );
 
         $tag = $this->getNextTag();
@@ -1394,7 +1394,7 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "Can't call listUniqueIdentifiers() on the IMAP transport when a mailbox is not selected." );
         }
 
-        $result = array();
+        $result = [];
         if ( $msgNum !== null )
         {
             $tag = $this->getNextTag();
@@ -1408,7 +1408,7 @@ class ezcMailImapTransport
         }
         else
         {
-            $uids = array();
+            $uids = [];
             $messages = array_keys( $this->listMessages() );
             $tag = $this->getNextTag();
             $this->connection->sendData( "{$tag} UID SEARCH UNDELETED" );
@@ -1484,7 +1484,7 @@ class ezcMailImapTransport
             $messages = array_keys( $this->listMessages() );
         }
 
-        return new ezcMailImapSet( $this->connection, $messages, $deleteFromServer, array( 'uidReferencing' => $this->options->uidReferencing ) );
+        return new ezcMailImapSet( $this->connection, $messages, $deleteFromServer, ['uidReferencing' => $this->options->uidReferencing] );
     }
 
     /**
@@ -1541,7 +1541,7 @@ class ezcMailImapTransport
             throw new ezcMailNoSuchMessageException( $number );
         }
 
-        return new ezcMailImapSet( $this->connection, array( 0 => $number ), $deleteFromServer, array( 'uidReferencing' => $this->options->uidReferencing ) );
+        return new ezcMailImapSet( $this->connection, [0 => $number], $deleteFromServer, ['uidReferencing' => $this->options->uidReferencing] );
     }
 
     /**
@@ -1605,7 +1605,7 @@ class ezcMailImapTransport
                 throw new ezcMailOffsetOutOfRangeException( $offset, $count );
             }
 
-            $range = array();
+            $range = [];
             for ( $i = $ids[$offset]; $i < min( $count, count( $messages ) ); $i++ )
             {
                 $range[] = $messages[$i];
@@ -1628,7 +1628,7 @@ class ezcMailImapTransport
             }
         }
 
-        return new ezcMailImapSet( $this->connection, $range, $deleteFromServer, array( 'uidReferencing' => $this->options->uidReferencing ) );
+        return new ezcMailImapSet( $this->connection, $range, $deleteFromServer, ['uidReferencing' => $this->options->uidReferencing] );
     }
 
     /**
@@ -1693,7 +1693,7 @@ class ezcMailImapTransport
             $criteria = 'ALL';
         }
 
-        $matchingMessages = array();
+        $matchingMessages = [];
         $tag = $this->getNextTag();
         $this->connection->sendData( "{$tag} {$uid}SEARCH {$criteria}" );
 
@@ -1713,7 +1713,7 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "The IMAP server could not search the messages by the specified criteria: {$response}." );
         }
 
-        return new ezcMailImapSet( $this->connection, array_values( $matchingMessages ), false, array( 'uidReferencing' => $this->options->uidReferencing ) );
+        return new ezcMailImapSet( $this->connection, array_values( $matchingMessages ), false, ['uidReferencing' => $this->options->uidReferencing] );
     }
 
     /**
@@ -1768,7 +1768,7 @@ class ezcMailImapTransport
             throw new ezcMailInvalidLimitException( $offset, $count );
         }
 
-        $range = array();
+        $range = [];
         if ( $this->options->uidReferencing )
         {
             $uids = array_values( $this->listUniqueIdentifiers() );
@@ -1813,7 +1813,7 @@ class ezcMailImapTransport
             }
         }
 
-        return new ezcMailImapSet( $this->connection, $range, false, array( 'uidReferencing' => $this->options->uidReferencing ) );
+        return new ezcMailImapSet( $this->connection, $range, false, ['uidReferencing' => $this->options->uidReferencing] );
     }
 
     /**
@@ -1859,7 +1859,7 @@ class ezcMailImapTransport
     public function sortMessages( $messages, $sortCriteria, $reverse = false )
     {
         $messages = $this->sort( $messages, $sortCriteria, $reverse );
-        return new ezcMailImapSet( $this->connection, array_keys ( $messages ), false, array( 'uidReferencing' => $this->options->uidReferencing ) );
+        return new ezcMailImapSet( $this->connection, array_keys ( $messages ), false, ['uidReferencing' => $this->options->uidReferencing] );
     }
 
     /**
@@ -1918,7 +1918,7 @@ class ezcMailImapTransport
     public function fetchByFlag( $flag )
     {
         $messages = $this->searchByFlag( $flag );
-        return new ezcMailImapSet( $this->connection, $messages, false, array( 'uidReferencing' => $this->options->uidReferencing ) );
+        return new ezcMailImapSet( $this->connection, $messages, false, ['uidReferencing' => $this->options->uidReferencing] );
     }
 
     /**
@@ -2018,7 +2018,7 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "Can't call fetchFlags() on the IMAP transport when a mailbox is not selected." );
         }
 
-        $flags = array();
+        $flags = [];
         $ids = implode( $messages, ',' );
 
         $tag = $this->getNextTag();
@@ -2248,7 +2248,7 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "Can't call searchByFlag() on the IMAP transport when a mailbox is not selected." );
         }
 
-        $matchingMessages = array();
+        $matchingMessages = [];
         $flag = $this->normalizeFlag( $flag );
         if ( in_array( $flag, self::$extendedFlags ) )
         {
@@ -2514,7 +2514,7 @@ class ezcMailImapTransport
             throw new ezcMailTransportException( "Can't call sort() on the IMAP transport when a mailbox is not selected." );
         }
 
-        $result = array();
+        $result = [];
         $query = ucfirst( strtolower( $sortCriteria ) );
         $messageNumbers = implode( ',', $messages );
 

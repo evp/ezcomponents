@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -41,8 +41,8 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
             $this->markTestSkipped( "This test requires PHP 5.1.3 or later." );
         }
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
     
     protected function tearDown()
@@ -73,11 +73,9 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedLabelRenderer();
         $chart->xAxis->axisLabelRenderer->angle = 45;
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawText',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawText'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -120,11 +118,9 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer->angle = 45;
         $chart->xAxis->axisLabelRenderer->labelOffset = false;
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', array(
-            'drawText',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer2d', ['drawText'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -166,11 +162,9 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedLabelRenderer();
         $chart->xAxis->axisLabelRenderer->angle = 45;
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisNoLabelRenderer();
-        $chart->data['sampleData'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['sampleData'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         
-        $mockedRenderer = $this->getMock( 'ezcGraphRenderer3d', array(
-            'drawText',
-        ) );
+        $mockedRenderer = $this->getMock( 'ezcGraphRenderer3d', ['drawText'] );
 
         $mockedRenderer
             ->expects( $this->at( 0 ) )
@@ -273,8 +267,8 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $chart = new ezcGraphLineChart();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedLabelRenderer();
         $chart->xAxis->axisSpace = .25;
@@ -286,7 +280,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -296,8 +290,8 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $chart = new ezcGraphLineChart();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedLabelRenderer();
         $chart->xAxis->axisSpace = .25;
@@ -310,7 +304,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -334,7 +328,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -358,7 +352,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -382,7 +376,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -407,7 +401,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -417,8 +411,8 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $chart = new ezcGraphLineChart();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisRotatedLabelRenderer();
         $chart->yAxis->axisLabelRenderer = new ezcGraphAxisRotatedLabelRenderer();
@@ -427,7 +421,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         $this->assertEquals(
@@ -470,7 +464,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -499,7 +493,7 @@ class ezcGraphAxisRotatedRendererTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

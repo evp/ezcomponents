@@ -67,7 +67,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      * 
      * @var array
      */
-    protected $internalTargets = array();
+    protected $internalTargets = [];
 
     /**
      * Internal targets
@@ -78,7 +78,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      * 
      * @var array
      */
-    protected $internalLinkSources = array();
+    protected $internalLinkSources = [];
 
     /**
      * Array with fonts, and their equivalents for bold and italic markup. This
@@ -91,32 +91,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      *
      * @var array
      */
-    protected $fonts = array(
-        'sans-serif' => array(
-            self::FONT_PLAIN   => 'helvetica',
-            self::FONT_BOLD    => 'helveticab',
-            self::FONT_OBLIQUE => 'helveticai',
-            3                  => 'helveticabi',
-        ),
-        'serif' => array(
-            self::FONT_PLAIN   => 'times',
-            self::FONT_BOLD    => 'timesb',
-            self::FONT_OBLIQUE => 'timesi',
-            3                  => 'timesbi',
-        ),
-        'monospace' => array(
-            self::FONT_PLAIN   => 'courier',
-            self::FONT_BOLD    => 'courierb',
-            self::FONT_OBLIQUE => 'courieri',
-            3                  => 'courierbi',
-        ),
-        'Symbol' => array(
-            self::FONT_PLAIN   => 'symbol',
-        ),
-        'ZapfDingbats' => array(
-            self::FONT_PLAIN   => 'zapfdingbats',
-        ),
-    );
+    protected $fonts = ['sans-serif' => [self::FONT_PLAIN   => 'helvetica', self::FONT_BOLD    => 'helveticab', self::FONT_OBLIQUE => 'helveticai', 3                  => 'helveticabi'], 'serif' => [self::FONT_PLAIN   => 'times', self::FONT_BOLD    => 'timesb', self::FONT_OBLIQUE => 'timesi', 3                  => 'timesbi'], 'monospace' => [self::FONT_PLAIN   => 'courier', self::FONT_BOLD    => 'courierb', self::FONT_OBLIQUE => 'courieri', 3                  => 'courierbi'], 'Symbol' => [self::FONT_PLAIN   => 'symbol'], 'ZapfDingbats' => [self::FONT_PLAIN   => 'zapfdingbats']];
 
     /**
      * Reference to the page currently rendered on
@@ -130,23 +105,14 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      * 
      * @var array
      */
-    protected $permissionMapping = array(
-        ezcDocumentPdfOptions::EDIT      => 'annot-forms',
-        ezcDocumentPdfOptions::PRINTABLE => 'print',
-        ezcDocumentPdfOptions::COPY      => 'copy',
-        ezcDocumentPdfOptions::MODIFY    => 'modify',
-    );
+    protected $permissionMapping = [ezcDocumentPdfOptions::EDIT      => 'annot-forms', ezcDocumentPdfOptions::PRINTABLE => 'print', ezcDocumentPdfOptions::COPY      => 'copy', ezcDocumentPdfOptions::MODIFY    => 'modify'];
 
     /**
      * Name and style of default font / currently used font
      *
      * @var array
      */
-    protected $currentFont = array(
-        'name'  => 'sans-serif',
-        'style' => self::FONT_PLAIN,
-        'size'  => 12,
-    );
+    protected $currentFont = ['name'  => 'sans-serif', 'style' => self::FONT_PLAIN, 'size'  => 12];
 
     /**
      * Construct driver
@@ -162,7 +128,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
         // Do nothing in here, we can only instantiate the document on first
         // page creation, because we do not know about the page format
         // beforehand.
-        $this->pages    = array();
+        $this->pages    = [];
         $this->document = null;
     }
 
@@ -174,14 +140,14 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
     protected function initialize()
     {
         // Sorry for this, but we need it to prevent from warnings in TCPDF:
-        $GLOBALS['utf8tolatin'] = array();
+        $GLOBALS['utf8tolatin'] = [];
 
         // Create the basic document, which dimensions should not matter, since
         // we specify this at each page creation separetely.
         $this->document = new TCPDF(
             'P',  // Portrait size, which should notter sinc we provide the exact size
             'mm', // Units used for all values, except font sizes
-            array( 1000, 1000 ),
+            [1000, 1000],
             true,   // Use unicode
             'UTF-8'
         );
@@ -214,7 +180,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      */
     protected function setPermissions( ezcDocumentPdfOptions $options )
     {
-        $flag = array();
+        $flag = [];
         foreach ( $this->permissionMapping as $own => $tcpdf )
         {
             if ( $options->permissions & $own )
@@ -242,7 +208,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
         }
 
         // Create a new page, and create a reference in the pages array
-        $this->document->AddPage( 'P', array( $width, $height ) );
+        $this->document->AddPage( 'P', [$width, $height] );
         $this->pages[] = $this->document->getPage();
     }
 
@@ -285,11 +251,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
             ( $style & self::FONT_OBLIQUE   ? 'I' : '' )
         );
 
-        $this->currentFont = array(
-            'name'  => $name,
-            'style' => $style,
-            'size'  => $this->currentFont['size'],
-        );
+        $this->currentFont = ['name'  => $name, 'style' => $style, 'size'  => $this->currentFont['size']];
     }
 
     /**
@@ -464,7 +426,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      */
     protected function getPointsArray( array $points )
     {
-        $tPoints = array();
+        $tPoints = [];
         foreach ( $points as $point )
         {
             $tPoints[] = $point[0];
@@ -494,12 +456,8 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
         $this->document->polygon(
             $this->getPointsArray( $points ),
             'F', // Only filled polygon, no border
-            array(), // Line style
-            array(
-                'r' => $color['red'] * 255,
-                'g' => $color['green'] * 255,
-                'b' => $color['blue'] * 255,
-            )
+            [], // Line style
+            ['r' => $color['red'] * 255, 'g' => $color['green'] * 255, 'b' => $color['blue'] * 255]
         );
     }
 
@@ -526,14 +484,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
      */
     public function drawPolyline( array $points, array $color, $width, $close = true )
     {
-        $style = array(
-            'width' => $width,
-            'color' => array(
-                'r' => $color['red'] * 255,
-                'g' => $color['green'] * 255,
-                'b' => $color['blue'] * 255,
-            ),
-        );
+        $style = ['width' => $width, 'color' => ['r' => $color['red'] * 255, 'g' => $color['green'] * 255, 'b' => $color['blue'] * 255]];
 
         // Draw all lines of the polygon. We cannot use the "polygon()" method
         // in TCPDF, because it _always_ closes the polygon.
@@ -595,7 +546,7 @@ class ezcDocumentPdfTcpdfDriver extends ezcDocumentPdfDriver
         
         if ( !isset( $this->internalLinkSources[$target] ) )
         {
-            $this->internalLinkSources[$target] = array( $link );
+            $this->internalLinkSources[$target] = [$link];
         }
         else
         {

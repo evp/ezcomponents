@@ -205,7 +205,7 @@ class ezcQueryUpdateTest extends ezcTestCase
         // create the database
         $db = ezcDbInstance::get();
         // open schema
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . '/files/bug10777.dba' );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . '/files/bug10777.dba' );
         $schema->writeToDb( $db );
 
         // insert data

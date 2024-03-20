@@ -82,15 +82,15 @@ $req->requestId = 'ez.no/dr'; // combination of above
 $req->referrer = 'kossu.ez.no/alpine.DEB.0.98.0807011003550.16594';
 
 // Variables will only be filled in with request filters
-$req->variables = array();
+$req->variables = [];
 $req->body = "Ze body\n";
-$req->files = array(); // will come from attachments, the ezcFilePart thingies
+$req->files = []; // will come from attachments, the ezcFilePart thingies
 
 $req->accept = new ezcMvcRequestAccept;
-$req->accept->types = array();
-$req->accept->charsets = array( 'UTF-8' );
-$req->accept->languages = array();
-$req->accept->encodings = array( '8bit' );
+$req->accept->types = [];
+$req->accept->charsets = ['UTF-8'];
+$req->accept->languages = [];
+$req->accept->encodings = ['8bit'];
 
 $req->agent = new ezcMvcRequestUserAgent;
 $req->agent->agent = 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.7.5) Gecko/20041124 Thunderbird/0.9 Mnenhy/0.6.0.104';

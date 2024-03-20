@@ -78,7 +78,7 @@ class ezcGraphOdometerChart extends ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->options = new ezcGraphOdometerChartOptions( $options );
 
@@ -210,7 +210,7 @@ class ezcGraphOdometerChart extends ezcGraphChart
         $boundings->y1 = $this->options->height;
 
         // Get values out the single used dataset to calculate axis boundings
-        $values = array();
+        $values = [];
         foreach ( $this->data->rewind() as $value )
         {
             $values[] = $value;

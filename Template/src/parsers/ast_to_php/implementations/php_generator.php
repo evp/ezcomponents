@@ -124,7 +124,7 @@ class ezcTemplateAstToPhpGenerator implements ezcTemplateAstNodeVisitor
         $this->hasWrittenFooter = false;
         $this->currentIndentation = 0;
         $this->indentationText = '';
-        $this->indentationStack = array();
+        $this->indentationStack = [];
         $this->newline = true;
 
         $this->sourceCharset = $configuration->sourceCharset;
@@ -321,19 +321,9 @@ class ezcTemplateAstToPhpGenerator implements ezcTemplateAstNodeVisitor
         // Output type using var_export
         if ( is_string( $type->value ) )
         {
-            $search = array( "\\",
-                             "\"",
-                             "\$",
-                             "\t",
-                             "\r",
-                             "\n" );
+            $search = ["\\", "\"", "\$", "\t", "\r", "\n"];
 
-            $replace = array( "\\\\",
-                              "\\\"",
-                              "\\$",
-                              "\\t",
-                              "\\r",
-                              "\\n" );
+            $replace = ["\\\\", "\\\"", "\\$", "\\t", "\\r", "\\n"];
 
             if ( $this->escapeSingleQuote ) 
             {
@@ -462,7 +452,7 @@ class ezcTemplateAstToPhpGenerator implements ezcTemplateAstNodeVisitor
     public function visitBlockCommentAstNode( ezcTemplateBlockCommentAstNode $comment )
     {
         // Comment output.
-        
+
         // if ( $comment->hasSeparator )
         // {
         //     $startMarker = '/* ';
@@ -517,8 +507,8 @@ class ezcTemplateAstToPhpGenerator implements ezcTemplateAstNodeVisitor
             {
                 // Extract value as string and write it without the quotation marks.
                 $value = (string)$parameter->value;
-                $value = str_replace( array( "\\", "\"", "{" ),
-                                      array( "\\\\", "\\\"", "\\{" ),
+                $value = str_replace( ["\\", "\"", "{"],
+                                      ["\\\\", "\\\"", "\\{"],
                                       $value );
                 $this->write( $value );
             }

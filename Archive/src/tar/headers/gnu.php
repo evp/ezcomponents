@@ -46,7 +46,7 @@ class ezcArchiveGnuHeader extends ezcArchiveUstarHeader
         {
             // FIXME  Assumed a while.. check the gnu tar source file.
             // FIXME  Check long links, really large files, etc.
-            $extensions = array();
+            $extensions = [];
 
             do
             {

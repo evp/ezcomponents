@@ -76,7 +76,7 @@ class ezcWorkflowNodeInput extends ezcWorkflowNode
             );
         }
 
-        $tmp = array();
+        $tmp = [];
 
         foreach ( $configuration as $key => $value )
         {
@@ -123,7 +123,7 @@ class ezcWorkflowNodeInput extends ezcWorkflowNode
     {
         $variables  = $execution->getVariables();
         $canExecute = true;
-        $errors     = array();
+        $errors     = [];
 
         foreach ( $this->configuration as $variable => $condition )
         {
@@ -166,7 +166,7 @@ class ezcWorkflowNodeInput extends ezcWorkflowNode
      */
     public static function configurationFromXML( DOMElement $element )
     {
-        $configuration = array();
+        $configuration = [];
 
         foreach ( $element->getElementsByTagName( 'variable' ) as $variable )
         {

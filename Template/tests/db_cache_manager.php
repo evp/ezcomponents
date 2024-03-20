@@ -1,12 +1,12 @@
 <?php
 class DbCacheManager implements ezcTemplateCacheManager
 {
-    protected $keys = array();
+    protected $keys = [];
     protected $depth = -1;
 
     public function startCaching($template, $templatePath, $cachePath, $cacheKeys )
     {
-        ezcSignalStaticConnections::getInstance()->connect( "UserBla", "ezcTemplateCacheRead", array( ezcTemplateConfiguration::getInstance()->cacheManager, "register" ) );
+        ezcSignalStaticConnections::getInstance()->connect( "UserBla", "ezcTemplateCacheRead", [ezcTemplateConfiguration::getInstance()->cacheManager, "register"] );
 
         // INSERT NEW cache.
         $db = ezcDbInstance::get();
@@ -55,12 +55,12 @@ class DbCacheManager implements ezcTemplateCacheManager
         }
 
         $this->depth++;
-        array_push( $this->keys, array( "cache_path" => $cachePath, "template_id" => $id));
+        array_push( $this->keys, ["cache_path" => $cachePath, "template_id" => $id]);
     }
 
     public function stopCaching()
     {
-        ezcSignalStaticConnections::getInstance()->disconnect( "UserBla", "ezcTemplateCacheRead", array( ezcTemplateConfiguration::getInstance()->cacheManager, "register" ) );
+        ezcSignalStaticConnections::getInstance()->disconnect( "UserBla", "ezcTemplateCacheRead", [ezcTemplateConfiguration::getInstance()->cacheManager, "register"] );
 
         $this->depth--;
         array_pop( $this->keys);
@@ -149,7 +149,7 @@ class DbCacheManager implements ezcTemplateCacheManager
             $s->bindValue( ":value", $value );
             $s->execute();
         }
-        
+
         // Updated the values. If this value changes, the template should be renewed.
     }
 

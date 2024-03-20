@@ -193,7 +193,7 @@ abstract class ezcAuthenticationBignumLibrary
             return "\x00";
         }
 
-        $bytes = array();
+        $bytes = [];
         while ( $this->cmp( $number, 0 ) > 0 )
         {
             array_unshift( $bytes, $this->mod( $number, 256 ) );

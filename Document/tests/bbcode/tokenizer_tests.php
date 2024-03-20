@@ -21,7 +21,7 @@ class ezcDocumentBBCodeTokenizerTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -29,15 +29,12 @@ class ezcDocumentBBCodeTokenizerTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/../files/bbcode/tokenizer/*.txt' );
+            $testFiles = glob( __DIR__ . '/../files/bbcode/tokenizer/*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'tokens'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'tokens'];
             }
         }
 
@@ -79,7 +76,7 @@ class ezcDocumentBBCodeTokenizerTests extends ezcTestCase
         {
             $tokenizer = new ezcDocumentBBCodeTokenizer();
             $tokens = $tokenizer->tokenizeFile(
-                dirname( __FILE__ ) . '/files/bbcode/tokenizer/not_existant_file.txt'
+                __DIR__ . '/files/bbcode/tokenizer/not_existant_file.txt'
             );
             $this->fail( 'Expected ezcBaseFileNotFoundException.' );
         }

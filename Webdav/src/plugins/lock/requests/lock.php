@@ -45,21 +45,21 @@ class ezcWebdavLockRequest extends ezcWebdavRequest
     /**
      * Indicates a read lock. Not supported by RFC 2518.
      */
-    const TYPE_READ       = 'read';
+    public const TYPE_READ       = 'read';
     /**
      * Indicates a write lock. Represents the XML element <write /> inside
      * other XML elements. 
      */
-    const TYPE_WRITE      = 'write';
+    public const TYPE_WRITE      = 'write';
                        
     /**
      * Represents a shared lock. 
      */
-    const SCOPE_SHARED    = 'shared';
+    public const SCOPE_SHARED    = 'shared';
     /**
      * Represents an exclusive lock. 
      */
-    const SCOPE_EXCLUSIVE = 'exclusive';
+    public const SCOPE_EXCLUSIVE = 'exclusive';
 
     /**
      * Creates a new LOCK request object.

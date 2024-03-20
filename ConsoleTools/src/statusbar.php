@@ -60,10 +60,7 @@ class ezcConsoleStatusbar
      * 
      * @var array(bool=>int)
      */
-    protected $counter = array( 
-        true  => 0,
-        false => 0,
-    );
+    protected $counter = [true  => 0, false => 0];
 
     /**
      * Creates a new status bar.
@@ -73,7 +70,7 @@ class ezcConsoleStatusbar
      *
      * @see ezcConsoleStatusbar::$options
      */
-    public function __construct( ezcConsoleOutput $outHandler, array $options = array() )
+    public function __construct( ezcConsoleOutput $outHandler, array $options = [] )
     {
         $this->outputHandler = $outHandler;
         $this->properties['options'] = new ezcConsoleStatusbarOptions( $options );

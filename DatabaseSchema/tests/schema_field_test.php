@@ -49,7 +49,7 @@ class ezcDatabaseSchemaFieldTest extends ezcTestCase
 
     public function testSetStatePerfect1()
     {
-        $a = array();
+        $a = [];
         $a['type'] = 'integer';
         $a['length'] = 42;
         $a['notNull'] = true;
@@ -67,7 +67,7 @@ class ezcDatabaseSchemaFieldTest extends ezcTestCase
 
     public function testSetStatePerfect2()
     {
-        $a = array();
+        $a = [];
         $a['type'] = 'integer';
         $a['length'] = 42;
         $a['notNull'] = true;
@@ -85,7 +85,7 @@ class ezcDatabaseSchemaFieldTest extends ezcTestCase
 
     public function testSetStateCastValues()
     {
-        $a = array();
+        $a = [];
         $a['type'] = 'integer';
         $a['length'] = '42';
         $a['notNull'] = 1;

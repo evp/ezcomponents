@@ -2,24 +2,7 @@
 
 $backend = new ezcWebdavMemoryBackend( true );
 $backend->addContents(
-    array(
-        'collection' => array(
-            'file.txt'  => 'Some text content.',
-            'subdir' => array(
-                'file.html' => '<html><body><h1>Test</h1></body></html>',
-                'file.xml' => "<?xml?>\n<content/>",
-            ),
-        ),
-        'secure_collection' => array(
-            'file.txt'  => 'Some text content.',
-            'subdir' => array(
-                'file.html' => '<html><body><h1>Test</h1></body></html>',
-                'file.xml' => "<?xml?>\n<content/>",
-            ),
-        ),
-        'file.xml' => "<?xml ?>\n<content/>",
-        'file.bin' => "\0§\"$%&",
-    )
+    ['collection' => ['file.txt'  => 'Some text content.', 'subdir' => ['file.html' => '<html><body><h1>Test</h1></body></html>', 'file.xml' => "<?xml?>\n<content/>"]], 'secure_collection' => ['file.txt'  => 'Some text content.', 'subdir' => ['file.html' => '<html><body><h1>Test</h1></body></html>', 'file.xml' => "<?xml?>\n<content/>"]], 'file.xml' => "<?xml ?>\n<content/>", 'file.bin' => "\0§\"$%&"]
 );
 
 $backend->setProperty(

@@ -19,15 +19,8 @@
 $cache = CacheManager::getCache( 'ContentView' );
 
 // Prepare your data identification, use some attributes and a unique ID
-$attributes = array(
-    'user'      => $user,
-    'nodeid'    => $NodeID,
-    'offset'    => $Offset,
-    'layout'    => $layout,
-    'lang'      => $LanguageCode,
-    'vmode'     => $ViewMode,
-);
-$id = getUniqueId( $attributes, $viewParameters );
+$attributes = ['user'      => $user, 'nodeid'    => $NodeID, 'offset'    => $Offset, 'layout'    => $layout, 'lang'      => $LanguageCode, 'vmode'     => $ViewMode];
+$id = getUniqueId();
 
 // Initialize data and try to grep from cache
 $data = '';

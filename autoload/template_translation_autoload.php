@@ -9,12 +9,5 @@
  * @package TemplateTranslationTiein
  */
 
-return array(
-    'ezcTemplateTranslationTieinException'                => 'TemplateTranslationTiein/exceptions/exception.php',
-    'ezcTemplateTranslationManagerNotConfiguredException' => 'TemplateTranslationTiein/exceptions/manager_not_configured.php',
-    'ezcTemplateTranslationConfiguration'                 => 'TemplateTranslationTiein/configuration.php',
-    'ezcTemplateTranslationExtractor'                     => 'TemplateTranslationTiein/extractor.php',
-    'ezcTemplateTranslationProvider'                      => 'TemplateTranslationTiein/provider.php',
-    'ezcTemplateTranslationStringExtracter'               => 'TemplateTranslationTiein/visitors/string_extracter.php',
-);
+return ['ezcTemplateTranslationTieinException'                => 'TemplateTranslationTiein/exceptions/exception.php', 'ezcTemplateTranslationManagerNotConfiguredException' => 'TemplateTranslationTiein/exceptions/manager_not_configured.php', 'ezcTemplateTranslationConfiguration'                 => 'TemplateTranslationTiein/configuration.php', 'ezcTemplateTranslationExtractor'                     => 'TemplateTranslationTiein/extractor.php', 'ezcTemplateTranslationProvider'                      => 'TemplateTranslationTiein/provider.php', 'ezcTemplateTranslationStringExtracter'               => 'TemplateTranslationTiein/visitors/string_extracter.php'];
 ?>

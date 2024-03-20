@@ -20,12 +20,12 @@ class myProgressFinder
         $context->size += $fileInfo['size'];
     }
 
-    static public function findRecursive( $sourceDir, array $includeFilters = array(), array $excludeFilters = array() )
+    static public function findRecursive( $sourceDir, array $includeFilters = [], array $excludeFilters = [] )
     {
         // create the context, and then start walking over the array
         $context = new ezcBaseFileFindContext;
         ezcBaseFile::walkRecursive( $sourceDir, $includeFilters, $excludeFilters,
-                array( 'myProgressFinder', 'findRecursiveCallback' ), $context );
+                ['myProgressFinder', 'findRecursiveCallback'], $context );
 
         // collect the statistics (which we don't do anything with in this example)
         $statistics['size'] = $context->size;
@@ -37,6 +37,6 @@ class myProgressFinder
     }
 }
 
-$files = myProgressFinder::findRecursive( dirname( __FILE__ ) );
+$files = myProgressFinder::findRecursive( __DIR__ );
 var_dump( $files );
 ?>

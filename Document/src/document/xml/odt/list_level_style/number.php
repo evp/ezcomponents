@@ -34,11 +34,7 @@ class ezcDocumentOdtListLevelStyleNumber extends ezcDocumentOdtListLevelStyle
      * 
      * @var array(string=>mixed)
      */
-    private $properties = array(
-        'numFormat'     => null,
-        'displayLevels' => 1,
-        'startValue'    => 1,
-    );
+    private $properties = ['numFormat'     => null, 'displayLevels' => 1, 'startValue'    => 1];
 
     /**
      * Creates a new list-level style.

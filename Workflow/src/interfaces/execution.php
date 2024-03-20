@@ -35,10 +35,7 @@ abstract class ezcWorkflowExecution
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-      'definitionStorage' => null,
-      'workflow' => null
-    );
+    protected $properties = ['definitionStorage' => null, 'workflow' => null];
 
     /**
      * Execution ID.
@@ -52,7 +49,7 @@ abstract class ezcWorkflowExecution
      *
      * @var ezcWorkflowNode[]
      */
-    protected $activatedNodes = array();
+    protected $activatedNodes = [];
 
     /**
      * Number of activated nodes.
@@ -73,7 +70,7 @@ abstract class ezcWorkflowExecution
      *
      * @var array
      */
-    protected $threads = array();
+    protected $threads = [];
 
     /**
      * Sequence for thread ids.
@@ -115,21 +112,21 @@ abstract class ezcWorkflowExecution
      *
      * @var array
      */
-    protected $plugins = array();
+    protected $plugins = [];
 
     /**
      * Workflow variables.
      *
      * @var array
      */
-    protected $variables = array();
+    protected $variables = [];
 
     /**
      * Workflow variables the execution is waiting for.
      *
      * @var array
      */
-    protected $waitingFor = array();
+    protected $waitingFor = [];
 
     /**
      * Property read access.
@@ -319,7 +316,7 @@ abstract class ezcWorkflowExecution
      * @throws ezcWorkflowInvalidInputException if the input given does not match the expected data.
      * @throws ezcWorkflowExecutionException if there is no prior ID for this execution.
      */
-    public function resume( array $inputData = array() )
+    public function resume( array $inputData = [] )
     {
         if ( $this->id === null )
         {
@@ -336,7 +333,7 @@ abstract class ezcWorkflowExecution
         $this->doResume();
         $this->loadFromVariableHandlers();
 
-        $errors = array();
+        $errors = [];
 
         foreach ( $inputData as $variableName => $value )
         {
@@ -390,9 +387,9 @@ abstract class ezcWorkflowExecution
             }
         }
 
-        $this->activatedNodes    = array();
+        $this->activatedNodes    = [];
         $this->numActivatedNodes = 0;
-        $this->waitingFor        = array();
+        $this->waitingFor        = [];
 
         if ( count( $this->workflow->finallyNode->getOutNodes() ) > 0 )
         {
@@ -601,10 +598,7 @@ abstract class ezcWorkflowExecution
     {
         if ( !isset( $this->waitingFor[$variableName] ) )
         {
-            $this->waitingFor[$variableName] = array(
-              'node' => $node->getId(),
-              'condition' => $condition
-            );
+            $this->waitingFor[$variableName] = ['node' => $node->getId(), 'condition' => $condition];
         }
     }
 
@@ -631,10 +625,7 @@ abstract class ezcWorkflowExecution
     {
         if ( !$this->cancelled )
         {
-            $this->threads[$this->nextThreadId] = array(
-              'parentId' => $parentId,
-              'numSiblings' => $numSiblings
-            );
+            $this->threads[$this->nextThreadId] = ['parentId' => $parentId, 'numSiblings' => $numSiblings];
 
             foreach ( $this->plugins as $plugin )
             {
@@ -926,7 +917,7 @@ abstract class ezcWorkflowExecution
      */
     public function setVariables( array $variables )
     {
-        $this->variables = array();
+        $this->variables = [];
 
         foreach ( $variables as $variableName => $value )
         {

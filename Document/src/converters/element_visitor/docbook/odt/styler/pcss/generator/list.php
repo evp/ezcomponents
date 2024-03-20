@@ -331,20 +331,14 @@ class ezcDocumentOdtListStyleGenerator extends ezcDocumentOdtStyleGenerator
         $parent = $list->parentNode;
         if ( $parent === null || $parent->nodeType === XML_DOCUMENT_NODE )
         {
-            return array(
-                'list'   => null,
-                'depth' => $depth
-            );
+            return ['list'   => null, 'depth' => $depth];
         }
         if ( $parent->nodeType === XML_ELEMENT_NODE && $parent->localName === 'list' )
         {
             ++$depth;
             if ( $parent->hasAttributeNs( ezcDocumentOdt::NS_ODT_TEXT, 'style-name' ) )
             {
-                return array(
-                    'list' => $parent,
-                    'depth' => $depth
-                );
+                return ['list' => $parent, 'depth' => $depth];
             }
         }
         return $this->getBaseList( $parent, $depth );

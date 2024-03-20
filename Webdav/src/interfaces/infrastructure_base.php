@@ -43,7 +43,7 @@ abstract class ezcWebdavInfrastructureBase
      * 
      * @var array
      */
-    protected $pluginData = array();
+    protected $pluginData = [];
 
     /**
      * Sets plugin data in the storage.
@@ -143,12 +143,7 @@ abstract class ezcWebdavInfrastructureBase
         {
             throw new ezcBaseValueException( 'key', $key, 'string' );
         }
-        
-        if ( isset( $this->pluginData[$namespace][$key] ) )
-        {
-            return $this->pluginData[$namespace][$key];
-        }
-        return null;
+        return $this->pluginData[$namespace][$key] ?? null;
     }
     
     /**

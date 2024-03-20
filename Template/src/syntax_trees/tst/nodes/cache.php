@@ -17,8 +17,8 @@
  */
 class ezcTemplateCacheTstNode extends ezcTemplateExpressionTstNode
 {
-    const TYPE_CACHE_TEMPLATE = 1;
-    const TYPE_CACHE_BLOCK = 2;
+    public const TYPE_CACHE_TEMPLATE = 1;
+    public const TYPE_CACHE_BLOCK = 2;
 
     public $type = 0; 
 
@@ -26,7 +26,7 @@ class ezcTemplateCacheTstNode extends ezcTemplateExpressionTstNode
 
     public $isClosingBlock = false;
 
-    public $keys = array();
+    public $keys = [];
 
     public $ttl = null;
 
@@ -43,7 +43,7 @@ class ezcTemplateCacheTstNode extends ezcTemplateExpressionTstNode
 
     public function getTreeProperties()
     {
-        return array( 'templateCache' => $this->templateCache);
+        return ['templateCache' => $this->templateCache];
     }
 
     /**

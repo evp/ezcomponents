@@ -30,12 +30,7 @@ class ezcWorkflowVisitorVisualizationOptions extends ezcBaseOptions
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'colorHighlighted'  => '#cc0000',
-        'colorNormal'       => '#2e3436',
-        'highlightedNodes'  => array(),
-        'workflowVariables' => array(),
-    );
+    protected $properties = ['colorHighlighted'  => '#cc0000', 'colorNormal'       => '#2e3436', 'highlightedNodes'  => [], 'workflowVariables' => []];
 
     /**
      * Property write access.

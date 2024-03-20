@@ -23,7 +23,7 @@ class ezcDebugHtmlFormatterTest extends ezcTestCase
         $struct = new HtmlReporterDataStructures();
 
         $out = $html->generateOutput($struct->getLogStructure(), $struct->getTimeStructure());
-        $expected = file_get_contents( dirname( __FILE__ ) . '/output/output.html' );
+        $expected = file_get_contents( __DIR__ . '/output/output.html' );
         self::assertEquals( $expected, $out );
     }
 
@@ -39,7 +39,7 @@ class ezcDebugHtmlFormatterTest extends ezcTestCase
         );
         // file_put_contents( dirname( __FILE__ ) . '/output/output_with_php_stacktrace.html', $out );
         $expected = file_get_contents(
-            dirname( __FILE__ ) . '/output/output_with_php_stacktrace.html'
+            __DIR__ . '/output/output_with_php_stacktrace.html'
         );
         $this->assertEquals( $expected, $out );
     }
@@ -54,9 +54,9 @@ class ezcDebugHtmlFormatterTest extends ezcTestCase
             $struct->getLogStructureWithXdebugStacktrace(),
             $struct->getTimeStructure()
         );
-        file_put_contents( dirname( __FILE__ ) . '/output/output_with_xdebug_stacktrace.html', $out );
+        file_put_contents( __DIR__ . '/output/output_with_xdebug_stacktrace.html', $out );
         $expected = file_get_contents(
-            dirname( __FILE__ ) . '/output/output_with_xdebug_stacktrace.html'
+            __DIR__ . '/output/output_with_xdebug_stacktrace.html'
         );
         $this->assertEquals( $expected, $out );
     }
@@ -66,7 +66,7 @@ class ezcDebugHtmlFormatterTest extends ezcTestCase
         $html = new ezcDebugHtmlFormatter();
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             'verbosityColors',
             $html
         );
@@ -74,9 +74,7 @@ class ezcDebugHtmlFormatterTest extends ezcTestCase
         $html->setVerbosityColor( 0, 'red' );
         
         $this->assertAttributeEquals(
-            array(
-                0 => 'red',
-            ),
+            [0 => 'red'],
             'verbosityColors',
             $html
         );
@@ -84,10 +82,7 @@ class ezcDebugHtmlFormatterTest extends ezcTestCase
         $html->setVerbosityColor( 23, 'blue' );
         
         $this->assertAttributeEquals(
-            array(
-                0  => 'red',
-                23 => 'blue',
-            ),
+            [0  => 'red', 23 => 'blue'],
             'verbosityColors',
             $html
         );
@@ -95,7 +90,7 @@ class ezcDebugHtmlFormatterTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

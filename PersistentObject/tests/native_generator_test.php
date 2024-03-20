@@ -42,7 +42,7 @@ class ezcPersistentNativeGeneratorTest extends ezcTestCase
         PersistentTestObject::insertCleanData();
 //        PersistentTestObject::saveSqlSchemas();
         $this->session = new ezcPersistentSession( ezcDbInstance::get(),
-                                                   new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" ) );
+                                                   new ezcPersistentCodeManager( __DIR__ . "/data/" ) );
     }
 
     protected function tearDown()

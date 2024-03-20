@@ -33,7 +33,7 @@ class ezcArchiveV7Tar extends ezcArchive
     /**
      * Amount of bytes in a block.
      */
-    const BLOCK_SIZE = 512;
+    public const BLOCK_SIZE = 512;
 
     /**
      * Tar archives have always $blockFactor of blocks.
@@ -99,8 +99,8 @@ class ezcArchiveV7Tar extends ezcArchive
         $this->blockFactor = $blockFactor;
         $this->file = $file;
 
-        $this->headers = array();
-        $this->headerPositions = array();
+        $this->headers = [];
+        $this->headerPositions = [];
 
         $this->entriesRead = 0;
         $this->fileNumber = 0;
@@ -519,7 +519,7 @@ class ezcArchiveV7Tar extends ezcArchive
         if ( !$this->isEmpty() && $this->file->getFileAccess() !== ezcArchiveFile::WRITE_ONLY )
         {
             // Truncate the next file and don't add the null blocks.
-            $this->truncate( $this->fileNumber + 1, false );
+            $this->truncate( $this->fileNumber + 1 );
         }
 
         if ( $this->entriesRead == 0 )

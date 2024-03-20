@@ -45,12 +45,12 @@ class ezcTemplateValidationItemTest extends ezcTestCase
                                                      'templates/zhadum.tpl', 4, 20,
                                                      'template is not valid', 'unknown function "list_types"' );
 
-        self::assertSetProperty( $validation, 'type', array( ezcTemplateValidationItem::TYPE_WARNING, ezcTemplateValidationItem::TYPE_ERROR ) );
-        self::assertSetProperty( $validation, 'filePath', array( 'templates/pagelayout.tpl', '', 'templates/zhadum.tpl' ) );
-        self::assertSetProperty( $validation, 'line', array( 0, 1, 200, 4 ) );
-        self::assertSetProperty( $validation, 'column', array( 0, 1, 5, 20 ) );
-        self::assertSetProperty( $validation, 'description', array( 'errors in template', 'template is not valid' ) );
-        self::assertSetProperty( $validation, 'details', array( 'invalid syntax {$list|wash}', 'unknown function "list_types"' ) );
+        self::assertSetProperty( $validation, 'type', [ezcTemplateValidationItem::TYPE_WARNING, ezcTemplateValidationItem::TYPE_ERROR] );
+        self::assertSetProperty( $validation, 'filePath', ['templates/pagelayout.tpl', '', 'templates/zhadum.tpl'] );
+        self::assertSetProperty( $validation, 'line', [0, 1, 200, 4] );
+        self::assertSetProperty( $validation, 'column', [0, 1, 5, 20] );
+        self::assertSetProperty( $validation, 'description', ['errors in template', 'template is not valid'] );
+        self::assertSetProperty( $validation, 'details', ['invalid syntax {$list|wash}', 'unknown function "list_types"'] );
     }
 }
 

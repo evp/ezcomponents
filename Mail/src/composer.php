@@ -138,7 +138,7 @@ class ezcMailComposer extends ezcMail
      *
      * @var array(string)
      */
-    private $attachments = array();
+    private $attachments = [];
 
     /**
      * Holds the options for this class.
@@ -318,7 +318,7 @@ class ezcMailComposer extends ezcMail
     {
         if ( is_readable( $fileName ) )
         {
-            $this->attachments[] = array( $fileName, null, $contentType, $mimeType, $contentDisposition );
+            $this->attachments[] = [$fileName, null, $contentType, $mimeType, $contentDisposition];
         }
         else
         {
@@ -355,7 +355,7 @@ class ezcMailComposer extends ezcMail
      */
     public function addStringAttachment( $fileName, $content, $contentType = null, $mimeType = null, ezcMailContentDispositionHeader $contentDisposition = null )
     {
-        $this->attachments[] = array( $fileName, $content, $contentType, $mimeType, $contentDisposition );
+        $this->attachments[] = [$fileName, $content, $contentType, $mimeType, $contentDisposition];
     }
 
     /**
@@ -465,7 +465,7 @@ class ezcMailComposer extends ezcMail
         $result = false;
         if ( $this->htmlText != '' )
         {
-            $matches = array();
+            $matches = [];
             if ( $this->options->automaticImageInclude === true )
             {
                 // recognize file:// and file:///, pick out the image, add it as a part and then..:)

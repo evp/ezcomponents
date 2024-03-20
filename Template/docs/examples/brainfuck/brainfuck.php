@@ -22,23 +22,23 @@ class BrainFuck implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
         {
             case "brainfuck": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "emulate";
                 $def->hasCloseTag = true;
 
-                $def->requiredParameters = array();
-                $def->optionalParameters = array("buffer_size");
+                $def->requiredParameters = [];
+                $def->optionalParameters = ["buffer_size"];
                 return $def;
 
             case "bf": 
                 $def = new ezcTemplateCustomBlockDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "emulate_inline";
                 $def->hasCloseTag = false;
 
                 $def->startExpressionName = "code";
-                $def->requiredParameters = array("code");
-                $def->optionalParameters = array("buffer_size");
+                $def->requiredParameters = ["code"];
+                $def->optionalParameters = ["buffer_size"];
                 return $def;
         }
     }
@@ -49,9 +49,9 @@ class BrainFuck implements ezcTemplateCustomBlock, ezcTemplateCustomFunction
         {
             case "brainfuck": 
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "bfFunction";
-                $def->parameters = array( "code", "[buffer_size]" );
+                $def->parameters = ["code", "[buffer_size]"];
                 return $def;
         }
     }

@@ -14,7 +14,7 @@ $searchWord = 'test -article';
 
 // run the query builder to search for the $searchWord in body and title
 $qb = new ezcSearchQueryBuilder();
-$qb->parseSearchQuery( $q, $searchWord, array( 'body', 'title' ) );
+$qb->parseSearchQuery( $q, $searchWord, ['body', 'title'] );
 
 // run the query and show titles for found documents, and its score
 $r = $session->find( $q );

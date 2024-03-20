@@ -6,7 +6,7 @@
 
 require_once "../tutorial/tutorial_autoload.php";
 
-$set = new ezcMailFileSet( array( $argv[1] ) );
+$set = new ezcMailFileSet( [$argv[1]] );
 $parser = new ezcMailParser();
 $mail = $parser->parseMail( $set );
 echo formatMail( $mail[0] );
@@ -148,7 +148,7 @@ function formatMailFile( $part )
 
 function formatAddresses( $addresses )
 {
-    $fa = array();
+    $fa = [];
     foreach ( $addresses as $address )
     {
         $fa[] = formatAddress( $address );

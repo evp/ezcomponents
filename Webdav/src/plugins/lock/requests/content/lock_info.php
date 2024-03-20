@@ -31,7 +31,7 @@ class ezcWebdavRequestLockInfoContent extends ezcWebdavInfrastructureBase
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new instance.
@@ -49,7 +49,7 @@ class ezcWebdavRequestLockInfoContent extends ezcWebdavInfrastructureBase
 
         $this->lockScope = $lockScope;
         $this->lockType  = $lockType;
-        $this->owner     = ( $owner === null ? new ezcWebdavPotentialUriContent() : $owner );
+        $this->owner     = ( $owner ?? new ezcWebdavPotentialUriContent() );
     }
 
     /**

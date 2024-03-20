@@ -32,24 +32,24 @@ class ezcWebdavXmlTool
     /**
      * The default namespace, where WebDAV XML elements reside in. 
      */
-    const XML_DEFAULT_NAMESPACE = 'DAV:';
+    public const XML_DEFAULT_NAMESPACE = 'DAV:';
 
     /**
      * The XML version to create DOM documents in. 
      */
-    const XML_VERSION = '1.0';
+    public const XML_VERSION = '1.0';
 
     /**
      * Encoding to use to create DOM documents. 
      */
-    const XML_ENCODING = 'utf-8';
+    public const XML_ENCODING = 'utf-8';
 
     /**
      * Properties.
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new XML tool.
@@ -67,7 +67,7 @@ class ezcWebdavXmlTool
         // Initialize properties
         $this->properties['namespaceRegistry'] = null;
 
-        $this->namespaceRegistry = ( $namespaceRegistry === null ? new ezcWebdavNamespaceRegistry() : $namespaceRegistry );
+        $this->namespaceRegistry = ( $namespaceRegistry ?? new ezcWebdavNamespaceRegistry() );
     }
 
     /**

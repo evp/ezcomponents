@@ -25,7 +25,7 @@ class ezcCacheStackStorageConfigurationTest  extends ezcTestCase
      */
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCtorSuccess()
@@ -40,12 +40,7 @@ class ezcCacheStackStorageConfigurationTest  extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'id'        => 'foo',
-                'storage'   => $storage,
-                'itemLimit' => 1000,
-                'freeRate'  => 0.4
-            ),
+            ['id'        => 'foo', 'storage'   => $storage, 'itemLimit' => 1000, 'freeRate'  => 0.4],
             'properties',
             $config
         );

@@ -71,8 +71,8 @@ class ezcTemplateArraySourceToTstParser extends ezcTemplateLiteralSourceToTstPar
             throw new ezcTemplateParserException( $this->parser->source, $this->startCursor, $this->currentCursor, ezcTemplateSourceToTstErrorMessages::MSG_EXPECT_ROUND_BRACKET_OPEN );
         }
 
-        $currentArray = array();
-        $currentKeys  = array();
+        $currentArray = [];
+        $currentKeys  = [];
         $expectItem = true;
 
         $elementNumber = 0;

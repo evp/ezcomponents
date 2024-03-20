@@ -24,42 +24,42 @@ class ezcConsoleProgressbarTest extends ezcTestCase
     
     public function testProgress1()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 42, 13, array () );
+        $this->commonProgressbarTest( __FUNCTION__, 42, 13, [] );
     }
     
     public function testProgress2()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 20, 32, array () );
+        $this->commonProgressbarTest( __FUNCTION__, 20, 32, [] );
     }
     
     public function testProgress3()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 42, 13, array ( 'barChar' => '#', 'emptyChar' => '*' ) );
+        $this->commonProgressbarTest( __FUNCTION__, 42, 13, ['barChar' => '#', 'emptyChar' => '*'] );
     }
     
     public function testProgress4()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 55, 19, array ( 'progressChar' => '&' ) );
+        $this->commonProgressbarTest( __FUNCTION__, 55, 19, ['progressChar' => '&'] );
     }
     
     public function testProgress5()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 42, 13, array ( 'progressChar' => '&', 'width' => 55 ) );
+        $this->commonProgressbarTest( __FUNCTION__, 42, 13, ['progressChar' => '&', 'width' => 55] );
     }
     
     public function testProgress6()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 22, 3, array ( 'barChar' => '#', 'emptyChar' => '*', 'progressChar' => '&', 'width' => 81 ) );
+        $this->commonProgressbarTest( __FUNCTION__, 22, 3, ['barChar' => '#', 'emptyChar' => '*', 'progressChar' => '&', 'width' => 81] );
     }
     
     public function testProgress7()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 42, 7, array ( 'barChar' => '1234', 'emptyChar' => '9876' ) );
+        $this->commonProgressbarTest( __FUNCTION__, 42, 7, ['barChar' => '1234', 'emptyChar' => '9876'] );
     }
     
     public function testProgress8()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 42, 7, array ( 'barChar' => '123', 'emptyChar' => '987', 'progressChar' => '---' ) );
+        $this->commonProgressbarTest( __FUNCTION__, 42, 7, ['barChar' => '123', 'emptyChar' => '987', 'progressChar' => '---'] );
     }
     
     public function testProgress9()
@@ -77,35 +77,28 @@ class ezcConsoleProgressbarTest extends ezcTestCase
             __FUNCTION__, 
             1073, 
             123, 
-            array( 
-                'barChar' => '123', 
-                'emptyChar' => '987', 
-                'progressChar' => '---', 
-                'width' => 97, 
-                'formatString' => $formatString,
-                'fractionFormat' => '%o'
-            ) 
+            ['barChar' => '123', 'emptyChar' => '987', 'progressChar' => '---', 'width' => 97, 'formatString' => $formatString, 'fractionFormat' => '%o'] 
        );
     }
     
     public function testProgress10()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 100, 1, array ( 'redrawFrequency' => 10 ) );
+        $this->commonProgressbarTest( __FUNCTION__, 100, 1, ['redrawFrequency' => 10] );
     }
     
     public function testProgress11()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 100, 2.5, array ( 'actFormat' => '%01.2f', 'maxFormat' => '%01.2f' ) );
+        $this->commonProgressbarTest( __FUNCTION__, 100, 2.5, ['actFormat' => '%01.2f', 'maxFormat' => '%01.2f'] );
     }
     
     public function testProgress12()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 100, 2.5, array ( 'actFormat' => '%01.2f', 'maxFormat' => '%01.8f' ) );
+        $this->commonProgressbarTest( __FUNCTION__, 100, 2.5, ['actFormat' => '%01.2f', 'maxFormat' => '%01.8f'] );
     }
     
     public function testProgress13()
     {
-        $this->commonProgressbarTest( __FUNCTION__, 100, 2.5, array ( 'actFormat' => '%01.8f', 'maxFormat' => '%01.2f' ) );
+        $this->commonProgressbarTest( __FUNCTION__, 100, 2.5, ['actFormat' => '%01.8f', 'maxFormat' => '%01.2f'] );
     }
     
     public function testProgressUtfInBar()
@@ -114,9 +107,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
             __FUNCTION__,
             10,
             2,
-            array(
-                'barChar' => 'ö'
-            )
+            ['barChar' => 'ö']
         );
     }
     
@@ -126,9 +117,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
             __FUNCTION__,
             10,
             2,
-            array(
-                'formatString' => '%act%ö/ä%max%ü[%bar%]ß%fraction%%'
-            )
+            ['formatString' => '%act%ö/ä%max%ü[%bar%]ß%fraction%%']
         );
     }
     
@@ -138,10 +127,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
             __FUNCTION__,
             10,
             2,
-            array(
-                'formatString' => '%act%ö/ä%max%ü[%bar%]ß%fraction%%',
-                'barChar' => 'ö'
-            )
+            ['formatString' => '%act%ö/ä%max%ü[%bar%]ß%fraction%%', 'barChar' => 'ö']
         );
     }
 
@@ -273,7 +259,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
     {
         $out = new ezcConsoleOutput();
         
-        $opArr = array();
+        $opArr = [];
         
         $optArr['barChar'] = "*";
         $optArr['emptyChar'] = "#";
@@ -401,7 +387,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
         $out = new ezcConsoleOutput();
         $bar = new ezcConsoleProgressbar( $out, 10 );
         
-        $res = array();
+        $res = [];
         for ( $i = 0; $i < 5; ++$i ) 
         {
             ob_start();
@@ -416,7 +402,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
         $bar->finish();
         $res[] = ob_get_clean();
 
-        $refFile = dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . __FUNCTION__ . '.dat';
+        $refFile = __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . __FUNCTION__ . '.dat';
         // Use the following line to regenerate test reference files
         // file_put_contents( $refFile, implode( PHP_EOL, $res ) );
         $this->assertEquals(
@@ -482,7 +468,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
         {
             $bar->options->step = $step;
         }
-        $res = array();
+        $res = [];
         for ( $i = 0; $i < $max; $i+= $step) 
         {
             ob_start();
@@ -495,7 +481,7 @@ class ezcConsoleProgressbarTest extends ezcTestCase
             }
         }
 
-        $refFile = dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . $refFile . '.dat';
+        $refFile = __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . $refFile . '.dat';
         // Use the following line to regenerate test reference files
         // file_put_contents( $refFile, implode( PHP_EOL, $res ) );
 

@@ -91,8 +91,8 @@ class ezcDebugTimer
      */
     public function reset()
     {
-        $this->timers = array();
-        $this->runningTimers = array();
+        $this->timers = [];
+        $this->runningTimers = [];
         $this->totalRunningTimers = 0;
     }
 
@@ -114,7 +114,7 @@ class ezcDebugTimer
 
             $this->runningTimers[$name]->name = $name;
             $this->runningTimers[$name]->group = $group;
-            $this->runningTimers[$name]->switchTime = array();
+            $this->runningTimers[$name]->switchTime = [];
             $this->runningTimers[$name]->startTime = microtime( true );
             $this->runningTimers[$name]->startNumber = $this->number++;
 

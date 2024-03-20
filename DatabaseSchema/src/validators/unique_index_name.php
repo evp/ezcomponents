@@ -28,8 +28,8 @@ class ezcDbSchemaUniqueIndexNameValidator
      */
     static public function validate( ezcDbSchema $schema )
     {
-        $indexes = array();
-        $errors = array();
+        $indexes = [];
+        $errors = [];
 
         /* For each table we check all auto increment fields. */
         foreach ( $schema->getSchema() as $tableName => $table )

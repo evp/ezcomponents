@@ -79,7 +79,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
      * Constant used for calculation of automatic definition of major scaling 
      * steps
      */
-    const MAX_STEPS = 9;
+    public const MAX_STEPS = 9;
 
     /**
      * Constructor
@@ -88,7 +88,7 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['min'] = null;
         $this->properties['max'] = null;
@@ -201,12 +201,12 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
         // Use custom minimum and maximum if available
         if ( $this->properties['min'] !== null )
         {
-            $this->properties['minValue'] = pow( $this->properties['base'], $this->properties['min'] );
+            $this->properties['minValue'] = $this->properties['base'] ** $this->properties['min'];
         }
 
         if ( $this->properties['max'] !== null )
         {
-            $this->properties['maxValue'] = pow( $this->properties['base'], $this->properties['max'] );
+            $this->properties['maxValue'] = $this->properties['base'] ** $this->properties['max'];
         }
 
         // Calculate "nice" values for scaling parameters
@@ -304,14 +304,11 @@ class ezcGraphChartElementLogarithmicalAxis extends ezcGraphChartElementAxis
         {
             return call_user_func_array(
                 $this->properties['labelCallback'],
-                array(
-                    sprintf( 
-                        $this->properties['logarithmicalFormatString'],
-                        $this->properties['base'],
-                        $this->properties['min'] + ( $step * $this->properties['majorStep'] )
-                    ),
-                    $step,
-                )
+                [sprintf( 
+                    $this->properties['logarithmicalFormatString'],
+                    $this->properties['base'],
+                    $this->properties['min'] + ( $step * $this->properties['majorStep'] )
+                ), $step]
             );
         }
         else

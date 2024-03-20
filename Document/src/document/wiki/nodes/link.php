@@ -21,21 +21,21 @@ class ezcDocumentWikiLinkNode extends ezcDocumentWikiInlineNode
      *
      * @var array
      */
-    public $link = array();
+    public $link = [];
 
     /**
      * Link title nodes
      *
      * @var array
      */
-    public $title = array();
+    public $title = [];
 
     /**
      * Link description
      *
      * @var array
      */
-    public $description = array();
+    public $description = [];
 
     /**
      * Set state after var_export
@@ -46,7 +46,7 @@ class ezcDocumentWikiLinkNode extends ezcDocumentWikiInlineNode
      */
     public static function __set_state( $properties )
     {
-        $nodeClass = __CLASS__;
+        $nodeClass = self::class;
         $node = new $nodeClass( $properties['token'] );
         $node->nodes       = $properties['nodes'];
         $node->link        = $properties['link'];

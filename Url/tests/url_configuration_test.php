@@ -21,9 +21,9 @@ class ezcUrlConfigurationTest extends ezcTestCase
         $urlCfg = new ezcUrlConfiguration();
         $this->assertEquals( null, $urlCfg->basedir );
         $this->assertEquals( null, $urlCfg->script );
-        $this->assertEquals( array(), $urlCfg->orderedParameters );
-        $this->assertEquals( array(), $urlCfg->unorderedParameters );
-        $this->assertEquals( array( '(', ')' ), $urlCfg->unorderedDelimiters );
+        $this->assertEquals( [], $urlCfg->orderedParameters );
+        $this->assertEquals( [], $urlCfg->unorderedParameters );
+        $this->assertEquals( ['(', ')'], $urlCfg->unorderedDelimiters );
     }
 
     public function testPropertiesGetInvalid()
@@ -46,7 +46,7 @@ class ezcUrlConfigurationTest extends ezcTestCase
         $urlCfg = new ezcUrlConfiguration();
         $urlCfg->basedir = '/mydir/shop';
         $urlCfg->script = 'index.php';
-        $urlCfg->unorderedDelimiters = array( '_', '_' );
+        $urlCfg->unorderedDelimiters = ['_', '_'];
         $urlCfg->addOrderedParameter( 'section' );
         $urlCfg->addOrderedParameter( 'module' );
         $urlCfg->addOrderedParameter( 'view' );
@@ -55,10 +55,10 @@ class ezcUrlConfigurationTest extends ezcTestCase
 
         $this->assertEquals( '/mydir/shop', $urlCfg->basedir );
         $this->assertEquals( 'index.php', $urlCfg->script );
-        $this->assertEquals( array( 'section' => 0, 'module' => 1, 'view' => 2, 'branch' => 3 ),
+        $this->assertEquals( ['section' => 0, 'module' => 1, 'view' => 2, 'branch' => 3],
                              $urlCfg->orderedParameters );
-        $this->assertEquals( array( 'file' => 1 ), $urlCfg->unorderedParameters );
-        $this->assertEquals( array( '_', '_' ), $urlCfg->unorderedDelimiters );
+        $this->assertEquals( ['file' => 1], $urlCfg->unorderedParameters );
+        $this->assertEquals( ['_', '_'], $urlCfg->unorderedDelimiters );
     }
 
     public function testPropertiesSetInvalid()
@@ -103,8 +103,8 @@ class ezcUrlConfigurationTest extends ezcTestCase
     {
         ezcBaseInit::setCallback( 'ezcUrlConfiguration', 'testDelayedInitUrlConfiguration' );
         $urlCfg = ezcUrlConfiguration::getInstance();
-        $this->assertEquals( array( 'section' => 0 ), $urlCfg->orderedParameters );
-        $this->assertEquals( array( 'article' => 1 ), $urlCfg->unorderedParameters );
+        $this->assertEquals( ['section' => 0], $urlCfg->orderedParameters );
+        $this->assertEquals( ['article' => 1], $urlCfg->unorderedParameters );
     }
 
     public static function suite()

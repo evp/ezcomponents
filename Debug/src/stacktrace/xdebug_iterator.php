@@ -68,7 +68,7 @@ class ezcDebugXdebugStacktraceIterator extends ezcDebugStacktraceIterator
      */
     protected function unifyStackElement( $stackElement )
     {
-        $newParams = array();
+        $newParams = [];
         foreach ( $stackElement['params'] as $param )
         {
             $newParams[] = $param;

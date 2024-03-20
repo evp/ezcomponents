@@ -18,16 +18,16 @@
  */
 class ezcTemplateSymbolTable
 {
-    const VARIABLE = 1;
-    const CYCLE = 2;
-    const IMPORT = 3;  // USE is a keyword.
+    public const VARIABLE = 1;
+    public const CYCLE = 2;
+    public const IMPORT = 3;  // USE is a keyword.
 
     // Messages.
-    const SYMBOL_REDECLARATION = "The symbol <\$%s> is already declared.";
-    const SYMBOL_TYPES_NOT_EQUAL = "The %s <\$%s> is already declared as '%s'.";
-    const SYMBOL_NOT_DECLARED = "The symbol <\$%s> is not declared";
-    const SYMBOL_INVALID_SCOPE = "The %s <\$%s> is cannot be declared in a subblock: while, foreach, if, etc";
-    const SYMBOL_IMPORT_FIRST = "'Use' should be declared before other declarations";
+    public const SYMBOL_REDECLARATION = "The symbol <\$%s> is already declared.";
+    public const SYMBOL_TYPES_NOT_EQUAL = "The %s <\$%s> is already declared as '%s'.";
+    public const SYMBOL_NOT_DECLARED = "The symbol <\$%s> is not declared";
+    public const SYMBOL_INVALID_SCOPE = "The %s <\$%s> is cannot be declared in a subblock: while, foreach, if, etc";
+    public const SYMBOL_IMPORT_FIRST = "'Use' should be declared before other declarations";
 
     /**
      * Keeps track of the symbols with its type.
@@ -126,8 +126,8 @@ class ezcTemplateSymbolTable
      */
     public function reset()
     {
-        $this->typehints = array();
-        $this->symbols = array();
+        $this->typehints = [];
+        $this->symbols = [];
         $this->scope = 1;
 
         $this->firstDeclaredType = false;
@@ -246,7 +246,7 @@ class ezcTemplateSymbolTable
      */
     public function retrieveSymbolsWithType( $typeArray )
     {
-        $total = array();
+        $total = [];
 
         foreach ( $typeArray as $type )
         {
@@ -328,7 +328,7 @@ class ezcTemplateSymbolTable
      */
     public function getTypeHint( $name )
     {
-        return isset( $this->typehints[$name] ) ? $this->typehints[$name] : false;
+        return $this->typehints[$name] ?? false;
 
     }
 

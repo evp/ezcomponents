@@ -31,7 +31,7 @@ class ezcWebdavLockPluginOptions extends ezcBaseOptions
      *         If the value for a property is out of range.
      * @param array(string=>mixed) $options The initial options to set.
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['lockTimeout']         = 900;
         $this->properties['backendLockTimeout']  = 10000000;

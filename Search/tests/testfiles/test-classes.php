@@ -54,11 +54,9 @@ class DataTypeTest implements ezcSearchDefinitionProvider
 
     function getState()
     {
-        return array(
-            'id' => $this->id, 'string' => $this->string, 'html' =>
-            $this->html, 'bool' => $this->bool, 'int' => $this->int, 'float' =>
-            $this->float, 'date' => $this->date,
-        );
+        return ['id' => $this->id, 'string' => $this->string, 'html' =>
+        $this->html, 'bool' => $this->bool, 'int' => $this->int, 'float' =>
+        $this->float, 'date' => $this->date];
     }
 
     function setState( $state )
@@ -96,11 +94,9 @@ class DataTypeTestMulti implements ezcSearchDefinitionProvider
 
     function getState()
     {
-        return array(
-            'id' => $this->id, 'string' => $this->string, 'html' =>
-            $this->html, 'bool' => $this->bool, 'int' => $this->int, 'float' =>
-            $this->float, 'date' => $this->date,
-        );
+        return ['id' => $this->id, 'string' => $this->string, 'html' =>
+        $this->html, 'bool' => $this->bool, 'int' => $this->int, 'float' =>
+        $this->float, 'date' => $this->date];
     }
 
     function setState( $state )
@@ -167,11 +163,7 @@ class Document implements ezcBasePersistable
 
     public function getState()
     {
-        return array(
-            'id'    => $this->id,
-            'title' => $this->string,
-            'body'  => $this->string,
-        );
+        return ['id'    => $this->id, 'title' => $this->string, 'body'  => $this->string];
     }
 
     public function setState( array $state )

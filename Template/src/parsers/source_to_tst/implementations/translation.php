@@ -48,7 +48,7 @@ class ezcTemplateTranslationSourceToTstParser extends ezcTemplateSourceToTstPars
         $el->string = $this->lastParser->element;
 
         // empty keys and values before the loop, so that multiple vars statements can work
-        $currentKeys = $currentArray = array();
+        $currentKeys = $currentArray = [];
         $foundContext = $foundComment = false;
         $elementNr = 0;
 
@@ -99,7 +99,7 @@ class ezcTemplateTranslationSourceToTstParser extends ezcTemplateSourceToTstPars
                     $saveCursor = clone $cursor;
 
                     // try to parse string => expression
-                    if ( $elements = $this->parseSequence( array( array( 'type' => 'String' ), array( 'type' => 'Character', 'args' => '=>' ), array( 'type' => 'Expression' ) ) ) )
+                    if ( $elements = $this->parseSequence( [['type' => 'String'], ['type' => 'Character', 'args' => '=>'], ['type' => 'Expression']] ) )
                     {
                         $currentKeys[$elementNr] = $elements[0];
                         $currentArray[$elementNr] = $elements[1];
@@ -112,7 +112,7 @@ class ezcTemplateTranslationSourceToTstParser extends ezcTemplateSourceToTstPars
                     $cursor = $saveCursor;
 
                     // try to parse integer => expression
-                    if ( $elements = $this->parseSequence( array( array( 'type' => 'Integer' ), array( 'type' => 'Character', 'args' => '=>' ), array( 'type' => 'Expression' ) ) ) )
+                    if ( $elements = $this->parseSequence( [['type' => 'Integer'], ['type' => 'Character', 'args' => '=>'], ['type' => 'Expression']] ) )
                     {
                         $currentKeys[$elementNr] = $elements[0];
                         $currentArray[$elementNr] = $elements[1];

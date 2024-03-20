@@ -61,17 +61,13 @@ class ezcPersistentObjectRelationsTest extends ezcTestCase
         $this->genericArrayAccessFailure(
             $relations,
             'foo',
-            array(
-                23, 23.42, true, "test", array(), new stdClass(),
-            ),
+            [23, 23.42, true, "test", [], new stdClass()],
             'ezcBaseValueException'
         );
         $this->genericArrayAccessFailure(
             $relations,
             23,
-            array(
-                new ezcPersistentOneToManyRelation( 'foo', 'bar' ),
-            ),
+            [new ezcPersistentOneToManyRelation( 'foo', 'bar' )],
             'ezcBaseValueException'
         );
     }
@@ -86,17 +82,14 @@ class ezcPersistentObjectRelationsTest extends ezcTestCase
             count( $relations )
         );
 
-        $relations->exchangeArray( array() );
+        $relations->exchangeArray( [] );
         $this->assertEquals(
             0,
             count( $relations )
         );
 
         $relations->exchangeArray(
-            array(
-                'foo' => new ezcPersistentOneToManyRelation( 'foo', 'bar' ),
-                'bar' => new ezcPersistentOneToManyRelation( 'foo', 'bar' ),
-            )
+            ['foo' => new ezcPersistentOneToManyRelation( 'foo', 'bar' ), 'bar' => new ezcPersistentOneToManyRelation( 'foo', 'bar' )]
         );
         $this->assertEquals(
             2,
@@ -117,7 +110,7 @@ class ezcPersistentObjectRelationsTest extends ezcTestCase
         try
         {
             $relations->exchangeArray(
-                array( 'foo' => 23 )
+                ['foo' => 23]
             );
             $this->fail( 'ezcBaseValueException not thrown on invalid value in exchange array.' );
         }
@@ -126,7 +119,7 @@ class ezcPersistentObjectRelationsTest extends ezcTestCase
         try
         {
             $relations->exchangeArray(
-                array( 23 => new ezcPersistentObjectProperty )
+                [23 => new ezcPersistentObjectProperty]
             );
             $this->fail( 'ezcBaseValueException not thrown on invalid offset in exchange array.' );
         }

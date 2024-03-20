@@ -6,7 +6,7 @@ $session = new ezcAuthenticationSession();
 $session->start();
 
 // $token is used as a key in the session to store the authenticated state between requests
-$token = isset( $_GET['token'] ) ? $_GET['token'] : $session->load();
+$token = $_GET['token'] ?? $session->load();
 
 $credentials = new ezcAuthenticationIdCredentials( $token );
 $authentication = new ezcAuthentication( $credentials );
@@ -20,19 +20,12 @@ if ( !$authentication->run() )
 {
     // authentication did not succeed, so inform the user
     $status = $authentication->getStatus();
-    $err = array(
-             'ezcAuthenticationTypekeyFilter' => array(
-                 ezcAuthenticationTypekeyFilter::STATUS_SIGNATURE_INCORRECT => 'Signature returned by TypeKey is incorrect',
-                 ezcAuthenticationTypekeyFilter::STATUS_SIGNATURE_EXPIRED => 'The signature returned by TypeKey expired'
-                 ),
-             'ezcAuthenticationSession' => array(
-                 ezcAuthenticationSession::STATUS_EMPTY => '',
-                 ezcAuthenticationSession::STATUS_EXPIRED => 'Session expired'
-                 )
-             );
+    $err = ['ezcAuthenticationTypekeyFilter' => [ezcAuthenticationTypekeyFilter::STATUS_SIGNATURE_INCORRECT => 'Signature returned by TypeKey is incorrect', ezcAuthenticationTypekeyFilter::STATUS_SIGNATURE_EXPIRED => 'The signature returned by TypeKey expired'], 'ezcAuthenticationSession' => [ezcAuthenticationSession::STATUS_EMPTY => '', ezcAuthenticationSession::STATUS_EXPIRED => 'Session expired']];
     foreach ( $status as $line )
     {
-        list( $key, $value ) = each( $line );
+        $key = key($line);
+        $value = current($line);
+        next($line);
         echo $err[$key][$value] . "\n";
     }
 ?>

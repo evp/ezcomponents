@@ -30,7 +30,7 @@ class ezcDebugXdebugStacktraceIteratorTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setup()
@@ -47,7 +47,7 @@ class ezcDebugXdebugStacktraceIteratorTest extends ezcTestCase
         $oldCollectParams = ini_get( 'xdebug.collect_params' );
         ini_set( 'xdebug.collect_params', 0 );
 
-        $stackTrace = $this->getStackTrace( 'some string', array( true, 23, null ) );
+        $stackTrace = $this->getStackTrace( 'some string', [true, 23, null] );
 
         // Restore old setting
         ini_set( 'xdebug.collect_params', $oldCollectParams );
@@ -85,7 +85,7 @@ class ezcDebugXdebugStacktraceIteratorTest extends ezcTestCase
         // 1, 2 and 3 should be the same. Info by DR.
         ini_set( 'xdebug.collect_params', 1 );
 
-        $stackTrace = $this->getStackTrace( 'some string', array( true, 23, null ) );
+        $stackTrace = $this->getStackTrace( 'some string', [true, 23, null] );
 
         // Restore old setting
         ini_set( 'xdebug.collect_params', $oldCollectParams );
@@ -122,7 +122,7 @@ class ezcDebugXdebugStacktraceIteratorTest extends ezcTestCase
         $oldCollectParams = ini_get( 'xdebug.collect_params' );
         ini_set( 'xdebug.collect_params', 4 );
 
-        $stackTrace = $this->getStackTrace( 'some string', array( true, 23, null ) );
+        $stackTrace = $this->getStackTrace( 'some string', [true, 23, null] );
 
         // Restore old setting
         ini_set( 'xdebug.collect_params', $oldCollectParams );
@@ -157,7 +157,7 @@ class ezcDebugXdebugStacktraceIteratorTest extends ezcTestCase
     {
         $opts = new ezcDebugOptions();
         $itr = new ezcDebugXdebugStacktraceIterator(
-            $this->getStackTrace( 'some string', array( true, 23, null ) ),
+            $this->getStackTrace( 'some string', [true, 23, null] ),
             0,
             $opts
         );
@@ -172,7 +172,7 @@ class ezcDebugXdebugStacktraceIteratorTest extends ezcTestCase
     {
         $opts = new ezcDebugOptions();
         $itr = new ezcDebugXdebugStacktraceIterator(
-            $this->getStackTrace( 'some string', array( true, 23, null ) ),
+            $this->getStackTrace( 'some string', [true, 23, null] ),
             0,
             $opts
         );

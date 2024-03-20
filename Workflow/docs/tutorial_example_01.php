@@ -4,7 +4,7 @@ $workflow = new ezcWorkflow( 'Test' );
 
 // Create an Input node that expects a boolean workflow variable of name "choice".
 $input = new ezcWorkflowNodeInput(
-  array( 'choice' => new ezcWorkflowConditionIsBool )
+  ['choice' => new ezcWorkflowConditionIsBool]
 );
 
 // Add the previously created Input node

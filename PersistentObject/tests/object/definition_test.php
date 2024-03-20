@@ -33,14 +33,7 @@ class ezcPersistentObjectDefinitionTest extends ezcTestCase
     {
         $definition = new ezcPersistentObjectDefinition();
         $this->assertAttributeEquals(
-            array(
-                'table'      => null,
-                'class'      => null,
-                'idProperty' => null,
-                'properties' => new ezcPersistentObjectProperties(),
-                'columns'    => new ezcPersistentObjectColumns(),
-                'relations'  => new ezcPersistentObjectRelations(),
-            ),
+            ['table'      => null, 'class'      => null, 'idProperty' => null, 'properties' => new ezcPersistentObjectProperties(), 'columns'    => new ezcPersistentObjectColumns(), 'relations'  => new ezcPersistentObjectRelations()],
             'propertyArray',
             $definition
         );
@@ -48,19 +41,12 @@ class ezcPersistentObjectDefinitionTest extends ezcTestCase
         $definition = new ezcPersistentObjectDefinition(
             'table',
             'class',
-            array( 'foo' => new ezcPersistentObjectProperty() ),
-            array(),
+            ['foo' => new ezcPersistentObjectProperty()],
+            [],
             new ezcPersistentObjectIdProperty()
         );
         
-        $res = array(
-            'table'      => 'table',
-            'class'      => 'class',
-            'idProperty' => new ezcPersistentObjectIdProperty(),
-            'properties' => new ezcPersistentObjectProperties(),
-            'columns'    => new ezcPersistentObjectColumns(),
-            'relations'  => new ezcPersistentObjectRelations(),
-        );
+        $res = ['table'      => 'table', 'class'      => 'class', 'idProperty' => new ezcPersistentObjectIdProperty(), 'properties' => new ezcPersistentObjectProperties(), 'columns'    => new ezcPersistentObjectColumns(), 'relations'  => new ezcPersistentObjectRelations()];
         $res['properties']['foo'] = new ezcPersistentObjectProperty();
 
         $this->assertAttributeEquals(
@@ -174,17 +160,17 @@ class ezcPersistentObjectDefinitionTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $definition,
             'columnName',
-            array( true, false, 23, 23.42, array(), new stdClass() )
+            [true, false, 23, 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $definition,
             'propertyName',
-            array( true, false, 23, 23.42, array(), new stdClass() )
+            [true, false, 23, 23.42, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $definition,
             'propertyType',
-            array( true, false, 'foo', 23.42, array(), new stdClass() )
+            [true, false, 'foo', 23.42, [], new stdClass()]
         );
     }
 
@@ -238,7 +224,7 @@ class ezcPersistentObjectDefinitionTest extends ezcTestCase
 
         $generator = new ezcPersistentGeneratorDefinition(
             "test class",
-            array( "param" => 123 )
+            ["param" => 123]
         );
 
         $idProperty = new ezcPersistentObjectIdProperty(
@@ -251,44 +237,19 @@ class ezcPersistentObjectDefinitionTest extends ezcTestCase
         $def = new ezcPersistentObjectDefinition(
             "test table",
             "test class",
-            array( 'test' => $property ),
-            array(),
+            ['test' => $property],
+            [],
             $idProperty
         );
 
-        $res = ezcPersistentObjectDefinition::__set_state(array(
-           'table' => 'test table',
-           'class' => 'test class',
-           'idProperty' => 
-          ezcPersistentObjectIdProperty::__set_state(array(
-             'columnName' => 'test column',
-             'propertyName' => 'test property',
-             'visibility' => NULL,
-             'generator' => 
-            ezcPersistentGeneratorDefinition::__set_state(array(
-               'class' => 'test class',
-               'params' => 
-              array (
-                'param' => 123,
-              ),
-            )),
-          )),
-           'properties' => 
-          array (
-            'test' => 
-            ezcPersistentObjectProperty::__set_state(array(
-               'columnName' => 'test column',
-               'propertyName' => 'test property',
-               'propertyType' => 2,
-            )),
-          ),
-           'columns' => 
-          array (
-          ),
-           'relations' => 
-          array (
-          ),
-        ));
+        $res = ezcPersistentObjectDefinition::__set_state(['table' => 'test table', 'class' => 'test class', 'idProperty' => 
+       ezcPersistentObjectIdProperty::__set_state(['columnName' => 'test column', 'propertyName' => 'test property', 'visibility' => NULL, 'generator' => 
+      ezcPersistentGeneratorDefinition::__set_state(['class' => 'test class', 'params' => 
+     ['param' => 123]])]), 'properties' => 
+       ['test' => 
+       ezcPersistentObjectProperty::__set_state(['columnName' => 'test column', 'propertyName' => 'test property', 'propertyType' => 2])], 'columns' => 
+       [], 'relations' => 
+       []]);
         
         $this->assertEquals( $res, $def, "ezcPersistentObjectDefinition not deserialized correctly." );
     }
@@ -299,11 +260,11 @@ class ezcPersistentObjectDefinitionTest extends ezcTestCase
     public function testMissingReverseColumnLookup()
     {
         // Load def without def manager
-        $def = require dirname( __FILE__ ) . '/../data/persistenttestobject.php';
+        $def = require __DIR__ . '/../data/persistenttestobject.php';
         
         try
         {
-            ezcPersistentStateTransformer::rowToStateArray( array(), $def );
+            ezcPersistentStateTransformer::rowToStateArray( [], $def );
             $this->fail( 'Exception not thrown on state transformation without proper reverse-lookup.' );
         }
         catch ( ezcPersistentObjectException $e ) {}

@@ -70,7 +70,7 @@ class ezcBaseInit
      *
      * @var array(string=>string)
      */
-    static private $callbackMap = array();
+    static private $callbackMap = [];
 
     /**
      * Adds the classname $callbackClassname as callback for the identifier $identifier.
@@ -117,7 +117,7 @@ class ezcBaseInit
         if ( isset( self::$callbackMap[$identifier] ) )
         {
             $callbackClassname = self::$callbackMap[$identifier];
-            return call_user_func( array( $callbackClassname, 'configureObject' ), $object );
+            return call_user_func( [$callbackClassname, 'configureObject'], $object );
         }
         return null;
     }

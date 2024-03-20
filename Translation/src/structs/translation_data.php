@@ -21,17 +21,17 @@ class ezcTranslationData extends ezcBaseStruct
     /**
      * Used when the translated string is up-to-date
      */
-    const TRANSLATED = 0;
+    public const TRANSLATED = 0;
 
     /**
      * Used when a translated string has not been translated yet.
      */
-    const UNFINISHED = 1;
+    public const UNFINISHED = 1;
 
     /**
      * Used when a translated string is obsolete.
      */
-    const OBSOLETE = 2;
+    public const OBSOLETE = 2;
 
     /**
      * The original untranslated source string.

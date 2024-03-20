@@ -104,14 +104,7 @@ class ezcSearchSimpleArticle implements ezcSearchDefinitionProvider, ezcBasePers
      */
     public function getState()
     {
-        return array(
-            'id' => $this->id,
-            'title' => $this->title,
-            'body' => $this->body,
-            'published' => $this->published,
-            'url' => $this->url,
-            'type' => $this->type,
-        );
+        return ['id' => $this->id, 'title' => $this->title, 'body' => $this->body, 'published' => $this->published, 'url' => $this->url, 'type' => $this->type];
     }
 
     /**

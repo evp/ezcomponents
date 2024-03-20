@@ -23,17 +23,17 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
     /**
      * Defines the feed type of this processor.
      */
-    const FEED_TYPE = 'atom';
+    public const FEED_TYPE = 'atom';
 
     /**
      * Defines the feed content type of this processor.
      */
-    const CONTENT_TYPE = 'application/atom+xml';
+    public const CONTENT_TYPE = 'application/atom+xml';
 
     /**
      * Defines the namespace for ATOM feeds.
      */
-    const NAMESPACE_URI = 'http://www.w3.org/2005/Atom';
+    public const NAMESPACE_URI = 'http://www.w3.org/2005/Atom';
 
     /**
      * Creates a new ATOM processor.
@@ -140,7 +140,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     case 'generator':
                         $element = $feed->add( $tagName );
 
-                        $attributes = array( 'uri' => 'url', 'version' => 'version' );
+                        $attributes = ['uri' => 'url', 'version' => 'version'];
                         foreach ( $attributes as $name => $alias )
                         {
                             if ( $channelChild->hasAttribute( $name ) )
@@ -158,7 +158,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     case 'category':
                         $element = $feed->add( $tagName );
 
-                        $attributes = array( 'term' => 'term', 'scheme' => 'scheme', 'label' => 'label' );
+                        $attributes = ['term' => 'term', 'scheme' => 'scheme', 'label' => 'label'];
                         foreach ( $attributes as $name => $alias )
                         {
                             if ( $channelChild->hasAttribute( $name ) )
@@ -171,8 +171,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     case 'link':
                         $element = $feed->add( $tagName );
 
-                        $attributes = array( 'href' => 'href', 'rel' => 'rel', 'hreflang' => 'hreflang',
-                                             'type' => 'type', 'title' => 'title', 'length' => 'length' );
+                        $attributes = ['href' => 'href', 'rel' => 'rel', 'hreflang' => 'hreflang', 'type' => 'type', 'title' => 'title', 'length' => 'length'];
 
                         foreach ( $attributes as $name => $alias )
                         {
@@ -215,7 +214,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
      */
     private function generateRequired()
     {
-        $elements = array( 'id', 'title', 'updated' );
+        $elements = ['id', 'title', 'updated'];
         foreach ( $elements as $element )
         {
             $data = $this->$element;
@@ -258,7 +257,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
             $entries = $this->item;
             if ( $entries === null )
             {
-                throw new ezcFeedAtLeastOneItemDataRequiredException( array( '/feed/author' ) );
+                throw new ezcFeedAtLeastOneItemDataRequiredException( ['/feed/author'] );
             }
 
             foreach ( $entries as $entry )
@@ -266,11 +265,11 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                 $authors = $entry->author;
                 if ( $authors === null )
                 {
-                    throw new ezcFeedAtLeastOneItemDataRequiredException( array( '/feed/entry/author' ) );
+                    throw new ezcFeedAtLeastOneItemDataRequiredException( ['/feed/entry/author'] );
                 }
             }
 
-            throw new ezcFeedAtLeastOneItemDataRequiredException( array( '/feed/author' ) );
+            throw new ezcFeedAtLeastOneItemDataRequiredException( ['/feed/author'] );
         }
     }
 
@@ -279,9 +278,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
      */
     private function generateOptional()
     {
-        $elements = array( 'author', 'link', 'category',
-                           'contributor', 'generator', 'icon',
-                           'image', 'copyright', 'description', 'language' );
+        $elements = ['author', 'link', 'category', 'contributor', 'generator', 'icon', 'image', 'copyright', 'description', 'language'];
 
         if ( $this->link !== null )
         {
@@ -364,7 +361,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
      */
     private function checkLinks( DOMNode $root, array $links )
     {
-        $unique = array();
+        $unique = [];
         foreach ( $links as $dataNode )
         {
             if ( ( isset( $dataNode->rel ) && $dataNode->rel === 'alternate' )
@@ -383,8 +380,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     }
                 }
 
-                $unique[] = array( 'type' => $dataNode->type,
-                                   'hreflang' => $dataNode->hreflang );
+                $unique[] = ['type' => $dataNode->type, 'hreflang' => $dataNode->hreflang];
 
             }
         }
@@ -403,7 +399,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
         $elementTag = $this->xml->createElement( 'link' );
         $root->appendChild( $elementTag );
 
-        $elements = array( 'href', 'rel', 'type', 'hreflang', 'title', 'length' );
+        $elements = ['href', 'rel', 'type', 'hreflang', 'title', 'length'];
         if ( !isset( $dataNode->href ) )
         {
             $parentNode = ( $root->nodeName === 'entry' ) ? '/feed' : '';
@@ -464,9 +460,9 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
         $parentNode = ( $root->nodeName === 'entry' ) ? '/feed' : '';
         $parentNode = ( $root->nodeName === 'source' ) ? '/feed/entry' : $parentNode;
 
-        $attributes = array( 'term' => 'term', 'scheme' => 'scheme', 'label' => 'label' );
-        $required = array( 'term' );
-        $optional = array( 'scheme', 'label' );
+        $attributes = ['term' => 'term', 'scheme' => 'scheme', 'label' => 'label'];
+        $required = ['term'];
+        $optional = ['scheme', 'label'];
 
         foreach ( $attributes as $attribute => $alias )
         {
@@ -494,7 +490,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
         $elementTag = $this->xml->createElement( $element );
         $root->appendChild( $elementTag );
 
-        $attributes = array();
+        $attributes = [];
 
         if ( isset( $dataNode->type ) )
         {
@@ -563,7 +559,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
         $elementTag = $this->xml->createElement( $element );
         $root->appendChild( $elementTag );
 
-        $attributes = array();
+        $attributes = [];
 
         if ( isset( $dataNode->type ) )
         {
@@ -685,10 +681,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
         $elementTag = $this->xml->createElement( 'source' );
         $root->appendChild( $elementTag );
 
-        $elements = array( 'id', 'title', 'updated',
-                           'author', 'link', 'category',
-                           'contributor', 'generator', 'icon',
-                           'image', 'copyright', 'description' );
+        $elements = ['id', 'title', 'updated', 'author', 'link', 'category', 'contributor', 'generator', 'icon', 'image', 'copyright', 'description'];
 
         foreach ( $elements as $child )
         {
@@ -787,7 +780,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                 $this->addAttribute( $entryTag, 'xml:lang', $entry->language );
             }
 
-            $elements = array( 'id', 'title', 'updated' );
+            $elements = ['id', 'title', 'updated'];
 
             foreach ( $elements as $element )
             {
@@ -823,7 +816,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
             $contentSrcPresent = $contentPresent && is_object( $content ) && !is_null( $content->src );
             $contentBase64 = true;
             if ( $contentPresent && is_object( $content )
-                 && ( in_array( $content->type, array( 'text', 'html', 'xhtml', null ) )
+                 && ( in_array( $content->type, ['text', 'html', 'xhtml', null] )
                       || preg_match( '@[+/]xml$@i', $content->type ) !== 0
                       || substr_compare( $content->type, 'text/', 0, 5, true ) === 0 ) )
             {
@@ -873,9 +866,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                 }
             }
 
-            $elements = array( 'author', 'content', 'link', 'description',
-                               'category', 'contributor', 'published', 'copyright',
-                               'source', 'enclosure' );
+            $elements = ['author', 'content', 'link', 'description', 'category', 'contributor', 'published', 'copyright', 'source', 'enclosure'];
 
             if ( $entry->link !== null )
             {
@@ -1002,7 +993,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                             if ( $subChild->nodeType === XML_ELEMENT_NODE )
                             {
                                 $subTagName = $subChild->tagName;
-                                if ( in_array( $subTagName, array( 'name', 'email', 'uri' ) ) )
+                                if ( in_array( $subTagName, ['name', 'email', 'uri'] ) )
                                 {
                                     $subElement->$subTagName = $subChild->textContent;
                                 }
@@ -1095,8 +1086,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     case 'link':
                         $subElement = $element->add( $tagName );
 
-                        $attributes = array( 'href' => 'href', 'rel' => 'rel', 'hreflang' => 'hreflang',
-                                             'type' => 'type', 'title' => 'title', 'length' => 'length' );
+                        $attributes = ['href' => 'href', 'rel' => 'rel', 'hreflang' => 'hreflang', 'type' => 'type', 'title' => 'title', 'length' => 'length'];
 
                         foreach ( $attributes as $name => $alias )
                         {
@@ -1110,7 +1100,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     case 'category':
                         $subElement = $element->add( $tagName );
 
-                        $attributes = array( 'term' => 'term', 'scheme' => 'scheme', 'label' => 'label' );
+                        $attributes = ['term' => 'term', 'scheme' => 'scheme', 'label' => 'label'];
                         foreach ( $attributes as $name => $alias )
                         {
                             if ( $itemChild->hasAttribute( $name ) )
@@ -1249,7 +1239,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                         $subElement = $element->add( 'generator' );
                         $subElement->name = $sourceChild->textContent;
 
-                        $attributes = array( 'uri' => 'url', 'version' => 'version' );
+                        $attributes = ['uri' => 'url', 'version' => 'version'];
                         foreach ( $attributes as $name => $alias )
                         {
                             if ( $sourceChild->hasAttribute( $name ) )
@@ -1276,7 +1266,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     case 'category':
                         $subElement = $element->add( $tagName );
 
-                        $attributes = array( 'term' => 'term', 'scheme' => 'scheme', 'label' => 'label' );
+                        $attributes = ['term' => 'term', 'scheme' => 'scheme', 'label' => 'label'];
                         foreach ( $attributes as $name => $alias )
                         {
                             if ( $sourceChild->hasAttribute( $name ) )
@@ -1289,8 +1279,7 @@ class ezcFeedAtom extends ezcFeedProcessor implements ezcFeedParser
                     case 'link':
                         $subElement = $element->add( $tagName );
 
-                        $attributes = array( 'href' => 'href', 'rel' => 'rel', 'hreflang' => 'hreflang',
-                                             'type' => 'type', 'title' => 'title', 'length' => 'length' );
+                        $attributes = ['href' => 'href', 'rel' => 'rel', 'hreflang' => 'hreflang', 'type' => 'type', 'title' => 'title', 'length' => 'length'];
 
                         foreach ( $attributes as $name => $alias )
                         {

@@ -34,13 +34,13 @@ class ezcTemplateDateFunctions extends ezcTemplateFunctions
         switch ( $functionName )
         {
             case "date_format":
-                return array( array( "%format", "%time" ), self::functionCall( "date_format", array( "%time", "%format" ) ) );
+                return [["%format", "%time"], self::functionCall( "date_format", ["%time", "%format"] )];
             // date( $format, $timestamp )
             case "date_format_timestamp":
-                return array( array( "%format", "[%timestamp]" ), self::functionCall( "date", array( "%format", "[%timestamp]" ) ) );
+                return [["%format", "[%timestamp]"], self::functionCall( "date", ["%format", "[%timestamp]"] )];
             // time()
             case "date_current_timestamp":
-                return array( array(), self::functionCall( "time", array() ) );
+                return [[], self::functionCall( "time", [] )];
 
         }
 

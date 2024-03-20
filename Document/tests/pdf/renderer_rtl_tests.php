@@ -21,54 +21,42 @@ class ezcDocumentPdfRenderRtlTests extends ezcDocumentPdfTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testRenderAllRtl()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/long_text.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-                new ezcDocumentPcssLayoutDirective(
-                    array( 'article' ),
-                    array(
-                        'direction' => 'rtl',
-                    )
-                ),
-            )
+            __DIR__ . '/../files/pdf/long_text.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            [new ezcDocumentPcssLayoutDirective(
+                ['article'],
+                ['direction' => 'rtl']
+            )]
         );
     }
 
     public function testRenderParagraphRtl()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/long_text.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-                new ezcDocumentPcssLayoutDirective(
-                    array( 'para' ),
-                    array(
-                        'direction' => 'rtl',
-                    )
-                ),
-            )
+            __DIR__ . '/../files/pdf/long_text.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            [new ezcDocumentPcssLayoutDirective(
+                ['para'],
+                ['direction' => 'rtl']
+            )]
         );
     }
 
     public function testRenderTitleRtl()
     {
         $this->renderFullDocument(
-            dirname( __FILE__ ) . '/../files/pdf/long_text.xml',
-            __CLASS__ . '_' . __FUNCTION__ . '.svg',
-            array(
-                new ezcDocumentPcssLayoutDirective(
-                    array( 'title' ),
-                    array(
-                        'direction' => 'rtl',
-                    )
-                ),
-            )
+            __DIR__ . '/../files/pdf/long_text.xml',
+            self::class . '_' . __FUNCTION__ . '.svg',
+            [new ezcDocumentPcssLayoutDirective(
+                ['title'],
+                ['direction' => 'rtl']
+            )]
         );
     }
 }

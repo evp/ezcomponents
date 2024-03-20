@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -31,8 +31,8 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
     protected function setUp()
     {
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -154,18 +154,18 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         );
 
         // Use random default enabled public static method
-        $dataset->callback = array( 'Reflection', 'export' );
+        $dataset->callback = ['Reflection', 'export'];
         $this->assertSame(
-            array( 'Reflection', 'export' ),
+            ['Reflection', 'export'],
             $dataset->callback,
             'Setting property value did not work for property callback in class ezcGraphNumericDataSet'
         );
 
         // Use random default enabled public method
         $reflection = new ReflectionClass( 'Exception' );
-        $dataset->callback = array( $reflection, 'isInternal' );
+        $dataset->callback = [$reflection, 'isInternal'];
         $this->assertSame(
-            array( $reflection, 'isInternal' ),
+            [$reflection, 'isInternal'],
             $dataset->callback,
             'Setting property value did not work for property callback in class ezcGraphNumericDataSet'
         );
@@ -204,10 +204,7 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         $numericDataSet = new ezcGraphNumericDataSet( 
             -90, 
             90, 
-            create_function( 
-                '$x',
-                'return 10 * sin( deg2rad( $x ) );'
-            )
+            fn($x) => 10 * sin(deg2rad($x))
         );
         $numericDataSet->resolution = 180;
 
@@ -232,18 +229,12 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
         $chart->data['Sinus'] = new ezcGraphNumericDataSet( 
             -180, 
             180, 
-            create_function( 
-                '$x',
-                'return 10 * sin( deg2rad( $x ) );'
-            )
+            fn($x) => 10 * sin(deg2rad($x))
         );
         $chart->data['Cosinus'] = new ezcGraphNumericDataSet( 
             -180, 
             180, 
-            create_function( 
-                '$x',
-                'return 5 * cos( deg2rad( $x ) );'
-            )
+            fn($x) => 5 * cos(deg2rad($x))
         );
         $chart->xAxis = new ezcGraphChartElementNumericAxis();
 
@@ -251,7 +242,7 @@ class ezcGraphNumericDataSetTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

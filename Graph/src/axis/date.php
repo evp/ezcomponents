@@ -81,11 +81,11 @@
 class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
 {
     
-    const MONTH = 2629800;
+    public const MONTH = 2629800;
 
-    const YEAR = 31536000;
+    public const YEAR = 31536000;
 
-    const DECADE = 315360000;
+    public const DECADE = 315360000;
 
     /**
      * Minimum inserted date
@@ -106,7 +106,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
      * 
      * @var array
      */
-    protected $predefinedIntervals = array(
+    protected $predefinedIntervals = [
         // Second
         1           => 'H:i.s',
         // Ten seconds
@@ -137,13 +137,13 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
         self::YEAR  => 'Y',
         // Decade
         self::DECADE => 'Y',
-    );
+    ];
 
     /**
      * Constant used for calculation of automatic definition of major scaling 
      * steps
      */
-    const MAJOR_COUNT = 10;
+    public const MAJOR_COUNT = 10;
 
     /**
      * Constructor
@@ -152,7 +152,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['startDate'] = false;
         $this->properties['endDate'] = false;
@@ -316,16 +316,9 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
                     (int) date( 'Y', $min )
                 );
             default:
-                $dateSteps = array( 60, 60, 24, 7, 52 );
+                $dateSteps = [60, 60, 24, 7, 52];
 
-                $date = array(
-                    (int) date( 's', $min ),
-                    (int) date( 'i', $min ),
-                    (int) date( 'H', $min ),
-                    (int) date( 'd', $min ),
-                    (int) date( 'm', $min ),
-                    (int) date( 'Y', $min ),
-                );
+                $date = [(int) date( 's', $min ), (int) date( 'i', $min ), (int) date( 'H', $min ), (int) date( 'd', $min ), (int) date( 'm', $min ), (int) date( 'Y', $min )];
 
                 $element = 0;
                 while ( ( $step = array_shift( $dateSteps ) ) &&
@@ -559,10 +552,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
         {
             return call_user_func_array(
                 $this->properties['labelCallback'],
-                array(
-                    date( $this->properties['dateFormat'], $time ),
-                    $step,
-                )
+                [date( $this->properties['dateFormat'], $time ), $step]
             );
         }
         else
@@ -578,7 +568,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
      */
     public function getSteps()
     {
-        $steps = array();
+        $steps = [];
 
         $start = $this->properties['startDate'];
         $end = $this->properties['endDate'];
@@ -591,7 +581,7 @@ class ezcGraphChartElementDateAxis extends ezcGraphChartElementAxis
                 ( $time - $start ) / $distance,
                 $this->interval / $distance,
                 $this->getLabelFromTimestamp( $time, $step++ ),
-                array(),
+                [],
                 $step === 1,
                 $time >= $end
             );

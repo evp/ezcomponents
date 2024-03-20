@@ -18,7 +18,7 @@ class TestReporter implements ezcDebugOutputFormatter
 {
 	public function generateOutput( array $timerData, array $writerData )
 	{
-        return array( $timerData, $writerData );
+        return [$timerData, $writerData];
 	}
 }
 ?>

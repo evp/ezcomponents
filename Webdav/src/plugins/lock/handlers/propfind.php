@@ -128,17 +128,14 @@ class ezcWebdavLockPropFindRequestResponseHandler extends ezcWebdavLockRequestRe
                     }
                     $supportedLock = new ezcWebdavSupportedLockProperty(
                         new ArrayObject(
-                            ( $this->request->propName ? array() :
-                                array(
-                                    new ezcWebdavSupportedLockPropertyLockentry(
-                                        ezcWebdavLockRequest::TYPE_WRITE,
-                                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE
-                                    ),
-                                    new ezcWebdavSupportedLockPropertyLockentry(
-                                        ezcWebdavLockRequest::TYPE_WRITE,
-                                        ezcWebdavLockRequest::SCOPE_SHARED
-                                    ),
-                                )
+                            ( $this->request->propName ? [] :
+                                [new ezcWebdavSupportedLockPropertyLockentry(
+                                    ezcWebdavLockRequest::TYPE_WRITE,
+                                    ezcWebdavLockRequest::SCOPE_EXCLUSIVE
+                                ), new ezcWebdavSupportedLockPropertyLockentry(
+                                    ezcWebdavLockRequest::TYPE_WRITE,
+                                    ezcWebdavLockRequest::SCOPE_SHARED
+                                )]
                             )
                         )
                     );

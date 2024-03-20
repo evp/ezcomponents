@@ -47,7 +47,7 @@ class ezcWebdavBasicPathFactory implements ezcWebdavPathFactory
      * @apichange This property will be renamed to $collectionPaths in the next
      *            major release.
      */
-    protected $collectionPathes = array();
+    protected $collectionPathes = [];
     
     /**
      * Creates a new path factory.
@@ -154,11 +154,11 @@ class ezcWebdavBasicPathFactory implements ezcWebdavPathFactory
     {
         return $this->baseUriParts['scheme'] 
              . '://' 
-             . ( isset( $this->baseUriParts['user'] ) ? $this->baseUriParts['user'] : '' )
+             . ( $this->baseUriParts['user'] ?? '' )
              . ( isset( $this->baseUriParts['pass'] ) ? ':' . $this->baseUriParts['pass'] : '' )
              . ( isset( $this->baseUriParts['user'] ) || isset( $this->baseUriParts['pass'] ) ? '@' : '' )
              . $this->baseUriParts['host']
-             . ( isset( $this->baseUriParts['path'] ) ? $this->baseUriParts['path'] : '' )
+             . ( $this->baseUriParts['path'] ?? '' )
              . trim( $path ) . ( isset( $this->collectionPathes[$path] ) ? '/' : '' )
              . ( isset( $this->baseUriParts['query'] ) ? '?' . $this->baseUriParts['query'] : '' )
              . ( isset( $this->baseUriParts['fragment'] ) ? '#' . $this->baseUriParts['fragment'] : '' );

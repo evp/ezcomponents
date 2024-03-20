@@ -26,13 +26,7 @@ class ezcDocumentXhtmlSpecialParagraphElementFilter extends ezcDocumentXhtmlElem
      *
      * @var array
      */
-    protected $typeMapping = array(
-        'note'      => 'note',
-        'notice'    => 'tip',
-        'warning'   => 'warning',
-        'attention' => 'important',
-        'danger'    => 'caution',
-    );
+    protected $typeMapping = ['note'      => 'note', 'notice'    => 'tip', 'warning'   => 'warning', 'attention' => 'important', 'danger'    => 'caution'];
 
     /**
      * Filter a single element

@@ -20,7 +20,7 @@ class ezcPersistentSessionIdentityDecoratorMiscTest extends ezcPersistentSession
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
     
     // overloading
@@ -30,46 +30,20 @@ class ezcPersistentSessionIdentityDecoratorMiscTest extends ezcPersistentSession
         $this->assertSetPropertyFails(
             $this->idSession,
             'identityMap',
-            array(
-                'foo',
-                23,
-                42.23,
-                true,
-                false,
-                array(),
-                new stdClass(),
-                $this->idMap
-            )
+            ['foo', 23, 42.23, true, false, [], new stdClass(), $this->idMap]
         );
 
         $this->assertSetPropertyFails(
             $this->idSession,
             'options',
-            array(
-                'foo',
-                23,
-                42.23,
-                true,
-                false,
-                array(),
-                new stdClass(),
-            )
+            ['foo', 23, 42.23, true, false, [], new stdClass()]
         );
 
         // Dispatched to session
         $this->assertSetPropertyFails(
             $this->idSession,
             'database',
-            array(
-                'foo',
-                23,
-                42.23,
-                true,
-                false,
-                array(),
-                new stdClass(),
-                $this->idSession->database
-            )
+            ['foo', 23, 42.23, true, false, [], new stdClass(), $this->idSession->database]
         );
     }
 
@@ -78,9 +52,7 @@ class ezcPersistentSessionIdentityDecoratorMiscTest extends ezcPersistentSession
         $this->assertSetProperty(
             $this->idSession,
             'options',
-            array(
-                new ezcPersistentSessionIdentityDecoratorOptions()
-            )
+            [new ezcPersistentSessionIdentityDecoratorOptions()]
         );
     }
 

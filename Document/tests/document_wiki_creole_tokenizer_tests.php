@@ -21,7 +21,7 @@ class ezcDocumentWikiCreoleTokenizerTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -29,15 +29,12 @@ class ezcDocumentWikiCreoleTokenizerTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/wiki/creole/*.txt' );
+            $testFiles = glob( __DIR__ . '/files/wiki/creole/*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'tokens'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'tokens'];
             }
         }
 
@@ -79,7 +76,7 @@ class ezcDocumentWikiCreoleTokenizerTests extends ezcTestCase
         {
             $tokenizer = new ezcDocumentWikiCreoleTokenizer();
             $tokens = $tokenizer->tokenizeFile(
-                dirname( __FILE__ ) . '/files/wiki/creole/not_existant_file.txt'
+                __DIR__ . '/files/wiki/creole/not_existant_file.txt'
             );
             $this->fail( 'Expected ezcBaseFileNotFoundException.' );
         }

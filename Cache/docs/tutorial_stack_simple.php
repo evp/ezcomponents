@@ -29,7 +29,7 @@ $stack->store(
     'id_1', 'id_1_data'
 );
 $stack->store(
-    'id_2', 'id_2_data', array( 'attribute' => 'value' )
+    'id_2', 'id_2_data', ['attribute' => 'value']
 );
 $id1data = $stack->restore( 'id_1' );
 

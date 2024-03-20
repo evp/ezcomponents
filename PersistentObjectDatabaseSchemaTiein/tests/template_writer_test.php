@@ -14,18 +14,12 @@
  */
 class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
 {
-    protected $classNameMap = array(
-        'camelcaseletters.php'     => 'CamelCaseLetters',
-        'cebadword.php'            => 'CeBadWord',
-        'cemessagecategoryrel.php' => 'CeMessageCategoryRel',
-        'debugger.php'             => 'Debugger',
-        'liveusertranslations.php' => 'LiveuserTranslations',
-    );
+    protected $classNameMap = ['camelcaseletters.php'     => 'CamelCaseLetters', 'cebadword.php'            => 'CeBadWord', 'cemessagecategoryrel.php' => 'CeMessageCategoryRel', 'debugger.php'             => 'Debugger', 'liveusertranslations.php' => 'LiveuserTranslations'];
 
     protected function setUp()
     {
         $this->tempDir = $this->createTempDir( 'ezcDatabasePersistentTest' );
-        $this->dataDir = dirname( __FILE__ ) . '/data/';
+        $this->dataDir = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -37,7 +31,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
     {
         $schema = ezcDbSchema::createFromFile(
             'xml',
-            dirname( __FILE__ ) . '/data/webbuilder.schema.xml'
+            __DIR__ . '/data/webbuilder.schema.xml'
         );
         return $schema;
     }
@@ -50,11 +44,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => false,
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => false, 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -82,12 +72,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => false,
-                    'classPrefix'         => 'test',
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => false, 'classPrefix'         => 'test', 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -116,12 +101,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => false,
-                    'classPrefix'         => 'test',
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => false, 'classPrefix'         => 'test', 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -151,12 +131,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => true,
-                    'classPrefix'         => 'test',
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => true, 'classPrefix'         => 'test', 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -203,11 +178,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => false,
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => false, 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -231,12 +202,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => false,
-                    'classPrefix'         => 'test',
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => false, 'classPrefix'         => 'test', 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -260,12 +226,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => false,
-                    'classPrefix'         => 'test',
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => false, 'classPrefix'         => 'test', 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -295,12 +256,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
         
         $schemaWriter = new ezcPersistentObjectTemplateSchemaWriter(
             new ezcPersistentObjectTemplateSchemaWriterOptions(
-                array(
-                    'overwrite'           => true,
-                    'classPrefix'         => 'test',
-                    'templatePath'        => $dirs['tplDir'],
-                    'templateCompilePath' => $dirs['tmpDir'],
-                )
+                ['overwrite'           => true, 'classPrefix'         => 'test', 'templatePath'        => $dirs['tplDir'], 'templateCompilePath' => $dirs['tmpDir']]
             )
         );
 
@@ -362,7 +318,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
 
     protected function setUpDirs()
     {
-        $origTplDir = dirname( __FILE__ ) . '/../src/template_writer/templates';
+        $origTplDir = __DIR__ . '/../src/template_writer/templates';
 
         $dirs['tplDir']    = $this->tempDir . '/templates';
         $dirs['classDir']  = $this->tempDir . '/classes';
@@ -424,7 +380,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
     protected function assertPropertiesEqual( $obj, array $props )
     {
         $i        = 0;
-        $setProps = array();
+        $setProps = [];
         foreach ( $props as $propName => $propValue )
         {
             $this->assertEquals(
@@ -439,7 +395,7 @@ class ezcPersistentObjectTemplateSchemaWriterTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

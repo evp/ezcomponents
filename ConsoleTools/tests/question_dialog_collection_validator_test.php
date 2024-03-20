@@ -24,7 +24,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testGetAccessDefaultSuccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection );
         $this->assertEquals( $collection, $validator->collection );
         $this->assertNull( $validator->default );
@@ -33,7 +33,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testGetAccessCustomSuccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator(
             $collection,
             "foo",
@@ -46,7 +46,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testGetAccessFailure()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection );
         
         try
@@ -62,10 +62,10 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testSetAccessSuccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection );
 
-        $collectionNew = array( 23, 42 );
+        $collectionNew = [23, 42];
         $validator->collection = $collectionNew;
         $validator->default = 23;
         $validator->conversion = ezcConsoleQuestionDialogCollectionValidator::CONVERT_LOWER;
@@ -77,7 +77,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testSetAccessFailure()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection );
         
         $exceptionCaught = false;
@@ -94,7 +94,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
         $exceptionCaught = false;
         try
         {
-            $validator->default = array();
+            $validator->default = [];
         }
         catch ( ezcBaseValueException $e )
         {
@@ -127,7 +127,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testIssetAccess()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection );
         $this->assertTrue( isset( $validator->collection ), "Property collection not set." );
         $this->assertTrue( isset( $validator->default ), "Property default not set." );
@@ -138,7 +138,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testValidate()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection );
         $this->assertTrue( $validator->validate( "foo" ) );
         $this->assertFalse( $validator->validate( "test" ) );
@@ -146,7 +146,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testFixup()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection, null );
 
         $this->assertEquals( "foo", $validator->fixup( "foo" ) );
@@ -171,7 +171,7 @@ class ezcConsoleQuestionDialogCollectionValidatorTest extends ezcTestCase
 
     public function testGetResultString()
     {
-        $collection = array( "foo", "bar", "baz" );
+        $collection = ["foo", "bar", "baz"];
         $validator = new ezcConsoleQuestionDialogCollectionValidator( $collection, null );
 
         $this->assertEquals( "(foo/bar/baz)", $validator->getResultString() );

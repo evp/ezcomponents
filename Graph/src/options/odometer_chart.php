@@ -47,7 +47,7 @@ class ezcGraphOdometerChartOptions extends ezcGraphChartOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['borderColor']    = ezcGraphColor::create( '#000000' );
         $this->properties['borderWidth']    = 0;

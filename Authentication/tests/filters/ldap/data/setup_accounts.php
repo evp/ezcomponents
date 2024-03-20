@@ -26,8 +26,7 @@ Ldap::add( $connection, 'john.doe', '{CRYPT}' . crypt( 'foobar' ), $dc );
 Ldap::add( $connection, 'jan.modaal', '{SHA}' . base64_encode( pack( 'H*', sha1( 'qwerty' ) ) ), $dc );
 Ldap::add( $connection, 'zhang.san', '{MD5}' . base64_encode( pack( 'H*', md5( 'asdfgh' ) ) ), $dc );
 Ldap::add( $connection, 'johnny.doe', '{MD5}' . base64_encode( pack( 'H*', md5( '12345' ) ) ), "ou=Users,{$dc}",
-           array( 'displayName' => 'Johnny Doe',
-                  'ou' => array( 'Users' ) ) );
+           ['displayName' => 'Johnny Doe', 'ou' => ['Users']] );
 //Ldap::add( $connection, 'jan.modaal', '{SHA}' . base64_encode( sha1( 'qwerty' ) ), $dc );
 //Ldap::add( $connection, 'zhang.san', '{MD5}' . base64_encode( md5( 'asdfgh' ) ), $dc );
 Ldap::add( $connection, 'hans.mustermann', 'abcdef', $dc );
@@ -96,7 +95,7 @@ class Ldap
      * @param string $password Password for username. Use an encryption function and put method in front of hash, like: '{MD5}hash'
      * @param string $dc The dc part of the entry, like: 'dc=example,dc=com'
      */
-    public static function add( $connection, $user, $password, $dc, $extra = array() )
+    public static function add( $connection, $user, $password, $dc, $extra = [] )
     {
         $ldaprecord['uid'][0] = $user;
         // The 'person' classes are not compatible with account and simpleSecurityObject
@@ -105,8 +104,8 @@ class Ldap
             $ldaprecord['objectclass'][0] = "person";
             $ldaprecord['objectclass'][] = "organizationalPerson";
             $ldaprecord['objectclass'][] = "inetOrgPerson";
-            $ldaprecord['sn'] = array( 'Doe' );
-            $ldaprecord['cn'] = array( 'Johnny Doe' );
+            $ldaprecord['sn'] = ['Doe'];
+            $ldaprecord['cn'] = ['Johnny Doe'];
         }
         else
         {

@@ -94,7 +94,7 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['portraitSize'] = .2;
         $this->properties['landscapeSize'] = .1;
@@ -213,17 +213,10 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
      */
     public function generateFromDataSets( ezcGraphChartDataContainer $datasets )
     {
-        $this->labels = array();
+        $this->labels = [];
         foreach ( $datasets as $dataset )
         {
-            $this->labels[] = array(
-                'label' => $dataset->label->default,
-                'url' => $dataset->url->default,
-                'color' => $dataset->color->default,
-                'symbol' => ( $dataset->symbol->default === null ?
-                              ezcGraph::NO_SYMBOL :
-                              $dataset->symbol->default ),
-            );
+            $this->labels[] = ['label' => $dataset->label->default, 'url' => $dataset->url->default, 'color' => $dataset->color->default, 'symbol' => ( $dataset->symbol->default ?? ezcGraph::NO_SYMBOL )];
         }
     }
 
@@ -235,17 +228,10 @@ class ezcGraphChartElementLegend extends ezcGraphChartElement
      */
     public function generateFromDataSet( ezcGraphDataSet $dataset )
     {
-        $this->labels = array();
+        $this->labels = [];
         foreach ( $dataset as $label => $data )
         {
-            $this->labels[] = array(
-                'label' => $label,
-                'url' => $dataset->url[$label],
-                'color' => $dataset->color[$label],
-                'symbol' => ( $dataset->symbol[$label] === null ?
-                              ezcGraph::NO_SYMBOL :
-                              $dataset->symbol[$label] ),
-            );
+            $this->labels[] = ['label' => $label, 'url' => $dataset->url[$label], 'color' => $dataset->color[$label], 'symbol' => ( $dataset->symbol[$label] ?? ezcGraph::NO_SYMBOL )];
         }
     }
     

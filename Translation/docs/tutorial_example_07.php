@@ -2,11 +2,11 @@
 require_once 'tutorial_autoload.php';
 
 // copy so that we can play with the file
-copy( dirname( __FILE__ ). '/translations/mod-example-nl_NL.xml', '/tmp/mod-example-nl_NL.xml' );
+copy( __DIR__. '/translations/mod-example-nl_NL.xml', '/tmp/mod-example-nl_NL.xml' );
 
 // setup the backend to read from /tmp
 $backend = new ezcTranslationTsBackend( '/tmp' );
-$backend->setOptions( array( 'format' => 'mod-example-[LOCALE].xml' ) );
+$backend->setOptions( ['format' => 'mod-example-[LOCALE].xml'] );
 
 // get the original context
 $context = $backend->getContext( 'nl_NL', 'existing' );
@@ -22,7 +22,7 @@ $backend->initWriter( 'nl_NL' );
 $backend->storeContext( 'existing', $context );
 
 // create a new context and write it
-$context = array();
+$context = [];
 $context[] = new ezcTranslationData( 'new string', 'nieuwe string', NULL, ezcTranslationData::TRANSLATED );
 $backend->storeContext( 'new', $context );
 
@@ -30,7 +30,7 @@ $backend->storeContext( 'new', $context );
 $backend->deinitWriter();
 
 // read the context again, while keeping obsolete strings
-$backend->setOptions( array( 'keepObsolete' => true ) );
+$backend->setOptions( ['keepObsolete' => true] );
 $context = $backend->getContext( 'nl_NL', 'existing' );
 
 // re-format the written file and show it

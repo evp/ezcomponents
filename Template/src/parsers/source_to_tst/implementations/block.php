@@ -24,7 +24,7 @@ class ezcTemplateBlockSourceToTstParser extends ezcTemplateSourceToTstParser
     /**
      * The parsed block code is not recognized as a valid block.
      */
-    const STATE_UNKNOWN_BLOCK = 1;
+    public const STATE_UNKNOWN_BLOCK = 1;
 
     /**
      * Passes control to parent.

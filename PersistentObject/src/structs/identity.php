@@ -104,8 +104,8 @@ class ezcPersistentIdentity extends ezcBaseStruct
      */
     public function __construct(
         $object = null,
-        array $relatedObjects = array(),
-        array $namedRelatedObjectSets = array(),
+        array $relatedObjects = [],
+        array $namedRelatedObjectSets = [],
         SplObjectStorage $references = null
     )
     {
@@ -113,9 +113,7 @@ class ezcPersistentIdentity extends ezcBaseStruct
         $this->relatedObjects         = $relatedObjects;
         $this->namedRelatedObjectSets = $namedRelatedObjectSets;
         $this->references             = (
-            $references === null
-                ? new SplObjectStorage()
-                : $references
+            $references ?? new SplObjectStorage()
         );
     }
 }

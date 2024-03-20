@@ -66,8 +66,7 @@ class ezcMailPartTest extends ezcTestCase
         $this->assertEquals( "", $this->part->generateHeaders() );
         $this->part->setHeader( "To", "info@ez.no" );
 
-        $this->part->setHeaders( array( "To" => "test@example.com",
-                                        "Cc" => "test@example.com" ) );
+        $this->part->setHeaders( ["To" => "test@example.com", "Cc" => "test@example.com"] );
         $expectedResult = "To: test@example.com" . ezcMailTools::lineBreak() .
                           "Cc: test@example.com". ezcMailTools::lineBreak();
     }
@@ -97,7 +96,7 @@ class ezcMailPartTest extends ezcTestCase
         $expectedResult = "From: pkej@ez.no" . ezcMailTools::lineBreak();
         $this->part->setHeader( "To", "info@ez.no" );
         $this->part->setHeader( "From", "pkej@ez.no" );
-        $this->part->appendExcludeHeaders( array( "To" ) );
+        $this->part->appendExcludeHeaders( ["To"] );
         $this->assertEquals( $expectedResult, $this->part->generateHeaders() );
     }
 
@@ -109,7 +108,7 @@ class ezcMailPartTest extends ezcTestCase
         $expectedResult = "From: pkej@ez.no" . ezcMailTools::lineBreak();
         $this->part->setHeader( "To", "info@ez.no" );
         $this->part->setHeader( "From", "pkej@ez.no" );
-        $this->part->appendExcludeHeaders( array( "to" ) );
+        $this->part->appendExcludeHeaders( ["to"] );
         $this->assertEquals( $expectedResult, $this->part->generateHeaders() );
     }
 
@@ -170,8 +169,7 @@ class ezcMailPartTest extends ezcTestCase
                                                    'Sun, 21 May 2006 16:00:51 +0400',
                                                    'Sun, 21 May 2006 16:00:52 +0400',
                                                    '1024',
-                                                   array( 'x-glider' => 'sport2',
-                                                          'x-speed' => '52' )
+                                                   ['x-glider' => 'sport2', 'x-speed' => '52']
                                                    );
         $this->part->contentDisposition = $cd;
         $this->assertEquals( trim( $expectedResult ), str_replace( ezcMailTools::lineBreak(), "", $this->part->generateHeaders() ) );
@@ -192,7 +190,7 @@ class ezcMailPartTest extends ezcTestCase
 
     public function testSetHeadersWithEncoding()
     {
-        $this->part->setHeaders( array( "X-Related-City" => array( "Moscow" ), "X-Related-Movie" => array( 'James Bond - Из России с любовью', 'iso-8859-5' ) ) );
+        $this->part->setHeaders( ["X-Related-City" => ["Moscow"], "X-Related-Movie" => ['James Bond - Из России с любовью', 'iso-8859-5']] );
         $this->assertEquals( 'Moscow', $this->part->getHeader( 'X-Related-City' ) );
         $this->assertEquals( 'James Bond - Из России с любовью', $this->part->getHeader( 'X-Related-Movie' ) );
 
@@ -206,7 +204,7 @@ class ezcMailPartTest extends ezcTestCase
 
     public function testMockSetHeaderWithEncodingNoCharsetReturnDefault()
     {
-        $part = $this->getMock( 'ezcMailPart', array( 'setHeaderCharset', 'generateBody' ), array() );
+        $part = $this->getMock( 'ezcMailPart', ['setHeaderCharset', 'generateBody'], [] );
 
         $part->expects( $this->any() )
              ->method( 'setHeaderCharset' )

@@ -31,7 +31,7 @@ class ezcWebdavLockPluginConfiguration extends ezcWebdavPluginConfiguration
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new lock plugin configuration.
@@ -81,32 +81,7 @@ class ezcWebdavLockPluginConfiguration extends ezcWebdavPluginConfiguration
      */
     public function getHooks()
     {
-        return array(
-            'ezcWebdavTransport' => array(
-                'parseUnknownRequest'   => array(
-                    array( $this->main, 'parseUnknownRequest' ),
-                ),
-                'processUnknownResponse' => array(
-                    array( $this->main, 'processUnknownResponse' ),
-                ),
-            ),
-            'ezcWebdavPropertyHandler' => array(
-                'extractUnknownLiveProperty'   => array(
-                    array( $this->main, 'extractUnknownLiveProperty' ),
-                ),
-                'serializeUnknownLiveProperty' => array(
-                    array( $this->main, 'serializeUnknownLiveProperty' ),
-                ),
-            ),
-            'ezcWebdavServer' => array(
-                'receivedRequest'   => array(
-                    array( $this->main, 'receivedRequest' ),
-                ),
-                'generatedResponse' => array(
-                    array( $this->main, 'generatedResponse' ),
-                ),
-            ),
-        );
+        return ['ezcWebdavTransport' => ['parseUnknownRequest'   => [[$this->main, 'parseUnknownRequest']], 'processUnknownResponse' => [[$this->main, 'processUnknownResponse']]], 'ezcWebdavPropertyHandler' => ['extractUnknownLiveProperty'   => [[$this->main, 'extractUnknownLiveProperty']], 'serializeUnknownLiveProperty' => [[$this->main, 'serializeUnknownLiveProperty']]], 'ezcWebdavServer' => ['receivedRequest'   => [[$this->main, 'receivedRequest']], 'generatedResponse' => [[$this->main, 'generatedResponse']]]];
     }
 
     /**

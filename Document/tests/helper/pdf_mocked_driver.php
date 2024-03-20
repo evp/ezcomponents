@@ -17,7 +17,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
     protected $style;
     protected $size;
 
-    public $calls = array();
+    public $calls = [];
 
     /**
      * Show a debug dump of all calls to the driver.
@@ -62,7 +62,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function createPage( $width, $height )
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 
     /**
@@ -153,7 +153,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function drawWord( $x, $y, $word )
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 
     /**
@@ -173,7 +173,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function drawPolygon( array $points, array $color )
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 
     /**
@@ -199,7 +199,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function drawPolyline( array $points, array $color, $width, $close = true )
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 
     /**
@@ -218,7 +218,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function addExternalLink( $x, $y, $width, $height, $url )
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 
     /**
@@ -237,7 +237,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function addInternalLink( $x, $y, $width, $height, $target )
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 
     /**
@@ -251,7 +251,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function addInternalLinkTarget( $id )
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 
     /**
@@ -263,7 +263,7 @@ class ezcTestDocumentPdfMockDriver extends ezcDocumentPdfSvgDriver
      */
     public function save()
     {
-        $this->calls[] = array( __FUNCTION__, func_get_args() );
+        $this->calls[] = [__FUNCTION__, func_get_args()];
     }
 }
 ?>

@@ -16,7 +16,7 @@ class ezcTemplateTranslationExtracterTest extends ezcTestCase
 {
     function testExtracter()
     {
-        $file = dirname( __FILE__ ) . '/test_files/test.ezt';
+        $file = __DIR__ . '/test_files/test.ezt';
         $source = new ezcTemplateSourceCode( $file, $file );
         $source->load();
 
@@ -28,14 +28,14 @@ class ezcTemplateTranslationExtracterTest extends ezcTestCase
 
         $tr = $et->getTranslation();
         self::assertEquals( 
-            array( 'een', 'twee', 'drie', 'vier', 'vijf', 'zes', 'zeven', 'acht', 'negen', 'tien', 'elf' ),
+            ['een', 'twee', 'drie', 'vier', 'vijf', 'zes', 'zeven', 'acht', 'negen', 'tien', 'elf'],
             array_keys( $this->readAttribute( $tr['test'], 'translationMap' ) ) 
         );
     }
 
     function testExtracterWithoutDefaultContext()
     {
-        $file = dirname( __FILE__ ) . '/test_files/test_without_default_context.ezt';
+        $file = __DIR__ . '/test_files/test_without_default_context.ezt';
         $source = new ezcTemplateSourceCode( $file, $file );
         $source->load();
 
@@ -47,14 +47,14 @@ class ezcTemplateTranslationExtracterTest extends ezcTestCase
 
         $tr = $et->getTranslation();
         self::assertEquals( 
-            array( 'een', 'twee', 'drie', 'vier', 'vijf', 'zes', 'zeven', 'acht', 'negen', 'tien', 'elf' ),
+            ['een', 'twee', 'drie', 'vier', 'vijf', 'zes', 'zeven', 'acht', 'negen', 'tien', 'elf'],
             array_keys( $this->readAttribute( $tr['test'], 'translationMap' ) ) 
         );
     }
 
     function testExtracterWithoutContext()
     {
-        $file = dirname( __FILE__ ) . '/test_files/test_without_context.ezt';
+        $file = __DIR__ . '/test_files/test_without_context.ezt';
         $source = new ezcTemplateSourceCode( $file, $file );
         $source->load();
 
@@ -75,7 +75,7 @@ class ezcTemplateTranslationExtracterTest extends ezcTestCase
 
     function testExtracterWithQuotes()
     {
-        $file = dirname( __FILE__ ) . '/test_files/test-quotes.ezt';
+        $file = __DIR__ . '/test_files/test-quotes.ezt';
         $source = new ezcTemplateSourceCode( $file, $file );
         $source->load();
 
@@ -88,7 +88,7 @@ class ezcTemplateTranslationExtracterTest extends ezcTestCase
         $tr = $et->getStrings();
 
         self::assertEquals( 
-            array( 'Test quotes: \'test\'.', 'Test quotes: "test".', 'Test quotes: \'test\' "test".', 'Test quotes: "test" \'test\'.' ),
+            ['Test quotes: \'test\'.', 'Test quotes: "test".', 'Test quotes: \'test\' "test".', 'Test quotes: "test" \'test\'.'],
             array_keys( $tr['un'] ) 
         );
     }

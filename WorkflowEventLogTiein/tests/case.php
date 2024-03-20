@@ -22,7 +22,7 @@ abstract class WorkflowEventLogTieinTestCase extends ezcWorkflowDatabaseTieinTes
         parent::setUp();
 
         $writer = new ezcLogUnixFileWriter(
-          dirname( __FILE__ ) . '/data', 'actual.log' 
+          __DIR__ . '/data', 'actual.log' 
         );
 
         $this->log = ezcLog::getInstance();
@@ -38,7 +38,7 @@ abstract class WorkflowEventLogTieinTestCase extends ezcWorkflowDatabaseTieinTes
     {
         parent::tearDown();
 
-        @unlink( dirname( __FILE__ ) . '/data/actual.log' );
+        @unlink( __DIR__ . '/data/actual.log' );
     }
 
     protected function cleanupTimestamps( Array $buffer )
@@ -61,14 +61,14 @@ abstract class WorkflowEventLogTieinTestCase extends ezcWorkflowDatabaseTieinTes
 
     protected function readActual()
     {
-        $actual = file( dirname( __FILE__ ) . '/data/actual.log' );
+        $actual = file( __DIR__ . '/data/actual.log' );
 
         return $this->cleanupTimestamps( $actual );
     }
 
     protected function readExpected( $name )
     {
-        $expected = file( dirname( __FILE__ ) . '/data/' . $name . '.log' );
+        $expected = file( __DIR__ . '/data/' . $name . '.log' );
 
         return $this->cleanupTimestamps( $expected );
     }

@@ -41,7 +41,7 @@ class ezcTemplateIdentifierTstNode extends ezcTemplateExpressionTstNode
 
     public function getTreeProperties()
     {
-        return array( 'value' => $this->value );
+        return ['value' => $this->value];
     }
 }
 ?>

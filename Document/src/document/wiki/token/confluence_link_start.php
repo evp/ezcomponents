@@ -30,15 +30,11 @@ class ezcDocumentWikiConfluenceLinkStartToken extends ezcDocumentWikiLinkStartTo
     {
         if ( $count === 1 )
         {
-            return array( 'link' );
+            return ['link'];
         }
 
         return array_slice(
-            array(
-                'nodes',
-                'link',
-                'description',
-            ),
+            ['nodes', 'link', 'description'],
             0, $count
         );
     }
@@ -52,7 +48,7 @@ class ezcDocumentWikiConfluenceLinkStartToken extends ezcDocumentWikiLinkStartTo
      */
     public static function __set_state( $properties )
     {
-        $tokenClass = __CLASS__;
+        $tokenClass = self::class;
         $token = new $tokenClass(
             $properties['content'],
             $properties['line'],

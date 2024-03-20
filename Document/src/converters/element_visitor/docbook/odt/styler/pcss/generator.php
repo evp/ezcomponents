@@ -33,7 +33,7 @@ abstract class ezcDocumentOdtStyleGenerator
      * 
      * @var array(string=>int)
      */
-    protected $prefixCounters = array();
+    protected $prefixCounters = [];
 
     /**
      * Creates a new style genertaor.

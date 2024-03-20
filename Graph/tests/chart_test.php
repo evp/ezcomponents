@@ -9,8 +9,8 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
-require_once dirname( __FILE__ ) . '/custom_chart.php';
+require_once __DIR__ . '/test_case.php';
+require_once __DIR__ . '/custom_chart.php';
 
 /**
  * Tests for ezcGraph class.
@@ -20,11 +20,7 @@ require_once dirname( __FILE__ ) . '/custom_chart.php';
  */
 class ezcGraphChartTest extends ezcGraphTestCase
 {
-    protected $testFiles = array(
-        'jpeg'          => 'jpeg.jpg',
-        'nonexistant'   => 'nonexisting.jpg',
-        'invalid'       => 'text.txt',
-    );
+    protected $testFiles = ['jpeg'          => 'jpeg.jpg', 'nonexistant'   => 'nonexisting.jpg', 'invalid'       => 'text.txt'];
 
     protected $tempDir;
     protected $basePath;
@@ -38,8 +34,8 @@ class ezcGraphChartTest extends ezcGraphTestCase
     {
         static $i = 0;
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -190,13 +186,13 @@ class ezcGraphChartTest extends ezcGraphTestCase
 
         $barChart = new ezcGraphBarChart();
         $barChart->data['test'] = new ezcGraphArrayDataSet(
-            array( 23 )
+            [23]
         );
         $barChart->render( 400, 200, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -206,16 +202,16 @@ class ezcGraphChartTest extends ezcGraphTestCase
 
         $barChart = new ezcGraphBarChart();
         $barChart->data['test'] = new ezcGraphArrayDataSet(
-            array( 23 )
+            [23]
         );
         $barChart->data['test 2'] = new ezcGraphArrayDataSet(
-            array( 5 )
+            [5]
         );
         $barChart->render( 400, 200, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -227,13 +223,13 @@ class ezcGraphChartTest extends ezcGraphTestCase
         $barChart->xAxis = new ezcGraphChartElementNumericAxis();
 
         $barChart->data['test'] = new ezcGraphArrayDataSet(
-            array( 23 )
+            [23]
         );
         $barChart->render( 400, 200, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -244,26 +240,26 @@ class ezcGraphChartTest extends ezcGraphTestCase
         $barChart = new ezcGraphLineChart();
 
         $barChart->data['test'] = new ezcGraphArrayDataSet(
-            array( 5, 23, 42 )
+            [5, 23, 42]
         );
         $color = $barChart->data['test']->color->default;
         $barChart->render( 400, 200, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         // Render a second time with a new dataset, and expect the same result
         $barChart->data['test'] = new ezcGraphArrayDataSet(
-            array( 5, 23, 42 )
+            [5, 23, 42]
         );
         $barChart->data['test']->color = $color;
         $barChart->render( 400, 200, $filename );
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -276,7 +272,7 @@ class ezcGraphChartTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

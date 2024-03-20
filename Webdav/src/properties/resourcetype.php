@@ -23,7 +23,7 @@ class ezcWebdavResourceTypeProperty extends ezcWebdavLiveProperty
      *
      * @see ezcWebdavResourceTypeProperty::$type
      */
-    const TYPE_RESOURCE = 1;
+    public const TYPE_RESOURCE = 1;
 
     /**
      * Kept for BC reasons.
@@ -33,14 +33,14 @@ class ezcWebdavResourceTypeProperty extends ezcWebdavLiveProperty
      *
      * @apichange Will be removed in next major version.
      */
-    const TYPE_RESSOURCE = self::TYPE_RESOURCE;
+    public const TYPE_RESSOURCE = self::TYPE_RESOURCE;
 
     /**
      * Indicates that a resource is a collection. 
      *
      * @see ezcWebdavResourceTypeProperty::$type
      */
-    const TYPE_COLLECTION = 2;
+    public const TYPE_COLLECTION = 2;
     
     /**
      * Creates a new ezcWebdavResourceTypeProperty.

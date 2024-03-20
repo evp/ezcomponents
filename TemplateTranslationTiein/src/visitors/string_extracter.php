@@ -56,7 +56,7 @@ class ezcTemplateTranslationStringExtracter extends ezcTemplateTstWalker
     public function __construct( ezcTemplateParser $parser )
     {
         $this->parser = $parser;
-        $this->strings = array();
+        $this->strings = [];
     }
 
     /**
@@ -144,7 +144,7 @@ class ezcTemplateTranslationStringExtracter extends ezcTemplateTstWalker
      */
     function getTranslation()
     {
-        $ret = array();
+        $ret = [];
         foreach ( $this->strings as $context => $data )
         {
             $ret[$context] = new ezcTranslation( $data );
@@ -159,10 +159,10 @@ class ezcTemplateTranslationStringExtracter extends ezcTemplateTstWalker
      */
     function getStrings()
     {
-        $ret = array();
+        $ret = [];
         foreach ( $this->strings as $context => $data )
         {
-            $ret[$context] = array();
+            $ret[$context] = [];
             foreach ( $data as $translation )
             {
                 $ret[$context][$translation->original] = $translation;

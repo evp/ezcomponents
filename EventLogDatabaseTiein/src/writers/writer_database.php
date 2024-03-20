@@ -82,21 +82,21 @@ class ezcLogDatabaseWriter implements ezcLogWriter
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Holds the default column names in the log tables.
      *
      * @var array(string=>mixed)
      */
-    private $defaultColumns = array();
+    private $defaultColumns = [];
 
     /**
      * Holds additional column names in the log tables.
      *
      * @var array(string=>mixed)
      */
-    private $additionalColumns = array();
+    private $additionalColumns = [];
 
     /**
      * Maps tables to ezcLogFilter messages.
@@ -245,7 +245,7 @@ class ezcLogDatabaseWriter implements ezcLogWriter
      * @param string $category
      * @param array(string=>string) $optional
      */
-    public function writeLogMessage( $message, $severity, $source, $category, $optional = array() )
+    public function writeLogMessage( $message, $severity, $source, $category, $optional = [] )
     {
         $severityName = ezcLog::translateSeverityName( $severity );
         $tables = $this->map->get( $severity, $source, $category );
@@ -266,7 +266,7 @@ class ezcLogDatabaseWriter implements ezcLogWriter
                            ->set( $this->datetime, $query->expr->now() );
                     foreach ( $optional as $key => $val )
                     {
-                        $q->set( ( isset( $this->additionalColumns[$key] ) ? $this->additionalColumns[$key] : $key ), $q->bindValue( $val ) );
+                        $q->set( ( $this->additionalColumns[$key] ?? $key ), $q->bindValue( $val ) );
                     }
                     $stmt = $q->prepare();
                     $stmt->execute();
@@ -293,7 +293,7 @@ class ezcLogDatabaseWriter implements ezcLogWriter
                            ->set( $this->datetime, $query->expr->now() );
                     foreach ( $optional as $key => $val )
                     {
-                        $q->set( ( isset( $this->additionalColumns[$key] ) ? $this->additionalColumns[$key] : $key ), $q->bindValue( $val ) );
+                        $q->set( ( $this->additionalColumns[$key] ?? $key ), $q->bindValue( $val ) );
                     }
                     $stmt = $q->prepare();
                     $stmt->execute();

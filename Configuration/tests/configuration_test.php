@@ -16,65 +16,32 @@ class ezcConfigurationTest extends ezcTestCase
 {
     public function testAllSettings()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                '#' => "Just one group",
-                'Setting1' => " This setting sucks",
-                'MultiRow' => " Multi\n row\n comment",
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = ['TheOnlyGroup' => ['#' => "Just one group", 'Setting1' => " This setting sucks", 'MultiRow' => " Multi\n row\n comment"]];
         $return = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $settings, $return->getAllSettings() );
     }
 
     public function testAllComments()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                '#' => "Just one group",
-                'Setting1' => " This setting sucks",
-                'MultiRow' => " Multi\n row\n comment",
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = ['TheOnlyGroup' => ['#' => "Just one group", 'Setting1' => " This setting sucks", 'MultiRow' => " Multi\n row\n comment"]];
         $return = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $comments, $return->getAllComments() );
     }
 
     public function testHasSetting1()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $return = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( false, $return->hasSetting( 'NonExistingGroup', 'NonExistent' ) );
     }
 
     public function testHasSetting2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = [];
         $return = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( true, $return->hasSetting( 'TheOnlyGroup', 'Setting1' ) );
         $this->assertEquals( true, $return->hasSetting( 'TheOnlyGroup', 'SettingNoComment' ) );
@@ -86,17 +53,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testHasSetting3()
     {
-        $settings = array(
-            '3D' => array(
-                'Decimal' => array( 42, 0 ),
-                'Array' =>  array(
-                    'Decimal' => array( 'a' => 42, 'b' => 0 ),
-                    'Mixed' => array( 'b' => false, 2 => "Derick \"Tiger\" Rethans" ),
-                ),
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['3D' => ['Decimal' => [42, 0], 'Array' =>  ['Decimal' => ['a' => 42, 'b' => 0], 'Mixed' => ['b' => false, 2 => "Derick \"Tiger\" Rethans"]]]];
+        $comments = [];
         $return = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( true, $return->hasSetting( '3D', 'Decimal' ) );
         $this->assertEquals( true, $return->hasSetting( '3D', 'Array' ) );
@@ -106,17 +64,12 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettingBrokenSettingName()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true]];
+        $comments = [];
         $return = new ezcConfiguration( $settings, $comments );
         try
         {
-            $setting = $return->getSetting( 'TheOnlyGroup', array( 'Setting1' ) );
+            $setting = $return->getSetting( 'TheOnlyGroup', ['Setting1'] );
             $this->fail( "Expected exception not thrown" );
         }
         catch ( ezcConfigurationSettingnameNotStringException $e )
@@ -127,15 +80,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSetting1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = [];
         $return = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( true, $return->getSetting( 'TheOnlyGroup', 'Setting1' ) );
         $this->assertEquals( 42, $return->getSetting( 'TheOnlyGroup', 'SettingNoComment' ) );
@@ -144,12 +90,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSetting2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
@@ -165,12 +107,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSetting3()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
@@ -186,17 +124,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testBoolSetting()
     {
-        $settings = array(
-            'Types' => array(
-                'Bool' => true,
-                'Float' => 3.14,
-                'Int' => 42,
-                'String' => "Components",
-                'Array' => array( 1 => 'Een', 2 => 'Twee' ),
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['Types' => ['Bool' => true, 'Float' => 3.14, 'Int' => 42, 'String' => "Components", 'Array' => [1 => 'Een', 2 => 'Twee']]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         $bool = $configuration->getBoolSetting( 'Types', 'Bool' );
@@ -217,17 +146,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testNumberSetting1()
     {
-        $settings = array(
-            'Types' => array(
-                'Bool' => true,
-                'Float' => 3.14,
-                'Int' => 42,
-                'String' => "Components",
-                'Array' => array( 1 => 'Een', 2 => 'Twee' ),
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['Types' => ['Bool' => true, 'Float' => 3.14, 'Int' => 42, 'String' => "Components", 'Array' => [1 => 'Een', 2 => 'Twee']]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         $float = $configuration->getNumberSetting( 'Types', 'Float' );
@@ -248,17 +168,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testNumberSetting2()
     {
-        $settings = array(
-            'Types' => array(
-                'Bool' => true,
-                'Float' => 3.14,
-                'Int' => 42,
-                'String' => "Components",
-                'Array' => array( 1 => 'Een', 2 => 'Twee' ),
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['Types' => ['Bool' => true, 'Float' => 3.14, 'Int' => 42, 'String' => "Components", 'Array' => [1 => 'Een', 2 => 'Twee']]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         $number = $configuration->getNumberSetting( 'Types', 'Int' );
@@ -279,17 +190,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testStringSetting()
     {
-        $settings = array(
-            'Types' => array(
-                'Bool' => true,
-                'Float' => 3.14,
-                'Int' => 42,
-                'String' => "Components",
-                'Array' => array( 1 => 'Een', 2 => 'Twee' ),
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['Types' => ['Bool' => true, 'Float' => 3.14, 'Int' => 42, 'String' => "Components", 'Array' => [1 => 'Een', 2 => 'Twee']]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         $string = $configuration->getStringSetting( 'Types', 'String' );
@@ -310,21 +212,12 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testArraySetting()
     {
-        $settings = array(
-            'Types' => array(
-                'Bool' => true,
-                'Float' => 3.14,
-                'Int' => 42,
-                'String' => "Components",
-                'Array' => array( 1 => 'Een', 2 => 'Twee' ),
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['Types' => ['Bool' => true, 'Float' => 3.14, 'Int' => 42, 'String' => "Components", 'Array' => [1 => 'Een', 2 => 'Twee']]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         $array = $configuration->getArraySetting( 'Types', 'Array' );
-        $this->assertEquals( array( 1 => 'Een', 2 => 'Twee' ), $array );
+        $this->assertEquals( [1 => 'Een', 2 => 'Twee'], $array );
         try
         {
             $configuration->getArraySetting( 'Types', 'Bool' );
@@ -341,17 +234,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testComment()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => 'Comment for setting 1',
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42]];
+        $comments = ['TheOnlyGroup' => ['Setting1' => 'Comment for setting 1']];
         $return = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( 'Comment for setting 1', $return->getComment( 'TheOnlyGroup', 'Setting1' ) );
         $this->assertEquals( false, $return->getComment( 'TheOnlyGroup', 'SettingNoComment' ) );
@@ -359,12 +243,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testComment2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
@@ -380,12 +260,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testComment3()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
@@ -401,14 +277,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSetSettingOverwrite()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-                'Existing2' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true, 'Existing2' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
 
@@ -423,13 +293,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSetSettingNew()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
 
@@ -444,13 +309,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettingRemove1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
 
@@ -461,12 +321,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettingRemove2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
@@ -482,12 +338,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettingRemove3()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
@@ -503,56 +355,38 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettingHasSettings()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'Setting2' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'Setting2' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
-        $found = $configuration->hasSettings( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+        $found = $configuration->hasSettings( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
         $this->assertEquals( true, $found );
     }
 
     public function testSettingHasSettings2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
-        $found = $configuration->hasSettings( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+        $found = $configuration->hasSettings( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
         $this->assertEquals( false, $found );
     }
 
     public function testSettingHasSettings3()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
-        $found = $configuration->hasSettings( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+        $found = $configuration->hasSettings( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
         $this->assertEquals( false, $found );
     }
 
     public function testSettingHasGroup1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         $found = $configuration->hasGroup( 'TheOnlyGroup' );
@@ -561,13 +395,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettingHasGroup2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         $found = $configuration->hasGroup( 'NonExistingGroup' );
@@ -576,34 +405,23 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettings1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'Setting2' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'Setting2' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
-        $found = $configuration->getSettings( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+        $found = $configuration->getSettings( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
         $this->assertEquals( $settings['TheOnlyGroup'], $found );
     }
 
     public function testSettings2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
         {
-            $found = $configuration->getSettings( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+            $found = $configuration->getSettings( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
             $this->fail( "Expected exception not thrown" );
         }
         catch ( ezcConfigurationUnknownSettingException $e )
@@ -614,15 +432,13 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettings3()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
         {
-            $found = $configuration->getSettings( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+            $found = $configuration->getSettings( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
             $this->fail( "Expected exception not thrown" );
         }
         catch ( ezcConfigurationUnknownGroupException $e )
@@ -633,41 +449,24 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testComments1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'Setting2' => true,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => 'Houston, we have a comment!',
-            )
-        );
-        $expected = array(
-            'Setting1' => 'Houston, we have a comment!',
-            'Setting2' => false,
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'Setting2' => true]];
+        $comments = ['TheOnlyGroup' => ['Setting1' => 'Houston, we have a comment!']];
+        $expected = ['Setting1' => 'Houston, we have a comment!', 'Setting2' => false];
         $configuration = new ezcConfiguration( $settings, $comments );
 
-        $found = $configuration->getComments( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+        $found = $configuration->getComments( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
         $this->assertEquals( $expected, $found );
     }
 
     public function testComments2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
         {
-            $found = $configuration->getComments( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+            $found = $configuration->getComments( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
             $this->fail( "Expected exception not thrown" );
         }
         catch ( ezcConfigurationUnknownSettingException $e )
@@ -678,15 +477,13 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testComments3()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
         {
-            $found = $configuration->getComments( 'TheOnlyGroup', array( 'Setting1', 'Setting2' ) );
+            $found = $configuration->getComments( 'TheOnlyGroup', ['Setting1', 'Setting2'] );
             $this->fail( "Expected exception not thrown" );
         }
         catch ( ezcConfigurationUnknownGroupException $e )
@@ -697,78 +494,58 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSetSettingsOverwrite()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-                'Existing2' => 'true',
-                'Existing3' => 1,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true, 'Existing2' => 'true', 'Existing3' => 1]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
 
         $configuration->setSettings(
             'TheOnlyGroup',
-            array( 'Existing1', 'Existing2', 'Existing3' ),
-            array( false, 'false', 0 ),
-            array( 'Comment', null )
+            ['Existing1', 'Existing2', 'Existing3'],
+            [false, 'false', 0],
+            ['Comment', null]
         );
         $this->assertSame( true, $this->readAttribute( $configuration, 'isModified' ) );
         $this->assertEquals(
-            array( 'Existing1' => false, 'Existing2' => 'false', 'Existing3' => 0 ),
-            $configuration->getSettings( 'TheOnlyGroup', array( 'Existing1', 'Existing2', 'Existing3' ) )
+            ['Existing1' => false, 'Existing2' => 'false', 'Existing3' => 0],
+            $configuration->getSettings( 'TheOnlyGroup', ['Existing1', 'Existing2', 'Existing3'] )
         );
         $this->assertEquals(
-            array( 'Existing1' => 'Comment', 'Existing2' => false, 'Existing3' => false ),
-            $configuration->getComments( 'TheOnlyGroup', array( 'Existing1', 'Existing2', 'Existing3' ) )
+            ['Existing1' => 'Comment', 'Existing2' => false, 'Existing3' => false],
+            $configuration->getComments( 'TheOnlyGroup', ['Existing1', 'Existing2', 'Existing3'] )
         );
     }
 
     public function testSetSettingsNew()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
 
-        $configuration->setSettings( 'TheOnlyGroup', array( 'Existing1', 'Existing2', 'Existing3' ), array( false, 'false', 0 ) );
+        $configuration->setSettings( 'TheOnlyGroup', ['Existing1', 'Existing2', 'Existing3'], [false, 'false', 0] );
         $this->assertSame( true, $this->readAttribute( $configuration, 'isModified' ) );
         $this->assertEquals(
-            array( 'Existing1' => false, 'Existing2' => 'false', 'Existing3' => 0 ),
-            $configuration->getSettings( 'TheOnlyGroup', array( 'Existing1', 'Existing2', 'Existing3' ) )
+            ['Existing1' => false, 'Existing2' => 'false', 'Existing3' => 0],
+            $configuration->getSettings( 'TheOnlyGroup', ['Existing1', 'Existing2', 'Existing3'] )
         );
     }
 
     public function testSettingsInGroup1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-                'Existing2' => 'true',
-                'Existing3' => 1,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true, 'Existing2' => 'true', 'Existing3' => 1]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertEquals(
-            array( 'Existing1' => true, 'Existing2' => 'true', 'Existing3' => 1 ),
+            ['Existing1' => true, 'Existing2' => 'true', 'Existing3' => 1],
             $configuration->getSettingsInGroup( 'TheOnlyGroup' )
         );
     }
 
     public function testSettingsInGroup2()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         try
         {
@@ -783,49 +560,30 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testGroupNames()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-            ),
-            'TheSecondOnlyGroup' => array(
-                'Existing1' => true,
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true], 'TheSecondOnlyGroup' => ['Existing1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
-        $this->assertEquals( array( 'TheOnlyGroup', 'TheSecondOnlyGroup' ), $configuration->getGroupNames() );
+        $this->assertEquals( ['TheOnlyGroup', 'TheSecondOnlyGroup'], $configuration->getGroupNames() );
     }
 
     public function testRemoveSettings()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-                'Existing2' => 'true',
-                'Existing3' => 1,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => 'Comment1',
-                'Existing2' => 'Comment2',
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true, 'Existing2' => 'true', 'Existing3' => 1]];
+        $comments = ['TheOnlyGroup' => ['Existing1' => 'Comment1', 'Existing2' => 'Comment2']];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
 
-        $configuration->removeSettings( 'TheOnlyGroup', array( 'Existing1' ) );
+        $configuration->removeSettings( 'TheOnlyGroup', ['Existing1'] );
         $this->assertSame( true, $this->readAttribute( $configuration, 'isModified' ) );
         $this->assertEquals(
-            array( 'Existing2' => 'true', 'Existing3' => 1 ),
+            ['Existing2' => 'true', 'Existing3' => 1],
             $configuration->getSettingsInGroup( 'TheOnlyGroup' )
         );
         $this->assertEquals( false, $configuration->hasSetting( 'TheOnlyGroup', 'Existing1' ) );
 
         try
         {
-            $configuration->removeSettings( 'NotExistingGroup', array( 'Existing1' ) );
+            $configuration->removeSettings( 'NotExistingGroup', ['Existing1'] );
         }
         catch ( ezcConfigurationUnknownGroupException $e )
         {
@@ -834,7 +592,7 @@ class ezcConfigurationTest extends ezcTestCase
 
         try
         {
-            $configuration->removeSettings( 'TheOnlyGroup', array( 'NonExisting' ) );
+            $configuration->removeSettings( 'TheOnlyGroup', ['NonExisting'] );
         }
         catch ( ezcConfigurationUnknownSettingException $e )
         {
@@ -844,26 +602,20 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testAddGroup1()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
 
         $found = $configuration->addGroup( 'TheOnlyGroup', 'A comment' );
         $this->assertSame( true, $this->readAttribute( $configuration, 'isModified' ) );
-        $this->assertSame( array( 'TheOnlyGroup' => array( '#' => 'A comment' ) ), $this->readAttribute( $configuration, 'comments' ) );
+        $this->assertSame( ['TheOnlyGroup' => ['#' => 'A comment']], $this->readAttribute( $configuration, 'comments' ) );
     }
 
     public function testAddGroup2()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => []];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
 
         try
@@ -879,28 +631,19 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testSettingsNames1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-                'Existing2' => 'true',
-                'Existing3' => 1,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true, 'Existing2' => 'true', 'Existing3' => 1]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertEquals(
-            array( 'Existing1', 'Existing2', 'Existing3' ),
+            ['Existing1', 'Existing2', 'Existing3'],
             $configuration->getSettingNames( 'TheOnlyGroup' )
         );
     }
 
     public function testSettingsNames2()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         try
         {
@@ -915,15 +658,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testRemoveGroup1()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-                'Existing2' => 'true',
-                'Existing3' => 1,
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true, 'Existing2' => 'true', 'Existing3' => 1]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $configuration->removeGroup( 'TheOnlyGroup' );
         $this->assertEquals( false, $configuration->hasGroup( 'TheOnlyGroup' ) );
@@ -932,10 +668,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testRemoveGroup2()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         try
         {
@@ -950,16 +684,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testRemoveGroupWithComments()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing3' => 1,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                'CommentExisting3' => 1,
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Existing3' => 1]];
+        $comments = ['TheOnlyGroup' => ['CommentExisting3' => 1]];
         $configuration = new ezcConfiguration( $settings, $comments );
         $configuration->removeGroup( 'TheOnlyGroup' );
         $this->assertEquals( false, $configuration->hasGroup( 'TheOnlyGroup' ) );
@@ -968,16 +694,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testRemoveAllSettings()
     {
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Existing1' => true,
-            ),
-            'TheSecondOnlyGroup' => array(
-                'Existing1' => true,
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['TheOnlyGroup' => ['Existing1' => true], 'TheSecondOnlyGroup' => ['Existing1' => true]];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $configuration->removeAllSettings();
         $this->assertEquals( false, $configuration->hasGroup( 'TheOnlyGroup' ) );
@@ -987,10 +705,8 @@ class ezcConfigurationTest extends ezcTestCase
 
     public function testIsModified()
     {
-        $settings = array(
-        );
-        $comments = array(
-        );
+        $settings = [];
+        $comments = [];
         $configuration = new ezcConfiguration( $settings, $comments );
         $this->assertSame( false, $this->readAttribute( $configuration, 'isModified' ) );
         $this->assertEquals( false, $configuration->isModified() );

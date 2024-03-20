@@ -206,7 +206,7 @@ class ezcImageAnalyzerPhpHandler extends ezcImageAnalyzerHandler
         if ( isset( $dataStruct->exif['COMPUTED']['UserComment'] ) )
         {
             $dataStruct->comment = $dataStruct->exif['COMPUTED']['UserComment'];
-            $dataStruct->commentList = array( $dataStruct->comment );
+            $dataStruct->commentList = [$dataStruct->comment];
         }
         if ( isset( $dataStruct->exif['COMPUTED']['Copyright'] ) )
         {
@@ -264,13 +264,13 @@ class ezcImageAnalyzerPhpHandler extends ezcImageAnalyzerHandler
             throw new ezcImageAnalyzerFileNotProcessableException( $file, 'Not a valid GIF image file' );
         }
 
-        $info = array();
+        $info = [];
 
         $version = substr( $magic, 3 );
         $frames = 0;
         // Gifs are always indexed
         $dataStruct->mode             = self::MODE_INDEXED;
-        $dataStruct->commentList      = array();
+        $dataStruct->commentList      = [];
         $dataStruct->transparencyType = self::TRANSPARENCY_OPAQUE;
 
         // Read Logical Screen Descriptor

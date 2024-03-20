@@ -37,7 +37,7 @@ class ezcDocumentDocbookToRstBlockquoteHandler extends ezcDocumentDocbookToRstBa
         // recursive quote visiting.
         $xpath = new DOMXPath( $node->ownerDocument );
         $attributionNodes = $xpath->query( '*[local-name() = "attribution"]', $node );
-        $attributions = array();
+        $attributions = [];
         foreach ( $attributionNodes as $attribution )
         {
             $attributions[] = $attribution->cloneNode( true );

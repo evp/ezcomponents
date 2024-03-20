@@ -9,7 +9,5 @@
  * @package MvcFeedTiein
  */
 
-return array(
-    'ezcMvcFeedViewHandler' => 'MvcFeedTiein/view_handlers/feed.php',
-);
+return ['ezcMvcFeedViewHandler' => 'MvcFeedTiein/view_handlers/feed.php'];
 ?>

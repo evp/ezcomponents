@@ -60,7 +60,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
      * 
      * @var array
      */
-    protected $strings = array();
+    protected $strings = [];
 
     /**
      * Constructor
@@ -69,7 +69,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         ezcBase::checkDependency( 'Graph', ezcBase::DEP_PHP_EXTENSION, 'ming' );
         $this->options = new ezcGraphFlashDriverOptions( $options );
@@ -131,8 +131,8 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
                     // Calculate desired length of gradient
                     $length = sqrt( 
-                        pow( $color->endPoint->x - $color->startPoint->x, 2 ) + 
-                        pow( $color->endPoint->y - $color->startPoint->y, 2 ) 
+                        ($color->endPoint->x - $color->startPoint->x) ** 2 + 
+                        ($color->endPoint->y - $color->startPoint->y) ** 2 
                     ); 
 
                     $fill->scaleTo( $this->modifyCoordinate( $length ) / 32768 , $this->modifyCoordinate( $length ) / 32768 );
@@ -355,16 +355,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
 
         $this->options->font->minimalUsedFont = $this->deModifyCoordinate( $size );
 
-        $this->strings[] = array(
-            'text' => $result,
-            'id' => $id = 'ezcGraphTextBox_' . $this->id++,
-            'position' => $position,
-            'width' => $width,
-            'height' => $height,
-            'align' => $align,
-            'font' => $this->options->font,
-            'rotation' => $rotation,
-        );
+        $this->strings[] = ['text' => $result, 'id' => $id = 'ezcGraphTextBox_' . $this->id++, 'position' => $position, 'width' => $width, 'height' => $height, 'align' => $align, 'font' => $this->options->font, 'rotation' => $rotation];
 
         return $id;
     }
@@ -428,7 +419,7 @@ class ezcGraphFlashDriver extends ezcGraphDriver
     protected function drawAllTexts()
     {
         // Iterate over all strings to collect used chars per font
-        $chars = array();
+        $chars = [];
         foreach ( $this->strings as $text )
         {
             $completeString = '';
@@ -497,45 +488,35 @@ class ezcGraphFlashDriver extends ezcGraphDriver
                         break;
                 }
 
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x - $padding + $xOffset ),
-                        $this->deModifyCoordinate( $text['position']->y - $padding + $yOffset )
-                    ),
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $xOffset + $width ),
-                        $this->deModifyCoordinate( $text['position']->y - $padding + $yOffset )
-                    ),
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $xOffset + $width ),
-                        $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $yOffset + $completeHeight )
-                    ),
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x - $padding + $xOffset ),
-                        $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $yOffset + $completeHeight )
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x - $padding + $xOffset ),
+                    $this->deModifyCoordinate( $text['position']->y - $padding + $yOffset )
+                ), new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $xOffset + $width ),
+                    $this->deModifyCoordinate( $text['position']->y - $padding + $yOffset )
+                ), new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $xOffset + $width ),
+                    $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $yOffset + $completeHeight )
+                ), new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x - $padding + $xOffset ),
+                    $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $yOffset + $completeHeight )
+                )];
             }
             else
             {
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x - $padding ),
-                        $this->deModifyCoordinate( $text['position']->y - $padding )
-                    ),
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $text['width'] ),
-                        $this->deModifyCoordinate( $text['position']->y - $padding )
-                    ),
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $text['width'] ),
-                        $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $text['height'] )
-                    ),
-                    new ezcGraphCoordinate(
-                        $this->deModifyCoordinate( $text['position']->x - $padding ),
-                        $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $text['height'] )
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x - $padding ),
+                    $this->deModifyCoordinate( $text['position']->y - $padding )
+                ), new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $text['width'] ),
+                    $this->deModifyCoordinate( $text['position']->y - $padding )
+                ), new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x + $padding * 2 + $text['width'] ),
+                    $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $text['height'] )
+                ), new ezcGraphCoordinate(
+                    $this->deModifyCoordinate( $text['position']->x - $padding ),
+                    $this->deModifyCoordinate( $text['position']->y + $padding * 2 + $text['height'] )
+                )];
             }
 
             if ( $text['rotation'] !==  null )

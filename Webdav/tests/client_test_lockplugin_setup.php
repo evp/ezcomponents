@@ -9,14 +9,14 @@ class ezcWebdavClientTestLockPluginSetup extends ezcWebdavClientTestSetup
 
     protected $testSetId;
 
-    protected $tokenReplacement = array();
+    protected $tokenReplacement = [];
 
-    protected $tokenAssignement = array();
+    protected $tokenAssignement = [];
 
     public function performSetup( ezcWebdavClientTest $test, $testSetId )
     {
         $this->testSetId   = $testSetId;
-        $this->testDataDir = dirname( __FILE__ ) . '/lock_plugin';
+        $this->testDataDir = __DIR__ . '/lock_plugin';
 
         $test->server = $this->getServer(
             new ezcWebdavBasicPathFactory( 'http://example.com' )
@@ -24,10 +24,7 @@ class ezcWebdavClientTestLockPluginSetup extends ezcWebdavClientTestSetup
         $test->server->pluginRegistry->registerPlugin(
             new ezcWebdavLockPluginConfiguration(
                 new ezcWebdavLockPluginOptions(
-                    array(
-                        'lockTimeout'        => 604800,
-                        'backendLockTimeout' => 2000000,
-                    )
+                    ['lockTimeout'        => 604800, 'backendLockTimeout' => 2000000]
                 )
             )
         );
@@ -139,7 +136,7 @@ class ezcWebdavClientTestLockPluginSetup extends ezcWebdavClientTestSetup
         }
         catch ( RuntimeException $e )
         {
-            return array();
+            return [];
         }
     }
 
@@ -166,7 +163,7 @@ class ezcWebdavClientTestLockPluginSetup extends ezcWebdavClientTestSetup
 
         $potentialDataFiles = glob( $glob );
 
-        if ( $potentialDataFiles === array() )
+        if ( $potentialDataFiles === [] )
         {
             throw new RuntimeException(
                 sprintf(

@@ -22,12 +22,12 @@ class ezcTemplateCacheTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
-        $this->basePath = realpath( dirname( __FILE__ ) ) . '/';
+        $this->basePath = realpath( __DIR__ ) . '/';
 
         $config = ezcTemplateConfiguration::getInstance();
         $config->disableCache = false;
@@ -952,7 +952,7 @@ EOM
         $t->process( "cache_dynamic_include.tpl");
         $this->assertEquals( "\n\n[2]\n[10]\n\n<3>\n<11>\n<Hello>\n<World>\n[Included template]\n[42]\n[13]\n\n[42]\n[12]\n", $t->output );
 
-        
+
         // $this->assertEquals( "\n[2]\n\n\n", $t->output);
         // $this->assertEquals( "Not one", $t->receive->numberStr);
         // $this->assertEquals( "4", $t->receive->calc);

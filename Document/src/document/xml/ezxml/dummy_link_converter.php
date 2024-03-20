@@ -27,9 +27,7 @@ class ezcDocumentEzXmlDummyLinkConverter extends ezcDocumentEzXmlLinkConverter
      */
     public function getUrlProperties( $url )
     {
-        return array(
-            'url_id' => 23,
-        );
+        return ['url_id' => 23];
     }
 }
 

@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -31,8 +31,8 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
     protected function setUp()
     {
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -58,7 +58,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -77,7 +77,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -97,7 +97,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -108,15 +108,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteEzBlue();
         $chart->legend = false;
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array( 
-            strtotime( '2006-10-16' ) => 7.78507871321,
-            strtotime( '2006-10-30' ) => 7.52224503765,
-            strtotime( '2006-11-20' ) => 7.29226557153,
-            strtotime( '2006-11-28' ) => 7.06228610541,
-            strtotime( '2006-12-05' ) => 6.66803559206,
-            strtotime( '2006-12-11' ) => 6.37234770705,
-            strtotime( '2006-12-28' ) => 6.04517453799,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( [strtotime( '2006-10-16' ) => 7.78507871321, strtotime( '2006-10-30' ) => 7.52224503765, strtotime( '2006-11-20' ) => 7.29226557153, strtotime( '2006-11-28' ) => 7.06228610541, strtotime( '2006-12-05' ) => 6.66803559206, strtotime( '2006-12-11' ) => 6.37234770705, strtotime( '2006-12-28' ) => 6.04517453799] );
 
         $chart->rotationAxis = new ezcGraphChartElementDateAxis();
 
@@ -124,7 +116,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -143,7 +135,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -162,7 +154,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -173,15 +165,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
         $chart = new ezcGraphRadarChart();
         $chart->palette = new ezcGraphPaletteEzBlue();
         $chart->legend = false;
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            1 => 12,
-            5 => 7,
-            10 => 234,
-            132 => 34,
-            1125 => 12,
-            12346 => 6,
-            140596 => 1,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( [1 => 12, 5 => 7, 10 => 234, 132 => 34, 1125 => 12, 12346 => 6, 140596 => 1] );
 
         $chart->rotationAxis = new ezcGraphChartElementLogarithmicalAxis();
 
@@ -189,7 +173,7 @@ class ezcGraphRadarChartAxisTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

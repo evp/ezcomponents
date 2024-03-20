@@ -25,9 +25,7 @@ class ezcWorkflowDatabaseOptions extends ezcBaseOptions
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'prefix' => '',
-    );
+    protected $properties = ['prefix' => ''];
 
     /**
      * Property write access.

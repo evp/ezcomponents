@@ -89,7 +89,7 @@ class ezcDocumentSuite extends PHPUnit_Framework_TestSuite
 {
     public static function suite()
     {
-        return new ezcDocumentSuite( __CLASS__ );
+        return new ezcDocumentSuite( self::class );
     }
 
     public function __construct()

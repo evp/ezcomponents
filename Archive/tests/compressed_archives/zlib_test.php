@@ -8,8 +8,8 @@
  * @subpackage Tests
  */
 
-require_once( dirname( __FILE__ ) . "/../testdata.php" );
-require_once(dirname(__FILE__) . "/../archive_test_case.php");
+require_once( __DIR__ . "/../testdata.php" );
+require_once(__DIR__ . "/../archive_test_case.php");
 
 /**
  * @package Archive
@@ -173,7 +173,7 @@ class ezcArchiveZlibTest extends ezcArchiveTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

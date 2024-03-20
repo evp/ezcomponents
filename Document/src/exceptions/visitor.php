@@ -29,12 +29,7 @@ class ezcDocumentVisitException extends ezcDocumentException
      */
     public function __construct( $level, $message, $file, $line, $position )
     {
-        $levelMapping = array(
-            E_NOTICE  => 'Notice',
-            E_WARNING => 'Warning',
-            E_ERROR   => 'Error',
-            E_PARSE   => 'Fatal error',
-        );
+        $levelMapping = [E_NOTICE  => 'Notice', E_WARNING => 'Warning', E_ERROR   => 'Error', E_PARSE   => 'Fatal error'];
 
         parent::__construct(
             sprintf( "Visitor error: %s: '%s' in line %d at position %d.",

@@ -35,7 +35,7 @@ class ezcWebdavSupportedLockProperty extends ezcWebdavLiveProperty
     {
         parent::__construct( 'supportedlock' );
 
-        $this->lockEntries = ( $lockEntries === null ? new ArrayObject() : $lockEntries );
+        $this->lockEntries = ( $lockEntries ?? new ArrayObject() );
     }
 
     /**

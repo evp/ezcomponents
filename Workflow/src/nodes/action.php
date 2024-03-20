@@ -89,12 +89,12 @@ class ezcWorkflowNodeAction extends ezcWorkflowNode
     {
         if ( is_string( $configuration ) )
         {
-            $configuration = array( 'class' => $configuration );
+            $configuration = ['class' => $configuration];
         }
 
         if ( !isset( $configuration['arguments'] ) )
         {
-            $configuration['arguments'] = array();
+            $configuration['arguments'] = [];
         }
 
         parent::__construct( $configuration );
@@ -141,10 +141,7 @@ class ezcWorkflowNodeAction extends ezcWorkflowNode
      */
     public static function configurationFromXML( DOMElement $element )
     {
-        $configuration = array(
-          'class'     => $element->getAttribute( 'serviceObjectClass' ),
-          'arguments' => array()
-        );
+        $configuration = ['class'     => $element->getAttribute( 'serviceObjectClass' ), 'arguments' => []];
 
         $childNode = ezcWorkflowUtil::getChildNode( $element );
 

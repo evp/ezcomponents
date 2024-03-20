@@ -117,7 +117,7 @@ class ezcCacheManager
      *
      * @var array(int=>ezcCacheStorage)
      */
-    private static $caches = array();
+    private static $caches = [];
 
     /**
      * ezcCacheStorage configurations
@@ -128,7 +128,7 @@ class ezcCacheManager
      *
      * @var array(string=>array(string=>string))
      */
-    private static $configurations = array();
+    private static $configurations = [];
 
     /**
      * Private. This class has static methods only.
@@ -193,7 +193,7 @@ class ezcCacheManager
      *         If the given storage class does not exist or is no subclass of
      *         ezcCacheStorage.
      */
-    public static function createCache( $id, $location = null, $storageClass, $options = array() )
+    public static function createCache( $id, $location = null, $storageClass, $options = [] )
     {
         // BC for missing location. The location should not be missing.
         if ( $location !== null )
@@ -228,11 +228,7 @@ class ezcCacheManager
         {
             throw new ezcCacheInvalidStorageClassException( $storageClass );
         }
-        self::$configurations[$id] = array(
-            'location' => $location,
-            'class'    => $storageClass,
-            'options'  => $options,
-        );
+        self::$configurations[$id] = ['location' => $location, 'class'    => $storageClass, 'options'  => $options];
     }
 
     /**

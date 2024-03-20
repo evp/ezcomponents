@@ -9,7 +9,7 @@ $urlCfg->basedir = 'mydir';
 $urlCfg->script = 'index.php';
 
 // define delimiters for unordered parameter names
-$urlCfg->unorderedDelimiters = array( '(', ')' );
+$urlCfg->unorderedDelimiters = ['(', ')'];
 
 // define ordered parameters
 $urlCfg->addOrderedParameter( 'section' );
@@ -27,9 +27,9 @@ var_dump( $url->buildUrl() );
 
 // set the parameter values in the url
 $url->setParam( 'subcategory', 'Kids' );
-$url->setParam( 'game', array( 'Monkey_Island', '3' ) );
+$url->setParam( 'game', ['Monkey_Island', '3'] );
 var_dump( $url->buildUrl() );
 
-$url->setParam( 'patches', array( array( 'beta1' ), array( 'rc1', 'rc2' ) ) );
+$url->setParam( 'patches', [['beta1'], ['rc1', 'rc2']] );
 var_dump( $url->buildUrl() );
 ?>

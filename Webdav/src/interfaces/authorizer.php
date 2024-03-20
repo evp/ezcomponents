@@ -23,12 +23,12 @@ interface ezcWebdavAuthorizer
     /**
      * User desires read access. 
      */
-    const ACCESS_READ = 1;
+    public const ACCESS_READ = 1;
 
     /**
      * User desires write access. 
      */
-    const ACCESS_WRITE = 2;
+    public const ACCESS_WRITE = 2;
 
     /**
      * Checks authorization of the given $user to a given $path.

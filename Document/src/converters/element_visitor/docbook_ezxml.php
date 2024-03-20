@@ -36,7 +36,7 @@ class ezcDocumentDocbookToEzXmlConverter extends ezcDocumentElementVisitorConver
      *
      * @var array
      */
-    protected $footnotes = array();
+    protected $footnotes = [];
 
     /**
      * Autoincrementing number for footnotes.
@@ -56,50 +56,11 @@ class ezcDocumentDocbookToEzXmlConverter extends ezcDocumentElementVisitorConver
     public function __construct( ezcDocumentDocbookToEzXmlConverterOptions $options = null )
     {
         parent::__construct(
-            $options === null ?
-                new ezcDocumentDocbookToEzXmlConverterOptions() :
-                $options
+            $options ?? new ezcDocumentDocbookToEzXmlConverterOptions()
         );
 
         // Initlize common element handlers
-        $this->visitorElementHandler = array(
-            'docbook' => array(
-                'article'           => $recurse = new ezcDocumentDocbookToEzXmlRecurseHandler(),
-                'book'              => $recurse,
-                'sect1info'         => $ignore = new ezcDocumentDocbookToEzXmlIgnoreHandler(),
-                'sect2info'         => $ignore,
-                'sect3info'         => $ignore,
-                'sect4info'         => $ignore,
-                'sect5info'         => $ignore,
-                'sectioninfo'       => $ignore,
-                'sect1'             => $section = new ezcDocumentDocbookToEzXmlSectionHandler(),
-                'sect2'             => $section,
-                'sect3'             => $section,
-                'sect4'             => $section,
-                'sect5'             => $section,
-                'section'           => $section,
-                'title'             => new ezcDocumentDocbookToEzXmlTitleHandler(),
-                'para'              => new ezcDocumentDocbookToEzXmlParagraphHandler(),
-                'emphasis'          => new ezcDocumentDocbookToEzXmlEmphasisHandler(),
-                'literal'           => $mapper =  new ezcDocumentDocbookToEzXmlMappingHandler(),
-                'ulink'             => new ezcDocumentDocbookToEzXmlExternalLinkHandler(),
-                'link'              => new ezcDocumentDocbookToEzXmlInternalLinkHandler(),
-                'anchor'            => new ezcDocumentDocbookToEzXmlAnchorHandler(),
-                'itemizedlist'      => new ezcDocumentDocbookToEzXmlItemizedListHandler(),
-                'orderedlist'       => new ezcDocumentDocbookToEzXmlOrderedListHandler(),
-                'listitem'          => $mapper,
-                'literallayout'     => new ezcDocumentDocbookToEzXmlLiteralLayoutHandler(),
-                'footnote'          => new ezcDocumentDocbookToEzXmlFootnoteHandler(),
-                'comment'           => new ezcDocumentDocbookToEzXmlCommentHandler(),
-                'beginpage'         => $ignore,
-                'entry'             => new ezcDocumentDocbookToEzXmlTableCellHandler(),
-                'table'             => new ezcDocumentDocbookToEzXmlTableHandler(),
-                'tbody'             => $recurse,
-                'thead'             => $recurse,
-                'row'               => $mapper,
-                'tgroup'            => $recurse,
-            )
-        );
+        $this->visitorElementHandler = ['docbook' => ['article'           => $recurse = new ezcDocumentDocbookToEzXmlRecurseHandler(), 'book'              => $recurse, 'sect1info'         => $ignore = new ezcDocumentDocbookToEzXmlIgnoreHandler(), 'sect2info'         => $ignore, 'sect3info'         => $ignore, 'sect4info'         => $ignore, 'sect5info'         => $ignore, 'sectioninfo'       => $ignore, 'sect1'             => $section = new ezcDocumentDocbookToEzXmlSectionHandler(), 'sect2'             => $section, 'sect3'             => $section, 'sect4'             => $section, 'sect5'             => $section, 'section'           => $section, 'title'             => new ezcDocumentDocbookToEzXmlTitleHandler(), 'para'              => new ezcDocumentDocbookToEzXmlParagraphHandler(), 'emphasis'          => new ezcDocumentDocbookToEzXmlEmphasisHandler(), 'literal'           => $mapper =  new ezcDocumentDocbookToEzXmlMappingHandler(), 'ulink'             => new ezcDocumentDocbookToEzXmlExternalLinkHandler(), 'link'              => new ezcDocumentDocbookToEzXmlInternalLinkHandler(), 'anchor'            => new ezcDocumentDocbookToEzXmlAnchorHandler(), 'itemizedlist'      => new ezcDocumentDocbookToEzXmlItemizedListHandler(), 'orderedlist'       => new ezcDocumentDocbookToEzXmlOrderedListHandler(), 'listitem'          => $mapper, 'literallayout'     => new ezcDocumentDocbookToEzXmlLiteralLayoutHandler(), 'footnote'          => new ezcDocumentDocbookToEzXmlFootnoteHandler(), 'comment'           => new ezcDocumentDocbookToEzXmlCommentHandler(), 'beginpage'         => $ignore, 'entry'             => new ezcDocumentDocbookToEzXmlTableCellHandler(), 'table'             => new ezcDocumentDocbookToEzXmlTableHandler(), 'tbody'             => $recurse, 'thead'             => $recurse, 'row'               => $mapper, 'tgroup'            => $recurse]];
     }
 
     /**

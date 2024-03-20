@@ -3,10 +3,10 @@ require_once 'tutorial_autoload.php';
 
 // load the $encryptedToken as it was generated on a previous request
 session_start();
-$encryptedToken = isset( $_SESSION['encryptedToken'] ) ? $_SESSION['encryptedToken'] : null;
+$encryptedToken = $_SESSION['encryptedToken'] ?? null;
 
 // also load the value entered by the user in response to the CAPTCHA image
-$captcha = isset( $_POST['captcha'] ) ? $_POST['captcha'] : null;
+$captcha = $_POST['captcha'] ?? null;
 
 $credentials = new ezcAuthenticationIdCredentials( $captcha );
 $authentication = new ezcAuthentication( $credentials );

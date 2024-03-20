@@ -29,14 +29,7 @@ class ezcDocumentOdtStyleTextPropertyGenerator extends ezcDocumentOdtStyleProper
     {
         parent::__construct(
             $styleConverters,
-            array(
-                'text-decoration',
-                'font-size',
-                'font-name',
-                'font-weight',
-                'color',
-                'background-color',
-            )
+            ['text-decoration', 'font-size', 'font-name', 'font-weight', 'color', 'background-color']
         );
     }
 

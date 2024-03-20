@@ -9,8 +9,5 @@
  * @package AuthenticationDatabaseTiein
  */
 
-return array(
-    'ezcAuthenticationOpenidDbStore'   => 'AuthenticationDatabaseTiein/filters/openid/openid_db_store.php',
-    'ezcAuthenticationOpenidDbStoreOptions' => 'AuthenticationDatabaseTiein/options/openid_db_store_options.php',
-);
+return ['ezcAuthenticationOpenidDbStore'   => 'AuthenticationDatabaseTiein/filters/openid/openid_db_store.php', 'ezcAuthenticationOpenidDbStoreOptions' => 'AuthenticationDatabaseTiein/options/openid_db_store_options.php'];
 ?>

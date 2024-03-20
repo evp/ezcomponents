@@ -10,8 +10,8 @@
  */
 
 require_once 'base.php';
-require_once dirname( __FILE__ ) . '/../helper/pdf_mocked_driver.php';
-require_once dirname( __FILE__ ) . '/../helper/pdf_test_hyphenator.php';
+require_once __DIR__ . '/../helper/pdf_mocked_driver.php';
+require_once __DIR__ . '/../helper/pdf_test_hyphenator.php';
 
 /**
  * Test suite for class.
@@ -35,7 +35,7 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -45,35 +45,22 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
         $this->document = new DOMDocument();
         $this->document->registerNodeClass( 'DOMElement', 'ezcDocumentLocateableDomElement' );
 
-        $this->document->load( dirname( __FILE__ ) . '/../files/pdf/paragraph.xml' );
+        $this->document->load( __DIR__ . '/../files/pdf/paragraph.xml' );
 
         $this->xpath = new DOMXPath( $this->document );
         $this->xpath->registerNamespace( 'doc', 'http://docbook.org/ns/docbook' );
 
         $this->styles = new ezcDocumentPcssStyleInferencer();
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-size' => '8mm',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'page' ),
-                array(
-                    'page-size' => 'TEST',
-                    'margin'    => '0',
-                    'padding'   => '10',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'margin'  => '0mm',
-                    'padding' => '0',
-                )
-            ),
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-size' => '8mm']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['page'],
+            ['page-size' => 'TEST', 'margin'    => '0', 'padding'   => '10']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['margin'  => '0mm', 'padding' => '0']
+        )] );
 
         $this->page = new ezcDocumentPdfPage( 1, 108, 108, 108, 100 );
         $this->page->x = 0;
@@ -84,9 +71,7 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     {
         // Additional formatting
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -124,18 +109,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderJustifiedParagraphWithoutMarkup()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'text-align' => 'justify',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['text-align' => 'justify']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -173,18 +152,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderCenteredParagraphWithoutMarkup()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'text-align' => 'center',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['text-align' => 'center']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -222,18 +195,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderRightAlignedParagraphWithoutMarkup()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'text-align' => 'right',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['text-align' => 'right']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -271,18 +238,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphWithBoldMarkup()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'font-weight' => 'bold',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['font-weight' => 'bold']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -320,24 +281,15 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderJustifiedParagraphWithHyphenator()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'text-align' => 'justify',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'font-weight' => 'bold',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['text-align' => 'justify']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['font-weight' => 'bold']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -381,19 +333,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphWithDifferentTextSizes()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'font-weight' => 'bold',
-                    'font-size'   => '12mm',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['font-weight' => 'bold', 'font-size'   => '12mm']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -431,18 +376,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphMarkupSpaces()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'font-weight' => 'bold',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['font-weight' => 'bold']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -483,18 +422,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphReduceRedundantSpace()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'emphasis' ),
-                array(
-                    'font-weight' => 'bold',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['emphasis'],
+            ['font-weight' => 'bold']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -532,18 +465,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphLineHeight()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'line-height' => '1',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['line-height' => '1']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -580,9 +507,7 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
 
     public function testRenderParagraphWithReallyLongWord()
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -613,9 +538,7 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
 
     public function testRenderParagraphWithoutPoints()
     {
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -650,19 +573,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphWithPadding()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'line-height' => '1',
-                    'padding'     => '10',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['line-height' => '1', 'padding'     => '10']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -700,19 +616,12 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphWithMargin()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'line-height' => '1',
-                    'margin'      => '10',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['line-height' => '1', 'margin'      => '10']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawWord'
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawWord' )->with(
@@ -750,38 +659,17 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphWithPaddingMarginAndBackground()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'line-height'      => '1',
-                    'padding'          => '10',
-                    'margin'           => '10',
-                    'background-color' => '#eeeeef',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['line-height'      => '1', 'padding'          => '10', 'margin'           => '10', 'background-color' => '#eeeeef']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawPolyline',
-            'drawPolygon',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawPolyline', 'drawPolygon', 'drawWord'] );
 
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawPolygon' )->with(
-            $this->equalTo( array(
-                array( 10, 10 ),
-                array( 98, 10 ),
-                array( 98, 70 ),
-                array( 10, 70 ),
-            ), 1. ),
-            $this->equalTo( array(
-                'red'   => .93,
-                'green' => .93,
-                'blue'  => .94,
-                'alpha' => 0
-            ), .01 )
+            $this->equalTo( [[10, 10], [98, 10], [98, 70], [10, 70]], 1. ),
+            $this->equalTo( ['red'   => .93, 'green' => .93, 'blue'  => .94, 'alpha' => 0], .01 )
         );
         $mock->expects( $this->at( 1 ) )->method( 'drawWord' )->with(
             $this->equalTo( 20, 1. ), $this->equalTo( 28, 1. ), $this->equalTo( 'Paragraphs' )
@@ -818,76 +706,34 @@ class ezcDocumentPdfTextBoxRendererBaseTests extends ezcDocumentPdfTestCase
     public function testRenderParagraphWithPaddingMarginAndBorder()
     {
         // Additional formatting
-        $this->styles->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'para' ),
-                array(
-                    'line-height'      => '1',
-                    'padding'          => '10',
-                    'margin'           => '10',
-                    'border'           => '1mm solid #A00000',
-                    'background-color' => '#eedbdb',
-                )
-            )
-        ) );
+        $this->styles->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['para'],
+            ['line-height'      => '1', 'padding'          => '10', 'margin'           => '10', 'border'           => '1mm solid #A00000', 'background-color' => '#eedbdb']
+        )] );
 
-        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', array(
-            'drawPolyline',
-            'drawPolygon',
-            'drawWord',
-        ) );
+        $mock = $this->getMock( 'ezcTestDocumentPdfMockDriver', ['drawPolyline', 'drawPolygon', 'drawWord'] );
 
         // Expectations
         // Expectations
         $mock->expects( $this->at( 0 ) )->method( 'drawPolygon' )->with(
-            $this->equalTo( array(
-                array( 10, 10 ),
-                array( 98, 10 ),
-                array( 98, 72 ),
-                array( 10, 72 ),
-            ), 1. ),
-            $this->equalTo( array(
-                'red'   => .93,
-                'green' => .86,
-                'blue'  => .86,
-                'alpha' => 0
-            ), .01 )
+            $this->equalTo( [[10, 10], [98, 10], [98, 72], [10, 72]], 1. ),
+            $this->equalTo( ['red'   => .93, 'green' => .86, 'blue'  => .86, 'alpha' => 0], .01 )
         );
         $mock->expects( $this->at( 1 ) )->method( 'drawPolyline' )->with(
-            $this->equalTo( array( array( 10.5, 10.5 ), array( 10.5, 71.5 ) ), .1 ),
-            $this->equalTo( array(
-                'red'   => .63,
-                'green' => .0,
-                'blue'  => .0,
-                'alpha' => 0
-            ), .01 )
+            $this->equalTo( [[10.5, 10.5], [10.5, 71.5]], .1 ),
+            $this->equalTo( ['red'   => .63, 'green' => .0, 'blue'  => .0, 'alpha' => 0], .01 )
         );
         $mock->expects( $this->at( 2 ) )->method( 'drawPolyline' )->with(
-            $this->equalTo( array( array( 10.5, 10.5 ), array( 97.5, 10.5 ) ), .1 ),
-            $this->equalTo( array(
-                'red'   => .63,
-                'green' => .0,
-                'blue'  => .0,
-                'alpha' => 0
-            ), .01 )
+            $this->equalTo( [[10.5, 10.5], [97.5, 10.5]], .1 ),
+            $this->equalTo( ['red'   => .63, 'green' => .0, 'blue'  => .0, 'alpha' => 0], .01 )
         );
         $mock->expects( $this->at( 3 ) )->method( 'drawPolyline' )->with(
-            $this->equalTo( array( array( 97.5, 10.5 ), array( 97.5, 71.5 ) ), .1 ),
-            $this->equalTo( array(
-                'red'   => .63,
-                'green' => .0,
-                'blue'  => .0,
-                'alpha' => 0
-            ), .01 )
+            $this->equalTo( [[97.5, 10.5], [97.5, 71.5]], .1 ),
+            $this->equalTo( ['red'   => .63, 'green' => .0, 'blue'  => .0, 'alpha' => 0], .01 )
         );
         $mock->expects( $this->at( 4 ) )->method( 'drawPolyline' )->with(
-            $this->equalTo( array( array( 97.5, 71.5 ), array( 10.5, 71.5 ) ), .1 ),
-            $this->equalTo( array(
-                'red'   => .63,
-                'green' => .0,
-                'blue'  => .0,
-                'alpha' => 0
-            ), .01 )
+            $this->equalTo( [[97.5, 71.5], [10.5, 71.5]], .1 ),
+            $this->equalTo( ['red'   => .63, 'green' => .0, 'blue'  => .0, 'alpha' => 0], .01 )
         );
         $mock->expects( $this->at( 5 ) )->method( 'drawWord' )->with(
             $this->equalTo( 21, 1. ), $this->equalTo( 29, 1. ), $this->equalTo( 'Paragraphs' )

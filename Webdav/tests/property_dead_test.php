@@ -1,12 +1,12 @@
 <?php
 
-require_once dirname( __FILE__ ) . '/webdav_property_test.php';
+require_once __DIR__ . '/webdav_property_test.php';
 
 class ezcWebdavDeadPropertyTest extends ezcWebdavWebdavPropertyTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     /**
@@ -29,26 +29,9 @@ class ezcWebdavDeadPropertyTest extends ezcWebdavWebdavPropertyTestCase
         $this->className = 'ezcWebdavDeadProperty';
         $this->propertyName = 'name';
         $this->namespace = 'namespace';
-        $this->defaultValues = array(
-            'content'    => null,
-        );
-        $this->workingValues = array(
-            'content' => array(
-                null,
-                "foo bar",
-                "",
-            ),
-        );
-        $this->failingValues = array(
-            'content' => array(
-                23,
-                23.34,
-                true,
-                false,
-                new stdClass(),
-                array(),
-            ),
-        );
+        $this->defaultValues = ['content'    => null];
+        $this->workingValues = ['content' => [null, "foo bar", ""]];
+        $this->failingValues = ['content' => [23, 23.34, true, false, new stdClass(), []]];
     }
 }
 

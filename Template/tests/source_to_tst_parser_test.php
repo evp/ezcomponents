@@ -18,7 +18,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
 {
     public static function suite()
     {
-         return new PHPUnit_Framework_TestSuite( __CLASS__ );
+         return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     /**
@@ -37,9 +37,9 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         class_exists( 'ezcTemplateSourceCode' );
         // class_exists( 'ezcTemplateManager' );
         $this->manager = new ezcTemplateManager();
-        PHPUnit_Extensions_MockObject_Mock::generate( 'ezcTemplateParser', array( "reportElementCursor" ), 'MockElement_ezcTemplateParser' );
+        PHPUnit_Extensions_MockObject_Mock::generate( 'ezcTemplateParser', ["reportElementCursor"], 'MockElement_ezcTemplateParser' );
 
-        $this->basePath = realpath( dirname( __FILE__ ) ) . '/';
+        $this->basePath = realpath( __DIR__ ) . '/';
         $this->templatePath = $this->basePath . 'templates/';
         $this->templateCompiledPath = $this->basePath . 'compiled/';
         $this->templateStorePath = $this->basePath . 'stored_templates/';
@@ -54,7 +54,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         $source = new ezcTemplateSourceCode( 'mock', 'mock', $text );
         $parser = new MockElement_ezcTemplateParser( $source, $this->manager );
 
-        $items = array( array( 0, 1, 0,  20, 2, 11,  'TextBlock' ) );
+        $items = [[0, 1, 0, 20, 2, 11, 'TextBlock']];
 
         $this->setupExpectedPositions( $parser, $text, $source, $items );
 
@@ -75,7 +75,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         $source = new ezcTemplateSourceCode( 'mock', 'mock', $text );
         $parser = new MockElement_ezcTemplateParser( $source, $this->manager );
 
-        $items = array( array( 0, 1, 0,  9, 2, 0,  'TextBlock' ) );
+        $items = [[0, 1, 0, 9, 2, 0, 'TextBlock']];
 
         $this->setupExpectedPositions( $parser, $text, $source, $items );
 
@@ -106,24 +106,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         if ( $parser->debug )
             echo "\ncomments_test.tpl\n";
 
-        $items = array( array( 'TextBlock' ),
-
-                        array( 'DocComment', 'commentText', ' Documentation block ' ),
-
-                        array( 'TextBlock' ),
-
-                        array( 'Literal' ),
-                        array( 'BlockComment', 'commentText', 'inside comment' ),
-                        array( 'PlusOperator' ),
-                        array( 'EolComment', 'commentText', 'eol comment' ),
-                        array( 'Literal' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-
-                        array( 'Literal' ),
-                        array( 'EolComment', 'commentText', 'eol comment #2' ),
-                        array( 'OutputBlock' ) );
+        $items = [['TextBlock'], ['DocComment', 'commentText', ' Documentation block '], ['TextBlock'], ['Literal'], ['BlockComment', 'commentText', 'inside comment'], ['PlusOperator'], ['EolComment', 'commentText', 'eol comment'], ['Literal'], ['OutputBlock'], ['TextBlock'], ['Literal'], ['EolComment', 'commentText', 'eol comment #2'], ['OutputBlock']];
 
         $this->setupExpectedElements( $parser, $text, $source, $items );
 
@@ -150,60 +133,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         if ( $parser->debug )
             echo "\nexpression_types_test.tpl\n";
 
-        $items = array( array( 'Literal', 'value', 1 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 42 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', -1234 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1.0 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', -4.2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 0.5 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', "1" ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', "a short string" ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', "a short \"quoted\" string" ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', "1" ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', "a short string" ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', "a short \'quoted\' string" ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', true ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', false ),
-                        array( 'OutputBlock' ) );
+        $items = [['Literal', 'value', 1], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 42], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', -1234], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1.0], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', -4.2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 0.5], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', "1"], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', "a short string"], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', "a short \"quoted\" string"], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', "1"], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', "a short string"], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', "a short \'quoted\' string"], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', true], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', false], ['OutputBlock']];
 
         $this->setupExpectedElements( $parser, $text, $source, $items );
 
@@ -230,55 +160,24 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         if ( $parser->debug )
             echo "\nexpression_array_types_test.tpl\n";
 
-        $items = array( array( 'Literal', 'value', array() ),
-                        array( 'OutputBlock' ) );
+        $items = [['Literal', 'value', []], ['OutputBlock']];
 
-        $items_array1 = array( array( 'TextBlock' ),
-                               array( 'Literal', 'value', 1 ),
-                               array( 'Literal', 'value', 2 ),
-                               array( 'Literal', 'value', 3 ),
-                               array( 'Literal', 'value', array( 1, 2, 3 ) ),
-                               array( 'OutputBlock' ) );
+        $items_array1 = [['TextBlock'], ['Literal', 'value', 1], ['Literal', 'value', 2], ['Literal', 'value', 3], ['Literal', 'value', [1, 2, 3]], ['OutputBlock']];
 
         $items = array_merge( $items,
                               $items_array1, $items_array1, $items_array1 );
 
-        $items_array2 = array( array( 'TextBlock' ),
-                               array( 'Literal', 'value', 0 ),
-                               array( 'Literal', 'value', 1 ),
-                               array( 'Literal', 'value', 1 ),
-                               array( 'Literal', 'value', 2 ),
-                               array( 'Literal', 'value', 2 ),
-                               array( 'Literal', 'value', 3 ),
-                               array( 'Literal', 'value', array( 0 => 1, 1 => 2, 2 => 3 ) ),
-                               array( 'OutputBlock' ) );
+        $items_array2 = [['TextBlock'], ['Literal', 'value', 0], ['Literal', 'value', 1], ['Literal', 'value', 1], ['Literal', 'value', 2], ['Literal', 'value', 2], ['Literal', 'value', 3], ['Literal', 'value', [0 => 1, 1 => 2, 2 => 3]], ['OutputBlock']];
 
         $items = array_merge( $items,
                               $items_array2, $items_array2, $items_array2 );
 
-        $items_array3 = array( array( 'TextBlock' ),
-                               array( 'Literal', 'value', "abc" ),
-                               array( 'Literal', 'value', "def" ),
-                               array( 'Literal', 'value', "foo" ),
-                               array( 'Literal', 'value', "bar" ),
-                               array( 'Literal', 'value', 5 ),
-                               array( 'Literal', 'value', "el1" ),
-                               array( 'Literal', 'value', "key1" ),
-                               array( 'Literal', 'value', -50 ),
-                               array( 'Literal', 'value', array( "abc" => "def", "foo" => "bar", 5 => "el1", "key1" => -50 ) ),
-                               array( 'OutputBlock' ) );
+        $items_array3 = [['TextBlock'], ['Literal', 'value', "abc"], ['Literal', 'value', "def"], ['Literal', 'value', "foo"], ['Literal', 'value', "bar"], ['Literal', 'value', 5], ['Literal', 'value', "el1"], ['Literal', 'value', "key1"], ['Literal', 'value', -50], ['Literal', 'value', ["abc" => "def", "foo" => "bar", 5 => "el1", "key1" => -50]], ['OutputBlock']];
 
         $items = array_merge( $items,
                               $items_array3, $items_array3, $items_array3 );
 
-        $items_array4 = array( array( 'TextBlock' ),
-                               array( 'Literal', 'value', 3 ),
-                               array( 'Literal', 'value', array( 3 ) ),
-                               array( 'Literal', 'value', 2 ),
-                               array( 'Literal', 'value', array( array( 3 ), 2 ) ),
-                               array( 'Literal', 'value', 1 ),
-                               array( 'Literal', 'value', array( array( array( 3 ), 2 ), 1  ) ),
-                               array( 'OutputBlock' ) );
+        $items_array4 = [['TextBlock'], ['Literal', 'value', 3], ['Literal', 'value', [3]], ['Literal', 'value', 2], ['Literal', 'value', [[3], 2]], ['Literal', 'value', 1], ['Literal', 'value', [[[3], 2], 1]], ['OutputBlock']];
 
         $items = array_merge( $items,
                               $items_array4 );
@@ -307,24 +206,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         if ( $parser->debug )
             echo "\nexpression_variables_test.tpl\n";
 
-        $items = array( array( 'Literal', 'value', 'var' ),
-                        array( 'Variable', 'name', 'var' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'varName' ),
-                        array( 'Variable', 'name', 'varName' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'var_name' ),
-                        array( 'Variable', 'name', 'var_name' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'var_0_name' ),
-                        array( 'Variable', 'name', 'var_0_name' ),
-                        array( 'OutputBlock' ) );
+        $items = [['Literal', 'value', 'var'], ['Variable', 'name', 'var'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 'varName'], ['Variable', 'name', 'varName'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 'var_name'], ['Variable', 'name', 'var_name'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 'var_0_name'], ['Variable', 'name', 'var_0_name'], ['OutputBlock']];
 
         $this->setupExpectedElements( $parser, $text, $source, $items );
 
@@ -350,82 +232,82 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         if ( $parser->debug )
             echo "\nexpression_test.tpl\n";
 
-        $items = array( array( 'Literal', 'value', 'item' ),
-                        array( 'Variable', 'name', 'item' ),
-                        array( 'PropertyFetchOperator' ),
-                        array( 'Literal', 'value', 'prop1' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'item' ),
-                        array( 'Variable', 'name', 'item' ),
-                        array( 'PropertyFetchOperator' ),
-                        array( 'Literal', 'value', 0 ),
-                        array( 'OutputBlock' ), // index 10
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'item' ),
-                        array( 'Variable', 'name', 'item' ),
-                        array( 'Literal', 'value', 'prop1' ),
-                        array( 'ArrayFetchOperator' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'item' ),
-                        array( 'Variable', 'name', 'item' ),
-                        array( 'Literal', 'value', 0 ), // index 20
-                        array( 'ArrayFetchOperator' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'item' ),
-                        array( 'Variable', 'name', 'item' ),
-                        array( 'Literal', 'value', 42 ),
-                        array( 'ArrayFetchOperator' ),
-                        array( 'PropertyFetchOperator' ),
-                        array( 'Literal', 'value', 'subitem' ),
-                        array( 'Literal', 'value', "test" ), // index 30
-                        array( 'ArrayFetchOperator' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'MultiplicationOperator' ), // index 40
-                        array( 'Literal', 'value', 2 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'MinusOperator' ),
-                        array( 'Literal', 'value', 4 ), // index 50
-                        array( 'MultiplicationOperator' ),
-                        array( 'Literal', 'value', 6 ),
-                        array( 'DivisionOperator' ),
-                        array( 'Literal', 'value', 'var' ),
-                        array( 'Variable', 'name', 'var' ),
-                        array( 'PropertyFetchOperator' ),
-                        array( 'Literal', 'value', 'lines' ),
-                        array( 'Literal', 'value', 0 ),
-                        array( 'ArrayFetchOperator' ),
-                        array( 'MinusOperator' ), // index 60
-                        array( 'Literal', 'value', 5 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 100 ),
-                        array( 'ConcatOperator' ),
-                        array( 'Literal', 'value', "a" ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock') );
+        $items = [
+            ['Literal', 'value', 'item'],
+            ['Variable', 'name', 'item'],
+            ['PropertyFetchOperator'],
+            ['Literal', 'value', 'prop1'],
+            ['OutputBlock'],
+            ['TextBlock'],
+            ['Literal', 'value', 'item'],
+            ['Variable', 'name', 'item'],
+            ['PropertyFetchOperator'],
+            ['Literal', 'value', 0],
+            ['OutputBlock'],
+            // index 10
+            ['TextBlock'],
+            ['Literal', 'value', 'item'],
+            ['Variable', 'name', 'item'],
+            ['Literal', 'value', 'prop1'],
+            ['ArrayFetchOperator'],
+            ['OutputBlock'],
+            ['TextBlock'],
+            ['Literal', 'value', 'item'],
+            ['Variable', 'name', 'item'],
+            ['Literal', 'value', 0],
+            // index 20
+            ['ArrayFetchOperator'],
+            ['OutputBlock'],
+            ['TextBlock'],
+            ['Literal', 'value', 'item'],
+            ['Variable', 'name', 'item'],
+            ['Literal', 'value', 42],
+            ['ArrayFetchOperator'],
+            ['PropertyFetchOperator'],
+            ['Literal', 'value', 'subitem'],
+            ['Literal', 'value', "test"],
+            // index 30
+            ['ArrayFetchOperator'],
+            ['OutputBlock'],
+            ['TextBlock'],
+            ['Literal', 'value', 1],
+            ['PlusOperator'],
+            ['Literal', 'value', 2],
+            ['OutputBlock'],
+            ['TextBlock'],
+            ['Literal', 'value', 1],
+            ['MultiplicationOperator'],
+            // index 40
+            ['Literal', 'value', 2],
+            ['PlusOperator'],
+            ['Literal', 'value', 3],
+            ['OutputBlock'],
+            ['TextBlock'],
+            ['Literal', 'value', 1],
+            ['PlusOperator'],
+            ['Literal', 'value', 2],
+            ['MinusOperator'],
+            ['Literal', 'value', 4],
+            // index 50
+            ['MultiplicationOperator'],
+            ['Literal', 'value', 6],
+            ['DivisionOperator'],
+            ['Literal', 'value', 'var'],
+            ['Variable', 'name', 'var'],
+            ['PropertyFetchOperator'],
+            ['Literal', 'value', 'lines'],
+            ['Literal', 'value', 0],
+            ['ArrayFetchOperator'],
+            ['MinusOperator'],
+            // index 60
+            ['Literal', 'value', 5],
+            ['PlusOperator'],
+            ['Literal', 'value', 100],
+            ['ConcatOperator'],
+            ['Literal', 'value', "a"],
+            ['OutputBlock'],
+            ['TextBlock'],
+        ];
 
         $this->setupExpectedElements( $parser, $text, $source, $items );
 
@@ -449,39 +331,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         $source = new ezcTemplateSourceCode( 'mock', 'mock', $text );
         $parser = new MockElement_ezcTemplateParser( $source, $this->manager );
 
-        $items = array( array( 'Literal', 'value', 1 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'MultiplicationOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'Parenthesis' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-
-                        array( 'Literal', 'value', 1 ),
-                        array( 'MultiplicationOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'MinusOperator' ),
-                        array( 'Literal', 'value', 4 ),
-                        array( 'DivisionOperator' ),
-                        array( 'Literal', 'value', 200 ),
-                        array( 'MultiplicationOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'Parenthesis' ),
-                        array( 'Parenthesis' ),
-                        array( 'Parenthesis' ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 5 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 'node' ),
-                        array( 'Variable', 'name', 'node' ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 200 ),
-                        array( 'Parenthesis' ),
-                        array( 'OutputBlock' ) );
+        $items = [['Literal', 'value', 1], ['PlusOperator'], ['Literal', 'value', 2], ['MultiplicationOperator'], ['Literal', 'value', 3], ['Parenthesis'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['MultiplicationOperator'], ['Literal', 'value', 2], ['PlusOperator'], ['Literal', 'value', 3], ['MinusOperator'], ['Literal', 'value', 4], ['DivisionOperator'], ['Literal', 'value', 200], ['MultiplicationOperator'], ['Literal', 'value', 2], ['Parenthesis'], ['Parenthesis'], ['Parenthesis'], ['PlusOperator'], ['Literal', 'value', 5], ['PlusOperator'], ['Literal', 'value', 'node'], ['Variable', 'name', 'node'], ['PlusOperator'], ['Literal', 'value', 200], ['Parenthesis'], ['OutputBlock']];
 
         $this->setupExpectedElements( $parser, $text, $source, $items );
 
@@ -504,226 +354,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         $source = new ezcTemplateSourceCode( 'mock', 'mock', $text );
         $parser = new MockElement_ezcTemplateParser( $source, $this->manager );
 
-        $items = array( array( 'Literal', 'value', 'obj' ),
-                        array( 'Variable', 'name', 'obj' ),
-                        array( 'PropertyFetchOperator' ),
-                        array( 'Literal', 'value', 'prop' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'a' ),
-                        array( 'Variable', 'name', 'a' ),
-                        array( 'Literal', 'value', 0 ),
-                        array( 'ArrayFetchOperator' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'MinusOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'a' ),
-                        array( 'ConcatOperator' ),
-                        array( 'Literal', 'value', 'b' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'MultiplicationOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'DivisionOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'ModuloOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'EqualOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'EqualOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'NotEqualOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'NotEqualOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'IdenticalOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'IdenticalOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'NotIdenticalOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'NotIdenticalOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'LessThanOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'LessThanOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'GreaterThanOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'GreaterThanOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'LessEqualOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'LessEqualOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'GreaterEqualOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'GreaterEqualOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'LogicalAndOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'LogicalAndOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'LogicalOrOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'LogicalOrOperator' ),
-                        array( 'Literal', 'value', 3 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'AssignmentOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PlusAssignmentOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'MinusAssignmentOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'MultiplicationAssignmentOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'DivisionAssignmentOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'ConcatAssignmentOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'ModuloAssignmentOperator' ),
-                        array( 'Literal', 'value', 2 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'PreIncrementOperator' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'PreDecrementOperator' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PostIncrementOperator' ),
-                        array( 'PlusOperator' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PostDecrementOperator' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PostIncrementOperator' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 1 ),
-                        array( 'PostDecrementOperator' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'NegateOperator' ),
-                        array( 'Literal', 'value', 'a' ),
-                        array( 'Variable', 'name', 'a' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'LogicalNegateOperator' ),
-                        array( 'Literal', 'value', 'a' ),
-                        array( 'Variable', 'name', 'a' ),
-                        array( 'OutputBlock' ),
-
-                        array( 'TextBlock' ),
-                        array( 'Literal', 'value', 'a' ),
-                        array( 'Variable', 'name', 'a' ),
-                        array( 'InstanceOfOperator' ),
-                        array( 'Literal', 'value', 'b' ),
-                        array( 'Variable', 'name', 'b' ),
-                        array( 'OutputBlock' ),
-
-                        );
+        $items = [['Literal', 'value', 'obj'], ['Variable', 'name', 'obj'], ['PropertyFetchOperator'], ['Literal', 'value', 'prop'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 'a'], ['Variable', 'name', 'a'], ['Literal', 'value', 0], ['ArrayFetchOperator'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['PlusOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['MinusOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 'a'], ['ConcatOperator'], ['Literal', 'value', 'b'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['MultiplicationOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['DivisionOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['ModuloOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['EqualOperator'], ['Literal', 'value', 2], ['EqualOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['NotEqualOperator'], ['Literal', 'value', 2], ['NotEqualOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['IdenticalOperator'], ['Literal', 'value', 2], ['IdenticalOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['NotIdenticalOperator'], ['Literal', 'value', 2], ['NotIdenticalOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['LessThanOperator'], ['Literal', 'value', 2], ['LessThanOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['GreaterThanOperator'], ['Literal', 'value', 2], ['GreaterThanOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['LessEqualOperator'], ['Literal', 'value', 2], ['LessEqualOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['GreaterEqualOperator'], ['Literal', 'value', 2], ['GreaterEqualOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['LogicalAndOperator'], ['Literal', 'value', 2], ['LogicalAndOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['LogicalOrOperator'], ['Literal', 'value', 2], ['LogicalOrOperator'], ['Literal', 'value', 3], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['AssignmentOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['PlusAssignmentOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['MinusAssignmentOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['MultiplicationAssignmentOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['DivisionAssignmentOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['ConcatAssignmentOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['ModuloAssignmentOperator'], ['Literal', 'value', 2], ['OutputBlock'], ['TextBlock'], ['PreIncrementOperator'], ['Literal', 'value', 1], ['OutputBlock'], ['TextBlock'], ['PreDecrementOperator'], ['Literal', 'value', 1], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['PostIncrementOperator'], ['PlusOperator'], ['Literal', 'value', 1], ['PostDecrementOperator'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['PostIncrementOperator'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 1], ['PostDecrementOperator'], ['OutputBlock'], ['TextBlock'], ['NegateOperator'], ['Literal', 'value', 'a'], ['Variable', 'name', 'a'], ['OutputBlock'], ['TextBlock'], ['LogicalNegateOperator'], ['Literal', 'value', 'a'], ['Variable', 'name', 'a'], ['OutputBlock'], ['TextBlock'], ['Literal', 'value', 'a'], ['Variable', 'name', 'a'], ['InstanceOfOperator'], ['Literal', 'value', 'b'], ['Variable', 'name', 'b'], ['OutputBlock']];
 
         if ( $parser->debug )
             echo "\noperators_test.tpl\n";
@@ -752,10 +383,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
         if ( $parser->debug )
             echo "\nliteral_test.tpl\n";
 
-        $items = array( array( 'TextBlock', 'originalText', "some plain text\n\n" ),
-                        array( 'LiteralBlock', 'originalText', "{literal}\n\nno { code } inside here\nand \\{ escaped \\} braces are kept\n{/literal}" ),
-                        array( 'TextBlock', 'originalText', "\n\nand \\no/ \{ code \} here either\n" ),
-                        );
+        $items = [['TextBlock', 'originalText', "some plain text\n\n"], ['LiteralBlock', 'originalText', "{literal}\n\nno { code } inside here\nand \\{ escaped \\} braces are kept\n{/literal}"], ['TextBlock', 'originalText', "\n\nand \\no/ \{ code \} here either\n"]];
 
         $this->setupExpectedElements( $parser, $text, $source, $items );
 
@@ -794,10 +422,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
      */
     public function testParsingForeachBlock2()
     {
-        $texts = array(
-            '{foreach 1 as $i}{/foreach}',
-            '{foreach $objects error $item}{/foreach}',
-        );
+        $texts = ['{foreach 1 as $i}{/foreach}', '{foreach $objects error $item}{/foreach}'];
 
         $nFailures = 0;
         foreach ( $texts as $i => $text )
@@ -856,10 +481,7 @@ class ezcTemplateSourceToTstParserTest extends ezcTestCase
      */
     public function testParsingWhileBlock2()
     {
-        $texts = array(
-            '{while}{/while}',
-            '{while}',
-        );
+        $texts = ['{while}{/while}', '{while}'];
 
         $nFailures = 0;
         foreach ( $texts as $i => $text )

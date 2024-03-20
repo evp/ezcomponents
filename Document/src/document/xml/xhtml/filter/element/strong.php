@@ -31,9 +31,7 @@ class ezcDocumentXhtmlStrongElementFilter extends ezcDocumentXhtmlElementBaseFil
     public function filterElement( DOMElement $element )
     {
         $element->setProperty( 'type', 'emphasis' );
-        $element->setProperty( 'attributes', array(
-            'Role' => 'strong',
-        ) );
+        $element->setProperty( 'attributes', ['Role' => 'strong'] );
     }
 
     /**

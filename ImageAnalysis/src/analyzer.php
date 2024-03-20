@@ -123,10 +123,7 @@ class ezcImageAnalyzer
      *
      * @var array(string=>mixed)
      */
-    protected static $knownHandlers = array(
-        'ezcImageAnalyzerPhpHandler' => array(),
-        'ezcImageAnalyzerImagemagickHandler' => array(),
-    );
+    protected static $knownHandlers = ['ezcImageAnalyzerPhpHandler' => [], 'ezcImageAnalyzerImagemagickHandler' => []];
 
     /**
      * Available handler classes and their options.
@@ -180,7 +177,7 @@ class ezcImageAnalyzer
         {
             return;
         }
-        ezcImageAnalyzer::$availableHandlers = array();
+        ezcImageAnalyzer::$availableHandlers = [];
         foreach ( ezcImageAnalyzer::$knownHandlers as $handlerClass => $options )
         {
             if ( !ezcBaseFeatures::classExists( $handlerClass ) || !is_subclass_of( $handlerClass, 'ezcImageAnalyzerHandler' ) )

@@ -33,10 +33,7 @@ class ezcMvcFilterDefinitionTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'className' => 'php',
-        'options' => 'ezc',
-        );
+        $state = ['className' => 'php', 'options' => 'ezc'];
         $struct = ezcMvcFilterDefinition::__set_state( $state );
         $this->assertEquals( 'php', $struct->className, 'Property className does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->options, 'Property options does not have the expected value' );

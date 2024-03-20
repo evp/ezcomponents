@@ -73,17 +73,13 @@ class ezcPersistentObjectColumnsTest extends ezcTestCase
         $this->genericArrayAccessFailure(
             $columns,
             'foo',
-            array(
-                23, 23.42, true, "test", array(), new stdClass(),
-            ),
+            [23, 23.42, true, "test", [], new stdClass()],
             'ezcBaseValueException'
         );
         $this->genericArrayAccessFailure(
             $columns,
             23,
-            array(
-                new ezcPersistentObjectProperty(),
-            ),
+            [new ezcPersistentObjectProperty()],
             'ezcBaseValueException'
         );
     }
@@ -98,17 +94,14 @@ class ezcPersistentObjectColumnsTest extends ezcTestCase
             count( $columns )
         );
 
-        $columns->exchangeArray( array() );
+        $columns->exchangeArray( [] );
         $this->assertEquals(
             0,
             count( $columns )
         );
 
         $columns->exchangeArray(
-            array(
-                'foo' => new ezcPersistentObjectProperty(),
-                'bar' => new ezcPersistentObjectProperty(),
-            )
+            ['foo' => new ezcPersistentObjectProperty(), 'bar' => new ezcPersistentObjectProperty()]
         );
         $this->assertEquals(
             2,
@@ -129,7 +122,7 @@ class ezcPersistentObjectColumnsTest extends ezcTestCase
         try
         {
             $columns->exchangeArray(
-                array( 'foo' => 23 )
+                ['foo' => 23]
             );
             $this->fail( 'ezcBaseValueException not thrown on invalid value in exchange array.' );
         }
@@ -138,7 +131,7 @@ class ezcPersistentObjectColumnsTest extends ezcTestCase
         try
         {
             $columns->exchangeArray(
-                array( 23 => new ezcPersistentObjectProperty )
+                [23 => new ezcPersistentObjectProperty]
             );
             $this->fail( 'ezcBaseValueException not thrown on invalid offset in exchange array.' );
         }

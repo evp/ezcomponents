@@ -19,27 +19,27 @@ class ezcConfigurationIniParser implements Iterator
     /**
      * A constant to mark this parser as a reader
      */
-    const PARSE = 1;
+    public const PARSE = 1;
 
     /**
      * A constant to mark this parser as a validator
      */
-    const VALIDATE = 2;
+    public const VALIDATE = 2;
 
     /**
      * A constant to mark this parser as a strict validator
      */
-    const VALIDATE_STRICT = 3;
+    public const VALIDATE_STRICT = 3;
 
     /**
      * A regexp that matches the rules that are defined for an ID
      */
-    const ID_REGEXP = '([A-Za-z0-9_.-]+)';
+    public const ID_REGEXP = '([A-Za-z0-9_.-]+)';
 
     /**
      * A regexp that matches the rules that are defined for an dimension extension
      */
-    const DIM_REGEXP = '((\[[^\]]*\])*)';
+    public const DIM_REGEXP = '((\[[^\]]*\])*)';
 
     /**
      * Contains the file pointer to the INI file that is being parsed
@@ -74,7 +74,7 @@ class ezcConfigurationIniParser implements Iterator
     /**
      * Stores the last comments the parser found
      */
-    private $currentComments = array();
+    private $currentComments = [];
 
     /**
      * Stores whether an item has been found on the last parser run
@@ -298,7 +298,7 @@ class ezcConfigurationIniParser implements Iterator
         if ( count( $this->currentComments ) )
         {
             $comments = join( "\n", $this->currentComments );
-            $this->currentComments = array();
+            $this->currentComments = [];
             return $comments;
         }
         return null;
@@ -325,7 +325,7 @@ class ezcConfigurationIniParser implements Iterator
      */
     private function parseNext()
     {
-        $commentArray = array();
+        $commentArray = [];
 
         do
         {

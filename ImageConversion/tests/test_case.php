@@ -18,23 +18,23 @@
 class ezcImageConversionTestCase extends ezcTestImageCase
 {
     // To regenerate all test files, set this to true
-    const REGENERATION_MODE = false;
+    public const REGENERATION_MODE = false;
 
     // Set this to false to keep the temporary test dirs
-    const REMOVE_TEMP_DIRS = true;
+    public const REMOVE_TEMP_DIRS = true;
 
-    const DEFAULT_SIMILARITY_GAP = 10;
+    public const DEFAULT_SIMILARITY_GAP = 10;
 
-    protected static $tempDirs = array();
+    protected static $tempDirs = [];
 
-    protected $testFiles = array();
+    protected $testFiles = [];
 
     protected $referencePath;
 
     public function __construct()
     {
         parent::__construct();
-        $dataDir = dirname( __FILE__ ) . DIRECTORY_SEPARATOR . 'data';
+        $dataDir = __DIR__ . DIRECTORY_SEPARATOR . 'data';
         foreach ( glob( $dataDir . DIRECTORY_SEPARATOR . '*' ) as $testFile )
         {
             if ( !is_file( $testFile ) )

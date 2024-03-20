@@ -1,5 +1,3 @@
 <?php
-return array(
-    'extTranslationTest' => 'Translation/test.php',
-);
+return ['extTranslationTest' => 'Translation/test.php'];
 ?>

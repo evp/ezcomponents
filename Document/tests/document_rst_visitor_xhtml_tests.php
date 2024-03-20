@@ -23,7 +23,7 @@ class ezcDocumentRstXhtmlVisitorTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -31,15 +31,12 @@ class ezcDocumentRstXhtmlVisitorTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/rst/xhtml/s_*.txt' );
+            $testFiles = glob( __DIR__ . '/files/rst/xhtml/s_*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'html'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'html'];
             }
         }
 
@@ -49,8 +46,8 @@ class ezcDocumentRstXhtmlVisitorTests extends ezcTestCase
 
     public function testDifferentDoctypeXml()
     {
-        $from = dirname( __FILE__ ) . '/files/rst/xhtml/s_003_simple_text.txt';
-        $to   = dirname( __FILE__ ) . '/files/rst/xhtml/s_003_simple_text_no_xml.html';
+        $from = __DIR__ . '/files/rst/xhtml/s_003_simple_text.txt';
+        $to   = __DIR__ . '/files/rst/xhtml/s_003_simple_text_no_xml.html';
 
         $document = new ezcDocumentRst();
         $document->options->errorReporting = E_PARSE | E_ERROR | E_WARNING;
@@ -88,15 +85,12 @@ class ezcDocumentRstXhtmlVisitorTests extends ezcTestCase
 
     public function testDocumentWithStylesheets()
     {
-        $from = dirname( __FILE__ ) . '/files/rst/xhtml/s_003_simple_text.txt';
-        $to   = dirname( __FILE__ ) . '/files/rst/xhtml/s_003_simple_text_stylesheets.html';
+        $from = __DIR__ . '/files/rst/xhtml/s_003_simple_text.txt';
+        $to   = __DIR__ . '/files/rst/xhtml/s_003_simple_text_stylesheets.html';
 
         $document = new ezcDocumentRst();
         $document->options->errorReporting = E_PARSE | E_ERROR | E_WARNING;
-        $document->options->xhtmlVisitorOptions->styleSheets = array(
-            'foo.css',
-            'http://example.org/bar.css',
-        );
+        $document->options->xhtmlVisitorOptions->styleSheets = ['foo.css', 'http://example.org/bar.css'];
 
         $document->registerDirective( 'my_custom_directive', 'ezcDocumentTestDummyXhtmlDirective' );
         $document->registerDirective( 'user', 'ezcDocumentTestDummyXhtmlDirective' );
@@ -175,16 +169,7 @@ class ezcDocumentRstXhtmlVisitorTests extends ezcTestCase
     public static function getErroneousTestDocuments()
     {
 //        return array();
-        return array(
-            array(
-                dirname( __FILE__ ) . '/files/rst/xhtml/e_001_missing_directive.txt',
-                'Visitor error: Warning: \'No directive handler registered for directive \'missing_directive_dclaration\'.\' in line 7 at position 1.',
-            ),
-            array(
-                dirname( __FILE__ ) . '/files/rst/xhtml/e_001_missing_role.txt',
-                'Visitor error: Warning: \'No text role handler registered for text role \'no-handler-registered\'.\' in line 4 at position 45.',
-            ),
-        );
+        return [[__DIR__ . '/files/rst/xhtml/e_001_missing_directive.txt', 'Visitor error: Warning: \'No directive handler registered for directive \'missing_directive_dclaration\'.\' in line 7 at position 1.'], [__DIR__ . '/files/rst/xhtml/e_001_missing_role.txt', 'Visitor error: Warning: \'No text role handler registered for text role \'no-handler-registered\'.\' in line 4 at position 45.']];
     }
 
     /**

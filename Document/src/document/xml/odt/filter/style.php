@@ -26,7 +26,7 @@ class ezcDocumentOdtStyleFilter extends ezcDocumentOdtBaseFilter
      * 
      * @var array(ezcDocumentOdtStyleFilterRule)
      */
-    protected $rules = array();
+    protected $rules = [];
 
     /**
      * Style inferencer. 
@@ -42,10 +42,7 @@ class ezcDocumentOdtStyleFilter extends ezcDocumentOdtBaseFilter
      */
     public function __construct()
     {
-        $this->rules = array(
-            new ezcDocumentOdtEmphasisStyleFilterRule(),
-            new ezcDocumentOdtListLevelStyleFilterRule(),
-        );
+        $this->rules = [new ezcDocumentOdtEmphasisStyleFilterRule(), new ezcDocumentOdtListLevelStyleFilterRule()];
     }
 
     /**

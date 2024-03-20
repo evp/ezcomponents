@@ -86,7 +86,7 @@ class ezcGraphTransformation extends ezcGraphMatrix
      */
     public function transformCoordinate( ezcGraphCoordinate $coordinate )
     {
-        $vector = new ezcGraphMatrix( 3, 1, array( array( $coordinate->x ), array( $coordinate->y ), array( 1 ) ) );
+        $vector = new ezcGraphMatrix( 3, 1, [[$coordinate->x], [$coordinate->y], [1]] );
         $vector = parent::multiply( $vector );
 
         return new ezcGraphCoordinate( $vector->get( 0, 0 ), $vector->get( 1, 0 ) );

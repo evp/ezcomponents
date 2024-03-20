@@ -33,7 +33,7 @@ class ezcTreeNodeListTest extends ezcTestCase
         $node42->data = 'tweeenveertig';
         $list->addNode( $node42 );
 
-        self::assertSame( array( '5' => $node5, '42' => $node42 ), $list->nodes );
+        self::assertSame( ['5' => $node5, '42' => $node42], $list->nodes );
     }
 
     public function testGetSize()

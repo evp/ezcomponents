@@ -8,7 +8,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . "/test_case.php";
+require_once __DIR__ . "/test_case.php";
 
 /**
  * Test suite for ImageConverter class.
@@ -30,17 +30,13 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
     {
         try
         {
-            $conversionsIn = array(
-                "image/gif"  => "image/png",
-                "image/xpm"  => "image/jpeg",
-                "image/wbmp" => "image/jpeg",
-            );
+            $conversionsIn = ["image/gif"  => "image/png", "image/xpm"  => "image/jpeg", "image/wbmp" => "image/jpeg"];
             if ( ezcBaseFeatures::os() === 'Windows' )
             {
                 unset( $conversionsIn["image/xpm"] );
             }
             $settings = new ezcImageConverterSettings(
-                array( new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" ) ),
+                [new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" )],
                 $conversionsIn
             );
             $this->converter = new ezcImageConverter( $settings );
@@ -60,18 +56,14 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testConstructSingleHandlerSuccess()
     {
-        $conversionsIn = array(
-            "image/gif"  => "image/png",
-            "image/xpm"  => "image/jpeg",
-            "image/wbmp" => "image/jpeg",
-        );
+        $conversionsIn = ["image/gif"  => "image/png", "image/xpm"  => "image/jpeg", "image/wbmp" => "image/jpeg"];
         if ( ezcBaseFeatures::os() === 'Windows' )
         {
             unset( $conversionsIn["image/xpm"] );
         }
         try
         {
-            $settings = new ezcImageConverterSettings( array( new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" ) ),
+            $settings = new ezcImageConverterSettings( [new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" )],
                                                        $conversionsIn );
             $converter = new ezcImageConverter( $settings );
         }
@@ -97,11 +89,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
     
     public function testConstructFailureInvalidSettings()
     {
-        $conversionsIn = array(
-            "image/gif"  => "image/png",
-            "image/xpm"  => "image/jpeg",
-            "image/wbmp" => "image/jpeg",
-        );
+        $conversionsIn = ["image/gif"  => "image/png", "image/xpm"  => "image/jpeg", "image/wbmp" => "image/jpeg"];
         if ( ezcBaseFeatures::os() === 'Windows' )
         {
             unset( $conversionsIn["image/xpm"] );
@@ -109,7 +97,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
         try
         {
             $settings = new ezcImageConverterSettings(
-                array( new stdClass() ),
+                [new stdClass()],
                 $conversionsIn
             );
             $converter = new ezcImageConverter( $settings );
@@ -121,13 +109,9 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testConstructSingleHandlerFailureOutputMimeTypeNotSupported()
     {
-        $conversionsIn = array(
-            "image/gif"  => "image/png",
-            "image/xpm"  => "application/ezc",
-            "image/wbmp" => "image/jpeg",
-        );
+        $conversionsIn = ["image/gif"  => "image/png", "image/xpm"  => "application/ezc", "image/wbmp" => "image/jpeg"];
         $settings = new ezcImageConverterSettings(
-            array( new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" ) ),
+            [new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" )],
             $conversionsIn
         );
         try
@@ -143,13 +127,9 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testConstructSingleHandlerFailureInputMimeTypeNotSupported()
     {
-        $conversionsIn = array(
-            "image/gif"  => "image/png",
-            "image/ezc"  => "image/jpeg",
-            "image/wbmp" => "image/jpeg",
-        );
+        $conversionsIn = ["image/gif"  => "image/png", "image/ezc"  => "image/jpeg", "image/wbmp" => "image/jpeg"];
         $settings = new ezcImageConverterSettings( 
-            array( new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" ) ),
+            [new ezcImageHandlerSettings( "GD", "ezcImageGdHandler" )],
             $conversionsIn 
         );
 
@@ -166,13 +146,9 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testConstructSingleHandlerFailureHandlerNotAvailable()
     {
-        $conversionsIn = array(
-            "image/gif"  => "image/png",
-            "image/xpm"  => "image/jpeg",
-            "image/wbmp" => "image/jpeg",
-        );
+        $conversionsIn = ["image/gif"  => "image/png", "image/xpm"  => "image/jpeg", "image/wbmp" => "image/jpeg"];
         $settings = new ezcImageConverterSettings( 
-            array( new ezcImageHandlerSettings( "Toby", "fooImageHandlerToby" ) ),
+            [new ezcImageHandlerSettings( "Toby", "fooImageHandlerToby" )],
             $conversionsIn
         );
         try
@@ -190,7 +166,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testCreateTransformation()
     {
-        $transformation = $this->converter->createTransformation( "thumbnail", array(), array() );
+        $transformation = $this->converter->createTransformation( "thumbnail", [], [] );
         $this->assertType(
             "ezcImageTransformation",
             $transformation,
@@ -203,7 +179,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
     public function testCreateTransformationWithSaveOptions()
     {
         $options = new ezcImageSaveOptions();
-        $transformation = $this->converter->createTransformation( "thumbnail", array(), array(), $options );
+        $transformation = $this->converter->createTransformation( "thumbnail", [], [], $options );
         $this->assertAttributeSame(
             $options,
             'saveOptions',
@@ -297,15 +273,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testGetFilterNamesIncluded()
     {
-        $standardFilters = array(
-             "scale",
-             "scaleWidth",
-             "scaleHeight",
-             "scalePercent",
-             "scaleExact",
-             "crop",
-             "colorspace",
-        );
+        $standardFilters = ["scale", "scaleWidth", "scaleHeight", "scalePercent", "scaleExact", "crop", "colorspace"];
         $this->assertEquals(
             array_intersect( $standardFilters, $this->converter->getFilterNames() ),
             $standardFilters,
@@ -315,16 +283,10 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testGetFilterNamesExcluded()
     {
-        $impossibleFilters = array(
-            "__construct",
-            "__destruct",
-            "__get",
-            "__set",
-            "__call",
-        );
+        $impossibleFilters = ["__construct", "__destruct", "__get", "__set", "__call"];
         $this->assertEquals(
             array_intersect( $impossibleFilters, $this->converter->getFilterNames() ),
-            array(),
+            [],
             "Converter seems to support impossible filters."
         );
     }
@@ -340,7 +302,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
         $this->converter->applyFilter( 
             new ezcImageFilter( 
                 "scale", 
-                array( "width" => 10, "height" => 10, "direction" => ezcImageGeometryFilters::SCALE_DOWN ) 
+                ["width" => 10, "height" => 10, "direction" => ezcImageGeometryFilters::SCALE_DOWN] 
             ),
             $srcPath,
             $dstPath
@@ -360,7 +322,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
         $dstPath = $this->getTempPath();
         
 
-        $this->converter->applyFilter( new ezcImageFilter( "colorspace", array( "space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME ) ),
+        $this->converter->applyFilter( new ezcImageFilter( "colorspace", ["space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME] ),
                                        $srcPath, $dstPath );
 
         $this->assertImageSimilar(
@@ -380,9 +342,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
         $this->converter->applyFilter(
             new ezcImageFilter(
                 'colorspace',
-                array(
-                    'space' => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME
-                )
+                ['space' => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME]
             ),
             $srcPath,
             $dstPath,
@@ -405,7 +365,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
         try
         {
             $this->converter->applyFilter(
-                new ezcImageFilter( "colorspace", array( "space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME ) ),
+                new ezcImageFilter( "colorspace", ["space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME] ),
                 $srcPath,
                 $dstPath, 
                 "ezc" 
@@ -426,7 +386,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
         try
         {
             $this->converter->applyFilter(
-                new ezcImageFilter( "ezc", array() ),
+                new ezcImageFilter( "ezc", [] ),
                 $srcPath,
                 $dstPath 
             );
@@ -539,11 +499,11 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testCreateTransformationFailureCreatedTwice()
     {
-        $this->converter->createTransformation( 'foo', array(), array() );
+        $this->converter->createTransformation( 'foo', [], [] );
 
         try
         {
-            $this->converter->createTransformation( 'foo', array(), array() );
+            $this->converter->createTransformation( 'foo', [], [] );
             $this->fail( 'Expected not thrown on double created transformation.' );
         }
         catch ( ezcImageTransformationAlreadyExistsException $e )
@@ -552,7 +512,7 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
     public function testRemoveTransformationSuccess()
     {
-        $this->converter->createTransformation( 'foo', array(), array() );
+        $this->converter->createTransformation( 'foo', [], [] );
         $transformations = $this->readAttribute( $this->converter, "transformations" );
 
         $this->assertEquals(
@@ -587,15 +547,11 @@ class ezcImageConversionConverterTest extends ezcImageConversionTestCase
 
         $this->converter->createTransformation(
             'foo',
-            array(
-                new ezcImageFilter(
-                    "colorspace",
-                    array(
-                        "space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME
-                    )
-                ),
-            ),
-            array( 'image/jpeg' )
+            [new ezcImageFilter(
+                "colorspace",
+                ["space" => ezcImageColorspaceFilters::COLORSPACE_MONOCHROME]
+            )],
+            ['image/jpeg']
         );
         $this->converter->transform( 'foo', $srcPath, $dstPath );
     }

@@ -45,7 +45,7 @@ class ezcWebdavLockHeaderHandler
             return null;
         }
         
-        $result = array();
+        $result = [];
 
         $content = explode( ', ', $_SERVER['HTTP_TIMEOUT'] );
         foreach ( $content as $timeVal )
@@ -59,7 +59,7 @@ class ezcWebdavLockHeaderHandler
                 $result[] = (int) substr( $timeVal, 7 );
                 continue;
             }
-            
+
             // Ignore all other for now.
             // @TODO: Let's see, what clients send.
         }
@@ -136,18 +136,18 @@ class ezcWebdavLockHeaderHandler
         $i   = 0;
     
         $list = new ezcWebdavLockIfHeaderTaggedList();
-        $items = array();
+        $items = [];
 
         while ( $i < $len )
         {
             switch ( $content[$i] )
             {
                 case '<':
-                    if ( $items !== array() )
+                    if ( $items !== [] )
                     {
                         // Store last parsed list
                         $list[$currentPath] = $items;
-                        $items = array();
+                        $items = [];
                     }
                     ++$i;
                     $currentPath = $this->parseTagPath( $content, $len, $i );
@@ -222,7 +222,7 @@ class ezcWebdavLockHeaderHandler
         $len = strlen( $content );
         $i   = 0;
     
-        $items = array();
+        $items = [];
 
         while ( $i < $len )
         {
@@ -264,8 +264,8 @@ class ezcWebdavLockHeaderHandler
      */
     protected function parseConditionList( $content, $len, &$i )
     {
-        $lockTokens = array();
-        $eTags      = array();
+        $lockTokens = [];
+        $eTags      = [];
 
         $negated = false;
 

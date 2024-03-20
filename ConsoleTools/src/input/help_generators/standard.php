@@ -87,7 +87,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      */
     public function generateUngroupedOptionHelp( $long = false, array $optionsFilter = null )
     {
-        $help = array();
+        $help = [];
         foreach ( $this->input->getOptions() as $id => $param )
         {
             if ( $optionsFilter === null || in_array( $param->short, $optionsFilter ) || in_array( $param->long, $optionsFilter ) )
@@ -145,7 +145,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      */
     public function generateGroupedOptionHelp( array $groups, $long = false, array $optionsFilter = null )
     {
-        $help = array();
+        $help = [];
         foreach ( $groups as $groupName => $groupOptions )
         {
             foreach ( $groupOptions as $optionName )
@@ -193,7 +193,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      */
     public function generateArgumentHelp( $long = false )
     {
-        $help = array();
+        $help = [];
         if ( $this->input->argumentDefinition !== null )
         {
             foreach ( $this->input->argumentDefinition as $arg )
@@ -210,20 +210,17 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
                 }
                 $argSynopsis = sprintf( $argSynopsis, $type, $arg->name );
                 $help[] = ( $long === true )
-                        ? array( 
-                            $argSynopsis,
-                            $arg->longhelp . ( $arg->mandatory === false 
-                                               ? ' (optional' . ( $arg->default !== null 
-                                                                  ? ', default = ' . ( is_array( $arg->default ) 
-                                                                                       ? "'" . implode( "' '", $arg->default ) . "'" 
-                                                                                       : "'$arg->default'" 
-                                                                                     )
-                                                                  : '' 
-                                                                ) . ')'
-                                               : ''
-                                             )
-                          )
-                        : array( $argSynopsis, $arg->shorthelp );
+                        ? [$argSynopsis, $arg->longhelp . ( $arg->mandatory === false 
+                                           ? ' (optional' . ( $arg->default !== null 
+                                                              ? ', default = ' . ( is_array( $arg->default ) 
+                                                                                   ? "'" . implode( "' '", $arg->default ) . "'" 
+                                                                                   : "'$arg->default'" 
+                                                                                 )
+                                                              : '' 
+                                                            ) . ')'
+                                           : ''
+                                         )]
+                        : [$argSynopsis, $arg->shorthelp];
             }
         }
         return $help;
@@ -240,10 +237,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      */
     private function getOptionHelpRow( $long, ezcConsoleOption $param )
     {
-        return array( 
-            ( $param->short !== "" ? '-' . $param->short . ' / ' : "" ) . '--' . $param->long,
-            $long == false ? $param->shorthelp : $param->longhelp,
-        );
+        return [( $param->short !== "" ? '-' . $param->short . ' / ' : "" ) . '--' . $param->long, $long == false ? $param->shorthelp : $param->longhelp];
     }
 
     /**
@@ -259,7 +253,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
      */
     public function generateSynopsis( array $optionFilter = null )
     {
-        $usedOptions = array( 'short' => array(), 'long' => array() );
+        $usedOptions = ['short' => [], 'long' => []];
         $allowsArgs = true;
         $synopsis = '$ ' . ( isset( $argv ) && sizeof( $argv ) > 0 ? $argv[0] : $_SERVER['argv'][0] ) . ' ';
         foreach ( $this->input->getOptions() as $option )
@@ -358,7 +352,7 @@ class ezcConsoleInputStandardHelpGenerator implements ezcConsoleInputHelpGenerat
     private function createArgumentsSynopsis()
     {
         $mandatory = true;
-        $synopsises = array();
+        $synopsises = [];
         foreach ( $this->input->argumentDefinition as $arg )
         {
             $argSynopsis = "";

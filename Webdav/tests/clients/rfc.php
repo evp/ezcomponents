@@ -1,35 +1,12 @@
 <?php
-return array (
-  1 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'COPY',
-        'REQUEST_URI' => '/~fielding/index.html',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-        'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 204 No Content',
-    ),
-  ),
-  2 => 
-  array (
-    'collection' => 
-    array (
-      'description' => '>>Request
+return [1 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'COPY', 'REQUEST_URI' => '/~fielding/index.html', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu', 'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html']], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 204 No Content']], 2 => 
+['collection' => 
+['description' => '>>Request
 
 COPY /container/ HTTP/1.1
 Host: www.foo.bar
@@ -57,50 +34,24 @@ Content-Length: xxxx
   </d:response>
 </d:multistatus>
 
-',
-    ),
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+'], 'request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <d:propertybehavior xmlns:d="DAV:">
   <d:keepalive>*</d:keepalive>
 </d:propertybehavior>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'COPY',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'HTTP_DESTINATION' => 'http://www.foo.bar/othercontainer/',
-        'HTTP_DEPTH' => 'infinity',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'COPY', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'HTTP_DESTINATION' => 'http://www.foo.bar/othercontainer/', 'HTTP_DEPTH' => 'infinity', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response>
     <D:href>http://www.foo.bar/othercontainer/R2/</D:href>
     <D:status>HTTP/1.1 412 Precondition Failed</D:status>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  3 => 
-  array (
-    'overwrite' => 
-    array (
-      'description' => '>>Request
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 3 => 
+['overwrite' => 
+['description' => '>>Request
 
 COPY /~fielding/index.html HTTP/1.1
 Host: www.ics.uci.edu
@@ -111,37 +62,13 @@ Overwrite: F
 
 HTTP/1.1 412 Precondition Failed
 
-',
-    ),
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'COPY',
-        'REQUEST_URI' => '/~fielding/index.html',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-        'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html',
-        'HTTP_OVERWRITE' => 'F',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 412 Precondition Failed',
-    ),
-  ),
-  4 => 
-  array (
-    'success' => 
-    array (
-      'description' => '>>Request
+'], 'request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'COPY', 'REQUEST_URI' => '/~fielding/index.html', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu', 'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html', 'HTTP_OVERWRITE' => 'F']], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 412 Precondition Failed']], 4 => 
+['success' => 
+['description' => '>>Request
 
 COPY /~fielding/index.html HTTP/1.1
 Host: www.ics.uci.edu
@@ -151,142 +78,41 @@ Destination: http://www.ics.uci.edu/users/f/fielding/index.html
 
 HTTP/1.1 204 No Content
 
-',
-    ),
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'COPY',
-        'REQUEST_URI' => '/~fielding/index.html',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-        'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 204 No Content',
-    ),
-  ),
-  5 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'DELETE',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+'], 'request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'COPY', 'REQUEST_URI' => '/~fielding/index.html', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu', 'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html']], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 204 No Content']], 5 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'DELETE', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response>
     <D:href>http://www.foo.bar/container/resource3</D:href>
     <D:status>HTTP/1.1 423 Locked</D:status>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  6 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'GET',
-        'REQUEST_URI' => '/~fielding',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Content-Length' => '4096',
-        'ETag' => '89637f586f72a744fc0692a7eb9076e2',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  7 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'GET',
-        'REQUEST_URI' => '/~fielding/index.html',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<html><head><title>Foo Bar</title></head></html>
-',
-      'headers' => 
-      array (
-        'ETag' => '5ed4bd36ad87f04d473460f7ea1a9223',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Type' => 'text/html; charset="utf-8"',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  8 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'MKCOL',
-        'REQUEST_URI' => '/webdisc/xfiles/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.server.org',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  9 => 
-  array (
-    'collection' => 
-    array (
-      'description' => '>>Request
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 6 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'GET', 'REQUEST_URI' => '/~fielding', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu']], 'response' => 
+['body' => '', 'headers' => 
+['Content-Length' => '4096', 'ETag' => '89637f586f72a744fc0692a7eb9076e2', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 200 OK']], 7 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'GET', 'REQUEST_URI' => '/~fielding/index.html', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu']], 'response' => 
+['body' => '<html><head><title>Foo Bar</title></head></html>
+', 'headers' => 
+['ETag' => '5ed4bd36ad87f04d473460f7ea1a9223', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Type' => 'text/html; charset="utf-8"'], 'status' => 'HTTP/1.1 200 OK']], 8 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'MKCOL', 'REQUEST_URI' => '/webdisc/xfiles/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.server.org']], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 201 Created']], 9 => 
+['collection' => 
+['description' => '>>Request
 
 MOVE /container/ HTTP/1.1
 Host: www.foo.bar
@@ -316,51 +142,24 @@ Content-Length: xxxx
   </d:response>
 </d:multistatus>
 
-',
-    ),
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+'], 'request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <d:propertybehavior xmlns:d=\'DAV:\'>
   <d:keepalive>*</d:keepalive>
 </d:propertybehavior>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'MOVE',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'HTTP_DESTINATION' => 'http://www.foo.bar/othercontainer/',
-        'HTTP_OVERWRITE' => 'F',
-        'HTTP_IF' => '(<opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4>)  (<opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77>)',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'MOVE', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'HTTP_DESTINATION' => 'http://www.foo.bar/othercontainer/', 'HTTP_OVERWRITE' => 'F', 'HTTP_IF' => '(<opaquelocktoken:fe184f2e-6eec-41d0-c765-01adc56e6bb4>)  (<opaquelocktoken:e454f3f3-acdc-452a-56c7-00a5c91e4b77>)', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response>
     <D:href>http://www.foo.bar/othercontainer/C2/</D:href>
     <D:status>HTTP/1.1 412 Precondition Failed</D:status>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  10 => 
-  array (
-    'resource' => 
-    array (
-      'description' => '>>Request
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 10 => 
+['resource' => 
+['description' => '>>Request
 
 MOVE /~fielding/index.html HTTP/1.1
 Host: www.ics.uci.edu
@@ -371,62 +170,18 @@ Destination: http://www.ics.uci.edu/users/f/fielding/index.html
 HTTP/1.1 201 Created
 Location: http://www.ics.uci.edu/users/f/fielding/index.html
 
-',
-    ),
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'MOVE',
-        'REQUEST_URI' => '/~fielding/index.html',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-        'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-  11 => 
-  array (
-    'request' => 
-    array (
-      'body' => '',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'OPTIONS',
-        'REQUEST_URI' => '/~fielding',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'DAV' => '1',
-        'Allow' => 'GET, HEAD, PROPFIND, PROPPATCH, OPTIONS, DELETE, COPY, MOVE, MKCOL, PUT',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 200 OK',
-    ),
-  ),
-  12 => 
-  array (
-    'allprop' => 
-    array (
-      'description' => '>>Request
+'], 'request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'MOVE', 'REQUEST_URI' => '/~fielding/index.html', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu', 'HTTP_DESTINATION' => 'http://www.ics.uci.edu/users/f/fielding/index.html']], 'response' => 
+['body' => '', 'headers' => 
+['Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 201 Created']], 11 => 
+['request' => 
+['body' => '', 'server' => 
+['REQUEST_METHOD' => 'OPTIONS', 'REQUEST_URI' => '/~fielding', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu']], 'response' => 
+['body' => '', 'headers' => 
+['DAV' => '1', 'Allow' => 'GET, HEAD, PROPFIND, PROPPATCH, OPTIONS, DELETE, COPY, MOVE, MKCOL, PUT', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 200 OK']], 12 => 
+['allprop' => 
+['description' => '>>Request
 
 PROPFIND  /container/ HTTP/1.1
 Host: www.foo.bar
@@ -520,29 +275,14 @@ Content-Length: xxxx
   </D:response>
 </D:multistatus>
 
-',
-    ),
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+'], 'request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:propfind xmlns:D="DAV:">
   <D:allprop/>
 </D:propfind>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'HTTP_DEPTH' => '1',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPFIND', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'HTTP_DEPTH' => '1', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:R="http://www.foo.bar/boxschema/">
     <D:href>http://www.foo.bar/container/</D:href>
@@ -620,20 +360,10 @@ Content-Length: xxxx
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  13 => 
-  array (
-    'prop' => 
-    array (
-      'description' => '>>Request
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 13 => 
+['prop' => 
+['description' => '>>Request
 
 PROPFIND  /file HTTP/1.1
 Host: www.foo.bar
@@ -682,11 +412,8 @@ the DingALing property.
   <D:responsedescription> There has been an access violation error.
   </D:responsedescription>
 </D:multistatus>
-',
-    ),
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+'], 'request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:propfind xmlns:D="DAV:">
   <D:prop xmlns:R="http://www.foo.bar/boxschema/">
        <R:bigbox/>
@@ -695,20 +422,9 @@ the DingALing property.
        <R:Random/>
   </D:prop>
 </D:propfind>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REQUEST_URI' => '/file',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPFIND', 'REQUEST_URI' => '/file', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:R="http://www.foo.bar/boxschema/">
     <D:href>http://www.foo.bar/file</D:href>
@@ -732,20 +448,10 @@ the DingALing property.
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  14 => 
-  array (
-    'propname' => 
-    array (
-      'description' => '>>Request
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 14 => 
+['propname' => 
+['description' => '>>Request
 
 PROPFIND  /container/ HTTP/1.1
 Host: www.foo.bar
@@ -797,28 +503,14 @@ Content-Length: xxxx
        </propstat>
   </response>
 </multistatus>
-',
-    ),
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+'], 'request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <propfind xmlns="DAV:">
   <propname/>
 </propfind>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPFIND',
-        'REQUEST_URI' => '/container/',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.bar',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPFIND', 'REQUEST_URI' => '/container/', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.bar', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:ezc00000="http://www.foo.bar/boxschema/">
     <D:href>http://www.foo.bar/container/</D:href>
@@ -888,20 +580,10 @@ Content-Length: xxxx
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  15 => 
-  array (
-    'request' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="utf-8" ?>
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 15 => 
+['request' => 
+['body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:propertyupdate xmlns:D="DAV:"
 xmlns:Z="http://www.w3.com/standards/z39.50/">
   <D:set>
@@ -916,20 +598,9 @@ xmlns:Z="http://www.w3.com/standards/z39.50/">
        <D:prop><Z:Copyright-Owner/></D:prop>
   </D:remove>
 </D:propertyupdate>
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PROPPATCH',
-        'REQUEST_URI' => '/bar.html',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.foo.com',
-        'CONTENT_TYPE' => 'text/xml; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '1234',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '<?xml version="1.0" encoding="UTF-8"?>
+', 'server' => 
+['REQUEST_METHOD' => 'PROPPATCH', 'REQUEST_URI' => '/bar.html', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.foo.com', 'CONTENT_TYPE' => 'text/xml; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '1234']], 'response' => 
+['body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response xmlns:Z="http://www.w3.com/standards/z39.50/">
     <D:href>http://www.foo.bar/bar.html</D:href>
@@ -950,42 +621,12 @@ xmlns:Z="http://www.w3.com/standards/z39.50/">
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-      'headers' => 
-      array (
-        'Content-Type' => 'text/xml; charset="utf-8"',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-      ),
-      'status' => 'HTTP/1.1 207 Multi-Status',
-    ),
-  ),
-  16 => 
-  array (
-    'request' => 
-    array (
-      'body' => 'Test text to put
-',
-      'server' => 
-      array (
-        'REQUEST_METHOD' => 'PUT',
-        'REQUEST_URI' => '/~fielding/upload.txt',
-        'SERVER_PROTOCOL' => 'HTTP/1.1',
-        'HTTP_HOST' => 'www.ics.uci.edu',
-        'CONTENT_TYPE' => 'text/plain; charset="utf-8"',
-        'HTTP_CONTENT_LENGTH' => '17',
-      ),
-    ),
-    'response' => 
-    array (
-      'body' => '',
-      'headers' => 
-      array (
-        'ETag' => '0546b17485ca927ea9a56c5cb6b8d8ac',
-        'Server' => 'eZComponents/dev/ezcWebdavTransportMock',
-        'Content-Length' => '0',
-      ),
-      'status' => 'HTTP/1.1 201 Created',
-    ),
-  ),
-);
+', 'headers' => 
+['Content-Type' => 'text/xml; charset="utf-8"', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock'], 'status' => 'HTTP/1.1 207 Multi-Status']], 16 => 
+['request' => 
+['body' => 'Test text to put
+', 'server' => 
+['REQUEST_METHOD' => 'PUT', 'REQUEST_URI' => '/~fielding/upload.txt', 'SERVER_PROTOCOL' => 'HTTP/1.1', 'HTTP_HOST' => 'www.ics.uci.edu', 'CONTENT_TYPE' => 'text/plain; charset="utf-8"', 'HTTP_CONTENT_LENGTH' => '17']], 'response' => 
+['body' => '', 'headers' => 
+['ETag' => '0546b17485ca927ea9a56c5cb6b8d8ac', 'Server' => 'eZComponents/dev/ezcWebdavTransportMock', 'Content-Length' => '0'], 'status' => 'HTTP/1.1 201 Created']]];
 ?>

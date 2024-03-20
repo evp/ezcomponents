@@ -69,7 +69,7 @@ class ezcArchivePaxHeader extends ezcArchiveUstarHeader
      */
     protected function getPaxDecodedHeader( ezcArchiveBlockFile $file )
     {
-        $result = array();
+        $result = [];
 
         // next block has the info.
         $file->next();

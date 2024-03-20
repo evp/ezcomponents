@@ -58,7 +58,7 @@ class ezcPersistentObjectSchemaGenerator
     private $output;
 
 
-    const PROGRAM_DESCRIPTION = 'Generates defition files for the eZ PersistentObject package from eZ DatabaseSchema formats. The directory to save the definition files to is provided as an argument.';
+    public const PROGRAM_DESCRIPTION = 'Generates defition files for the eZ PersistentObject package from eZ DatabaseSchema formats. The directory to save the definition files to is provided as an argument.';
 
     /**
      * Create a new generator.
@@ -75,15 +75,15 @@ class ezcPersistentObjectSchemaGenerator
         $this->output->options->autobreak = 80;
         
         $this->output->formats->info->color = 'blue';
-        $this->output->formats->info->style = array( 'bold' );
+        $this->output->formats->info->style = ['bold'];
 
         $this->output->formats->help->color = 'blue';
 
         $this->output->formats->error->color = 'red';
-        $this->output->formats->error->style = array( 'bold' );
+        $this->output->formats->error->style = ['bold'];
 
         $this->output->formats->success->color = 'green';
-        $this->output->formats->success->style = array( 'bold' );
+        $this->output->formats->success->style = ['bold'];
         
         $this->input = new ezcConsoleInput();
 
@@ -96,8 +96,8 @@ class ezcPersistentObjectSchemaGenerator
                 false,      // multiple
                 "DatabaseSchema source to use.",
                 "The DatabaseSchema to use for the generation of the PersistentObject definition. Or the DSN to the database to grab the schema from.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 true        // mandatory
             )
@@ -112,8 +112,8 @@ class ezcPersistentObjectSchemaGenerator
                 false,      // multiple
                 "DatabaseSchema format of the input source.",
                 "The format, the input DatabaseSchema is in. Valid formats are {$schemaFormats}.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 true        // mandatory
             )
@@ -140,8 +140,8 @@ class ezcPersistentObjectSchemaGenerator
                 false,      // multiple
                 "Class prefix.",
                 "Unique prefix that will be prepended to all class names.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -156,8 +156,8 @@ class ezcPersistentObjectSchemaGenerator
                 false,      // multiple
                 "Use template rendering.",
                 "Switch on template rendering. Use --class-template, --definition-template, --template-path to customize.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -173,8 +173,8 @@ class ezcPersistentObjectSchemaGenerator
                 false,      // multiple
                 "Class template.",
                 "Template file to use for writing class stubs, defaults to eZ Components style classes. Look at default template to customize.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -189,8 +189,8 @@ class ezcPersistentObjectSchemaGenerator
                 false,      // multiple
                 "Definition template.",
                 "Template file to use for writing definition stubs, defaults configs fitting the default class template. Look at default template to customize.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -201,12 +201,12 @@ class ezcPersistentObjectSchemaGenerator
                 "tp",       // short
                 "template-path",   // long
                 ezcConsoleInput::TYPE_STRING,
-                dirname( __FILE__ ) . '/template_writer/templates',       // default
+                __DIR__ . '/template_writer/templates',       // default
                 false,      // multiple
                 "Base template path.",
                 "Path where templates are located. Will also by used as the path to compile templates to.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -221,8 +221,8 @@ class ezcPersistentObjectSchemaGenerator
                 false,      // multiple
                 "Retrieve detailed help about this application.",
                 "Print out this help information.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false,      // mandatory
                 true        // help option

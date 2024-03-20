@@ -29,7 +29,7 @@ class ezcDbSchemaAutoIncrementIndexValidator
      */
     static public function validate( ezcDbSchema $schema )
     {
-        $errors = array();
+        $errors = [];
 
         /* For each table we check all auto increment fields. */
         foreach ( $schema->getSchema() as $tableName => $table )

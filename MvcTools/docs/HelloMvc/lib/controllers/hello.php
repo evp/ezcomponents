@@ -3,7 +3,7 @@ class helloController extends ezcMvcController
 {
     private function selectGreeting()
     {
-        $greetings = array( 'Hello', 'Hei', 'こんにちわ', 'доброе утро' );
+        $greetings = ['Hello', 'Hei', 'こんにちわ', 'доброе утро'];
         return $greetings[mt_rand( 0, count( $greetings ) - 1 )];
     }
 

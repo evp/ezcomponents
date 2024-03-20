@@ -150,7 +150,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['nullPosition'] = false;
         $this->properties['axisSpace'] = .1;
@@ -405,14 +405,14 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
         $majorStepSize = 1 / $majorSteps;
         $minorStepSize = ( $minorStepsPerMajorStepCount > 0 ? $majorStepSize / $minorStepsPerMajorStepCount : 0 );
 
-        $steps = array();
+        $steps = [];
         for ( $major = 0; $major <= $majorSteps; ++$major )
         {
             $majorStep = new ezcGraphAxisStep(
                 $majorStepSize * $major,
                 $majorStepSize,
                 $this->getLabel( $major ),
-                array(),
+                [],
                 $this->isZeroStep( $major ),
                 ( $major === $majorSteps )
             );
@@ -474,7 +474,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
     {
         $this->innerBoundings = $innerBoundings;
         $startSpace = $this->axisSpace;
-        $endSpace   = $this->outerAxisSpace === null ? $this->axisSpace : $this->outerAxisSpace;
+        $endSpace   = $this->outerAxisSpace ?? $this->axisSpace;
 
         switch ( $this->position )
         {
@@ -533,8 +533,7 @@ abstract class ezcGraphChartElementAxis extends ezcGraphChartElement
             $start,
             $end,
             $this,
-            $this->axisLabelRenderer,
-            $innerBoundings
+            $this->axisLabelRenderer
         );
 
         return $boundings;   

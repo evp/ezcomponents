@@ -39,17 +39,9 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
                 $this->markTestSkipped( "You must provide a database to runtests.php." );
             }
 
-            $tables = array( self::$table => new ezcDbSchemaTable(
-                                array (
-                                    self::$fieldId       => new ezcDbSchemaField( 'integer', false, true, null, true ),
-                                    self::$fieldUser     => new ezcDbSchemaField( 'text', 32, true ),
-                                    self::$fieldPassword => new ezcDbSchemaField( 'text', 64, true ),
-                                    self::$fieldName  => new ezcDbSchemaField( 'text', 64, true ),
-                                    self::$fieldCountry  => new ezcDbSchemaField( 'text', 32, true )
-                                ),
-                                array (
-                                    self::$fieldUser => new ezcDbSchemaIndex( array ( self::$fieldUser => new ezcDbSchemaIndexField() ), false, false ),
-                                ) ) );
+            $tables = [self::$table => new ezcDbSchemaTable(
+                                [self::$fieldId       => new ezcDbSchemaField( 'integer', false, true, null, true ), self::$fieldUser     => new ezcDbSchemaField( 'text', 32, true ), self::$fieldPassword => new ezcDbSchemaField( 'text', 64, true ), self::$fieldName  => new ezcDbSchemaField( 'text', 64, true ), self::$fieldCountry  => new ezcDbSchemaField( 'text', 32, true )],
+                                [self::$fieldUser => new ezcDbSchemaIndex( [self::$fieldUser => new ezcDbSchemaIndexField()], false, false )] )];
             $schema = new ezcDbSchema( $tables );
             $schema->writeToDb( $this->db );
         }
@@ -122,7 +114,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabasePasswordNull()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'jan.modaal', null );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( false, $authentication->run() );
@@ -131,7 +123,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabaseSha1Correct()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'jan.modaal', 'b1b3773a05c0ed0176787a4f1574ff0075f7521e' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( true, $authentication->run() );
@@ -140,7 +132,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabaseSha1Fail()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'jan.modaal', 'wrong password' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( false, $authentication->run() );
@@ -149,7 +141,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabaseCryptCorrect()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'john.doe', 'joB9EZ4O1cXDk' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( true, $authentication->run() );
@@ -158,7 +150,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabaseCryptFail()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'john.doe', 'wrong password' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( false, $authentication->run() );
@@ -167,7 +159,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabaseMd5Correct()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'zhang.san', 'a152e841783914146e4bcd4f39100686' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( true, $authentication->run() );
@@ -176,7 +168,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabaseMd5Fail()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'zhang.san', 'wrong password' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( false, $authentication->run() );
@@ -185,7 +177,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabasePlainCorrect()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'hans.mustermann', 'abcdef' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( true, $authentication->run() );
@@ -194,7 +186,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabasePlainFail()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'hans.mustermann', 'wrong password' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( false, $authentication->run() );
@@ -203,7 +195,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabasePlainFailIncorrectUsername()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'no such user', 'wrong password' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
         $authentication->addFilter( new ezcAuthenticationDatabaseFilter( $database ) );
         $this->assertEquals( false, $authentication->run() );
@@ -212,27 +204,25 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     public function testDatabaseFetchData()
     {
         $credentials = new ezcAuthenticationPasswordCredentials( 'john.doe', 'joB9EZ4O1cXDk' );
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $authentication = new ezcAuthentication( $credentials );
 
         $filter = new ezcAuthenticationDatabaseFilter( $database );
-        $filter->registerFetchData( array( 'name', 'country' ) );
+        $filter->registerFetchData( ['name', 'country'] );
 
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array( 'name' => array( 'John Doe' ),
-                           'country' => array( 'US' )
-                         );
+        $expected = ['name' => ['John Doe'], 'country' => ['US']];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 
     public function testDatabaseInfo()
     {
-        $database = ezcAuthenticationDatabaseInfo::__set_state( array( 'instance' => $this->db, 'table' => self::$table, 'fields' => array( self::$fieldUser, self::$fieldPassword ) ) );
+        $database = ezcAuthenticationDatabaseInfo::__set_state( ['instance' => $this->db, 'table' => self::$table, 'fields' => [self::$fieldUser, self::$fieldPassword]] );
         $this->assertEquals( $this->db, $database->instance );
         $this->assertEquals( self::$table, $database->table );
-        $this->assertEquals( array( self::$fieldUser, self::$fieldPassword ), $database->fields );
+        $this->assertEquals( [self::$fieldUser, self::$fieldPassword], $database->fields );
     }
 
     public function testDatabaseOptions()
@@ -246,7 +236,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
     {
         $options = new ezcAuthenticationDatabaseOptions();
 
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $filter = new ezcAuthenticationDatabaseFilter( $database );
         $filter->setOptions( $options );
         $this->assertEquals( $options, $filter->getOptions() );
@@ -254,7 +244,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
 
     public function testDatabaseProperties()
     {
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $filter = new ezcAuthenticationDatabaseFilter( $database );
 
         $this->invalidPropertyTest( $filter, 'database', 'wrong value', 'ezcAuthenticationDatabaseInfo' );
@@ -263,7 +253,7 @@ class ezcAuthenticationDatabaseTest extends ezcAuthenticationDatabaseTieinTest
 
     public function testDatabasePropertiesIsSet()
     {
-        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, array( self::$fieldUser, self::$fieldPassword ) );
+        $database = new ezcAuthenticationDatabaseInfo( $this->db, self::$table, [self::$fieldUser, self::$fieldPassword] );
         $filter = new ezcAuthenticationDatabaseFilter( $database );
 
         $this->issetPropertyTest( $filter, 'database', true );

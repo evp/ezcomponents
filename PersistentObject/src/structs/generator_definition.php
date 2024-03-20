@@ -42,7 +42,7 @@ class ezcPersistentGeneratorDefinition extends ezcBaseStruct
      * @param string $class
      * @param array $params
      */
-    public function __construct( $class, array $params = array() )
+    public function __construct( $class, array $params = [] )
     {
         $this->class = $class;
         $this->params = $params;

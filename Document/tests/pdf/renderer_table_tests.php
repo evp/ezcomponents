@@ -25,20 +25,12 @@ class ezcDocumentPdfTableRendererTests extends ezcDocumentPdfTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTableDocuments()
     {
-        return array(
-            array( dirname( __FILE__ ) . '/../files/pdf/simple_tables.xml' ),
-            array( dirname( __FILE__ ) . '/../files/pdf/tables_with_list.xml' ),
-            array( dirname( __FILE__ ) . '/../files/pdf/stacked_table.xml' ),
-            array( dirname( __FILE__ ) . '/../files/pdf/wrapped_table.xml' ),
-            array( dirname( __FILE__ ) . '/../files/pdf/irregular_tables_1.xml' ),
-            array( dirname( __FILE__ ) . '/../files/pdf/irregular_tables_2.xml' ),
-            array( dirname( __FILE__ ) . '/../files/pdf/irregular_tables_3.xml' ),
-        );
+        return [[__DIR__ . '/../files/pdf/simple_tables.xml'], [__DIR__ . '/../files/pdf/tables_with_list.xml'], [__DIR__ . '/../files/pdf/stacked_table.xml'], [__DIR__ . '/../files/pdf/wrapped_table.xml'], [__DIR__ . '/../files/pdf/irregular_tables_1.xml'], [__DIR__ . '/../files/pdf/irregular_tables_2.xml'], [__DIR__ . '/../files/pdf/irregular_tables_3.xml']];
     }
 
     /**
@@ -46,7 +38,7 @@ class ezcDocumentPdfTableRendererTests extends ezcDocumentPdfTestCase
      */
     public function testRenderTables( $file )
     {
-        $this->renderFullDocument( $file, __CLASS__ . '_' . basename( $file, '.xml' ) . '.svg', array() );
+        $this->renderFullDocument( $file, self::class . '_' . basename( $file, '.xml' ) . '.svg', [] );
     }
 }
 

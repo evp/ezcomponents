@@ -87,25 +87,25 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
         // If it has a preOperator, it must have an operand.
         $match = "";
         $type = "";
-        if ( $this->parsePreModifyingOperator( $cursor, $match ) ) // Parse: --, ++
+        if ( $this->parsePreModifyingOperator( $cursor ) ) // Parse: --, ++
         {
             $canDoAssignment = false;
-            if ( !$this->parseOperand( $cursor, array( "Variable" ), false ) )
+            if ( !$this->parseOperand( $cursor, ["Variable"], false ) )
             {
                 throw new ezcTemplateParserException( $this->parser->source, $cursor, $cursor, ezcTemplateSourceToTstErrorMessages::MSG_EXPECT_VARIABLE );
             }
             
             return true;
         }
-        elseif ( $this->parsePreOperator( $cursor, $match ) ) // Parse: -, +, !
+        elseif ( $this->parsePreOperator( $cursor ) ) // Parse: -, +, !
         {
             $canDoAssignment = false;
-            if ( !$this->parseOperand( $cursor, array(), false ) )
+            if ( !$this->parseOperand( $cursor, [], false ) )
             {
                 throw new ezcTemplateParserException( $this->parser->source, $cursor, $cursor, ezcTemplateSourceToTstErrorMessages::MSG_EXPECT_OPERAND );
             }
         }
-        elseif ( $type = $this->parseOperand( $cursor, array(), true, true) ) // Only an operand?
+        elseif ( $type = $this->parseOperand( $cursor, [], true, true) ) // Only an operand?
         {
             if ( $type == "Variable" )
             {
@@ -154,9 +154,9 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
             $this->foundArrayAppend = false;
 
             // Modifying operators are not allowed anymore.
-            $this->parsePreOperator( $cursor, $match );
+            $this->parsePreOperator( $cursor );
 
-            $type = $this->parseOperand( $cursor, array(), false );
+            $type = $this->parseOperand( $cursor, [], false );
             if ( !$type ) 
             {
                 throw new ezcTemplateParserException( $this->parser->source, $cursor, $cursor, ezcTemplateSourceToTstErrorMessages::MSG_EXPECT_NON_MODIFYING_OPERAND );
@@ -182,7 +182,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
         $this->rootOperator = $rootOperator;
 
         // Make sure element list contains the root
-        $this->children = array( $this->rootOperator );
+        $this->children = [$this->rootOperator];
     }
 
     /**
@@ -206,7 +206,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
      * @param bool $allowArrayAppend
      * @return string The type that is parsed.
      */
-    protected function parseOperand( $cursor, $allowedTypes = array(), $allowPostModification = true, $allowArrayAppend = false )
+    protected function parseOperand( $cursor, $allowedTypes = [], $allowPostModification = true, $allowArrayAppend = false )
     {
         $parsedType = false;
         if ( $this->canParseType( 'Literal', $allowedTypes ) )
@@ -284,8 +284,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
         // This will contain the name of the operator if it is found.
         $operatorName = false;
 
-        $operatorSymbols = array( array( 1,
-                                         array( '-', '!', '+' ) ) );
+        $operatorSymbols = [[1, ['-', '!', '+']]];
         foreach ( $operatorSymbols as $symbolEntry )
         {
             $chars = $cursor->current( $symbolEntry[0] );
@@ -310,8 +309,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
             $cursor->advance( strlen( $operatorName ) );
             $this->findNextElement();
 
-            $operatorMap = array( '-' => 'NegateOperator',
-                                  '!' => 'LogicalNegateOperator' );
+            $operatorMap = ['-' => 'NegateOperator', '!' => 'LogicalNegateOperator'];
             $operatorName = $operatorMap[$operatorName];
 
             $function = "ezcTemplate". $operatorName . "TstNode";
@@ -440,14 +438,14 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
                 $this->currentOperator = $this->parser->handleOperatorPrecedence( $this->currentOperator, $operator );
                 $this->lastCursor = clone $cursor;
 
-                return array(true, false);
+                return [true, false];
             }
             else
             {
                 $operatorStartCursor = clone $cursor;
                 if ( !$this->parseRequiredType( 'ArrayFetch' ) )
                 {
-                    return array(false, true);
+                    return [false, true];
                 }
 
                 $this->findNextElement();
@@ -465,7 +463,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
             $operator->precedence < $this->minPrecedence )
             {
                 $cursor->copy( $operatorStartCursor );
-                return array(true, true);
+                return [true, true];
             }
 
             $this->currentOperator = $this->parser->handleOperatorPrecedence( $this->currentOperator, $operator );
@@ -474,7 +472,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
             $this->findNextElement();
         }
 
-        return array(($operator !== null), true); 
+        return [($operator !== null), true]; 
     }
 
     protected function parsePropertyFetch($cursor)
@@ -486,7 +484,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
 
             $operator = new ezcTemplatePropertyFetchOperatorTstNode( $this->parser->source, $this->startCursor, $cursor );
 
-            if ( $this->canParseType( 'Variable' , array() ) )
+            if ( $this->canParseType( 'Variable' , [] ) )
             {
                 $type = $this->parser->symbolTable->retrieve( $this->lastParser->element->name );
                 if ( $type === false )
@@ -550,21 +548,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
         // This will contain the name of the operator if it is found.
         $operatorName = false;
 
-        $operatorSymbols = array( 
-        array( 3,
-        array( '===', '!==' ) ),
-        array( 2,
-        array( 
-        '==', '!=',
-        '<=', '>=',
-        '&&', '||',
-        '+=', '-=', '*=', '/=', '.=', '%=',
-        '..',
-        '=>' /* To make sure that the expression ends when this token is found */,) ),
-        array( 1,
-        array( '+', '-', '.',
-        '*', '/', '%',
-        '<', '>', '=' ) ) );
+        $operatorSymbols = [[3, ['===', '!==']], [2, ['==', '!=', '<=', '>=', '&&', '||', '+=', '-=', '*=', '/=', '.=', '%=', '..', '=>']], [1, ['+', '-', '.', '*', '/', '%', '<', '>', '=']]];
         foreach ( $operatorSymbols as $symbolEntry )
         {
             $chars = $cursor->current( $symbolEntry[0] );
@@ -592,38 +576,7 @@ class ezcTemplateExpressionSourceToTstParser extends ezcTemplateSourceToTstParse
             $operatorStartCursor = clone $cursor;
             $cursor->advance( strlen( $operatorName ) );
 
-            $operatorMap = array( '+' => 'PlusOperator',
-            '-' => 'MinusOperator',
-            '.' => 'ConcatOperator',
-
-            '*' => 'MultiplicationOperator',
-            '/' => 'DivisionOperator',
-            '%' => 'ModuloOperator',
-
-            '==' => 'EqualOperator',
-            '!=' => 'NotEqualOperator',
-
-            '===' => 'IdenticalOperator',
-            '!==' => 'NotIdenticalOperator',
-
-            '<' => 'LessThanOperator',
-            '>' => 'GreaterThanOperator',
-
-            '<=' => 'LessEqualOperator',
-            '>=' => 'GreaterEqualOperator',
-
-            '&&' => 'LogicalAndOperator',
-            '||' => 'LogicalOrOperator',
-
-            '=' => 'AssignmentOperator',
-            '+=' => 'PlusAssignmentOperator',
-            '-=' => 'MinusAssignmentOperator',
-            '*=' => 'MultiplicationAssignmentOperator',
-            '/=' => 'DivisionAssignmentOperator',
-            '.=' => 'ConcatAssignmentOperator',
-            '%=' => 'ModuloAssignmentOperator',
-
-            '..' => 'ArrayRangeOperator', );
+            $operatorMap = ['+' => 'PlusOperator', '-' => 'MinusOperator', '.' => 'ConcatOperator', '*' => 'MultiplicationOperator', '/' => 'DivisionOperator', '%' => 'ModuloOperator', '==' => 'EqualOperator', '!=' => 'NotEqualOperator', '===' => 'IdenticalOperator', '!==' => 'NotIdenticalOperator', '<' => 'LessThanOperator', '>' => 'GreaterThanOperator', '<=' => 'LessEqualOperator', '>=' => 'GreaterEqualOperator', '&&' => 'LogicalAndOperator', '||' => 'LogicalOrOperator', '=' => 'AssignmentOperator', '+=' => 'PlusAssignmentOperator', '-=' => 'MinusAssignmentOperator', '*=' => 'MultiplicationAssignmentOperator', '/=' => 'DivisionAssignmentOperator', '.=' => 'ConcatAssignmentOperator', '%=' => 'ModuloAssignmentOperator', '..' => 'ArrayRangeOperator'];
 
             $requestedName = $operatorName;
             $operatorName = $operatorMap[$operatorName];

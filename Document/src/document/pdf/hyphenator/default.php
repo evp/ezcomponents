@@ -45,7 +45,7 @@ class ezcDocumentPdfDefaultHyphenator extends ezcDocumentPdfHyphenator
      */
     public function splitWord( $word )
     {
-        return array( array( $word ) );
+        return [[$word]];
     }
 }
 ?>

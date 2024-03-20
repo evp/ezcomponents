@@ -31,7 +31,7 @@ class ezcGraphAxisRadarLabelRenderer extends ezcGraphAxisLabelRenderer
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['lastStep'] = null;
 

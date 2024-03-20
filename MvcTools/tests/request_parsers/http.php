@@ -21,7 +21,7 @@ class ezcMvcToolsHttpRequestParserTest extends ezcTestRegressionTest
 {
     public function __construct()
     {
-        $basePath = dirname( __FILE__ ) . '/../testfiles/http_request_parser';
+        $basePath = __DIR__ . '/../testfiles/http_request_parser';
 
         $this->readDirRecursively( $basePath, $this->files, 'data' );
 
@@ -69,7 +69,7 @@ class ezcMvcToolsHttpRequestParserTest extends ezcTestRegressionTest
 
     public static function suite()
     {
-        return new ezcTestRegressionSuite( __CLASS__ );
+        return new ezcTestRegressionSuite( self::class );
     }
 }
 ?>

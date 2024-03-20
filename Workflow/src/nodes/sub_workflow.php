@@ -81,14 +81,12 @@ class ezcWorkflowNodeSubWorkflow extends ezcWorkflowNode
     {
         if ( is_string( $configuration ) )
         {
-            $configuration = array( 'workflow' => $configuration );
+            $configuration = ['workflow' => $configuration];
         }
 
         if ( !isset( $configuration['variables'] ) )
         {
-            $configuration['variables'] = array(
-              'in' => array(), 'out' => array()
-            );
+            $configuration['variables'] = ['in' => [], 'out' => []];
         }
 
         parent::__construct( $configuration );
@@ -189,12 +187,7 @@ class ezcWorkflowNodeSubWorkflow extends ezcWorkflowNode
      */
     public static function configurationFromXML( DOMElement $element )
     {
-        $configuration = array(
-          'workflow'  => $element->getAttribute( 'subWorkflowName' ),
-          'variables' => array(
-            'in' => array(), 'out' => array()
-          )
-        );
+        $configuration = ['workflow'  => $element->getAttribute( 'subWorkflowName' ), 'variables' => ['in' => [], 'out' => []]];
 
         $xpath = new DOMXPath( $element->ownerDocument );
         $in    = $xpath->query( 'in/variable', $element );

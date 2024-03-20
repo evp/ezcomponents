@@ -12,18 +12,7 @@ $graph->palette = new ezcGraphPaletteEzBlue();
 $graph->legend = false;
 
 // Add the data and hilight norwegian data set
-$graph->data['week'] = new ezcGraphArrayDataSet( array(
-    'Claudia Kosny' => 45,
-    'Lukasz Serwatka' => 35,
-    'Kristof Coomans' => 25,
-    'David Jones' => 23,
-    'Xavier Dutoit' => 20,
-    'sangib das' => 14,
-    'Mark Marsiglio' => 10,
-    'mark hayhurst' => 10,
-    'Paul Borgermans' => 10,
-    'Nabil Alimi' => 9,
-) );
+$graph->data['week'] = new ezcGraphArrayDataSet( ['Claudia Kosny' => 45, 'Lukasz Serwatka' => 35, 'Kristof Coomans' => 25, 'David Jones' => 23, 'Xavier Dutoit' => 20, 'sangib das' => 14, 'Mark Marsiglio' => 10, 'mark hayhurst' => 10, 'Paul Borgermans' => 10, 'Nabil Alimi' => 9] );
 
 // Set graph title
 $graph->title = '10 most active users on forum in last week';

@@ -40,21 +40,21 @@ class ezcImageImagemagickBaseHandler extends ezcImageMethodcallHandler
      * 
      * @var array(string=>string)
      */
-    private $tagMap = array();
+    private $tagMap = [];
 
     /**
      * Filter options per reference.
      * 
      * @var array(string=>array)
      */
-    private $filterOptions = array();
+    private $filterOptions = [];
 
     /**
      * Composite image setting per reference.
      * 
      * @var array(string=>bool)
      */
-    private $compositeImages = array();
+    private $compositeImages = [];
 
     /**
      * Create a new image handler.
@@ -191,11 +191,7 @@ class ezcImageImagemagickBaseHandler extends ezcImageMethodcallHandler
 
         
         // Prepare to run ImageMagick command
-        $descriptors = array( 
-            array( 'pipe', 'r' ),
-            array( 'pipe', 'w' ),
-            array( 'pipe', 'w' ),
-        );
+        $descriptors = [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']];
         
         // Open ImageMagick process
         $imageProcess = proc_open( $command, $descriptors, $pipes );
@@ -329,7 +325,7 @@ class ezcImageImagemagickBaseHandler extends ezcImageMethodcallHandler
      */
     private function determineTypes()
     {
-        $tagMap = array(
+        $tagMap = [
             'application/pcl' => 'PCL',
             'application/pdf' => 'PDF',
             'application/postscript' => 'PS',
@@ -374,7 +370,7 @@ class ezcImageImagemagickBaseHandler extends ezcImageMethodcallHandler
             'video/mng' => 'MNG',
             'video/mpeg' => 'MPEG',
             'video/mpeg2' => 'M2V',
-        );
+        ];
         $types = array_keys( $tagMap );
         $this->inputTypes = $types;
         $this->outputTypes = $types;
@@ -410,11 +406,7 @@ class ezcImageImagemagickBaseHandler extends ezcImageMethodcallHandler
         }
         
         // Prepare to run ImageMagick command
-        $descriptors = array( 
-            array( 'pipe', 'r' ),
-            array( 'pipe', 'w' ),
-            array( 'pipe', 'w' ),
-        );
+        $descriptors = [['pipe', 'r'], ['pipe', 'w'], ['pipe', 'w']];
 
         // Open ImageMagick process
         $imageProcess = proc_open( $this->binary, $descriptors, $pipes );

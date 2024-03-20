@@ -9,12 +9,5 @@
  * @package SignalSlot
  */
 
-return array(
-    'ezcSignalSlotException'         => 'SignalSlot/exceptions/signalslot_exception.php',
-    'ezcSignalStaticConnectionsBase' => 'SignalSlot/interfaces/static_connections_base.php',
-    'ezcSignalCallbackComparer'      => 'SignalSlot/internal/callback_comparer.php',
-    'ezcSignalCollection'            => 'SignalSlot/signal_collection.php',
-    'ezcSignalCollectionOptions'     => 'SignalSlot/options/options.php',
-    'ezcSignalStaticConnections'     => 'SignalSlot/static_connections.php',
-);
+return ['ezcSignalSlotException'         => 'SignalSlot/exceptions/signalslot_exception.php', 'ezcSignalStaticConnectionsBase' => 'SignalSlot/interfaces/static_connections_base.php', 'ezcSignalCallbackComparer'      => 'SignalSlot/internal/callback_comparer.php', 'ezcSignalCollection'            => 'SignalSlot/signal_collection.php', 'ezcSignalCollectionOptions'     => 'SignalSlot/options/options.php', 'ezcSignalStaticConnections'     => 'SignalSlot/static_connections.php'];
 ?>

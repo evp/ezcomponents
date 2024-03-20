@@ -20,7 +20,7 @@ class ezcPersistentSessionMiscTest extends ezcPersistentSessionTest
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     // Properties 
@@ -29,7 +29,7 @@ class ezcPersistentSessionMiscTest extends ezcPersistentSessionTest
     {
         $db = ezcDbInstance::get();
         $session = new ezcPersistentSession( $db,
-                                             new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" ) );
+                                             new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" ) );
         $this->assertSame( $db, $session->database );
         try
         {
@@ -44,7 +44,7 @@ class ezcPersistentSessionMiscTest extends ezcPersistentSessionTest
     public function testDefinitionManagerProperty()
     {
         $db = ezcDbInstance::get();
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session = new ezcPersistentSession( $db, $manager );
         $this->assertSame( $manager, $session->definitionManager );
         try
@@ -62,7 +62,7 @@ class ezcPersistentSessionMiscTest extends ezcPersistentSessionTest
     public function testGetAccessFailure()
     {
         $db = ezcDbInstance::get();
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session = new ezcPersistentSession( $db, $manager );
 
         try
@@ -79,7 +79,7 @@ class ezcPersistentSessionMiscTest extends ezcPersistentSessionTest
     public function testSetAccessFailure()
     {
         $db = ezcDbInstance::get();
-        $manager = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/PersistentObject/tests/data/" );
+        $manager = new ezcPersistentCodeManager( __DIR__ . "/PersistentObject/tests/data/" );
         $session = new ezcPersistentSession( $db, $manager );
 
         try
@@ -115,13 +115,7 @@ class ezcPersistentSessionMiscTest extends ezcPersistentSessionTest
     
     public function testExportImportDefinitions()
     {
-        $classes = array(
-            'PersistentTestObject',
-            'RelationTestAddress',
-            'RelationTestEmployer',
-            'RelationTestBirthday',
-            'RelationTestPerson',
-        );
+        $classes = ['PersistentTestObject', 'RelationTestAddress', 'RelationTestEmployer', 'RelationTestBirthday', 'RelationTestPerson'];
         $dir = $this->createTempDir( 'export' );
 
         foreach( $classes as $class )
@@ -192,15 +186,7 @@ class ezcPersistentSessionMiscTest extends ezcPersistentSessionTest
 
     public function testObjectDefinitionSerialization()
     {
-        $persistentClasses = array(
-            'PersistentTestObject',
-            'PersistentTestObjectConverter',
-            'RelationTestAddress',
-            'RelationTestBirthday',
-            'RelationTestEmployer',
-            'RelationTestPerson',
-            'RelationTestSecondPerson',
-        );
+        $persistentClasses = ['PersistentTestObject', 'PersistentTestObjectConverter', 'RelationTestAddress', 'RelationTestBirthday', 'RelationTestEmployer', 'RelationTestPerson', 'RelationTestSecondPerson'];
 
         foreach( $persistentClasses as $persistentClass )
         {

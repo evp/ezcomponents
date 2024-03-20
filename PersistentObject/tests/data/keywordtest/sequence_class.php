@@ -28,10 +28,7 @@ class Sequence extends Table
 
     public function getState()
     {
-        return array(
-            'column' => $this->column,
-            'trigger' => $this->trigger,
-        );
+        return ['column' => $this->column, 'trigger' => $this->trigger];
     }
 }
 

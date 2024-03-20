@@ -83,45 +83,14 @@ class ezcDocumentPdfSvgDriver extends ezcDocumentPdfDriver
      *
      * @var array
      */
-    protected $fonts = array(
-        'sans-serif' => array(
-            self::FONT_PLAIN   => 'Bitstream Vera Sans',
-            self::FONT_BOLD    => 'Bitstream Vera Sans',
-            self::FONT_OBLIQUE => 'Bitstream Vera Sans',
-            3                  => 'Bitstream Vera Sans',
-        ),
-        'serif' => array(
-            self::FONT_PLAIN   => 'Bitstream Vera Serif',
-            self::FONT_BOLD    => 'Bitstream Vera Serif',
-            self::FONT_OBLIQUE => 'Bitstream Vera Serif',
-            3                  => 'Bitstream Vera Serif',
-        ),
-        'monospace' => array(
-            self::FONT_PLAIN   => 'Bitstream Vera Sans Mono',
-            self::FONT_BOLD    => 'Bitstream Vera Sans Mono',
-            self::FONT_OBLIQUE => 'Bitstream Vera Sans Mono',
-            3                  => 'Bitstream Vera Sans Mono',
-        ),
-        'Symbol' => array(
-            self::FONT_PLAIN   => 'Symbol',
-        ),
-        'ZapfDingbats' => array(
-            self::FONT_PLAIN   => 'ZapfDingbats',
-        ),
-    );
+    protected $fonts = ['sans-serif' => [self::FONT_PLAIN   => 'Bitstream Vera Sans', self::FONT_BOLD    => 'Bitstream Vera Sans', self::FONT_OBLIQUE => 'Bitstream Vera Sans', 3                  => 'Bitstream Vera Sans'], 'serif' => [self::FONT_PLAIN   => 'Bitstream Vera Serif', self::FONT_BOLD    => 'Bitstream Vera Serif', self::FONT_OBLIQUE => 'Bitstream Vera Serif', 3                  => 'Bitstream Vera Serif'], 'monospace' => [self::FONT_PLAIN   => 'Bitstream Vera Sans Mono', self::FONT_BOLD    => 'Bitstream Vera Sans Mono', self::FONT_OBLIQUE => 'Bitstream Vera Sans Mono', 3                  => 'Bitstream Vera Sans Mono'], 'Symbol' => [self::FONT_PLAIN   => 'Symbol'], 'ZapfDingbats' => [self::FONT_PLAIN   => 'ZapfDingbats']];
 
     /**
      * Name and style of default font / currently used font
      *
      * @var array
      */
-    protected $currentFont = array(
-        'name'  => 'sans-serif',
-        'style' => self::FONT_PLAIN,
-        'size'  => 28.5,
-        'font'  => null,
-        'color' => '#000000',
-    );
+    protected $currentFont = ['name'  => 'sans-serif', 'style' => self::FONT_PLAIN, 'size'  => 28.5, 'font'  => null, 'color' => '#000000'];
 
     /**
      * Construct driver
@@ -536,12 +505,7 @@ class ezcDocumentPdfSvgDriver extends ezcDocumentPdfDriver
     public function setMetaData( $key, $value )
     {
         // We ignore dates here, because it would make stuff harder to test.
-        $mapping = array(
-            'title' => 'title',
-            'author' => 'author',
-            'subject' => 'subject',
-            'creator' => 'creator',
-        );
+        $mapping = ['title' => 'title', 'author' => 'author', 'subject' => 'subject', 'creator' => 'creator'];
 
         if ( !isset( $mapping[$key] ) )
         {

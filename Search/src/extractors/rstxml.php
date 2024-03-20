@@ -43,8 +43,8 @@ class ezcSearchRstXmlExtractor /* implements ezcSearchExtractor */
         $tocElem = $xpath->evaluate( "//h1[@class='title']", $tbody )->item( 0 );
         $title = $tocElem ? $tocElem->nodeValue : 'no title';
 
-        $docs = array();
-        $body = $urls = array();
+        $docs = [];
+        $body = $urls = [];
         $currentUrl = $url;
         $lastUrl = $url;
         $currentBody = '';

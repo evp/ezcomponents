@@ -38,7 +38,7 @@ class ezcTemplateVariableCollectionTest extends ezcTestCase
         $send->green = "00FF00";
         $send->blue = "0000FF";
 
-        $a = array();
+        $a = [];
 
         foreach ( $send as $name => $value )
         {

@@ -82,8 +82,8 @@ class ezcMvcResult extends ezcBaseStruct
      * @param array(mixed) $variables
      */
     public function __construct( $status = 0, $date = null,
-        $generator = '', $cache = null, $cookies = array(), $content = null,
-        $variables = array() )
+        $generator = '', $cache = null, $cookies = [], $content = null,
+        $variables = [] )
     {
         $this->status = $status;
         $this->date = $date;

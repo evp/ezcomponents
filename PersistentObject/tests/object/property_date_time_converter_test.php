@@ -53,13 +53,7 @@ class ezcPersistentPropertyDateTimeConverterTest extends ezcTestCase
     {
         $conv = new ezcPersistentPropertyDateTimeConverter();
 
-        $values = array(
-            'Test string',
-            true,
-            false,
-            new stdClass(),
-            array( 23, 42 )
-        );
+        $values = ['Test string', true, false, new stdClass(), [23, 42]];
 
         foreach ( $values as $value )
         {
@@ -98,15 +92,7 @@ class ezcPersistentPropertyDateTimeConverterTest extends ezcTestCase
     {
         $conv = new ezcPersistentPropertyDateTimeConverter();
 
-        $values = array(
-            23,
-            23.42,
-            'Test string',
-            true,
-            false,
-            new stdClass(),
-            array( 23, 42 )
-        );
+        $values = [23, 23.42, 'Test string', true, false, new stdClass(), [23, 42]];
 
         foreach ( $values as $value )
         {

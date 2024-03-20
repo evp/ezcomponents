@@ -28,11 +28,7 @@ class ezcDocumentDocbookToEzXmlMappingHandler extends ezcDocumentElementVisitorH
      *
      * @var array
      */
-    protected $mapping = array(
-        'literal'      => 'literal',
-        'listitem'     => 'li',
-        'row'          => 'tr',
-    );
+    protected $mapping = ['literal'      => 'literal', 'listitem'     => 'li', 'row'          => 'tr'];
 
     /**
      * Handle a node

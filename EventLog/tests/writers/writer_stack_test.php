@@ -16,22 +16,7 @@ class ezcLogStackWriterTest extends ezcTestCase
 {
     protected $writer;
 
-    protected $messages = array( 
-        array(
-            'message' => 'Alien alert',
-            'severity' => 'critical',
-            'source' => 'UFO report',
-            'category' => 'fake warning',
-            'optional' => array( 1, 2, 3 )
-        ),
-        array(
-            'message' => 'Alien greeting',
-            'severity' => 'uncritical',
-            'source' => 'Alien News',
-            'category' => 'real warning',
-            'optional' => 'hi'
-        ),
-    );
+    protected $messages = [['message' => 'Alien alert', 'severity' => 'critical', 'source' => 'UFO report', 'category' => 'fake warning', 'optional' => [1, 2, 3]], ['message' => 'Alien greeting', 'severity' => 'uncritical', 'source' => 'Alien News', 'category' => 'real warning', 'optional' => 'hi']];
 
     protected function setUp()
     {
@@ -82,7 +67,7 @@ class ezcLogStackWriterTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite(__CLASS__);
+        return new PHPUnit_Framework_TestSuite(self::class);
     }
 }
 ?>

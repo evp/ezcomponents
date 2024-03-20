@@ -105,7 +105,7 @@ class ezcMailMboxTransport
      */
     public function listMessages()
     {
-        $messages = array();
+        $messages = [];
         fseek( $this->fh, 0 );
         // Skip the first mail as this is the mbox header
         $position = $this->findFirstMessage();
@@ -152,7 +152,7 @@ class ezcMailMboxTransport
         {
             throw new ezcMailNoSuchMessageException( $number );
         }
-        return new ezcMailMboxSet( $this->fh, array( 0 => $messages[$number] ) );
+        return new ezcMailMboxSet( $this->fh, [0 => $messages[$number]] );
     }
 
     /**

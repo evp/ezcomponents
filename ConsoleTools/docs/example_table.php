@@ -23,10 +23,10 @@ function __autoload( $className )
 $out = new ezcConsoleOutput();
 // Define a new format "headline"
 $out->formats->headline->color = 'red';
-$out->formats->headline->style = array( 'bold' );
+$out->formats->headline->style = ['bold'];
 // Define a new format "sum"
 $out->formats->sum->color = 'blue';
-$out->formats->sum->style = array( 'negative' );
+$out->formats->sum->style = ['negative'];
 
 // Create a new table
 $table = new ezcConsoleTable( $out, 60 );
@@ -40,7 +40,7 @@ for ( $i = 2; $i < 5; $i++ )
      $table[0][]->content = "Headline $i";
 }
 
-$data = array( 1, 2, 3, 4 );
+$data = [1, 2, 3, 4];
 
 // Create some more data in the table...
 foreach ( $data as $value )

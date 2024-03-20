@@ -12,7 +12,7 @@ $session->start();
 
 $identity = $session->load();
 
-$url = isset( $_GET['openid_identifier'] ) ? $_GET['openid_identifier'] : $identity;
+$url = $_GET['openid_identifier'] ?? $identity;
 $action = isset( $_GET['action'] ) ? strtolower( $_GET['action'] ) : null;
 
 $credentials = new ezcAuthenticationIdCredentials( $url );

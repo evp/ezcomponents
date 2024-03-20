@@ -33,7 +33,7 @@ class ezcPersistentObjectColumns extends ArrayObject
      */
     public function __construct()
     {
-        $this->columns = array();
+        $this->columns = [];
         parent::__construct( $this->columns );
     }
 

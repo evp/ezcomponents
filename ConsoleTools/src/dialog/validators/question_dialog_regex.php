@@ -31,10 +31,7 @@ class ezcConsoleQuestionDialogRegexValidator implements ezcConsoleQuestionDialog
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        "pattern" => null,
-        "default" => null,
-    );
+    protected $properties = ["pattern" => null, "default" => null];
 
     /**
      * Create a new question dialog regex validator.

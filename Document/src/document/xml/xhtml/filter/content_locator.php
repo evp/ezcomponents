@@ -25,28 +25,7 @@ class ezcDocumentXhtmlContentLocatorFilter extends ezcDocumentXhtmlBaseFilter
      *
      * @var array
      */
-    protected $bonus = array(
-        'a'          => 10,
-        'b'          => 10,
-        'big'        => 20,
-        'blockquote' => 50,
-        'cite'       => 25,
-        'code'       => 25,
-        'em'         => 20,
-        'h1'         => 100,
-        'h2'         => 80,
-        'h3'         => 60,
-        'h4'         => 40,
-        'h5'         => 30,
-        'h6'         => 20,
-        'i'          => 10,
-        'ol'         => 50,
-        'p'          => 50,
-        'q'          => 10,
-        'small'      => 10,
-        'strong'     => 20,
-        'table'      => 25,
-    );
+    protected $bonus = ['a'          => 10, 'b'          => 10, 'big'        => 20, 'blockquote' => 50, 'cite'       => 25, 'code'       => 25, 'em'         => 20, 'h1'         => 100, 'h2'         => 80, 'h3'         => 60, 'h4'         => 40, 'h5'         => 30, 'h6'         => 20, 'i'          => 10, 'ol'         => 50, 'p'          => 50, 'q'          => 10, 'small'      => 10, 'strong'     => 20, 'table'      => 25];
 
     /**
      * Maximum importance found in the document.
@@ -131,7 +110,7 @@ class ezcDocumentXhtmlContentLocatorFilter extends ezcDocumentXhtmlBaseFilter
         }
 
         // Use an exponential metric on text amount.
-        $textFactor = max( 1, pow( $textLength / 50, 4 ) );
+        $textFactor = max( 1, ($textLength / 50) ** 4 );
 
         $factor = $textFactor * ( ( $childFactors + $childTypeBonus ) / max( 1, abs( 10 - $childElements ) ) );
 

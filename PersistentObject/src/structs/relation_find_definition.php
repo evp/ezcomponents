@@ -46,7 +46,7 @@ class ezcPersistentRelationFindDefinition extends ezcBaseStruct
      * 
      * @var array(ezcPersistentRelationFindDefinition)
      */
-    public $furtherRelations = array();
+    public $furtherRelations = [];
 
     /**
      * Definition object for this $relatedClass. 
@@ -77,7 +77,7 @@ class ezcPersistentRelationFindDefinition extends ezcBaseStruct
      * @param string $relationName
      * @param array(ezcPersistentRelationFindDefinition) $furtherRelations
      */
-    public function __construct( $relatedClass, $relationName = null, array $furtherRelations = array() )
+    public function __construct( $relatedClass, $relationName = null, array $furtherRelations = [] )
     {
         $this->relatedClass     = $relatedClass;
         $this->relationName     = $relationName;

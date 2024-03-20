@@ -97,7 +97,7 @@ class ezcPersistentIdentityRelationObjectExtractor
         
         foreach ( $results as $row )
         {
-            $this->extractObjectsRecursive( $row, $relations, $object, array() );
+            $this->extractObjectsRecursive( $row, $relations, $object, [] );
         }
 
         return $object;
@@ -122,7 +122,7 @@ class ezcPersistentIdentityRelationObjectExtractor
 
         $def = $this->defManager->fetchDefinition( $class );
 
-        $extractedBaseObjects = array();
+        $extractedBaseObjects = [];
 
         foreach ( $results as $row )
         {
@@ -191,7 +191,7 @@ class ezcPersistentIdentityRelationObjectExtractor
                     {
                         $this->idMap->setRelatedObjectSet(
                             $parent,
-                            array(),
+                            [],
                             $tableAlias
                         );
                     }
@@ -207,7 +207,7 @@ class ezcPersistentIdentityRelationObjectExtractor
                     {
                         $this->idMap->setRelatedObjects(
                             $parent,
-                            array(),
+                            [],
                             $relation->relatedClass,
                             $relation->relationName
                         );
@@ -249,7 +249,7 @@ class ezcPersistentIdentityRelationObjectExtractor
             if ( $relatedObjects === null )
             {
                 // No relation set recorded, create
-                $relatedObjects = array();
+                $relatedObjects = [];
             }
 
             // Check if relation itself is already recorded and only set the
@@ -326,14 +326,12 @@ class ezcPersistentIdentityRelationObjectExtractor
      */
     protected function setObjectState( $object, ezcPersistentObjectDefinition $def, array $result, $prefix = null )
     {
-        $state = array(
-            $def->idProperty->propertyName => $result[
-                $this->getColumnAlias(
-                    $def->idProperty->propertyName,
-                    $prefix
-                )
-            ]
-        );
+        $state = [$def->idProperty->propertyName => $result[
+            $this->getColumnAlias(
+                $def->idProperty->propertyName,
+                $prefix
+            )
+        ]];
 
         foreach ( $def->properties as $property )
         {

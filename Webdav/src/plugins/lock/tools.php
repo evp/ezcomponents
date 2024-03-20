@@ -34,9 +34,7 @@ class ezcWebdavLockTools
      * 
      * @var array(string)
      */
-    protected static $defaultCloneHeaders = array(
-        'Authorization',
-    );
+    protected static $defaultCloneHeaders = ['Authorization'];
 
     /**
      * Creates a new tool instances.
@@ -68,7 +66,7 @@ class ezcWebdavLockTools
     public static function cloneRequestHeaders(
         ezcWebdavRequest $from,
         ezcWebdavRequest $to,
-        $headers = array(),
+        $headers = [],
         $defaultHeaders = true
     )
     {
@@ -124,7 +122,7 @@ class ezcWebdavLockTools
 
         $propFind->setHeader(
             'Depth',
-            ( $checkInfo->depth !== null ? $checkInfo->depth : ezcWebdavRequest::DEPTH_ONE )
+            ( $checkInfo->depth ?? ezcWebdavRequest::DEPTH_ONE )
         );
         $propFind->setHeader( 'Authorization', $checkInfo->authHeader );
 
@@ -205,7 +203,7 @@ class ezcWebdavLockTools
             $request->getHeader( 'Depth' ),
             $request->lockInfo->owner,
             $this->getTimeoutValue(
-                ( $timeouts = $request->getHeader( 'Timeout' ) ) === null ? array() : $timeouts
+                ( $timeouts = $request->getHeader( 'Timeout' ) ) === null ? [] : $timeouts
             ),
             // Generated lock tokens conform to the opaquelocktoken URI scheme
             new ezcWebdavPotentialUriContent( $lockToken, true ),
@@ -337,7 +335,7 @@ class ezcWebdavLockTools
 
         // Perform If header validation, must be matched no matter if locked.
         $ifItems = $checkInfo->ifHeader[$path];
-        if ( $ifItems !== array() )
+        if ( $ifItems !== [] )
         {
             $conditionVerified = false;
             // If header has conditions for the resource verify at least 1
@@ -424,7 +422,7 @@ class ezcWebdavLockTools
     )
     {
         $auth             = ezcWebdavServer::getInstance()->auth;
-        $activeLockTokens = array();
+        $activeLockTokens = [];
 
         foreach ( $lockDiscovery->activeLock as $activeLock )
         {
@@ -489,10 +487,7 @@ class ezcWebdavLockTools
      */
     protected function extractCheckProperties( ezcWebdavPropFindResponse $propFindRes )
     {
-        $data = array(
-            'getetag'       => null,
-            'lockdiscovery' => null,
-        );
+        $data = ['getetag'       => null, 'lockdiscovery' => null];
         foreach ( $propFindRes->responses as $propStatRes )
         {
             switch ( $propStatRes->status )

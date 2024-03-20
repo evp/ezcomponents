@@ -21,15 +21,12 @@ class ezcDocumentPdfListItemGeneratorTests extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getNumericGeneratorValues()
     {
-        return array(
-            array( 1, '1' ),
-            array( 23, '23' ),
-        );
+        return [[1, '1'], [23, '23']];
     }
 
     /**
@@ -46,11 +43,7 @@ class ezcDocumentPdfListItemGeneratorTests extends ezcTestCase
 
     public static function getAlphaGeneratorValues()
     {
-        return array(
-            array( 1, 'a' ),
-            array( 23, 'w' ),
-            array( 27, 'aa' ),
-        );
+        return [[1, 'a'], [23, 'w'], [27, 'aa']];
     }
 
     /**
@@ -79,13 +72,7 @@ class ezcDocumentPdfListItemGeneratorTests extends ezcTestCase
 
     public static function getRomanGeneratorValues()
     {
-        return array(
-            array( 1, 'i' ),
-            array( 3, 'iii' ),
-            array( 18, 'xviii' ),
-            array( 3999, 'mmmcmxcix' ),
-            array( 5999, 'mmmmmcmxcix' ),
-        );
+        return [[1, 'i'], [3, 'iii'], [18, 'xviii'], [3999, 'mmmcmxcix'], [5999, 'mmmmmcmxcix']];
     }
 
     /**

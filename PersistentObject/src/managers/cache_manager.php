@@ -32,7 +32,7 @@ class ezcPersistentCacheManager extends ezcPersistentDefinitionManager
      *
      * @var array($className=>ezcPersistentObjectDefinition)
      */
-    private $cache = array();
+    private $cache = [];
 
     /**
      * Constructs a new definition cache.

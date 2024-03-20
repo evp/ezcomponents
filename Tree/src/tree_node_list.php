@@ -71,7 +71,7 @@ class ezcTreeNodeList implements ArrayAccess
      */
     public function __construct()
     {
-        $this->nodes = array();
+        $this->nodes = [];
     }
 
     /**

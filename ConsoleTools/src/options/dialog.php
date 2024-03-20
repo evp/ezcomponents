@@ -27,10 +27,7 @@ class ezcConsoleDialogOptions extends ezcBaseOptions
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        "format"    => "default",
-        "validator" => null
-    );
+    protected $properties = ["format"    => "default", "validator" => null];
 
     /**
      * Property write access.

@@ -21,18 +21,16 @@ class ezcDocumentPdfTests extends ezcDocumentPdfTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testRenderUnknownElements()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/unknown.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/unknown.xml' );
 
         try {
-            $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( array(
-                'driver' => new ezcDocumentPdfSvgDriver(),
-            ) ) );
+            $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( ['driver' => new ezcDocumentPdfSvgDriver()] ) );
             $pdfDoc->createFromDocbook( $docbook );
             $this->fail( 'Expected ezcDocumentVisitException.' );
         }
@@ -43,12 +41,9 @@ class ezcDocumentPdfTests extends ezcDocumentPdfTestCase
     public function testRenderUnknownElementsSilence()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/unknown.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/unknown.xml' );
 
-        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( array(
-            'driver'         => new ezcDocumentPdfSvgDriver(),
-            'errorReporting' => E_PARSE,
-        ) ) );
+        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( ['driver'         => new ezcDocumentPdfSvgDriver(), 'errorReporting' => E_PARSE] ) );
         $pdfDoc->createFromDocbook( $docbook );
 
         $errors = $pdfDoc->getErrors();
@@ -62,16 +57,14 @@ class ezcDocumentPdfTests extends ezcDocumentPdfTestCase
     public function testRenderDefault()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/long_text.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/long_text.xml' );
 
-        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( array(
-            'driver' => new ezcDocumentPdfSvgDriver(),
-        ) ) );
+        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( ['driver' => new ezcDocumentPdfSvgDriver()] ) );
         $pdfDoc->createFromDocbook( $docbook );
         $pdf = (string) $pdfDoc;
 
         file_put_contents(
-            $this->tempDir . ( $fileName = __CLASS__ . '_' . __FUNCTION__ . '.svg' ),
+            $this->tempDir . ( $fileName = self::class . '_' . __FUNCTION__ . '.svg' ),
             $pdf
         );
     
@@ -84,17 +77,15 @@ class ezcDocumentPdfTests extends ezcDocumentPdfTestCase
     public function testRenderCustomStyle()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/long_text.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/long_text.xml' );
 
-        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( array(
-            'driver' => new ezcDocumentPdfSvgDriver(),
-        ) ) );
-        $pdfDoc->loadStyles( dirname( __FILE__ ) . '/../files/pdf/custom.css' );
+        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( ['driver' => new ezcDocumentPdfSvgDriver()] ) );
+        $pdfDoc->loadStyles( __DIR__ . '/../files/pdf/custom.css' );
         $pdfDoc->createFromDocbook( $docbook );
         $pdf = (string) $pdfDoc;
 
         file_put_contents(
-            $this->tempDir . ( $fileName = __CLASS__ . '_' . __FUNCTION__ . '.svg' ),
+            $this->tempDir . ( $fileName = self::class . '_' . __FUNCTION__ . '.svg' ),
             $pdf
         );
     
@@ -107,18 +98,16 @@ class ezcDocumentPdfTests extends ezcDocumentPdfTestCase
     public function testRenderCustomStyleAndAdditionalPdfParts()
     {
         $docbook = new ezcDocumentDocbook();
-        $docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/long_text.xml' );
+        $docbook->loadFile( __DIR__ . '/../files/pdf/long_text.xml' );
 
-        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( array(
-            'driver' => new ezcDocumentPdfSvgDriver(),
-        ) ) );
-        $pdfDoc->loadStyles( dirname( __FILE__ ) . '/../files/pdf/custom.css' );
+        $pdfDoc = new ezcDocumentPdf( new ezcDocumentPdfOptions( ['driver' => new ezcDocumentPdfSvgDriver()] ) );
+        $pdfDoc->loadStyles( __DIR__ . '/../files/pdf/custom.css' );
         $pdfDoc->registerPdfPart( new ezcDocumentPdfHeaderPdfPart() );
         $pdfDoc->createFromDocbook( $docbook );
         $pdf = (string) $pdfDoc;
 
         file_put_contents(
-            $this->tempDir . ( $fileName = __CLASS__ . '_' . __FUNCTION__ . '.svg' ),
+            $this->tempDir . ( $fileName = self::class . '_' . __FUNCTION__ . '.svg' ),
             $pdf
         );
     

@@ -16,16 +16,16 @@
  */
 class ezcSearchQueryToken
 {
-    const STRING = 1;
-    const SPACE  = 2;
-    const QUOTE  = 3;
-    const PLUS   = 4;
-    const MINUS  = 5;
-    const BRACE_OPEN  = 6;
-    const BRACE_CLOSE = 7;
-    const LOGICAL_AND = 8;
-    const LOGICAL_OR  = 9;
-    const COLON  = 10;
+    public const STRING = 1;
+    public const SPACE  = 2;
+    public const QUOTE  = 3;
+    public const PLUS   = 4;
+    public const MINUS  = 5;
+    public const BRACE_OPEN  = 6;
+    public const BRACE_CLOSE = 7;
+    public const LOGICAL_AND = 8;
+    public const LOGICAL_OR  = 9;
+    public const COLON  = 10;
 
     /**
      * Token type

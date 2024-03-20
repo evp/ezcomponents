@@ -55,7 +55,7 @@ class ezcLogMessage
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array( "message" => "", "source" => "", "category" => "", "severity" => "" );
+    protected $properties = ["message" => "", "source" => "", "category" => "", "severity" => ""];
 
     /**
      * Constructs the ezcLogMessage from the $message, $severity, $defaultSource and $defaultCategory.

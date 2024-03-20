@@ -19,7 +19,7 @@ class ezcPersistentFindWithRelationsQueryTest extends ezcPersistentFindQueryTest
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testSetOwnPropertiesFailure()
@@ -30,12 +30,12 @@ class ezcPersistentFindWithRelationsQueryTest extends ezcPersistentFindQueryTest
         $this->assertSetPropertyFails(
             $findQuery,
             'relations',
-            array( 23, 42.23, true, array(), new stdClass() )
+            [23, 42.23, true, [], new stdClass()]
         );
         $this->assertSetPropertyFails(
             $findQuery,
             'isRestricted',
-            array( 23, 42.23, true, array(), 'foo' )
+            [23, 42.23, true, [], 'foo']
         );
     }
 
@@ -45,9 +45,7 @@ class ezcPersistentFindWithRelationsQueryTest extends ezcPersistentFindQueryTest
 
         $findQuery = $this->createFindQuery();
 
-        $relations = array(
-            'bars' => new ezcPersistentRelationFindDefinition( 'BarClass' ),
-        );
+        $relations = ['bars' => new ezcPersistentRelationFindDefinition( 'BarClass' )];
 
         $this->assertFalse( $findQuery->isRestricted );
         $this->assertEquals( $relations, $findQuery->relations );
@@ -115,9 +113,7 @@ class ezcPersistentFindWithRelationsQueryTest extends ezcPersistentFindQueryTest
     {
         $q   = new ezcQuerySelect( $this->db );
         $cn  = 'myCustomClassName';
-        $rel = array(
-            'bars' => new ezcPersistentRelationFindDefinition( 'BarClass' ),
-        );
+        $rel = ['bars' => new ezcPersistentRelationFindDefinition( 'BarClass' )];
 
         return new ezcPersistentFindWithRelationsQuery( $q, $cn, $rel );
     }

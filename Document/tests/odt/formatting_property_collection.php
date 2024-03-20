@@ -19,7 +19,7 @@ class ezcDocumentOdtFormattingPropertyCollectionTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -35,7 +35,7 @@ class ezcDocumentOdtFormattingPropertyCollectionTest extends ezcTestCase
     public function testConstructorSuccess()
     {
         $this->assertAttributeEquals(
-            array(),
+            [],
             'properties',
             $this->propColl
         );
@@ -52,9 +52,7 @@ class ezcDocumentOdtFormattingPropertyCollectionTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT => $props
-            ),
+            [ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT => $props],
             'properties',
             $this->propColl
         );
@@ -89,9 +87,7 @@ class ezcDocumentOdtFormattingPropertyCollectionTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT => $props
-            ),
+            [ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT => $props],
             'properties',
             $this->propColl
         );
@@ -111,9 +107,7 @@ class ezcDocumentOdtFormattingPropertyCollectionTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT => $props
-            ),
+            [ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT => $props],
             'properties',
             $this->propColl
         );

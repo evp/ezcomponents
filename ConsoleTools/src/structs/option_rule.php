@@ -33,11 +33,7 @@ class ezcConsoleOptionRule
      *
      * @var array
      */
-    protected $properties = array( 
-        'option' => null,
-        'values' => array(),
-        'ifSet'  => true
-    );
+    protected $properties = ['option' => null, 'values' => [], 'ifSet'  => true];
 
     /**
      * Creates a new option rule.
@@ -71,7 +67,7 @@ class ezcConsoleOptionRule
      * @param mixed $values            The affected values.
      * @param bool $ifSet
      */
-    public function __construct( ezcConsoleOption $option, array $values = array(), $ifSet = true )
+    public function __construct( ezcConsoleOption $option, array $values = [], $ifSet = true )
     {
         $this->__set( 'option', $option );
         $this->__set( 'values', $values );

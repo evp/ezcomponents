@@ -30,15 +30,7 @@ class Article
 
     function getState()
     {
-        $state = array(
-            'id' => $this->id,
-            'title' => $this->title,
-            'summary' => $this->summary,
-            'body' => $this->body,
-            'published' => $this->published,
-            'author' => $this->author,
-            'number' => $this->number,
-        );
+        $state = ['id' => $this->id, 'title' => $this->title, 'summary' => $this->summary, 'body' => $this->body, 'published' => $this->published, 'author' => $this->author, 'number' => $this->number];
         if ( $this->omitElement )
         {
             unset( $state[$this->omitElement] );

@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/permutation.php";
+require_once __DIR__ . "/permutation.php";
 
 // Writes to: regression_tests/expressions/correct/whitespace_usage_*.in
 
@@ -51,15 +51,15 @@ $main = perm( "[{",
 $list = perm( "%num%:",
               $main
               );
-$dir = dirname( __FILE__ ) . "/../regression_tests/";
+$dir = __DIR__ . "/../regression_tests/";
 
 $a = app( "expressions/correct/whitespace_usage_0001.in", $argv );
 
 $i = 1;
 $top = "";
 $topPHP = "";
-$phpCode = array( 1 => '' );
-$sendMap = array( 1 => false );
+$phpCode = [1 => ''];
+$sendMap = [1 => false];
 
 // Invalid cases in PHP:
 // 5//*asdf*/5

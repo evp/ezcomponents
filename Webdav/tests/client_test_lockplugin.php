@@ -9,17 +9,17 @@ require_once 'client_test.php';
 
 class ezcWebdavClientLockPluginTest extends ezcWebdavClientTest
 {
-    private static $tokenReplacements = array();
+    private static $tokenReplacements = [];
 
     protected function setupTestEnvironment()
     {
         $this->setupClass = 'ezcWebdavClientTestLockPluginSetup';
-        $this->dataFile   = dirname( __FILE__ ) . '/clients/lockplugin.php';
+        $this->dataFile   = __DIR__ . '/clients/lockplugin.php';
     }
 
     public static function suite()
     {
-        return new ezcWebdavClientTestSuite( __CLASS__ );
+        return new ezcWebdavClientTestSuite( self::class );
     }
 
     protected function runTestSet( $testSetName )

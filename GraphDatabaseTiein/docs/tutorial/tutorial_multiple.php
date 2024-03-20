@@ -18,10 +18,7 @@ $chart->legend = false;
 
 $chart->data['browsers'] = new ezcGraphDatabaseDataSet( 
     $statement,
-    array(
-        ezcGraph::KEY   => 'browser',
-        ezcGraph::VALUE => 'hits',
-    )
+    [ezcGraph::KEY   => 'browser', ezcGraph::VALUE => 'hits']
 );
 
 // Some graph output formatting

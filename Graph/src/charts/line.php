@@ -79,7 +79,7 @@ class ezcGraphLineChart extends ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->additionalAxis = new ezcGraphAxisContainer( $this );
 
@@ -233,8 +233,8 @@ class ezcGraphLineChart extends ezcGraphChart
         $yAxisNullPosition = $this->elements['yAxis']->getCoordinate( false );
 
         // Initialize counters
-        $nr = array();
-        $count = array();
+        $nr = [];
+        $count = [];
 
         foreach ( $this->data as $data )
         {
@@ -256,8 +256,8 @@ class ezcGraphLineChart extends ezcGraphChart
             --$nr[$data->displayType->default];
 
             // Check which axis should be used
-            $xAxis = ( $data->xAxis->default ? $data->xAxis->default: $this->elements['xAxis'] );
-            $yAxis = ( $data->yAxis->default ? $data->yAxis->default: $this->elements['yAxis'] );
+            $xAxis = ( $data->xAxis->default ?: $this->elements['xAxis'] );
+            $yAxis = ( $data->yAxis->default ?: $this->elements['yAxis'] );
 
             // Determine fill color for dataset
             if ( $this->options->fillLines !== false )
@@ -310,7 +310,7 @@ class ezcGraphLineChart extends ezcGraphChart
                             $data->color[$key],
                             $fillColor,
                             $yAxisNullPosition,
-                            ( $data->lineThickness->default ? $data->lineThickness->default : $this->options->lineThickness )
+                            ( $data->lineThickness->default ?: $this->options->lineThickness )
                         );
 
                         // Render highlight string if requested
@@ -324,11 +324,11 @@ class ezcGraphLineChart extends ezcGraphChart
                                 $nr[$data->displayType->default],
                                 $count[$data->displayType->default],
                                 $this->options->highlightFont,
-                                ( $data->highlightValue[$key] ? $data->highlightValue[$key] : $value ),
+                                ( $data->highlightValue[$key] ?: $value ),
                                 $this->options->highlightSize + $this->options->highlightFont->padding * 2,
                                 ( $this->options->highlightLines ? $data->color[$key] : null ),
-                                ( $this->options->highlightXOffset ? $this->options->highlightXOffset : 0 ),
-                                ( $this->options->highlightYOffset ? $this->options->highlightYOffset : 0 ),
+                                ( $this->options->highlightXOffset ?: 0 ),
+                                ( $this->options->highlightYOffset ?: 0 ),
                                 0.,
                                 ezcGraph::LINE
                             );
@@ -399,11 +399,11 @@ class ezcGraphLineChart extends ezcGraphChart
                                 $nr[$data->displayType->default],
                                 $count[$data->displayType->default],
                                 $this->options->highlightFont,
-                                ( $data->highlightValue[$key] ? $data->highlightValue[$key] : $value ),
+                                ( $data->highlightValue[$key] ?: $value ),
                                 $this->options->highlightSize + $this->options->highlightFont->padding * 2,
                                 ( $this->options->highlightLines ? $data->color[$key] : null ),
-                                ( $this->options->highlightXOffset ? $this->options->highlightXOffset : 0 ),
-                                ( $this->options->highlightYOffset ? $this->options->highlightYOffset : 0 ),
+                                ( $this->options->highlightXOffset ?: 0 ),
+                                ( $this->options->highlightYOffset ?: 0 ),
                                 0.,
                                 ezcGraph::LINE
                             );
@@ -433,11 +433,11 @@ class ezcGraphLineChart extends ezcGraphChart
                                 $nr[$data->displayType->default],
                                 $count[$data->displayType->default],
                                 $this->options->highlightFont,
-                                ( $data->highlightValue[$key] ? $data->highlightValue[$key] : $value ),
+                                ( $data->highlightValue[$key] ?: $value ),
                                 $this->options->highlightSize + $this->options->highlightFont->padding * 2,
                                 ( $this->options->highlightLines ? $data->color[$key] : null ),
-                                ( $this->options->highlightXOffset ? $this->options->highlightXOffset : 0 ),
-                                ( $this->options->highlightYOffset ? $this->options->highlightYOffset : 0 ),
+                                ( $this->options->highlightXOffset ?: 0 ),
+                                ( $this->options->highlightYOffset ?: 0 ),
                                 $width,
                                 $data->displayType->default
                             );
@@ -493,14 +493,14 @@ class ezcGraphLineChart extends ezcGraphChart
     protected function setAxisValues()
     {
         // Virtual data set build for agrregated values sums for bar charts
-        $virtualBarSumDataSet = array( array(), array() );
+        $virtualBarSumDataSet = [[], []];
 
         // Calculate axis scaling and labeling
         foreach ( $this->data as $dataset )
         {
             $nr = 0;
-            $labels = array();
-            $values = array();
+            $labels = [];
+            $values = [];
             foreach ( $dataset as $label => $value )
             {
                 $labels[] = $label;
@@ -629,13 +629,9 @@ class ezcGraphLineChart extends ezcGraphChart
             $boundings->x0 + $boundings->width *
                     $this->elements['yAxis']->axisSpace,
             $boundings->y0 + $boundings->height *
-                ( ( $this->elements['xAxis']->outerAxisSpace === null ) ?
-                    $this->elements['xAxis']->axisSpace :
-                    $this->elements['xAxis']->outerAxisSpace ),
+                ( $this->elements['xAxis']->outerAxisSpace ?? $this->elements['xAxis']->axisSpace ),
             $boundings->x1 - $boundings->width *
-                ( ( $this->elements['yAxis']->outerAxisSpace === null ) ?
-                    $this->elements['yAxis']->axisSpace :
-                    $this->elements['yAxis']->outerAxisSpace ),
+                ( $this->elements['yAxis']->outerAxisSpace ?? $this->elements['yAxis']->axisSpace ),
             $boundings->y1 - $boundings->height *
                     $this->elements['xAxis']->axisSpace
         );

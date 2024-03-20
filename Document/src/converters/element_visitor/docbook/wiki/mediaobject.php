@@ -33,17 +33,12 @@ class ezcDocumentDocbookToWikiMediaObjectHandler extends ezcDocumentDocbookToWik
     protected function getImageParameters( ezcDocumentElementVisitorConverter $converter, DOMElement $node )
     {
         $resource = $node->getElementsBytagName( 'imagedata' )->item( 0 );
-        $options = array(
-            'resource' => $resource->getAttribute( 'fileref' ),
-        );
+        $options = ['resource' => $resource->getAttribute( 'fileref' )];
 
         // Get image resource
 
         // Transform attributes
-        $attributes = array(
-            'width'    => 'width',
-            'depth'    => 'height',
-        );
+        $attributes = ['width'    => 'width', 'depth'    => 'height'];
         foreach ( $attributes as $src => $dst )
         {
             if ( $resource->hasAttribute( $src ) )
@@ -93,7 +88,7 @@ class ezcDocumentDocbookToWikiMediaObjectHandler extends ezcDocumentDocbookToWik
         {
             $root .= sprintf( "\n{{%s|%s}}\n\n",
                 $image['resource'],
-                isset( $image['text'] ) ? $image['text'] : $image['alt']
+                $image['text'] ?? $image['alt']
             );
         }
         else

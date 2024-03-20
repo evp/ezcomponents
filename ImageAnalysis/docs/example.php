@@ -13,7 +13,7 @@ function __autoload( $className )
 }
 
 // Analyzation of the MIME type is done during creation.
-$image = new ezcImageAnalyzer( dirname( __FILE__ ).'/toby.jpg' );
+$image = new ezcImageAnalyzer( __DIR__.'/toby.jpg' );
 
 if ( $image->mime == 'image/tiff' || $image->mime == 'image/jpeg' )
 {

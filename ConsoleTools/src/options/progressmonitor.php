@@ -21,9 +21,7 @@
  */
 class ezcConsoleProgressMonitorOptions extends ezcBaseOptions
 {
-    protected $properties = array(
-        'formatString' => '%8.1f%% %s %s',
-    );
+    protected $properties = ['formatString' => '%8.1f%% %s %s'];
 
     /**
      * Option write access.

@@ -24,10 +24,10 @@ class ezcAuthenticationHtpasswdTest extends ezcAuthenticationTest
 
     public static function suite()
     {
-        self::$path = dirname( __FILE__ ) . '/data/htpasswd';
-        self::$empty = dirname( __FILE__ ) . '/data/htpasswd_empty';
-        self::$nopass = dirname( __FILE__ ) . '/data/htpasswd_no_passwords';
-        self::$missing = dirname( __FILE__ ) . '/data/htpassw';
+        self::$path = __DIR__ . '/data/htpasswd';
+        self::$empty = __DIR__ . '/data/htpasswd_empty';
+        self::$nopass = __DIR__ . '/data/htpasswd_no_passwords';
+        self::$missing = __DIR__ . '/data/htpassw';
 
         return new PHPUnit_Framework_TestSuite( "ezcAuthenticationHtpasswdTest" );
     }

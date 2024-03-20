@@ -33,7 +33,7 @@ class ezcGraphVerboseDriver extends ezcGraphDriver
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->options = new ezcGraphSvgDriverOptions( $options );
         echo "\n";

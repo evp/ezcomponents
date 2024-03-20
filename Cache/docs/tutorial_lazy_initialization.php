@@ -6,7 +6,7 @@ class customLazyCacheConfiguration implements ezcBaseConfigurationInitializer
 {
     public static function configureObject( $id )
     {
-        $options = array( 'ttl' => 30 );
+        $options = ['ttl' => 30];
         
         switch ( $id )
         {

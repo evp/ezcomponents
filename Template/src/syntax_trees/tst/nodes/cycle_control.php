@@ -40,7 +40,7 @@ class ezcTemplateCycleControlTstNode extends ezcTemplateBlockTstNode
     {
         parent::__construct( $source, $start, $end );
         $this->name = $name;
-        $this->variables = array();
+        $this->variables = [];
 
         $this->isNestingBlock = false;
     }
@@ -52,8 +52,7 @@ class ezcTemplateCycleControlTstNode extends ezcTemplateBlockTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'name'       => $this->name,
-                      'variables'   => $this->variables );
+        return ['name'       => $this->name, 'variables'   => $this->variables];
     }
     
 }

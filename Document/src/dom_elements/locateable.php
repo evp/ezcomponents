@@ -39,9 +39,7 @@ class ezcDocumentLocateableDomElement extends DOMElement implements ezcDocumentL
      *
      * @var array
      */
-    protected $relevantAttributes = array(
-        'Role',
-    );
+    protected $relevantAttributes = ['Role'];
 
     /**
      * Get elements location ID

@@ -23,14 +23,14 @@ class ezcDocumentOdtStyleParserTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
     {
         $this->domDocument = new DOMDocument();
         $this->domDocument->load(
-            dirname( __FILE__ ) . '/../files/odt/tests/s_000_simple.fodt'
+            __DIR__ . '/../files/odt/tests/s_000_simple.fodt'
         );
         $this->xpath = new DOMXpath( $this->domDocument );
         $this->xpath->registerNamespace( 'style', ezcDocumentOdt::NS_ODT_STYLE );

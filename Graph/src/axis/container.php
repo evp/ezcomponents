@@ -33,7 +33,7 @@ class ezcGraphAxisContainer
      * 
      * @var array(ezcGraphChartElementAxis)
      */
-    protected $data = array();
+    protected $data = [];
 
     /**
      * Construct container with corresponding chart.

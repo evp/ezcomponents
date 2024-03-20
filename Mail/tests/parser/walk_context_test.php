@@ -16,18 +16,18 @@ class ezcMailPartWalkContextTest extends ezcTestCase
 {
     public function testProperties()
     {
-        $context = new ezcMailPartWalkContext( array( 'WalkContextTestApp', 'saveMailPart' ) );
+        $context = new ezcMailPartWalkContext( ['WalkContextTestApp', 'saveMailPart'] );
         $context->includeDigests = true;
         $context->level = 3;
-        $context->filter = array( 'ezcMailFile' );
+        $context->filter = ['ezcMailFile'];
         $this->assertEquals( true, $context->includeDigests );
         $this->assertEquals( 3, $context->level );
-        $this->assertEquals( array( 'ezcMailFile' ), $context->filter );
+        $this->assertEquals( ['ezcMailFile'], $context->filter );
     }
 
     public function testPropertiesInvalid()
     {
-        $context = new ezcMailPartWalkContext( array( 'WalkContextTestApp', 'saveMailPart' ) );
+        $context = new ezcMailPartWalkContext( ['WalkContextTestApp', 'saveMailPart'] );
         try
         {
             $context->no_such_property = true;
@@ -63,7 +63,7 @@ class ezcMailPartWalkContextTest extends ezcTestCase
 
     public function testIsSet()
     {
-        $context = new ezcMailPartWalkContext( array( 'WalkContextTestApp', 'saveMailPart' ) );
+        $context = new ezcMailPartWalkContext( ['WalkContextTestApp', 'saveMailPart'] );
         $this->assertEquals( true, isset( $context->includeDigests ) );
         $this->assertEquals( true, isset( $context->filter ) );
         $this->assertEquals( true, isset( $context->level ) );

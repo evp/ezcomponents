@@ -20,7 +20,7 @@ class ezcPersistentSessionLoadTest extends ezcPersistentSessionTest
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     // loadIfExists
@@ -252,7 +252,7 @@ class ezcPersistentSessionLoadTest extends ezcPersistentSessionTest
     public function testSubSelectSameClass()
     {
         MultiRelationTestPerson::setupTables( $this->session->database );
-        MultiRelationTestPerson::insertData( $this->session->database );
+        MultiRelationTestPerson::insertData();
 
         $q = $this->session->createFindQuery( 'MultiRelationTestPerson' );
 
@@ -267,7 +267,7 @@ class ezcPersistentSessionLoadTest extends ezcPersistentSessionTest
         $this->assertTrue( $stmt->execute() );
 
         $this->assertEquals( 1, count( $stmt->fetchAll() ) );
-        MultiRelationTestPerson::cleanup( $this->session->database );
+        MultiRelationTestPerson::cleanup();
     }
 }
 

@@ -140,31 +140,31 @@ class ezcAuthenticationGroupFilter extends ezcAuthenticationFilter
      * All or some of the filters in the group failed (depeding on the mode
      * option).
      */
-    const STATUS_GROUP_FAILED = 1;
+    public const STATUS_GROUP_FAILED = 1;
 
     /**
      * At least one filter needs to succeed in order for the group to succeed.
      */
-    const MODE_OR = 1;
+    public const MODE_OR = 1;
 
     /**
      * All the filters need to succeed in order for the group to succeed.
      */
-    const MODE_AND = 2;
+    public const MODE_AND = 2;
 
     /**
      * Authentication filters.
      * 
      * @var array(ezcAuthenticationFilter)
      */
-    protected $filters = array();
+    protected $filters = [];
 
     /**
      * The properties of this class.
      * 
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -201,7 +201,7 @@ class ezcAuthenticationGroupFilter extends ezcAuthenticationFilter
      */
     public function __construct( array $filters, ezcAuthenticationGroupOptions $options = null )
     {
-        $this->options = ( $options === null ) ? new ezcAuthenticationGroupOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationGroupOptions();
 
         foreach ( $filters as $filter )
         {
@@ -392,11 +392,11 @@ class ezcAuthenticationGroupFilter extends ezcAuthenticationFilter
                 throw new ezcAuthenticationGroupException( 'A credentials object must be specified for each filter when the multipleCredentials option is enabled.' );
             }
 
-            $this->filters[] = array( $filter, $credentials );
+            $this->filters[] = [$filter, $credentials];
         }
         else
         {
-            $this->filters[] = array( $filter );
+            $this->filters[] = [$filter];
         }
     }
 }

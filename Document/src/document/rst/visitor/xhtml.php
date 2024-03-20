@@ -21,51 +21,14 @@ class ezcDocumentRstXhtmlVisitor extends ezcDocumentRstVisitor
      *
      * @var array
      */
-    protected $complexVisitMapping = array(
-        'ezcDocumentRstSectionNode'               => 'visitSection',
-        'ezcDocumentRstTextLineNode'              => 'visitText',
-        'ezcDocumentRstMarkupInterpretedTextNode' => 'visitInterpretedTextNode',
-        'ezcDocumentRstExternalReferenceNode'     => 'visitExternalReference',
-        'ezcDocumentRstMarkupSubstitutionNode'    => 'visitSubstitutionReference',
-        'ezcDocumentRstTargetNode'                => 'visitInlineTarget',
-        'ezcDocumentRstAnonymousLinkNode'         => 'visitAnonymousReference',
-        'ezcDocumentRstBlockquoteNode'            => 'visitBlockquote',
-        'ezcDocumentRstBulletListListNode'        => 'visitBulletList',
-        'ezcDocumentRstEnumeratedListListNode'    => 'visitEnumeratedList',
-        'ezcDocumentRstReferenceNode'             => 'visitInternalFootnoteReference',
-        'ezcDocumentRstLineBlockNode'             => 'visitLineBlock',
-        'ezcDocumentRstLineBlockLineNode'         => 'visitLineBlockLine',
-        'ezcDocumentRstLiteralNode'               => 'visitText',
-        'ezcDocumentRstCommentNode'               => 'visitComment',
-        'ezcDocumentRstDefinitionListNode'        => 'visitDefinitionListItem',
-        'ezcDocumentRstTableCellNode'             => 'visitTableCell',
-        'ezcDocumentRstFieldListNode'             => 'visitFieldListItem',
-        'ezcDocumentRstDirectiveNode'             => 'visitDirective',
-    );
+    protected $complexVisitMapping = ['ezcDocumentRstSectionNode'               => 'visitSection', 'ezcDocumentRstTextLineNode'              => 'visitText', 'ezcDocumentRstMarkupInterpretedTextNode' => 'visitInterpretedTextNode', 'ezcDocumentRstExternalReferenceNode'     => 'visitExternalReference', 'ezcDocumentRstMarkupSubstitutionNode'    => 'visitSubstitutionReference', 'ezcDocumentRstTargetNode'                => 'visitInlineTarget', 'ezcDocumentRstAnonymousLinkNode'         => 'visitAnonymousReference', 'ezcDocumentRstBlockquoteNode'            => 'visitBlockquote', 'ezcDocumentRstBulletListListNode'        => 'visitBulletList', 'ezcDocumentRstEnumeratedListListNode'    => 'visitEnumeratedList', 'ezcDocumentRstReferenceNode'             => 'visitInternalFootnoteReference', 'ezcDocumentRstLineBlockNode'             => 'visitLineBlock', 'ezcDocumentRstLineBlockLineNode'         => 'visitLineBlockLine', 'ezcDocumentRstLiteralNode'               => 'visitText', 'ezcDocumentRstCommentNode'               => 'visitComment', 'ezcDocumentRstDefinitionListNode'        => 'visitDefinitionListItem', 'ezcDocumentRstTableCellNode'             => 'visitTableCell', 'ezcDocumentRstFieldListNode'             => 'visitFieldListItem', 'ezcDocumentRstDirectiveNode'             => 'visitDirective'];
 
     /**
      * Direct mapping of AST node class names to docbook element names.
      *
      * @var array
      */
-    protected $simpleVisitMapping = array(
-        'ezcDocumentRstParagraphNode'            => 'p',
-        'ezcDocumentRstMarkupEmphasisNode'       => 'em',
-        'ezcDocumentRstMarkupStrongEmphasisNode' => 'strong',
-        'ezcDocumentRstMarkupInlineLiteralNode'  => 'code',
-        'ezcDocumentRstBulletListNode'           => 'li',
-        'ezcDocumentRstEnumeratedListNode'       => 'li',
-        'ezcDocumentRstLiteralBlockNode'         => 'pre',
-        'ezcDocumentRstTransitionNode'           => 'hr',
-        'ezcDocumentRstDefinitionListListNode'   => 'dl',
-        'ezcDocumentRstTableNode'                => 'table',
-        'ezcDocumentRstTableHeadNode'            => 'thead',
-        'ezcDocumentRstTableBodyNode'            => 'tbody',
-        'ezcDocumentRstTableRowNode'             => 'tr',
-        /*
-        'ezcDocumentRstMarkupInlineLiteralNode' => 'literal',
-        */
-    );
+    protected $simpleVisitMapping = ['ezcDocumentRstParagraphNode'            => 'p', 'ezcDocumentRstMarkupEmphasisNode'       => 'em', 'ezcDocumentRstMarkupStrongEmphasisNode' => 'strong', 'ezcDocumentRstMarkupInlineLiteralNode'  => 'code', 'ezcDocumentRstBulletListNode'           => 'li', 'ezcDocumentRstEnumeratedListNode'       => 'li', 'ezcDocumentRstLiteralBlockNode'         => 'pre', 'ezcDocumentRstTransitionNode'           => 'hr', 'ezcDocumentRstDefinitionListListNode'   => 'dl', 'ezcDocumentRstTableNode'                => 'table', 'ezcDocumentRstTableHeadNode'            => 'thead', 'ezcDocumentRstTableBodyNode'            => 'tbody', 'ezcDocumentRstTableRowNode'             => 'tr'];
 
     /**
      * Array with nodes, which can be ignored during the transformation
@@ -73,12 +36,7 @@ class ezcDocumentRstXhtmlVisitor extends ezcDocumentRstVisitor
      *
      * @var array
      */
-    protected $skipNodes = array(
-        'ezcDocumentRstNamedReferenceNode',
-        'ezcDocumentRstAnonymousReferenceNode',
-        'ezcDocumentRstSubstitutionNode',
-        'ezcDocumentRstFootnoteNode',
-    );
+    protected $skipNodes = ['ezcDocumentRstNamedReferenceNode', 'ezcDocumentRstAnonymousReferenceNode', 'ezcDocumentRstSubstitutionNode', 'ezcDocumentRstFootnoteNode'];
 
     /**
      * DOM document
@@ -410,7 +368,7 @@ class ezcDocumentRstXhtmlVisitor extends ezcDocumentRstVisitor
     {
         return preg_replace_callback(
             '([^a-z0-9._:/#&?@=-]+)',
-            array( 'ezcDocumentRstXhtmlVisitor', 'urlEscapeArray' ),
+            ['ezcDocumentRstXhtmlVisitor', 'urlEscapeArray'],
             $url
         );
     }
@@ -591,14 +549,7 @@ class ezcDocumentRstXhtmlVisitor extends ezcDocumentRstVisitor
         $list = $this->document->createElement( 'ul' );
         $root->appendChild( $list );
 
-        $listTypes = array(
-            '*'            => 'circle',
-            '+'            => 'disc',
-            '-'            => 'square',
-            "\xe2\x80\xa2" => 'disc',
-            "\xe2\x80\xa3" => 'circle',
-            "\xe2\x81\x83" => 'square',
-        );
+        $listTypes = ['*'            => 'circle', '+'            => 'disc', '-'            => 'square', "\xe2\x80\xa2" => 'disc', "\xe2\x80\xa3" => 'circle', "\xe2\x81\x83" => 'square'];
         // Not allowed in XHtml strict
         // $list->setAttribute( 'type', $listTypes[$node->token->content] );
 
@@ -666,18 +617,7 @@ class ezcDocumentRstXhtmlVisitor extends ezcDocumentRstVisitor
     {
         return '_footnote_' . str_replace(
             $this->footnoteSymbols,
-            array(
-                'asterisk',
-                'dagger',
-                'double_dagger',
-                'section_mark',
-                'pilcrow',
-                'number_sign',
-                'spade',
-                'heart',
-                'diamond',
-                'club',
-            ),
+            ['asterisk', 'dagger', 'double_dagger', 'section_mark', 'pilcrow', 'number_sign', 'spade', 'heart', 'diamond', 'club'],
             $name . '_' . $number
         );
     }

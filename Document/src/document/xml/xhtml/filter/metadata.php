@@ -24,14 +24,13 @@ class ezcDocumentXhtmlMetadataFilter extends ezcDocumentXhtmlBaseFilter
      *
      * @var array
      */
-    protected $mapping = array(
+    protected $mapping = [
         // Common meta field names
         'description' => 'abstract',
         'version'     => 'releaseinfo',
         'date'        => 'date',
         'author'      => 'author',
         'authors'     => 'author',
-
         // Meta element dublin core extensions
         'dc.title'       => 'title',
         'dc.creator'     => 'author',
@@ -47,7 +46,7 @@ class ezcDocumentXhtmlMetadataFilter extends ezcDocumentXhtmlBaseFilter
         // 'dc.relation' => '',
         // 'dc.coverage' => '',
         'dc.rights'      => 'copyright',
-    );
+    ];
 
     /**
      * Filter XHtml document

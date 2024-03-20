@@ -21,14 +21,14 @@ class ezcDocumentWikiImageNode extends ezcDocumentWikiInlineNode
      *
      * @var array
      */
-    public $resource = array();
+    public $resource = [];
 
     /**
      * Image title
      *
      * @var array
      */
-    public $title = array();
+    public $title = [];
 
     /**
      * Image alignement
@@ -60,7 +60,7 @@ class ezcDocumentWikiImageNode extends ezcDocumentWikiInlineNode
      */
     public static function __set_state( $properties )
     {
-        $nodeClass = __CLASS__;
+        $nodeClass = self::class;
         $node = new $nodeClass( $properties['token'] );
         $node->nodes      = $properties['nodes'];
         $node->resource   = $properties['resource'];

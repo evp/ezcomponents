@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -25,11 +25,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
     protected $basePath;
 
-    protected $testFiles = array(
-        'jpeg'          => 'jpeg.jpg',
-        'png'           => 'png.png',
-        'gif'           => 'gif.gif',
-    );
+    protected $testFiles = ['jpeg'          => 'jpeg.jpg', 'png'           => 'png.png', 'gif'           => 'gif.gif'];
 
 	public static function suite()
 	{
@@ -39,8 +35,8 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
     protected function setUp()
     {
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
 
         $this->driver = new ezcGraphSvgDriver();
         $this->driver->options->width = 200;
@@ -79,7 +75,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -116,7 +112,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -125,11 +121,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $return = $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             true
         );
@@ -138,7 +130,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         $this->assertEquals(
@@ -153,11 +145,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A480' ),
             false
         );
@@ -166,7 +154,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -175,23 +163,13 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 24.79289, 28.078128 ),
-                new ezcGraphCoordinate( 11.29289, 41.578128 ),
-                new ezcGraphCoordinate( 30.15439, 22.13813 ),
-                new ezcGraphCoordinate( 43.65439, 8.63813 ),
-            ),
+            [new ezcGraphCoordinate( 24.79289, 28.078128 ), new ezcGraphCoordinate( 11.29289, 41.578128 ), new ezcGraphCoordinate( 30.15439, 22.13813 ), new ezcGraphCoordinate( 43.65439, 8.63813 )],
             ezcGraphColor::fromHex( '#3465A480' ),
             false
         );
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 24.79289, 28.078128 ),
-                new ezcGraphCoordinate( 11.29289, 41.578128 ),
-                new ezcGraphCoordinate( 30.15439, 22.13813 ),
-                new ezcGraphCoordinate( 43.65439, 8.63813 ),
-            ),
+            [new ezcGraphCoordinate( 24.79289, 28.078128 ), new ezcGraphCoordinate( 11.29289, 41.578128 ), new ezcGraphCoordinate( 30.15439, 22.13813 ), new ezcGraphCoordinate( 43.65439, 8.63813 )],
             ezcGraphColor::fromHex( '#3465A480' )
         );
 
@@ -199,7 +177,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -208,11 +186,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 12, 71 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 45, 12 ),
-            ),
+            [new ezcGraphCoordinate( 12, 71 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 45, 12 )],
             ezcGraphColor::fromHex( '#3465A480' ),
             false
         );
@@ -221,7 +195,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -230,13 +204,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-                new ezcGraphCoordinate( 3, 45 ),
-                new ezcGraphCoordinate( 60, 32 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 ), new ezcGraphCoordinate( 3, 45 ), new ezcGraphCoordinate( 60, 32 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             true
         );
@@ -245,7 +213,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -266,7 +234,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
         
         $this->assertEquals(
@@ -280,7 +248,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
     {
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
-        $angles = array( 10, 25, 45, 90, 125, 180, 235, 340 );
+        $angles = [10, 25, 45, 90, 125, 180, 235, 340];
 
         $position = 0;
         $radius = 80;
@@ -309,7 +277,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -397,7 +365,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -419,7 +387,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -428,11 +396,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 122, 33.8 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 122, 33.8 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             false
         );
@@ -450,12 +414,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 10, 15 ),
-                new ezcGraphCoordinate( 10, 50 ),
-                new ezcGraphCoordinate( 10, 55 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 10, 15 ), new ezcGraphCoordinate( 10, 50 ), new ezcGraphCoordinate( 10, 55 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             false
         );
@@ -464,7 +423,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -486,7 +445,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -508,7 +467,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -529,7 +488,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -550,7 +509,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -572,7 +531,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
         
         $this->assertEquals(
@@ -601,7 +560,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -623,7 +582,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -645,7 +604,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -664,7 +623,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
         
         $this->assertEquals(
@@ -690,7 +649,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -709,7 +668,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
         
         $this->assertEquals(
@@ -734,7 +693,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -753,7 +712,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -762,12 +721,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -783,7 +737,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
         
         $this->assertEquals(
@@ -810,7 +764,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -831,7 +785,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -852,7 +806,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -861,12 +815,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -882,7 +831,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -891,12 +840,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -912,7 +856,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -921,12 +865,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -942,7 +881,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -951,12 +890,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 20, 20 ),
-                new ezcGraphCoordinate( 110, 20 ),
-                new ezcGraphCoordinate( 110, 30 ),
-                new ezcGraphCoordinate( 20, 30 ),
-            ),
+            [new ezcGraphCoordinate( 20, 20 ), new ezcGraphCoordinate( 110, 20 ), new ezcGraphCoordinate( 110, 30 ), new ezcGraphCoordinate( 20, 30 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -972,7 +906,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -981,12 +915,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1002,7 +931,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1011,12 +940,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1032,7 +956,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1041,12 +965,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1062,7 +981,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1071,12 +990,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1092,7 +1006,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1101,12 +1015,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1122,7 +1031,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1131,12 +1040,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1152,7 +1056,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1161,12 +1065,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1182,7 +1081,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1191,12 +1090,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 10, 10 ),
-                new ezcGraphCoordinate( 160, 10 ),
-                new ezcGraphCoordinate( 160, 80 ),
-                new ezcGraphCoordinate( 10, 80 ),
-            ),
+            [new ezcGraphCoordinate( 10, 10 ), new ezcGraphCoordinate( 160, 10 ), new ezcGraphCoordinate( 160, 80 ), new ezcGraphCoordinate( 10, 80 )],
             ezcGraphColor::fromHex( '#eeeeec' ),
             true
         );
@@ -1212,7 +1106,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1221,12 +1115,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array(
-                new ezcGraphCoordinate( 47, 54 ),
-                new ezcGraphCoordinate( 47, 84 ),
-                new ezcGraphCoordinate( 99, 84 ),
-                new ezcGraphCoordinate( 99, 54 ),
-            ),
+            [new ezcGraphCoordinate( 47, 54 ), new ezcGraphCoordinate( 47, 84 ), new ezcGraphCoordinate( 99, 84 ), new ezcGraphCoordinate( 99, 54 )],
             ezcGraphColor::fromHex( '#DDDDDD' ),
             true
         );
@@ -1242,7 +1131,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1251,12 +1140,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $this->driver->drawPolygon(
-            array(
-                new ezcGraphCoordinate( 47, 54 ),
-                new ezcGraphCoordinate( 47, 84 ),
-                new ezcGraphCoordinate( 99, 84 ),
-                new ezcGraphCoordinate( 99, 54 ),
-            ),
+            [new ezcGraphCoordinate( 47, 54 ), new ezcGraphCoordinate( 47, 84 ), new ezcGraphCoordinate( 99, 84 ), new ezcGraphCoordinate( 99, 54 )],
             ezcGraphColor::fromHex( '#DDDDDD' ),
             true
         );
@@ -1272,7 +1156,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1281,23 +1165,17 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->driver = new ezcGraphSvgDriver();
-        $chart->driver->options->templateDocument = dirname( __FILE__ ) . '/data/template.svg';
+        $chart->driver->options->templateDocument = __DIR__ . '/data/template.svg';
 
         $chart->renderer = new ezcGraphRenderer3d();
         $chart->render( 500, 300, $filename );
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1306,16 +1184,10 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->driver = new ezcGraphSvgDriver();
-        $chart->driver->options->templateDocument = dirname( __FILE__ ) . '/data/template.svg';
+        $chart->driver->options->templateDocument = __DIR__ . '/data/template.svg';
         $chart->driver->options->insertIntoGroup = 'graph_root_node';
         $chart->driver->options->graphOffset = new ezcGraphCoordinate( 50, 70 );
 
@@ -1324,23 +1196,17 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
     public function testDrawChartInTemplateUnknownGroup()
     {
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->driver = new ezcGraphSvgDriver();
-        $chart->driver->options->templateDocument = dirname( __FILE__ ) . '/data/template.svg';
+        $chart->driver->options->templateDocument = __DIR__ . '/data/template.svg';
         $chart->driver->options->insertIntoGroup = 'not_existing_group';
 
         try
@@ -1360,13 +1226,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->driver->options->idPrefix = 'customPrefix';
@@ -1376,7 +1236,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1399,7 +1259,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1423,7 +1283,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1446,7 +1306,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1469,7 +1329,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1494,7 +1354,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1520,7 +1380,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1545,7 +1405,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1570,7 +1430,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1585,11 +1445,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
         $this->driver->options->textRendering = 'optimizeSpeed';
 
         $return = $this->driver->drawPolygon(
-            array( 
-                new ezcGraphCoordinate( 45, 12 ),
-                new ezcGraphCoordinate( 122, 34 ),
-                new ezcGraphCoordinate( 12, 71 ),
-            ),
+            [new ezcGraphCoordinate( 45, 12 ), new ezcGraphCoordinate( 122, 34 ), new ezcGraphCoordinate( 12, 71 )],
             ezcGraphColor::fromHex( '#3465A4' ),
             false
         );
@@ -1598,7 +1454,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
 
         $this->assertEquals(
@@ -1821,7 +1677,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
             'Wrong default value for property templateDocument in class ezcGraphSvgDriverOptions'
         );
 
-        $options->templateDocument = $file = dirname( __FILE__ ) . '/data/template.svg';
+        $options->templateDocument = $file = __DIR__ . '/data/template.svg';
         $this->assertSame(
             $file,
             $options->templateDocument,
@@ -1942,13 +1798,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $chart = new ezcGraphPieChart();
         $chart->palette = new ezcGraphPaletteEz();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -1964,7 +1814,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -2008,7 +1858,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -2028,7 +1878,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -2048,7 +1898,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -2068,7 +1918,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -2088,7 +1938,7 @@ class ezcGraphSvgDriverTest extends ezcGraphTestCase
 
         $this->compare( 
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

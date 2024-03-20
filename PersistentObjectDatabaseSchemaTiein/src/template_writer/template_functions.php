@@ -32,9 +32,9 @@ class ezcPersistentObjectSchemaTemplateFunctions implements ezcTemplateCustomFun
         {
             case 'underScoreToCamelCase':
                 $def = new ezcTemplateCustomFunctionDefinition();
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = 'underScoreToCamelCase';
-                $def->parameters = array( 'name', '[firstLower]' );
+                $def->parameters = ['name', '[firstLower]'];
                 return $def;
         }
         return false;

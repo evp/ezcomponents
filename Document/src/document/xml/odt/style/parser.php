@@ -26,36 +26,14 @@ class ezcDocumentOdtStyleParser
      *
      * @var array(string=>string)
      */
-    protected static $listClassMap = array(
-        'list-level-style-number' => 'ezcDocumentOdtListLevelStyleNumber',
-        'list-level-style-bullet' => 'ezcDocumentOdtListLevelStyleBullet',
-    );
+    protected static $listClassMap = ['list-level-style-number' => 'ezcDocumentOdtListLevelStyleNumber', 'list-level-style-bullet' => 'ezcDocumentOdtListLevelStyleBullet'];
 
     /**
      * Maps XML attributes to object attributes.
      *
      * @var array
      */
-    protected static $listAttributeMap = array(
-        'list-level-style-number' => array(
-            ezcDocumentOdt::NS_ODT_STYLE => array(
-                'num-format' => 'numFormat',
-            ),
-            ezcDocumentOdt::NS_ODT_TEXT => array(
-                'display-levels' => 'displayLevels',
-                'start-value'    => 'startValue'
-            ),
-        ),
-        'list-level-style-bullet' => array(
-            ezcDocumentOdt::NS_ODT_STYLE => array(
-                'num-suffix'  => 'numSuffix',
-                'num-prefix'  => 'numPrefix',
-            ),
-            ezcDocumentOdt::NS_ODT_TEXT => array(
-                'bullet-char' => 'bulletChar',
-            ),
-        ),
-    );
+    protected static $listAttributeMap = ['list-level-style-number' => [ezcDocumentOdt::NS_ODT_STYLE => ['num-format' => 'numFormat'], ezcDocumentOdt::NS_ODT_TEXT => ['display-levels' => 'displayLevels', 'start-value'    => 'startValue']], 'list-level-style-bullet' => [ezcDocumentOdt::NS_ODT_STYLE => ['num-suffix'  => 'numSuffix', 'num-prefix'  => 'numPrefix'], ezcDocumentOdt::NS_ODT_TEXT => ['bullet-char' => 'bulletChar']]];
 
     /**
      * Parses the given $odtStyle.

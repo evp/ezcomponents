@@ -85,7 +85,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['encoding'] = null;
         $this->properties['assumedNumericCharacterWidth'] = .62;
@@ -137,12 +137,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 $this->properties['assumedTextCharacterWidth'] = (float) $propertyValue;
                 break;
             case 'strokeLineJoin':
-                $values = array(
-                    'round',
-                    'miter',
-                    'bevel',
-                    'inherit',
-                );
+                $values = ['round', 'miter', 'bevel', 'inherit'];
 
                 if ( in_array( $propertyValue, $values, true ) )
                 {
@@ -154,12 +149,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 break;
             case 'strokeLineCap':
-                $values = array(
-                    'round',
-                    'butt',
-                    'square',
-                    'inherit',
-                );
+                $values = ['round', 'butt', 'square', 'inherit'];
 
                 if ( in_array( $propertyValue, $values, true ) )
                 {
@@ -171,13 +161,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 break;
             case 'shapeRendering':
-                $values = array(
-                    'auto',
-                    'optimizeSpeed',
-                    'crispEdges',
-                    'geometricPrecision',
-                    'inherit',
-                );
+                $values = ['auto', 'optimizeSpeed', 'crispEdges', 'geometricPrecision', 'inherit'];
 
                 if ( in_array( $propertyValue, $values, true ) )
                 {
@@ -189,12 +173,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 break;
             case 'colorRendering':
-                $values = array(
-                    'auto',
-                    'optimizeSpeed',
-                    'optimizeQuality',
-                    'inherit',
-                );
+                $values = ['auto', 'optimizeSpeed', 'optimizeQuality', 'inherit'];
 
                 if ( in_array( $propertyValue, $values, true ) )
                 {
@@ -206,13 +185,7 @@ class ezcGraphSvgDriverOptions extends ezcGraphDriverOptions
                 }
                 break;
             case 'textRendering':
-                $values = array(
-                    'auto',
-                    'optimizeSpeed',
-                    'optimizeLegibility',
-                    'geometricPrecision',
-                    'inherit',
-                );
+                $values = ['auto', 'optimizeSpeed', 'optimizeLegibility', 'geometricPrecision', 'inherit'];
 
                 if ( in_array( $propertyValue, $values, true ) )
                 {

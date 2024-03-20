@@ -44,14 +44,7 @@ class ezcPersistentObjectDefinition
      * 
      * @var array(string=>mixed)
      */
-    protected $propertyArray = array(
-        'table'      => null,
-        'class'      => null,
-        'idProperty' => null,
-        'properties' => null,
-        'columns'    => null,
-        'relations'  => null,
-    );
+    protected $propertyArray = ['table'      => null, 'class'      => null, 'idProperty' => null, 'properties' => null, 'columns'    => null, 'relations'  => null];
 
     /**
      * Constructs a new PersistentObjectDefinition.
@@ -64,8 +57,8 @@ class ezcPersistentObjectDefinition
      */
     public function __construct( $table = '',
                                  $class = '',
-                                 array $properties = array(),
-                                 array $relations = array(),
+                                 array $properties = [],
+                                 array $relations = [],
                                  ezcPersistentObjectIdProperty $idProperty = null )
     {
         $this->table      = $table;

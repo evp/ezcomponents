@@ -121,7 +121,7 @@ class ezcGraphRendererOptions extends ezcGraphChartOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['maxLabelHeight'] = .10;
         $this->properties['showSymbol'] = true;

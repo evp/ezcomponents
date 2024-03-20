@@ -28,9 +28,7 @@ class ezcDocumentDocbookToHtmlXsltConverter extends ezcDocumentXsltConverter
     public function __construct( ezcDocumentDocbookToHtmlXsltConverterOptions $options = null )
     {
         parent::__construct(
-            $options === null ?
-                new ezcDocumentDocbookToHtmlXsltConverterOptions() :
-                $options
+            $options ?? new ezcDocumentDocbookToHtmlXsltConverterOptions()
         );
     }
 

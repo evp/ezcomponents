@@ -37,11 +37,7 @@ class ezcDocumentValidationError
      *
      * @var array
      */
-    protected static $errorTypes = array(
-        LIBXML_ERR_WARNING => 'Warning',
-        LIBXML_ERR_ERROR   => 'Error',
-        LIBXML_ERR_FATAL   => 'Fatal error',
-    );
+    protected static $errorTypes = [LIBXML_ERR_WARNING => 'Warning', LIBXML_ERR_ERROR   => 'Error', LIBXML_ERR_FATAL   => 'Fatal error'];
 
     /**
      * Create validation error object

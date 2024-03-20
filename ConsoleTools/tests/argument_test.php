@@ -36,14 +36,14 @@ class ezcConsoleArgumentTest extends ezcTestCase
             "Little long help",
             false,
             true,
-            array( "test" )
+            ["test"]
         );
         $this->assertEquals( "testname", $arg->name );
         $this->assertEquals( ezcConsoleInput::TYPE_INT, $arg->type );
         $this->assertEquals( "Little short help", $arg->shorthelp );
         $this->assertEquals( "Little long help", $arg->longhelp );
         $this->assertEquals( false, $arg->mandatory );
-        $this->assertEquals( array( "test" ), $arg->default );
+        $this->assertEquals( ["test"], $arg->default );
         $this->assertEquals( true, $arg->multiple );
     }
 
@@ -106,43 +106,43 @@ class ezcConsoleArgumentTest extends ezcTestCase
         $this->assertSetProperty(
             $arg,
             "type",
-            array( ezcConsoleInput::TYPE_STRING, ezcConsoleInput::TYPE_INT ),
+            [ezcConsoleInput::TYPE_STRING, ezcConsoleInput::TYPE_INT],
             "ezcBaseValueException"
         );
         $this->assertSetProperty(
             $arg,
             "shorthelp",
-            array( "", "foo" ),
+            ["", "foo"],
             "ezcBaseValueException"
         );
         $this->assertSetProperty(
             $arg,
             "longhelp",
-            array( "", "foo" ),
+            ["", "foo"],
             "ezcBaseValueException"
         );
         $this->assertSetProperty(
             $arg,
             "mandatory",
-            array( true, false ),
+            [true, false],
             "ezcBaseValueException"
         );
         $this->assertSetProperty(
             $arg,
             "multiple",
-            array( true, false ),
+            [true, false],
             "ezcBaseValueException"
         );
         $this->assertSetProperty(
             $arg,
             "default",
-            array( "", "foo", array( "foo", "bar" ), null ),
+            ["", "foo", ["foo", "bar"], null],
             "ezcBaseValueException"
         );
         $this->assertSetProperty(
             $arg,
             "value",
-            array( "", "foo", array( "foo", "bar" ), null ),
+            ["", "foo", ["foo", "bar"], null],
             "ezcBaseValueException"
         );
     }
@@ -154,56 +154,56 @@ class ezcConsoleArgumentTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $arg,
             "name",
-            array( "", "foo", 1, true, array(), new stdClass() ),
+            ["", "foo", 1, true, [], new stdClass()],
             "ezcBasePropertyPermissionException"
         );
         $this->assertSetPropertyFails(
             $arg,
             "type",
-            array( "", "foo", 23, true, array(), new stdClass() ),
+            ["", "foo", 23, true, [], new stdClass()],
             "ezcBaseValueException"
         );
         $this->assertSetPropertyFails(
             $arg,
             "shorthelp",
-            array( 23, true, array(), new stdClass() ),
+            [23, true, [], new stdClass()],
             "ezcBaseValueException"
         );
         $this->assertSetPropertyFails(
             $arg,
             "longhelp",
-            array( 23, true, array(), new stdClass() ),
+            [23, true, [], new stdClass()],
             "ezcBaseValueException"
         );
         $this->assertSetPropertyFails(
             $arg,
             "mandatory",
-            array( "", "foo", 23, array(), new stdClass() ),
+            ["", "foo", 23, [], new stdClass()],
             "ezcBaseValueException"
         );
         $this->assertSetPropertyFails(
             $arg,
             "multiple",
-            array( "", "foo", 23, array(), new stdClass() ),
+            ["", "foo", 23, [], new stdClass()],
             "ezcBaseValueException"
         );
         $this->assertSetPropertyFails(
             $arg,
             "default",
-            array( new stdClass() ),
+            [new stdClass()],
             "ezcBaseValueException"
         );
         $this->assertSetPropertyFails(
             $arg,
             "value",
-            array( new stdClass() ),
+            [new stdClass()],
             "ezcBaseValueException"
         );
 
         $this->assertSetPropertyFails(
             $arg,
             "foo",
-            array( "foo" ),
+            ["foo"],
             "ezcBasePropertyNotFoundException"
         );
     }

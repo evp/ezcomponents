@@ -51,7 +51,7 @@ class ezcGraphAxisBoxedLabelRenderer extends ezcGraphAxisLabelRenderer
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         parent::__construct( $options );
         $this->properties['outerStep'] = true;
@@ -95,7 +95,7 @@ class ezcGraphAxisBoxedLabelRenderer extends ezcGraphAxisLabelRenderer
         
         // Get axis space
         $gridBoundings = null;
-        list( $xSpace, $ySpace ) = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
+        [$xSpace, $ySpace] = $this->getAxisSpace( $renderer, $boundings, $axis, $innerBoundings, $gridBoundings );
 
         // Determine additional required axis space by boxes
         $firstStep = reset( $steps );

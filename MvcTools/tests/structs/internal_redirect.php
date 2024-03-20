@@ -31,9 +31,7 @@ class ezcMvcInternalRedirectTest extends ezcTestCase
 
     public function testSetState()
     {
-        $state = array(
-        'request' => 'php',
-        );
+        $state = ['request' => 'php'];
         $struct = ezcMvcInternalRedirect::__set_state( $state );
         $this->assertEquals( 'php', $struct->request, 'Property request does not have the expected value' );
     }

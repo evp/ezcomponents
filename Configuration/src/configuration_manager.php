@@ -69,14 +69,14 @@ class ezcConfigurationManager
      *
      * @var array
      */
-    private $options = array();
+    private $options = [];
 
     /**
      * Maps the name of the configuration to the ezcConfiguration object.
      *
      * @var array
      */
-    private $nameMap = array();
+    private $nameMap = [];
 
     /**
      * ezcConfigurationManager Singleton instance
@@ -133,7 +133,7 @@ class ezcConfigurationManager
      *               to see which options it supports.
      * @return void
      */
-    public function init( $readerClass, $location, array $options = array() )
+    public function init( $readerClass, $location, array $options = [] )
     {
         // Check if the passed classname actually exists
         if ( !ezcBaseFeatures::classExists( $readerClass, true ) )
@@ -161,8 +161,8 @@ class ezcConfigurationManager
     {
         $this->readerClass = null;
         $this->location = null;
-        $this->options = array();
-        $this->nameMap = array();
+        $this->options = [];
+        $this->nameMap = [];
     }
 
     /**
@@ -516,7 +516,7 @@ class ezcConfigurationManager
      */
     public function getSettingsAsList( $name, $group, array $settings )
     {
-        $return = array();
+        $return = [];
 
         $settings = $this->getSettings( $name, $group, $settings );
 

@@ -12,7 +12,7 @@ $server->pluginRegistry->registerPlugin(
 
 $backend = new ezcWebdavFileBackend(
     // Your WebDAV directory here
-    dirname( __FILE__ ) . '/backend'
+    __DIR__ . '/backend'
 );
 
 $administrator = new ezcWebdavLockAdministrator(

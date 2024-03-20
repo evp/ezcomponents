@@ -29,12 +29,7 @@ class ezcDocumentOdtStyleTableCellPropertyGenerator extends ezcDocumentOdtStyleP
     {
         parent::__construct(
             $styleConverters,
-            array(
-                'vertical-align',
-                'background-color',
-                'border',
-                'padding',
-            )
+            ['vertical-align', 'background-color', 'border', 'padding']
         );
     }
 

@@ -104,7 +104,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
      * @param array(string=>string) $searchFieldList
      * @return array
      */
-    private function buildQuery( $queryWord, $searchFieldList = array() )
+    private function buildQuery( $queryWord, $searchFieldList = [] )
     {
         if ( count( $searchFieldList ) > 0 )
         {
@@ -127,7 +127,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
         $className = $def->documentType;
         $obj = new $className;
 
-        $attr = array();
+        $attr = [];
         foreach ( $def->fields as $field )
         {
             $fieldName = $this->mapFieldType( $field->field, $field->type );
@@ -183,10 +183,10 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
      * @param array(string=>string) $order
      * @return stdClass
      */
-    public function search( $queryWord, $searchFieldList = array(), $order = array() )
+    public function search( $queryWord, $searchFieldList = [], $order = [] )
     {
         $query = $this->buildQuery( $queryWord, $searchFieldList );
-        $args = array();
+        $args = [];
         $args[] = $query;
 
         if ( is_array( $order ) )
@@ -199,7 +199,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
             }
         }
 
-        $result = call_user_func_array( array( $this->connection, 'find' ), $args );
+        $result = call_user_func_array( [$this->connection, 'find'], $args );
         return $result;
     }
 
@@ -226,12 +226,12 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
         $query->select( 'score' );
         if ( $type )
         {
-            $selectFieldNames = array();
+            $selectFieldNames = [];
             foreach ( $definition->getSelectFieldNames() as $docProp )
             {
                 $selectFieldNames[] = $this->mapFieldType( $docProp, $definition->fields[$docProp]->type );
             }
-            $highlightFieldNames = array();
+            $highlightFieldNames = [];
             foreach ( $definition->getHighlightFieldNames() as $docProp )
             {
                 $highlightFieldNames[] = $this->mapFieldType( $docProp, $definition->fields[$docProp]->type );
@@ -254,7 +254,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
         $queryWord = join( ' AND ', $query->whereClauses );
         $order = $query->orderByClauses;
 
-        $res = $this->search( $queryWord, array(), $order );
+        $res = $this->search( $queryWord, [], $order );
         return $this->createResponseFromData( $query, $res );
     }
 
@@ -428,7 +428,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
         }
         if ( !is_array( $values ) )
         {
-            $values = array( $values );
+            $values = [$values];
         }
         foreach ( $values as &$value )
         {
@@ -459,7 +459,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
         }
         if ( !is_array( $values ) )
         {
-            $values = array( $values );
+            $values = [$values];
         }
         foreach ( $values as &$value )
         {
@@ -489,7 +489,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
      */
     protected function runCommit()
     {
-        $r = $this->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $r = $this->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
     }
 
     /**
@@ -535,7 +535,7 @@ class ezcSearchZendLuceneHandler implements ezcSearchHandler, ezcSearchIndexHand
         $query = new ezcSearchDeleteQueryZendLucene( $this, $definition );
         if ( $type )
         {
-            $selectFieldNames = array();
+            $selectFieldNames = [];
             $query->where( $query->eq( 'ezcsearch_type', $type ) );
         }
         return $query;

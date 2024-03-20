@@ -113,7 +113,7 @@ class ezcTreeDbNestedSet extends ezcTreeDbParentChild
         $db = $this->dbh;
 
         // Fetch parent information
-        list( $left, $right, $width ) = $this->fetchNodeInformation( $nodeId );
+        [$left, $right, $width] = $this->fetchNodeInformation( $nodeId );
 
         // Fetch subtree
         //   SELECT id
@@ -231,7 +231,7 @@ class ezcTreeDbNestedSet extends ezcTreeDbParentChild
      * @param int $width
      * @param array(string) $excludedIds
      */
-    protected function updateNestedValuesForSubtreeAddition( $right, $width, $excludedIds = array() )
+    protected function updateNestedValuesForSubtreeAddition( $right, $width, $excludedIds = [] )
     {
         $db = $this->dbh;
 
@@ -283,7 +283,7 @@ class ezcTreeDbNestedSet extends ezcTreeDbParentChild
         $db = $this->dbh;
 
         // Fetch parent's information
-        list( $left, $right, $width ) = $this->fetchNodeInformation( $parentId );
+        [$left, $right, $width] = $this->fetchNodeInformation( $parentId );
 
         // Update left and right values to account for new subtree
         $this->updateNestedValuesForSubtreeAddition( $right, 2 );
@@ -397,7 +397,7 @@ class ezcTreeDbNestedSet extends ezcTreeDbParentChild
         $this->store->deleteDataForNodes( $nodeList );
 
         // Fetch node information
-        list( $left, $right, $width ) = $this->fetchNodeInformation( $nodeId );
+        [$left, $right, $width] = $this->fetchNodeInformation( $nodeId );
 
         // DELETE FROM indexTable
         // WHERE lft BETWEEN $left and $right
@@ -429,7 +429,7 @@ class ezcTreeDbNestedSet extends ezcTreeDbParentChild
         $db = $this->dbh;
 
         // Get the nodes that are gonne be moved in the subtree
-        $nodeIds = array();
+        $nodeIds = [];
         foreach ( $this->fetchSubtreeDepthFirst( $nodeId )->nodes as $node )
         {
             $nodeIds[] = $node->id;
@@ -448,13 +448,13 @@ class ezcTreeDbNestedSet extends ezcTreeDbParentChild
         $s->execute();
 
         // Fetch node information
-        list( $origLeft, $origRight, $origWidth ) = $this->fetchNodeInformation( $nodeId );
+        [$origLeft, $origRight, $origWidth] = $this->fetchNodeInformation( $nodeId );
 
         // Update the nested values to account for the moved subtree (delete part)
         $this->updateNestedValuesForSubtreeDeletion( $origRight, $origWidth );
 
         // Fetch node information
-        list( $targetParentLeft, $targetParentRight, $targerParentWidth ) = $this->fetchNodeInformation( $targetParentId );
+        [$targetParentLeft, $targetParentRight, $targerParentWidth] = $this->fetchNodeInformation( $targetParentId );
 
         // Update the nested values to account for the moved subtree (addition part)
         $this->updateNestedValuesForSubtreeAddition( $targetParentRight, $origWidth, $nodeIds );

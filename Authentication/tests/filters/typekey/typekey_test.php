@@ -24,31 +24,13 @@ class ezcAuthenticationTypekeyTest extends ezcAuthenticationTest
     public static $keysFileUrlMissing = 'http://localhost/this file cannot possibly exist';
     public static $keysFileUrlUnconnectable = 'http://localhost.nothere/this file cannot possibly exist';
 
-    public static $response = array(
-        'name' => 'ezc',
-        'nick' => 'ezctest',
-        'email' => '5098f1e87a608675ded4d933f31899cae6b4f968',
-        'ts' => '1176888597',
-        'sig' => 'RaJ5rx U6tKZvs1dbOGktNxPmzA=:aSNNjdE/ZAuk/GQ7mTiQZe83a6E='
-        );
+    public static $response = ['name' => 'ezc', 'nick' => 'ezctest', 'email' => '5098f1e87a608675ded4d933f31899cae6b4f968', 'ts' => '1176888597', 'sig' => 'RaJ5rx U6tKZvs1dbOGktNxPmzA=:aSNNjdE/ZAuk/GQ7mTiQZe83a6E='];
 
-    public static $responseWithEmail = array(
-        'name' => 'ezc',
-        'nick' => 'ezctest',
-        'email' => 'alex.stanoi@gmail.com',
-        'ts' => '1186560659',
-        'sig' => 'iJxr041JbZ9jWNo84QPT3EuRjxg=:V4YOiYh7FeTFzRgwDSYLqcE4wKA='
-        );
+    public static $responseWithEmail = ['name' => 'ezc', 'nick' => 'ezctest', 'email' => 'alex.stanoi@gmail.com', 'ts' => '1186560659', 'sig' => 'iJxr041JbZ9jWNo84QPT3EuRjxg=:V4YOiYh7FeTFzRgwDSYLqcE4wKA='];
 
-    public static $responseEmpty = array(
-        'name' => '',
-        'nick' => '',
-        'email' => '',
-        'ts' => '',
-        'sig' => ':'
-        );
+    public static $responseEmpty = ['name' => '', 'nick' => '', 'email' => '', 'ts' => '', 'sig' => ':'];
 
-    public static $responseNull = array();
+    public static $responseNull = [];
 
     public static function suite()
     {
@@ -300,7 +282,7 @@ class ezcAuthenticationTypekeyTest extends ezcAuthenticationTest
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array( 'name' => array( 'ezc' ), 'nick' => array( 'ezctest' ) );
+        $expected = ['name' => ['ezc'], 'nick' => ['ezctest']];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 
@@ -318,7 +300,7 @@ class ezcAuthenticationTypekeyTest extends ezcAuthenticationTest
         $authentication->addFilter( $filter );
         $this->assertEquals( true, $authentication->run() );
 
-        $expected = array( 'name' => array( 'ezc' ), 'nick' => array( 'ezctest' ), 'email' => array( 'alex.stanoi@gmail.com' ) );
+        $expected = ['name' => ['ezc'], 'nick' => ['ezctest'], 'email' => ['alex.stanoi@gmail.com']];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 

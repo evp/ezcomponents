@@ -31,7 +31,7 @@ class ezcTemplateBodyAstNode extends ezcTemplateAstNode
     public function __construct( Array $statements = null )
     {
         parent::__construct();
-        $this->statements = array();
+        $this->statements = [];
 
         if ( $statements !== null )
         {

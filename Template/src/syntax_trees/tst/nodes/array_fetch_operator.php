@@ -44,7 +44,7 @@ class ezcTemplateArrayFetchOperatorTstNode extends ezcTemplateOperatorTstNode
                              11, 1, self::RIGHT_ASSOCIATIVE,
                              '[...]' );
         $this->sourceOperand = null;
-        $this->arrayKeys = array();
+        $this->arrayKeys = [];
     }
 
     /**
@@ -54,9 +54,7 @@ class ezcTemplateArrayFetchOperatorTstNode extends ezcTemplateOperatorTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'symbol'         => $this->symbol,
-                      'sourceOperand'  => $this->sourceOperand,
-                      'arrayKeys'      => $this->arrayKeys );
+        return ['symbol'         => $this->symbol, 'sourceOperand'  => $this->sourceOperand, 'arrayKeys'      => $this->arrayKeys];
     }
 
     /**
@@ -71,7 +69,7 @@ class ezcTemplateArrayFetchOperatorTstNode extends ezcTemplateOperatorTstNode
             $this->sourceOperand = $element;
         else
             $this->arrayKeys[] = $element;
-        $this->parameters = array_merge( array( $this->sourceOperand ),
+        $this->parameters = array_merge( [$this->sourceOperand],
                                          $this->arrayKeys );
     }
 }

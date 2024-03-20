@@ -135,7 +135,7 @@ class ezcTranslationTsBackend implements ezcTranslationBackend, ezcTranslationCo
      * @param string $location
      * @param array(string=>mixed) $options
      */
-    function __construct( $location, array $options = array() )
+    function __construct( $location, array $options = [] )
     {
         if ( !$location || !strlen( $location ) )
         {
@@ -335,7 +335,7 @@ class ezcTranslationTsBackend implements ezcTranslationBackend, ezcTranslationCo
     public function getContext( $locale, $context )
     {
         $ts = $this->openTranslationFile( $locale );
-        $contextElements = array();
+        $contextElements = [];
         foreach ( $ts as $trContext )
         {
             if ( (string) $trContext->name == $context )
@@ -371,7 +371,7 @@ class ezcTranslationTsBackend implements ezcTranslationBackend, ezcTranslationCo
     public function getContextNames( $locale )
     {
         $ts = $this->openTranslationFile( $locale );
-        $contextNames = array();
+        $contextNames = [];
         foreach ( $ts as $trContext )
         {
             $contextNames[] = (string) $trContext->name;
@@ -555,7 +555,7 @@ class ezcTranslationTsBackend implements ezcTranslationBackend, ezcTranslationCo
 
         if ( $valid )
         {
-            $newContext = array( trim( $this->xmlParser->getChildren()->name), array() );
+            $newContext = [trim( $this->xmlParser->getChildren()->name), []];
 
             foreach ( $this->xmlParser->getChildren()->message as $data )
             {

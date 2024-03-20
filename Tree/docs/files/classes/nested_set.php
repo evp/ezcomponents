@@ -53,12 +53,7 @@ class nested_set
      */
      public function getState()
      {
-         return array(
-             'id' => $this->id,
-             'lft' => $this->lft,
-             'parent_id' => $this->parent_id,
-             'rgt' => $this->rgt,
-         );
+         return ['id' => $this->id, 'lft' => $this->lft, 'parent_id' => $this->parent_id, 'rgt' => $this->rgt];
      }
 }
 ?>

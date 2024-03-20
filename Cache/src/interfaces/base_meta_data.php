@@ -42,7 +42,7 @@ abstract class ezcCacheStackBaseMetaData implements ezcCacheStackMetaData
      * 
      * @var array(string=>int)
      */
-    protected $replacementData = array();
+    protected $replacementData = [];
 
     /**
      * Storage-item assignement.
@@ -67,7 +67,7 @@ abstract class ezcCacheStackBaseMetaData implements ezcCacheStackMetaData
      * 
      * @var array(string=>array(string=>bool))
      */
-    protected $storageData = array();
+    protected $storageData = [];
 
     /**
      * No-parameter constructor.
@@ -206,10 +206,7 @@ abstract class ezcCacheStackBaseMetaData implements ezcCacheStackMetaData
      */
     public function getState()
     {
-        return array(
-            'replacementData' => $this->replacementData,
-            'storageData'     => $this->storageData,
-        );
+        return ['replacementData' => $this->replacementData, 'storageData'     => $this->storageData];
     }
 
     /**

@@ -22,14 +22,14 @@ abstract class ezcTemplateTstWalker implements ezcTemplateTstNodeVisitor
      *
      * @var array(ezcTemplateTstNode)
      */
-    protected $nodePath = array();
+    protected $nodePath = [];
     
     /**
      * Keeps count of the amount of subnodes.
      *
      * @var int
      */
-    protected $statements = array();
+    protected $statements = [];
 
     /**
      * Keeps track of the current offset. E.g. when an extra statement is 
@@ -37,7 +37,7 @@ abstract class ezcTemplateTstWalker implements ezcTemplateTstNodeVisitor
      *
      * var array(int)
      */
-    protected $offset = array();
+    protected $offset = [];
 
     /**
      * Constructs a ezcTemplateTstWalker

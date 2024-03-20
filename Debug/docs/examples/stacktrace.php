@@ -10,7 +10,7 @@ class TestFoo
     public function makeTest()
     {
         $bar = new TestBar( 'some param', 23 );
-        $bar->informTest( array( true, 'foo' => 42.23 ), $this );
+        $bar->informTest( [true, 'foo' => 42.23], $this );
     }
 }
 
@@ -32,7 +32,7 @@ class TestBar
         ezcDebug::getInstance()->log(
             'informTest() called.',
             ezcLog::NOTICE,
-            array(),
+            [],
             true
 
         );

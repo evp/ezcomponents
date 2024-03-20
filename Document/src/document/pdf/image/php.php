@@ -57,13 +57,7 @@ class ezcDocumentPdfPhpImageHandler extends ezcDocumentPdfImageHandler
             return false;
         }
 
-        $this->cache[$file] = array(
-            'dimensions' => array(
-                new ezcDocumentPcssMeasure( $data[0] . 'px' ),
-                new ezcDocumentPcssMeasure( $data[1] . 'px' ),
-            ),
-            'mimetype'   => $data['mime'],
-        );
+        $this->cache[$file] = ['dimensions' => [new ezcDocumentPcssMeasure( $data[0] . 'px' ), new ezcDocumentPcssMeasure( $data[1] . 'px' )], 'mimetype'   => $data['mime']];
         return true;
     }
 

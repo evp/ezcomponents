@@ -8,7 +8,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . "/test_case.php";
+require_once __DIR__ . "/test_case.php";
 
 /**
  * Test suite for ImageFiltersShell class.
@@ -755,7 +755,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
     public function testBorder_2()
     {
-        $this->handler->border( 2, array( 0x00, 0x00, 0xFF ) );
+        $this->handler->border( 2, [0x00, 0x00, 0xFF] );
         $this->handler->save( $this->getActiveReference(), $this->getTempPath() );
         $this->handler->close( $this->getActiveReference() );
         $this->assertImageSimilar(
@@ -768,7 +768,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
     public function testBorder_5()
     {
-        $this->handler->border( 5, array( 255, 0, 0 ) );
+        $this->handler->border( 5, [255, 0, 0] );
         $this->handler->save( $this->getActiveReference(), $this->getTempPath() );
         $this->handler->close( $this->getActiveReference() );
         $this->assertImageSimilar(
@@ -783,14 +783,14 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->handler->border( false, array( 255, 0, 0 ) );
+            $this->handler->border( false, [255, 0, 0] );
             $this->fail( "Border filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->border( 10, array( 255, false, 0 ) );
+            $this->handler->border( 10, [255, false, 0] );
             $this->fail( "Border filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
@@ -799,7 +799,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testWatermarkAbsoluteNoScale()
     {
-        $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", 100, 80 );
+        $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", 100, 80 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -811,7 +811,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testWatermarkAbsoluteScale()
     {
-        $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", 10, 10, 130, 93 );
+        $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", 10, 10, 130, 93 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -823,10 +823,10 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testWatermarkAbsoluteNoScaleNegativeOffset()
     {
-        $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -50, -33 );
+        $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -50, -33 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
-            strtr( $this->getReferencePath(), array( "NegativeOffset" =>  "" ) ),
+            strtr( $this->getReferencePath(), ["NegativeOffset" =>  ""] ),
             $this->getTempPath(),
             "Image not rendered as expected.",
             ezcImageConversionTestCase::DEFAULT_SIMILARITY_GAP
@@ -835,10 +835,10 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testWatermarkAbsoluteScaleNegativeOffset()
     {
-        $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -140, -103, 130, 93 );
+        $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -140, -103, 130, 93 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
-            strtr( $this->getReferencePath(), array( "NegativeOffset" =>  "" ) ),
+            strtr( $this->getReferencePath(), ["NegativeOffset" =>  ""] ),
             $this->getTempPath(),
             "Image not rendered as expected.",
             100
@@ -849,7 +849,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/foo.png", -140, -103, 130, 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/foo.png", -140, -103, 130, 93 );
             $this->fail( 'Exception not throwen on invalid watermark file.' );
         }
         catch ( ezcBaseValueException $e )
@@ -857,7 +857,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", 'foo', -103, 130, 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", 'foo', -103, 130, 93 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -865,7 +865,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -140, 'foo', 130, 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -140, 'foo', 130, 93 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -873,7 +873,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -140, -103, 'foo', 93 );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -140, -103, 'foo', 93 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -881,7 +881,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkAbsolute( dirname( __FILE__ ) . "/data/watermark.png", -140, -103, 130, 'foo' );
+            $this->handler->watermarkAbsolute( __DIR__ . "/data/watermark.png", -140, -103, 130, 'foo' );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -890,7 +890,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testWatermarkPercentNoScale()
     {
-        $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 10, 90 );
+        $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 10, 90 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -902,7 +902,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testWatermarkPercentScale()
     {
-        $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 80, 80, 20 );
+        $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 80, 80, 20 );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -916,7 +916,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/foo.png", 80, 80, 20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/foo.png", 80, 80, 20 );
             $this->fail( 'Exception not throwen on invalid watermark file.' );
         }
         catch ( ezcBaseValueException $e )
@@ -924,7 +924,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", -80, 80, 20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", -80, 80, 20 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -932,7 +932,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 80, -80, 20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 80, -80, 20 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -940,7 +940,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
 
         try
         {
-            $this->handler->watermarkPercent( dirname( __FILE__ ) . "/data/watermark.png", 80, 80, -20 );
+            $this->handler->watermarkPercent( __DIR__ . "/data/watermark.png", 80, 80, -20 );
             $this->fail( 'Exception not throwen on invalid x coord.' );
         }
         catch ( ezcBaseValueException $e )
@@ -1005,7 +1005,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testFillThumbnailVertical()
     {
-        $this->handler->filledThumbnail( 50, 50, array( 255, 0, 0 ) );
+        $this->handler->filledThumbnail( 50, 50, [255, 0, 0] );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -1017,7 +1017,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testFillThumbnailHorizontal()
     {
-        $this->handler->filledThumbnail( 100, 50, array( 255, 0, 0 ) );
+        $this->handler->filledThumbnail( 100, 50, [255, 0, 0] );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -1029,7 +1029,7 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     
     public function testFillThumbnailTooLargeColorArray()
     {
-        $this->handler->filledThumbnail( 100, 50, array( 255, 0, 0, 400, 500, 600 ) );
+        $this->handler->filledThumbnail( 100, 50, [255, 0, 0, 400, 500, 600] );
         $this->handler->save( $this->imageReference, $this->getTempPath() );
         $this->assertImageSimilar(
             $this->getReferencePath(),
@@ -1043,42 +1043,42 @@ class ezcImageConversionFiltersShellTest extends ezcImageConversionTestCase
     {
         try
         {
-            $this->handler->filledThumbnail( -10, 50, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( -10, 50, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( "foo", 50, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( "foo", 50, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, -10, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( 50, -10, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, false, array( 255, 0, 0 ) );
+            $this->handler->filledThumbnail( 50, false, [255, 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, 50, array( 255, false, 0 ) );
+            $this->handler->filledThumbnail( 50, 50, [255, false, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )
         {}
         try
         {
-            $this->handler->filledThumbnail( 50, 50, array( "bar", 0, 0 ) );
+            $this->handler->filledThumbnail( 50, 50, ["bar", 0, 0] );
             $this->fail( "FilledThumbnail filter accepted incorrect value." );
         }
         catch ( ezcBaseValueException $e )

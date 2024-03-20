@@ -34,7 +34,7 @@ class ezcFeedSkipDaysElement extends ezcFeedElement
             case 'days':
                 if ( !is_array( $value ) )
                 {
-                    $value = array( $value );
+                    $value = [$value];
                 }
 
                 $this->properties[$name] = $value;

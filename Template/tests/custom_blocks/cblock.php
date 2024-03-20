@@ -9,10 +9,10 @@ class cblockTemplateExtension implements ezcTemplateCustomBlock
             {
                 $def = new ezcTemplateCustomBlockDefinition();
 
-                $def->class = __CLASS__;
+                $def->class = self::class;
                 $def->method = "cblock";
                 $def->hasCloseTag = true;
-                $def->requiredParameters = array();
+                $def->requiredParameters = [];
 
                 return $def;
             } break;

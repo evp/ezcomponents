@@ -50,7 +50,7 @@ class ezcWorkflowVisitorNodeCollector extends ezcWorkflowVisitor
      *
      * @var array(integer=>ezcWorkflowNode)
      */
-    protected $nodes = array();
+    protected $nodes = [];
 
     /**
      * Holds the sequence of node ids.

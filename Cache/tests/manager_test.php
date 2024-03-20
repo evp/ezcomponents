@@ -25,7 +25,7 @@ class ezcCacheManagerTest extends ezcTestCase
      * @var array
      * @access protected
      */
-    protected $data = array();
+    protected $data = [];
     
     /**
      * Temp location for caches.
@@ -47,13 +47,7 @@ class ezcCacheManagerTest extends ezcTestCase
 
     public function __construct()
     {
-        $this->data = array(
-                        'ezcCacheStorageFilePlain',
-                        'ezcCacheStorageFileArray',
-                        'ezcCacheStorageFileEvalArray',
-                        'ezcCacheStorageApcPlain',
-                        'ezcCacheStorageFileApcArray'
-                        );
+        $this->data = ['ezcCacheStorageFilePlain', 'ezcCacheStorageFileArray', 'ezcCacheStorageFileEvalArray', 'ezcCacheStorageApcPlain', 'ezcCacheStorageFileApcArray'];
     }
 
     public function testManagerCreateCache_Success()
@@ -174,7 +168,7 @@ class ezcCacheManagerTest extends ezcTestCase
 
     public function testGetCacheDelayedInit2()
     {
-        testDelayedInitCacheManager::$tmpDir = $this->createTempDir( __CLASS__ );
+        testDelayedInitCacheManager::$tmpDir = $this->createTempDir( self::class );
         ezcBaseInit::setCallback( 'ezcInitCacheManager', 'testDelayedInitCacheManager' );
         $cache = ezcCacheManager::getCache( 'simple' );
         self::assertSame( '.cache', $cache->options->extension );

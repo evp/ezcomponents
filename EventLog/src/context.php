@@ -64,7 +64,7 @@ class ezcLogContext
             {
                 if ( !isset( $this->severityMap[$input] ) )
                 {
-                    $this->severityMap[$input] = array();
+                    $this->severityMap[$input] = [];
                 }
 
                 $this->severityMap[$input] = array_merge( (array) $this->severityMap[$input], (array) $context );
@@ -115,7 +115,7 @@ class ezcLogContext
         {
             if ( !isset( $this->sourceMap[$eventSource] ) )
             {
-                $this->sourceMap[$eventSource] = array();
+                $this->sourceMap[$eventSource] = [];
             }
 
             $this->sourceMap[$eventSource] = array_merge( (array) $this->sourceMap[$eventSource], (array) $context );
@@ -148,8 +148,8 @@ class ezcLogContext
      */
     public function getContext( $eventType, $eventSource )
     {
-        $a = isset( $this->severityMap[$eventType] ) ? $this->severityMap[$eventType] : array();
-        $b = isset( $this->sourceMap[$eventSource] ) ? $this->sourceMap[$eventSource] : array();
+        $a = $this->severityMap[$eventType] ?? [];
+        $b = $this->sourceMap[$eventSource] ?? [];
         return array_merge( $a, $b );
     }
 }

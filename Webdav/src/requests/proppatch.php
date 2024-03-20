@@ -31,13 +31,13 @@ class ezcWebdavPropPatchRequest extends ezcWebdavRequest
      * Flagged {@link ezcWebdavFlaggedPropertyStorage} indicating this property
      * should be set or updated.
      */
-    const SET = 1;
+    public const SET = 1;
 
     /**
      * Flagged {@link ezcWebdavFlaggedPropertyStorage} indicating this property
      * should be removed.
      */
-    const REMOVE = 2;
+    public const REMOVE = 2;
 
     /**
      * Creates a new PROPPATCH request object.

@@ -9,7 +9,5 @@
  * @package TreePersistentObjectTiein
  */
 
-return array(
-    'ezcTreePersistentObjectDataStore' => 'TreePersistentObjectTiein/stores/persistent_object.php',
-);
+return ['ezcTreePersistentObjectDataStore' => 'TreePersistentObjectTiein/stores/persistent_object.php'];
 ?>

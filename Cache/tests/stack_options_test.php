@@ -24,19 +24,14 @@ class ezcCacheStackOptionsTest extends ezcTestCase
 {
     public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     public function testCtorDefaultSuccess()
     {
         $opts = new ezcCacheStackOptions();
         $this->assertAttributeEquals(
-            array(
-                'configurator'        => null,
-                'metaStorage'         => null,
-                'replacementStrategy' => 'ezcCacheStackLruReplacementStrategy',
-                'bubbleUpOnRestore'   => false,
-            ),
+            ['configurator'        => null, 'metaStorage'         => null, 'replacementStrategy' => 'ezcCacheStackLruReplacementStrategy', 'bubbleUpOnRestore'   => false],
             'properties',
             $opts,
             'Default options incorrect.'
@@ -45,13 +40,13 @@ class ezcCacheStackOptionsTest extends ezcTestCase
 
     public function testCtorNonDefaultSuccess()
     {
-        $optArray = array(
+        $optArray = [
             'configurator'        => 'ezcCacheStackTestConfigurator',
             // @TODO: Should be a valid storage object.
             'metaStorage'         => null,
             'replacementStrategy' => 'ezcCacheStackLfuReplacementStrategy',
             'bubbleUpOnRestore'   => true,
-        );
+        ];
         $opts = new ezcCacheStackOptions( $optArray );
         $this->assertAttributeEquals(
             $optArray,
@@ -69,23 +64,23 @@ class ezcCacheStackOptionsTest extends ezcTestCase
         $this->assertSetProperty(
             $opts,
             'configurator',
-            array( 'ezcCacheStackTestConfigurator', null )
+            ['ezcCacheStackTestConfigurator', null]
         );
 
         $this->assertSetProperty(
             $opts,
             'metaStorage',
-            array( $metaDataStorage )
+            [$metaDataStorage]
         );
         $this->assertSetProperty(
             $opts,
             'replacementStrategy',
-            array( 'ezcCacheStackLfuReplacementStrategy', 'ezcCacheStackLruReplacementStrategy' )
+            ['ezcCacheStackLfuReplacementStrategy', 'ezcCacheStackLruReplacementStrategy']
         );
         $this->assertSetProperty(
             $opts,
             'bubbleUpOnRestore',
-            array( true, false )
+            [true, false]
         );
     }
 
@@ -93,15 +88,8 @@ class ezcCacheStackOptionsTest extends ezcTestCase
     {
         $nonMetaDataStorage = $this->getMock(
             'ezcCacheStorage',
-            array(
-                'validateLocation',
-                'store',
-                'restore',
-                'delete',
-                'countDataItems',
-                'getRemainingLifetime'
-            ),
-            array(),
+            ['validateLocation', 'store', 'restore', 'delete', 'countDataItems', 'getRemainingLifetime'],
+            [],
             '',
             false
         );
@@ -110,22 +98,22 @@ class ezcCacheStackOptionsTest extends ezcTestCase
         $this->assertSetPropertyFails(
             $opts,
             'configurator',
-            array( true, false, 23, 42.23, 'Foo', array(), 'stdClass', new stdClass() )
+            [true, false, 23, 42.23, 'Foo', [], 'stdClass', new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opts,
             'metaStorage',
-            array( true, false, 23, 42.23, 'Foo', array(), 'stdClass', new stdClass(), $nonMetaDataStorage )
+            [true, false, 23, 42.23, 'Foo', [], 'stdClass', new stdClass(), $nonMetaDataStorage]
         );
         $this->assertSetPropertyFails(
             $opts,
             'replacementStrategy',
-            array( null, true, false, 23, 42.23, 'Foo', array(), 'stdClass', new stdClass() )
+            [null, true, false, 23, 42.23, 'Foo', [], 'stdClass', new stdClass()]
         );
         $this->assertSetPropertyFails(
             $opts,
             'bubbleUpOnRestore',
-            array( null, 23, 42.23, 'Foo', array(), 'stdClass', new stdClass() )
+            [null, 23, 42.23, 'Foo', [], 'stdClass', new stdClass()]
         );
 
         try

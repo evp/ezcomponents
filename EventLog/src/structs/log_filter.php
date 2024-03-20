@@ -66,7 +66,7 @@ class ezcLogFilter extends ezcBaseStruct
     * @param array(string) $source
     * @param array(string) $category
     */
-   public function __construct( $severity = 0, array $source = array(), array $category = array() )
+   public function __construct( $severity = 0, array $source = [], array $category = [] )
    {
        $this->severity = $severity;
        $this->source = $source;

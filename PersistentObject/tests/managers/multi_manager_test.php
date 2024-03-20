@@ -20,9 +20,9 @@ class ezcPersistentMultiManagerTest extends ezcTestCase
 
     protected function setUp()
     {
-        $managers = array();
-        $managers[] = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" );
-        $managers[] = new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data2/" );
+        $managers = [];
+        $managers[] = new ezcPersistentCodeManager( __DIR__ . "/data/" );
+        $managers[] = new ezcPersistentCodeManager( __DIR__ . "/data2/" );
         $this->manager = new ezcPersistentMultiManager( $managers );
     }
 
@@ -61,8 +61,8 @@ class ezcPersistentMultiManagerTest extends ezcTestCase
     public function testAddManager()
     {
         $this->manager = new ezcPersistentMultiManager();
-        $this->manager->addManager( new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/" ) );
-        $this->manager->addManager( new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data2/" ) );
+        $this->manager->addManager( new ezcPersistentCodeManager( __DIR__ . "/data/" ) );
+        $this->manager->addManager( new ezcPersistentCodeManager( __DIR__ . "/data2/" ) );
 
         // test fetching
         $def = $this->manager->fetchDefinition( "SimpleDefinition" );

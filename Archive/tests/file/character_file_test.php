@@ -17,7 +17,7 @@ class ezcArchiveCharacterFileTest extends ezcTestCase
 {
     public function testOpenFile()
     {
-        $characterFile = new ezcArchiveCharacterFile( dirname(__FILE__) . "/../data/tar_ustar_2_textfiles.tar" );
+        $characterFile = new ezcArchiveCharacterFile( __DIR__ . "/../data/tar_ustar_2_textfiles.tar" );
 
         $this->assertEquals( "f", $characterFile->current() );
         $this->assertEquals( "i", $characterFile->next() );
@@ -30,7 +30,7 @@ class ezcArchiveCharacterFileTest extends ezcTestCase
     {
         try
         {
-            $cf = new ezcArchiveCharacterFile( dirname(__FILE__) . "/../data/this_file_does_not_exist.tar" );
+            $cf = new ezcArchiveCharacterFile( __DIR__ . "/../data/this_file_does_not_exist.tar" );
             $this->fail( "Expected a file not found exception." );
         }
         catch ( ezcBaseFileNotFoundException $e )
@@ -40,7 +40,7 @@ class ezcArchiveCharacterFileTest extends ezcTestCase
 
     public function testOpenReadOnlyFile()
     {
-        $original =  dirname(__FILE__) . "/../data/tar_ustar_2_textfiles.tar";
+        $original =  __DIR__ . "/../data/tar_ustar_2_textfiles.tar";
 
         $tmpDir = $this->createTempDir( "ezcArchive_" );
         $readOnly = $tmpDir . "/read_only.tar";
@@ -98,7 +98,7 @@ class ezcArchiveCharacterFileTest extends ezcTestCase
 
     public function testForEaching()
     {
-        $charFile = new ezcArchiveCharacterFile( dirname(__FILE__) . "/../data/tar_ustar_2_textfiles.tar" );
+        $charFile = new ezcArchiveCharacterFile( __DIR__ . "/../data/tar_ustar_2_textfiles.tar" );
 
         $total = 0;
         foreach ( $charFile as $pos => $char )
@@ -111,7 +111,7 @@ class ezcArchiveCharacterFileTest extends ezcTestCase
 
     public function createTempFile( $file )
     {
-        $original = dirname(__FILE__) . "/../data/$file";
+        $original = __DIR__ . "/../data/$file";
 
         $tmpDir = $this->createTempDir( "ezcArchive_" );
         $tmpFile = $tmpDir . "/temp_file.tar";
@@ -389,7 +389,7 @@ class ezcArchiveCharacterFileTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

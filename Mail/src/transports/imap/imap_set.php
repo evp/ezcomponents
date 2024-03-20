@@ -116,7 +116,7 @@ class ezcMailImapSet implements ezcMailParserSet
      * @param bool $deleteFromServer
      * @param ezcMailImapSetOptions|array(string=>mixed) $options
      */
-    public function __construct( ezcMailTransportConnection $connection, array $messages, $deleteFromServer = false, $options = array() )
+    public function __construct( ezcMailTransportConnection $connection, array $messages, $deleteFromServer = false, $options = [] )
     {
         if ( $options instanceof ezcMailImapSetOptions )
         {
@@ -294,7 +294,7 @@ class ezcMailImapSet implements ezcMailParserSet
         {
             $response = $this->connection->getLine();
         }
-        while ( strpos( $response, $tag ) === false )
+        while ( strpos( $response, (string) $tag ) === false )
         {
             if ( strpos( $response, ' BAD ' ) !== false ||
                  strpos( $response, ' NO ' ) !== false )

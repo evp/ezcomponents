@@ -65,7 +65,7 @@ class ezcConfigurationIniWriter extends ezcConfigurationFileWriter
      * @param array $comments The structure containing the comments for the
      *                        settings.
      */
-    protected function writeSettings( $fp, array $settings, array $comments = array() )
+    protected function writeSettings( $fp, array $settings, array $comments = [] )
     {
         /* Check if there are any settings */
         if ( !count( $settings ) )
@@ -129,7 +129,7 @@ class ezcConfigurationIniWriter extends ezcConfigurationFileWriter
         {
             case 'string':
                 if ( strpbrk( $settingValue, "'\"\0\\" ) === false &&
-                    !in_array( $settingValue, array( 'true', 'false' ) ) &&
+                    !in_array( $settingValue, ['true', 'false'] ) &&
                     !preg_match( '@^-?(([1-9][0-9]*)|(0))$@', $settingValue ) &&
                     !preg_match( '@^0x([0-9a-f]+)$@i', $settingValue ) &&
                     !preg_match( '@^0([0-7]+)$@i', $settingValue ) &&

@@ -19,7 +19,7 @@ class ezcDocumentOdtFormattingPropertiesTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testConstructorSuccess()
@@ -29,9 +29,7 @@ class ezcDocumentOdtFormattingPropertiesTest extends ezcTestCase
         );
 
         $this->assertAttributeEquals(
-            array(
-                'type' => ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT
-            ),
+            ['type' => ezcDocumentOdtFormattingProperties::PROPERTIES_TEXT],
             'properties',
             $props
         );
@@ -59,7 +57,7 @@ class ezcDocumentOdtFormattingPropertiesTest extends ezcTestCase
 
         try
         {
-            $props->exchangeArray( array() );
+            $props->exchangeArray( [] );
             $this->fail( 'Exception not thrown on invalid method call to exchangeArray().' );
         }
         catch ( RuntimeException $e ) {}

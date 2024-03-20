@@ -43,7 +43,7 @@ abstract class ezcDocumentOptionsTestCase extends ezcTestCase
      */
     public static function provideDefaultValues()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -67,7 +67,7 @@ abstract class ezcDocumentOptionsTestCase extends ezcTestCase
      */
     public static function provideValidData()
     {
-        return array();
+        return [];
     }
 
     /**
@@ -91,7 +91,7 @@ abstract class ezcDocumentOptionsTestCase extends ezcTestCase
      */
     public static function provideInvalidData()
     {
-        return array();
+        return [];
     }
 
     /**

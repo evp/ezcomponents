@@ -23,7 +23,7 @@ class Fire implements ezcSignalStaticConnectionsBase
      */
     public function getConnections( $identifier, $signal )
     {
-        return array( 50 => array( array($this, 'alwaysFire') ) );
+        return [50 => [[$this, 'alwaysFire']]];
     }
 
     public function alwaysFire()

@@ -21,7 +21,7 @@ class ezcDocumentConverterDocbookToEzXmlTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testEzXmlConverterOptionsUnknownOption()
@@ -42,15 +42,12 @@ class ezcDocumentConverterDocbookToEzXmlTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/docbook/ezxml/s_*.xml' );
+            $testFiles = glob( __DIR__ . '/files/docbook/ezxml/s_*.xml' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'ezp'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'ezp'];
             }
         }
 

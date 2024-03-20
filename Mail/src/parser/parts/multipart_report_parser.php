@@ -40,7 +40,7 @@ class ezcMailMultipartReportParser extends ezcMailMultipartParser
     {
         parent::__construct( $headers );
         $this->report = new ezcMailMultipartReport();
-        $this->parts = array();
+        $this->parts = [];
         preg_match( '/\s*report-type="?([^;"]*);?/i',
                     $this->headers['Content-Type'],
                     $parameters );

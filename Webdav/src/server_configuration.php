@@ -80,7 +80,7 @@ class ezcWebdavServerConfiguration
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates a new instance.
@@ -122,7 +122,7 @@ class ezcWebdavServerConfiguration
         $this->xmlToolClass         = $xmlToolClass;
         $this->propertyHandlerClass = $propertyHandlerClass;
         $this->headerHandlerClass   = $headerHandlerClass;
-        $this->pathFactory          = ( $pathFactory === null ? new ezcWebdavAutomaticPathFactory() : $pathFactory );
+        $this->pathFactory          = ( $pathFactory ?? new ezcWebdavAutomaticPathFactory() );
     }
 
     /**

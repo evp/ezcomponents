@@ -66,10 +66,7 @@ class ezcTemplateOutputBlockTstNode extends ezcTemplateBlockTstNode
 
     public function getTreeProperties()
     {
-        return array( 'startBracket'   => $this->startBracket,
-                      'endBracket'     => $this->endBracket,
-                      'expressionRoot' => $this->expressionRoot,
-                      'isRaw'          => $this->isRaw );
+        return ['startBracket'   => $this->startBracket, 'endBracket'     => $this->endBracket, 'expressionRoot' => $this->expressionRoot, 'isRaw'          => $this->isRaw];
     }
 
     /**

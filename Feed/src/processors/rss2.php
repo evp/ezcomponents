@@ -23,12 +23,12 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
     /**
      * Defines the feed type of this processor.
      */
-    const FEED_TYPE = 'rss2';
+    public const FEED_TYPE = 'rss2';
 
     /**
      * Defines the feed content type of this processor.
      */
-    const CONTENT_TYPE = 'application/rss+xml';
+    public const CONTENT_TYPE = 'application/rss+xml';
 
     /**
      * Creates a new RSS2 processor.
@@ -100,7 +100,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
         {
             return false;
         }
-        if ( !in_array( $xml->documentElement->getAttribute( 'version' ), array( '0.91', '0.92', '0.93', '0.94', '2.0' ) ) )
+        if ( !in_array( $xml->documentElement->getAttribute( 'version' ), ['0.91', '0.92', '0.93', '0.94', '2.0'] ) )
         {
             return false;
         }
@@ -198,8 +198,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
                     case 'cloud':
                         $element = $feed->add( $tagName );
 
-                        $attributes = array( 'domain' => 'domain', 'port' => 'port', 'path' => 'path',
-                                             'registerProcedure' => 'registerProcedure', 'protocol' => 'protocol' );
+                        $attributes = ['domain' => 'domain', 'port' => 'port', 'path' => 'path', 'registerProcedure' => 'registerProcedure', 'protocol' => 'protocol'];
                         foreach ( $attributes as $name => $alias )
                         {
                             if ( $channelChild->hasAttribute( $name ) )
@@ -256,7 +255,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
      */
     private function generateRequired()
     {
-        $elements = array( 'title', 'link', 'description' );
+        $elements = ['title', 'link', 'description'];
         foreach ( $elements as $element )
         {
             $data = $this->$element;
@@ -267,7 +266,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
 
             if ( !is_array( $data ) )
             {
-                $data = array( $data );
+                $data = [$data];
             }
 
             switch ( $element )
@@ -294,12 +293,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
      */
     private function generateOptional()
     {
-        $elements = array( 'language', 'copyright', 'author',
-                           'webMaster', 'published', 'updated',
-                           'category', 'generator', 'docs',
-                           'ttl', 'image', 'rating',
-                           'textInput', 'skipHours', 'skipDays',
-                           'cloud', 'id' );
+        $elements = ['language', 'copyright', 'author', 'webMaster', 'published', 'updated', 'category', 'generator', 'docs', 'ttl', 'image', 'rating', 'textInput', 'skipHours', 'skipDays', 'cloud', 'id'];
 
         foreach ( $elements as $element )
         {
@@ -369,7 +363,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
                     default:
                         if ( !is_array( $data ) )
                         {
-                            $data = array( $data );
+                            $data = [$data];
                         }
 
                         foreach ( $data as $dataNode )
@@ -461,7 +455,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
         $image = $this->xml->createElement( 'image' );
         $this->channel->appendChild( $image );
 
-        $elements = array( 'url', 'title', 'link' );
+        $elements = ['url', 'title', 'link'];
         foreach ( $elements as $element )
         {
             $data = $feedElement->$element;
@@ -473,7 +467,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
             $this->generateMetaData( $image, $element, $data );
         }
 
-        $elements = array( 'description', 'width', 'height' );
+        $elements = ['description', 'width', 'height'];
         foreach ( $elements as $element )
         {
             $data = $feedElement->$element;
@@ -534,7 +528,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
         $image = $this->xml->createElement( 'textInput' );
         $this->channel->appendChild( $image );
 
-        $elements = array( 'title', 'description', 'name', 'link' );
+        $elements = ['title', 'description', 'name', 'link'];
         foreach ( $elements as $element )
         {
             $data = $feedElement->$element;
@@ -554,8 +548,8 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
      */
     private function generateCloud( ezcFeedCloudElement $feedElement )
     {
-        $attributes = array();
-        $elements = array( 'domain', 'port', 'path', 'registerProcedure', 'protocol' );
+        $attributes = [];
+        $elements = ['domain', 'port', 'path', 'registerProcedure', 'protocol'];
         foreach ( $elements as $element )
         {
             $data = $feedElement->$element;
@@ -603,7 +597,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
             $this->channel->appendChild( $itemTag );
 
             $atLeastOneRequiredFeedItemPresent = false;
-            $elements = array( 'title', 'description' );
+            $elements = ['title', 'description'];
             foreach ( $elements as $attribute )
             {
                 $data = $item->$attribute;
@@ -624,10 +618,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
                 throw new ezcFeedAtLeastOneItemDataRequiredException( $requiredElements );
             }
 
-            $optional = array( 'title', 'link', 'description',
-                               'author', 'category', 'comments',
-                               'enclosure', 'id', 'published',
-                               'source', 'language' );
+            $optional = ['title', 'link', 'description', 'author', 'category', 'comments', 'enclosure', 'id', 'published', 'source', 'language'];
 
             foreach ( $optional as $attribute )
             {
@@ -642,11 +633,11 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
                             break;
 
                         case 'id':
-                            $attributes = array();
+                            $attributes = [];
                             if ( isset( $metaData->isPermaLink ) )
                             {
                                 $permaLink = ( $metaData->isPermaLink === true ) ? 'true' : 'false';
-                                $attributes = array( 'isPermaLink' => $permaLink );
+                                $attributes = ['isPermaLink' => $permaLink];
                             }
 
                             $this->generateMetaDataWithAttributes( $itemTag, 'guid', $metaData->id, $attributes );
@@ -673,8 +664,8 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
                         case 'enclosure':
                             foreach ( $metaData as $dataNode )
                             {
-                                $attributes = array();
-                                $elements = array( 'url', 'length', 'type' );
+                                $attributes = [];
+                                $elements = ['url', 'length', 'type'];
                                 foreach ( $elements as $key )
                                 {
                                     if ( isset( $dataNode->$key ) )
@@ -694,7 +685,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
                                 throw new ezcFeedRequiredMetaDataMissingException( '/rss/item/source/@url' );
                             }
 
-                            $attributes = array( 'url' => $metaData->url );
+                            $attributes = ['url' => $metaData->url];
                             $this->generateMetaDataWithAttributes( $itemTag, 'source', $metaData, $attributes );
                             break;
 
@@ -749,7 +740,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
                     case 'enclosure':
                         $subElement = $element->add( $tagName );
 
-                        $attributes = array( 'url' => 'url', 'type' => 'type', 'length' => 'length' );
+                        $attributes = ['url' => 'url', 'type' => 'type', 'length' => 'length'];
                         foreach ( $attributes as $name => $alias )
                         {
                             if ( $itemChild->hasAttribute( $name ) )
@@ -845,7 +836,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
      */
     private function parseSkipHours( ezcFeedSkipHoursElement $element, DOMElement $xml )
     {
-        $values = array();
+        $values = [];
         foreach ( $xml->childNodes as $itemChild )
         {
             if ( $itemChild->nodeType === XML_ELEMENT_NODE )
@@ -871,7 +862,7 @@ class ezcFeedRss2 extends ezcFeedProcessor implements ezcFeedParser
      */
     private function parseSkipDays( ezcFeedSkipDaysElement $element, DOMElement $xml )
     {
-        $values = array();
+        $values = [];
         foreach ( $xml->childNodes as $itemChild )
         {
             if ( $itemChild->nodeType === XML_ELEMENT_NODE )

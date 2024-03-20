@@ -1,24 +1,9 @@
 <?php
 
-return array(
-    array(
-        'server' => array(
-            'REQUEST_URI'         => '/a/a2',
-            'REQUEST_METHOD'      => 'PROPFIND',
-            'HTTP_AUTHORIZATION'  => 'Basic Zm9vOmJhcg==',
-        ),
-        'body' => '<?xml version="1.0" encoding="utf-8" ?>
+return [['server' => ['REQUEST_URI'         => '/a/a2', 'REQUEST_METHOD'      => 'PROPFIND', 'HTTP_AUTHORIZATION'  => 'Basic Zm9vOmJhcg=='], 'body' => '<?xml version="1.0" encoding="utf-8" ?>
 <D:propfind xmlns:D="DAV:">
   <D:allprop/>
-</D:propfind>',
-    ),
-    array(
-        'status' => 'HTTP/1.1 207 Multi-Status',
-        'headers' => array(
-            'Content-Type' => 'text/xml; charset="utf-8"',
-            'Server'       => 'eZComponents/dev/ezcWebdavTransportTestMock',
-        ),
-       'body' => '<?xml version="1.0" encoding="UTF-8"?>
+</D:propfind>'], ['status' => 'HTTP/1.1 207 Multi-Status', 'headers' => ['Content-Type' => 'text/xml; charset="utf-8"', 'Server'       => 'eZComponents/dev/ezcWebdavTransportTestMock'], 'body' => '<?xml version="1.0" encoding="UTF-8"?>
 <D:multistatus xmlns:D="DAV:">
   <D:response>
     <D:href>http://webdav/a/a2</D:href>
@@ -37,8 +22,6 @@ return array(
     </D:propstat>
   </D:response>
 </D:multistatus>
-',
-    ),
-);
+']];
 
 ?>

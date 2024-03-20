@@ -30,12 +30,7 @@ abstract class ezcPersistentRelation
      *
      * @var array
      */
-    protected $properties = array(
-        "sourceTable"       => null,
-        "destinationTable"  => null,
-        "columnMap"         => array(),
-        "reverse"           => false,
-    );
+    protected $properties = ["sourceTable"       => null, "destinationTable"  => null, "columnMap"         => [], "reverse"           => false];
 
     /**
      * Validates an {@link ezcPersistentRelation::$columnMap} property.

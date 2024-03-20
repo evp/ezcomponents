@@ -22,7 +22,7 @@ class ezcInputFormDefinitionElement extends ezcBaseStruct
      *               do not throw errors if they are not available while
      *               parsing input variables.
      */
-    const OPTIONAL = 0;
+    public const OPTIONAL = 0;
 
     /**
      * @var REQUIRED marks an input field as "required". When a required input
@@ -30,7 +30,7 @@ class ezcInputFormDefinitionElement extends ezcBaseStruct
      *               the __construct will throw the UserInputMissingData
      *               exception.
      */
-    const REQUIRED = 1;
+    public const REQUIRED = 1;
 
     /**
      * Whether the field is optional or required. One of the self::OPTIONAL or

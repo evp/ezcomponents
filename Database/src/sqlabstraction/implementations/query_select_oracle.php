@@ -171,7 +171,7 @@ class ezcQuerySelectOracle extends ezcQuerySelect
     {
         if ( $this->fromString == null || $this->fromString == '' )
         {
-            $this->from( $this->getDummyTableName() );
+            $this->from( static::getDummyTableName() );
         }
         return parent::prepare();
     }

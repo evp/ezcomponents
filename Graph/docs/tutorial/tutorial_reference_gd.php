@@ -9,13 +9,7 @@ $graph->title = 'Access statistics';
 $graph->driver = new ezcGraphGdDriver();
 $graph->options->font = 'tutorial_font.ttf';
 
-$graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
-    'Mozilla' => 19113,
-    'Explorer' => 10917,
-    'Opera' => 1464,
-    'Safari' => 652,
-    'Konqueror' => 474,
-) );
+$graph->data['Access statistics'] = new ezcGraphArrayDataSet( ['Mozilla' => 19113, 'Explorer' => 10917, 'Opera' => 1464, 'Safari' => 652, 'Konqueror' => 474] );
 
 $graph->data['Access statistics']->url = 'http://example.org/';
 $graph->data['Access statistics']->url['Mozilla'] = 'http://example.org/mozilla';

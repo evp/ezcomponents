@@ -108,8 +108,8 @@ class ezcConfigurationIniReader extends ezcConfigurationFileReader
     public function load()
     {
         $parser = new ezcConfigurationIniParser( ezcConfigurationIniParser::PARSE, $this->path );
-        $settings = array();
-        $comments = array();
+        $settings = [];
+        $comments = [];
 
         foreach ( new NoRewindIterator( $parser ) as $element )
         {
@@ -118,7 +118,7 @@ class ezcConfigurationIniReader extends ezcConfigurationFileReader
                 switch ( $element->type )
                 {
                     case ezcConfigurationIniItem::GROUP_HEADER:
-                        $settings[$element->group] = array();
+                        $settings[$element->group] = [];
                         if ( !is_null( $element->comments ) )
                         {
                             $comments[$element->group]['#'] = $element->comments;

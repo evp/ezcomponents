@@ -7,7 +7,7 @@ function __autoload( $className )
 }
 
 // Require custom palette
-require dirname( __FILE__ ) . '/ez_green.php';
+require __DIR__ . '/ez_green.php';
 
 // Create the graph
 $graph = new ezcGraphPieChart();
@@ -15,15 +15,7 @@ $graph->palette = new ezcGraphPaletteEzGreen();
 $graph->legend = false;
 
 // Add the data and hilight norwegian data set
-$graph->data['week'] = new ezcGraphArrayDataSet( array(
-    'Lukasz Serwatka' => 1805,
-    'Paul Forsyth' => 1491,
-    'Paul Borgermans' => 1316,
-    'Kristof Coomans' => 956,
-    'Alex Jones' => 942 ,
-    'Bard Farstad' => 941,
-    'Tony Wood' => 900,
-) );
+$graph->data['week'] = new ezcGraphArrayDataSet( ['Lukasz Serwatka' => 1805, 'Paul Forsyth' => 1491, 'Paul Borgermans' => 1316, 'Kristof Coomans' => 956, 'Alex Jones' => 942, 'Bard Farstad' => 941, 'Tony Wood' => 900] );
 
 // Set graph title
 $graph->title = 'Alltime 10 most active users on forum';

@@ -16,8 +16,8 @@ include_once( 'wrappers/pop3_wrapper.php' );
  */
 class ezcMailTransportPop3Test extends ezcTestCase
 {
-    private static $ids = array();
-    private static $sizes = array();
+    private static $ids = [];
+    private static $sizes = [];
 
     private static $server = 'mta1.ez.no';
     private static $serverSSL = 'ezctest.ez.no';
@@ -30,8 +30,8 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public static function suite()
     {
-        self::$ids = array( 23, 24, 25, 26 );
-        self::$sizes = array( 1539, 64072, 1696, 1725 );
+        self::$ids = [23, 24, 25, 26];
+        self::$sizes = [1539, 64072, 1696, 1725];
 
         for ( $i = 0; $i < count( self::$ids ); $i++ )
         {
@@ -39,14 +39,14 @@ class ezcMailTransportPop3Test extends ezcTestCase
             self::$ids[$i] = "{$messageNr}468e011a";
         }
 
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testWrapperMockConnectionConstructResponseNotOk()
     {
         try
         {
-            $pop3 = $this->getMock( 'ezcMailPop3TransportWrapper', array( 'isPositiveResponse' ), array( self::$server, self::$port ) );
+            $pop3 = $this->getMock( 'ezcMailPop3TransportWrapper', ['isPositiveResponse'], [self::$server, self::$port] );
             $pop3->expects( $this->any() )
                  ->method( 'isPositiveResponse' )
                  ->will( $this->returnValue( false ) );
@@ -54,13 +54,13 @@ class ezcMailTransportPop3Test extends ezcTestCase
         }
         catch ( ezcMailTransportException $e )
         {
-            $this->assertEquals( "An error occured while sending or receiving mail. The connection to the POP3 server is ok, but a negative response from server was received: '+OK eZ.no'. Try again later.", str_replace( array( "\n", "\r" ), '', $e->getMessage() ) );
+            $this->assertEquals( "An error occured while sending or receiving mail. The connection to the POP3 server is ok, but a negative response from server was received: '+OK eZ.no'. Try again later.", str_replace( ["\n", "\r"], '', $e->getMessage() ) );
         }
     }
 
     public function testWrapperMockConnectionAuthenticateResponseNotOk()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -81,7 +81,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateApopFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -103,7 +103,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateApopOk()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( '+OK custom response' ) );
@@ -134,7 +134,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionDeleteOk()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( '+OK custom response' ) );
@@ -148,7 +148,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateOkListMessagesFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -171,7 +171,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateOkListUniqueIdentifiersFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -194,7 +194,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateOkListUniqueIdentifiersSingleFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -217,7 +217,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateOkStatusFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -240,7 +240,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testWrapperMockConnectionAuthenticateOkNoopFail()
     {
-        $connection = $this->getMock( 'ezcMailTransportConnection', array(), array( self::$server, self::$port ) );
+        $connection = $this->getMock( 'ezcMailTransportConnection', [], [self::$server, self::$port] );
         $connection->expects( $this->any() )
                    ->method( 'getLine' )
                    ->will( $this->returnValue( 'custom response' ) );
@@ -398,7 +398,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
         $pop3 = new ezcMailPop3Transport( self::$server );
         $pop3->authenticate( self::$user, self::$password );
         $list = $pop3->listMessages();
-        $this->assertEquals( array( 1 => self::$sizes[0], 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3] ), $list );
+        $this->assertEquals( [1 => self::$sizes[0], 2 => self::$sizes[1], 3 => self::$sizes[2], 4 => self::$sizes[3]], $list );
     }
 
     public function testFetchByMessageNr1()
@@ -439,7 +439,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
         $parser = new ezcMailParser();
         $mail = $parser->parseMail( $message );
         $this->assertEquals( 1, count( $mail ) );
-        $this->assertEquals( array( 0 => '1' ), $this->readAttribute( $message, 'messages' ) );
+        $this->assertEquals( [0 => '1'], $this->readAttribute( $message, 'messages' ) );
         $this->assertEquals( 'ezcMailPop3Set', get_class( $message ) );
     }
     
@@ -560,7 +560,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
     {
         $pop3 = new ezcMailPop3Transport( self::$server );
         $pop3->authenticate( self::$user, self::$password );
-        $this->assertEquals( array( 1 => self::$ids[0] ), $pop3->listUniqueIdentifiers( 1 ) );
+        $this->assertEquals( [1 => self::$ids[0]], $pop3->listUniqueIdentifiers( 1 ) );
     }
 
     public function testListUniqueIdentifiersMultiple()
@@ -568,12 +568,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
         $pop3 = new ezcMailPop3Transport( self::$server );
         $pop3->authenticate( self::$user, self::$password );
         $this->assertEquals(
-            array(
-                1 => self::$ids[0],
-                2 => self::$ids[1],
-                3 => self::$ids[2],
-                4 => self::$ids[3],
-            ),
+            [1 => self::$ids[0], 2 => self::$ids[1], 3 => self::$ids[2], 4 => self::$ids[3]],
             $pop3->listUniqueIdentifiers()
         );
     }
@@ -605,7 +600,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
         $pop3->authenticate( self::$user, self::$password );
         $set = $pop3->fetchAll();
         $messageNumbers = $set->getMessageNumbers();
-        $this->assertEquals( array( 1, 2, 3, 4 ), $messageNumbers );
+        $this->assertEquals( [1, 2, 3, 4], $messageNumbers );
     }
 
     public function testNoop()
@@ -690,7 +685,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
 
     public function testTransportPropertiesBefore()
     {
-        $options = array( 'authenticationMethod' => ezcMailPop3Transport::AUTH_PLAIN_TEXT );
+        $options = ['authenticationMethod' => ezcMailPop3Transport::AUTH_PLAIN_TEXT];
         $pop3 = new ezcMailPop3Transport( self::$server, null, $options );
     }
 
@@ -707,7 +702,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
         {
             $this->markTestSkipped();
         }
-        $pop3 = new ezcMailPop3Transport( self::$serverSSL, null, array( 'ssl' => true ) );
+        $pop3 = new ezcMailPop3Transport( self::$serverSSL, null, ['ssl' => true] );
         $pop3->authenticate( self::$userSSL, self::$passwordSSL );
         $set = $pop3->fetchAll();
         $parser = new ezcMailParser();
@@ -724,7 +719,7 @@ class ezcMailTransportPop3Test extends ezcTestCase
         }
         try
         {
-            $pop3 = new ezcMailPop3Transport( self::$serverSSL, self::$port, array( 'ssl' => true ) );
+            $pop3 = new ezcMailPop3Transport( self::$serverSSL, self::$port, ['ssl' => true] );
             $this->fail( "Didn't get exception when expected" );
         }
         catch ( ezcMailTransportException $e )

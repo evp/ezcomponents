@@ -21,7 +21,7 @@ class ezcMailHeadersHolderTest extends ezcTestCase
 
     public function testSet()
     {
-        $reference = array( 'Subject' => 2, 'tO' => 3 );
+        $reference = ['Subject' => 2, 'tO' => 3];
         $map = new ezcMailHeadersHolder();
         $map['Subject'] = 1;
         $map['suBject'] = 2;
@@ -46,7 +46,7 @@ class ezcMailHeadersHolderTest extends ezcTestCase
 
     public function testUnset()
     {
-        $reference = array();
+        $reference = [];
         $map = new ezcMailHeadersHolder();
         $map['Subject'] = 1;
         $map['suBject'] = 2;
@@ -56,7 +56,7 @@ class ezcMailHeadersHolderTest extends ezcTestCase
 
     public function testKeyExists()
     {
-        $reference = array( 'Subject' => 2, 'tO' => 3 );
+        $reference = ['Subject' => 2, 'tO' => 3];
         $map = new ezcMailHeadersHolder();
         $map['Subject'] = 1;
         $this->assertEquals( false, isset( $map['Muha'] ) );

@@ -35,7 +35,7 @@ class ezcDocumentPdfPage implements ezcDocumentLocateable
      *
      * @var array
      */
-    protected $covered = array();
+    protected $covered = [];
 
     /**
      * Current transaction
@@ -49,7 +49,7 @@ class ezcDocumentPdfPage implements ezcDocumentLocateable
      *
      * @var array
      */
-    protected $storedPositions = array();
+    protected $storedPositions = [];
 
     /**
      * Page number
@@ -156,56 +156,7 @@ class ezcDocumentPdfPage implements ezcDocumentLocateable
      *
      * @var array
      */
-    protected static $pageSizes = array(
-        'A0'        => array( 841, 1189 ),
-        'A1'        => array( 594, 841 ),
-        'A2'        => array( 420, 594 ),
-        'A3'        => array( 297, 420 ),
-        'A4'        => array( 210, 297 ),
-        'A5'        => array( 148, 210 ),
-        'A6'        => array( 105, 148 ),
-        'A7'        => array( 74, 105 ),
-        'A8'        => array( 52, 74 ),
-        'A9'        => array( 37, 52 ),
-        'A10'       => array( 26, 37 ),
-        'B0'        => array( 1000, 1414 ),
-        'B1'        => array( 707, 1000 ),
-        'B2'        => array( 500, 707 ),
-        'B3'        => array( 353, 500 ),
-        'B4'        => array( 250, 353 ),
-        'B5'        => array( 176, 250 ),
-        'B6'        => array( 125, 176 ),
-        'B7'        => array( 88, 125 ),
-        'B8'        => array( 62, 88 ),
-        'B9'        => array( 44, 62 ),
-        'B10'       => array( 31, 44 ),
-        'C0'        => array( 917, 1297 ),
-        'C1'        => array( 648, 917 ),
-        'C2'        => array( 458, 648 ),
-        'C3'        => array( 324, 458 ),
-        'C4'        => array( 229, 324 ),
-        'C5'        => array( 162, 229 ),
-        'C6'        => array( 114, 162 ),
-        'C7'        => array( 81, 114 ),
-        'C8'        => array( 57, 81 ),
-        'C9'        => array( 40, 57 ),
-        'C10'       => array( 28, 40 ),
-        'RA0'       => array( 860, 1220 ),
-        'RA1'       => array( 610, 860 ),
-        'RA2'       => array( 430, 610 ),
-        'RA3'       => array( 305, 430 ),
-        'RA4'       => array( 215, 305 ),
-        'SRA0'      => array( 900, 1280 ),
-        'SRA1'      => array( 640, 900 ),
-        'SRA2'      => array( 450, 640 ),
-        'SRA3'      => array( 320, 450 ),
-        'SRA4'      => array( 225, 320 ),
-        'LETTER'    => array( 215.9, 279.4 ),
-        'LEGAL'     => array( 215.9, 355.6 ),
-        'EXECUTIVE' => array( 184.1, 266.7 ),
-        'FOLIO'     => array( 215.9, 330.2 ),
-        'TEST'      => array( 100, 100 ),
-    );
+    protected static $pageSizes = ['A0'        => [841, 1189], 'A1'        => [594, 841], 'A2'        => [420, 594], 'A3'        => [297, 420], 'A4'        => [210, 297], 'A5'        => [148, 210], 'A6'        => [105, 148], 'A7'        => [74, 105], 'A8'        => [52, 74], 'A9'        => [37, 52], 'A10'       => [26, 37], 'B0'        => [1000, 1414], 'B1'        => [707, 1000], 'B2'        => [500, 707], 'B3'        => [353, 500], 'B4'        => [250, 353], 'B5'        => [176, 250], 'B6'        => [125, 176], 'B7'        => [88, 125], 'B8'        => [62, 88], 'B9'        => [44, 62], 'B10'       => [31, 44], 'C0'        => [917, 1297], 'C1'        => [648, 917], 'C2'        => [458, 648], 'C3'        => [324, 458], 'C4'        => [229, 324], 'C5'        => [162, 229], 'C6'        => [114, 162], 'C7'        => [81, 114], 'C8'        => [57, 81], 'C9'        => [40, 57], 'C10'       => [28, 40], 'RA0'       => [860, 1220], 'RA1'       => [610, 860], 'RA2'       => [430, 610], 'RA3'       => [305, 430], 'RA4'       => [215, 305], 'SRA0'      => [900, 1280], 'SRA1'      => [640, 900], 'SRA2'      => [450, 640], 'SRA3'      => [320, 450], 'SRA4'      => [225, 320], 'LETTER'    => [215.9, 279.4], 'LEGAL'     => [215.9, 355.6], 'EXECUTIVE' => [184.1, 266.7], 'FOLIO'     => [215.9, 330.2], 'TEST'      => [100, 100]];
 
     /**
      * Construct new fresh page from its dimensions
@@ -334,8 +285,8 @@ class ezcDocumentPdfPage implements ezcDocumentLocateable
      */
     public function startTransaction( $transaction )
     {
-        $this->covered[$this->transaction = $transaction] = array();
-        $this->storedPositions[$this->transaction] = array( $this->x, $this->y );
+        $this->covered[$this->transaction = $transaction] = [];
+        $this->storedPositions[$this->transaction] = [$this->x, $this->y];
         return $this->transaction;
     }
 
@@ -368,7 +319,7 @@ class ezcDocumentPdfPage implements ezcDocumentLocateable
             unset( $this->covered[$id] );
         }
 
-        list( $this->x, $this->y ) = $this->storedPositions[$transaction];
+        [$this->x, $this->y] = $this->storedPositions[$transaction];
 
         return true;
     }
@@ -393,7 +344,7 @@ class ezcDocumentPdfPage implements ezcDocumentLocateable
     public function setCovered( ezcDocumentPdfBoundingBox $rectangle, $id = null )
     {
         $this->covered[$this->transaction][] = $rectangle;
-        return array( $this->transaction, count( $this->covered[$this->transaction] ) - 1 );
+        return [$this->transaction, count( $this->covered[$this->transaction] ) - 1];
     }
 
     /**

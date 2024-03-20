@@ -164,8 +164,8 @@ class ezcMvcRequest extends ezcBaseStruct
      */
     public function __construct( $date = null, $protocol = '',
         $host = '', $uri = '', $requestId = '', $referrer = '',
-        $variables = array(), $body = '', $files = null, $accept = null,
-        $agent = null, $authentication = null, $raw = null, $cookies = array(), $isFatal = false )
+        $variables = [], $body = '', $files = null, $accept = null,
+        $agent = null, $authentication = null, $raw = null, $cookies = [], $isFatal = false )
     {
         $this->date = $date;
         $this->protocol = $protocol;

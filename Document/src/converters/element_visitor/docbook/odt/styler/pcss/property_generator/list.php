@@ -29,10 +29,7 @@ class ezcDocumentOdtStyleListPropertyGenerator extends ezcDocumentOdtStyleProper
     {
         parent::__construct(
             $styleConverters,
-            array(
-                'margin',
-                'text-indent',
-            )
+            ['margin', 'text-indent']
         );
     }
 

@@ -21,7 +21,7 @@ class ezcDocumentWikiDocbookVisitor extends ezcDocumentWikiVisitor
      *
      * @var array
      */
-    protected $complexVisitMapping = array(
+    protected $complexVisitMapping = [
         'ezcDocumentWikiTextNode'           => 'visitText',
         'ezcDocumentWikiSeparatorNode'      => 'visitText',
         'ezcDocumentWikiBoldNode'           => 'visitEmphasisMarkup',
@@ -44,28 +44,16 @@ class ezcDocumentWikiDocbookVisitor extends ezcDocumentWikiVisitor
         'ezcDocumentWikiBlockquoteNode'     => 'visitBlockquote',
         'ezcDocumentWikiFootnoteNode'       => 'visitFootnote',
         'ezcDocumentWikiPluginNode'         => 'visitPlugin',
-
         // Node markup is ignored, because there is no equivalent in docbook
         'ezcDocumentWikiDeletedNode'   => 'visitChildren',
-    );
+    ];
 
     /**
      * Direct mapping of AST node class names to docbook element names.
      *
      * @var array
      */
-    protected $simpleVisitMapping = array(
-        'ezcDocumentWikiSectionNode'            => 'section',
-        'ezcDocumentWikiInlineQuoteNode'        => 'quote',
-        'ezcDocumentWikiSuperscriptNode'        => 'superscript',
-        'ezcDocumentWikiSubscriptNode'          => 'subscript',
-        'ezcDocumentWikiMonospaceNode'          => 'literal',
-        'ezcDocumentWikiBulletListItemNode'     => 'listitem',
-        'ezcDocumentWikiEnumeratedListItemNode' => 'listitem',
-        'ezcDocumentWikiPageBreakNode'          => 'beginpage',
-
-        'ezcDocumentWikiTableNode'              => 'table',
-    );
+    protected $simpleVisitMapping = ['ezcDocumentWikiSectionNode'            => 'section', 'ezcDocumentWikiInlineQuoteNode'        => 'quote', 'ezcDocumentWikiSuperscriptNode'        => 'superscript', 'ezcDocumentWikiSubscriptNode'          => 'subscript', 'ezcDocumentWikiMonospaceNode'          => 'literal', 'ezcDocumentWikiBulletListItemNode'     => 'listitem', 'ezcDocumentWikiEnumeratedListItemNode' => 'listitem', 'ezcDocumentWikiPageBreakNode'          => 'beginpage', 'ezcDocumentWikiTableNode'              => 'table'];
 
     /**
      * Array with nodes, which can be ignored during the transformation
@@ -73,7 +61,7 @@ class ezcDocumentWikiDocbookVisitor extends ezcDocumentWikiVisitor
      *
      * @var array
      */
-    protected $skipNodes = array();
+    protected $skipNodes = [];
 
     /**
      * DOM document
@@ -237,7 +225,7 @@ class ezcDocumentWikiDocbookVisitor extends ezcDocumentWikiVisitor
         $link->setAttribute( 'url', $linkUrl = $this->nodeListToString( $node->link ) );
         $root->appendChild( $link );
 
-        if ( $node->nodes === array() )
+        if ( $node->nodes === [] )
         {
             $link->appendChild( new DOMText( $linkUrl ) );
         }
@@ -290,24 +278,7 @@ class ezcDocumentWikiDocbookVisitor extends ezcDocumentWikiVisitor
      */
     protected function isInlineNode( DOMNode $node )
     {
-        return in_array( $node->tagName, array(
-            'para',
-            'acronym',
-            'anchor',
-            'author',
-            'citation',
-            'email',
-            'emphasis',
-            'footnote',
-            'footnoteref',
-            'inlinemediaobject',
-            'literal',
-            'quote',
-            'subscript',
-            'superscript',
-            'link',
-            'ulink',
-        ) );
+        return in_array( $node->tagName, ['para', 'acronym', 'anchor', 'author', 'citation', 'email', 'emphasis', 'footnote', 'footnoteref', 'inlinemediaobject', 'literal', 'quote', 'subscript', 'superscript', 'link', 'ulink'] );
     }
 
     /**
@@ -330,7 +301,7 @@ class ezcDocumentWikiDocbookVisitor extends ezcDocumentWikiVisitor
         $imageObject->appendChild( $image );
 
         // Handle optional settings on images
-        if ( $node->title !== array() )
+        if ( $node->title !== [] )
         {
             $text = $this->document->createElement( 'textobject' );
             $media->appendChild( $text );

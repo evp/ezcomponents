@@ -6,7 +6,7 @@ class OverrideCustomFunction implements ezcTemplateCustomFunction
         if ( $name == "override" )
         {
             $def = new ezcTemplateCustomFunctionDefinition();
-            $def->class = __CLASS__;
+            $def->class = self::class;
             $def->method = "override";
 
             return $def;
@@ -22,7 +22,7 @@ class OverrideCustomFunction implements ezcTemplateCustomFunction
 
 class OverrideLocation implements ezcTemplateLocationInterface
 {
-    private $keys = array();
+    private $keys = [];
     private $path;
 
     
@@ -44,7 +44,7 @@ class OverrideCustomFunctionNew implements ezcTemplateCustomFunction
         if ( $name == "override" )
         {
             $def = new ezcTemplateCustomFunctionDefinition();
-            $def->class = __CLASS__;
+            $def->class = self::class;
             $def->method = "override";
 
             return $def;
@@ -60,7 +60,7 @@ class OverrideCustomFunctionNew implements ezcTemplateCustomFunction
 
 class OverrideLocationNew implements ezcTemplateLocation
 {
-    private $keys = array();
+    private $keys = [];
     private $path;
 
     

@@ -27,95 +27,35 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
 
     public static $provider = "http://www.myopenid.com/server";
 
-    public static $requestCheckImmediate = array(
-        'openid.return_to' => 'http://localhost',
-        'openid.trust_root' => 'http://ezc.myopenid.com',
-        'openid.identity' => 'http://ezc.myopenid.com',
-        'openid.mode' => 'checkid_immediate',
-        );
+    public static $requestCheckImmediate = ['openid.return_to' => 'http://localhost', 'openid.trust_root' => 'http://ezc.myopenid.com', 'openid.identity' => 'http://ezc.myopenid.com', 'openid.mode' => 'checkid_immediate'];
 
-    public static $requestCheckImmediateGoogle = array(
+    public static $requestCheckImmediateGoogle = [
         // uses OpenID 2.0
         'openid.return_to' => 'http://localhost',
-        'openid.trust_root' => 'https://www.google.com/accounts/o8/ud', // this is the endpoint actually
-        'openid.identity' => 'https://www.google.com/accounts/o8/id?id=AItOawl5aAXS9Ue7hH2Nrs5LpIquof19wRCTwN4', // ezcomponents at gmail.com
+        'openid.trust_root' => 'https://www.google.com/accounts/o8/ud',
+        // this is the endpoint actually
+        'openid.identity' => 'https://www.google.com/accounts/o8/id?id=AItOawl5aAXS9Ue7hH2Nrs5LpIquof19wRCTwN4',
+        // ezcomponents at gmail.com
         'openid.mode' => 'checkid_immediate',
-        );
+    ];
 
-    public static $requestCheckAuthentication = array(
-        'openid.assoc_handle' => '%7BHMAC-SHA1%7D%7B4640581a%7D%7B3X%2Frrw%3D%3D%7D',
-        'openid.signed' => 'return_to%2Cmode%2Cidentity',
-        'openid.sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E%3D',
-        'openid.return_to' => 'http://localhost',
-        'openid.identity' => 'http://ezc.myopenid.com',
-        'openid.op_endpoint' => 'http://www.myopenid.com/server',
-        'openid.mode' => 'check_authentication',
-        );
+    public static $requestCheckAuthentication = ['openid.assoc_handle' => '%7BHMAC-SHA1%7D%7B4640581a%7D%7B3X%2Frrw%3D%3D%7D', 'openid.signed' => 'return_to%2Cmode%2Cidentity', 'openid.sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E%3D', 'openid.return_to' => 'http://localhost', 'openid.identity' => 'http://ezc.myopenid.com', 'openid.op_endpoint' => 'http://www.myopenid.com/server', 'openid.mode' => 'check_authentication'];
 
-    public static $requestCheckAuthenticationGet = array(
-        'openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}',
-        'openid_signed' => 'return_to,mode,identity',
-        'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=',
-        'openid_return_to' => 'http://localhost',
-        'openid_identity' => 'http://ezc.myopenid.com',
-        'openid_op_endpoint' => 'http://www.myopenid.com/server',
-        'openid_mode' => 'check_authentication'
-        );
+    public static $requestCheckAuthenticationGet = ['openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}', 'openid_signed' => 'return_to,mode,identity', 'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=', 'openid_return_to' => 'http://localhost', 'openid_identity' => 'http://ezc.myopenid.com', 'openid_op_endpoint' => 'http://www.myopenid.com/server', 'openid_mode' => 'check_authentication'];
 
-    public static $requestCheckAuthenticationGetExtraData = array(
-        'openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}',
-        'openid_signed' => 'return_to,mode,identity,sreg.fullname,sreg.gender,sreg.country,sreg.language',
-        'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=',
-        'openid_return_to' => 'http://localhost',
-        'openid_identity' => 'http://ezc.myopenid.com',
-        'openid_op_endpoint' => 'http://www.myopenid.com/server',
-        'openid_mode' => 'check_authentication',
-        'openid_sreg_fullname' => 'John Doe',
-        'openid_sreg_gender' => 'M',
-        'openid_sreg_country' => 'US',
-        'openid_sreg_language' => 'FR'
-        );
+    public static $requestCheckAuthenticationGetExtraData = ['openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}', 'openid_signed' => 'return_to,mode,identity,sreg.fullname,sreg.gender,sreg.country,sreg.language', 'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=', 'openid_return_to' => 'http://localhost', 'openid_identity' => 'http://ezc.myopenid.com', 'openid_op_endpoint' => 'http://www.myopenid.com/server', 'openid_mode' => 'check_authentication', 'openid_sreg_fullname' => 'John Doe', 'openid_sreg_gender' => 'M', 'openid_sreg_country' => 'US', 'openid_sreg_language' => 'FR'];
 
-    public static $requestCheckAuthenticationGetNoEndPoint = array(
-        'openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}',
-        'openid_signed' => 'return_to,mode,identity',
-        'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=',
-        'openid_return_to' => 'http://localhost',
-        'openid_identity' => 'http://ezc.myopenid.com',
-        'openid_mode' => 'check_authentication',
-        );
+    public static $requestCheckAuthenticationGetNoEndPoint = ['openid_assoc_handle' => '{HMAC-SHA1}{4640581a}{3X/rrw==}', 'openid_signed' => 'return_to,mode,identity', 'openid_sig' => 'SkaCB2FA9EysKoDkybyBD46zb0E=', 'openid_return_to' => 'http://localhost', 'openid_identity' => 'http://ezc.myopenid.com', 'openid_mode' => 'check_authentication'];
 
-    public static $requestSmart = array(
-       'openid.assoc_handle' => '{HMAC-SHA1}{465d8eb9}{NQN84Q==}',
-       'openid.signed' => 'assoc_handle,identity,mode,op_endpoint,response_nonce,return_to,signed',
-       'openid.sig' => 'HkLMUymWy3/GmHWVuWYOs9IHkrs=',
-       'openid.mode' => 'id_res',
-       'openid.identity' => 'http://ezc.myopenid.com/',
-       'openid.op_endpoint' => 'http://www.myopenid.com/server',
-       'openid.response_nonce' => '2007-05-31T08:33:59ZLdyyJF',
-       'openid.return_to' => 'http://localhost/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com&nonce=770890',
-       );
+    public static $requestSmart = ['openid.assoc_handle' => '{HMAC-SHA1}{465d8eb9}{NQN84Q==}', 'openid.signed' => 'assoc_handle,identity,mode,op_endpoint,response_nonce,return_to,signed', 'openid.sig' => 'HkLMUymWy3/GmHWVuWYOs9IHkrs=', 'openid.mode' => 'id_res', 'openid.identity' => 'http://ezc.myopenid.com/', 'openid.op_endpoint' => 'http://www.myopenid.com/server', 'openid.response_nonce' => '2007-05-31T08:33:59ZLdyyJF', 'openid.return_to' => 'http://localhost/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com&nonce=770890'];
 
-    public static $requestSmartGet = array(
-       'nonce' => '770890',
-       'openid_assoc_handle' => '{HMAC-SHA1}{465d8eb9}{NQN84Q==}',
-       'openid_signed' => 'assoc_handle,identity,mode,op_endpoint,response_nonce,return_to,signed',
-       'openid_sig' => 'HkLMUymWy3/GmHWVuWYOs9IHkrs=',
-       'openid_mode' => 'id_res',
-       'openid_identity' => 'http://ezc.myopenid.com/',
-       'openid_op_endpoint' => 'http://www.myopenid.com/server',
-       'openid_response_nonce' => '2007-05-31T08:33:59ZLdyyJF',
-       'openid_return_to' => 'http://localhost/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com&nonce=770890',
-       );
+    public static $requestSmartGet = ['nonce' => '770890', 'openid_assoc_handle' => '{HMAC-SHA1}{465d8eb9}{NQN84Q==}', 'openid_signed' => 'assoc_handle,identity,mode,op_endpoint,response_nonce,return_to,signed', 'openid_sig' => 'HkLMUymWy3/GmHWVuWYOs9IHkrs=', 'openid_mode' => 'id_res', 'openid_identity' => 'http://ezc.myopenid.com/', 'openid_op_endpoint' => 'http://www.myopenid.com/server', 'openid_response_nonce' => '2007-05-31T08:33:59ZLdyyJF', 'openid_return_to' => 'http://localhost/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com&nonce=770890'];
 
     public static $association;
 
     public static $requestEmpty = null;
 
-    public static $server = array(
-        'HTTP_HOST' => 'localhost',
-        'REQUEST_URI' => '/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com',
-        );
+    public static $server = ['HTTP_HOST' => 'localhost', 'REQUEST_URI' => '/openid.php?action=login&openid_identifier=http%3A%2F%2Fezc.myopenid.com'];
 
     public static $p = '155172898181473697471232257763715539915724801966915404479707795314057629378541917580651227423698188993727816152646631438561595825688188889951272158842675419950341258706556549803580104870537681476726513255747040765857479291291572334510643245094715007229621094194349783925984760375594985848253359305585439638443';
 
@@ -219,7 +159,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
         $credentials = new ezcAuthenticationIdCredentials( self::$url );
         $authentication = new ezcAuthentication( $credentials );
         $filter = new ezcAuthenticationOpenidFilter();
-        $filter->registerFetchData( array( 'fullname', 'gender', 'country', 'language' ) );
+        $filter->registerFetchData( ['fullname', 'gender', 'country', 'language'] );
         $authentication->addFilter( $filter );
 
         try
@@ -272,9 +212,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverHtml( self::$url );
-        $expected = array( 
-            'openid.server' => array( 0 => 'http://www.myopenid.com/server' ),
-            'openid2.provider' => array( 0 => 'http://www.myopenid.com/server' ) );
+        $expected = ['openid.server' => [0 => 'http://www.myopenid.com/server'], 'openid2.provider' => [0 => 'http://www.myopenid.com/server']];
         $this->assertEquals( $expected, $result );
     }
 
@@ -282,9 +220,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverHtml( self::$urlIncomplete );
-        $expected = array( 
-            'openid.server' => array( 0 => 'http://www.myopenid.com/server' ),
-            'openid2.provider' => array( 0 => 'http://www.myopenid.com/server' ) );
+        $expected = ['openid.server' => [0 => 'http://www.myopenid.com/server'], 'openid2.provider' => [0 => 'http://www.myopenid.com/server']];
         $this->assertEquals( $expected, $result );
     }
 
@@ -292,7 +228,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverHtml( self::$urlNoOpenid );
-        $expected = array();
+        $expected = [];
         $this->assertEquals( $expected, $result );
     }
 
@@ -317,15 +253,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverYadis( self::$url );
-        $expected = array(
-            'openid.server' => array( 'http://www.myopenid.com/server',
-                                      'http://www.myopenid.com/server',
-                                      'http://www.myopenid.com/server'
-                                    ),
-            'openid.delegate' => array( 'http://ezc.myopenid.com/',
-                                        'http://ezc.myopenid.com/'
-                                      )
-                         );
+        $expected = ['openid.server' => ['http://www.myopenid.com/server', 'http://www.myopenid.com/server', 'http://www.myopenid.com/server'], 'openid.delegate' => ['http://ezc.myopenid.com/', 'http://ezc.myopenid.com/']];
         $this->assertEquals( $expected, $result );
     }
 
@@ -333,15 +261,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverYadis( self::$urlIncomplete );
-        $expected = array(
-            'openid.server' => array( 'http://www.myopenid.com/server',
-                                      'http://www.myopenid.com/server',
-                                      'http://www.myopenid.com/server'
-                                    ),
-            'openid.delegate' => array( 'http://ezc.myopenid.com/',
-                                        'http://ezc.myopenid.com/'
-                                      )
-                         );
+        $expected = ['openid.server' => ['http://www.myopenid.com/server', 'http://www.myopenid.com/server', 'http://www.myopenid.com/server'], 'openid.delegate' => ['http://ezc.myopenid.com/', 'http://ezc.myopenid.com/']];
         $this->assertEquals( $expected, $result );
     }
 
@@ -349,7 +269,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverYadis( self::$urlNoOpenid );
-        $expected = array();
+        $expected = [];
         $this->assertEquals( $expected, $result );
     }
 
@@ -374,12 +294,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverXrds( self::$url );
-        $expected = array(
-            'openid2.provider' => array( 'http://www.myopenid.com/server',
-                                         'http://www.myopenid.com/server',
-                                         'http://www.myopenid.com/server'
-                                    ),
-                         );
+        $expected = ['openid2.provider' => ['http://www.myopenid.com/server', 'http://www.myopenid.com/server', 'http://www.myopenid.com/server']];
         $this->assertEquals( $expected, $result );
     }
 
@@ -387,12 +302,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverXrds( self::$urlIncomplete );
-        $expected = array(
-            'openid2.provider' => array( 'http://www.myopenid.com/server',
-                                         'http://www.myopenid.com/server',
-                                         'http://www.myopenid.com/server'
-                                    ),
-                         );
+        $expected = ['openid2.provider' => ['http://www.myopenid.com/server', 'http://www.myopenid.com/server', 'http://www.myopenid.com/server']];
         $this->assertEquals( $expected, $result );
     }
 
@@ -400,7 +310,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
     {
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->discoverXrds( self::$urlNoOpenid );
-        $expected = array();
+        $expected = [];
         $this->assertEquals( $expected, $result );
     }
 
@@ -555,10 +465,10 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
         $path = $this->createTempDir( get_class( $this ) );
         $options->store = new ezcAuthenticationOpenidFileStore( $path );
 
-        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', array( 'discover' ), array( $options ) );
+        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', ['discover'], [$options] );
         $filter->expects( $this->any() )
                ->method( 'discover' )
-               ->will( $this->returnValue( array( 'openid.server' => array( '' ) ) ) );
+               ->will( $this->returnValue( ['openid.server' => ['']] ) );
 
         $authentication->addFilter( $filter );
 
@@ -583,14 +493,11 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
             $this->markTestSkipped( 'PHP must be compiled with --with-openssl.' );
         }
 
-        $params = array(
-            'openid.mode' => 'associate',
-            'openid.assoc_type' => 'HMAC-SHA1',
-            );
+        $params = ['openid.mode' => 'associate', 'openid.assoc_type' => 'HMAC-SHA1'];
 
         $filter = new ezcAuthenticationOpenidWrapper();
         $res = $filter->associate( self::$provider, $params );
-        $secret = isset( $res['enc_mac_key'] ) ? $res['enc_mac_key'] : $res['mac_key'];
+        $secret = $res['enc_mac_key'] ?? $res['mac_key'];
         $association = new ezcAuthenticationOpenidAssociation( $res['assoc_handle'],
                                                                $secret,
                                                                time(),
@@ -705,14 +612,14 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
 
         $options->immediate = true;
 
-        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', array( 'generateNonce', 'discover' ), array( $options ) );
+        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', ['generateNonce', 'discover'], [$options] );
         $filter->expects( $this->any() )
                ->method( 'generateNonce' )
                ->will( $this->returnValue( '123456' ) );
 
         $filter->expects( $this->any() )
                ->method( 'discover' )
-               ->will( $this->returnValue( array( 'openid.server' => array( 'http://www.google.com/' ) ) ) );
+               ->will( $this->returnValue( ['openid.server' => ['http://www.google.com/']] ) );
 
         $result = $filter->run( $credentials );
 
@@ -731,7 +638,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
 
         $options->immediate = true;
 
-        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', array( 'generateNonce' ), array( $options ) );
+        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', ['generateNonce'], [$options] );
         $filter->expects( $this->any() )
                ->method( 'generateNonce' )
                ->will( $this->returnValue( '123456' ) );
@@ -753,14 +660,14 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
 
         $options->immediate = true;
 
-        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', array( 'generateNonce', 'discover' ), array( $options ) );
+        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', ['generateNonce', 'discover'], [$options] );
         $filter->expects( $this->any() )
                ->method( 'generateNonce' )
                ->will( $this->returnValue( '123456' ) );
 
         $filter->expects( $this->any() )
                ->method( 'discover' )
-               ->will( $this->returnValue( array( 'openid.server' => array( '' ) ) ) );
+               ->will( $this->returnValue( ['openid.server' => ['']] ) );
 
         $authentication->addFilter( $filter );
 
@@ -780,7 +687,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
 
         $options->immediate = true;
 
-        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', array( 'generateNonce' ), array( $options ) );
+        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', ['generateNonce'], [$options] );
         $filter->expects( $this->any() )
                ->method( 'generateNonce' )
                ->will( $this->returnValue( '123456' ) );
@@ -811,7 +718,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
 
         $options->immediate = true;
 
-        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', array( 'generateNonce' ), array( $options ) );
+        $filter = $this->getMock( 'ezcAuthenticationOpenidFilter', ['generateNonce'], [$options] );
         $filter->expects( $this->any() )
                ->method( 'generateNonce' )
                ->will( $this->returnValue( '123456' ) );
@@ -900,14 +807,11 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
             $this->markTestSkipped( 'PHP must be compiled with --with-openssl.' );
         }
 
-        $params = array(
-            'openid.mode' => 'associate',
-            'openid.assoc_type' => 'HMAC-SHA1',
-            );
+        $params = ['openid.mode' => 'associate', 'openid.assoc_type' => 'HMAC-SHA1'];
 
         $filter = new ezcAuthenticationOpenidWrapper();
         $res = $filter->associate( self::$provider, $params );
-        $secret = isset( $res['enc_mac_key'] ) ? $res['enc_mac_key'] : $res['mac_key'];
+        $secret = $res['enc_mac_key'] ?? $res['mac_key'];
         $association = new ezcAuthenticationOpenidAssociation( $res['assoc_handle'],
                                                                $secret,
                                                                time(),
@@ -1055,18 +959,14 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
         $filter = new ezcAuthenticationOpenidWrapper( $options );
 
         // not necessary at this step (id_res), would have been necessary at the previous step (login)
-        $filter->registerFetchData( array( 'fullname', 'gender', 'country', 'language' ) );
+        $filter->registerFetchData( ['fullname', 'gender', 'country', 'language'] );
 
         $result = $filter->run( $credentials );
         $this->assertEquals( ezcAuthenticationOpenidFilter::STATUS_SIGNATURE_INCORRECT, $result );
 
         $this->removeTempDir();
 
-        $expected = array( 'fullname' => array( 'John Doe' ),
-                           'gender' => array( 'M' ),
-                           'country' => array( 'US' ),
-                           'language' => array( 'FR' )
-                         );
+        $expected = ['fullname' => ['John Doe'], 'gender' => ['M'], 'country' => ['US'], 'language' => ['FR']];
         $this->assertEquals( $expected, $filter->fetchData() );
     }
 
@@ -1177,10 +1077,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
             $this->markTestSkipped( 'PHP must be compiled with --with-openssl.' );
         }
 
-        $params = array(
-            'openid.mode' => 'associate',
-            'openid.assoc_type' => 'HMAC-SHA1',
-            );
+        $params = ['openid.mode' => 'associate', 'openid.assoc_type' => 'HMAC-SHA1'];
 
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->associate( self::$provider, $params );
@@ -1196,10 +1093,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
             $this->markTestSkipped( 'PHP must be compiled with --with-openssl.' );
         }
 
-        $params = array(
-            'openid.mode' => 'associate',
-            'openid.assoc_type' => 'HMAC-SHA1',
-            );
+        $params = ['openid.mode' => 'associate', 'openid.assoc_type' => 'HMAC-SHA1'];
 
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->associate( self::$provider, $params, 'POST' );
@@ -1228,14 +1122,15 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
         $private = $lib->add( $private, 1 );
         $public = $lib->powmod( self::$q, $private, self::$p );
 
-        $params = array(
+        $params = [
             'openid.mode' => 'associate',
             'openid.assoc_type' => 'HMAC-SHA1',
             // 'openid.session_type' => 'DH-SHA1',
             'openid.dh_modulus' => urlencode( base64_encode( $lib->btwoc( self::$p ) ) ),
-            'openid.dh_gen' => 2, urlencode( base64_encode( $lib->btwoc( self::$q ) ) ),
-            'openid.dh_consumer_public' => urlencode( base64_encode( $lib->btwoc( $public ) ) )
-            );
+            'openid.dh_gen' => 2,
+            urlencode( base64_encode( $lib->btwoc( self::$q ) ) ),
+            'openid.dh_consumer_public' => urlencode( base64_encode( $lib->btwoc( $public ) ) ),
+        ];
 
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->associate( self::$provider, $params );
@@ -1262,14 +1157,15 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
         $private = $lib->add( $private, 1 );
         $public = $lib->powmod( self::$q, $private, self::$p );
 
-        $params = array(
+        $params = [
             'openid.mode' => 'associate',
             'openid.assoc_type' => 'HMAC-SHA1',
             // 'openid.session_type' => 'DH-SHA1',
             'openid.dh_modulus' => urlencode( base64_encode( $lib->btwoc( self::$p ) ) ),
-            'openid.dh_gen' => 2, urlencode( base64_encode( $lib->btwoc( self::$q ) ) ),
-            'openid.dh_consumer_public' => urlencode( base64_encode( $lib->btwoc( $public ) ) )
-            );
+            'openid.dh_gen' => 2,
+            urlencode( base64_encode( $lib->btwoc( self::$q ) ) ),
+            'openid.dh_consumer_public' => urlencode( base64_encode( $lib->btwoc( $public ) ) ),
+        ];
 
         $filter = new ezcAuthenticationOpenidWrapper();
         $result = $filter->associate( self::$provider, $params );
@@ -1297,7 +1193,7 @@ class ezcAuthenticationOpenidTest extends ezcAuthenticationTest
         $this->invalidPropertyTest( $options, 'timeoutOpen', 0, 'int >= 1' );
         $this->invalidPropertyTest( $options, 'requestSource', null, 'array' );
         $this->invalidPropertyTest( $options, 'immediate', 'wrong value', 'bool' );
-        $this->invalidPropertyTest( $options, 'returnUrl', array(), 'string' );
+        $this->invalidPropertyTest( $options, 'returnUrl', [], 'string' );
         $this->missingPropertyTest( $options, 'no_such_option' );
     }
 

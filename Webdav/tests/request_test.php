@@ -28,7 +28,7 @@ abstract class ezcWebdavRequestTestCase extends ezcWebdavPropertyTestCase
      * 
      * @var array(mixed)
      */
-    protected $constructorArguments = array();
+    protected $constructorArguments = [];
 
 	public static function suite()
 	{

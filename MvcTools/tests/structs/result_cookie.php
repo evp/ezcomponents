@@ -44,15 +44,7 @@ class ezcMvcResultCookieTest extends ezcTestCase
     public function testSetState()
     {
         $date = new DateTime();
-        $state = array(
-        'name' => 'php',
-        'value' => 'ezc',
-        'expire' => $date,
-        'path' => 'buddymiles',
-        'domain' => 'buddyguy',
-        'secure' => 'django',
-        'httpOnly' => 'satchmo',
-        );
+        $state = ['name' => 'php', 'value' => 'ezc', 'expire' => $date, 'path' => 'buddymiles', 'domain' => 'buddyguy', 'secure' => 'django', 'httpOnly' => 'satchmo'];
         $struct = ezcMvcResultCookie::__set_state( $state );
         $this->assertEquals( 'php', $struct->name, 'Property name does not have the expected value' );
         $this->assertEquals( 'ezc', $struct->value, 'Property value does not have the expected value' );

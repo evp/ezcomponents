@@ -68,7 +68,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
      * 
      * @var array
      */
-    protected $preProcessImages = array();
+    protected $preProcessImages = [];
 
     /**
      * List of strings to draw
@@ -79,7 +79,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
      * 
      * @var array
      */
-    protected $strings = array();
+    protected $strings = [];
 
     /**
      * Contains resources for already loaded ps fonts.
@@ -89,7 +89,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
      * 
      * @var array
      */
-    protected $psFontResources = array();
+    protected $psFontResources = [];
 
     /**
      * Constructor
@@ -98,7 +98,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         ezcBase::checkDependency( 'Graph', ezcBase::DEP_PHP_EXTENSION, 'gd' );
         $this->options = new ezcGraphGdDriverOptions( $options );
@@ -183,23 +183,11 @@ class ezcGraphGdDriver extends ezcGraphDriver
         switch ( $data[2] )
         {
             case 1:
-                return array(
-                    'width' => $data[0],
-                    'height' => $data[1],
-                    'image' => imagecreatefromgif( $file )
-                );
+                return ['width' => $data[0], 'height' => $data[1], 'image' => imagecreatefromgif( $file )];
             case 2:
-                return array(
-                    'width' => $data[0],
-                    'height' => $data[1],
-                    'image' => imagecreatefromjpeg( $file )
-                );
+                return ['width' => $data[0], 'height' => $data[1], 'image' => imagecreatefromjpeg( $file )];
             case 3:
-                return array(
-                    'width' => $data[0],
-                    'height' => $data[1],
-                    'image' => imagecreatefrompng( $file )
-                );
+                return ['width' => $data[0], 'height' => $data[1], 'image' => imagecreatefrompng( $file )];
             default:
                 throw new ezcGraphGdDriverUnsupportedImageTypeException( $data[2] );
         }
@@ -236,7 +224,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         // Create point array
         $pointCount = count( $points );
-        $pointArray = array();
+        $pointArray = [];
         for ( $i = 0; $i < $pointCount; ++$i )
         {
             $pointArray[] = $this->supersample( $points[$i]->x );
@@ -290,7 +278,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
             $this->options->supersampling
         );
 
-        return array();
+        return [];
     }
     
     /**
@@ -475,22 +463,9 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
         $this->options->font->minimalUsedFont = $size;
 
-        $this->strings[] = array(
-            'text' => $result,
-            'position' => $position,
-            'width' => $width,
-            'height' => $height,
-            'align' => $align,
-            'font' => $this->options->font,
-            'rotation' => $rotation,
-        );
+        $this->strings[] = ['text' => $result, 'position' => $position, 'width' => $width, 'height' => $height, 'align' => $align, 'font' => $this->options->font, 'rotation' => $rotation];
 
-        return array(
-            clone $position,
-            new ezcGraphCoordinate( $position->x + $width, $position->y ),
-            new ezcGraphCoordinate( $position->x + $width, $position->y + $height ),
-            new ezcGraphCoordinate( $position->x, $position->y + $height ),
-        );
+        return [clone $position, new ezcGraphCoordinate( $position->x + $width, $position->y ), new ezcGraphCoordinate( $position->x + $width, $position->y + $height ), new ezcGraphCoordinate( $position->x, $position->y + $height )];
     }
     
     /**
@@ -563,45 +538,35 @@ class ezcGraphGdDriver extends ezcGraphDriver
                         break;
                 }
 
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding + $xOffset,
-                        $text['position']->y - $padding + $yOffset
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $xOffset + $width,
-                        $text['position']->y - $padding + $yOffset
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $xOffset + $width,
-                        $text['position']->y + $padding * 2 + $yOffset + $completeHeight
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding + $xOffset,
-                        $text['position']->y + $padding * 2 + $yOffset + $completeHeight
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $text['position']->x - $padding + $xOffset,
+                    $text['position']->y - $padding + $yOffset
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $xOffset + $width,
+                    $text['position']->y - $padding + $yOffset
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $xOffset + $width,
+                    $text['position']->y + $padding * 2 + $yOffset + $completeHeight
+                ), new ezcGraphCoordinate(
+                    $text['position']->x - $padding + $xOffset,
+                    $text['position']->y + $padding * 2 + $yOffset + $completeHeight
+                )];
             }
             else
             {
-                $borderPolygonArray = array(
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding,
-                        $text['position']->y - $padding
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $text['width'],
-                        $text['position']->y - $padding
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x + $padding * 2 + $text['width'],
-                        $text['position']->y + $padding * 2 + $text['height']
-                    ),
-                    new ezcGraphCoordinate(
-                        $text['position']->x - $padding,
-                        $text['position']->y + $padding * 2 + $text['height']
-                    ),
-                );
+                $borderPolygonArray = [new ezcGraphCoordinate(
+                    $text['position']->x - $padding,
+                    $text['position']->y - $padding
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $text['width'],
+                    $text['position']->y - $padding
+                ), new ezcGraphCoordinate(
+                    $text['position']->x + $padding * 2 + $text['width'],
+                    $text['position']->y + $padding * 2 + $text['height']
+                ), new ezcGraphCoordinate(
+                    $text['position']->x - $padding,
+                    $text['position']->y + $padding * 2 + $text['height']
+                )];
             }
 
             if ( $text['rotation'] !==  null )
@@ -763,7 +728,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
              ) )->length() < 1 )
         {
             // Skip this circle sector
-            return array();
+            return [];
         }
 
         if ( $filled )
@@ -796,7 +761,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
         }
 
         // Create polygon array to return
-        $polygonArray = array( $center );
+        $polygonArray = [$center];
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
@@ -836,32 +801,27 @@ class ezcGraphGdDriver extends ezcGraphDriver
     protected function drawCircularArcStep( ezcGraphCoordinate $center, $width, $height, $size, $startAngle, $endAngle, ezcGraphColor $color )
     {
         $this->drawPolygon(
-            array(
-                new ezcGraphCoordinate(
-                    $center->x + 
-                        ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ),
-                    $center->y + 
-                        ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 )
-                ),
-                new ezcGraphCoordinate(
-                    $center->x + 
-                        ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ),
-                    $center->y + 
-                        ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 ) + $size
-                ),
-                new ezcGraphCoordinate(
-                    $center->x + 
-                        ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-                    $center->y + 
-                        ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 ) + $size
-                ),
-                new ezcGraphCoordinate(
-                    $center->x + 
-                        ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
-                    $center->y + 
-                        ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
-                ),
-            ),
+            [new ezcGraphCoordinate(
+                $center->x + 
+                    ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ),
+                $center->y + 
+                    ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 )
+            ), new ezcGraphCoordinate(
+                $center->x + 
+                    ( ( cos( deg2rad( $startAngle ) ) * $width ) / 2 ),
+                $center->y + 
+                    ( ( sin( deg2rad( $startAngle ) ) * $height ) / 2 ) + $size
+            ), new ezcGraphCoordinate(
+                $center->x + 
+                    ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
+                $center->y + 
+                    ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 ) + $size
+            ), new ezcGraphCoordinate(
+                $center->x + 
+                    ( ( cos( deg2rad( $endAngle ) ) * $width ) / 2 ),
+                $center->y + 
+                    ( ( sin( deg2rad( $endAngle ) ) * $height ) / 2 )
+            )],
             $color->darken( $this->options->shadeCircularArc * ( 1 + cos ( deg2rad( $startAngle ) ) ) / 2 ),
             true
         );
@@ -956,7 +916,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
         }
 
         // Create polygon array to return
-        $polygonArray = array();
+        $polygonArray = [];
         for ( $angle = $startAngle; $angle < $endAngle; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
@@ -1031,7 +991,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
             );
         }
 
-        $polygonArray = array();
+        $polygonArray = [];
         for ( $angle = 0; $angle < 360; $angle += $this->options->imageMapResolution )
         {
             $polygonArray[] = new ezcGraphCoordinate(
@@ -1063,19 +1023,9 @@ class ezcGraphGdDriver extends ezcGraphDriver
      */
     public function drawImage( $file, ezcGraphCoordinate $position, $width, $height )
     {
-        $this->preProcessImages[] = array(
-            'file' => $file, 
-            'position' => clone $position,
-            'width' => $width,
-            'height' => $height,
-        );
+        $this->preProcessImages[] = ['file' => $file, 'position' => clone $position, 'width' => $width, 'height' => $height];
 
-        return array(
-            $position,
-            new ezcGraphCoordinate( $position->x + $width, $position->y ),
-            new ezcGraphCoordinate( $position->x + $width, $position->y + $height ),
-            new ezcGraphCoordinate( $position->x, $position->y + $height ),
-        );
+        return [$position, new ezcGraphCoordinate( $position->x + $width, $position->y ), new ezcGraphCoordinate( $position->x + $width, $position->y + $height ), new ezcGraphCoordinate( $position->x, $position->y + $height )];
     }
 
     /**
@@ -1091,14 +1041,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
             $preImageData = $this->imageCreateFrom( $preImage['file'] );
             call_user_func_array(
                 $this->options->resampleFunction,
-                array(
-                    $image,
-                    $preImageData['image'],
-                    $preImage['position']->x, $preImage['position']->y,
-                    0, 0,
-                    $preImage['width'], $preImage['height'],
-                    $preImageData['width'], $preImageData['height'],
-                )
+                [$image, $preImageData['image'], $preImage['position']->x, $preImage['position']->y, 0, 0, $preImage['width'], $preImage['height'], $preImageData['width'], $preImageData['height']]
             );
         }
 
@@ -1159,14 +1102,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
 
             call_user_func_array(
                 $this->options->resampleFunction,
-                array(
-                    $destination,
-                    $background['image'],
-                    0, 0,
-                    0, 0,
-                    $this->options->width, $this->options->height,
-                    $background['width'], $background['height'],
-                )
+                [$destination, $background['image'], 0, 0, 0, 0, $this->options->width, $this->options->height, $background['width'], $background['height']]
             );
         }
 
@@ -1177,14 +1113,7 @@ class ezcGraphGdDriver extends ezcGraphDriver
         $image = $this->getImage();
         call_user_func_array(
             $this->options->resampleFunction,
-            array(
-                $destination,
-                $image,
-                0, 0,
-                0, 0,
-                $this->options->width, $this->options->height,
-                $this->supersample( $this->options->width ), $this->supersample( $this->options->height )
-            )
+            [$destination, $image, 0, 0, 0, 0, $this->options->width, $this->options->height, $this->supersample( $this->options->width ), $this->supersample( $this->options->height )]
         );
 
         $this->image = $destination;

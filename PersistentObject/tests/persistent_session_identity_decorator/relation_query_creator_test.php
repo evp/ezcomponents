@@ -8,7 +8,7 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . '/relation_prefetch_test.php';
+require_once __DIR__ . '/relation_prefetch_test.php';
 
 /**
  * Tests ezcPersistentManyToOneRelation class.
@@ -20,7 +20,7 @@ class ezcPersistentSessionIdentityDecoratorRelationQueryCreatorTest extends ezcP
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testCreateOneLevelOneRelationLoadQuery()
@@ -193,14 +193,7 @@ class ezcPersistentSessionIdentityDecoratorRelationQueryCreatorTest extends ezcP
         );
 
         $q->setAliases(
-            array(
-                'id'            => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ),
-                'firstname'     => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ),
-                'surname'       => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ),
-                'employer'      => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ),
-                'employer_id'   => $this->qi( 'employer' ) . '.' . $this->qi( 'id' ),
-                'employer_name' => $this->qi( 'employer' ) . '.' . $this->qi( 'name' ),
-            )
+            ['id'            => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ), 'firstname'     => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ), 'surname'       => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ), 'employer'      => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ), 'employer_id'   => $this->qi( 'employer' ) . '.' . $this->qi( 'id' ), 'employer_name' => $this->qi( 'employer' ) . '.' . $this->qi( 'name' )]
         );
 
         return $q;
@@ -287,19 +280,7 @@ class ezcPersistentSessionIdentityDecoratorRelationQueryCreatorTest extends ezcP
         );
 
         $q->setAliases(
-            array(
-                'id'             => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ),
-                'firstname'      => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ),
-                'surname'        => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ),
-                'employer'       => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ),
-                'employer_id'    => $this->qi( 'employer' ) . '.' . $this->qi( 'id' ),
-                'employer_name'  => $this->qi( 'employer' ) . '.' . $this->qi( 'name' ),
-                'address_id'     => $this->qi( 'address' ) . '.' . $this->qi( 'id' ),
-                'address_street' => $this->qi( 'address' ) . '.' . $this->qi( 'street' ),
-                'address_zip'    => $this->qi( 'address' ) . '.' . $this->qi( 'zip' ),
-                'address_city'   => $this->qi( 'address' ) . '.' . $this->qi( 'city' ),
-                'address_type'   => $this->qi( 'address' ) . '.' . $this->qi( 'type' ),
-            )
+            ['id'             => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ), 'firstname'      => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ), 'surname'        => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ), 'employer'       => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ), 'employer_id'    => $this->qi( 'employer' ) . '.' . $this->qi( 'id' ), 'employer_name'  => $this->qi( 'employer' ) . '.' . $this->qi( 'name' ), 'address_id'     => $this->qi( 'address' ) . '.' . $this->qi( 'id' ), 'address_street' => $this->qi( 'address' ) . '.' . $this->qi( 'street' ), 'address_zip'    => $this->qi( 'address' ) . '.' . $this->qi( 'zip' ), 'address_city'   => $this->qi( 'address' ) . '.' . $this->qi( 'city' ), 'address_type'   => $this->qi( 'address' ) . '.' . $this->qi( 'type' )]
         );
 
         return $q;
@@ -403,21 +384,7 @@ class ezcPersistentSessionIdentityDecoratorRelationQueryCreatorTest extends ezcP
         );
 
         $q->setAliases(
-            array(
-                'id'                  => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ),
-                'firstname'           => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ),
-                'surname'             => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ),
-                'employer'            => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ),
-                'addresses_id'        => $this->qi( 'addresses' ) . '.' . $this->qi( 'id' ),
-                'addresses_street'    => $this->qi( 'addresses' ) . '.' . $this->qi( 'street' ),
-                'addresses_zip'       => $this->qi( 'addresses' ) . '.' . $this->qi( 'zip' ),
-                'addresses_city'      => $this->qi( 'addresses' ) . '.' . $this->qi( 'city' ),
-                'addresses_type'      => $this->qi( 'addresses' ) . '.' . $this->qi( 'type' ),
-                'habitants_id'        => $this->qi( 'habitants' ) . '.' . $this->qi( 'id' ),
-                'habitants_firstname' => $this->qi( 'habitants' ) . '.' . $this->qi( 'firstname' ),
-                'habitants_surname'   => $this->qi( 'habitants' ) . '.' . $this->qi( 'surname' ),
-                'habitants_employer'  => $this->qi( 'habitants' ) . '.' . $this->qi( 'employer' ),
-            )
+            ['id'                  => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ), 'firstname'           => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ), 'surname'             => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ), 'employer'            => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ), 'addresses_id'        => $this->qi( 'addresses' ) . '.' . $this->qi( 'id' ), 'addresses_street'    => $this->qi( 'addresses' ) . '.' . $this->qi( 'street' ), 'addresses_zip'       => $this->qi( 'addresses' ) . '.' . $this->qi( 'zip' ), 'addresses_city'      => $this->qi( 'addresses' ) . '.' . $this->qi( 'city' ), 'addresses_type'      => $this->qi( 'addresses' ) . '.' . $this->qi( 'type' ), 'habitants_id'        => $this->qi( 'habitants' ) . '.' . $this->qi( 'id' ), 'habitants_firstname' => $this->qi( 'habitants' ) . '.' . $this->qi( 'firstname' ), 'habitants_surname'   => $this->qi( 'habitants' ) . '.' . $this->qi( 'surname' ), 'habitants_employer'  => $this->qi( 'habitants' ) . '.' . $this->qi( 'employer' )]
         );
 
         return $q;
@@ -589,29 +556,7 @@ class ezcPersistentSessionIdentityDecoratorRelationQueryCreatorTest extends ezcP
         );
 
         $q->setAliases(
-            array(
-                'id' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ),
-                'firstname' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ),
-                'surname' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ),
-                'employer' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ),
-                'addresses_id' => $this->qi( 'addresses' ) . '.' . $this->qi( 'id' ),
-                'addresses_street' => $this->qi( 'addresses' ) . '.' . $this->qi( 'street' ),
-                'addresses_zip' => $this->qi( 'addresses' ) . '.' . $this->qi( 'zip' ),
-                'addresses_city' => $this->qi( 'addresses' ) . '.' . $this->qi( 'city' ),
-                'addresses_type' => $this->qi( 'addresses' ) . '.' . $this->qi( 'type' ),
-                'habitants_id' => $this->qi( 'habitants' ) . '.' . $this->qi( 'id' ),
-                'habitants_firstname' => $this->qi( 'habitants' ) . '.' . $this->qi( 'firstname' ),
-                'habitants_surname' => $this->qi( 'habitants' ) . '.' . $this->qi( 'surname' ),
-                'habitants_employer' => $this->qi( 'habitants' ) . '.' . $this->qi( 'employer' ),
-                'habitant_employer_id' => $this->qi( 'habitant_employer' ) . '.' . $this->qi( 'id' ),
-                'habitant_employer_name' => $this->qi( 'habitant_employer' ) . '.' . $this->qi( 'name' ),
-                'habitant_birthday_person' => $this->qi( 'habitant_birthday' ) . '.' . $this->qi( 'person_id' ),
-                'habitant_birthday_birthday' => $this->qi( 'habitant_birthday' ) . '.' . $this->qi( 'birthday' ),
-                'employer_id' => $this->qi( 'employer' ) . '.' . $this->qi( 'id' ),
-                'employer_name' => $this->qi( 'employer' ) . '.' . $this->qi( 'name' ),
-                'birthday_person' => $this->qi( 'birthday' ) . '.' . $this->qi( 'person_id' ),
-                'birthday_birthday' => $this->qi( 'birthday' ) . '.' . $this->qi( 'birthday' ),
-            )
+            ['id' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'id' ), 'firstname' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'firstname' ), 'surname' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'surname' ), 'employer' => $this->qi( 'PO_persons' ) . '.' . $this->qi( 'employer' ), 'addresses_id' => $this->qi( 'addresses' ) . '.' . $this->qi( 'id' ), 'addresses_street' => $this->qi( 'addresses' ) . '.' . $this->qi( 'street' ), 'addresses_zip' => $this->qi( 'addresses' ) . '.' . $this->qi( 'zip' ), 'addresses_city' => $this->qi( 'addresses' ) . '.' . $this->qi( 'city' ), 'addresses_type' => $this->qi( 'addresses' ) . '.' . $this->qi( 'type' ), 'habitants_id' => $this->qi( 'habitants' ) . '.' . $this->qi( 'id' ), 'habitants_firstname' => $this->qi( 'habitants' ) . '.' . $this->qi( 'firstname' ), 'habitants_surname' => $this->qi( 'habitants' ) . '.' . $this->qi( 'surname' ), 'habitants_employer' => $this->qi( 'habitants' ) . '.' . $this->qi( 'employer' ), 'habitant_employer_id' => $this->qi( 'habitant_employer' ) . '.' . $this->qi( 'id' ), 'habitant_employer_name' => $this->qi( 'habitant_employer' ) . '.' . $this->qi( 'name' ), 'habitant_birthday_person' => $this->qi( 'habitant_birthday' ) . '.' . $this->qi( 'person_id' ), 'habitant_birthday_birthday' => $this->qi( 'habitant_birthday' ) . '.' . $this->qi( 'birthday' ), 'employer_id' => $this->qi( 'employer' ) . '.' . $this->qi( 'id' ), 'employer_name' => $this->qi( 'employer' ) . '.' . $this->qi( 'name' ), 'birthday_person' => $this->qi( 'birthday' ) . '.' . $this->qi( 'person_id' ), 'birthday_birthday' => $this->qi( 'birthday' ) . '.' . $this->qi( 'birthday' )]
         );
 
         return $q;

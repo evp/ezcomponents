@@ -34,11 +34,11 @@ require_once 'classes/custom_plugin_configuration.php';
  */
 class ezcWebdavInfrastructureBaseTest extends ezcTestCase
 {
-    protected $namespaces = array();
+    protected $namespaces = [];
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     protected function setUp()
@@ -66,14 +66,10 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
     {
         $base = new fooCustomWebdavInfrastructure();
         
-        $base->setPluginData( 'foonamespace', 'barkey', array( 23, 42 ) );
+        $base->setPluginData( 'foonamespace', 'barkey', [23, 42] );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                    'barkey' => array( 23, 42 ),
-                ),
-            ),
+            ['foonamespace' => ['barkey' => [23, 42]]],
             'pluginData',
             $base,
             'Plugin data not set correctly.'
@@ -82,12 +78,7 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
         $base->setPluginData( 'foonamespace', 'bazkey', true );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                    'barkey' => array( 23, 42 ),
-                    'bazkey' => true,
-                ),
-            ),
+            ['foonamespace' => ['barkey' => [23, 42], 'bazkey' => true]],
             'pluginData',
             $base,
             'Plugin data not set correctly.'
@@ -96,15 +87,7 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
         $base->setPluginData( 'namespacebar', 'keyfoo', new stdClass() );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                    'barkey' => array( 23, 42 ),
-                    'bazkey' => true,
-                ),
-                'namespacebar' => array(
-                    'keyfoo' => new stdClass(),
-                ),
-            ),
+            ['foonamespace' => ['barkey' => [23, 42], 'bazkey' => true], 'namespacebar' => ['keyfoo' => new stdClass()]],
             'pluginData',
             $base,
             'Plugin data not set correctly.'
@@ -136,20 +119,12 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
     {
         $base = new fooCustomWebdavInfrastructure();
 
-        $base->setPluginData( 'foonamespace', 'barkey', array( 23, 42 ) );
+        $base->setPluginData( 'foonamespace', 'barkey', [23, 42] );
         $base->setPluginData( 'foonamespace', 'bazkey', true );
         $base->setPluginData( 'namespacebar', 'keyfoo', new stdClass() );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                    'barkey' => array( 23, 42 ),
-                    'bazkey' => true,
-                ),
-                'namespacebar' => array(
-                    'keyfoo' => new stdClass(),
-                ),
-            ),
+            ['foonamespace' => ['barkey' => [23, 42], 'bazkey' => true], 'namespacebar' => ['keyfoo' => new stdClass()]],
             'pluginData',
             $base,
             'Plugin data not unset correctly.'
@@ -158,14 +133,7 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
         $base->removePluginData( 'foonamespace', 'barkey' );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                    'bazkey' => true,
-                ),
-                'namespacebar' => array(
-                    'keyfoo' => new stdClass(),
-                ),
-            ),
+            ['foonamespace' => ['bazkey' => true], 'namespacebar' => ['keyfoo' => new stdClass()]],
             'pluginData',
             $base,
             'Plugin data not unset correctly.'
@@ -174,13 +142,7 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
         $base->removePluginData( 'namespacebar', 'keyfoo' );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                    'bazkey' => true,
-                ),
-                'namespacebar' => array(
-                ),
-            ),
+            ['foonamespace' => ['bazkey' => true], 'namespacebar' => []],
             'pluginData',
             $base,
             'Plugin data not unset correctly.'
@@ -189,12 +151,7 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
         $base->removePluginData( 'foonamespace', 'bazkey' );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                ),
-                'namespacebar' => array(
-                ),
-            ),
+            ['foonamespace' => [], 'namespacebar' => []],
             'pluginData',
             $base,
             'Plugin data not unset correctly.'
@@ -205,7 +162,7 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
     {
         $base = new fooCustomWebdavInfrastructure();
 
-        $base->setPluginData( 'foonamespace', 'barkey', array( 23, 42 ) );
+        $base->setPluginData( 'foonamespace', 'barkey', [23, 42] );
         $base->setPluginData( 'foonamespace', 'bazkey', true );
         $base->setPluginData( 'namespacebar', 'keyfoo', new stdClass() );
 
@@ -217,15 +174,7 @@ class ezcWebdavInfrastructureBaseTest extends ezcTestCase
         catch ( ezcBaseValueException $e ) {}
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => array(
-                    'barkey' => array( 23, 42 ),
-                    'bazkey' => true,
-                ),
-                'namespacebar' => array(
-                    'keyfoo' => new stdClass(),
-                ),
-            ),
+            ['foonamespace' => ['barkey' => [23, 42], 'bazkey' => true], 'namespacebar' => ['keyfoo' => new stdClass()]],
             'pluginData',
             $base,
             'Plugin data not unset correctly.'

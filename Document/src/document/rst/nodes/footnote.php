@@ -43,27 +43,27 @@ class ezcDocumentRstFootnoteNode extends ezcDocumentRstNode
     /**
      * Numbered footnote
      */
-    const NUMBERED = 1;
+    public const NUMBERED = 1;
 
     /**
      * Auto numbered footnote
      */
-    const AUTO_NUMBERED = 2;
+    public const AUTO_NUMBERED = 2;
 
     /**
      * Labeled auto numbered footnote
      */
-    const LABELED = 4;
+    public const LABELED = 4;
 
     /**
      * Footnote using symbols
      */
-    const SYMBOL = 8;
+    public const SYMBOL = 8;
 
     /**
      * Footnote is citation reference
      */
-    const CITATION = 16;
+    public const CITATION = 16;
 
     /**
      * Construct RST document node

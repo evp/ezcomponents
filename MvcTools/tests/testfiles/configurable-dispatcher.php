@@ -1,12 +1,12 @@
 <?php
 class simpleConfiguration implements ezcMvcDispatcherConfiguration
 {
-    var $store = 43;
-    var $route = null;
-    var $view  = null;
-    var $requestParser = null;
-    var $internalRedirectRequestFilter = false;
-    var $preRoutingFilter = false;
+    public $store = 43;
+    public $route = null;
+    public $view  = null;
+    public $requestParser = null;
+    public $internalRedirectRequestFilter = false;
+    public $preRoutingFilter = false;
 
     function createRequestParser()
     {
@@ -127,10 +127,7 @@ class testRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'testController', 'foo' ),
-            new ezcMvcRegexpRoute( '@^/fatal$@', 'testFatalController', 'fatal' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'testController', 'foo' ), new ezcMvcRegexpRoute( '@^/fatal$@', 'testFatalController', 'fatal' )];
     }
 }
 
@@ -138,9 +135,7 @@ class testBrokenControllerRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'stdClass', 'foo' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'stdClass', 'foo' )];
     }
 }
 
@@ -148,10 +143,7 @@ class testIRControllerRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'testIRController', 'foo' ),
-            new ezcMvcRegexpRoute( '@^/redir$@', 'testIRController', 'afterRedir' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'testIRController', 'foo' ), new ezcMvcRegexpRoute( '@^/redir$@', 'testIRController', 'afterRedir' )];
     }
 }
 
@@ -159,10 +151,7 @@ class testEndlessIRRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'testEndlessIRController', 'foo' ),
-            new ezcMvcRegexpRoute( '@^/redir$@', 'testEndlessIRController', 'foo' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'testEndlessIRController', 'foo' ), new ezcMvcRegexpRoute( '@^/redir$@', 'testEndlessIRController', 'foo' )];
     }
 }
 
@@ -170,9 +159,7 @@ class testEmptyResultControllerRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'testEmptyResultController', 'foo' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'testEmptyResultController', 'foo' )];
     }
 }
 
@@ -180,9 +167,7 @@ class testFaultyActionRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'testController', 'no-return' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'testController', 'no-return' )];
     }
 }
 
@@ -190,10 +175,7 @@ class testExceptionInActionRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'testController', 'exception' ),
-            new ezcMvcRegexpRoute( '@^/fatal$@', 'testFatalController', 'fatal' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'testController', 'exception' ), new ezcMvcRegexpRoute( '@^/fatal$@', 'testFatalController', 'fatal' )];
     }
 }
 
@@ -201,10 +183,7 @@ class testFatalInFatalRouter extends ezcMvcRouter
 {
     public function createRoutes()
     {
-        return array(
-            new ezcMvcRegexpRoute( '@^/$@', 'testController', 'exception' ),
-//            new ezcMvcRegexpRoute( '@^/fatal$@', 'testFatalController', 'fatal' ),
-        );
+        return [new ezcMvcRegexpRoute( '@^/$@', 'testController', 'exception' )];
     }
 }
 
@@ -277,7 +256,7 @@ class testView extends ezcMvcView
 {
     public function createZones( $layout )
     {
-        return array( new testViewHandler2( 'name', 'templateName' ) );
+        return [new testViewHandler2( 'name', 'templateName' )];
     }
 }
 
@@ -285,13 +264,13 @@ class testExceptionView extends ezcMvcView
 {
     public function createZones( $layout )
     {
-        return array( new testExceptionViewHandler( 'name', 'templateName' ) );
+        return [new testExceptionViewHandler( 'name', 'templateName' )];
     }
 }
 
 class testViewHandler2 implements ezcMvcViewHandler
 {
-    public $vars = array();
+    public $vars = [];
     function __construct( $name, $templateName = null )
     {
         $this->name = $name;
@@ -323,7 +302,7 @@ class testViewHandler2 implements ezcMvcViewHandler
 
 class testExceptionViewHandler implements ezcMvcViewHandler
 {
-    public $vars = array();
+    public $vars = [];
     function __construct( $name, $templateName = null )
     {
         $this->name = $name;
@@ -355,8 +334,8 @@ class testExceptionViewHandler implements ezcMvcViewHandler
 
 class testResponseWriter extends ezcMvcResponseWriter
 {
-    var $response;
-    var $config;
+    public $response;
+    public $config;
 
     function __construct( ezcMvcResponse $response )
     {

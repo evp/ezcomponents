@@ -6,7 +6,7 @@ $graph = new ezcGraphOdometerChart();
 $graph->title = 'Custom odometer';
 
 $graph->data['data'] = new ezcGraphArrayDataSet(
-    array( 87 )
+    [87]
 );
 
 // Set the marker color

@@ -24,7 +24,7 @@ class ezcTemplateAstWalker implements ezcTemplateAstNodeVisitor
      *
      * @var array(ezcTemplateAstNode)
      */
-    public $nodePath = array(); 
+    public $nodePath = []; 
 
 
     /**
@@ -32,14 +32,14 @@ class ezcTemplateAstWalker implements ezcTemplateAstNodeVisitor
      *
      * @var array(int)
      */
-    public $statements = array();
+    public $statements = [];
 
     /**
      * The offset of the statements. Default it's 0. When a statement is inserted, the offset should also increase.
      *
      * @var array(int)
      */
-    public $offset = array();
+    public $offset = [];
 
     /**
      * Constructs a new ezcTemplateAstWalker

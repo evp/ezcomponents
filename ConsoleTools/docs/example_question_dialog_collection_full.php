@@ -13,7 +13,7 @@ $opts = new ezcConsoleQuestionDialogOptions();
 $opts->text = "Do you want to proceed?";
 $opts->showResults = true;
 $opts->validator = new ezcConsoleQuestionDialogCollectionValidator(
-    array( "y", "n" ),
+    ["y", "n"],
     "n",
     ezcConsoleQuestionDialogCollectionValidator::CONVERT_LOWER
 );

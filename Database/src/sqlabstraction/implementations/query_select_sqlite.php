@@ -29,14 +29,14 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
      * These arrays filled with values from parameters of rightJoin().
      * If from() was called then new right join info item added to $rightJoins.
      */
-    protected $rightJoins = array( null );
+    protected $rightJoins = [null];
 
     /**
      * Store tables that appear in FROM clause.
      * 
      * Used for building fromString every time when it requested
      */
-    protected $fromTables = array();
+    protected $fromTables = [];
 
     /**
      * Constructs a new ezcQuerySelectSqlite object.
@@ -57,8 +57,8 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
     public function reset()
     {
         parent::reset();
-        $this->fromTables = array();
-        $this->rightJoins = array( null );
+        $this->fromTables = [];
+        $this->rightJoins = [null];
     }
 
     /**
@@ -139,7 +139,7 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
      */
     private function buildRightJoins()
     {
-        $resultArray = array();
+        $resultArray = [];
 
         foreach ( $this->rightJoins as $rJoinPart )
         {
@@ -153,15 +153,17 @@ class ezcQuerySelectSqlite extends ezcQuerySelect
             // that will produce result equal to original right join.
             $reversedTables = array_reverse( $rJoinPart['tables'] );
             $reversedConditions = array_reverse( $rJoinPart['conditions'] );
-
             // adding first table.
-            list( $key, $val ) = each( $reversedTables ); 
+            $key = key($reversedTables);
+            $val = current($reversedTables);
+            next($reversedTables); 
             $oneItemResult .= $val;
 
-            while ( list( $key, $nextCondition ) = each( $reversedConditions ) )
-            {
-                list( $key2, $nextTable ) = each( $reversedTables );   
-               $oneItemResult .= " LEFT JOIN {$nextTable} ON {$nextCondition}";
+            foreach ($reversedConditions as $key => $nextCondition) {
+                $key2 = key($reversedTables);
+                $nextTable = current($reversedTables);
+                next($reversedTables);
+                $oneItemResult .= " LEFT JOIN {$nextTable} ON {$nextCondition}";
             }
             $resultArray[] = $oneItemResult;
         }

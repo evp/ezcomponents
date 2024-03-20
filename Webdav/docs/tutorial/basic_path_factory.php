@@ -14,7 +14,7 @@ foreach ( $server->configurations as $conf )
 }
 
 $backend = new ezcWebdavFileBackend(
-   dirname( __FILE__ ) . '/backend'
+   __DIR__ . '/backend'
 );
 
 $server->handle( $backend ); 

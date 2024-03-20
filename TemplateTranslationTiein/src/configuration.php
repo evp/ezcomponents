@@ -27,14 +27,14 @@ class ezcTemplateTranslationConfiguration
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Private constructor to prevent non-singleton use
      */
     private function __construct()
     {
-        $this->properties = array( 'locale' => null, 'manager' => null );
+        $this->properties = ['locale' => null, 'manager' => null];
     }
 
     /**

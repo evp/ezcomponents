@@ -22,7 +22,7 @@ class myCatchAllRoute extends ezcMvcCatchAllRoute
 {
     public function createParamName( $index )
     {
-        $map = array( 1 => 'wibble', 'wobble' );
+        $map = [1 => 'wibble', 'wobble'];
         return $map[$index];
     }
 }

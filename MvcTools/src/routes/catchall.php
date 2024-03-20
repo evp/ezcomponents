@@ -39,7 +39,7 @@ class ezcMvcCatchAllRoute implements ezcMvcRoute
      *
      * @var array
      */
-    private $prefix = array();
+    private $prefix = [];
 
     /**
      * Construct a CatchAll Route
@@ -81,7 +81,7 @@ class ezcMvcCatchAllRoute implements ezcMvcRoute
             return null;
         }
 
-        $params = array();
+        $params = [];
         $i = -1;
         foreach ( $requestParts as $part )
         {
@@ -105,7 +105,7 @@ class ezcMvcCatchAllRoute implements ezcMvcRoute
         $controllerName = $this->createControllerName();
         if ( class_exists( $controllerName ) )
         {
-            $actionMethod = call_user_func( array( $controllerName, 'createActionMethodName' ), $this->action );
+            $actionMethod = call_user_func( [$controllerName, 'createActionMethodName'], $this->action );
             if ( !method_exists( $controllerName, $actionMethod ) )
             {
                 return null;

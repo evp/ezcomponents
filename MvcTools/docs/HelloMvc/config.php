@@ -7,11 +7,11 @@ require 'Base/src/ezc_bootstrap.php';
 
 // Add the class repository containing our application's classes. We store
 // those in the /lib directory and the classes have the "hello" prefix.
-ezcBase::addClassRepository( dirname( __FILE__ ) . '/lib', null, 'hello' );
+ezcBase::addClassRepository( __DIR__ . '/lib', null, 'hello' );
 
 // Configure the template system by telling it where to find templates, and
 // where to put the compiled templates.
 $tc = ezcTemplateConfiguration::getInstance();
-$tc->templatePath = dirname( __FILE__ ) . '/templates';
-$tc->compilePath = dirname( __FILE__ ) . '/cache';
+$tc->templatePath = __DIR__ . '/templates';
+$tc->compilePath = __DIR__ . '/cache';
 ?>

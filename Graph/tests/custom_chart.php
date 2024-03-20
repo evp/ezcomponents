@@ -2,7 +2,7 @@
 
 class ezcCustomTestChart extends ezcGraphPieChart
 {
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         parent::__construct( $options );
 
@@ -13,11 +13,7 @@ class ezcCustomTestChart extends ezcGraphPieChart
 
         $this->title = 'Test chart';
 
-        $this->data['testdata'] = new ezcGraphArrayDataSet( array(
-            'foo' => 123,
-            'bar' => 43,
-            'blubb' => 453,
-        ) );
+        $this->data['testdata'] = new ezcGraphArrayDataSet( ['foo' => 123, 'bar' => 43, 'blubb' => 453] );
     }
 }
 

@@ -17,110 +17,25 @@ include_once( 'Authentication/tests/test.php' );
  */
 class ezcAuthenticationBignumTest extends ezcAuthenticationTest
 {
-    public static $tables = array( 'add', 'sub', 'mul', 'div', 'pow', 'mod', 'invert' );
+    public static $tables = ['add', 'sub', 'mul', 'div', 'pow', 'mod', 'invert'];
 
-    public static $add = array(
-                                array( 0, 0, 0 ),
-                                array( 0, 1, 1 ),
-                                array( 1, 0, 1 ),
-                                array( 1, 1, 2 ),
-                                array( -1, 0, -1 ),
-                                array( -1, -1, -2 ),
-                                array( -1, 1, 0 ),
-                                array( -1, 2, 1 ),
-                            );
+    public static $add = [[0, 0, 0], [0, 1, 1], [1, 0, 1], [1, 1, 2], [-1, 0, -1], [-1, -1, -2], [-1, 1, 0], [-1, 2, 1]];
 
-    public static $sub = array(
-                                array( 0, 0, 0 ),
-                                array( 0, 1, -1 ),
-                                array( 1, 0, 1 ),
-                                array( 1, 1, 0 ),
-                                array( -1, 0, -1 ),
-                                array( -1, -1, 0 ),
-                                array( -1, 1, -2 ),
-                                array( -1, 2, -3 ),
-                            );
+    public static $sub = [[0, 0, 0], [0, 1, -1], [1, 0, 1], [1, 1, 0], [-1, 0, -1], [-1, -1, 0], [-1, 1, -2], [-1, 2, -3]];
 
-    public static $mul = array(
-                                array( 0, 0, 0 ),
-                                array( 0, 1, 0 ),
-                                array( 1, 0, 0 ),
-                                array( 1, 1, 1 ),
-                                array( 2, 3, 6 ),
-                                array( -1, 0, 0 ),
-                                array( -1, 1, -1 ),
-                                array( -1, 2, -2 ),
-                                array( -1, -1, 1 ),
-                            );
+    public static $mul = [[0, 0, 0], [0, 1, 0], [1, 0, 0], [1, 1, 1], [2, 3, 6], [-1, 0, 0], [-1, 1, -1], [-1, 2, -2], [-1, -1, 1]];
 
-    public static $div = array(
-                                array( 0, 1, 0 ),
-                                array( 1, 1, 1 ),
-                                array( 2, 2, 1 ),
-                                array( 6, 3, 2 ),
-                                array( 2, 3, 0 ),
-                                array( -1, 1, -1 ),
-                                array( -2, 1, -2 ),
-                                array( -1, -1, 1 ),
-                            );
+    public static $div = [[0, 1, 0], [1, 1, 1], [2, 2, 1], [6, 3, 2], [2, 3, 0], [-1, 1, -1], [-2, 1, -2], [-1, -1, 1]];
 
-    public static $pow = array(
-                                array( 0, 0, 1 ),
-                                array( 0, 1, 0 ),
-                                array( 1, 0, 1 ),
-                                array( 1, 1, 1 ),
-                                array( 2, 2, 4 ),
-                                array( 2, 3, 8 ),
-                                array( -2, 1, -2 ),
-                                array( -2, 2, 4 ),
-                                array( -2, 3, -8 ),
-                            );
+    public static $pow = [[0, 0, 1], [0, 1, 0], [1, 0, 1], [1, 1, 1], [2, 2, 4], [2, 3, 8], [-2, 1, -2], [-2, 2, 4], [-2, 3, -8]];
 
-    public static $mod = array(
-                                array( 0, 1, 0 ),
-                                array( 1, 1, 0 ),
-                                array( 2, 1, 0 ),
-                                array( 2, 2, 0 ),
-                                array( 3, 1, 0 ),
-                                array( 3, 2, 1 ),
-                                array( 3, 3, 0 ),
-                                array( 3, 4, 3 ),
-                            );
+    public static $mod = [[0, 1, 0], [1, 1, 0], [2, 1, 0], [2, 2, 0], [3, 1, 0], [3, 2, 1], [3, 3, 0], [3, 4, 3]];
 
-    public static $invert = array(
-                                array( 0, 1, 0 ),
-                                array( 1, 1, 0 ),
-                                array( 2, 1, 0 ),
-                                array( 2, 2, 0 ),
-                                array( 3, 1, 0 ),
-                                array( 3, 2, 1 ),
-                                array( 3, 3, 0 ),
-                                array( 3, 4, 3 ),
-                                array( 3, 5, 2 ),
-                                array( 3, 6, 0 ),
-                                array( 3, 7, 5 ),
-                                array( 1, 7, 1 ),
-                                array( 2, 2, 0 ),
-                                array( -2, 5, 2 ),
-                            );
+    public static $invert = [[0, 1, 0], [1, 1, 0], [2, 1, 0], [2, 2, 0], [3, 1, 0], [3, 2, 1], [3, 3, 0], [3, 4, 3], [3, 5, 2], [3, 6, 0], [3, 7, 5], [1, 7, 1], [2, 2, 0], [-2, 5, 2]];
 
-    public static $powmod = array(
-                                array( 0, 0, 5, 1 ),
-                                array( 0, 1, 5, 0 ),
-                                array( 1, 0, 5, 1 ),
-                                array( 1, 1, 5, 1 ),
-                                array( 2, 2, 5, 4 ),
-                                array( 2, 3, 5, 3 ),
-                                array( 2, 1, 5, 2 ),
-                                array( 2, 2, 5, 4 ),
-                                array( 2, 3, 5, 3 ),
-                            );
+    public static $powmod = [[0, 0, 5, 1], [0, 1, 5, 0], [1, 0, 5, 1], [1, 1, 5, 1], [2, 2, 5, 4], [2, 3, 5, 3], [2, 1, 5, 2], [2, 2, 5, 4], [2, 3, 5, 3]];
 
-    public static $gcd = array(
-                                array( 3, 2, array( 1, -1, 1 ) ),
-                                array( 6, 3, array( 0, 1, 3 ) ),
-                                array( 437, 123, array( 38, -135, 1 ) ),
-                            );
+    public static $gcd = [[3, 2, [1, -1, 1]], [6, 3, [0, 1, 3]], [437, 123, [38, -135, 1]]];
 
     public static $p = '155172898181473697471232257763715539915724801966915404479707795314057629378541917580651227423698188993727816152646631438561595825688188889951272158842675419950341258706556549803580104870537681476726513255747040765857479291291572334510643245094715007229621094194349783925984760375594985848253359305585439638443';
 
@@ -217,7 +132,7 @@ class ezcAuthenticationBignumTest extends ezcAuthenticationTest
         foreach ( self::$gcd as $i => $line )
         {
             $result = $lib->gcd( $lib->init( $line[0] ), $lib->init( $line[1] ) );
-            $result = array( $lib->toString( $result[0] ), $lib->toString( $result[1] ), $lib->toString( $result[2] ) );
+            $result = [$lib->toString( $result[0] ), $lib->toString( $result[1] ), $lib->toString( $result[2] )];
             $expected = $line[2];
             $message = get_class( $lib ) . ": gcd( {$line[0]}, {$line[1]} ) produced (" . implode( ',', $result ) . "), expected (" . implode( ',', $expected ) . ").";
             $this->assertEquals( $expected, $result, $message );
@@ -314,7 +229,7 @@ class ezcAuthenticationBignumTest extends ezcAuthenticationTest
         foreach ( self::$gcd as $i => $line )
         {
             $result = $lib->gcd( $lib->init( $line[0] ), $lib->init( $line[1] ) );
-            $result = array( $lib->toString( $result[0] ), $lib->toString( $result[1] ), $lib->toString( $result[2] ) );
+            $result = [$lib->toString( $result[0] ), $lib->toString( $result[1] ), $lib->toString( $result[2] )];
             $expected = $line[2];
             $message = get_class( $lib ) . ": gcd( {$line[0]}, {$line[1]} ) produced (" . implode( ',', $result ) . "), expected (" . implode( ',', $expected ) . ").";
             $this->assertEquals( $expected, $result, $message );

@@ -20,16 +20,16 @@ abstract class ezcWebdavRequest
     /**
      * Constants for the 'Depth' headers and property fields. 
      */
-    const DEPTH_ZERO      =  0;
-    const DEPTH_ONE       =  1;
-    const DEPTH_INFINITY  = -1;
+    public const DEPTH_ZERO      =  0;
+    public const DEPTH_ONE       =  1;
+    public const DEPTH_INFINITY  = -1;
 
     /**
      * Properties.
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
 
     /**
@@ -37,7 +37,7 @@ abstract class ezcWebdavRequest
      * 
      * @var array(string=>mixed)
      */
-    protected $headers = array();
+    protected $headers = [];
 
     /**
      * Indicates wheather the validateHeaders method has already been called.
@@ -140,7 +140,7 @@ abstract class ezcWebdavRequest
             throw new ezcWebdavHeadersNotValidatedException( $headerName );
         }
 
-        return isset( $this->headers[$headerName] ) ? $this->headers[$headerName] : null;
+        return $this->headers[$headerName] ?? null;
     }
 
     /**

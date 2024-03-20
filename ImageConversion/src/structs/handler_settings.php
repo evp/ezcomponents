@@ -57,7 +57,7 @@ class ezcImageHandlerSettings extends ezcBaseStruct
      *
      * @var array
      */
-    public $options = array();
+    public $options = [];
 
     /**
      * Initialize settings to be used by image handler.
@@ -77,7 +77,7 @@ class ezcImageHandlerSettings extends ezcBaseStruct
      * @param array  $options
      *        Associative array of settings for the handler.
      */
-    public function __construct( $referenceName, $className, array $options = array() )
+    public function __construct( $referenceName, $className, array $options = [] )
     {
         $this->referenceName = $referenceName;
         $this->className     = $className;

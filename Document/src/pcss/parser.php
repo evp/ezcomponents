@@ -55,37 +55,21 @@ class ezcDocumentPcssParser extends ezcDocumentParser
      *
      * @var array
      */
-    protected $expressions = array();
+    protected $expressions = [];
 
     /**
      * Tokens irrelevant to the parser, which will bee thrown away immediately
      *
      * @var array
      */
-    protected $ignoreTokens = array(
-        self::T_WHITESPACE,
-        self::T_COMMENT,
-    );
+    protected $ignoreTokens = [self::T_WHITESPACE, self::T_COMMENT];
 
     /**
      * Names for the known tokens, for nicer error messages
      *
      * @var array
      */
-    protected $tokenNames = array(
-        self::T_WHITESPACE    => 'T_WHITESPACE',
-        self::T_COMMENT       => 'T_COMMENT',
-        self::T_ADDRESS       => 'T_ADDRESS (CSS element addressing queries)',
-        self::T_DESC_ADDRESS  => 'T_DESC_ADDRESS (CSS element addressing queries)',
-        self::T_ADDRESS_ID    => 'T_ADDRESS_ID (CSS element addressing queries)',
-        self::T_ADDRESS_CLASS => 'T_ADDRESS_CLASS (CSS element addressing queries)',
-        self::T_DEFINITION    => 'T_DEFINITION (CSS definition addressing element)',
-        self::T_START         => 'T_START ("{")',
-        self::T_END           => 'T_END ("}")',
-        self::T_FORMATTING    => 'T_FORMATTING (formatting specification)',
-        self::T_VALUE         => 'T_VALUE (formatting value definition)',
-        self::T_EOF           => 'T_EOF (end of file)',
-    );
+    protected $tokenNames = [self::T_WHITESPACE    => 'T_WHITESPACE', self::T_COMMENT       => 'T_COMMENT', self::T_ADDRESS       => 'T_ADDRESS (CSS element addressing queries)', self::T_DESC_ADDRESS  => 'T_DESC_ADDRESS (CSS element addressing queries)', self::T_ADDRESS_ID    => 'T_ADDRESS_ID (CSS element addressing queries)', self::T_ADDRESS_CLASS => 'T_ADDRESS_CLASS (CSS element addressing queries)', self::T_DEFINITION    => 'T_DEFINITION (CSS definition addressing element)', self::T_START         => 'T_START ("{")', self::T_END           => 'T_END ("}")', self::T_FORMATTING    => 'T_FORMATTING (formatting specification)', self::T_VALUE         => 'T_VALUE (formatting value definition)', self::T_EOF           => 'T_EOF (end of file)'];
 
     /**
      * Regular expression for characters a XML name may start with, as defined
@@ -93,7 +77,7 @@ class ezcDocumentPcssParser extends ezcDocumentParser
      *
      * http://www.w3.org/TR/REC-xml/#NT-NameStartChar
      */
-    const XML_NAME_STARTCHAR = '(?:[:A-Za-z_])';
+    public const XML_NAME_STARTCHAR = '(?:[:A-Za-z_])';
         // @todo: Integrate: |[#xC0-#xD6]|[#xD8-#xF6]|[#xF8-#x2FF]|[#x370-#x37D]|[#x37F-#x1FFF]|[#x200C-#x200D]|[#x2070-#x218F]|[#x2C00-#x2FEF]|[#x3001-#xD7FF]|[#xF900-#xFDCF]|[#xFDF0-#xFFFD]|[#x10000-#xEFFFF])';
 
     /**
@@ -105,68 +89,68 @@ class ezcDocumentPcssParser extends ezcDocumentParser
      * classes, just like in CSS. Should not, but may limit the actual usage.
      * Since now no docbook markup element contains a dot.
      */
-    const XML_NAME_CHAR      = '(?:[-0-9])';
+    public const XML_NAME_CHAR      = '(?:[-0-9])';
         // @todo: Integrate: |#xB7|[#x0300-#x036F]|[#x203F-#x2040])';
 
     /**
      * Whitespace token
      */
-    const T_WHITESPACE    = 1;
+    public const T_WHITESPACE    = 1;
 
     /**
      * Comment token
      */
-    const T_COMMENT       = 2;
+    public const T_COMMENT       = 2;
 
     /**
      * Common addressing element token
      */
-    const T_ADDRESS       = 10;
+    public const T_ADDRESS       = 10;
 
     /**
      * Direct descendant addressing element token
      */
-    const T_DESC_ADDRESS  = 11;
+    public const T_DESC_ADDRESS  = 11;
 
     /**
      * Addressing ID token
      */
-    const T_ADDRESS_ID    = 12;
+    public const T_ADDRESS_ID    = 12;
 
     /**
      * Addressing class token
      */
-    const T_ADDRESS_CLASS = 13;
+    public const T_ADDRESS_CLASS = 13;
 
     /**
      * Definition "address" token
      */
-    const T_DEFINITION    = 14;
+    public const T_DEFINITION    = 14;
 
     /**
      * Directive start token
      */
-    const T_START         = 20;
+    public const T_START         = 20;
 
     /**
      * Directive end token
      */
-    const T_END           = 21;
+    public const T_END           = 21;
 
     /**
      * Formatting rule token
      */
-    const T_FORMATTING    = 30;
+    public const T_FORMATTING    = 30;
 
     /**
      * Formatting rule value token
      */
-    const T_VALUE         = 31;
+    public const T_VALUE         = 31;
 
     /**
      * End of file token
      */
-    const T_EOF           = 40;
+    public const T_EOF           = 40;
 
     /**
      * Construct parser
@@ -181,52 +165,7 @@ class ezcDocumentPcssParser extends ezcDocumentParser
 
         $xmlName = '(?:' . self::XML_NAME_STARTCHAR . '(?:' . self::XML_NAME_STARTCHAR . '|' . self::XML_NAME_CHAR . ')*)';
 
-        $this->expressions = array(
-            array(
-                'type'  => self::T_WHITESPACE,
-                'match' => '(\\A\\s+)S' ),
-            array(
-                'type'  => self::T_COMMENT,
-                'match' => '(\\A/\\*.*\\*/)SUs' ),
-            array(
-                'type'  => self::T_COMMENT,
-                'match' => '(\\A//.*$)Sm' ),
-            array(
-                'type'  => self::T_START,
-                'match' => '(\\A\\{)S' ),
-            array(
-                'type'  => self::T_END,
-                'match' => '(\\A\\})S' ),
-            array(
-                'type'  => self::T_FORMATTING,
-                'match' => '(\\A(?P<name>[A-Za-z-]+)\\s*:)S',
-                'to'    => 'formats' ),
-            array(
-                'state' => 'formats',
-                'type'  => self::T_VALUE,
-                'match' => '(\\A"(?P<value>[^"]+)"\\s*;)S',
-                'to'    => 'default' ),
-            array(
-                'state' => 'formats',
-                'type'  => self::T_VALUE,
-                'match' => '(\\A(?P<value>[^;]+?)\\s*;)S',
-                'to'    => 'default' ),
-            array(
-                'type'  => self::T_ADDRESS,
-                'match' => '(\\A' . $xmlName . ')S' ),
-            array(
-                'type'  => self::T_DESC_ADDRESS,
-                'match' => '(\\A>[\\t\\x20]+' . $xmlName . ')S' ),
-            array(
-                'type'  => self::T_ADDRESS_CLASS,
-                'match' => '(\\A\\.[A-Za-z_-]+)S' ),
-            array(
-                'type'  => self::T_ADDRESS_ID,
-                'match' => '(\\A#' . $xmlName . ')S' ),
-            array(
-                'type'  => self::T_DEFINITION,
-                'match' => '(\\A@[A-Za-z_-]+)S' ),
-        );
+        $this->expressions = [['type'  => self::T_WHITESPACE, 'match' => '(\\A\\s+)S'], ['type'  => self::T_COMMENT, 'match' => '(\\A/\\*.*\\*/)SUs'], ['type'  => self::T_COMMENT, 'match' => '(\\A//.*$)Sm'], ['type'  => self::T_START, 'match' => '(\\A\\{)S'], ['type'  => self::T_END, 'match' => '(\\A\\})S'], ['type'  => self::T_FORMATTING, 'match' => '(\\A(?P<name>[A-Za-z-]+)\\s*:)S', 'to'    => 'formats'], ['state' => 'formats', 'type'  => self::T_VALUE, 'match' => '(\\A"(?P<value>[^"]+)"\\s*;)S', 'to'    => 'default'], ['state' => 'formats', 'type'  => self::T_VALUE, 'match' => '(\\A(?P<value>[^;]+?)\\s*;)S', 'to'    => 'default'], ['type'  => self::T_ADDRESS, 'match' => '(\\A' . $xmlName . ')S'], ['type'  => self::T_DESC_ADDRESS, 'match' => '(\\A>[\\t\\x20]+' . $xmlName . ')S'], ['type'  => self::T_ADDRESS_CLASS, 'match' => '(\\A\\.[A-Za-z_-]+)S'], ['type'  => self::T_ADDRESS_ID, 'match' => '(\\A#' . $xmlName . ')S'], ['type'  => self::T_DEFINITION, 'match' => '(\\A@[A-Za-z_-]+)S']];
     }
 
     /**
@@ -277,7 +216,7 @@ class ezcDocumentPcssParser extends ezcDocumentParser
     {
         $line     = 1;
         $position = 1;
-        $tokens   = array();
+        $tokens   = [];
         $state    = 'default';
 
         while ( strlen( $string ) )
@@ -319,12 +258,7 @@ class ezcDocumentPcssParser extends ezcDocumentParser
 
                 // Add all other rules including their match to the token
                 // array
-                $tokens[] = array(
-                    'type'     => $rule['type'],
-                    'line'     => $line,
-                    'position' => $position,
-                    'match'    => $match,
-                );
+                $tokens[] = ['type'     => $rule['type'], 'line'     => $line, 'position' => $position, 'match'    => $match];
 
                 continue 2;
             }
@@ -336,12 +270,7 @@ class ezcDocumentPcssParser extends ezcDocumentParser
             );
         }
 
-        $tokens[] = array(
-            'type'     => self::T_EOF,
-            'line'     => $line,
-            'position' => $position,
-            'match'    => null,
-        );
+        $tokens[] = ['type'     => self::T_EOF, 'line'     => $line, 'position' => $position, 'match'    => null];
 
         return $tokens;
     }
@@ -363,7 +292,7 @@ class ezcDocumentPcssParser extends ezcDocumentParser
 
         if ( !in_array( $token['type'], $types, true ) )
         {
-            $names = array();
+            $names = [];
             foreach ( $types as $type )
             {
                 $names[] = $this->tokenNames[$type];
@@ -389,25 +318,20 @@ class ezcDocumentPcssParser extends ezcDocumentParser
      */
     protected function parse( array $tokens )
     {
-        $directives = array();
+        $directives = [];
 
-        $addressTokens = array(
-            self::T_ADDRESS,
-            self::T_DESC_ADDRESS,
-            self::T_ADDRESS_ID,
-            self::T_ADDRESS_CLASS,
-        );
+        $addressTokens = [self::T_ADDRESS, self::T_DESC_ADDRESS, self::T_ADDRESS_ID, self::T_ADDRESS_CLASS];
 
         while ( count( $tokens ) > 1 )
         {
             // Address should always be followed by a start token
-            $formats = array();
-            $address = array();
+            $formats = [];
+            $address = [];
             
             if ( $tokens[0]['type'] === self::T_DEFINITION )
             {
                 $addressType  = 'ezcDocumentPcssDeclarationDirective';
-                $addressToken = $this->read( array( self::T_DEFINITION ), $tokens );
+                $addressToken = $this->read( [self::T_DEFINITION], $tokens );
                 $address      = $addressToken['match'][0];
             }
             else
@@ -420,16 +344,16 @@ class ezcDocumentPcssParser extends ezcDocumentParser
                 while ( $tokens[0]['type'] !== self::T_START );
             }
 
-            $this->read( array( self::T_START ), $tokens );
+            $this->read( [self::T_START], $tokens );
 
             while ( $tokens[0]['type'] !== self::T_END )
             {
-                $format = $this->read( array( self::T_FORMATTING ), $tokens );
-                $value  = $this->read( array( self::T_VALUE ), $tokens );
+                $format = $this->read( [self::T_FORMATTING], $tokens );
+                $value  = $this->read( [self::T_VALUE], $tokens );
                 $formats[$format['match']['name']] = $value['match']['value'];
             }
 
-            $this->read( array( self::T_END ), $tokens );
+            $this->read( [self::T_END], $tokens );
 
             // Create successfully read directive
             $directives[] = new $addressType(

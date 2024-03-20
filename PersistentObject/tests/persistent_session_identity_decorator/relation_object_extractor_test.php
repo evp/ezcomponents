@@ -8,7 +8,7 @@
  * @subpackage Tests
  */
 
-require_once dirname( __FILE__ ) . '/relation_prefetch_test.php';
+require_once __DIR__ . '/relation_prefetch_test.php';
 
 /**
  * Tests ezcPersistentManyToOneRelation class.
@@ -28,7 +28,7 @@ class ezcPersistentSessionIdentityDecoratorRelationObjectExtractorTest extends e
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setup()
@@ -174,9 +174,7 @@ class ezcPersistentSessionIdentityDecoratorRelationObjectExtractorTest extends e
 
         $birthday = new RelationTestBirthday();
         $birthday->person = 2;
-        $relatedObjectSet = array(
-            '2' => $birthday
-        );
+        $relatedObjectSet = ['2' => $birthday];
 
         $this->idMap->setRelatedObjectSet(
             $person, $relatedObjectSet, 'foo'
@@ -689,7 +687,7 @@ class ezcPersistentSessionIdentityDecoratorRelationObjectExtractorTest extends e
                 if ( $relPerson->id == 3 )
                 {
                     // Person with ID 3 has no birthday assigned
-                    $this->assertEquals( array(), $birthdays );
+                    $this->assertEquals( [], $birthdays );
                 }
                 else
                 {

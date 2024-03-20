@@ -43,7 +43,7 @@ class ezcWorkflowExecutionVisualizerPlugin extends ezcWorkflowExecutionPlugin
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Constructor.
@@ -142,7 +142,7 @@ class ezcWorkflowExecutionVisualizerPlugin extends ezcWorkflowExecutionPlugin
      */
     protected function visualize( ezcWorkflowExecution $execution )
     {
-        $activatedNodes = array();
+        $activatedNodes = [];
 
         foreach ( $execution->getActivatedNodes() as $node )
         {
@@ -155,7 +155,7 @@ class ezcWorkflowExecutionVisualizerPlugin extends ezcWorkflowExecutionPlugin
         }
         else
         {
-            $variables = array();
+            $variables = [];
         }
 
         $visitor = new ezcWorkflowVisitorVisualization;

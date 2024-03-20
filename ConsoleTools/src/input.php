@@ -113,17 +113,17 @@ class ezcConsoleInput
     /**
      * Option does not carry a value.
      */
-    const TYPE_NONE     = 1;
+    public const TYPE_NONE     = 1;
 
     /**
      * Option takes an integer value.
      */
-    const TYPE_INT      = 2;
+    public const TYPE_INT      = 2;
 
     /**
      * Option takes a string value. 
      */
-    const TYPE_STRING   = 3;
+    public const TYPE_STRING   = 3;
 
     /**
      * Array of option definitions, indexed by number.
@@ -138,7 +138,7 @@ class ezcConsoleInput
      * 
      * @var array(array)
      */
-    private $options = array();
+    private $options = [];
 
     /**
      * Short option names. 
@@ -147,7 +147,7 @@ class ezcConsoleInput
      * 
      * @var array(string=>int)
      */
-    private $optionShort = array();
+    private $optionShort = [];
 
     /**
      * Long option names. 
@@ -156,14 +156,14 @@ class ezcConsoleInput
      * 
      * @var array(string=>int)
      */
-    private $optionLong = array();
+    private $optionLong = [];
 
     /**
      * Arguments, if submitted, are stored here. 
      * 
      * @var array(string)
      */
-    private $arguments = array();
+    private $arguments = [];
 
     /**
      * Wether the process() method has already been called.
@@ -205,7 +205,7 @@ class ezcConsoleInput
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Creates an input handler.
@@ -516,7 +516,7 @@ class ezcConsoleInput
 
         if ( !isset( $args ) )
         {
-            $args = isset( $argv ) ? $argv : isset( $_SERVER['argv'] ) ? $_SERVER['argv'] : array();
+            $args = $argv ?? isset( $_SERVER['argv'] ) ? $_SERVER['argv'] : [];
         }
 
         $nextIndex = $this->processOptions( $args );
@@ -544,7 +544,7 @@ class ezcConsoleInput
     {
         foreach ( $this->options as $option )
         {
-            if ( $option->value === false || $option->value === array() )
+            if ( $option->value === false || $option->value === [] )
             {
                 // Default value to set?
                 if ( $option->default !== null )
@@ -636,7 +636,7 @@ class ezcConsoleInput
                 $argument->value = null;
             }
         }
-        $this->arguments = array();
+        $this->arguments = [];
     }
 
     /**
@@ -693,7 +693,7 @@ class ezcConsoleInput
      */
     public function getOptionValues( $longnames = false )
     {
-        $res = array();
+        $res = [];
         foreach ( $this->options as $param )
         {
             if ( $param->value !== false ) 
@@ -772,12 +772,12 @@ class ezcConsoleInput
      *            to null instead of an empty array. Giving an empty array for 
      *            these will then be taken literally.
      */
-    public function getHelp( $long = false, array $params = array(), array $paramGrouping = null )
+    public function getHelp( $long = false, array $params = [], array $paramGrouping = null )
     {
         // New handling
-        $params = ( $params === array() || $params === null ? null : $params );
+        $params = ( $params === [] || $params === null ? null : $params );
 
-        $help = array();
+        $help = [];
         if ( $paramGrouping === null )
         {
             // Original handling
@@ -790,12 +790,12 @@ class ezcConsoleInput
 
         if ( $this->argumentDefinition !== null )
         {
-            $help[] = array( "Arguments:", '' );
+            $help[] = ["Arguments:", ''];
 
             $argumentsHelp = $this->helpGenerator->generateArgumentHelp( $long );
-            if ( $argumentsHelp === array() )
+            if ( $argumentsHelp === [] )
             {
-                $help[] = array( '', "No arguments available." );
+                $help[] = ['', "No arguments available."];
             }
             else
             {
@@ -840,20 +840,20 @@ class ezcConsoleInput
             $params
         );
 
-        $help  = array();
+        $help  = [];
         $first = true;
         foreach ( $rawHelp as $category => $optionsHelp )
         {
             if ( !$first )
             {
-                $help[] = array( '', '' );
+                $help[] = ['', ''];
             }
             else
             {
                 $first = false;
             }
 
-            $help[] = array( $category, '' );
+            $help[] = [$category, ''];
             $help = array_merge( $help, $optionsHelp );
         }
         return $help;
@@ -896,7 +896,7 @@ class ezcConsoleInput
      * @param array(string=>array(string)) $paramGrouping
      * @return ezcConsoleTable           The filled table.
      */
-    public function getHelpTable( ezcConsoleTable $table, $long = false, array $params = array(), $paramGrouping = null )
+    public function getHelpTable( ezcConsoleTable $table, $long = false, array $params = [], $paramGrouping = null )
     {
         $help = $this->getHelp( $long, $params, $paramGrouping );
         $i = 0;
@@ -950,7 +950,7 @@ class ezcConsoleInput
      */
     public function getHelpText( $programDesc, $width = 80, $long = false, array $params = null, $paramGrouping = null )
     {
-        $help = $this->getHelp( $long, ( $params == null ? array() : $params ), $paramGrouping );
+        $help = $this->getHelp( $long, ( $params == null ? [] : $params ), $paramGrouping );
 
         // Determine max length of first column text.
         $maxLength = 0;
@@ -1270,14 +1270,14 @@ class ezcConsoleInput
 
                 if ( $arg->multiple === true )
                 {
-                    $arg->value = array();
+                    $arg->value = [];
                     for ( $i = $i; $i < $numArgs; ++$i )
                     {
                         if ( $this->isCorrectType( $arg->type, $args[$i] ) === false )
                         {
                             throw new ezcConsoleArgumentTypeViolationException( $arg, $args[$i] );
                         }
-                        $arg->value = array_merge( $arg->value, array( $args[$i] ) );
+                        $arg->value = array_merge( $arg->value, [$args[$i]] );
                         // Keep old handling, too
                         $this->arguments[] = $args[$i];
                     }
@@ -1339,7 +1339,7 @@ class ezcConsoleInput
         }
         $this->validator->validateOptions(
             $this->options,
-            ( $this->arguments !== array() )
+            ( $this->arguments !== [] )
         );
     }
 

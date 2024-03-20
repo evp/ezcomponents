@@ -46,7 +46,7 @@ class ezcTemplateTranslationExtractor
      * Program description for help text.
      *
      */
-    const PROGRAM_DESCRIPTION = 'Extracts translatable strings from eZ Components template files. The directory to save the translation files to is provided as an argument.';
+    public const PROGRAM_DESCRIPTION = 'Extracts translatable strings from eZ Components template files. The directory to save the translation files to is provided as an argument.';
 
     /**
      * The console input handler.
@@ -80,15 +80,15 @@ class ezcTemplateTranslationExtractor
         $this->output->options->autobreak = 80;
 
         $this->output->formats->info->color = 'blue';
-        $this->output->formats->info->style = array( 'bold' );
+        $this->output->formats->info->style = ['bold'];
 
         $this->output->formats->help->color = 'blue';
 
         $this->output->formats->error->color = 'red';
-        $this->output->formats->error->style = array( 'bold' );
+        $this->output->formats->error->style = ['bold'];
 
         $this->output->formats->success->color = 'green';
-        $this->output->formats->success->style = array( 'bold' );
+        $this->output->formats->success->style = ['bold'];
 
         $this->input = new ezcConsoleInput();
 
@@ -101,8 +101,8 @@ class ezcTemplateTranslationExtractor
                 false,      // multiple
                 "Template directory to search for translatable strings.",
                 "A directory with eZ Components template files. It is searched recursivly for new translatable strings.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 true        // mandatory
             )
@@ -117,8 +117,8 @@ class ezcTemplateTranslationExtractor
                 false,      // multiple
                 "File name format of translation file.",
                 "The file format the generated translation files should get. The string \"[LOCALE]\" is automatically replaced with the locale name.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -133,8 +133,8 @@ class ezcTemplateTranslationExtractor
                 false,      // multiple
                 "Template locale.",
                 "The locale of the strings within the templates.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -149,8 +149,8 @@ class ezcTemplateTranslationExtractor
                 false,      // multiple
                 "Overwrite existing files.",
                 "If this option is set, files will be overwriten if they already exist.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false       // mandatory
             )
@@ -165,8 +165,8 @@ class ezcTemplateTranslationExtractor
                 false,      // multiple
                 "Retrieve detailed help about this application.",
                 "Print out this help information.",
-                array(),    // dependencies
-                array(),    // exclusions
+                [],    // dependencies
+                [],    // exclusions
                 true,       // arguments
                 false,      // mandatory
                 true        // help option
@@ -215,10 +215,7 @@ class ezcTemplateTranslationExtractor
         $templatePath = realpath( $this->input->getOption( "templates" )->value );
 
         // setup the backend to write to and/or read from
-        $options = array (
-            'format' => $this->input->getOption( "format" )->value,
-			'keepObsolete' => true
-        );
+        $options = ['format' => $this->input->getOption( "format" )->value, 'keepObsolete' => true];
         $this->backend = new ezcTranslationTsBackend( $translationDir );
         $this->backend->setOptions( $options );
 
@@ -235,10 +232,10 @@ class ezcTemplateTranslationExtractor
         $this->backend->initWriter( $locale );
 
         // keep track of which contexts are in use
-        $usedContexts = array();
+        $usedContexts = [];
 
         // find the .ezt files and loop over them.
-        $it = ezcBaseFile::findRecursive( $templatePath, array( '@\.ezt$@' ) );
+        $it = ezcBaseFile::findRecursive( $templatePath, ['@\.ezt$@'] );
         foreach ( $it as $item )
         {
             $pathname = $this->unifyFilepath( realpath( $item ), $templatePath );
@@ -258,11 +255,11 @@ class ezcTemplateTranslationExtractor
                 }
                 else
                 {
-                    $translationMapOriginal = array();
+                    $translationMapOriginal = [];
                 }
 
                 // create empty context
-                $context = array();
+                $context = [];
                 // insert new translations
                 foreach ( $translationMapNew as $original => $translationElement )
                 {
@@ -373,7 +370,7 @@ class ezcTemplateTranslationExtractor
      */
     function getTranslationsFromTsFile( $contextName )
     {
-        $translationMapOriginal = array();
+        $translationMapOriginal = [];
         try
         {
             // get the original context

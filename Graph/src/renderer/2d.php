@@ -68,10 +68,7 @@ class ezcGraphRenderer2d
      * 
      * @var array
      */
-    protected $pieSegmentLabels = array(
-        0 => array(),
-        1 => array(),
-    );
+    protected $pieSegmentLabels = [0 => [], 1 => []];
 
     /**
      * Contains the boundings used for pie segments
@@ -86,7 +83,7 @@ class ezcGraphRenderer2d
      * 
      * @var array
      */
-    protected $linePostSymbols = array();
+    protected $linePostSymbols = [];
 
     /**
      * Options 
@@ -101,7 +98,7 @@ class ezcGraphRenderer2d
      * 
      * @var array
      */
-    protected $axisLabels = array();
+    protected $axisLabels = [];
 
     /**
      * Collects circle sectors to draw shadow in background of all circle 
@@ -109,7 +106,7 @@ class ezcGraphRenderer2d
      * 
      * @var array
      */
-    protected $circleSectors = array();
+    protected $circleSectors = [];
 
     /**
      * Constructor
@@ -118,7 +115,7 @@ class ezcGraphRenderer2d
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->options = new ezcGraphRenderer2dOptions( $options );
     }
@@ -194,15 +191,7 @@ class ezcGraphRenderer2d
         }
 
         // Add circle sector to queue
-        $this->circleSectors[] = array(
-            'center' =>     $center,
-            'context' =>    $context,
-            'width' =>      $radius * 2 * ( 1 - $this->options->moveOut ),
-            'height' =>     $radius * 2 * ( 1 - $this->options->moveOut ),
-            'start' =>      $startAngle,
-            'end' =>        $endAngle,
-            'color' =>      $color,
-        );
+        $this->circleSectors[] = ['center' =>     $center, 'context' =>    $context, 'width' =>      $radius * 2 * ( 1 - $this->options->moveOut ), 'height' =>     $radius * 2 * ( 1 - $this->options->moveOut ), 'start' =>      $startAngle, 'end' =>        $endAngle, 'color' =>      $color];
 
         if ( $label )
         {
@@ -215,14 +204,10 @@ class ezcGraphRenderer2d
 
             // Split labels up into left an right size and index them on their
             // y position
-            $this->pieSegmentLabels[(int) ($pieSegmentCenter->x > $center->x)][$pieSegmentCenter->y] = array(
-                new ezcGraphCoordinate(
-                    $center->x + cos( deg2rad( $direction ) ) * $radius * 2 / 3,
-                    $center->y + sin( deg2rad( $direction ) ) * $radius * 2 / 3
-                ),
-                $label,
-                $context
-            );
+            $this->pieSegmentLabels[(int) ($pieSegmentCenter->x > $center->x)][$pieSegmentCenter->y] = [new ezcGraphCoordinate(
+                $center->x + cos( deg2rad( $direction ) ) * $radius * 2 / 3,
+                $center->y + sin( deg2rad( $direction ) ) * $radius * 2 / 3
+            ), $label, $context];
         }
 
         if ( !$this->pieSegmentBoundings )
@@ -534,24 +519,19 @@ class ezcGraphRenderer2d
         $barWidth = ( $stepSize - $margin ) / $dataCount - $padding;
         $offset = - $stepSize / 2 + $margin / 2 + ( $dataCount - $dataNumber - 1 ) * ( $padding + $barWidth ) + $padding / 2;
 
-        $barPointArray = array(
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
-                $boundings->y0 + ( $boundings->height ) * $axisPosition
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
-                $boundings->y0 + ( $boundings->height ) * $position->y
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
-                $boundings->y0 + ( $boundings->height ) * $position->y
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
-                $boundings->y0 + ( $boundings->height ) * $axisPosition
-            ),
-        );
+        $barPointArray = [new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
+            $boundings->y0 + ( $boundings->height ) * $axisPosition
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
+            $boundings->y0 + ( $boundings->height ) * $position->y
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
+            $boundings->y0 + ( $boundings->height ) * $position->y
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
+            $boundings->y0 + ( $boundings->height ) * $axisPosition
+        )];
 
         $this->addElementReference(
             $context,
@@ -604,24 +584,19 @@ class ezcGraphRenderer2d
         $barWidth = $stepSize - $margin;
         $offset = - $stepSize / 2 + $margin / 2;
 
-        $barPointArray = array(
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
-                $boundings->y0 + ( $boundings->height ) * $start->y
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
-                $boundings->y0 + ( $boundings->height ) * $position->y
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
-                $boundings->y0 + ( $boundings->height ) * $position->y
-            ),
-            new ezcGraphCoordinate(
-                $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
-                $boundings->y0 + ( $boundings->height ) * $start->y
-            ),
-        );
+        $barPointArray = [new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
+            $boundings->y0 + ( $boundings->height ) * $start->y
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset,
+            $boundings->y0 + ( $boundings->height ) * $position->y
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
+            $boundings->y0 + ( $boundings->height ) * $position->y
+        ), new ezcGraphCoordinate(
+            $boundings->x0 + ( $boundings->width ) * $position->x + $offset + $barWidth,
+            $boundings->y0 + ( $boundings->height ) * $start->y
+        )];
 
         $this->addElementReference(
             $context,
@@ -690,24 +665,19 @@ class ezcGraphRenderer2d
             {
                 // Values have the same sign or are on the axis
                 $this->driver->drawPolygon(
-                    array(
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $start->x,
-                            $boundings->y0 + ( $boundings->height ) * $start->y
-                        ),
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $end->x,
-                            $boundings->y0 + ( $boundings->height ) * $end->y
-                        ),
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $end->x,
-                            $boundings->y0 + ( $boundings->height ) * $axisPosition
-                        ),
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $start->x,
-                            $boundings->y0 + ( $boundings->height ) * $axisPosition
-                        ),
-                    ),
+                    [new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $start->x,
+                        $boundings->y0 + ( $boundings->height ) * $start->y
+                    ), new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $end->x,
+                        $boundings->y0 + ( $boundings->height ) * $end->y
+                    ), new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $end->x,
+                        $boundings->y0 + ( $boundings->height ) * $axisPosition
+                    ), new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $start->x,
+                        $boundings->y0 + ( $boundings->height ) * $axisPosition
+                    )],
                     $fillColor,
                     true
                 );
@@ -725,39 +695,31 @@ class ezcGraphRenderer2d
                 );
 
                 $this->driver->drawPolygon(
-                    array(
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $start->x,
-                            $boundings->y0 + ( $boundings->height ) * $axisPosition
-                        ),
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $start->x,
-                            $boundings->y0 + ( $boundings->height ) * $start->y
-                        ),
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $cuttingPoint->x,
-                            $boundings->y0 + ( $boundings->height ) * $cuttingPoint->y
-                        ),
-                    ),
+                    [new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $start->x,
+                        $boundings->y0 + ( $boundings->height ) * $axisPosition
+                    ), new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $start->x,
+                        $boundings->y0 + ( $boundings->height ) * $start->y
+                    ), new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $cuttingPoint->x,
+                        $boundings->y0 + ( $boundings->height ) * $cuttingPoint->y
+                    )],
                     $fillColor,
                     true
                 );
 
                 $this->driver->drawPolygon(
-                    array(
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $end->x,
-                            $boundings->y0 + ( $boundings->height ) * $axisPosition
-                        ),
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $end->x,
-                            $boundings->y0 + ( $boundings->height ) * $end->y
-                        ),
-                        new ezcGraphCoordinate(
-                            $boundings->x0 + ( $boundings->width ) * $cuttingPoint->x,
-                            $boundings->y0 + ( $boundings->height ) * $cuttingPoint->y
-                        ),
-                    ),
+                    [new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $end->x,
+                        $boundings->y0 + ( $boundings->height ) * $axisPosition
+                    ), new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $end->x,
+                        $boundings->y0 + ( $boundings->height ) * $end->y
+                    ), new ezcGraphCoordinate(
+                        $boundings->x0 + ( $boundings->width ) * $cuttingPoint->x,
+                        $boundings->y0 + ( $boundings->height ) * $cuttingPoint->y
+                    )],
                     $fillColor,
                     true
                 );
@@ -786,17 +748,12 @@ class ezcGraphRenderer2d
                 $symbolColor = $color;
             }
     
-            $this->linePostSymbols[] = array(
-                'boundings' => new ezcGraphBoundings(
-                    $boundings->x0 + ( $boundings->width ) * $end->x - $this->options->symbolSize / 2,
-                    $boundings->y0 + ( $boundings->height ) * $end->y - $this->options->symbolSize / 2,
-                    $boundings->x0 + ( $boundings->width ) * $end->x + $this->options->symbolSize / 2,
-                    $boundings->y0 + ( $boundings->height ) * $end->y + $this->options->symbolSize / 2
-                ),
-                'color' => $symbolColor,
-                'context' => $context,
-                'symbol' => $symbol,
-            );
+            $this->linePostSymbols[] = ['boundings' => new ezcGraphBoundings(
+                $boundings->x0 + ( $boundings->width ) * $end->x - $this->options->symbolSize / 2,
+                $boundings->y0 + ( $boundings->height ) * $end->y - $this->options->symbolSize / 2,
+                $boundings->x0 + ( $boundings->width ) * $end->x + $this->options->symbolSize / 2,
+                $boundings->y0 + ( $boundings->height ) * $end->y + $this->options->symbolSize / 2
+            ), 'color' => $symbolColor, 'context' => $context, 'symbol' => $symbol];
         }
     }
 
@@ -894,14 +851,10 @@ class ezcGraphRenderer2d
         if ( $fillColor !== null )
         {
             $this->driver->drawPolygon(
-                array(
-                    $start,
-                    $end,
-                    new ezcGraphCoordinate(
-                        $boundings->x0 + $center->x,
-                        $boundings->y0 + $center->y
-                    ),
-                ),
+                [$start, $end, new ezcGraphCoordinate(
+                    $boundings->x0 + $center->x,
+                    $boundings->y0 + $center->y
+                )],
                 $fillColor,
                 true
             );
@@ -1122,12 +1075,7 @@ class ezcGraphRenderer2d
         {
             // Draw box background
             $this->driver->drawPolygon(
-                array(
-                    new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ),
-                    new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ),
-                    new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ),
-                    new ezcGraphCoordinate( $boundings->x0, $boundings->y1 ),
-                ),
+                [new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ), new ezcGraphCoordinate( $boundings->x0, $boundings->y1 )],
                 $background,
                 true
             );
@@ -1138,12 +1086,7 @@ class ezcGraphRenderer2d
         {
             // Draw border
             $this->driver->drawPolygon(
-                array(
-                    new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ),
-                    new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ),
-                    new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ),
-                    new ezcGraphCoordinate( $boundings->x0, $boundings->y1 ),
-                ),
+                [new ezcGraphCoordinate( $boundings->x0, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y0 ), new ezcGraphCoordinate( $boundings->x1, $boundings->y1 ), new ezcGraphCoordinate( $boundings->x0, $boundings->y1 )],
                 $borderColor,
                 false,
                 $borderWidth
@@ -1610,13 +1553,7 @@ class ezcGraphRenderer2d
         $this->drawAxisLabel( $end, $boundings, $axis );
 
         // Collect axis labels and draw, when all axisSpaces are collected
-        $this->axisLabels[] = array(
-            'object' => $labelClass,
-            'boundings' => $boundings,
-            'start' => clone $start,
-            'end' => clone $end,
-            'axis' => $axis,
-        );
+        $this->axisLabels[] = ['object' => $labelClass, 'boundings' => $boundings, 'start' => clone $start, 'end' => clone $end, 'axis' => $axis];
 
         if ( $this->xAxisSpace && $this->yAxisSpace )
         {
@@ -1805,14 +1742,11 @@ class ezcGraphRenderer2d
         parent::resetRenderer();
 
         // Also reset special 2D renderer options
-        $this->pieSegmentLabels = array(
-            0 => array(),
-            1 => array(),
-        );
+        $this->pieSegmentLabels = [0 => [], 1 => []];
         $this->pieSegmentBoundings = false;
-        $this->linePostSymbols     = array();
-        $this->axisLabels          = array();
-        $this->circleSectors       = array();
+        $this->linePostSymbols     = [];
+        $this->axisLabels          = [];
+        $this->circleSectors       = [];
     }
 
     /**

@@ -9,7 +9,7 @@
  * @license http://ez.no/licenses/new_bsd New BSD License
  */
 
-require_once dirname( __FILE__ ) . '/test_case.php';
+require_once __DIR__ . '/test_case.php';
 
 /**
  * Tests for ezcGraph class.
@@ -37,8 +37,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             $this->markTestSkipped( "This test requires PHP 5.1.3 or later." );
         }
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/data/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/data/';
     }
 
     protected function tearDown()
@@ -51,9 +51,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMock( 'ezcGraphSvgDriver', ['drawImage'] );
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -62,7 +60,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 0 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 125., 43.5 ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -72,15 +70,13 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $renderer->setDriver( $driver );
         $renderer->drawBackgroundImage(
             new ezcGraphBoundings( 0, 0, 400, 200 ),
-            dirname( __FILE__ ) . '/data/jpeg.jpg'
+            __DIR__ . '/data/jpeg.jpg'
         );
     }
 
     public function testRenderTopLeftBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMock( 'ezcGraphSvgDriver', ['drawImage'] );
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -89,7 +85,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 0 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 0., 0. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -99,16 +95,14 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $renderer->setDriver( $driver );
         $renderer->drawBackgroundImage(
             new ezcGraphBoundings( 0, 0, 400, 200 ),
-            dirname( __FILE__ ) . '/data/jpeg.jpg',
+            __DIR__ . '/data/jpeg.jpg',
             ezcGraph::TOP | ezcGraph::LEFT
         );
     }
 
     public function testRenderBottomRightBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMock( 'ezcGraphSvgDriver', ['drawImage'] );
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -117,7 +111,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 0 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 250., 87. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -127,16 +121,14 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $renderer->setDriver( $driver );
         $renderer->drawBackgroundImage(
             new ezcGraphBoundings( 0, 0, 400, 200 ),
-            dirname( __FILE__ ) . '/data/jpeg.jpg',
+            __DIR__ . '/data/jpeg.jpg',
             ezcGraph::BOTTOM | ezcGraph::RIGHT
         );
     }
 
     public function testRenderToBigBackgroundImage()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMock( 'ezcGraphSvgDriver', ['drawImage'] );
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -145,7 +137,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 0 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 0., 0. ), 1. ),
                 $this->equalTo( 100., 1. ),
                 $this->equalTo( 100., 1. )
@@ -155,16 +147,14 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $renderer->setDriver( $driver );
         $renderer->drawBackgroundImage(
             new ezcGraphBoundings( 0, 0, 100, 100 ),
-            dirname( __FILE__ ) . '/data/jpeg.jpg',
+            __DIR__ . '/data/jpeg.jpg',
             ezcGraph::BOTTOM | ezcGraph::RIGHT
         );
     }
 
     public function testRenderBackgroundImageRepeatX()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMock( 'ezcGraphSvgDriver', ['drawImage'] );
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -173,7 +163,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 0 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 0., 87. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -182,7 +172,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 1 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 150., 87. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -191,7 +181,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 2 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 300., 87. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -201,7 +191,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $renderer->setDriver( $driver );
         $renderer->drawBackgroundImage(
             new ezcGraphBoundings( 0, 0, 400, 200 ),
-            dirname( __FILE__ ) . '/data/jpeg.jpg',
+            __DIR__ . '/data/jpeg.jpg',
             ezcGraph::BOTTOM | ezcGraph::RIGHT,
             ezcGraph::HORIZONTAL
         );
@@ -209,9 +199,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBackgroundImageRepeatY()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMock( 'ezcGraphSvgDriver', ['drawImage'] );
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -220,7 +208,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 0 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 250., 0. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -229,7 +217,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 1 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 250., 113. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -239,7 +227,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $renderer->setDriver( $driver );
         $renderer->drawBackgroundImage(
             new ezcGraphBoundings( 0, 0, 400, 200 ),
-            dirname( __FILE__ ) . '/data/jpeg.jpg',
+            __DIR__ . '/data/jpeg.jpg',
             ezcGraph::BOTTOM | ezcGraph::RIGHT,
             ezcGraph::VERTICAL
         );
@@ -247,9 +235,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
     public function testRenderBackgroundImageRepeatBoth()
     {
-        $driver = $this->getMock( 'ezcGraphSvgDriver', array(
-            'drawImage',
-        ) );
+        $driver = $this->getMock( 'ezcGraphSvgDriver', ['drawImage'] );
 
         $driver->options->width = 400;
         $driver->options->height = 200;
@@ -258,7 +244,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 0 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 0., 0. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -267,7 +253,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 3 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 150., 113. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -276,7 +262,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
             ->expects( $this->at( 5 ) )
             ->method( 'drawImage' )
             ->with(
-                $this->equalTo( dirname( __FILE__ ) . '/data/jpeg.jpg' ),
+                $this->equalTo( __DIR__ . '/data/jpeg.jpg' ),
                 $this->equalTo( new ezcGraphCoordinate( 300., 113. ), 1. ),
                 $this->equalTo( 150., 1. ),
                 $this->equalTo( 113., 1. )
@@ -286,7 +272,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $renderer->setDriver( $driver );
         $renderer->drawBackgroundImage(
             new ezcGraphBoundings( 0, 0, 400, 200 ),
-            dirname( __FILE__ ) . '/data/jpeg.jpg',
+            __DIR__ . '/data/jpeg.jpg',
             ezcGraph::BOTTOM | ezcGraph::RIGHT,
             ezcGraph::VERTICAL | ezcGraph::HORIZONTAL
         );
@@ -299,7 +285,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->renderer = new ezcGraphRenderer3d();
 
         ob_start();
@@ -309,7 +295,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -318,13 +304,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -334,7 +314,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -343,13 +323,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
         $chart->data['sample']->color['Safari'] = '#000000';
@@ -374,7 +348,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -384,13 +358,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $chart = new ezcGraphPieChart();
         $chart->palette = new ezcGraphPaletteEzBlue();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -408,7 +376,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
     
@@ -422,10 +390,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $graph->legend->position = ezcGraph::BOTTOM;
 
         // Add data
-        $graph->data['Access statistics'] = new ezcGraphArrayDataSet( array(
-            'Available' => 72,
-            'Used' => 28,
-        ) );
+        $graph->data['Access statistics'] = new ezcGraphArrayDataSet( ['Available' => 72, 'Used' => 28] );
 
         $graph->options->label = '%1$s (%3$.1f%%)';
 
@@ -442,7 +407,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -452,13 +417,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $chart = new ezcGraphPieChart();
         $chart->palette = new ezcGraphPaletteEz();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -475,7 +434,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -490,14 +449,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.png';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
-        $chart->options->font->path = dirname( __FILE__ ) . '/data/font.ttf';
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
+        $chart->options->font->path = __DIR__ . '/data/font.ttf';
 
         $chart->data['sample']->highlight['Safari'] = true;
         $chart->data['sample']->color['Safari'] = '#000000';
@@ -522,7 +475,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->assertImageSimilar(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.png',
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.png',
             'Image does not look as expected.',
             2000
         );
@@ -533,13 +486,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -551,7 +498,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -560,13 +507,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -578,7 +519,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -587,18 +528,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'label 1' => 20,
-            'label 2' => 20,
-            'label 3' => 20,
-            'label 4' => 20,
-            'label 5' => 20,
-            'label 6' => 20,
-            'label 7' => 20,
-            'label 8' => 20,
-            'label 9' => 20,
-            'label 10' => 20,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['label 1' => 20, 'label 2' => 20, 'label 3' => 20, 'label 4' => 20, 'label 5' => 20, 'label 6' => 20, 'label 7' => 20, 'label 8' => 20, 'label 9' => 20, 'label 10' => 20] );
 
         $chart->data['sample']->highlight = true;
         $chart->options->label = '%1$s';
@@ -612,7 +542,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -621,13 +551,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -639,7 +563,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -648,13 +572,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -666,7 +584,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -675,13 +593,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -693,7 +605,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -702,13 +614,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -720,7 +626,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -729,13 +635,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->data['sample']->highlight['Safari'] = true;
 
@@ -747,7 +647,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -756,7 +656,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['Skien'] = new ezcGraphArrayDataSet( array( 'Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1 ) );
+        $chart->data['Skien'] = new ezcGraphArrayDataSet( ['Norwegian' => 10, 'Dutch' => 3, 'German' => 2, 'French' => 2, 'Hindi' => 1, 'Taiwanese' => 1, 'Brazilian' => 1, 'Venezuelan' => 1, 'Japanese' => 1, 'Czech' => 1, 'Hungarian' => 1, 'Romanian' => 1] );
 
         $chart->data['Skien']->highlight['Norwegian'] = true;
 
@@ -766,7 +666,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -777,9 +677,9 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphBarChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 0'] = new ezcGraphArrayDataSet( array( 'sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154) );
+        $chart->data['Line 0'] = new ezcGraphArrayDataSet( ['sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154] );
         $chart->data['Line 0']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['Line 1']->symbol = ezcGraph::NO_SYMBOL;
 
         $chart->driver = new ezcGraphSvgDriver();
@@ -788,7 +688,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -799,13 +699,13 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphBarChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Rectangle'] = new ezcGraphArrayDataSet( array( 'sample 1' => 432, 'sample 2' => -43, 'sample 3' => 65 ) );
+        $chart->data['Rectangle'] = new ezcGraphArrayDataSet( ['sample 1' => 432, 'sample 2' => -43, 'sample 3' => 65] );
         $chart->data['Rectangle']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Circle'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324 ) );
+        $chart->data['Circle'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324] );
         $chart->data['Circle']->symbol = ezcGraph::CIRCLE;
-        $chart->data['Bullet'] = new ezcGraphArrayDataSet( array( 'sample 1' => 124, 'sample 2' => -245, 'sample 3' => 361 ) );
+        $chart->data['Bullet'] = new ezcGraphArrayDataSet( ['sample 1' => 124, 'sample 2' => -245, 'sample 3' => 361] );
         $chart->data['Bullet']->symbol = ezcGraph::BULLET;
-        $chart->data['Diamond'] = new ezcGraphArrayDataSet( array( 'sample 1' => 387, 'sample 2' => -213, 'sample 3' => 24 ) );
+        $chart->data['Diamond'] = new ezcGraphArrayDataSet( ['sample 1' => 387, 'sample 2' => -213, 'sample 3' => 24] );
         $chart->data['Diamond']->symbol = ezcGraph::DIAMOND;
 
         $chart->driver = new ezcGraphSvgDriver();
@@ -818,7 +718,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -829,13 +729,13 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphBarChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Rectangle'] = new ezcGraphArrayDataSet( array( 'sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154) );
+        $chart->data['Rectangle'] = new ezcGraphArrayDataSet( ['sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154] );
         $chart->data['Rectangle']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Circle'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Circle'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['Circle']->symbol = ezcGraph::CIRCLE;
-        $chart->data['Bullet'] = new ezcGraphArrayDataSet( array( 'sample 1' => 124, 'sample 2' => 245, 'sample 3' => 361, 'sample 4' => 412, 'sample 5' => 480) );
+        $chart->data['Bullet'] = new ezcGraphArrayDataSet( ['sample 1' => 124, 'sample 2' => 245, 'sample 3' => 361, 'sample 4' => 412, 'sample 5' => 480] );
         $chart->data['Bullet']->symbol = ezcGraph::BULLET;
-        $chart->data['Diamond'] = new ezcGraphArrayDataSet( array( 'sample 1' => 387, 'sample 2' => 261, 'sample 3' => 24, 'sample 4' => 59, 'sample 5' => 112) );
+        $chart->data['Diamond'] = new ezcGraphArrayDataSet( ['sample 1' => 387, 'sample 2' => 261, 'sample 3' => 24, 'sample 4' => 59, 'sample 5' => 112] );
         $chart->data['Diamond']->symbol = ezcGraph::DIAMOND;
 
         $chart->driver = new ezcGraphSvgDriver();
@@ -844,7 +744,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -855,13 +755,13 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphBarChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Rectangle'] = new ezcGraphArrayDataSet( array( 'sample -1' => -432, 'sample -2' => -43, 'sample -3' => -65, 'sample -4' => -97, 'sample -5' => -154) );
+        $chart->data['Rectangle'] = new ezcGraphArrayDataSet( ['sample -1' => -432, 'sample -2' => -43, 'sample -3' => -65, 'sample -4' => -97, 'sample -5' => -154] );
         $chart->data['Rectangle']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Circle'] = new ezcGraphArrayDataSet( array( 'sample -1' => -234, 'sample -2' => -21, 'sample -3' => -324, 'sample -4' => -120, 'sample -5' => -1) );
+        $chart->data['Circle'] = new ezcGraphArrayDataSet( ['sample -1' => -234, 'sample -2' => -21, 'sample -3' => -324, 'sample -4' => -120, 'sample -5' => -1] );
         $chart->data['Circle']->symbol = ezcGraph::CIRCLE;
-        $chart->data['Bullet'] = new ezcGraphArrayDataSet( array( 'sample -1' => -124, 'sample -2' => -245, 'sample -3' => -361, 'sample -4' => -412, 'sample -5' => -480) );
+        $chart->data['Bullet'] = new ezcGraphArrayDataSet( ['sample -1' => -124, 'sample -2' => -245, 'sample -3' => -361, 'sample -4' => -412, 'sample -5' => -480] );
         $chart->data['Bullet']->symbol = ezcGraph::BULLET;
-        $chart->data['Diamond'] = new ezcGraphArrayDataSet( array( 'sample -1' => -387, 'sample -2' => -261, 'sample -3' => -24, 'sample -4' => -59, 'sample -5' => -112) );
+        $chart->data['Diamond'] = new ezcGraphArrayDataSet( ['sample -1' => -387, 'sample -2' => -261, 'sample -3' => -24, 'sample -4' => -59, 'sample -5' => -112] );
         $chart->data['Diamond']->symbol = ezcGraph::DIAMOND;
 
         $chart->driver = new ezcGraphSvgDriver();
@@ -870,7 +770,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -881,8 +781,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->title = 'Line chart title';
 
@@ -892,7 +792,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -903,9 +803,9 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 0'] = new ezcGraphArrayDataSet( array( 'sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154) );
+        $chart->data['Line 0'] = new ezcGraphArrayDataSet( ['sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154] );
         $chart->data['Line 0']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['Line 1']->symbol = ezcGraph::NO_SYMBOL;
 
         $chart->renderer = new ezcGraphRenderer3d();
@@ -916,7 +816,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -927,9 +827,9 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphBarChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 0'] = new ezcGraphArrayDataSet( array( 'sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154) );
+        $chart->data['Line 0'] = new ezcGraphArrayDataSet( ['sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154] );
         $chart->data['Line 0']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['Line 1']->symbol = ezcGraph::NO_SYMBOL;
 
         $chart->renderer = new ezcGraphRenderer3d();
@@ -940,7 +840,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -951,9 +851,9 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 0'] = new ezcGraphArrayDataSet( array( 'sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154) );
+        $chart->data['Line 0'] = new ezcGraphArrayDataSet( ['sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154] );
         $chart->data['Line 0']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['Line 1']->symbol = ezcGraph::NO_SYMBOL;
 
         $chart->renderer = new ezcGraphRenderer3d();
@@ -964,7 +864,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -975,9 +875,9 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphBarChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 0'] = new ezcGraphArrayDataSet( array( 'sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154) );
+        $chart->data['Line 0'] = new ezcGraphArrayDataSet( ['sample 1' => 432, 'sample 2' => 43, 'sample 3' => 65, 'sample 4' => 97, 'sample 5' => 154] );
         $chart->data['Line 0']->symbol = ezcGraph::NO_SYMBOL;
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
         $chart->data['Line 1']->symbol = ezcGraph::NO_SYMBOL;
 
         $chart->renderer = new ezcGraphRenderer3d();
@@ -988,7 +888,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -999,8 +899,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->title = 'Line chart title';
 
@@ -1011,7 +911,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1022,8 +922,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->title = 'Line chart title';
         $chart->title->maxHeight = .2;
@@ -1035,7 +935,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1047,8 +947,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->options->fillLines = 200;
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1056,7 +956,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1070,7 +970,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart->xAxis = new ezcGraphChartElementNumericAxis();
         $chart->xAxis->axisLabelRenderer = new ezcGraphAxisBoxedLabelRenderer();
 
-        $chart->data['dataset'] = new ezcGraphArrayDataSet( array( 12, 43, 324, 12, 43, 125, 120, 123 , 543,  12, 45, 76, 87 , 99, 834, 34, 453 ) );
+        $chart->data['dataset'] = new ezcGraphArrayDataSet( [12, 43, 324, 12, 43, 125, 120, 123, 543, 12, 45, 76, 87, 99, 834, 34, 453] );
         $chart->data['dataset']->color = '#3465A47F';
 
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1078,7 +978,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1089,7 +989,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphBarChart();
         $chart->legend = false;
 
-        $chart->data['dataset'] = new ezcGraphArrayDataSet( array( 12, 43, 324, 12, 43, 125, 120, 123 , 543,  12, 45, 76, 87 , 99 ) );
+        $chart->data['dataset'] = new ezcGraphArrayDataSet( [12, 43, 324, 12, 43, 125, 120, 123, 543, 12, 45, 76, 87, 99] );
         $chart->data['dataset']->color = '#3465A47F';
 
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1114,8 +1014,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart->palette = new ezcGraphPaletteBlack();
         $chart->options->fillLines = 200;
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -151, 'sample 3' => 324, 'sample 4' => -120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => -5, 'sample 5' => -124) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -151, 'sample 3' => 324, 'sample 4' => -120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => -5, 'sample 5' => -124] );
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1123,7 +1023,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1134,8 +1034,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1145,7 +1045,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1156,8 +1056,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1167,7 +1067,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1178,8 +1078,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1189,7 +1089,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1200,8 +1100,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
         
         $chart->xAxis->axisSpace = .2;
         $chart->yAxis->axisSpace = .05;
@@ -1213,7 +1113,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1224,8 +1124,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->xAxis->label = 'Samples';
         $chart->yAxis->label = 'Numbers';
@@ -1237,7 +1137,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1248,8 +1148,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => 21, 'sample 3' => 324, 'sample 4' => 120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->xAxis->label = 'Samples';
         $chart->xAxis->position = ezcGraph::RIGHT;
@@ -1263,7 +1163,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1272,13 +1172,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['sample'] = new ezcGraphArrayDataSet( array(
-            'Mozilla' => 4375,
-            'IE' => 345,
-            'Opera' => 1204,
-            'wget' => 231,
-            'Safari' => 987,
-        ) );
+        $chart->data['sample'] = new ezcGraphArrayDataSet( ['Mozilla' => 4375, 'IE' => 345, 'Opera' => 1204, 'wget' => 231, 'Safari' => 987] );
 
         $chart->driver = new ezcGraphSvgDriver();
         $chart->renderer = new ezcGraphRenderer3d();
@@ -1287,7 +1181,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1298,8 +1192,8 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $chart = new ezcGraphLineChart();
         $chart->palette = new ezcGraphPaletteBlack();
 
-        $chart->data['Line 1'] = new ezcGraphArrayDataSet( array( 'sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => -120, 'sample 5' => 1) );
-        $chart->data['Line 2'] = new ezcGraphArrayDataSet( array( 'sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613) );
+        $chart->data['Line 1'] = new ezcGraphArrayDataSet( ['sample 1' => 234, 'sample 2' => -21, 'sample 3' => 324, 'sample 4' => -120, 'sample 5' => 1] );
+        $chart->data['Line 2'] = new ezcGraphArrayDataSet( ['sample 1' => 543, 'sample 2' => 234, 'sample 3' => 298, 'sample 4' => 5, 'sample 5' => 613] );
 
         $chart->data['Line 1']->highlight = true;
         $chart->data['Line 2']->highlight['sample 5'] = true;
@@ -1319,7 +1213,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1332,7 +1226,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $graph->legend->position = ezcGraph::BOTTOM;
 
         $graph->data['sample'] = new ezcGraphArrayDataSet(
-            array( 1, 4, 6, 8, 2 )
+            [1, 4, 6, 8, 2]
         );
 
         $graph->renderer = new ezcGraphRenderer3d();
@@ -1341,7 +1235,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1354,7 +1248,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $graph->legend->position = ezcGraph::BOTTOM;
 
         $graph->data['sample'] = new ezcGraphArrayDataSet(
-            array( 1, 4, 6, 8, 2 )
+            [1, 4, 6, 8, 2]
         );
 
         $graph->renderer = new ezcGraphRenderer3d();
@@ -1363,7 +1257,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1376,7 +1270,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $graph->legend->position = ezcGraph::BOTTOM;
 
         $graph->data['sample'] = new ezcGraphArrayDataSet(
-            array( 1, 4, 6, 8, 2 )
+            [1, 4, 6, 8, 2]
         );
 
         $graph->renderer = new ezcGraphRenderer3d();
@@ -1387,7 +1281,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 
@@ -1744,7 +1638,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
         $filename = $this->tempDir . __FUNCTION__ . '.svg';
 
         $chart = new ezcGraphPieChart();
-        $chart->data['TestCase'] = new ezcGraphArrayDataSet( array( 'Big' => 2.9, 'Small 1' => 0.03, 'Small 2' => 0.04, 'Small 3' => 0.03, 'Last' => 1 ) );
+        $chart->data['TestCase'] = new ezcGraphArrayDataSet( ['Big' => 2.9, 'Small 1' => 0.03, 'Small 2' => 0.04, 'Small 3' => 0.03, 'Last' => 1] );
 
         $chart->renderer = new ezcGraphRenderer3d();
         $chart->renderer->options->dataBorder = false;
@@ -1752,7 +1646,7 @@ class ezcGraphRenderer3dTest extends ezcGraphTestCase
 
         $this->compare(
             $filename,
-            $this->basePath . 'compare/' . __CLASS__ . '_' . __FUNCTION__ . '.svg'
+            $this->basePath . 'compare/' . self::class . '_' . __FUNCTION__ . '.svg'
         );
     }
 }

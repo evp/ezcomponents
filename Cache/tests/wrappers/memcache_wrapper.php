@@ -24,7 +24,7 @@ class ezcCacheStorageMemcacheWrapper extends ezcCacheStorageMemcachePlain
      *
      * @param array(string=>mixed) $registry
      */
-    public function setRegistry( array $registry = array() )
+    public function setRegistry( array $registry = [] )
     {
         $this->registry = $registry;
     }

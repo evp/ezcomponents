@@ -27,8 +27,8 @@ class ezcTemplateLiteralTstNode extends ezcTemplateExpressionTstNode
      */
     public $value;
 
-    const SINGLE_QUOTE = 1;
-    const DOUBLE_QUOTE = 2;
+    public const SINGLE_QUOTE = 1;
+    public const DOUBLE_QUOTE = 2;
 
     public $quoteType;
 
@@ -47,7 +47,7 @@ class ezcTemplateLiteralTstNode extends ezcTemplateExpressionTstNode
 
     public function getTreeProperties()
     {
-        return array( 'value' => $this->value, 'quoteType' => $this->quoteType );
+        return ['value' => $this->value, 'quoteType' => $this->quoteType];
     }
 }
 ?>

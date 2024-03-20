@@ -14,7 +14,7 @@ $def->idProperty->columnName = 'id';
 $def->idProperty->propertyName = 'id';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(
     'ezcPersistentSequenceGenerator',
-    array( 'sequence' => 'PO_database_type_test_id_seq' )
+    ['sequence' => 'PO_database_type_test_id_seq']
 );
 $def->idProperty->databaseType = PDO::PARAM_INT;
 

@@ -28,16 +28,11 @@ class ezcCacheStorageFilePlainTest extends ezcCacheStorageTest
      * @var array
      * @access protected
      */
-    protected $testData = array(
-        1 => "Test 1 2 3 4 5 6 7 8\\\\",
-        2 => 'La la la 02064 lololo',
-        3 => 12345,
-        4 => 12.3746,
-    );
+    protected $testData = [1 => "Test 1 2 3 4 5 6 7 8\\\\", 2 => 'La la la 02064 lololo', 3 => 12345, 4 => 12.3746];
 
     public function testGetRemainingLifetimeId()
     {
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
 
         $this->storage->store( '1', 'data1' );
 
@@ -47,18 +42,18 @@ class ezcCacheStorageFilePlainTest extends ezcCacheStorageTest
 
     public function testGetRemainingLifetimeAttributes()
     {
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
 
-        $this->storage->store( '1', 'data1', array( 'type' => 'simple' ) );
-        $this->storage->store( '2', 'data2', array( 'type' => 'simple' ) );
+        $this->storage->store( '1', 'data1', ['type' => 'simple'] );
+        $this->storage->store( '2', 'data2', ['type' => 'simple'] );
 
-        $this->assertEquals( true, 8 < $this->storage->getRemainingLifetime( null, array( 'type' => 'simple' ) ) );
+        $this->assertEquals( true, 8 < $this->storage->getRemainingLifetime( null, ['type' => 'simple'] ) );
 
     }
 
     public function testGetRemainingLifetimeNoMatch()
     {
-        $this->storage->setOptions( array( 'ttl' => 10 ) );
+        $this->storage->setOptions( ['ttl' => 10] );
 
         $this->assertEquals( 0, $this->storage->getRemainingLifetime( 'no_such_id' ) );
 
@@ -66,25 +61,11 @@ class ezcCacheStorageFilePlainTest extends ezcCacheStorageTest
 
     public function testMetaDataSuccess()
     {
-        $temp = $this->createTempDir( __CLASS__ );
+        $temp = $this->createTempDir( self::class );
 
         $meta = new ezcCacheStackLruMetaData();
         $meta->setState(
-            array(
-                'replacementData' => array(
-                    'id_1' => 23,
-                    'id_2' => 42,
-                ),
-                'storageData' => array(
-                    'storage_id_1' => array(
-                        'id_1' => true,
-                        'id_2' => true,
-                    ),
-                    'storage_id_2' => array(
-                        'id_2' => true,
-                    ),
-                ),
-            )
+            ['replacementData' => ['id_1' => 23, 'id_2' => 42], 'storageData' => ['storage_id_1' => ['id_1' => true, 'id_2' => true], 'storage_id_2' => ['id_2' => true]]]
         );
 
         $storage = new ezcCacheStorageFilePlain( $temp );
@@ -117,7 +98,7 @@ class ezcCacheStorageFilePlainTest extends ezcCacheStorageTest
 
     public function testMetaDataFailure()
     {
-        $temp = $this->createTempDir( __CLASS__ );
+        $temp = $this->createTempDir( self::class );
 
         $storage = new ezcCacheStorageFilePlain( $temp );
 

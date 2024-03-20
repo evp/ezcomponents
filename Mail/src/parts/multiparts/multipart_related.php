@@ -110,11 +110,7 @@ class ezcMailMultipartRelated extends ezcMailMultipart
      */
     public function getMainPart()
     {
-        if ( isset( $this->parts[0] ) )
-        {
-            return $this->parts[0];
-        }
-        return null;
+        return $this->parts[0] ?? null;
     }
 
     /**

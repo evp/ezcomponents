@@ -69,7 +69,7 @@ abstract class ezcImageMethodcallHandler extends ezcImageHandler
      *
      * @var array
      */
-    private $references = array();
+    private $references = [];
 
     /**
      * Currently active image reference.
@@ -163,24 +163,8 @@ abstract class ezcImageMethodcallHandler extends ezcImageHandler
     {
         if ( !isset( $this->filterNameCache ) || !is_array( $this->filterNameCache || sizeof( $this->filterNameCache ) === 0 ) )
         {
-            $this->filterNameCache = array();
-            $excludeMethods = array( 
-                '__construct',
-                '__destruct',
-                '__get',
-                '__set',
-                '__call',
-                'allowsInput',
-                'allowsOutput',
-                'hasFilter',
-                'getFilterNames',
-                'applyFilter',
-                'convert',
-                'load',
-                'save',
-                'close',
-                'defaultSettings',
-            );
+            $this->filterNameCache = [];
+            $excludeMethods = ['__construct', '__destruct', '__get', '__set', '__call', 'allowsInput', 'allowsOutput', 'hasFilter', 'getFilterNames', 'applyFilter', 'convert', 'load', 'save', 'close', 'defaultSettings'];
             
             $refClass = new ReflectionClass( get_class( $this ) );
             foreach ( $refClass->getMethods() as $method )
@@ -228,7 +212,7 @@ abstract class ezcImageMethodcallHandler extends ezcImageHandler
         }
         $reflectClass = new ReflectionClass( get_class( $this ) );
         $reflectParameters = $reflectClass->getMethod( $filter->name )->getParameters();
-        $parameters = array();
+        $parameters = [];
         foreach ( $reflectParameters as $id => $parameter )
         {
             $paramName = $parameter->getName();
@@ -245,7 +229,7 @@ abstract class ezcImageMethodcallHandler extends ezcImageHandler
         $oldRef = $this->getActiveReference();
         // Perform actual filtering on given image
         $this->setActiveReference( $image );
-        call_user_func_array( array( $this, $filter->name ), $parameters );
+        call_user_func_array( [$this, $filter->name], $parameters );
         // Restore last active reference
         $this->setActiveReference( $oldRef );
     }
@@ -397,7 +381,7 @@ abstract class ezcImageMethodcallHandler extends ezcImageHandler
         }
         if ( isset( $detail ) )
         {
-            return isset( $this->references[$reference][$detail] ) ?  $this->references[$reference][$detail] : false;
+            return $this->references[$reference][$detail] ?? false;
         }
         return $this->references[$reference];
     }
@@ -501,14 +485,10 @@ abstract class ezcImageMethodcallHandler extends ezcImageHandler
             }
         }
 
-        $this->references[$ref] = array();
+        $this->references[$ref] = [];
         $this->setReferenceData(
             $ref,
-            array(
-                'file'      => $file,
-                'mime'      => $mime,
-                'resource'  => false,
-            )
+            ['file'      => $file, 'mime'      => $mime, 'resource'  => false]
         );
         $this->setActiveReference( $ref );
 

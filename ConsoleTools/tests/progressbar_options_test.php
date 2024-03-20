@@ -31,20 +31,7 @@ class ezcConsoleProgressbarOptionsTest extends ezcTestCase
     public function testConstructorNew()
     {
         $fake = new ezcConsoleProgressbarOptions(
-            array( 
-                "barChar" => "+",
-                "emptyChar" => "-",
-                "formatString" => "%act% / %max% [%bar%] %fraction%%",
-                "fractionFormat" => "%01.2f",
-                "progressChar" => ">",
-                "redrawFrequency" => 1,
-                "step" => 1,
-                "width" => 78,
-                "actFormat" => "%.0f",
-                "maxFormat" => "%.0f",
-                "minVerbosity" => 1,
-                "maxVerbosity" => false,
-            )
+            ["barChar" => "+", "emptyChar" => "-", "formatString" => "%act% / %max% [%bar%] %fraction%%", "fractionFormat" => "%01.2f", "progressChar" => ">", "redrawFrequency" => 1, "step" => 1, "width" => 78, "actFormat" => "%.0f", "maxFormat" => "%.0f", "minVerbosity" => 1, "maxVerbosity" => false]
         );
         $this->assertEquals( 
             $fake,

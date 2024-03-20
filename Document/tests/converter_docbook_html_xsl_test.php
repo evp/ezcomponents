@@ -21,7 +21,7 @@ class ezcDocumentConverterDocbookToHtmlXsltTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -29,15 +29,12 @@ class ezcDocumentConverterDocbookToHtmlXsltTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/docbook/xhtml_xslt/s_*.xml' );
+            $testFiles = glob( __DIR__ . '/files/docbook/xhtml_xslt/s_*.xml' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'html'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'html'];
             }
         }
 
@@ -71,7 +68,7 @@ class ezcDocumentConverterDocbookToHtmlXsltTests extends ezcTestCase
         try
         {
             $doc = new ezcDocumentDocbook();
-            $doc->loadFile( dirname( __FILE__ ) . '/files/docbook/xhtml_xslt/s_001_empty.xml' );
+            $doc->loadFile( __DIR__ . '/files/docbook/xhtml_xslt/s_001_empty.xml' );
 
             $converter = new ezcDocumentDocbookToHtmlXsltConverter();
             $converter->options->failOnError = true;

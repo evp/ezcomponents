@@ -83,7 +83,7 @@ class ezcWebdavTransport
     /**
      * Used for server software string in Server header. 
      */
-    const VERSION = '1.1.4';
+    public const VERSION = '1.1.4';
 
     /**
      * Map of HTTP methods to object method names for parsing.
@@ -94,18 +94,7 @@ class ezcWebdavTransport
      * @var array(string=>string)
      * @access private
      */
-    static public $parsingMap = array(
-        'COPY'      => 'parseCopyRequest',
-        'DELETE'    => 'parseDeleteRequest',
-        'GET'       => 'parseGetRequest',
-        'HEAD'      => 'parseHeadRequest',
-        'MKCOL'     => 'parseMakeCollectionRequest',
-        'MOVE'      => 'parseMoveRequest',
-        'OPTIONS'   => 'parseOptionsRequest',
-        'PROPFIND'  => 'parsePropFindRequest',
-        'PROPPATCH' => 'parsePropPatchRequest',
-        'PUT'       => 'parsePutRequest',
-    );
+    static public $parsingMap = ['COPY'      => 'parseCopyRequest', 'DELETE'    => 'parseDeleteRequest', 'GET'       => 'parseGetRequest', 'HEAD'      => 'parseHeadRequest', 'MKCOL'     => 'parseMakeCollectionRequest', 'MOVE'      => 'parseMoveRequest', 'OPTIONS'   => 'parseOptionsRequest', 'PROPFIND'  => 'parsePropFindRequest', 'PROPPATCH' => 'parsePropPatchRequest', 'PUT'       => 'parsePutRequest'];
 
     /**
      * Map of response objects to handling methods.
@@ -116,28 +105,14 @@ class ezcWebdavTransport
      * @var array(string=>string)
      * @access private
      */
-    static public $handlingMap = array(
-        'ezcWebdavCopyResponse'           => 'processCopyResponse',
-        'ezcWebdavDeleteResponse'         => 'processDeleteResponse',
-        'ezcWebdavErrorResponse'          => 'processErrorResponse',
-        'ezcWebdavGetCollectionResponse'  => 'processGetCollectionResponse',
-        'ezcWebdavGetResourceResponse'    => 'processGetResourceResponse',
-        'ezcWebdavHeadResponse'           => 'processHeadResponse',
-        'ezcWebdavMakeCollectionResponse' => 'processMakeCollectionResponse',
-        'ezcWebdavMoveResponse'           => 'processMoveResponse',
-        'ezcWebdavMultistatusResponse'    => 'processMultiStatusResponse',
-        'ezcWebdavOptionsResponse'        => 'processOptionsResponse',
-        'ezcWebdavPropFindResponse'       => 'processPropFindResponse',
-        'ezcWebdavPropPatchResponse'      => 'processPropPatchResponse',
-        'ezcWebdavPutResponse'            => 'processPutResponse',
-    );
+    static public $handlingMap = ['ezcWebdavCopyResponse'           => 'processCopyResponse', 'ezcWebdavDeleteResponse'         => 'processDeleteResponse', 'ezcWebdavErrorResponse'          => 'processErrorResponse', 'ezcWebdavGetCollectionResponse'  => 'processGetCollectionResponse', 'ezcWebdavGetResourceResponse'    => 'processGetResourceResponse', 'ezcWebdavHeadResponse'           => 'processHeadResponse', 'ezcWebdavMakeCollectionResponse' => 'processMakeCollectionResponse', 'ezcWebdavMoveResponse'           => 'processMoveResponse', 'ezcWebdavMultistatusResponse'    => 'processMultiStatusResponse', 'ezcWebdavOptionsResponse'        => 'processOptionsResponse', 'ezcWebdavPropFindResponse'       => 'processPropFindResponse', 'ezcWebdavPropPatchResponse'      => 'processPropPatchResponse', 'ezcWebdavPutResponse'            => 'processPutResponse'];
 
     /**
      * Properties.
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array();
+    protected $properties = [];
 
     /**
      * Parses the incoming request into a fitting request abstraction object.
@@ -180,17 +155,14 @@ class ezcWebdavTransport
             {
                 // Plugin hook beforeParseRequest
                 ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-                    __CLASS__,
+                    self::class,
                     'beforeParseRequest',
                     new ezcWebdavPluginParameters(
-                        array(
-                            'path' => &$path,
-                            'body' => &$body,
-                        )
+                        ['path' => &$path, 'body' => &$body]
                     )
                 );
 
-                $request = call_user_func( array( $this, self::$parsingMap[$_SERVER['REQUEST_METHOD']] ), $path, $body );
+                $request = call_user_func( [$this, self::$parsingMap[$_SERVER['REQUEST_METHOD']]], $path, $body );
             }
             catch ( Exception $e )
             {
@@ -201,14 +173,10 @@ class ezcWebdavTransport
         {
             // Plugin hook parseUnknownRequest
             $request = ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-                __CLASS__,
+                self::class,
                 'parseUnknownRequest',
                 new ezcWebdavPluginParameters(
-                    array(
-                        'path'          => &$path,
-                        'body'          => &$body,
-                        'requestMethod' => &$_SERVER['REQUEST_METHOD'],
-                    )
+                    ['path'          => &$path, 'body'          => &$body, 'requestMethod' => &$_SERVER['REQUEST_METHOD']]
                 )
             );
             
@@ -250,7 +218,7 @@ class ezcWebdavTransport
     {
         // Set the Server header with information about eZ Components version
         // and transport implementation.
-        $headers = ezcWebdavServer::getInstance()->headerHandler->parseHeaders( array( 'Server' ) );
+        $headers = ezcWebdavServer::getInstance()->headerHandler->parseHeaders( ['Server'] );
 
         $response->setHeader(
             'Server',
@@ -413,12 +381,10 @@ class ezcWebdavTransport
         {
             // Plugin hook processUnknownResponse
             $result = ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-                __CLASS__,
+                self::class,
                 'processUnknownResponse',
                 new ezcWebdavPluginParameters(
-                    array(
-                        'response'  => $response,
-                    )
+                    ['response'  => $response]
                 )
             );
 
@@ -433,16 +399,14 @@ class ezcWebdavTransport
             }
         }
         
-        $result = call_user_func( array( $this, self::$handlingMap[( $responseClass = get_class( $response ) )] ), $response );
+        $result = call_user_func( [$this, self::$handlingMap[( $responseClass = get_class( $response ) )]], $response );
 
         // Plugin hook afterProcessResponse
         ezcWebdavServer::getInstance()->pluginRegistry->announceHook(
-            __CLASS__,
+            self::class,
             'afterProcessResponse',
             new ezcWebdavPluginParameters(
-                array(
-                    'result'  => $result,
-                )
+                ['result'  => $result]
             )
         );
         return $result;
@@ -480,7 +444,7 @@ class ezcWebdavTransport
         switch ( true )
         {
             case ( $info instanceof ezcWebdavXmlDisplayInformation ):
-                $output->headers['Content-Type'] = ( isset( $output->headers['Content-Type'] ) ? $output->headers['Content-Type'] : 'text/xml; charset="utf-8"' );
+                $output->headers['Content-Type'] ??= 'text/xml; charset="utf-8"';
                 $info->body->formatOutput        = true;
                 $output->body                    = $info->body->saveXML( $info->body );
                 break;
@@ -519,7 +483,7 @@ class ezcWebdavTransport
         // Sends HTTP headers
         foreach ( $output->headers as $name => $content )
         {
-            $content   = is_array( $content ) ? $content : array( $content );
+            $content   = is_array( $content ) ? $content : [$content];
             $overwrite = true;
             foreach ( $content as $contentLine )
             {
@@ -589,9 +553,7 @@ class ezcWebdavTransport
         $req = new ezcWebdavPutRequest( $path, $body );
         $req->setHeaders(
             ezcWebdavServer::getInstance()->headerHandler->parseHeaders(
-                array(
-                    'Content-Length', 'Content-Type'
-                )
+                ['Content-Length', 'Content-Type']
             )
         );
         return $req;
@@ -646,7 +608,7 @@ class ezcWebdavTransport
     protected function parseCopyRequest( $path, $body )
     {
         $headers = ezcWebdavServer::getInstance()->headerHandler->parseHeaders(
-            array( 'Destination', 'Depth', 'Overwrite' )
+            ['Destination', 'Depth', 'Overwrite']
         );
 
         if ( !isset( $headers['Destination'] ) )
@@ -706,7 +668,7 @@ class ezcWebdavTransport
     protected function parseMoveRequest( $path, $body )
     {
         $headers = ezcWebdavServer::getInstance()->headerHandler->parseHeaders(
-            array( 'Destination', 'Depth', 'Overwrite' )
+            ['Destination', 'Depth', 'Overwrite']
         );
 
         if ( !isset( $headers['Destination'] ) )
@@ -786,7 +748,7 @@ class ezcWebdavTransport
                 }
                 else
                 {
-                    $keepAliveContent = array();
+                    $keepAliveContent = [];
                     $hrefNodes        = $propertyBehaviourNode->firstChild->getElementsByTagName( 'href' );
 
                     for ( $i = 0; $i < $hrefNodes->length; ++$i )
@@ -900,7 +862,7 @@ class ezcWebdavTransport
 
         $request->setHeaders(
             ezcWebdavServer::getInstance()->headerHandler->parseHeaders(
-                array( 'Depth' )
+                ['Depth']
             )
         );
 
@@ -1323,8 +1285,8 @@ class ezcWebdavTransport
         if ( $response->getHeader( 'Content-Type' ) === null )
         {
             $contentTypeProperty = $response->resource->liveProperties->get( 'getcontenttype' );
-            $contentTypeHeader = ( $contentTypeProperty->mime    !== null ? $contentTypeProperty->mime    : 'application/octet-stream' ) .
-                '; charset="' .   ( $contentTypeProperty->charset !== null ? $contentTypeProperty->charset : 'utf-8' ) . '"';
+            $contentTypeHeader = ( $contentTypeProperty->mime ?? 'application/octet-stream' ) .
+                '; charset="' .   ( $contentTypeProperty->charset ?? 'utf-8' ) . '"';
             $response->setHeader( 'Content-Type', $contentTypeHeader );
         }
         // Content-Length automatically send by web server
@@ -1398,8 +1360,8 @@ class ezcWebdavTransport
         {
             $contentTypeProperty = $response->resource->liveProperties->get( 'getcontenttype' );
 
-            $contentTypeHeader = ( $contentTypeProperty->mime !== null    ? $contentTypeProperty->mime    : 'application/octet-stream' )
-               . '; charset="' . ( $contentTypeProperty->charset !== null ? $contentTypeProperty->charset : 'utf-8' ) . '"';
+            $contentTypeHeader = ( $contentTypeProperty->mime ?? 'application/octet-stream' )
+               . '; charset="' . ( $contentTypeProperty->charset ?? 'utf-8' ) . '"';
 
             $response->setHeader( 'Content-Type', $contentTypeHeader );
         }

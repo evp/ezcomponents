@@ -183,7 +183,7 @@ class ezcAuthenticationBcmathLibrary extends ezcAuthenticationBignumLibrary
             $yLast = $temp;
 
         }
-        return array( $xLast, $yLast, $a );
+        return [$xLast, $yLast, $a];
     }
 
     /**

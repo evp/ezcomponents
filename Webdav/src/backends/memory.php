@@ -53,9 +53,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      * 
      * @var array
      */
-    protected $content = array(
-        '/' => array(),
-    );
+    protected $content = ['/' => []];
 
     /**
      * Properties for collections and resources.
@@ -74,7 +72,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      * 
      * @var array
      */
-    protected $props = array();
+    protected $props = [];
 
     /**
      * Indicates wheather to fake live properties.
@@ -238,7 +236,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
 
             // Define default language
             $propertyStorage->attach(
-                new ezcWebdavGetContentLanguageProperty( array( 'en' ) )
+                new ezcWebdavGetContentLanguageProperty( ['en'] )
             );
 
             // Define default content type
@@ -347,7 +345,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
             if ( is_array( $content ) )
             {
                 // Content is a collection
-                $this->content[$resourcePath] = array();
+                $this->content[$resourcePath] = [];
                 $this->props[$resourcePath] = $this->initializeProperties(
                     $resourcePath,
                     true
@@ -387,7 +385,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     protected function createCollection( $path )
     {
         // Create collection
-        $this->content[$path] = array();
+        $this->content[$path] = [];
 
         // Add collection to parent node
         $this->content[dirname( $path )][] = $path;
@@ -547,7 +545,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     protected function performCopy( $fromPath, $toPath, $depth = ezcWebdavRequest::DEPTH_INFINITY )
     {
         $causeErrors = (bool) ( $this->options->failingOperations & ( ezcWebdavMemoryBackendOptions::REQUEST_COPY | ezcWebdavMemoryBackendOptions::REQUEST_MOVE ) );
-        $errors = array();
+        $errors = [];
         
         if ( !is_array( $this->content[$fromPath] ) ||
              ( is_array( $this->content[$fromPath] ) && ( $depth === ezcWebdavRequest::DEPTH_ZERO ) ) )
@@ -557,25 +555,25 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
             if ( $causeErrors && preg_match( $this->options->failForRegexp, $fromPath ) > 0 )
             {
                 // Completely abort with error
-                return array( ezcWebdavErrorResponse(
+                return [ezcWebdavErrorResponse(
                     ezcWebdavResponse::STATUS_423,
                     $fromPath
-                ) );
+                )];
             }
             if ( $causeErrors && preg_match( $this->options->failForRegexp, $toPath ) > 0 )
             {
                 // Completely abort with error
-                return array( ezcWebdavErrorResponse(
+                return [ezcWebdavErrorResponse(
                     ezcWebdavResponse::STATUS_412,
                     $toPath
-                ) );
+                )];
             }
 
             // Perform copy operation
             if ( is_array( $this->content[$fromPath] ) )
             {
                 // Create a new empty collection
-                $this->content[$toPath] = array();
+                $this->content[$toPath] = [];
             }
             else
             {
@@ -596,11 +594,11 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
         else
         {
             // Copy a collection
-            $errnousSubtrees = array();
+            $errnousSubtrees = [];
 
             // Array of copied collections, where the child names are required
             // to be modified depending on the success of the copy operation.
-            $copiedCollections = array();
+            $copiedCollections = [];
 
             // Check all nodes, if they math the fromPath
             foreach ( $this->content as $resource => $content )
@@ -615,7 +613,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
                 // already one of the parent nodes caused an error.
                 foreach ( $errnousSubtrees as $subtree )
                 {
-                    if ( strpos( $resource, $subtree ) )
+                    if ( strpos( $resource, (string) $subtree ) )
                     {
                         // Skip resource, then.
                         continue 2;
@@ -676,7 +674,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
                 {
                     foreach ( $errnousSubtrees as $subtree )
                     {
-                        if ( strpos( $child, $subtree ) )
+                        if ( strpos( $child, (string) $subtree ) )
                         {
                             // If child caused an error, it has not been
                             // copied, so we remove it.
@@ -711,7 +709,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
     protected function performDelete( $path )
     {
         // Check if any errors would occur during deletion process
-        $error = array();
+        $error = [];
         foreach ( $this->content as $name => $content )
         {
             if ( strpos( $name, $path ) === 0 && ( substr( $name, strlen( $path ), 1 ) === '/' || $name === $path ) )
@@ -800,7 +798,7 @@ class ezcWebdavMemoryBackend extends ezcWebdavSimpleBackend implements ezcWebdav
      */
     protected function getCollectionMembers( $path )
     {
-        $contents = array();
+        $contents = [];
 
         foreach ( $this->content[$path] as $child )
         {

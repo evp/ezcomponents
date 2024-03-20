@@ -5,7 +5,7 @@ require_once 'tutorial_autoload.php';
 $session = new ezcAuthenticationSession();
 $session->start();
 
-$url = isset( $_GET['openid_identifier'] ) ? $_GET['openid_identifier'] : $session->load();
+$url = $_GET['openid_identifier'] ?? $session->load();
 $action = isset( $_GET['action'] ) ? strtolower( $_GET['action'] ) : null;
 
 $credentials = new ezcAuthenticationIdCredentials( $url );
@@ -26,20 +26,12 @@ if ( !$authentication->run() )
 {
     // authentication did not succeed, so inform the user
     $status = $authentication->getStatus();
-    $err = array(
-             'ezcAuthenticationOpenidFilter' => array(
-                 ezcAuthenticationOpenidFilter::STATUS_SIGNATURE_INCORRECT => 'OpenID said the provided identifier was incorrect',
-                 ezcAuthenticationOpenidFilter::STATUS_CANCELLED => 'The OpenID authentication was cancelled',
-                 ezcAuthenticationOpenidFilter::STATUS_URL_INCORRECT => 'The identifier you provided is invalid'
-                 ),
-             'ezcAuthenticationSession' => array(
-                 ezcAuthenticationSession::STATUS_EMPTY => '',
-                 ezcAuthenticationSession::STATUS_EXPIRED => 'Session expired'
-                 )
-             );
+    $err = ['ezcAuthenticationOpenidFilter' => [ezcAuthenticationOpenidFilter::STATUS_SIGNATURE_INCORRECT => 'OpenID said the provided identifier was incorrect', ezcAuthenticationOpenidFilter::STATUS_CANCELLED => 'The OpenID authentication was cancelled', ezcAuthenticationOpenidFilter::STATUS_URL_INCORRECT => 'The identifier you provided is invalid'], 'ezcAuthenticationSession' => [ezcAuthenticationSession::STATUS_EMPTY => '', ezcAuthenticationSession::STATUS_EXPIRED => 'Session expired']];
     foreach ( $status as $line )
     {
-        list( $key, $value ) = each( $line );
+        $key = key($line);
+        $value = current($line);
+        next($line);
         echo $err[$key][$value] . "\n";
     }
 ?>

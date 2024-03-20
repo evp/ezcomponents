@@ -255,7 +255,7 @@ class ezcPersistentLoadHandler extends ezcPersistentSessionHandler
             ->fetchAll( PDO::FETCH_ASSOC );
 
         // Convert all the rows to states and then to objects.
-        $result = array();
+        $result = [];
         foreach ( $rows as $row )
         {
             $object = new $def->class;

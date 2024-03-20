@@ -13,14 +13,14 @@ require 'autoload.php';
 
 try
 {
-    $ini = new ezcConfigurationIniReader( dirname( __FILE__ ) . '/settings.ini' );
+    $ini = new ezcConfigurationIniReader( __DIR__ . '/settings.ini' );
     $conf = $ini->load();
 
     $title = $conf->getSetting( 'site', 'title' );
 
     print "Title is $title\n";
 
-    $settings = $conf->getSettings( 'db', array( 'host', 'user', 'password' ) );
+    $settings = $conf->getSettings( 'db', ['host', 'user', 'password'] );
     print "Connecting to database at '{$settings['host']}' with user '{$settings['user']}' and password '{$settings['password']}'\n";
 
     if ( $conf->hasSetting( 'db', 'socket' ) )

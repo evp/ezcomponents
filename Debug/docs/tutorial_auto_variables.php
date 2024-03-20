@@ -16,18 +16,18 @@ $service = "Paynet Terminal";
 // ... 
 
 // Add automatically the username to the log message, when the log message is either a SUCCESS_AUDIT or a FAILED_AUDIT.
-$log->setSeverityAttributes( ezcLog::SUCCESS_AUDIT | ezcLog::FAILED_AUDIT, array( "username" => $username ) );
+$log->setSeverityAttributes( ezcLog::SUCCESS_AUDIT | ezcLog::FAILED_AUDIT, ["username" => $username] );
 
 // Same can be done with the source of the log message.
-$log->setSourceAttributes( array( "Payment" ), array( "service" => $service ) );
+$log->setSourceAttributes( ["Payment"], ["service" => $service] );
 
 // Writing some log messages.
-$log->log( "Authentication failed", ezcLog::FAILED_AUDIT, array( "source" => "security", "category" => "login/logoff" ) );
+$log->log( "Authentication failed", ezcLog::FAILED_AUDIT, ["source" => "security", "category" => "login/logoff"] );
 
 $log->source = "Payment"; 
-$log->log( "Connecting with the server.", ezcLog::DEBUG, array( "category" => "external connections" ) );
+$log->log( "Connecting with the server.", ezcLog::DEBUG, ["category" => "external connections"] );
 
-$log->log( "Payed with creditcard.", ezcLog::SUCCESS_AUDIT, array( "category" => "shop" ) );
+$log->log( "Payed with creditcard.", ezcLog::SUCCESS_AUDIT, ["category" => "shop"] );
 
 
 ?>

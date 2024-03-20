@@ -23,16 +23,7 @@ class ezcDocumentPcssStyleBorderValue extends ezcDocumentPcssStyleValue
      * 
      * @var array
      */
-    protected $defaultValue = array(
-        'width' => 0,
-        'style'  => 'solid',
-        'color' => array(
-            'red'   => 1,
-            'green' => 1,
-            'blue'  => 1,
-            'alpha' => 0,
-        )
-    );
+    protected $defaultValue = ['width' => 0, 'style'  => 'solid', 'color' => ['red'   => 1, 'green' => 1, 'blue'  => 1, 'alpha' => 0]];
 
     /**
      * Construct value.
@@ -43,7 +34,7 @@ class ezcDocumentPcssStyleBorderValue extends ezcDocumentPcssStyleValue
      */
     public function __construct( $value = null )
     {
-        parent::__construct( $value === null ? $this->defaultValue : $value );
+        parent::__construct( $value ?? $this->defaultValue );
     }
 
     /**

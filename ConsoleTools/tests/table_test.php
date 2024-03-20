@@ -17,40 +17,17 @@
  */
 class ezcConsoleTableTest extends ezcTestCase
 {
-    private $tableData1 = array( 
-        array( 'Heading no. 1', 'Longer heading no. 2', 'Head 3' ),
-        array( 'Data cell 1', 'Data cell 2', 'Data cell 3' ),
-        array( 'Long long data cell with even more text in it...', 'Data cell 4', 'Data cell 5' ),
-        array( 'a b c d e f g h i j k l m n o p q r s t u v w x ', 'Data cell', 'Data cell' ),
-    );
+    private $tableData1 = [['Heading no. 1', 'Longer heading no. 2', 'Head 3'], ['Data cell 1', 'Data cell 2', 'Data cell 3'], ['Long long data cell with even more text in it...', 'Data cell 4', 'Data cell 5'], ['a b c d e f g h i j k l m n o p q r s t u v w x ', 'Data cell', 'Data cell']];
 
-    private $tableData2 = array( 
-        array( 'a', 'b', 'c', 'd', 'e', 'f' ),
-        array( 'g', 'h', 'i', 'j', 'k', 'l' ),
-    );
+    private $tableData2 = [['a', 'b', 'c', 'd', 'e', 'f'], ['g', 'h', 'i', 'j', 'k', 'l']];
 
-    private $tableData3 = array( 
-        array( 'Parameter', 'Shortcut', 'Descrition' ),
-        array( 'Append text to a file. This parameter takes a string value and may be used multiple times.', '--append', '-a' ),
-        array( 'Prepend text to a file. This parameter takes a string value and may be used multiple times.', '--prepend', '-p' ),
-        array( 'Forces the action desired without paying attention to any errors.', '--force', '-f' ),
-        array( 'Silence all kinds of warnings issued by this program.', '--silent', '-s' ),
-    );
+    private $tableData3 = [['Parameter', 'Shortcut', 'Descrition'], ['Append text to a file. This parameter takes a string value and may be used multiple times.', '--append', '-a'], ['Prepend text to a file. This parameter takes a string value and may be used multiple times.', '--prepend', '-p'], ['Forces the action desired without paying attention to any errors.', '--force', '-f'], ['Silence all kinds of warnings issued by this program.', '--silent', '-s']];
     
-    private $tableData4 = array( 
-        array( 'Some very very long data here.... and it becomes even much much longer... and even longer....', 'Short', 'Some very very long data here.... and it becomes even much much longer... and even longer....', 'Short' ),
-        array( 'Short', "Some very very long data here....\n\nand it becomes even much much longer...\n\nand even longer....", 'Short', 'Some very very long data here.... and it becomes even much much longer... and even longer....' ),
-    );
+    private $tableData4 = [['Some very very long data here.... and it becomes even much much longer... and even longer....', 'Short', 'Some very very long data here.... and it becomes even much much longer... and even longer....', 'Short'], ['Short', "Some very very long data here....\n\nand it becomes even much much longer...\n\nand even longer....", 'Short', 'Some very very long data here.... and it becomes even much much longer... and even longer....']];
 
-    private $tableData5 = array(
-        array( 'Short text', 'More short text' ),
-        array( "Short text\nShort text\nShort text\nShort text\nShort text\nShort text\nShort text\n", "More short text\nMore short text\nMore short text\n     Short text" )
-    );
+    private $tableData5 = [['Short text', 'More short text'], ["Short text\nShort text\nShort text\nShort text\nShort text\nShort text\nShort text\n", "More short text\nMore short text\nMore short text\n     Short text"]];
 
-    private $tableData6 = array(
-        array( 'Non UTF-8 column 1', 'Non UTF-8 column 2', 'Long long long long long long long non UTF-8 column' ),
-        array( 'Nön UTF-8 cölümn 1', 'Nön UTF-8 cölümn 2', 'Löng löng löng löng löng löng löng nön UTF-8 cölümn' ),
-    );
+    private $tableData6 = [['Non UTF-8 column 1', 'Non UTF-8 column 2', 'Long long long long long long long non UTF-8 column'], ['Nön UTF-8 cölümn 1', 'Nön UTF-8 cölümn 2', 'Löng löng löng löng löng löng löng nön UTF-8 cölümn']];
 
 	public static function suite()
 	{
@@ -60,24 +37,7 @@ class ezcConsoleTableTest extends ezcTestCase
     protected function setUp()
     {
         $this->output = new ezcConsoleOutput();
-        $formats = array(
-            'red' => array( 
-                'color' => 'red',
-                'style' => 'bold'
-            ),
-            'blue' => array( 
-                'color' => 'blue',
-                'style' => 'bold'
-            ),
-            'green' => array( 
-                'color' => 'green',
-                'style' => 'bold'
-            ),
-            'magenta' => array( 
-                'color' => 'magenta',
-                'style' => 'bold'
-            ),
-        );
+        $formats = ['red' => ['color' => 'red', 'style' => 'bold'], 'blue' => ['color' => 'blue', 'style' => 'bold'], 'green' => ['color' => 'green', 'style' => 'bold'], 'magenta' => ['color' => 'magenta', 'style' => 'bold']];
         foreach ( $formats as $name => $format )
         {
             foreach ( $format as $type => $val )
@@ -92,9 +52,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__, 
             $this->tableData1,
-            array( 'cols' => count( $this->tableData1[0] ), 'width' => 80 ),
-            array( 'lineFormatHead' => 'green' ),
-            array( 0 )
+            ['cols' => count( $this->tableData1[0] ), 'width' => 80],
+            ['lineFormatHead' => 'green'],
+            [0]
         );
     }
     
@@ -103,9 +63,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__, 
             $this->tableData1,
-            array( 'cols' => count( $this->tableData1[0] ), 'width' => 40 ),
-            array( 'lineFormatHead' => 'red',  ),
-            array( 0 )
+            ['cols' => count( $this->tableData1[0] ), 'width' => 40],
+            ['lineFormatHead' => 'red'],
+            [0]
         );
     }
     
@@ -114,8 +74,8 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData2,
-            array( 'cols' => count( $this->tableData2[0] ), 'width' =>  60 ),
-            array( 'lineFormatHead' => 'magenta', 'defaultAlign' => ezcConsoleTable::ALIGN_RIGHT, 'widthType' => ezcConsoleTable::WIDTH_FIXED )
+            ['cols' => count( $this->tableData2[0] ), 'width' =>  60],
+            ['lineFormatHead' => 'magenta', 'defaultAlign' => ezcConsoleTable::ALIGN_RIGHT, 'widthType' => ezcConsoleTable::WIDTH_FIXED]
         );
     }
     
@@ -124,8 +84,8 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData2,
-            array( 'cols' => count( $this->tableData2[0] ), 'width' =>  60 ),
-            array( 'lineFormatHead' => 'magenta', 'defaultAlign' => ezcConsoleTable::ALIGN_RIGHT )
+            ['cols' => count( $this->tableData2[0] ), 'width' =>  60],
+            ['lineFormatHead' => 'magenta', 'defaultAlign' => ezcConsoleTable::ALIGN_RIGHT]
         );
     }
    
@@ -135,8 +95,8 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData2,
-            array( 'width' =>  100 ),
-            array( 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colPadding' => '~~~', 'widthType' => ezcConsoleTable::WIDTH_FIXED )
+            ['width' =>  100],
+            ['defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colPadding' => '~~~', 'widthType' => ezcConsoleTable::WIDTH_FIXED]
         );
     }
     
@@ -146,8 +106,8 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData2,
-            array( 'width' =>  100 ),
-            array( 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colPadding' => '~~~' )
+            ['width' =>  100],
+            ['defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colPadding' => '~~~']
         );
     }
     
@@ -156,9 +116,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData3,
-            array( 'cols' => count( $this->tableData3[0] ), 'width' =>  120 ),
-            array( 'lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'lineVertical' => '#', 'lineHorizontal' => '#', 'corner' => '#' ),
-            array( 0, 3 )
+            ['cols' => count( $this->tableData3[0] ), 'width' =>  120],
+            ['lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'lineVertical' => '#', 'lineHorizontal' => '#', 'corner' => '#'],
+            [0, 3]
         );
     }
     
@@ -167,9 +127,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData3,
-            array( 'cols' => count( $this->tableData3[0] ), 'width' =>  80 ),
-            array( 'lineFormatHead' => 'magenta', 'lineVertical' => 'v', 'lineHorizontal' => 'h', 'corner' => 'c' ),
-            array( 1, 2 )
+            ['cols' => count( $this->tableData3[0] ), 'width' =>  80],
+            ['lineFormatHead' => 'magenta', 'lineVertical' => 'v', 'lineHorizontal' => 'h', 'corner' => 'c'],
+            [1, 2]
         );
     }
     
@@ -178,9 +138,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData3,
-            array( 'cols' => count( $this->tableData3[0] ), 'width' =>  30 ),
-            array( 'lineFormatHead' => 'magenta', 'colWrap' => ezcConsoleTable::WRAP_NONE ),
-            array( 1, 2 )
+            ['cols' => count( $this->tableData3[0] ), 'width' =>  30],
+            ['lineFormatHead' => 'magenta', 'colWrap' => ezcConsoleTable::WRAP_NONE],
+            [1, 2]
         );
     }
     
@@ -189,9 +149,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData3,
-            array( 'cols' => count( $this->tableData3[0] ), 'width' =>  9 ),
-            array( 'lineFormatHead' => 'magenta', 'colWrap' => ezcConsoleTable::WRAP_CUT, 'colWidth' => array( 3, 3, 3 ) ),
-            array( 1, 2 )
+            ['cols' => count( $this->tableData3[0] ), 'width' =>  9],
+            ['lineFormatHead' => 'magenta', 'colWrap' => ezcConsoleTable::WRAP_CUT, 'colWidth' => [3, 3, 3]],
+            [1, 2]
         );
     }
      
@@ -200,9 +160,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData4,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colWrap' => ezcConsoleTable::WRAP_CUT ),
-            array( 0 )
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colWrap' => ezcConsoleTable::WRAP_CUT],
+            [0]
         );
     }
     
@@ -211,9 +171,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData4,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_LEFT, 'colWrap' => ezcConsoleTable::WRAP_AUTO ),
-            array( 0 )
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_LEFT, 'colWrap' => ezcConsoleTable::WRAP_AUTO],
+            [0]
         );
     }
     
@@ -222,9 +182,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData4,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colWrap' => ezcConsoleTable::WRAP_CUT ),
-            array( 0 )
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['lineFormatHead' => 'blue', 'defaultAlign' => ezcConsoleTable::ALIGN_CENTER, 'colWrap' => ezcConsoleTable::WRAP_CUT],
+            [0]
         );
     }
     
@@ -233,9 +193,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData5,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'widthType' => ezcConsoleTable::WIDTH_MAX ),
-            array()
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['widthType' => ezcConsoleTable::WIDTH_MAX],
+            []
         );
     }
     
@@ -244,9 +204,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData4,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'lineVertical' => null, 'lineHorizontal' => null, 'corner' => null ),
-            array( 0 )
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['lineVertical' => null, 'lineHorizontal' => null, 'corner' => null],
+            [0]
         );
     }
     
@@ -255,9 +215,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData4,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'lineVertical' => ' ', 'lineHorizontal' => ' ', 'corner' => ' ' ),
-            array( 0 )
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['lineVertical' => ' ', 'lineHorizontal' => ' ', 'corner' => ' '],
+            [0]
         );
     }
     
@@ -266,9 +226,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData4,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'lineVertical' => null ),
-            array( 0 )
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['lineVertical' => null],
+            [0]
         );
     }
     
@@ -277,9 +237,9 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData4,
-            array( 'cols' => count( $this->tableData4[0] ), 'width' =>  120 ),
-            array( 'lineHorizontal' => null ),
-            array( 0 )
+            ['cols' => count( $this->tableData4[0] ), 'width' =>  120],
+            ['lineHorizontal' => null],
+            [0]
         );
     }
 
@@ -326,24 +286,21 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData6,
-            array( 'cols' => count( $this->tableData6[0] ), 'width' =>  80 ),
-            array( 'lineFormatHead' => 'red' ),
-            array( 0 )
+            ['cols' => count( $this->tableData6[0] ), 'width' =>  80],
+            ['lineFormatHead' => 'red'],
+            [0]
         );
     }
 
     public function testUtf8TableHighlightUtf8()
     {
-        $data = array(
-            0 => $this->tableData6[1],
-            1 => $this->tableData6[0],
-        );
+        $data = [0 => $this->tableData6[1], 1 => $this->tableData6[0]];
         $this->commonTableTest(
             __FUNCTION__,
             $data,
-            array( 'cols' => count( $data[0] ), 'width' =>  80 ),
-            array( 'lineFormatHead' => 'red' ),
-            array( 0 )
+            ['cols' => count( $data[0] ), 'width' =>  80],
+            ['lineFormatHead' => 'red'],
+            [0]
         );
     }
 
@@ -354,8 +311,8 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->commonTableTest(
             __FUNCTION__,
             $this->tableData2,
-            array( 'cols' => count( $this->tableData2[0] ), 'width' => 80 ),
-            array()
+            ['cols' => count( $this->tableData2[0] ), 'width' => 80],
+            []
         );
     }
     
@@ -422,7 +379,7 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testSetAccessOptionsSuccess()
     {
         $table = new ezcConsoleTable( $this->output, 80 );
-        $table->options->colWidth = array( 1, 2, 3 );
+        $table->options->colWidth = [1, 2, 3];
         $table->options->colWrap = ezcConsoleTable::WRAP_CUT;
         $table->options->defaultAlign = ezcConsoleTable::ALIGN_CENTER;
         $table->options->colPadding = ':';
@@ -433,7 +390,7 @@ class ezcConsoleTableTest extends ezcTestCase
         $table->options->defaultFormat = 'test';
         $table->options->defaultBorderFormat = 'test2';
         
-        $this->assertEquals( array( 1, 2, 3 ), $table->options->colWidth );
+        $this->assertEquals( [1, 2, 3], $table->options->colWidth );
         $this->assertEquals( ezcConsoleTable::WRAP_CUT, $table->options->colWrap );
         $this->assertEquals( ezcConsoleTable::ALIGN_CENTER, $table->options->defaultAlign );
         $this->assertEquals( ':', $table->options->colPadding );
@@ -448,7 +405,7 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testSetAccessOptionsSuccess2()
     {
         $opt = new ezcConsoleTableOptions(
-            array( 1, 2, 3 ),
+            [1, 2, 3],
             ezcConsoleTable::WRAP_CUT,
             ezcConsoleTable::ALIGN_CENTER,
             ':',
@@ -459,7 +416,7 @@ class ezcConsoleTableTest extends ezcTestCase
             'test',
             'test2'
         );
-        $this->assertEquals( array( 1, 2, 3 ), $opt->colWidth );
+        $this->assertEquals( [1, 2, 3], $opt->colWidth );
         $this->assertEquals( ezcConsoleTable::WRAP_CUT, $opt->colWrap );
         $this->assertEquals( ezcConsoleTable::ALIGN_CENTER, $opt->defaultAlign );
         $this->assertEquals( ':', $opt->colPadding );
@@ -474,20 +431,9 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testSetAccessOptionsSuccess3()
     {
         $opt = new ezcConsoleTableOptions(
-            array(
-                "colWidth" => array( 1, 2, 3 ),
-                "colWrap" => ezcConsoleTable::WRAP_CUT,
-                "defaultAlign" => ezcConsoleTable::ALIGN_CENTER,
-                "colPadding" => ':',
-                "widthType" => ezcConsoleTable::WIDTH_FIXED,
-                "lineVertical" => ':',
-                "lineHorizontal" => '-',
-                "corner" => 'o',
-                "defaultFormat" => 'test',
-                "defaultBorderFormat" => 'test2'
-            )
+            ["colWidth" => [1, 2, 3], "colWrap" => ezcConsoleTable::WRAP_CUT, "defaultAlign" => ezcConsoleTable::ALIGN_CENTER, "colPadding" => ':', "widthType" => ezcConsoleTable::WIDTH_FIXED, "lineVertical" => ':', "lineHorizontal" => '-', "corner" => 'o', "defaultFormat" => 'test', "defaultBorderFormat" => 'test2']
         );
-        $this->assertEquals( array( 1, 2, 3 ), $opt->colWidth );
+        $this->assertEquals( [1, 2, 3], $opt->colWidth );
         $this->assertEquals( ezcConsoleTable::WRAP_CUT, $opt->colWrap );
         $this->assertEquals( ezcConsoleTable::ALIGN_CENTER, $opt->defaultAlign );
         $this->assertEquals( ':', $opt->colPadding );
@@ -619,7 +565,7 @@ class ezcConsoleTableTest extends ezcTestCase
         
         try
         {
-            $table->options->defaultFormat = array();
+            $table->options->defaultFormat = [];
         } 
         catch ( ezcBaseValueException $e)
         {
@@ -662,20 +608,9 @@ class ezcConsoleTableTest extends ezcTestCase
 
     public function testSetOptionsSuccess()
     {
-        $optArr = array(
-            "colWidth" => array( 1, 2, 3 ),
-            "colWrap" => ezcConsoleTable::WRAP_CUT,
-            "defaultAlign" => ezcConsoleTable::ALIGN_CENTER,
-            "colPadding" => ':',
-            "widthType" => ezcConsoleTable::WIDTH_FIXED,
-            "lineVertical" => ':',
-            "lineHorizontal" => '-',
-            "corner" => 'o',
-            "defaultFormat" => 'test',
-            "defaultBorderFormat" => 'test2'
-        );
+        $optArr = ["colWidth" => [1, 2, 3], "colWrap" => ezcConsoleTable::WRAP_CUT, "defaultAlign" => ezcConsoleTable::ALIGN_CENTER, "colPadding" => ':', "widthType" => ezcConsoleTable::WIDTH_FIXED, "lineVertical" => ':', "lineHorizontal" => '-', "corner" => 'o', "defaultFormat" => 'test', "defaultBorderFormat" => 'test2'];
         $optObj = new ezcConsoleTableOptions(
-            array( 1, 2, 3 ),
+            [1, 2, 3],
             ezcConsoleTable::WRAP_CUT,
             ezcConsoleTable::ALIGN_CENTER,
             ':',
@@ -716,7 +651,7 @@ class ezcConsoleTableTest extends ezcTestCase
     public function testGetOptions()
     {
         $optObj = new ezcConsoleTableOptions(
-            array( 1, 2, 3 ),
+            [1, 2, 3],
             ezcConsoleTable::WRAP_CUT,
             ezcConsoleTable::ALIGN_CENTER,
             ':',
@@ -751,7 +686,7 @@ class ezcConsoleTableTest extends ezcTestCase
         $table->outputTable();
         $res = ob_get_clean();
 
-        $refFile = dirname( __FILE__ ) . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testTable1a.dat';
+        $refFile = __DIR__ . '/data/' . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" ) . 'testTable1a.dat';
         $this->assertEquals(
             file_get_contents( $refFile ),
             $res,
@@ -1033,7 +968,7 @@ class ezcConsoleTableTest extends ezcTestCase
         $this->assertFalse( isset( $table->foo ) );
     }
     
-    private function commonTableTest( $refFile, $tableData, $settings, $options, $headrows = array() )
+    private function commonTableTest( $refFile, $tableData, $settings, $options, $headrows = [] )
     {
         $table =  new ezcConsoleTable( 
             $this->output,
@@ -1065,7 +1000,7 @@ class ezcConsoleTableTest extends ezcTestCase
         // Apply head format to head rows
         foreach ( $headrows as $row )
         {
-            $table[$row]->borderFormat = isset( $options['lineFormatHead'] ) ? $options['lineFormatHead'] : 'default';
+            $table[$row]->borderFormat = $options['lineFormatHead'] ?? 'default';
         }
         
         // For visual inspection, uncomment this block
@@ -1084,7 +1019,7 @@ class ezcConsoleTableTest extends ezcTestCase
 
     protected function assertTableOutputEquals( $expectedRef, $actualContent )
     {
-        $refFile = dirname( __FILE__ ) 
+        $refFile = __DIR__ 
             . '/data/' 
             . ( ezcBaseFeatures::os() === "Windows" ? "windows/" : "posix/" )
             . $expectedRef

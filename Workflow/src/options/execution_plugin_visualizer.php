@@ -26,10 +26,7 @@ class ezcWorkflowExecutionVisualizerPluginOptions extends ezcBaseOptions
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'directory'        => null,
-        'includeVariables' => true,
-    );
+    protected $properties = ['directory'        => null, 'includeVariables' => true];
 
     /**
      * Property write access.

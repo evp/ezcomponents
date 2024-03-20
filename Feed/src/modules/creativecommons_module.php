@@ -131,14 +131,14 @@ class ezcFeedCreativeCommonsModule extends ezcFeedModule
         switch ( $this->level )
         {
             case 'feed':
-                if ( in_array( $name, array( 'license' ) ) )
+                if ( in_array( $name, ['license'] ) )
                 {
                     return true;
                 }
                 break;
 
             case 'item':
-                if ( in_array( $name, array( 'license' ) ) )
+                if ( in_array( $name, ['license'] ) )
                 {
                     return true;
                 }
@@ -187,7 +187,7 @@ class ezcFeedCreativeCommonsModule extends ezcFeedModule
     {
         if ( isset( $this->license ) )
         {
-            $elementTag = $xml->createElement( $this->getNamespacePrefix() . ':' . 'license' );
+            $elementTag = $xml->createElement( static::getNamespacePrefix() . ':' . 'license' );
             $root->appendChild( $elementTag );
 
             $elementTag->nodeValue = $this->license->__toString();

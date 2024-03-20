@@ -45,7 +45,7 @@ class PersistentTestObjectCasesensitive
     {
         $db = ezcDbInstance::get();
         $schema = ezcDbSchema::createFromDb( $db );
-        $schema->writeToFile( 'array', dirname( __FILE__ ) . '/persistent_test_object_casesensitive.dba' );
+        $schema->writeToFile( 'array', __DIR__ . '/persistent_test_object_casesensitive.dba' );
     }
 
     /**
@@ -54,7 +54,7 @@ class PersistentTestObjectCasesensitive
     public static function setupTable()
     {
         $db = ezcDbInstance::get();
-        $schema = ezcDbSchema::createFromFile( 'array', dirname( __FILE__ ) . '/persistent_test_object_casesensitive.dba' );
+        $schema = ezcDbSchema::createFromFile( 'array', __DIR__ . '/persistent_test_object_casesensitive.dba' );
         $schema->writeToDb( $db );
     }
 
@@ -78,7 +78,7 @@ class PersistentTestObjectCasesensitive
 
     public function getState()
     {
-        $result = array();
+        $result = [];
         $result['id'] = $this->id;
         $result['DECIMAL'] = $this->DECIMAL;
         $result['varChar'] = $this->varChar;

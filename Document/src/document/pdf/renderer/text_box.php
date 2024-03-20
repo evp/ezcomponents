@@ -304,12 +304,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
              ( $styles['background-color']->value['alpha'] < 1 ) )
         {
             $this->driver->drawPolygon(
-                array(
-                    array( $x, $y ),
-                    array( $x + $width, $y ),
-                    array( $x + $width, $y + $height * $styles['line-height']->value ),
-                    array( $x, $y + $height * $styles['line-height']->value ),
-                ),
+                [[$x, $y], [$x + $width, $y], [$x + $width, $y + $height * $styles['line-height']->value], [$x, $y + $height * $styles['line-height']->value]],
                 $styles['background-color']->value
             );
         }
@@ -317,10 +312,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
         if ( strpos( $styles['text-decoration'], 'line-through' ) !== false )
         {
             $this->driver->drawPolyline(
-                array(
-                    array( $x, $y + $height - $styles['font-size']->value / 3 ),
-                    array( $x + $width, $y + $height - $styles['font-size']->value / 3 ),
-                ),
+                [[$x, $y + $height - $styles['font-size']->value / 3], [$x + $width, $y + $height - $styles['font-size']->value / 3]],
                 $styles['color']->value,
                 // @todo: How thick should line-throughs be?
                 ezcDocumentPcssMeasure::create( '1px' )->get(),
@@ -331,10 +323,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
         if ( strpos( $styles['text-decoration'], 'overline' ) !== false )
         {
             $this->driver->drawPolyline(
-                array(
-                    array( $x, $y ),
-                    array( $x + $width, $y ),
-                ),
+                [[$x, $y], [$x + $width, $y]],
                 $styles['color']->value,
                 // @todo: How thick should overlines be?
                 ezcDocumentPcssMeasure::create( '1px' )->get(),
@@ -345,10 +334,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
         if ( strpos( $styles['text-decoration'], 'underline' ) !== false )
         {
             $this->driver->drawPolyline(
-                array(
-                    array( $x, $y + $height * 1.1 ),
-                    array( $x + $width, $y + $height * 1.1 ),
-                ),
+                [[$x, $y + $height * 1.1], [$x + $width, $y + $height * 1.1]],
                 $styles['color']->value,
                 // @todo: How thick should underlines be?
                 ezcDocumentPcssMeasure::create( '1px' )->get(),
@@ -375,16 +361,13 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
      */
     protected function tokenize( ezcDocumentLocateableDomElement $element, ezcDocumentPdfTokenizer $tokenizer, $recursed = false )
     {
-        $tokens = array();
+        $tokens = [];
         $rules  = $this->styles->inferenceFormattingRules( $element, ezcDocumentPcssStyleInferencer::TEXT );
 
         // Do not inherit background and border rules from paragraph
         if ( !$recursed )
         {
-            $rules = array_diff_key( $rules, array(
-                'background-color' => true,
-                'border'           => true,
-            ) );
+            $rules = array_diff_key( $rules, ['background-color' => true, 'border'           => true] );
         }
 
         $url    = $element->tagName === 'ulink' && $element->hasAttribute( 'url'    ) ? $element->getAttribute( 'url'    ) : null;
@@ -399,12 +382,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
                     $words = $tokenizer->tokenize( $child->textContent );
                     foreach ( $words as $word )
                     {
-                        $tokens[] = array(
-                            'word'   => $word,
-                            'style'  => $rules,
-                            'url'    => $url,
-                            'target' => $target,
-                        );
+                        $tokens[] = ['word'   => $word, 'style'  => $rules, 'url'    => $url, 'target' => $target];
                     }
                     break;
 
@@ -468,10 +446,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
             --$length;
         }
 
-        return array(
-            iconv_substr( $word, 0, $length ),
-            iconv_substr( $word, $length )
-        );
+        return [iconv_substr( $word, 0, $length ), iconv_substr( $word, $length )];
     }
 
     /**
@@ -488,12 +463,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
      */
     protected function fitTokensInLines( array $tokens, ezcDocumentPdfHyphenator $hyphenator, $available )
     {
-        $lines    = array( array(
-            'tokens' => array(),
-            'height' => 0,
-            'words'  => 0,
-            'spaces' => 0,
-        ) );
+        $lines    = [['tokens' => [], 'height' => 0, 'words'  => 0, 'spaces' => 0]];
         $line     = 0;
         $consumed = 0;
         while ( $token = array_shift( $tokens ) )
@@ -503,12 +473,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
             {
                 // Continue rendering in next line
                 $consumed = 0;
-                $lines[++$line] = array(
-                    'tokens' => array(),
-                    'height' => 0,
-                    'words'  => 0,
-                    'spaces' => 0,
-                );
+                $lines[++$line] = ['tokens' => [], 'height' => 0, 'words'  => 0, 'spaces' => 0];
                 continue;
             }
 
@@ -549,12 +514,7 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
                 continue;
             }
 
-            $wordStack = array(
-                'tokens' => array(),
-                'height' => 0,
-                'words'  => 0,
-                'spaces' => 0,
-            );
+            $wordStack = ['tokens' => [], 'height' => 0, 'words'  => 0, 'spaces' => 0];
             $wConsumed = 0;
             do {
                 if ( ( $consumed + $wConsumed + ( $width = $this->driver->calculateWordWidth( $token['word'] ) ) ) < $available )
@@ -596,18 +556,13 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
 
                         $token['width']           = $width;
                         $token['word']            = $hyphen[0];
-                        $lines[$line]['tokens'] = array_merge( $lines[$line]['tokens'], $wordStack['tokens'], array( $token ) );
+                        $lines[$line]['tokens'] = array_merge( $lines[$line]['tokens'], $wordStack['tokens'], [$token] );
                         $lines[$line]['height'] = max( $lines[$line]['height'], $wordStack['height'], $this->driver->getCurrentLineHeight() );
                         $lines[$line]['words'] += $wordStack['words'] + 1;
 
                         // Continue rendering in next line
                         $consumed = 0;
-                        $lines[++$line] = array(
-                            'tokens' => array(),
-                            'height' => 0,
-                            'words'  => 0,
-                            'spaces' => 0,
-                        );
+                        $lines[++$line] = ['tokens' => [], 'height' => 0, 'words'  => 0, 'spaces' => 0];
                         continue 3;
                     }
                 }
@@ -624,18 +579,13 @@ class ezcDocumentPdfTextBoxRenderer extends ezcDocumentPdfBlockRenderer
 
                     $token['width']         = $this->driver->calculateWordWidth( $hyphen[0] );
                     $token['word']          = $hyphen[0];
-                    $lines[$line]['tokens'] = array( $token );
+                    $lines[$line]['tokens'] = [$token];
                     $lines[$line]['height'] = $this->driver->getCurrentLineHeight();
                     $lines[$line]['words']  = 1;
 
                     // Continue rendering in next line
                     $consumed = 0;
-                    $lines[++$line] = array(
-                        'tokens' => array(),
-                        'height' => 0,
-                        'words'  => 0,
-                        'spaces' => 0,
-                    );
+                    $lines[++$line] = ['tokens' => [], 'height' => 0, 'words'  => 0, 'spaces' => 0];
                     continue 2;
                 }
 

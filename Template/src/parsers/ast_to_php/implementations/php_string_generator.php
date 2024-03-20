@@ -42,7 +42,7 @@ class ezcTemplateAstToPhpStringGenerator extends ezcTemplateAstToPhpGenerator
         $this->hasWrittenFooter = false;
         $this->currentIndentation = 0;
         $this->indentationText = '';
-        $this->indentationStack = array();
+        $this->indentationStack = [];
         $this->newline = true;
 
         $this->sourceCharset = $configuration->sourceCharset;

@@ -17,7 +17,7 @@ class ezcArchiveBlockFileTest extends ezcTestCase
 {
     public function createTempFile( $file )
     {
-        $original = dirname(__FILE__) . "/../data/$file";
+        $original = __DIR__ . "/../data/$file";
 
         $tmpDir = $this->createTempDir( "ezcArchive_" );
         $tmpFile = $tmpDir . "/temp_file.tar";
@@ -28,7 +28,7 @@ class ezcArchiveBlockFileTest extends ezcTestCase
 
     public function testOpenFile()
     {
-        $blockFile = new ezcArchiveBlockFile( dirname(__FILE__) . "/../data/tar_ustar_2_textfiles.tar" );
+        $blockFile = new ezcArchiveBlockFile( __DIR__ . "/../data/tar_ustar_2_textfiles.tar" );
 
         $data = $blockFile->current();
         $this->assertEquals( "file1.txt", substr( $data, 0, 9 ) );
@@ -38,7 +38,7 @@ class ezcArchiveBlockFileTest extends ezcTestCase
     {
         try
         {
-            $blockFile = new ezcArchiveBlockFile( dirname(__FILE__) . "/../data/this_file_does_not_exist.tar" );
+            $blockFile = new ezcArchiveBlockFile( __DIR__ . "/../data/this_file_does_not_exist.tar" );
             $this->fail( "Expected a file not found exception." );
         }
         catch (ezcBaseFileNotFoundException $e)
@@ -48,7 +48,7 @@ class ezcArchiveBlockFileTest extends ezcTestCase
         // Same test, but now with a gzipped compressed file.
         try
         {
-            $blockFile = new ezcArchiveBlockFile( "compress.zlib://" . dirname( __FILE__ ) . "/../data/this_file_does_not_exist.tar.gz" );
+            $blockFile = new ezcArchiveBlockFile( "compress.zlib://" . __DIR__ . "/../data/this_file_does_not_exist.tar.gz" );
             $this->fail( "Expected a file not found exception." );
         }
         catch ( ezcBaseFileNotFoundException $e )
@@ -665,7 +665,7 @@ class ezcArchiveBlockFileTest extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 }
 ?>

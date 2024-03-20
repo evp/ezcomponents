@@ -36,7 +36,7 @@ class ezcWebdavServerConfigurationManager implements ArrayAccess, Iterator
      * 
      * @var array(int=>ezcWebdavServerConfiguration)
      */
-    protected $configurations = array();
+    protected $configurations = [];
 
     /**
      * Creates a new dispatcher.
@@ -98,7 +98,7 @@ class ezcWebdavServerConfigurationManager implements ArrayAccess, Iterator
         {
             throw new ezcBaseValueException( 'index', $offset, 'int >= 0, < number of transport configurations' );
         }
-        array_splice( $this->configurations, $offset, 0, array( $config ) );
+        array_splice( $this->configurations, $offset, 0, [$config] );
     }
 
     /**

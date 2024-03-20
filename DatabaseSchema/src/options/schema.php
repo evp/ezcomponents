@@ -36,7 +36,7 @@ class ezcDbSchemaOptions extends ezcBaseOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['tableClassName'] = 'ezcDbSchemaTable';
         $this->properties['fieldClassName'] = 'ezcDbSchemaField';
@@ -62,12 +62,7 @@ class ezcDbSchemaOptions extends ezcBaseOptions
      */
     public function __set( $propertyName, $propertyValue )
     {
-        $parentClassMap = array(
-            'tableClassName' => 'ezcDbSchemaTable',
-            'fieldClassName' => 'ezcDbSchemaField',
-            'indexClassName' => 'ezcDbSchemaIndex',
-            'indexFieldClassName' => 'ezcDbSchemaIndexField',
-        );
+        $parentClassMap = ['tableClassName' => 'ezcDbSchemaTable', 'fieldClassName' => 'ezcDbSchemaField', 'indexClassName' => 'ezcDbSchemaIndex', 'indexFieldClassName' => 'ezcDbSchemaIndexField'];
         switch ( $propertyName )
         {
             case 'tableClassName':

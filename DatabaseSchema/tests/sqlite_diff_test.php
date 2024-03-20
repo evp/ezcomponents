@@ -26,7 +26,7 @@ class ezcDatabaseSchemaSqliteDiffTest extends ezcDatabaseSchemaGenericDiffTest
             $this->markTestSkipped();
         }
 
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
+        $this->testFilesDir = __DIR__ . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabaseSqliteTest' );
         $this->resetDb();
     }
@@ -38,7 +38,9 @@ class ezcDatabaseSchemaSqliteDiffTest extends ezcDatabaseSchemaGenericDiffTest
         ORDER BY name;";
 
         $tables = $this->db->query( $queryStr )->fetchAll();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function (&$item, $key) {
+            $item = $item[0];
+        } );
 
         foreach ( $tables as $tableName )
         {
@@ -56,32 +58,13 @@ class ezcDatabaseSchemaSqliteDiffTest extends ezcDatabaseSchemaGenericDiffTest
 
     protected function getDiffExpectations1()
     {
-        $expected = array (
-            0 => "DROP INDEX 'tertiary'",
-            1 => "DROP INDEX 'bugdb_change_pri'",
-            2 => "ALTER TABLE 'bugdb_change' DROP COLUMN 'integerfield1'",
-            3 => "ALTER TABLE 'bugdb_change' CHANGE 'integerfield3' 'integerfield3' text(64)",
-            4 => "ALTER TABLE 'bugdb_change' ADD 'integerfield2' integer NOT NULL DEFAULT 0",
-            5 => "CREATE UNIQUE INDEX 'bugdb_change_pri' ON 'bugdb_change' ( 'integerfield2' )",
-            6 => "CREATE UNIQUE INDEX 'secondary' ON 'bugdb_change' ( 'integerfield3' )",
-            7 => "CREATE TABLE 'bugdb_added' (\n\t'integerfield1' integer\n)",
-            8 => "DROP TABLE 'bugdb_deleted'",
-        );
+        $expected = [0 => "DROP INDEX 'tertiary'", 1 => "DROP INDEX 'bugdb_change_pri'", 2 => "ALTER TABLE 'bugdb_change' DROP COLUMN 'integerfield1'", 3 => "ALTER TABLE 'bugdb_change' CHANGE 'integerfield3' 'integerfield3' text(64)", 4 => "ALTER TABLE 'bugdb_change' ADD 'integerfield2' integer NOT NULL DEFAULT 0", 5 => "CREATE UNIQUE INDEX 'bugdb_change_pri' ON 'bugdb_change' ( 'integerfield2' )", 6 => "CREATE UNIQUE INDEX 'secondary' ON 'bugdb_change' ( 'integerfield3' )", 7 => "CREATE TABLE 'bugdb_added' (\n\t'integerfield1' integer\n)", 8 => "DROP TABLE 'bugdb_deleted'"];
         return $expected;
     }
 
     protected function getDiffExpectations2()
     {
-        $expected = array (
-            0 => "DROP INDEX 'join'",
-            1 => "DROP INDEX 'bugdb_change_pri'",
-            2 => "ALTER TABLE 'bugdb_change' DROP COLUMN 'from'",
-            3 => "ALTER TABLE 'bugdb_change' ADD 'group' integer NOT NULL DEFAULT 0",
-            4 => "CREATE UNIQUE INDEX 'bugdb_change_pri' ON 'bugdb_change' ( 'group' )",
-            5 => "CREATE UNIQUE INDEX 'from' ON 'bugdb_change' ( 'table' )",
-            6 => "CREATE TABLE 'order' (\n\t'right' integer\n)",
-            7 => "DROP TABLE 'select'",
-        );
+        $expected = [0 => "DROP INDEX 'join'", 1 => "DROP INDEX 'bugdb_change_pri'", 2 => "ALTER TABLE 'bugdb_change' DROP COLUMN 'from'", 3 => "ALTER TABLE 'bugdb_change' ADD 'group' integer NOT NULL DEFAULT 0", 4 => "CREATE UNIQUE INDEX 'bugdb_change_pri' ON 'bugdb_change' ( 'group' )", 5 => "CREATE UNIQUE INDEX 'from' ON 'bugdb_change' ( 'table' )", 6 => "CREATE TABLE 'order' (\n\t'right' integer\n)", 7 => "DROP TABLE 'select'"];
         return $expected;
     }
 

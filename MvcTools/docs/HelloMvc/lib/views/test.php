@@ -3,7 +3,7 @@ class helloTestView extends ezcMvcView
 {
     function createZones( $layout )
     {
-        $zones = array();
+        $zones = [];
         $zones[] = new ezcMvcPhpViewHandler( 'content', '../templates/downloadTest.php' );
         return $zones;
     }

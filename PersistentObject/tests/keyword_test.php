@@ -39,7 +39,7 @@ class ezcPersistentKeywordTest extends ezcTestCase
         Table::setupTable();
 //        Table::saveSchema();
         $this->session = new ezcPersistentSession( ezcDbInstance::get(),
-                                                   new ezcPersistentCodeManager( dirname( __FILE__ ) . "/data/keywordtest" ) );
+                                                   new ezcPersistentCodeManager( __DIR__ . "/data/keywordtest" ) );
     }
 
     protected function tearDown()

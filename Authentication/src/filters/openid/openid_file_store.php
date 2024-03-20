@@ -39,7 +39,7 @@ class ezcAuthenticationOpenidFileStore extends ezcAuthenticationOpenidStore
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Creates a new object of this class.
@@ -54,7 +54,7 @@ class ezcAuthenticationOpenidFileStore extends ezcAuthenticationOpenidStore
     public function __construct( $path, ezcAuthenticationOpenidFileStoreOptions $options = null )
     {
         $this->path = $path;
-        $this->options = ( $options === null ) ? new ezcAuthenticationOpenidFileStoreOptions() : $options;
+        $this->options = $options ?? new ezcAuthenticationOpenidFileStoreOptions();
     }
 
     /**

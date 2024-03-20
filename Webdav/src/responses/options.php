@@ -20,9 +20,9 @@
 class ezcWebdavOptionsResponse extends ezcWebdavResponse
 {
 
-    const VERSION_ONE = '1';
-    const VERSION_TWO = '2';
-    const VERSION_ONE_EXTENDED = '1#extended';
+    public const VERSION_ONE = '1';
+    public const VERSION_TWO = '2';
+    public const VERSION_ONE_EXTENDED = '1#extended';
 
     /**
      * Creates a new response object.
@@ -36,7 +36,7 @@ class ezcWebdavOptionsResponse extends ezcWebdavResponse
     public function __construct( $version = null )
     {
         parent::__construct( ezcWebdavResponse::STATUS_200 );
-        $this->setHeader( 'DAV', ( $version === null ? '1' : $version ) );
+        $this->setHeader( 'DAV', ( $version ?? '1' ) );
     }
 
     /**

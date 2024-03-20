@@ -30,7 +30,7 @@ class ezcDocumentPdfImage
     /**
      * List of registered image handlers
      */
-    protected static $handler = array();
+    protected static $handler = [];
 
     /**
      * Path to image file
@@ -53,9 +53,7 @@ class ezcDocumentPdfImage
      */
     public function __construct()
     {
-        self::$handler = array(
-            new ezcDocumentPdfPhpImageHandler(),
-        );
+        self::$handler = [new ezcDocumentPdfPhpImageHandler()];
     }
 
     /**

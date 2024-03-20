@@ -35,11 +35,13 @@ class ezcDatabaseSchemaMySqlTest extends ezcDatabaseSchemaGenericTest
             $this->markTestSkipped();
         }
 
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
+        $this->testFilesDir = __DIR__ . '/testfiles/';
         $this->tempDir = $this->createTempDir( 'ezcDatabaseMySqlTest' );
 
         $tables = $this->db->query( "SHOW TABLES" )->fetchAll();
-        array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+        array_walk( $tables, function (&$item, $key) {
+            $item = $item[0];
+        } );
 
         foreach ( $tables as $tableName )
         {

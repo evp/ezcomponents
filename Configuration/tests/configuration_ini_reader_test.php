@@ -17,8 +17,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
     public function testConfigSettingUseComments()
     {
         $backend = new ezcConfigurationIniReader();
-        $backend->setOptions( array ( 'useComments' => true ) );
-        $backend->setOptions( array ( 'useComments' => false ) );
+        $backend->setOptions( ['useComments' => true] );
+        $backend->setOptions( ['useComments' => false] );
     }
 
     public function testConfigSettingUseCommentsWrongType()
@@ -26,7 +26,7 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader();
         try
         {
-            $backend->setOptions( array ( 'useComments' => 'tests/translations' ) );
+            $backend->setOptions( ['useComments' => 'tests/translations'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcBaseSettingValueException $e )
@@ -38,8 +38,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
     public function testGetOptions()
     {
         $backend = new ezcConfigurationIniReader();
-        $backend->setOptions( array ( 'useComments' => true ) );
-        $this->assertEquals( array ( 'useComments' => true ), $backend->getOptions() );
+        $backend->setOptions( ['useComments' => true] );
+        $this->assertEquals( ['useComments' => true], $backend->getOptions() );
     }
 
     public function testConfigSettingBroken()
@@ -47,7 +47,7 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader();
         try
         {
-            $backend->setOptions( array ( 'lOcAtIOn' => 'tests/translations' ) );
+            $backend->setOptions( ['lOcAtIOn' => 'tests/translations'] );
             $this->fail( 'Expected exception was not thrown' );
         }
         catch ( ezcBaseSettingNotFoundException $e )
@@ -157,20 +157,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/one-group.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                '#' => "Just one group",
-                'Setting1' => " This setting sucks",
-                'MultiRow' => " Multi\n row\n comment",
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = ['TheOnlyGroup' => ['#' => "Just one group", 'Setting1' => " This setting sucks", 'MultiRow' => " Multi\n row\n comment"]];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -181,20 +169,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend->load();
         $return = $backend->getConfig();
 
-        $settings = array(
-            'TheOnlyGroup' => array(
-                'Setting1' => true,
-                'SettingNoComment' => 42,
-                'MultiRow' => false,
-            )
-        );
-        $comments = array(
-            'TheOnlyGroup' => array(
-                '#' => "Just one group",
-                'Setting1' => " This setting sucks",
-                'MultiRow' => " Multi\n row\n comment",
-            )
-        );
+        $settings = ['TheOnlyGroup' => ['Setting1' => true, 'SettingNoComment' => 42, 'MultiRow' => false]];
+        $comments = ['TheOnlyGroup' => ['#' => "Just one group", 'Setting1' => " This setting sucks", 'MultiRow' => " Multi\n row\n comment"]];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -204,22 +180,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/two-groups.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            'NotTheOnlyGroup' => array(
-                'Setting1' => true,
-            ),
-            'TheSecond' => array(
-                'Setting1' => false,
-            ),
-        );
-        $comments = array(
-            'NotTheOnlyGroup' => array(
-                '#' => " Not just one group",
-            ),
-            'TheSecond' => array(
-                '#' => " The second group",
-            ),
-        );
+        $settings = ['NotTheOnlyGroup' => ['Setting1' => true], 'TheSecond' => ['Setting1' => false]];
+        $comments = ['NotTheOnlyGroup' => ['#' => " Not just one group"], 'TheSecond' => ['#' => " The second group"]];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -229,16 +191,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/kake.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            'SettingsBlock' => array(
-                'Kake' => array(
-                    'mann' => array( 'sjokolade', 'blåbær' ),
-                    'fyll' => array( 'pære', 'øl' ),
-                ),
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['SettingsBlock' => ['Kake' => ['mann' => ['sjokolade', 'blåbær'], 'fyll' => ['pære', 'øl']]]];
+        $comments = [];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -248,35 +202,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/formats.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            'FormatTest' => array(
-                'Decimal1' => 42,
-                'Decimal2' => 0,
-                'MaxSize' => 400,
-                'MinSize' => 0,
-                'Hex1' => 11189196,
-                'Hex2' => 11189196,
-                'Hex3' => 11189196,
-                'Hex4' => 11189196,
-                'TextColor' => 66302,
-                'Octal1' => 1,
-                'Octal2' => 458,
-                'Permission' => 438,
-                'Float1' => 0.2,
-                'Float2' => .8123,
-                'Float3' => 42.,
-                'Float4' => 314e-2,
-                'Float5' => 3.141592654e1,
-                'Price' => 10.4,
-                'Seed' => 10e5,
-                'String1' => 'Blah blah blah',
-                'String2' => 'Derick "Tiger" Rethans',
-                'String3' => 'Foo \\ Bar',
-                'String4' => 'Foo \\',
-            )
-        );
-        $comments = array(
-        );
+        $settings = ['FormatTest' => ['Decimal1' => 42, 'Decimal2' => 0, 'MaxSize' => 400, 'MinSize' => 0, 'Hex1' => 11189196, 'Hex2' => 11189196, 'Hex3' => 11189196, 'Hex4' => 11189196, 'TextColor' => 66302, 'Octal1' => 1, 'Octal2' => 458, 'Permission' => 438, 'Float1' => 0.2, 'Float2' => .8123, 'Float3' => 42., 'Float4' => 314e-2, 'Float5' => 3.141592654e1, 'Price' => 10.4, 'Seed' => 10e5, 'String1' => 'Blah blah blah', 'String2' => 'Derick "Tiger" Rethans', 'String3' => 'Foo \\ Bar', 'String4' => 'Foo \\']];
+        $comments = [];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -286,18 +213,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/multi-dim.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            '2D-numbered' => array(
-                'Decimal' => array( 42, 0 ),
-                'Mixed' => array( 42, 0.812, false, "Derick \"Tiger\" Rethans" ),
-            ),
-            '2D-associative' => array(
-                'Decimal' => array( 'a' => 42, 'b' => 0 ),
-                'Mixed' => array( 'a' => 42, 1 => 0.812, 'b' => false, 2 => "Derick \"Tiger\" Rethans" ),
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['2D-numbered' => ['Decimal' => [42, 0], 'Mixed' => [42, 0.812, false, "Derick \"Tiger\" Rethans"]], '2D-associative' => ['Decimal' => ['a' => 42, 'b' => 0], 'Mixed' => ['a' => 42, 1 => 0.812, 'b' => false, 2 => "Derick \"Tiger\" Rethans"]]];
+        $comments = [];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -307,25 +224,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/multi-dim2.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            '3D' => array(
-                'Decimal' => array( 42, 0 ),
-                'Array' =>  array(
-                    'Decimal' => array( 'a' => 42, 'b' => 0 ),
-                    'Mixed' => array( 'b' => false, 2 => "Derick \"Tiger\" Rethans" ),
-                ),
-                'Quote' => array( "quo\nted" => 'string' ),
-            ),
-        );
-        $comments = array(
-            '3D' => array(
-                'Decimal' => array( " One with a comment", " Second one with a comment" ),
-                'Array' => array(
-                    'Mixed' => array( 2 => " One with a comment" ),
-                ),
-                'Quote' => array( "quo\nted" => ' One with a quoted hash key' ),
-            ),
-        );
+        $settings = ['3D' => ['Decimal' => [42, 0], 'Array' =>  ['Decimal' => ['a' => 42, 'b' => 0], 'Mixed' => ['b' => false, 2 => "Derick \"Tiger\" Rethans"]], 'Quote' => ["quo\nted" => 'string']]];
+        $comments = ['3D' => ['Decimal' => [" One with a comment", " Second one with a comment"], 'Array' => ['Mixed' => [2 => " One with a comment"]], 'Quote' => ["quo\nted" => ' One with a quoted hash key']]];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -335,25 +235,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/multi-dim3.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            '3D' => array(
-                'Decimal' => array( 42, 0 ),
-                'Array' =>  array(
-                    'Decimal' => array( 'a' => 42, 'b' => 0 ),
-                    'Mixed' => array( 'b' => false, 2 => "Derick \"Tiger\" Rethans" ),
-                ),
-                'Quote' => array( "quo\nted" => 'string' ),
-            ),
-        );
-        $comments = array(
-            '3D' => array(
-                'Decimal' => array( " One with a comment", " Second one with a comment" ),
-                'Array' => array(
-                    'Mixed' => array( 2 => " One with a comment\n multiple lines" ),
-                ),
-                'Quote' => array( "quo\nted" => ' One with a quoted hash key' ),
-            ),
-        );
+        $settings = ['3D' => ['Decimal' => [42, 0], 'Array' =>  ['Decimal' => ['a' => 42, 'b' => 0], 'Mixed' => ['b' => false, 2 => "Derick \"Tiger\" Rethans"]], 'Quote' => ["quo\nted" => 'string']]];
+        $comments = ['3D' => ['Decimal' => [" One with a comment", " Second one with a comment"], 'Array' => ['Mixed' => [2 => " One with a comment\n multiple lines"]], 'Quote' => ["quo\nted" => ' One with a quoted hash key']]];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -367,32 +250,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/int-range.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            'int32' => array(
-                'InRange1' => -51,
-                'InRange2' => 59,
-                'InRangeJust0' => -2147483647,
-                'InRangeJust1' => (int) '-2147483648',
-                'InRangeJust2' => 2147483647,
-                'OutRangeJust1' => '-2147483649',
-                'OutRangeJust2' => '2147483648',
-                'OutRange1' => '-21474836480',
-                'OutRange2' => '21474836480',
-            ),
-            'int64' => array(
-                'InRange1' => -51,
-                'InRange2' => 59,
-                'InRangeJust0' => '-9223372036854775807',
-                'InRangeJust1' => '-9223372036854775808',
-                'InRangeJust2' => '9223372036854775807',
-                'OutRangeJust1' => '-9223372036854775809',
-                'OutRangeJust2' => '9223372036854775808',
-                'OutRange1' => '-92233720368547758080',
-                'OutRange2' => '92233720368547758080',
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['int32' => ['InRange1' => -51, 'InRange2' => 59, 'InRangeJust0' => -2147483647, 'InRangeJust1' => (int) '-2147483648', 'InRangeJust2' => 2147483647, 'OutRangeJust1' => '-2147483649', 'OutRangeJust2' => '2147483648', 'OutRange1' => '-21474836480', 'OutRange2' => '21474836480'], 'int64' => ['InRange1' => -51, 'InRange2' => 59, 'InRangeJust0' => '-9223372036854775807', 'InRangeJust1' => '-9223372036854775808', 'InRangeJust2' => '9223372036854775807', 'OutRangeJust1' => '-9223372036854775809', 'OutRangeJust2' => '9223372036854775808', 'OutRange1' => '-92233720368547758080', 'OutRange2' => '92233720368547758080']];
+        $comments = [];
         $expected = new ezcConfiguration( $settings, $comments );
 
         $this->assertSame( $expected->getAllSettings(), $return->getAllSettings() );
@@ -417,32 +276,19 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( 'Configuration/tests/files/int-range.ini' );
         $return = $backend->load();
 
-        $settings = array(
-            'int32' => array(
-                'InRange1' => -51,
-                'InRange2' => 59,
-                'InRangeJust0' => -2147483647,
-                'InRangeJust1' => -2147483648,
-                'InRangeJust2' => 2147483647,
-                'OutRangeJust1' => -2147483649,
-                'OutRangeJust2' => 2147483648,
-                'OutRange1' => -21474836480,
-                'OutRange2' => 21474836480,
-            ),
-            'int64' => array(
-                'InRange1' => -51,
-                'InRange2' => 59,
-                'InRangeJust0' => -9223372036854775807,
-                'InRangeJust1' => (int) '-9223372036854775808', // yes, this is really necessary
-                'InRangeJust2' => 9223372036854775807,
-                'OutRangeJust1' => '-9223372036854775809',
-                'OutRangeJust2' => '9223372036854775808',
-                'OutRange1' => '-92233720368547758080',
-                'OutRange2' => '92233720368547758080',
-            ),
-        );
-        $comments = array(
-        );
+        $settings = ['int32' => ['InRange1' => -51, 'InRange2' => 59, 'InRangeJust0' => -2147483647, 'InRangeJust1' => -2147483648, 'InRangeJust2' => 2147483647, 'OutRangeJust1' => -2147483649, 'OutRangeJust2' => 2147483648, 'OutRange1' => -21474836480, 'OutRange2' => 21474836480], 'int64' => [
+            'InRange1' => -51,
+            'InRange2' => 59,
+            'InRangeJust0' => -9223372036854775807,
+            'InRangeJust1' => (int) '-9223372036854775808',
+            // yes, this is really necessary
+            'InRangeJust2' => 9223372036854775807,
+            'OutRangeJust1' => '-9223372036854775809',
+            'OutRangeJust2' => '9223372036854775808',
+            'OutRange1' => '-92233720368547758080',
+            'OutRange2' => '92233720368547758080',
+        ]];
+        $comments = [];
         $expected = new ezcConfiguration( $settings, $comments );
 
         $this->assertSame( $expected->getAllSettings(), $return->getAllSettings() );
@@ -493,17 +339,8 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $backend = new ezcConfigurationIniReader( $path );
         $return = $backend->load();
 
-        $settings = array(
-            'TestSettings' => array(
-                'SettingA' => 1,
-                'SettingB' => 2,
-            ),
-        );
-        $comments = array(
-            'TestSettings' => array(
-                'SettingB' => " This setting has no new line behind it - make sure it stays like this in this\n test file"
-            ),
-        );
+        $settings = ['TestSettings' => ['SettingA' => 1, 'SettingB' => 2]];
+        $comments = ['TestSettings' => ['SettingB' => " This setting has no new line behind it - make sure it stays like this in this\n test file"]];
         $expected = new ezcConfiguration( $settings, $comments );
         $this->assertEquals( $expected, $return );
     }
@@ -530,7 +367,7 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $return = $backend->validate( false );
         $resultList = $return->getResultList();
 
-        $expected = array( new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 8, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" ) );
+        $expected = [new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 8, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" )];
         $this->assertEquals( $expected, $resultList );
     }
 
@@ -541,10 +378,7 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $return = $backend->validate( false );
         $resultList = $return->getResultList();
 
-        $expected = array(
-            new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 2, false, "Group ID 'Error Chars' has invalid characters", "Group ID 'Error Chars' has invalid characters" ),
-            new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 3, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" ),
-        );
+        $expected = [new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 2, false, "Group ID 'Error Chars' has invalid characters", "Group ID 'Error Chars' has invalid characters" ), new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 3, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" )];
         $this->assertEquals( $expected, $resultList );
     }
 
@@ -588,7 +422,7 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $return = $backend->validate( true );
         $resultList = $return->getResultList();
 
-        $expected = array( new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 8, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" ) );
+        $expected = [new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 8, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" )];
         $this->assertEquals( $expected, $resultList );
     }
 
@@ -599,10 +433,7 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $return = $backend->validate( true );
         $resultList = $return->getResultList();
 
-        $expected = array(
-            new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 2, false, "Group ID 'Error Chars' has invalid characters", "Group ID 'Error Chars' has invalid characters" ),
-            new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 3, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" ),
-        );
+        $expected = [new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 2, false, "Group ID 'Error Chars' has invalid characters", "Group ID 'Error Chars' has invalid characters" ), new ezcConfigurationValidationItem( ezcConfigurationValidationItem::ERROR, $path, 3, false, "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'", "Invalid data: 'c8756*&%&^%&%$&C%$%C*@%C*$'" )];
         $this->assertEquals( $expected, $resultList );
     }
 
@@ -630,7 +461,7 @@ class ezcConfigurationIniReaderTest extends ezcTestCase
         $path = 'Configuration/tests/files/bug15309.ini';
         $backend = new ezcConfigurationIniReader( $path );
         $return = $backend->load();
-        $this->assertEquals( array( "CÔTE D'IVOIRE" => 'Wybrzeże Kości Słoniowej' ), $return->getSetting( 'TestSettings', "Countries" ) );
+        $this->assertEquals( ["CÔTE D'IVOIRE" => 'Wybrzeże Kości Słoniowej'], $return->getSetting( 'TestSettings', "Countries" ) );
     }
 
     public static function suite()

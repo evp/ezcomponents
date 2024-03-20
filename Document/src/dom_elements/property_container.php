@@ -32,7 +32,7 @@ class ezcDocumentPropertyContainerDomElement extends DOMElement
      *
      * @var array
      */
-    protected static $properties = array();
+    protected static $properties = [];
 
     /**
      * Autoincrement unique ID for DOMElement nodes in XML documents.
@@ -45,7 +45,7 @@ class ezcDocumentPropertyContainerDomElement extends DOMElement
      * Namespace URI for the custom ID setting, for the association with
      * the node data.
      */
-    const NS_URI = 'http://ezcomponents.org/Document';
+    public const NS_URI = 'http://ezcomponents.org/Document';
 
     /**
      * Get property associated with node
@@ -84,7 +84,7 @@ class ezcDocumentPropertyContainerDomElement extends DOMElement
         {
             $id = self::$id++;
             $this->setAttributeNs( self::NS_URI, 'ez:id', $id );
-            self::$properties[$id] = array();
+            self::$properties[$id] = [];
         }
         else
         {

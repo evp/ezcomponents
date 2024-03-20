@@ -24,11 +24,13 @@ class ezcDatabaseSchemaPgsqlTest extends ezcDatabaseSchemaGenericTest
             {
                 throw new Exception("Skiping tests for PostgreSQL");
             }
-            $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
+            $this->testFilesDir = __DIR__ . '/testfiles/';
             $this->tempDir = $this->createTempDir( 'ezcDatabasePgSqlTest' );
 
             $tables = $this->db->query( "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'" )->fetchAll();
-            array_walk( $tables, create_function( '&$item,$key', '$item = $item[0];' ) );
+            array_walk( $tables, function (&$item, $key) {
+                $item = $item[0];
+            } );
 
             foreach ( $tables as $tableName )
             {

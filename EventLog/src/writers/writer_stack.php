@@ -24,7 +24,7 @@ class ezcLogStackWriter implements ezcLogWriter, IteratorAggregate
      *
      * @var array(int=>ezcLogEntry)
      */
-    protected $entries = array();
+    protected $entries = [];
 
     /**
      * Writes the message $message to the log.
@@ -48,7 +48,7 @@ class ezcLogStackWriter implements ezcLogWriter, IteratorAggregate
      * @param string $category
      * @param array(string=>string) $optional
      */
-    public function writeLogMessage( $message, $severity, $source, $category, $optional = array() )
+    public function writeLogMessage( $message, $severity, $source, $category, $optional = [] )
     {
         $this->entries[] = new ezcLogEntry( $message, $severity, $source, $category, $optional );
     }

@@ -9,7 +9,7 @@
  * @subpackage Test
  */
 
-require_once dirname( __FILE__ ) . '/property_test.php';
+require_once __DIR__ . '/property_test.php';
 
 /**
  * Test case for the ezcWebdavFileBackendOptions class.
@@ -22,7 +22,7 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
 {
     public static function suite()
     {
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     protected function setUp()
@@ -56,7 +56,7 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
             $reqGen
         );
         $this->assertAttributeEquals(
-            array(),
+            [],
             'requests',
             $reqGen
         );
@@ -93,7 +93,7 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
         $result->updates->attach(
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject( 
-                    array( $activeLock )
+                    [$activeLock]
                 )
             ),
             ezcWebdavPropPatchRequest::SET
@@ -103,7 +103,7 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
         $reqGen->notify( $propFindRes );
 
         $this->assertAttributeEquals(
-            array( $result ),
+            [$result],
             'requests',
             $reqGen
         );
@@ -125,14 +125,12 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
         // Fake PROPFIND response
         $lockDiscoveryProperty =  new ezcWebdavLockDiscoveryProperty(
             new ArrayObject(
-                array(
-                    new ezcWebdavLockDiscoveryPropertyActiveLock(
-                        ezcWebdavLockRequest::TYPE_WRITE,
-                        ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
-                        ezcWebdavRequest::DEPTH_INFINITY,
-                        'somone@example.com'
-                    )
-                )
+                [new ezcWebdavLockDiscoveryPropertyActiveLock(
+                    ezcWebdavLockRequest::TYPE_WRITE,
+                    ezcWebdavLockRequest::SCOPE_EXCLUSIVE,
+                    ezcWebdavRequest::DEPTH_INFINITY,
+                    'somone@example.com'
+                )]
             )
         );
 
@@ -164,7 +162,7 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
         $reqGen->notify( $propFindRes );
 
         $this->assertAttributeEquals(
-            array( $result ),
+            [$result],
             'requests',
             $reqGen
         );
@@ -209,7 +207,7 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
         $result->updates->attach(
             new ezcWebdavLockDiscoveryProperty(
                 new ArrayObject( 
-                    array( $activeLock )
+                    [$activeLock]
                 )
             ),
             ezcWebdavPropPatchRequest::SET
@@ -219,7 +217,7 @@ class ezcWebdavLockLockRequestGeneratorTest extends ezcTestCase
         $reqGen->notify( $propFindRes );
 
         $this->assertAttributeEquals(
-            array( $result ),
+            [$result],
             'requests',
             $reqGen
         );

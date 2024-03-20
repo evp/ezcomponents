@@ -72,7 +72,7 @@ abstract class ezcGraphDriverOptions extends ezcBaseOptions
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->properties['width'] = null;
         $this->properties['height'] = null;

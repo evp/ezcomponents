@@ -52,14 +52,7 @@ class ezcQueryExpression
      *
      * @var array(string=>string)
      */
-    protected $intervalMap = array(
-        'SECOND' => 'SECOND',
-        'MINUTE' => 'MINUTE',
-        'HOUR' => 'HOUR',
-        'DAY' => 'DAY',
-        'MONTH' => 'MONTH',
-        'YEAR' => 'YEAR',
-    );
+    protected $intervalMap = ['SECOND' => 'SECOND', 'MINUTE' => 'MINUTE', 'HOUR' => 'HOUR', 'DAY' => 'DAY', 'MONTH' => 'MONTH', 'YEAR' => 'YEAR'];
 
     /**
      * Constructs an empty ezcQueryExpression
@@ -67,7 +60,7 @@ class ezcQueryExpression
      * @param PDO $db
      * @param array(string=>string) $aliases
      */
-    public function __construct( PDO $db, array $aliases = array() )
+    public function __construct( PDO $db, array $aliases = [] )
     {
         $this->db = $db;
         if ( !empty( $aliases ) )
@@ -113,7 +106,7 @@ class ezcQueryExpression
     protected function getIdentifier( $alias )
     {
         $aliasParts = explode( '.', $alias );
-        $identifiers = array();
+        $identifiers = [];
         // If the alias consists of one part, then we just look it up in the
         // array. If we find it, we use it, otherwise we return the name as-is
         // and assume it's just a column name. The alias target can be a fully

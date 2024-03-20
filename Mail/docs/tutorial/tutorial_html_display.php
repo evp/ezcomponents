@@ -2,7 +2,7 @@
 require 'tutorial_autoload.php';
 
 // Create a mail set from a file, a parser, and parse the e-mail.
-$set = new ezcMailFileSet( array( 'test-mail.mail' ) );
+$set = new ezcMailFileSet( ['test-mail.mail'] );
 $parser = new ezcMailParser();
 $mail = $parser->parseMail( $set );
 
@@ -49,10 +49,10 @@ $collector->webDir = '/test/ezc';
 
 // We use the saveMailPart() method of the $collector object function as a
 // callback in walkParts().
-$context = new ezcMailPartWalkContext( array( $collector, 'saveMailPart' ) );
+$context = new ezcMailPartWalkContext( [$collector, 'saveMailPart'] );
 
 // only call the callback for file and text parts.
-$context->filter = array( 'ezcMailFile', 'ezcMailText' );
+$context->filter = ['ezcMailFile', 'ezcMailText'];
 
 // use walkParts() to iterate over all parts in the first parsed e-mail
 // message.

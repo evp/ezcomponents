@@ -157,11 +157,7 @@ class ezcMailMultipartReport extends ezcMailMultipart
      */
     public function getReadablePart()
     {
-        if ( isset( $this->parts[0] ) )
-        {
-            return $this->parts[0];
-        }
-        return null;
+        return $this->parts[0] ?? null;
     }
 
     /**
@@ -181,11 +177,7 @@ class ezcMailMultipartReport extends ezcMailMultipart
      */
     public function getMachinePart()
     {
-        if ( isset( $this->parts[1] ) )
-        {
-            return $this->parts[1];
-        }
-        return null;
+        return $this->parts[1] ?? null;
     }
 
     /**
@@ -205,11 +197,7 @@ class ezcMailMultipartReport extends ezcMailMultipart
      */
     public function getOriginalPart()
     {
-        if ( isset( $this->parts[2] ) )
-        {
-            return $this->parts[2];
-        }
-        return null;
+        return $this->parts[2] ?? null;
     }
 
     /**

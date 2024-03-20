@@ -23,57 +23,7 @@ class ezcTreeVisitorTest extends ezcTestCase
 
     protected function addTestData( $tree )
     {
-        $primates = array(
-            'Hominoidea' => array(
-                'Hylobatidae' => array(
-                    'Hylobates' => array(
-                        'Lar Gibbon',
-                        'Agile Gibbon',
-                        'Müller\'s Bornean Gibbon',
-                        'Silvery Gibbon',
-                        'Pileated Gibbon',
-                        'Kloss\'s Gibbon',
-                    ),
-                    'Hoolock' => array(
-                        'Western Hoolock Gibbon',
-                        'Eastern Hoolock Gibbon',
-                    ),
-                    'Symphalangus' => array(),
-                    'Nomascus' => array(
-                        'Black Crested Gibbon',
-                        'Eastern Black Crested Gibbon',
-                        'White-cheecked Crested Gibbon',
-                        'Yellow-cheecked Gibbon',
-                    ),
-                ),
-                'Hominidae' => array(
-                    'Pongo' => array(
-                        'Bornean Orangutan',
-                        'Sumatran Orangutan',
-                    ), 
-                    'Gorilla' => array(
-                        'Western Gorilla' => array(
-                            'Western Lowland Gorilla',
-                            'Cross River Gorilla',
-                        ),
-                        'Eastern Gorilla' => array(
-                            'Mountain Gorilla',
-                            'Eastern Lowland Gorilla',
-                        ),
-                    ), 
-                    'Homo' => array(
-                        'Homo Sapiens' => array(
-                            'Homo Sapiens Sapiens',
-                            'Homo Superior'
-                        ),
-                    ),
-                    'Pan' => array(
-                        'Common Chimpanzee',
-                        'Bonobo',
-                    ),
-                ),
-            ),
-        );
+        $primates = ['Hominoidea' => ['Hylobatidae' => ['Hylobates' => ['Lar Gibbon', 'Agile Gibbon', 'Müller\'s Bornean Gibbon', 'Silvery Gibbon', 'Pileated Gibbon', 'Kloss\'s Gibbon'], 'Hoolock' => ['Western Hoolock Gibbon', 'Eastern Hoolock Gibbon'], 'Symphalangus' => [], 'Nomascus' => ['Black Crested Gibbon', 'Eastern Black Crested Gibbon', 'White-cheecked Crested Gibbon', 'Yellow-cheecked Gibbon']], 'Hominidae' => ['Pongo' => ['Bornean Orangutan', 'Sumatran Orangutan'], 'Gorilla' => ['Western Gorilla' => ['Western Lowland Gorilla', 'Cross River Gorilla'], 'Eastern Gorilla' => ['Mountain Gorilla', 'Eastern Lowland Gorilla']], 'Homo' => ['Homo Sapiens' => ['Homo Sapiens Sapiens', 'Homo Superior']], 'Pan' => ['Common Chimpanzee', 'Bonobo']]]];
 
         $root = $tree->createNode( 'Hominoidea', 'Hominoidea' );
         $tree->setRootNode( $root );
@@ -114,7 +64,7 @@ class ezcTreeVisitorTest extends ezcTestCase
         $tree = ezcTreeMemory::create( new ezcTreeMemoryDataStore() );
         $this->addTestData( $tree );
 
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-visitor2.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-visitor2.txt' );
 
         $visitor = new ezcTreeVisitorPlainText;
         $tree->accept( $visitor );
@@ -132,7 +82,7 @@ class ezcTreeVisitorTest extends ezcTestCase
 
         $visitor = new ezcTreeVisitorPlainText( ezcTreeVisitorPlainText::SYMBOL_ASCII );
         $tree->accept( $visitor );
-        $expected = file_get_contents( dirname( __FILE__) . '/files/compare/visitor-visitor3.txt' );
+        $expected = file_get_contents( __DIR__ . '/files/compare/visitor-visitor3.txt' );
         self::assertSame( $expected, (string) $visitor );
     }
 

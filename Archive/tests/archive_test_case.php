@@ -53,7 +53,7 @@ abstract class ezcArchiveTestCase extends ezcTestCase
 
     public function scandirRecursive($directory, $subDirectory)
     {
-        $folderContents = array();
+        $folderContents = [];
         $directory = realpath($directory). DIRECTORY_SEPARATOR;
         $subDirectory = $subDirectory . DIRECTORY_SEPARATOR;
 

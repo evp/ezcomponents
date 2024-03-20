@@ -32,8 +32,8 @@ abstract class ezcDocumentPdfTestCase extends ezcTestCase
     protected function setUp()
     {
         static $i = 0;
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d_', ++$i ) ) . '/';
-        $this->basePath = dirname( __FILE__ ) . '/../files/pdf/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d_', ++$i ) ) . '/';
+        $this->basePath = __DIR__ . '/../files/pdf/';
     }
 
     protected function tearDown()
@@ -83,27 +83,19 @@ abstract class ezcDocumentPdfTestCase extends ezcTestCase
      * @param array $styles 
      * @return void
      */
-    protected function renderFullDocument( $file, $fileName, array $styles = array() )
+    protected function renderFullDocument( $file, $fileName, array $styles = [] )
     {
         $docbook = new ezcDocumentDocbook();
         $docbook->loadFile( $file );
 
         $style = new ezcDocumentPcssStyleInferencer();
-        $style->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-family'  => 'serif',
-                    'line-height'  => '1',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'title' ),
-                array(
-                    'font-family'  => 'sans-serif',
-                )
-            ),
-        ) );
+        $style->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-family'  => 'serif', 'line-height'  => '1']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['title'],
+            ['font-family'  => 'sans-serif']
+        )] );
         $style->appendStyleDirectives( $styles );
 
         $renderer  = new ezcDocumentPdfMainRenderer(

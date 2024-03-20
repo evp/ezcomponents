@@ -32,7 +32,7 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
 
 	public static function suite()
 	{
-		return new PHPUnit_Framework_TestSuite( __CLASS__ );
+		return new PHPUnit_Framework_TestSuite( self::class );
 	}
 
     protected function setUp()
@@ -58,7 +58,7 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(),
+            [],
             'plugins',
             $reg,
             'Attribute $plugins not initialized correctly.'
@@ -76,30 +76,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => $cfg
-            ),
+            ['foonamespace' => $cfg],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-                'ezcWebdavTransport' => array(
-                    'beforeParseRequest' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackBeforeTest' ),
-                            array(  $cfg, 'testCallback' ),
-                        ),
-                    ),
-                    'afterProcessResponse' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackAfterTest' ),
-                            array( $cfg, 'testCallback' ),
-                        ),
-                    ),
-                ),
-            ),
+             ['ezcWebdavTransport' => ['beforeParseRequest' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackBeforeTest'], [$cfg, 'testCallback']]], 'afterProcessResponse' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackAfterTest'], [$cfg, 'testCallback']]]]],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -116,9 +99,7 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => $cfg
-            ),
+            ['foonamespace' => $cfg],
             'plugins',
             $reg
         );
@@ -165,9 +146,7 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
     public function testRegisterPluginFailureInvalidHookClass()
     {
         $cfg = new fooCustomWebdavPluginConfiguration();
-        $cfg->hooks = array(
-            'fooMyClass' => array(),
-        );
+        $cfg->hooks = ['fooMyClass' => []];
 
         $reg = new ezcWebdavPluginRegistry();
 
@@ -182,11 +161,7 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
     public function testRegisterPluginFailureInvalidHook()
     {
         $cfg = new fooCustomWebdavPluginConfiguration();
-        $cfg->hooks = array(
-            'ezcWebdavTransport' => array(
-                'beforeMyCustomHook' => array(),
-            ),
-        );
+        $cfg->hooks = ['ezcWebdavTransport' => ['beforeMyCustomHook' => []]];
 
         $reg = new ezcWebdavPluginRegistry();
 
@@ -208,30 +183,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => $cfg
-            ),
+            ['foonamespace' => $cfg],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-                'ezcWebdavTransport' => array(
-                    'beforeParseRequest' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackBeforeTest' ),
-                            array(  $cfg, 'testCallback' ),
-                        ),
-                    ),
-                    'afterProcessResponse' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackAfterTest' ),
-                            array( $cfg, 'testCallback' ),
-                        ),
-                    ),
-                ),
-            ),
+             ['ezcWebdavTransport' => ['beforeParseRequest' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackBeforeTest'], [$cfg, 'testCallback']]], 'afterProcessResponse' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackAfterTest'], [$cfg, 'testCallback']]]]],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -240,21 +198,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $reg->unregisterPlugin( $cfg );
 
         $this->assertAttributeEquals(
-            array(
-            ),
+            [],
             'plugins',
             $reg
         );
         
         $this->assertAttributeEquals(
-             array(
-                'ezcWebdavTransport' => array(
-                    'beforeParseRequest' => array(
-                    ),
-                    'afterProcessResponse' => array(
-                    ),
-                ),
-            ),
+             ['ezcWebdavTransport' => ['beforeParseRequest' => [], 'afterProcessResponse' => []]],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -269,8 +219,7 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-            ),
+            [],
             'plugins',
             $reg
         );
@@ -307,30 +256,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => $cfg,
-            ),
+            ['foonamespace' => $cfg],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-                'ezcWebdavTransport' => array(
-                    'beforeParseRequest' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackBeforeTest' ),
-                            array(  $cfg, 'testCallback' ),
-                        ),
-                    ),
-                    'afterProcessResponse' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackAfterTest' ),
-                            array( $cfg, 'testCallback' ),
-                        ),
-                    ),
-                ),
-            ),
+             ['ezcWebdavTransport' => ['beforeParseRequest' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackBeforeTest'], [$cfg, 'testCallback']]], 'afterProcessResponse' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackAfterTest'], [$cfg, 'testCallback']]]]],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -350,15 +282,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-            ),
+            [],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-            ),
+             [],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -374,15 +304,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-            ),
+            [],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-            ),
+             [],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -399,30 +327,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => $cfg,
-            ),
+            ['foonamespace' => $cfg],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-                'ezcWebdavTransport' => array(
-                    'beforeParseRequest' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackBeforeTest' ),
-                            array(  $cfg, 'testCallback' ),
-                        ),
-                    ),
-                    'afterProcessResponse' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackAfterTest' ),
-                            array( $cfg, 'testCallback' ),
-                        ),
-                    ),
-                ),
-            ),
+             ['ezcWebdavTransport' => ['beforeParseRequest' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackBeforeTest'], [$cfg, 'testCallback']]], 'afterProcessResponse' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackAfterTest'], [$cfg, 'testCallback']]]]],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -441,15 +352,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-            ),
+            [],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-            ),
+             [],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -462,15 +371,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-            ),
+            [],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-            ),
+             [],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -487,30 +394,13 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
         $this->assertHooksCorrect( $reg );
 
         $this->assertAttributeEquals(
-            array(
-                'foonamespace' => $cfg,
-            ),
+            ['foonamespace' => $cfg],
             'plugins',
             $reg
         );
 
         $this->assertAttributeEquals(
-             array(
-                'ezcWebdavTransport' => array(
-                    'beforeParseRequest' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackBeforeTest' ),
-                            array(  $cfg, 'testCallback' ),
-                        ),
-                    ),
-                    'afterProcessResponse' => array(
-                        'foonamespace' => array(
-                            array( 'ezcWebdavPluginRegistryTest', 'callbackAfterTest' ),
-                            array( $cfg, 'testCallback' ),
-                        ),
-                    ),
-                ),
-            ),
+             ['ezcWebdavTransport' => ['beforeParseRequest' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackBeforeTest'], [$cfg, 'testCallback']]], 'afterProcessResponse' => ['foonamespace' => [['ezcWebdavPluginRegistryTest', 'callbackAfterTest'], [$cfg, 'testCallback']]]]],
             'assignedHooks',
             $reg,
             'Property $assignedHooks not set correctly after registration.'
@@ -566,24 +456,7 @@ class ezcWebdavPluginRegistryTest extends ezcTestCase
     protected function assertHooksCorrect( ezcWebdavPluginRegistry $reg )
     {
         $this->assertAttributeEquals(
-            array (
-                'ezcWebdavTransport' => array (
-                    'beforeParseRequest'     => true,
-                    'afterProcessResponse'   => true,
-                    'parseUnknownRequest'    => true,
-                    'processUnknownResponse' => true,
-                ),
-                'ezcWebdavPropertyHandler' => array(
-                    'extractDeadProperty'          => true,
-                    'serializeDeadProperty'        => true,
-                    'extractUnknownLiveProperty'   => true,
-                    'serializeUnknownLiveProperty' => true,
-                ),
-                'ezcWebdavServer' => array (
-                    'receivedRequest'   => true,
-                    'generatedResponse' => true,
-                ),
-            ),
+            ['ezcWebdavTransport' => ['beforeParseRequest'     => true, 'afterProcessResponse'   => true, 'parseUnknownRequest'    => true, 'processUnknownResponse' => true], 'ezcWebdavPropertyHandler' => ['extractDeadProperty'          => true, 'serializeDeadProperty'        => true, 'extractUnknownLiveProperty'   => true, 'serializeUnknownLiveProperty' => true], 'ezcWebdavServer' => ['receivedRequest'   => true, 'generatedResponse' => true]],
             'hooks',
             $reg,
             'Attribute $hooks is invalid.'

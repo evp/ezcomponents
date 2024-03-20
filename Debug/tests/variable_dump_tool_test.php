@@ -20,7 +20,7 @@ class ezcDebugVariableDumpToolTest extends ezcTestCase
 {
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function testDumpBoolean()
@@ -105,9 +105,7 @@ class ezcDebugVariableDumpToolTest extends ezcTestCase
 
     public function testDumpSimpleArray()
     {
-        $arr = array(
-            23, 42.23, true, false, 'test', 'foo bar baz'
-        );
+        $arr = [23, 42.23, true, false, 'test', 'foo bar baz'];
 
         $res = <<<EOT
 array (0 => 23, 1 => 42.23, 2 => TRUE, 3 => FALSE, 4 => 'test', 5 => 'foo bar baz')
@@ -120,21 +118,7 @@ EOT;
 
     public function testDumpComplexArray()
     {
-        $arr = array(
-            23,
-            'foo bar' => array(
-                1 => '293',
-                234223,
-                'foo' => array(
-                    1, 2, 3, 4, 5, array(), 8 => 23, 'foo', array( 23, 42 )
-                ),
-            ),
-            42.23,
-            'a' => true,
-            'd' => false,
-            23 => 'test',
-            'foo bar baz',
-        );
+        $arr = [23, 'foo bar' => [1 => '293', 234223, 'foo' => [1, 2, 3, 4, 5, [], 8 => 23, 'foo', [23, 42]]], 42.23, 'a' => true, 'd' => false, 23 => 'test', 'foo bar baz'];
 
         $res = <<<EOT
 array (0 => 23, 'foo bar' => array (1 => '293', 2 => 234223, 'foo' => array (0 => 1, 1 => 2, 2 => 3, 3 => 4, 4 => 5, 5 => array (...), 8 => 23, 9 => 'foo', 10 => array (...))), 1 => 42.23, 'a' => TRUE, 'd' => FALSE, 23 => 'test', 24 => 'foo bar baz')
@@ -176,30 +160,16 @@ EOT;
     public function testDumpExtendedObjectComplex()
     {
         $obj = new DebugTestDumpExtendedObject(
-            array(),
+            [],
             42.23,
             'foo bar baz',
-            array(
-                1,
-                2,
-                array(
-                    new stdClass(),
-                    'some text',
-                    new stdClass(),
-                    23,
-                    array( null, null, true, false, null, 23 )
-                ),
-                3,
-                4,
-            ),
+            [1, 2, [new stdClass(), 'some text', new stdClass(), 23, [null, null, true, false, null, 23]], 3, 4],
             true,
-            array(
-                new DebugTestDumpObject(
-                    new DebugTestDumpExtendedObject( 1, 2, 3, 4, 5, 6 ),
-                    array( true, false, 'string' ),
-                    new DebugTestDumpObject( 'a', 2, 'c' )
-                ),
-            )
+            [new DebugTestDumpObject(
+                new DebugTestDumpExtendedObject( 1, 2, 3, 4, 5, 6 ),
+                [true, false, 'string'],
+                new DebugTestDumpObject( 'a', 2, 'c' )
+            )]
         );
 
         $res = <<<EOT

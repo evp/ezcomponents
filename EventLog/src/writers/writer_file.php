@@ -50,7 +50,7 @@ abstract class ezcLogFileWriter implements ezcLogWriter
      *
      * @var array(resource)
      */
-    protected $openFiles = array();
+    protected $openFiles = [];
 
     /**
      * Keeps track of which group of messages should be stored

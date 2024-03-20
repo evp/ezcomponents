@@ -44,7 +44,7 @@ class ezcMvcGzDeflateResponseFilter implements ezcMvcResponseFilter
     {
         if ( count( $options ) )
         {
-            throw new ezcMvcFilterHasNoOptionsException( __CLASS__ );
+            throw new ezcMvcFilterHasNoOptionsException( self::class );
         }
     }
 }

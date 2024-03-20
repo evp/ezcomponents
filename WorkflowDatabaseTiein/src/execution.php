@@ -36,11 +36,7 @@ class ezcWorkflowDatabaseExecution extends ezcWorkflowExecution
      *
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-      'definitionStorage' => null,
-      'workflow' => null,
-      'options' => null
-    );
+    protected $properties = ['definitionStorage' => null, 'workflow' => null, 'options' => null];
 
     /**
      * Construct a new database execution.
@@ -330,19 +326,15 @@ class ezcWorkflowDatabaseExecution extends ezcWorkflowExecution
         $stmt->execute();
 
         $result = $stmt->fetchAll( PDO::FETCH_ASSOC );
-        $active = array();
+        $active = [];
 
         foreach ( $result as $row )
         {
-            $active[$row['node_id']] = array(
-              'activated_from' => ezcWorkflowDatabaseUtil::unserialize(
-                $row['node_activated_from']
-              ),
-              'state' => ezcWorkflowDatabaseUtil::unserialize(
-                $row['node_state'], null
-              ),
-              'thread_id' => $row['node_thread_id']
-            );
+            $active[$row['node_id']] = ['activated_from' => ezcWorkflowDatabaseUtil::unserialize(
+              $row['node_activated_from']
+            ), 'state' => ezcWorkflowDatabaseUtil::unserialize(
+              $row['node_state'], null
+            ), 'thread_id' => $row['node_thread_id']];
         }
 
         foreach ( $this->workflow->nodes as $node )

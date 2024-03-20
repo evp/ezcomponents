@@ -64,8 +64,8 @@ class ezcTemplateTextBlockTstNode extends ezcTemplateTextTstNode
      */
     static public function stripText( $text )
     {
-        $text = str_replace( array( "\\{", "\\}", "\\\\", "\\\r\n", "\\\n", "\\\r" ),
-                             array( "{",   "}",   "\\",   "",       "",     ""     ),
+        $text = str_replace( ["\\{", "\\}", "\\\\", "\\\r\n", "\\\n", "\\\r"],
+                             ["{", "}", "\\", "", "", ""],
                              $text );
         return $text;
     }
@@ -92,12 +92,11 @@ class ezcTemplateTextBlockTstNode extends ezcTemplateTextTstNode
         $elements = preg_split( "#(\r\n|\r|\n)#", $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 
         // Rebuild into line structures
-        $lines = array();
+        $lines = [];
         $count = count( $elements );
         for ( $i = 0; $i < $count; )
         {
-            $line = array( 0 => $elements[$i],
-                           1 => false );
+            $line = [0 => $elements[$i], 1 => false];
             if ( $i + 1 < $count )
                 $line[1] = $elements[$i + 1];
 

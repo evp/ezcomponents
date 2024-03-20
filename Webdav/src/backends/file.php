@@ -68,17 +68,7 @@ class ezcWebdavFileBackend extends ezcWebdavSimpleBackend implements ezcWebdavLo
      * 
      * @var array(int=>string)
      */
-    protected $handledLiveProperties = array( 
-        'getcontentlength', 
-        'getlastmodified', 
-        'creationdate', 
-        'displayname', 
-        'getetag', 
-        'getcontenttype', 
-        'resourcetype',
-        'supportedlock',
-        'lockdiscovery',
-    );
+    protected $handledLiveProperties = ['getcontentlength', 'getlastmodified', 'creationdate', 'displayname', 'getetag', 'getcontenttype', 'resourcetype', 'supportedlock', 'lockdiscovery'];
 
     /**
      * Creates a new backend instance.
@@ -791,7 +781,7 @@ class ezcWebdavFileBackend extends ezcWebdavSimpleBackend implements ezcWebdavLo
         // destination directories.
         if ( !is_readable( $source ) || !is_writeable( dirname( $destination ) ) )
         {
-            return array( $source );
+            return [$source];
         }
 
         // Copy
@@ -812,12 +802,12 @@ class ezcWebdavFileBackend extends ezcWebdavSimpleBackend implements ezcWebdavLo
              ( !is_dir( $source ) ) )
         {
             // Do not recurse (any more)
-            return array();
+            return [];
         }
 
         // Recurse
         $dh = opendir( $source );
-        $errors = array();
+        $errors = [];
         while ( $file = readdir( $dh ) )
         {
             if ( ( $file === '.' ) ||
@@ -900,23 +890,21 @@ class ezcWebdavFileBackend extends ezcWebdavSimpleBackend implements ezcWebdavLo
         // destination directories.
         if ( !is_writeable( dirname( $source ) ) )
         {
-            return array(
-                new ezcWebdavErrorResponse(
-                    ezcWebdavResponse::STATUS_403,
-                    substr( $source, strlen( $this->root ) )
-                ),
-            );
+            return [new ezcWebdavErrorResponse(
+                ezcWebdavResponse::STATUS_403,
+                substr( $source, strlen( $this->root ) )
+            )];
         }
 
         if ( is_file( $source ) )
         {
             // For plain files the above checks should be sufficant
-            return array();
+            return [];
         }
 
         // Recurse
         $dh = opendir( $source );
-        $errors = array();
+        $errors = [];
         while ( $file = readdir( $dh ) )
         {
             if ( ( $file === '.' ) ||
@@ -1019,8 +1007,8 @@ class ezcWebdavFileBackend extends ezcWebdavSimpleBackend implements ezcWebdavLo
      */
     protected function getCollectionMembers( $path )
     {
-        $contents = array();
-        $errors = array();
+        $contents = [];
+        $errors = [];
 
         $files = glob( $this->root . $path . '/*' );
 

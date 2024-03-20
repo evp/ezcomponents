@@ -74,7 +74,7 @@ abstract class ezcConfigurationWriter
      *                       writer class.
      * @return void
      */
-    abstract public function init( $location, $name, ezcConfiguration $config, $options = array() );
+    abstract public function init( $location, $name, ezcConfiguration $config, $options = [] );
 
     /**
      * Saves the current config object.

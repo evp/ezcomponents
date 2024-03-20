@@ -9,9 +9,5 @@
  * @package WorkflowSignalSlotTiein
  */
 
-return array(
-    'ezcWorkflowSignalSlotPlugin'        => 'WorkflowSignalSlotTiein/plugin.php',
-    'ezcWorkflowSignalSlotPluginOptions' => 'WorkflowSignalSlotTiein/options/plugin.php',
-    'ezcWorkflowSignalSlotReturnValue'   => 'WorkflowSignalSlotTiein/structs/return_value.php',
-);
+return ['ezcWorkflowSignalSlotPlugin'        => 'WorkflowSignalSlotTiein/plugin.php', 'ezcWorkflowSignalSlotPluginOptions' => 'WorkflowSignalSlotTiein/options/plugin.php', 'ezcWorkflowSignalSlotReturnValue'   => 'WorkflowSignalSlotTiein/structs/return_value.php'];
 ?>

@@ -24,7 +24,7 @@ class ezcDocumentRstDocbookVisitorTests extends ezcTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public static function getTestDocuments()
@@ -32,15 +32,12 @@ class ezcDocumentRstDocbookVisitorTests extends ezcTestCase
         if ( self::$testDocuments === null )
         {
             // Get a list of all test files from the respektive folder
-            $testFiles = glob( dirname( __FILE__ ) . '/files/rst/docbook/s_*.txt' );
+            $testFiles = glob( __DIR__ . '/files/rst/docbook/s_*.txt' );
 
             // Create array with the test file and the expected result file
             foreach ( $testFiles as $file )
             {
-                self::$testDocuments[] = array(
-                    $file,
-                    substr( $file, 0, -3 ) . 'xml'
-                );
+                self::$testDocuments[] = [$file, substr( $file, 0, -3 ) . 'xml'];
             }
         }
 
@@ -94,16 +91,7 @@ class ezcDocumentRstDocbookVisitorTests extends ezcTestCase
     public static function getErroneousTestDocuments()
     {
 //        return array();
-        return array(
-            array(
-                dirname( __FILE__ ) . '/files/rst/docbook/e_001_missing_directive.txt',
-                'Visitor error: Warning: \'No directive handler registered for directive \'missing_directive_dclaration\'.\' in line 7 at position 1.',
-            ),
-            array(
-                dirname( __FILE__ ) . '/files/rst/docbook/e_001_missing_role.txt',
-                'Visitor error: Warning: \'No text role handler registered for text role \'no-handler-registered\'.\' in line 4 at position 45.',
-            ),
-        );
+        return [[__DIR__ . '/files/rst/docbook/e_001_missing_directive.txt', 'Visitor error: Warning: \'No directive handler registered for directive \'missing_directive_dclaration\'.\' in line 7 at position 1.'], [__DIR__ . '/files/rst/docbook/e_001_missing_role.txt', 'Visitor error: Warning: \'No text role handler registered for text role \'no-handler-registered\'.\' in line 4 at position 45.']];
     }
 
     /**

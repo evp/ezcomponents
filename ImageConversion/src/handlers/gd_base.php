@@ -72,7 +72,7 @@ class ezcImageGdBaseHandler extends ezcImageMethodcallHandler
     public function load( $file, $mime = null )
     {
         $this->checkFileName( $file );
-        $ref = $this->loadCommon( $file, isset( $mime ) ? $mime : null );
+        $ref = $this->loadCommon( $file, $mime ?? null );
         $loadFunction = $this->getLoadFunction( $this->getReferenceData( $ref, 'mime' ) );
         if ( !ezcBaseFeatures::hasFunction( $loadFunction ) || ( $handle = @$loadFunction( $file ) ) === false )
         {
@@ -105,7 +105,7 @@ class ezcImageGdBaseHandler extends ezcImageMethodcallHandler
      */
     public function save( $image, $newFile = null, $mime = null, ezcImageSaveOptions $options = null )
     {
-        $options = ( $options === null ) ? new ezcImageSaveOptions() : $options;
+        $options ??= new ezcImageSaveOptions();
 
         if ( $newFile !== null )
         {
@@ -118,13 +118,10 @@ class ezcImageGdBaseHandler extends ezcImageMethodcallHandler
             $this->replaceTransparency( $image, $options->transparencyReplacementColor );
         }
 
-        $this->saveCommon( $image, isset( $newFile ) ? $newFile : null, isset( $mime ) ? $mime : null );
+        $this->saveCommon( $image, $newFile ?? null, $mime ?? null );
         $saveFunction = $this->getSaveFunction( $this->getReferenceData( $image, 'mime' ) );
 
-        $saveParams = array(
-            $this->getReferenceData( $image, 'resource' ),
-            $this->getReferenceData( $image, 'file' ),
-        );
+        $saveParams = [$this->getReferenceData( $image, 'resource' ), $this->getReferenceData( $image, 'file' )];
         switch ( $saveFunction )
         {
             case "imagejpeg":
@@ -226,13 +223,7 @@ class ezcImageGdBaseHandler extends ezcImageMethodcallHandler
      */
     private function determineTypes()
     {
-        $possibleTypes = array(
-            IMG_GIF  => 'image/gif',
-            IMG_JPG  => 'image/jpeg',
-            IMG_PNG  => 'image/png',
-            IMG_WBMP => 'image/wbmp',
-            IMG_XPM  => 'image/xpm',
-        );
+        $possibleTypes = [IMG_GIF  => 'image/gif', IMG_JPG  => 'image/jpeg', IMG_PNG  => 'image/png', IMG_WBMP => 'image/wbmp', IMG_XPM  => 'image/xpm'];
         $imageTypes = imagetypes();
         foreach ( $possibleTypes as $bit => $mime )
         {

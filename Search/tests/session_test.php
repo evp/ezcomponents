@@ -34,10 +34,10 @@ class ezcSearchSessionTest extends ezcTestCase
         {
             self::markTestSkipped( 'Solr is not running.' );
         }
-        $this->testFilesDir = dirname( __FILE__ ) . '/testfiles/';
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ),
+        $this->testFilesDir = __DIR__ . '/testfiles/';
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'],
                 '<delete><query>timestamp:[* TO *]</query></delete>' );
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ),
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'],
                 '<commit/>' );
     }
 
@@ -49,9 +49,9 @@ class ezcSearchSessionTest extends ezcTestCase
     public function testSetProperties()
     {
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
-        self::assertSetPropertyFails( $session, 'definitionManager', array( 'foo' ) );
-        self::assertSetPropertyFails( $session, 'handler', array( 'foo' ) );
-        self::assertSetPropertyFails( $session, 'doesNotExist', array( 'foo' ) );
+        self::assertSetPropertyFails( $session, 'definitionManager', ['foo'] );
+        self::assertSetPropertyFails( $session, 'handler', ['foo'] );
+        self::assertSetPropertyFails( $session, 'doesNotExist', ['foo'] );
     }
 
     public function testGetProperties()
@@ -93,7 +93,7 @@ class ezcSearchSessionTest extends ezcTestCase
 
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
         $session->index( $a );
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
         $q = $session->createFindQuery( 'Article' );
         $q->where( $q->eq( 'title', 'Article' ) );
@@ -121,12 +121,12 @@ class ezcSearchSessionTest extends ezcTestCase
 
     public function testIndexDocument3()
     {
-        $d = file_get_contents( dirname( __FILE__ ) . '/../../../docs/guidelines/implementation.txt' );
-        $a = new Article( null, 'Test Article', 'This is Rethans an article to test', $d, time(), array( 'Derick Rethans', 'Legolas Rethans' ) );
+        $d = file_get_contents( __DIR__ . '/../../../docs/guidelines/implementation.txt' );
+        $a = new Article( null, 'Test Article', 'This is Rethans an article to test', $d, time(), ['Derick Rethans', 'Legolas Rethans'] );
 
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
         $session->index( $a );
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
         $q = $session->createFindQuery( 'Article' );
         $q->where( $q->eq( 'author', 'Derick Rethans' ) );
@@ -136,11 +136,11 @@ class ezcSearchSessionTest extends ezcTestCase
 
     public function testIndexDocumentWithBrokenUtf8()
     {
-        $a = new Article( null, 'Test Article', file_get_contents( dirname( __FILE__ ) . '/testfiles/issue15623-broken-utf8.xml' ), 'This is an article to test', time() );
+        $a = new Article( null, 'Test Article', file_get_contents( __DIR__ . '/testfiles/issue15623-broken-utf8.xml' ), 'This is an article to test', time() );
 
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
         $session->index( $a );
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
         $q = $session->createFindQuery( 'Article' );
         $q->where( $q->eq( 'summary', 'ferences' ) );
@@ -154,7 +154,7 @@ class ezcSearchSessionTest extends ezcTestCase
 
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
         $session->index( $a );
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
         $q = $session->createFindQuery( 'Article' );
         $q->where( $q->eq( 'title', 'Article' ) );
@@ -428,7 +428,7 @@ class ezcSearchSessionTest extends ezcTestCase
         self::assertEquals( '4822deec4153d-two', $r->documents['4822deec4153d-two']->document->id );
 
         $session->deleteById( '4822deec4153d-one', 'Article' );
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
         $q = $session->createFindQuery( 'Article' );
         $r = $session->find( $q );
@@ -616,7 +616,7 @@ class ezcSearchSessionTest extends ezcTestCase
         $r = $session->find( $q );
         self::assertEquals( 3, $r->resultCount );
         self::assertEquals( 3, count( $r->documents ) );
-        self::assertEquals( array( 'alexandru' => 1, 'derick' => 2 ), $r->facets['author'] );
+        self::assertEquals( ['alexandru' => 1, 'derick' => 2], $r->facets['author'] );
     }
 
     public function testCreateFindQueryBetween()
@@ -659,7 +659,7 @@ class ezcSearchSessionTest extends ezcTestCase
         $q = $session->createDeleteQuery( 'Article' );
         $q->where( $q->eq( 'title', 'Twee' ) );
         $session->delete( $q );
-        $this->backend->sendRawPostCommand( 'update', array( 'wt' => 'json' ), '<commit/>' );
+        $this->backend->sendRawPostCommand( 'update', ['wt' => 'json'], '<commit/>' );
 
         $q = $session->createFindQuery( 'Article' );
         $r = $session->find( $q );
@@ -670,7 +670,7 @@ class ezcSearchSessionTest extends ezcTestCase
     {
         $session = new ezcSearchSession( $this->backend, new ezcSearchXmlManager( $this->testFilesDir ) );
 
-        $a = new Article( null, 'Test Article Eén', 'This is the first article to test', 'the body of the article', time(), array( "Me", "You", "Everybody" ) );
+        $a = new Article( null, 'Test Article Eén', 'This is the first article to test', 'the body of the article', time(), ["Me", "You", "Everybody"] );
         $session->index( $a );
 
         $q = $session->createFindQuery( 'Article' );
@@ -681,25 +681,7 @@ class ezcSearchSessionTest extends ezcTestCase
 
     public static function datatypes()
     {
-        return array(
-            array( 'test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId' ),
-            array( 'test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId' ),
-            array( 'test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'test' ),
-            array( 'test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'test' ),
-            array( 'test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'tes*' ),
-            array( 'test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'tes*' ),
-            array( 'test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<b>test</b>' ),
-            array( 'test', '<b>test</b>', true, -42, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'bool', true ),
-            array( 'test', '<b>test</b>', false, -42, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false ),
-            array( 'test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'int', -51 ),
-            array( 'test', '<b>test</b>', false, 0, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 0 ),
-            array( 'test', '<b>test</b>', false, 913123, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 913123 ),
-            array( 'test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'float', -12831e4 ),
-            array( 'test', '<b>test</b>', false, 0, 0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'float', 0.42e-9 ),
-            array( 'test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'float', 0 ),
-            array( 'test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 14:35 GMT" ),
-            array( 'test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 16:35 Europe/Oslo" ),
-        );
+        return [['test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId'], ['test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId'], ['test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'test'], ['test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'test'], ['test', '<b>test</b>', true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'tes*'], ['test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'tes*'], ['test', '<b>test</b>', false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<b>test</b>'], ['test', '<b>test</b>', true, -42, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'bool', true], ['test', '<b>test</b>', false, -42, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false], ['test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'int', -51], ['test', '<b>test</b>', false, 0, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 0], ['test', '<b>test</b>', false, 913123, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'int', 913123], ['test', '<b>test</b>', true, -51, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'float', -12831e4], ['test', '<b>test</b>', false, 0, 0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'float', 0.42e-9], ['test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'float', 0], ['test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 14:35 GMT"], ['test', '<b>test</b>', false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 16:35 Europe/Oslo"]];
     }
 
     /**
@@ -736,11 +718,11 @@ class ezcSearchSessionTest extends ezcTestCase
         $q->where( $q->eq( $findField, $findValue ) );
         $r = $session->find( $q );
         self::assertEquals( 1, $r->resultCount );
-        self::assertEquals( array( $string ), $r->documents['testId']->document->string );
-        self::assertEquals( array( $html ), $r->documents['testId']->document->html );
-        self::assertEquals( array( $bool ), $r->documents['testId']->document->bool );
-        self::assertEquals( array( $int ), $r->documents['testId']->document->int );
-        self::assertEquals( array( $float ), $r->documents['testId']->document->float );
+        self::assertEquals( [$string], $r->documents['testId']->document->string );
+        self::assertEquals( [$html], $r->documents['testId']->document->html );
+        self::assertEquals( [$bool], $r->documents['testId']->document->bool );
+        self::assertEquals( [$int], $r->documents['testId']->document->int );
+        self::assertEquals( [$float], $r->documents['testId']->document->float );
 
         self::assertEquals( $string, $r->documents['testId']->document->string[0] );
         self::assertEquals( $html, $r->documents['testId']->document->html[0] );
@@ -752,27 +734,7 @@ class ezcSearchSessionTest extends ezcTestCase
 
     public static function datatypesMulti()
     {
-        return array(
-            array( array( 'test', 'to' ),       array( '<b>test</b>', '<i>and</i>' ),       true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId' ),
-            array( array( 'test', 'be' ),       array( '<b>test</b>', '<i>human</i>' ),     false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId' ),
-            array( array( 'test', 'or' ),       array( '<b>test</b>', '<i>stupidity</i>' ), true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'or' ),
-            array( array( 'test', 'or' ),       array( '<b>test</b>', '<i>And</i>' ),       true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'test' ),
-            array( array( 'test', 'not' ),      array( '<b>test</b>', '<i>I</i>' ),         true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'tes*' ),
-            array( array( 'test', 'to' ),       array( '<b>test</b>', '<i>am</i>' ),        false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'test' ),
-            array( array( 'test', 'be' ),       array( '<b>test</b>', '<i>not</i>' ),       false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'not' ),
-            array( array( 'test', 'that' ),     array( '<b>test</b>', '<i>sure</i>' ),      false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<b>test</b>' ),
-            array( array( 'test', 'that' ),     array( '<b>test</b>', '<i>about</i>' ),     false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<i>about</i>' ),
-            array( array( 'test', 'is' ),       array( '<b>test</b>', '<i>the</i>' ),       true, -42, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'bool', true ),
-            array( array( 'test', 'the' ),      array( '<b>test</b>', '<i>former</i>' ),    false, -42, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false ),
-            array( array( 'test', 'question' ), array( '<b>test</b>', ), true, array( 1, 1, 2, 3, 5, 8 ), -12831e4, "2008-04-23 16:35 Europe/Oslo", 'int', 5 ),
-            array( array( 'test' ),             array( '<b>test</b>', ), array( true, false ), 0, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', true ),
-            array( array( 'test', 'Only' ),     array( '<b>test</b>', ), array( true, false ), 913123, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false ),
-            array( array( 'test', 'two' ),      array( '<b>test</b>', ), true, -51, array( 3.1415926 ), "2008-04-23 16:35 Europe/Oslo", 'float', 3.1415926 ),
-            array( array( 'test', 'things' ),   array( '<b>test</b>', ), false, 0, 0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'float', 0.42e-9 ),
-            array( array( 'test', 'are' ),      array( '<b>test</b>', ), false, 913123, 0, array( "2008-04-23 16:35 Europe/Oslo" ), 'date', "2008-04-23 14:35 GMT" ),
-            array( array( 'test', 'infinite' ), array( '<b>test</b>', ), false, 913123, 0, array( "2008-04-23 16:35 Europe/Oslo", "2008-04-23 15:35 BST" ), 'date', "2008-04-23 14:35 GMT" ),
-            array( array( 'test', 'universe' ), array( '<b>test</b>', ), false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 16:35 Europe/Oslo" ),
-        );
+        return [[['test', 'to'], ['<b>test</b>', '<i>and</i>'], true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId'], [['test', 'be'], ['<b>test</b>', '<i>human</i>'], false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'id', 'testId'], [['test', 'or'], ['<b>test</b>', '<i>stupidity</i>'], true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'or'], [['test', 'or'], ['<b>test</b>', '<i>And</i>'], true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'test'], [['test', 'not'], ['<b>test</b>', '<i>I</i>'], true, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'string', 'tes*'], [['test', 'to'], ['<b>test</b>', '<i>am</i>'], false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'test'], [['test', 'be'], ['<b>test</b>', '<i>not</i>'], false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', 'not'], [['test', 'that'], ['<b>test</b>', '<i>sure</i>'], false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<b>test</b>'], [['test', 'that'], ['<b>test</b>', '<i>about</i>'], false, 42, 0.42, "2008-04-23 16:35 Europe/Oslo", 'html', '<i>about</i>'], [['test', 'is'], ['<b>test</b>', '<i>the</i>'], true, -42, -12831e4, "2008-04-23 16:35 Europe/Oslo", 'bool', true], [['test', 'the'], ['<b>test</b>', '<i>former</i>'], false, -42, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false], [['test', 'question'], ['<b>test</b>'], true, [1, 1, 2, 3, 5, 8], -12831e4, "2008-04-23 16:35 Europe/Oslo", 'int', 5], [['test'], ['<b>test</b>'], [true, false], 0, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', true], [['test', 'Only'], ['<b>test</b>'], [true, false], 913123, -0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'bool', false], [['test', 'two'], ['<b>test</b>'], true, -51, [3.1415926], "2008-04-23 16:35 Europe/Oslo", 'float', 3.1415926], [['test', 'things'], ['<b>test</b>'], false, 0, 0.42e-9, "2008-04-23 16:35 Europe/Oslo", 'float', 0.42e-9], [['test', 'are'], ['<b>test</b>'], false, 913123, 0, ["2008-04-23 16:35 Europe/Oslo"], 'date', "2008-04-23 14:35 GMT"], [['test', 'infinite'], ['<b>test</b>'], false, 913123, 0, ["2008-04-23 16:35 Europe/Oslo", "2008-04-23 15:35 BST"], 'date', "2008-04-23 14:35 GMT"], [['test', 'universe'], ['<b>test</b>'], false, 913123, 0, "2008-04-23 16:35 Europe/Oslo", 'date', "2008-04-23 16:35 Europe/Oslo"]];
     }
 
     /**
@@ -782,12 +744,12 @@ class ezcSearchSessionTest extends ezcTestCase
     {
         $session = new ezcSearchSession( $this->backend, new ezcSearchEmbeddedManager() );
 
-        $string = is_array( $string ) ? $string : array( $string );
-        $html   = is_array( $html   ) ? $html   : array( $html   );
-        $bool   = is_array( $bool   ) ? $bool   : array( $bool   );
-        $int    = is_array( $int    ) ? $int    : array( $int    );
-        $float  = is_array( $float  ) ? $float  : array( $float  );
-        $date   = is_array( $date   ) ? $date   : array( $date   );
+        $string = is_array( $string ) ? $string : [$string];
+        $html   = is_array( $html   ) ? $html   : [$html];
+        $bool   = is_array( $bool   ) ? $bool   : [$bool];
+        $int    = is_array( $int    ) ? $int    : [$int];
+        $float  = is_array( $float  ) ? $float  : [$float];
+        $date   = is_array( $date   ) ? $date   : [$date];
 
         $a = new DataTypeTestMulti( 'testId', $string, $html, $bool, $int, $float, $date );
         $session->index( $a );

@@ -24,7 +24,7 @@ class ezcDocumentPdfRendererFooterPartTests extends ezcDocumentPdfTestCase
 
     public static function suite()
     {
-        return new PHPUnit_Framework_TestSuite( __CLASS__ );
+        return new PHPUnit_Framework_TestSuite( self::class );
     }
 
     public function setUp()
@@ -32,33 +32,19 @@ class ezcDocumentPdfRendererFooterPartTests extends ezcDocumentPdfTestCase
         parent::setUp();
 
         $style = new ezcDocumentPcssStyleInferencer();
-        $style->appendStyleDirectives( array(
-            new ezcDocumentPcssLayoutDirective(
-                array( 'article' ),
-                array(
-                    'font-family'  => 'serif',
-                    'text-columns' => '2',
-                    'font-size'    => '10pt',
-                    'line-height'  => '1',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'title' ),
-                array(
-                    'font-family'  => 'sans-serif',
-                    'text-columns' => '2',
-                )
-            ),
-            new ezcDocumentPcssLayoutDirective(
-                array( 'page' ),
-                array(
-                    'page-size'    => 'A5',
-                )
-            ),
-        ) );
+        $style->appendStyleDirectives( [new ezcDocumentPcssLayoutDirective(
+            ['article'],
+            ['font-family'  => 'serif', 'text-columns' => '2', 'font-size'    => '10pt', 'line-height'  => '1']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['title'],
+            ['font-family'  => 'sans-serif', 'text-columns' => '2']
+        ), new ezcDocumentPcssLayoutDirective(
+            ['page'],
+            ['page-size'    => 'A5']
+        )] );
 
         $this->docbook = new ezcDocumentDocbook();
-        $this->docbook->loadFile( dirname( __FILE__ ) . '/../files/pdf/long_text.xml' );
+        $this->docbook->loadFile( __DIR__ . '/../files/pdf/long_text.xml' );
 
         $this->renderer = new ezcDocumentPdfMainRenderer(
             new ezcDocumentPdfSvgDriver(),
@@ -78,7 +64,7 @@ class ezcDocumentPdfRendererFooterPartTests extends ezcDocumentPdfTestCase
         );
 
         file_put_contents(
-            $this->tempDir . ( $fileName = __CLASS__ . '_' . __FUNCTION__ . '.svg' ),
+            $this->tempDir . ( $fileName = self::class . '_' . __FUNCTION__ . '.svg' ),
             $pdf
         );
     
@@ -91,9 +77,7 @@ class ezcDocumentPdfRendererFooterPartTests extends ezcDocumentPdfTestCase
     public function testRenderHeader()
     {
         $this->renderer->registerPdfPart(
-            new ezcDocumentPdfFooterPdfPart( new ezcDocumentPdfFooterOptions( array(
-                'footer' => false,
-            ) ) )
+            new ezcDocumentPdfFooterPdfPart( new ezcDocumentPdfFooterOptions( ['footer' => false] ) )
         );
 
         $pdf = $this->renderer->render(
@@ -102,7 +86,7 @@ class ezcDocumentPdfRendererFooterPartTests extends ezcDocumentPdfTestCase
         );
 
         file_put_contents(
-            $this->tempDir . ( $fileName = __CLASS__ . '_' . __FUNCTION__ . '.svg' ),
+            $this->tempDir . ( $fileName = self::class . '_' . __FUNCTION__ . '.svg' ),
             $pdf
         );
     
@@ -115,19 +99,11 @@ class ezcDocumentPdfRendererFooterPartTests extends ezcDocumentPdfTestCase
     public function testRenderHeaderAndFooter()
     {
         $this->renderer->registerPdfPart(
-            new ezcDocumentPdfFooterPdfPart( new ezcDocumentPdfFooterOptions( array(
-                'showDocumentTitle'  => false,
-                'showDocumentAuthor' => false,
-                'pageNumberOffset'   => 7,
-                'height'             => '10mm',
-            ) ) )
+            new ezcDocumentPdfFooterPdfPart( new ezcDocumentPdfFooterOptions( ['showDocumentTitle'  => false, 'showDocumentAuthor' => false, 'pageNumberOffset'   => 7, 'height'             => '10mm'] ) )
         );
 
         $this->renderer->registerPdfPart(
-            new ezcDocumentPdfHeaderPdfPart( new ezcDocumentPdfFooterOptions( array(
-                'showPageNumber'   => false,
-                'height'           => '10mm',
-            ) ) )
+            new ezcDocumentPdfHeaderPdfPart( new ezcDocumentPdfFooterOptions( ['showPageNumber'   => false, 'height'           => '10mm'] ) )
         );
 
         $pdf = $this->renderer->render(
@@ -136,7 +112,7 @@ class ezcDocumentPdfRendererFooterPartTests extends ezcDocumentPdfTestCase
         );
 
         file_put_contents(
-            $this->tempDir . ( $fileName = __CLASS__ . '_' . __FUNCTION__ . '.svg' ),
+            $this->tempDir . ( $fileName = self::class . '_' . __FUNCTION__ . '.svg' ),
             $pdf
         );
     

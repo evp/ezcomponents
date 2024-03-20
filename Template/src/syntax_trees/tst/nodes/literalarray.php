@@ -43,9 +43,7 @@ class ezcTemplateLiteralArrayTstNode extends ezcTemplateExpressionTstNode
 
     public function getTreeProperties()
     {
-        return array( 'array' => $this->value,
-                      'keys' => $this->keys 
-        );
+        return ['array' => $this->value, 'keys' => $this->keys];
     }
 }
 ?>

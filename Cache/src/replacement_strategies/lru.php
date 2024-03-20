@@ -65,7 +65,7 @@ class ezcCacheStackLruReplacementStrategy extends ezcCacheStackBaseReplacementSt
         ezcCacheStackMetaData $metaData,
         $itemId,
         $itemData,
-        $itemAttributes = array()
+        $itemAttributes = []
     )
     {
         self::checkMetaData( $metaData );
@@ -103,7 +103,7 @@ class ezcCacheStackLruReplacementStrategy extends ezcCacheStackBaseReplacementSt
         ezcCacheStackStorageConfiguration $conf,
         ezcCacheStackMetaData $metaData,
         $itemId,
-        $itemAttributes = array(),
+        $itemAttributes = [],
         $search = false
     )
     {
@@ -137,7 +137,7 @@ class ezcCacheStackLruReplacementStrategy extends ezcCacheStackBaseReplacementSt
         ezcCacheStackStorageConfiguration $conf,
         ezcCacheStackMetaData $metaData,
         $itemId,
-        $itemAttributes = array(),
+        $itemAttributes = [],
         $search = false
     )
     {

@@ -28,7 +28,7 @@ class ezcDocumentXhtmlXpathFilter extends ezcDocumentXhtmlBaseFilter
      *
      * @var array
      */
-    protected $queries = array();
+    protected $queries = [];
 
     /**
      * Construct XPath filter
@@ -46,7 +46,7 @@ class ezcDocumentXhtmlXpathFilter extends ezcDocumentXhtmlBaseFilter
      */
     public function __construct( $xpath = '/*[local-name() = "html"]/*[local-name() = "body"]' )
     {
-        $this->queries = ( !is_array( $xpath ) ? array( $xpath ) : $xpath );
+        $this->queries = ( !is_array( $xpath ) ? [$xpath] : $xpath );
     }
 
     /**
@@ -66,7 +66,7 @@ class ezcDocumentXhtmlXpathFilter extends ezcDocumentXhtmlBaseFilter
         $body = $xpath->query( '/*[local-name() = "html"]/*[local-name() = "body"]' )->item( 0 );
 
         // Find all content nodes, which should be extracted.
-        $nodes = array();
+        $nodes = [];
         foreach ( $this->queries as $query )
         {
             $contents = $xpath->query( $query );

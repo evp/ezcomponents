@@ -7,7 +7,7 @@ function __autoload( $className )
 }
 
 // Require custom palette
-require dirname( __FILE__ ) . '/ez_red.php';
+require __DIR__ . '/ez_red.php';
 
 // Create the graph
 $graph = new ezcGraphPieChart();
@@ -15,17 +15,7 @@ $graph->palette = new ezcGraphPaletteEzRed();
 $graph->legend = false;
 
 // Add the data and hilight norwegian data set
-$graph->data['week'] = new ezcGraphArrayDataSet( array(
-    'Claudia Kosny' => 128,
-    'Kristof Coomans' => 70,
-    'Xavier Dutoit' => 64,
-    'David Jones' => 58,
-    'Lukasz Serwatka' => 45,
-    'Norman Leutner' => 22,
-    'Marko Zmak' => 20,
-    'sangib das' => 20,
-    'Nabil Alimi' => 19,
-) );
+$graph->data['week'] = new ezcGraphArrayDataSet( ['Claudia Kosny' => 128, 'Kristof Coomans' => 70, 'Xavier Dutoit' => 64, 'David Jones' => 58, 'Lukasz Serwatka' => 45, 'Norman Leutner' => 22, 'Marko Zmak' => 20, 'sangib das' => 20, 'Nabil Alimi' => 19] );
 
 // Set graph title
 $graph->title = '10 most active users on forum in last month';

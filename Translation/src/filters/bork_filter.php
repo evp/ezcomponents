@@ -55,7 +55,7 @@ class ezcTranslationBorkFilter implements ezcTranslationFilter
     static private function borkify( $text )
     {
         $textBlocks = preg_split( '/(%[^ ]+)/', $text, -1, PREG_SPLIT_DELIM_CAPTURE );
-        $newTextBlocks = array();
+        $newTextBlocks = [];
         foreach ( $textBlocks as $text )
         {
             if ( strlen( $text ) && $text[0] == '%' )
@@ -66,16 +66,8 @@ class ezcTranslationBorkFilter implements ezcTranslationFilter
 
             $orgtext = $text;
 
-            $searchMap = array(
-                '/au/', '/\Bu/', '/\Btion/', '/an/', '/a\B/', '/en\b/',
-                '/\Bew/', '/\Bf/', '/\Bir/', '/\Bi/', '/\bo/', '/ow/', '/ph/',
-                '/th\b/', '/\bU/', '/y\b/', '/v/', '/w/', '/ooo/',
-            );
-            $replaceMap = array(
-                'oo', 'oo', 'shun', 'un', 'e', 'ee',
-                'oo', 'ff', 'ur', 'ee', 'oo', 'oo', 'f',
-                't', 'Oo', 'ai', 'f', 'v', 'oo',
-            );
+            $searchMap = ['/au/', '/\Bu/', '/\Btion/', '/an/', '/a\B/', '/en\b/', '/\Bew/', '/\Bf/', '/\Bir/', '/\Bi/', '/\bo/', '/ow/', '/ph/', '/th\b/', '/\bU/', '/y\b/', '/v/', '/w/', '/ooo/'];
+            $replaceMap = ['oo', 'oo', 'shun', 'un', 'e', 'ee', 'oo', 'ff', 'ur', 'ee', 'oo', 'oo', 'f', 't', 'Oo', 'ai', 'f', 'v', 'oo'];
             $text = preg_replace( $searchMap, $replaceMap, $text );
 
             if ( $orgtext == $text && count( $newTextBlocks ) )

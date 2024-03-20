@@ -80,46 +80,46 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      * Automatically wrap text to fit into a column.
      * @see ezcConsoleTable::$options
      */
-    const WRAP_AUTO = 1;
+    public const WRAP_AUTO = 1;
 
     /**
      * Do not wrap text. Columns will be extended to fit the largest text.
      * ATTENTION: This is risky!
      * @see ezcConsoleTable::$options
      */
-    const WRAP_NONE = 2;
+    public const WRAP_NONE = 2;
 
     /**
      * Text will be cut to fit into a column.
      * @see ezcConsoleTable::$options
      */
-    const WRAP_CUT  = 3;
+    public const WRAP_CUT  = 3;
     
     /**
      * Align text in the default direction. 
      */
-    const ALIGN_DEFAULT = -1;
+    public const ALIGN_DEFAULT = -1;
     /**
      * Align text in cells to the right.
      */
-    const ALIGN_LEFT   = STR_PAD_RIGHT;
+    public const ALIGN_LEFT   = STR_PAD_RIGHT;
     /**
      * Align text in cells to the left.
      */
-    const ALIGN_RIGHT  = STR_PAD_LEFT;
+    public const ALIGN_RIGHT  = STR_PAD_LEFT;
     /**
      * Align text in cells to the center.
      */
-    const ALIGN_CENTER = STR_PAD_BOTH;
+    public const ALIGN_CENTER = STR_PAD_BOTH;
 
     /**
      * The width given by settings must be used even if the data allows it smaller. 
      */
-    const WIDTH_FIXED = 1;
+    public const WIDTH_FIXED = 1;
     /**
      * The width given by settings is a maximum value, if data allows it, the table gets smaller.
      */
-    const WIDTH_MAX = 2;
+    public const WIDTH_MAX = 2;
 
     /**
      * Container to hold the properties
@@ -160,9 +160,9 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      *
      * @throws ezcBaseValueException On an invalid setting.
      */
-    public function __construct( ezcConsoleOutput $outHandler, $width, $options = array() ) 
+    public function __construct( ezcConsoleOutput $outHandler, $width, $options = [] ) 
     {
-        $this->rows = array();
+        $this->rows = [];
         $this->outputHandler = $outHandler;
         $this->stringTool = new ezcConsoleStringTool();
 
@@ -195,7 +195,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      *         If you submit neither an array nor an instance of 
      *         ezcConsoleTableOptions.
      */
-    public function setOptions( $options = array() ) 
+    public function setOptions( $options = [] ) 
     {
         if ( is_array( $options ) ) 
         {
@@ -298,7 +298,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      */
     public function offsetGet( $offset )
     {
-        $offset = ( $offset === null ) ? count( $this->rows ) : $offset;
+        $offset ??= count( $this->rows );
         if ( !is_int( $offset ) || $offset < 0  )
         {
             throw new ezcBaseValueException( 'offset', $offset, 'int >= 0 or null' );
@@ -528,7 +528,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
     private function generateTable()
     {
         $colWidth = $this->getColWidths();
-        $table = array();
+        $table = [];
         
         if ( $this->options->lineVertical !== null )
         {
@@ -605,7 +605,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
             $format = $this->determineFormat( $row, $cell );
             $borderFormat = $this->determineBorderFormat( $row );
             
-            $data = isset( $cells[$cell] ) ? $cells[$cell] : '';
+            $data = $cells[$cell] ?? '';
             $rowData .= $this->formatText( 
                             $this->properties['options']->lineHorizontal, 
                             $borderFormat
@@ -691,7 +691,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
      */
     private function breakRows( $cells, $colWidth ) 
     {
-        $rows = array();
+        $rows = [];
         // Iterate through cells of the row
         foreach ( $colWidth as $cell => $width ) 
         {
@@ -756,7 +756,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
 
         if ( $colCount === 0 )
         {
-            return array( $this->width );
+            return [$this->width];
         }
 
         $borderWidth = iconv_strlen(
@@ -777,7 +777,7 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
         
         // Width of a column if each is made equal
         $colNormWidth = round( $globalWidth / $colCount );
-        $colMaxWidth = array();
+        $colMaxWidth = [];
         
         // Determine the longest data for each column
         foreach ( $this->rows as $row => $cells )
@@ -795,8 +795,8 @@ class ezcConsoleTable implements Countable, Iterator, ArrayAccess
                 $colMaxWidth[$col] = isset( $colMaxWidth[$col] ) ? max( $colMaxWidth[$col], $contentLength ) : $contentLength;
             }
         }
-        $colWidth = array();
-        $colWidthOverflow = array();
+        $colWidth = [];
+        $colWidthOverflow = [];
         $spareWidth = 0;
         
         // Make columns best fit

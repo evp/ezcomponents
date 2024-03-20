@@ -20,7 +20,7 @@ class ezcWorkflowConditionTest extends ezcTestCase
 
     public function testInArray()
     {
-        $condition = new ezcWorkflowConditionInArray( array( '1', 2, 3 ) );
+        $condition = new ezcWorkflowConditionInArray( ['1', 2, 3] );
         $this->assertTrue( $condition->evaluate( 1 ) );
         $this->assertFalse( $condition->evaluate( 4 ) );
         $this->assertEquals( "in array('1', 2, 3)", (string)$condition );
@@ -38,7 +38,7 @@ class ezcWorkflowConditionTest extends ezcTestCase
     {
         $condition = new ezcWorkflowConditionIsArray;
 
-        $this->assertTrue( $condition->evaluate( array() ) );
+        $this->assertTrue( $condition->evaluate( [] ) );
         $this->assertFalse( $condition->evaluate( null ) );
         $this->assertEquals( 'is array', (string)$condition );
     }
@@ -194,8 +194,8 @@ class ezcWorkflowConditionTest extends ezcTestCase
           new ezcWorkflowConditionIsAnything
         );
 
-        $this->assertTrue( $condition->evaluate( array( 'foo' => 'bar' ) ) );
-        $this->assertFalse( $condition->evaluate( array( 'bar' => 'foo' ) ) );
+        $this->assertTrue( $condition->evaluate( ['foo' => 'bar'] ) );
+        $this->assertFalse( $condition->evaluate( ['bar' => 'foo'] ) );
     }
 
     public function testVariables()
@@ -206,8 +206,8 @@ class ezcWorkflowConditionTest extends ezcTestCase
           new ezcWorkflowConditionIsEqual
         );
 
-        $this->assertTrue( $condition->evaluate( array( 'foo' => 'baz', 'bar' => 'baz' ) ) );
-        $this->assertFalse( $condition->evaluate( array( 'foo' => 'bar', 'bar' => 'foo' ) ) );
+        $this->assertTrue( $condition->evaluate( ['foo' => 'baz', 'bar' => 'baz'] ) );
+        $this->assertFalse( $condition->evaluate( ['foo' => 'bar', 'bar' => 'foo'] ) );
     }
 
     public function testVariables2()
@@ -237,18 +237,18 @@ class ezcWorkflowConditionTest extends ezcTestCase
           new ezcWorkflowConditionIsEqual
         );
 
-        $this->assertFalse( $condition->evaluate( array() ) );
+        $this->assertFalse( $condition->evaluate( [] ) );
     }
 
     public function testAnd()
     {
         $true = new ezcWorkflowConditionIsTrue;
 
-        $condition = new ezcWorkflowConditionAnd( array( $true, $true ) );
+        $condition = new ezcWorkflowConditionAnd( [$true, $true] );
         $this->assertTrue( $condition->evaluate( true ) );
         $this->assertEquals( '( is true && is true )', (string)$condition );
 
-        $condition = new ezcWorkflowConditionAnd( array( $true, $true ) );
+        $condition = new ezcWorkflowConditionAnd( [$true, $true] );
         $this->assertFalse( $condition->evaluate( false ) );
     }
 
@@ -256,7 +256,7 @@ class ezcWorkflowConditionTest extends ezcTestCase
     {
         try
         {
-            $condition = new ezcWorkflowConditionAnd( array( new StdClass ) );
+            $condition = new ezcWorkflowConditionAnd( [new StdClass] );
         }
         catch ( ezcWorkflowDefinitionStorageException $e )
         {
@@ -272,12 +272,12 @@ class ezcWorkflowConditionTest extends ezcTestCase
         $true  = new ezcWorkflowConditionIsTrue;
         $false = new ezcWorkflowConditionIsFalse;
 
-        $condition = new ezcWorkflowConditionOr( array( $true, $true ) );
+        $condition = new ezcWorkflowConditionOr( [$true, $true] );
         $this->assertTrue( $condition->evaluate( true ) );
         $this->assertFalse( $condition->evaluate( false ) );
         $this->assertEquals( '( is true || is true )', (string)$condition );
 
-        $condition = new ezcWorkflowConditionOr( array( $true, $false ) );
+        $condition = new ezcWorkflowConditionOr( [$true, $false] );
         $this->assertTrue( $condition->evaluate( true ) );
         $this->assertTrue( $condition->evaluate( false ) );
     }
@@ -287,12 +287,12 @@ class ezcWorkflowConditionTest extends ezcTestCase
         $true  = new ezcWorkflowConditionIsTrue;
         $false = new ezcWorkflowConditionIsFalse;
 
-        $condition = new ezcWorkflowConditionXor( array( $true, $false ) );
+        $condition = new ezcWorkflowConditionXor( [$true, $false] );
         $this->assertTrue( $condition->evaluate( true ) );
         $this->assertTrue( $condition->evaluate( false ) );
         $this->assertEquals( '( is true XOR is false )', (string)$condition );
 
-        $condition = new ezcWorkflowConditionXor( array( $true, $true ) );
+        $condition = new ezcWorkflowConditionXor( [$true, $true] );
         $this->assertFalse( $condition->evaluate( true ) );
         $this->assertFalse( $condition->evaluate( false ) );
     }

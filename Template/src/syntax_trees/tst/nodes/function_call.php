@@ -21,13 +21,13 @@ class ezcTemplateFunctionCallTstNode extends ezcTemplateExpressionTstNode
      * Evaluation is handled by processing each parameter and then calling
      * the function with the resulting parameter values.
      */
-    const EVAL_PREPROCESS = 1;
+    public const EVAL_PREPROCESS = 1;
 
     /**
      * Evaluation is handled dynamically, this allows the function call to
      * to only evaluate selected parameters.
      */
-    const EVAL_DYNAMIC = 2;
+    public const EVAL_DYNAMIC = 2;
 
     /**
      * The name of the function which is going to be called.
@@ -63,14 +63,12 @@ class ezcTemplateFunctionCallTstNode extends ezcTemplateExpressionTstNode
         parent::__construct( $source, $start, $end );
         $this->name = false;
         $this->parameterEvaluation = self::EVAL_PREPROCESS;
-        $this->parameters = array();
+        $this->parameters = [];
     }
 
     public function getTreeProperties()
     {
-        return array( 'name' => $this->name,
-                      'evaluation' => $this->parameterEvaluation,
-                      'parameters' => $this->parameters );
+        return ['name' => $this->name, 'evaluation' => $this->parameterEvaluation, 'parameters' => $this->parameters];
     }
 
     /**
@@ -79,7 +77,7 @@ class ezcTemplateFunctionCallTstNode extends ezcTemplateExpressionTstNode
      */
     public function prependParameter( $element )
     {
-        $this->parameters = array_merge( array( $element ),
+        $this->parameters = array_merge( [$element],
                                          $this->parameters );
     }
 

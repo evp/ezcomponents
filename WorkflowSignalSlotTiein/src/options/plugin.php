@@ -53,23 +53,7 @@ class ezcWorkflowSignalSlotPluginOptions extends ezcBaseOptions
      * 
      * @var array(string=>mixed)
      */
-    protected $properties = array(
-        'afterExecutionStarted' => 'afterExecutionStarted',
-        'afterExecutionSuspended' => 'afterExecutionSuspended',
-        'afterExecutionResumed' => 'afterExecutionResumed',
-        'afterExecutionCancelled' => 'afterExecutionCancelled',
-        'afterExecutionEnded' => 'afterExecutionEnded',
-        'beforeNodeActivated' => 'beforeNodeActivated',
-        'afterNodeActivated' => 'afterNodeActivated',
-        'afterNodeExecuted' => 'afterNodeExecuted',
-        'afterRolledBackServiceObject' => 'afterRolledBackServiceObject',
-        'afterThreadStarted' => 'afterThreadStarted',
-        'afterThreadEnded' => 'afterThreadEnded',
-        'beforeVariableSet' => 'beforeVariableSet',
-        'afterVariableSet' => 'afterVariableSet',
-        'beforeVariableUnset' => 'beforeVariableUnset',
-        'afterVariableUnset' => 'afterVariableUnset',
-    );
+    protected $properties = ['afterExecutionStarted' => 'afterExecutionStarted', 'afterExecutionSuspended' => 'afterExecutionSuspended', 'afterExecutionResumed' => 'afterExecutionResumed', 'afterExecutionCancelled' => 'afterExecutionCancelled', 'afterExecutionEnded' => 'afterExecutionEnded', 'beforeNodeActivated' => 'beforeNodeActivated', 'afterNodeActivated' => 'afterNodeActivated', 'afterNodeExecuted' => 'afterNodeExecuted', 'afterRolledBackServiceObject' => 'afterRolledBackServiceObject', 'afterThreadStarted' => 'afterThreadStarted', 'afterThreadEnded' => 'afterThreadEnded', 'beforeVariableSet' => 'beforeVariableSet', 'afterVariableSet' => 'afterVariableSet', 'beforeVariableUnset' => 'beforeVariableUnset', 'afterVariableUnset' => 'afterVariableUnset'];
 
     /**
      * Property write access.

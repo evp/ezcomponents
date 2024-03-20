@@ -27,7 +27,7 @@ class ezcSearchSession
      *
      * @var array(string=>mixed)
      */
-    private $properties = array();
+    private $properties = [];
 
     /**
      * Constructs a new search session that works on the handler $handler.
@@ -145,7 +145,7 @@ class ezcSearchSession
         if ( $state[$def->idProperty] == null )
         {
             $state[$def->idProperty] = uniqid();
-            $document->setState( array( $def->idProperty => $state[$def->idProperty] ) );
+            $document->setState( [$def->idProperty => $state[$def->idProperty]] );
         }
         $this->verifyState( $def, $state );
         $this->handler->index( $def, $state );

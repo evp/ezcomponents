@@ -26,16 +26,7 @@ class ezcDocumentDocbookToRstHeadHandler extends ezcDocumentDocbookToRstBaseHand
      *
      * @var array
      */
-    protected $headerMapping = array(
-        'authors'     => 'Authors',
-        'abstract'    => 'Description',
-        'copyright'   => 'Copyright',
-        'releaseinfo' => 'Version',
-        'pubdate'     => 'Date',
-        'date'        => 'Date',
-        'author'      => 'Author',
-        'publisher'   => 'Author',
-    );
+    protected $headerMapping = ['authors'     => 'Authors', 'abstract'    => 'Description', 'copyright'   => 'Copyright', 'releaseinfo' => 'Version', 'pubdate'     => 'Date', 'date'        => 'Date', 'author'      => 'Author', 'publisher'   => 'Author'];
 
     /**
      * Handle a node

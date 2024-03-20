@@ -21,7 +21,7 @@
  */
 class ezcWebdavFileBackendTest extends ezcTestCase
 {
-    const KEEP_TEMP_DIR = false;
+    public const KEEP_TEMP_DIR = false;
 
     protected $tempDir;
 
@@ -143,7 +143,7 @@ class ezcWebdavFileBackendTest extends ezcTestCase
 
     protected function compareResponse( $test, ezcWebdavResponse $response )
     {
-        $dataDir = dirname( __FILE__ ) . '/data/responses/file';
+        $dataDir = __DIR__ . '/data/responses/file';
 
         if ( !is_file( $file = $dataDir . '/' . $test . '.ser' ) )
         {
@@ -165,17 +165,17 @@ class ezcWebdavFileBackendTest extends ezcTestCase
 
         static $i = 0;
 
-        $this->tempDir = $this->createTempDir( __CLASS__ . sprintf( '_%03d', ++$i ) ) . '/';
+        $this->tempDir = $this->createTempDir( self::class . sprintf( '_%03d', ++$i ) ) . '/';
         
         self::copyRecursive( 
-            dirname( __FILE__ ) . '/data/backend_file', 
+            __DIR__ . '/data/backend_file', 
             $this->tempDir . 'backend/'
         );
 
         // Remove SVN directories from temporary backend
         $svnDirs = ezcFile::findRecursive(
             $this->tempDir . 'backend/',
-            array( '(/\.svn/entries$)' )
+            ['(/\.svn/entries$)']
         );
 
         foreach ( $svnDirs as $dir )
@@ -398,14 +398,11 @@ class ezcWebdavFileBackendTest extends ezcTestCase
             new ezcWebdavCollection(
                 '/collection',
                 $backend->getAllProperties( '/collection' ),
-                array(
-                    new ezcWebdavCollection(
-                        '/collection/deep_collection'
-                    ),
-                    new ezcWebdavResource(
-                        '/collection/test.txt'
-                    ),
-                )
+                [new ezcWebdavCollection(
+                    '/collection/deep_collection'
+                ), new ezcWebdavResource(
+                    '/collection/test.txt'
+                )]
             )
         );
         $expectedResponse->setHeader( 'ETag', $backend->getProperty( '/collection', 'getetag' )->etag );

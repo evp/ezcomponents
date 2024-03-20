@@ -49,7 +49,7 @@ class ezcMailMultipartDigestTest extends ezcTestCase
     {
         $digest = new MultipartDigestTestMail( 1 );
         $multipart = new MultipartDigestTestClass( $digest );
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . "/data/ezcMailMultipartDigestTest_singleMail.data" ),
+        $this->assertEquals( file_get_contents( __DIR__ . "/data/ezcMailMultipartDigestTest_singleMail.data" ),
                              $multipart->generate() );
     }
 
@@ -58,7 +58,7 @@ class ezcMailMultipartDigestTest extends ezcTestCase
     {
         $digest = new ezcMailRfc822Digest( new MultipartDigestTestMail( 1 ) );
         $multipart = new MultipartDigestTestClass( $digest );
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . "/data/ezcMailMultipartDigestTest_singleMail.data" ),
+        $this->assertEquals( file_get_contents( __DIR__ . "/data/ezcMailMultipartDigestTest_singleMail.data" ),
                              $multipart->generate() );
     }
 
@@ -67,10 +67,10 @@ class ezcMailMultipartDigestTest extends ezcTestCase
     {
         $mail1 = new MultipartDigestTestMail( 1 );
         $mail2 = new ezcMailRfc822Digest( new MultipartDigestTestMail( 2 ) );
-        $mail34 = array( new ezcMailRfc822Digest( new MultipartDigestTestMail( 3 ) ), new MultipartDigestTestMail( 4 ) );
+        $mail34 = [new ezcMailRfc822Digest( new MultipartDigestTestMail( 3 ) ), new MultipartDigestTestMail( 4 )];
         $multipart = new MultipartDigestTestClass( $mail1, $mail2, $mail34 );
 //        file_put_contents( dirname( __FILE__ ) . "/data/ezcMailMultipartDigestTest_multiple_digest.data", $multipart->generate() );
-        $this->assertEquals( file_get_contents( dirname( __FILE__ ) . "/data/ezcMailMultipartDigestTest_multiple_digest.data" ),
+        $this->assertEquals( file_get_contents( __DIR__ . "/data/ezcMailMultipartDigestTest_multiple_digest.data" ),
                              $multipart->generate() );
     }
 

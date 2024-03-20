@@ -266,7 +266,7 @@ class ezcQueryExpressionTest extends ezcTestCase
     {
         try
         {
-            $this->e->in( 'id', array() );
+            $this->e->in( 'id', [] );
             $this->fail( "Expected exception not thrown" );
         }
         catch ( ezcQueryInvalidParameterException $e )
@@ -302,25 +302,25 @@ class ezcQueryExpressionTest extends ezcTestCase
     public function testInSingleArray()
     {
         $reference = "id IN ( 1 )";
-        $this->assertEquals( $reference, $this->e->in( 'id', array( 1 ) ) );
+        $this->assertEquals( $reference, $this->e->in( 'id', [1] ) );
     }
 
     public function testInMultiArray()
     {
         $reference = "id IN ( 1, 2 )";
-        $this->assertEquals( $reference, $this->e->in( 'id', array( 1, 2 ) ) );
+        $this->assertEquals( $reference, $this->e->in( 'id', [1, 2] ) );
     }
 
     public function testInMultiStringArray()
     {
         $reference = "id IN ( 'foo', 'bar' )";
-        $this->assertEquals( $reference, $this->e->in( 'id', array( 'foo', 'bar' ) ) );
+        $this->assertEquals( $reference, $this->e->in( 'id', ['foo', 'bar'] ) );
     }
 
     public function testInMultiNumericStringArray()
     {
         $reference = "id IN ( '1', '2' )";
-        $this->assertEquals( $reference, $this->e->in( 'id', array( '1', '2' ) ) );
+        $this->assertEquals( $reference, $this->e->in( 'id', ['1', '2'] ) );
     }
 
     public function testInStringQuoting()
@@ -516,8 +516,8 @@ class ezcQueryExpressionTest extends ezcTestCase
     {
         $reference = ' CASE WHEN 10 >= 20 THEN 1 WHEN 20 >= 20 THEN 2 ELSE 3 END ';
         $result = $this->e->searchedCase(
-            array( $this->e->gte( 10, 20 ), 1 ),
-            array( $this->e->gte( 20, 20 ), 2 ),
+            [$this->e->gte( 10, 20 ), 1],
+            [$this->e->gte( 20, 20 ), 2],
             3
         );
         $this->assertSame( $reference, $result );
@@ -1179,8 +1179,8 @@ class ezcQueryExpressionTest extends ezcTestCase
     {
         $this->q->select(
             $this->q->expr->searchedCase(
-                array( $this->e->gte( 10, 20 ), 1 ),
-                array( $this->e->gte( 20, 20 ), 2 ),
+                [$this->e->gte( 10, 20 ), 1],
+                [$this->e->gte( 20, 20 ), 2],
                 3
             )
         );
@@ -1233,7 +1233,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testAddImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( $this->q->expr->add( 'identifier', 2 ) )->from( 'query_test' )->where( $this->q->expr->eq( 'id', 2 ) );;
         $stmt = $this->q->prepare();
         $stmt->execute();
@@ -1242,7 +1242,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testSubtractImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( $this->q->expr->sub( 'identifier', 2 ) )->from( 'query_test' )->where( $this->q->expr->eq( 'id', 4 ) );;
         $stmt = $this->q->prepare();
         $stmt->execute();
@@ -1251,7 +1251,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testMultiplyImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( $this->q->expr->mul( 'identifier', 2 ) )->from( 'query_test' )->where( $this->q->expr->eq( 'id', 2 ) );;
         $stmt = $this->q->prepare();
         $stmt->execute();
@@ -1260,7 +1260,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testDivideImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( $this->q->expr->div( 'identifier', 2 ) )->from( 'query_test' )->where( $this->q->expr->eq( 'id', 4 ) );;
         $stmt = $this->q->prepare();
         $stmt->execute();
@@ -1269,7 +1269,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testEqImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->eq( 'identifier', 'identifier'  ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1285,7 +1285,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testNeqImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->neq( 'id', 1  ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1299,7 +1299,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testGtImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->gt( 'identifier', 'identifier'  ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1313,7 +1313,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testGteImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->gte( 'identifier', 'identifier'  ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1327,7 +1327,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testLtImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->lt( 'identifier', 'identifier'  ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1341,7 +1341,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testLteImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->lte( 'identifier', 'identifier'  ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1355,7 +1355,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testInMultiImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->expr->setValuesQuoting( false );
 
         $this->q->select( '*' )->from( 'query_test' )
@@ -1374,7 +1374,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testIsNullImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->isNull( 'identifier' ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1388,7 +1388,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testBetweenImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id' ) );
+        $this->q->setAliases( ['identifier' => 'id'] );
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->between( 'identifier', 'identifier' , 'identifier' ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1402,7 +1402,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testLikeImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id', 'text' => 'company' ) );
+        $this->q->setAliases( ['identifier' => 'id', 'text' => 'company'] );
         $pattern = 'eZ%';
         $this->q->select( '*' )->from( 'query_test' )
             ->where( $this->q->expr->like( 'text', $this->q->bindParam( $pattern ) ) );
@@ -1418,7 +1418,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testAvgImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $company = 'eZ systems';
         $this->q->select( 'text',
                           $this->q->expr->avg( 'empl' ) )
@@ -1433,7 +1433,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testCountImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $this->q->select( $this->q->expr->count( 'text' ) )->from( 'query_test' )
                 ->where( $this->q->expr->eq( 'employees', 20 ) );
         $stmt = $this->db->query( $this->q->getQuery() );
@@ -1443,7 +1443,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testMaxImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $company = 'eZ systems';
         $this->q->select( 'company',
                           $this->q->expr->max( 'empl' ) )
@@ -1458,7 +1458,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testMinImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $company = 'eZ systems';
         $this->q->select( 'text',
                           $this->q->expr->min( 'empl' ) )
@@ -1473,7 +1473,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testSumImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $company = 'eZ systems';
         $this->q->select( 'text',
                           $this->q->expr->sum( 'empl' ) )
@@ -1488,7 +1488,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testMd5ImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $company = 'eZ systems';
         
         if ( $this->db->getName() == 'mssql' ) // use a bit different test for MSSQL as it's MD5() implementation
@@ -1523,7 +1523,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testLengthImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $q = $this->q;
         $var = 'four';
         $q->select( $q->expr->length( 'text'  ) )->from( 'query_test' )->where( $q->expr->eq( 'id', 2 ) );
@@ -1535,7 +1535,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testRoundImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $q = $this->q;
         $q->select( $q->expr->round( 'empl', 2 ) )->from( 'query_test' )->where( $q->expr->eq( 'id', 2 ) );
         $stmt = $this->q->prepare();
@@ -1545,7 +1545,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testModImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $q = $this->q;
         $q->select( $q->expr->mod( 'employees', 'employees' ) )->from( 'query_test' );
         $stmt = $this->q->prepare();
@@ -1555,7 +1555,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testSubstringImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $q = $this->q;
         $q->select( $q->expr->subString( 'text', 4 ) )->from( 'query_test' )->where( $q->expr->eq( 'id', 1 ) );
         $stmt = $this->q->prepare();
@@ -1565,7 +1565,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testConcatSingleImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $q = $this->q;
         $q->select( $q->expr->concat( 'text' ) )->from( 'query_test' )->where( $q->expr->eq( 'id', 1 ) );
         $stmt = $this->q->prepare();
@@ -1575,7 +1575,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testConcatMultiImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['text' => 'company', 'empl' => 'employees'] );
         $str = ' rocks!';
         $q = $this->q;
         $q->select( $q->expr->concat( 'text', $q->bindParam( $str ) ) )->from( 'query_test' )
@@ -1589,7 +1589,7 @@ class ezcQueryExpressionTest extends ezcTestCase
     {
         $reference = 'SELECT * FROM table1, table2 WHERE table1.column < table2.id';
         
-        $this->q->setAliases( array( 't_alias' => 'table1', 'c_alias' => 'column' ) );
+        $this->q->setAliases( ['t_alias' => 'table1', 'c_alias' => 'column'] );
         
         $this->q->select( '*' )
         ->from( 't_alias', 'table2' )
@@ -1602,7 +1602,7 @@ class ezcQueryExpressionTest extends ezcTestCase
     {
         $reference = 'SELECT * FROM table1, table2 WHERE table1.column < table2.id';
         
-        $this->q->setAliases( array( 't_alias' => 'table1' ) );
+        $this->q->setAliases( ['t_alias' => 'table1'] );
         
         $this->q->select( '*' )
         ->from( 't_alias', 'table2' )
@@ -1615,7 +1615,7 @@ class ezcQueryExpressionTest extends ezcTestCase
     {
         $reference = 'SELECT * FROM table1, table2 WHERE table1.column < table2.id';
         
-        $this->q->setAliases( array( 'c_alias' => 'column' ) );
+        $this->q->setAliases( ['c_alias' => 'column'] );
         
         $this->q->select( '*' )
         ->from( 'table1', 'table2' )
@@ -1626,7 +1626,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testPositionImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company' ) );
+        $this->q->setAliases( ['text' => 'company'] );
         $this->q->select( $this->q->expr->position( 's', 'text' ) )
             ->from( 'query_test' );
         $stmt = $this->q->prepare();
@@ -1636,7 +1636,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testLowerImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company' ) );
+        $this->q->setAliases( ['text' => 'company'] );
         $this->q->select( $this->q->expr->lower( 'text' ) )
             ->from( 'query_test' );
         $stmt = $this->q->prepare();
@@ -1646,7 +1646,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testUpperImplWithAlias()
     {
-        $this->q->setAliases( array( 'text' => 'company' ) );
+        $this->q->setAliases( ['text' => 'company'] );
         $this->q->select( $this->q->expr->upper( 'text' ) )
             ->from( 'query_test' );
         $stmt = $this->q->prepare();
@@ -1656,7 +1656,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testFloorImplWithAlias()
     {
-        $this->q->setAliases( array( 'empl' => 'employees' ) );
+        $this->q->setAliases( ['empl' => 'employees'] );
         $this->q->select( $this->q->expr->floor( 'empl' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 1 ) );
@@ -1667,7 +1667,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testCeilImplWithAlias()
     {
-        $this->q->setAliases( array( 'empl' => 'employees' ) );
+        $this->q->setAliases( ['empl' => 'employees'] );
         $this->q->select( $this->q->expr->ceil( 'empl' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 1 ) );
@@ -1678,7 +1678,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testUnixTimestampImplWithAlias()
     {
-        $this->q->setAliases( array( 'mydate' => 'somedate' ) );
+        $this->q->setAliases( ['mydate' => 'somedate'] );
         $this->q->select( $this->q->expr->unixTimestamp( 'mydate' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 1 ) );
@@ -1689,7 +1689,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testDateSubImplWithAlias()
     {
-        $this->q->setAliases( array( 'mydate' => 'somedate' ) );
+        $this->q->setAliases( ['mydate' => 'somedate'] );
         $this->q->select( $this->q->expr->dateSub( 'mydate', 1, 'SECOND' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 1 ) );
@@ -1700,7 +1700,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testDateAddImplWithAlias()
     {
-        $this->q->setAliases( array( 'mydate' => 'somedate' ) );
+        $this->q->setAliases( ['mydate' => 'somedate'] );
         $this->q->select( $this->q->expr->dateAdd( 'mydate', 1, 'SECOND' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 1 ) );
@@ -1711,7 +1711,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testDateExtractImplWithAlias()
     {
-        $this->q->setAliases( array( 'mydate' => 'somedate' ) );
+        $this->q->setAliases( ['mydate' => 'somedate'] );
         $this->q->select( $this->q->expr->dateExtract( 'mydate', 'SECOND' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 1 ) );
@@ -1722,10 +1722,10 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testSearchedCaseImplWithAlias()
     {
-        $this->q->setAliases( array( 'identifier' => 'id', 'empl' => 'employees' ) );
+        $this->q->setAliases( ['identifier' => 'id', 'empl' => 'employees'] );
         $this->q->select(
             $this->q->expr->searchedCase(
-                  array( $this->q->expr->gte( 'empl', 20 ), 'empl' )
+                  [$this->q->expr->gte( 'empl', 20 ), 'empl']
                 , 'identifier'
             )
         )
@@ -1742,7 +1742,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testBitAndImplWithAlias()
     {
-        $this->q->setAliases( array( 'empl' => 'employees' ) );
+        $this->q->setAliases( ['empl' => 'employees'] );
         $this->q->select( $this->q->expr->bitAnd( 3, 'empl' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 3 ) );
@@ -1753,7 +1753,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testBitOrImplWithAlias()
     {
-        $this->q->setAliases( array( 'empl' => 'employees' ) );
+        $this->q->setAliases( ['empl' => 'employees'] );
         $this->q->select( $this->q->expr->bitOr( 3, 'empl' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 3 ) );
@@ -1764,7 +1764,7 @@ class ezcQueryExpressionTest extends ezcTestCase
 
     public function testBitXorImplWithAlias()
     {
-        $this->q->setAliases( array( 'empl' => 'employees' ) );
+        $this->q->setAliases( ['empl' => 'employees'] );
         $this->q->select( $this->q->expr->bitXor( 3, 'empl' ) )
             ->from( 'query_test' )
             ->where( $this->q->expr->eq( 'id', 3 ) );

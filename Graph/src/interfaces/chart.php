@@ -37,7 +37,7 @@ abstract class ezcGraphChart
      * 
      * @var array(ezcGraphChartElement)
      */
-    protected $elements = array();
+    protected $elements = [];
 
     /**
      * Contains the data of the chart
@@ -67,7 +67,7 @@ abstract class ezcGraphChart
      * @return void
      * @ignore
      */
-    public function __construct( array $options = array() )
+    public function __construct( array $options = [] )
     {
         $this->palette = new ezcGraphPaletteTango();
         $this->data = new ezcGraphChartDataContainer( $this );
@@ -264,7 +264,7 @@ abstract class ezcGraphChart
      */
     public function getRenderedFile()
     {
-        return ( $this->renderedFile !== null ? $this->renderedFile : false );
+        return ( $this->renderedFile ?? false );
     }
 
     /**

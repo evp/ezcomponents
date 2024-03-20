@@ -25,7 +25,7 @@ class ezcMvcMailRequestParser extends ezcMvcRequestParser
     {
         if ( $mailMessage === null )
         {
-            $set = new ezcMailFileSet( array( "php://stdin" ) );
+            $set = new ezcMailFileSet( ["php://stdin"] );
         }
         else
         {
@@ -41,7 +41,7 @@ class ezcMvcMailRequestParser extends ezcMvcRequestParser
 
         $this->request = new ezcMvcRequest();
         $this->processStandardHeaders( $mail );
-        $this->processAcceptHeaders( $mail );
+        $this->processAcceptHeaders();
         $this->processUserAgentHeaders( $mail );
         $this->processFiles( $mail );
 
@@ -71,16 +71,12 @@ class ezcMvcMailRequestParser extends ezcMvcRequestParser
             : trim( substr( $mail->headers['References'], 0, strpos( $mail->headers['References'], ' ' ) -1 ), '<>' );
 
         // As variables we'll add the from name/address and subject
-        $req->variables = array(
-            'fromAddress' => $mail->from->email,
-            'fromName'    => $mail->from->name,
-            'subject'     => $mail->subject,
-        );
+        $req->variables = ['fromAddress' => $mail->from->email, 'fromName'    => $mail->from->name, 'subject'     => $mail->subject];
 
         // For the body, we take the first ezcMailText part we can find. If
         // that's not enough, the rest can be accesible through raw.
-        $context = new ezcMailPartWalkContext( array( $this, 'getBody' ) );
-        $context->filter = array( 'ezcMailText' );
+        $context = new ezcMailPartWalkContext( [$this, 'getBody'] );
+        $context->filter = ['ezcMailText'];
         $mail->walkParts( $context, $mail );
     }
 
@@ -117,9 +113,7 @@ class ezcMvcMailRequestParser extends ezcMvcRequestParser
         $this->request->agent = new ezcMvcRequestUserAgent;
         $agent = $this->request->agent;
 
-        $agent->agent = isset( $mail->headers['User-Agent'] )
-            ? $mail->headers['User-Agent']
-            : null;
+        $agent->agent = $mail->headers['User-Agent'] ?? null;
     }
 
     /**
@@ -129,8 +123,8 @@ class ezcMvcMailRequestParser extends ezcMvcRequestParser
      */
     protected function processFiles( ezcMail $mail )
     {
-        $context = new ezcMailPartWalkContext( array( $this, 'addFile' ) );
-        $context->filter = array( 'ezcMailFile' );
+        $context = new ezcMailPartWalkContext( [$this, 'addFile'] );
+        $context->filter = ['ezcMailFile'];
         $mail->walkParts( $context, $mail );
     }
 

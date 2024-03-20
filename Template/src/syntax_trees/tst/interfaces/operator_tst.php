@@ -38,19 +38,19 @@ abstract class ezcTemplateOperatorTstNode extends ezcTemplateExpressionTstNode
     /**
      * The associativity order is not significant.
      */
-    const NON_ASSOCIATIVE = 1;
+    public const NON_ASSOCIATIVE = 1;
 
     /**
      * The associativity order is left to right. This means the leftmost
      * parameter is evaluated first, then the next and so on.
      */
-    const LEFT_ASSOCIATIVE = 2;
+    public const LEFT_ASSOCIATIVE = 2;
 
     /**
      * The associativity order is right to left.This means the rightmost
      * parameter is evaluated first, then the previous and so on.
      */
-    const RIGHT_ASSOCIATIVE = 3;
+    public const RIGHT_ASSOCIATIVE = 3;
 
      /**
      * List of parameters for the current operator, each entry is either another
@@ -145,7 +145,7 @@ abstract class ezcTemplateOperatorTstNode extends ezcTemplateExpressionTstNode
         $this->associativity = $associativity;
         $this->symbol        = $symbol;
 
-        $this->parameters        = array();
+        $this->parameters        = [];
         $this->parentOperator    = null;
         $this->maxParameterCount = false;
     }
@@ -157,8 +157,7 @@ abstract class ezcTemplateOperatorTstNode extends ezcTemplateExpressionTstNode
      */
     public function getTreeProperties()
     {
-        return array( 'symbol' => $this->symbol,
-                      'parameters' => $this->parameters );
+        return ['symbol' => $this->symbol, 'parameters' => $this->parameters];
     }
 
     /**
@@ -223,7 +222,7 @@ abstract class ezcTemplateOperatorTstNode extends ezcTemplateExpressionTstNode
     {
         if ( !is_object( $element ) )
             throw new ezcTemplateInternalException( "Non-object <" . gettype( $element ) . "> add as parameter to <" . get_class( $this ) . ">" );
-        $this->parameters = array_merge( array( $element ),
+        $this->parameters = array_merge( [$element],
                                          $this->parameters );
     }
 

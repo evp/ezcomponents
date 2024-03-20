@@ -52,9 +52,7 @@ class ezcTemplateParenthesisTstNode extends ezcTemplateExpressionTstNode
 
     public function getTreeProperties()
     {
-        return array( 'startBracket'   => $this->startBracket,
-                      'endBracket'     => $this->endBracket,
-                      'expressionRoot' => $this->expressionRoot );
+        return ['startBracket'   => $this->startBracket, 'endBracket'     => $this->endBracket, 'expressionRoot' => $this->expressionRoot];
     }
 }
 ?>
